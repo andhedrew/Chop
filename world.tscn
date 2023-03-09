@@ -1,18 +1,24 @@
-[gd_scene load_steps=5 format=3 uid="uid://duur7rghblj18"]
+[gd_scene load_steps=9 format=3 uid="uid://duur7rghblj18"]
 
 [ext_resource type="Script" path="res://Player.gd" id="1_ob1pi"]
 [ext_resource type="Texture2D" uid="uid://tgfvqiycekrm" path="res://characters/Player/player.png" id="1_u7fs6"]
+[ext_resource type="PackedScene" uid="uid://bb1h85dym7l4i" path="res://hitboxes/Hurtbox.tscn" id="3_2o45i"]
+[ext_resource type="Script" path="res://test.gd" id="4_t0w8l"]
+[ext_resource type="Texture2D" uid="uid://cjnkliygyn1oo" path="res://icon.svg" id="5_gbmbd"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_v5543"]
-size = Vector2(16.5, 25)
+size = Vector2(16.5, 25.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_t8qf3"]
+size = Vector2(15, 26)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_i13qy"]
-size = Vector2(127, 20)
+size = Vector2(1974, 20)
 
 [node name="World" type="Node2D"]
 
 [node name="Player" type="CharacterBody2D" parent="."]
-position = Vector2(52, 31)
+position = Vector2(61, 35)
 collision_mask = 2
 script = ExtResource("1_ob1pi")
 
@@ -26,12 +32,52 @@ hframes = 10
 vframes = 9
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
-position = Vector2(-1.75, 1)
+position = Vector2(-1.75, 1.25)
 shape = SubResource("RectangleShape2D_v5543")
+
+[node name="Hurtbox" parent="Player" instance=ExtResource("3_2o45i")]
+
+[node name="CollisionShape2D" parent="Player/Hurtbox" index="0"]
+position = Vector2(-1.5, 1)
+shape = SubResource("RectangleShape2D_t8qf3")
+
+[node name="AudioListener2D" type="AudioListener2D" parent="Player"]
+current = true
+
+[node name="Camera2D" type="Camera2D" parent="Player"]
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 collision_layer = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
-position = Vector2(82.5, 90)
+position = Vector2(1006, 90)
 shape = SubResource("RectangleShape2D_i13qy")
+
+[node name="CharacterBody2D" type="CharacterBody2D" parent="."]
+position = Vector2(182, 67)
+script = ExtResource("4_t0w8l")
+
+[node name="Sprite2D" type="Sprite2D" parent="CharacterBody2D"]
+position = Vector2(1, 0)
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("5_gbmbd")
+
+[node name="CharacterBody2D2" type="CharacterBody2D" parent="."]
+position = Vector2(585, 67)
+script = ExtResource("4_t0w8l")
+
+[node name="Sprite2D" type="Sprite2D" parent="CharacterBody2D2"]
+position = Vector2(1, 0)
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("5_gbmbd")
+
+[node name="CharacterBody2D3" type="CharacterBody2D" parent="."]
+position = Vector2(1040, 67)
+script = ExtResource("4_t0w8l")
+
+[node name="Sprite2D" type="Sprite2D" parent="CharacterBody2D3"]
+position = Vector2(1, 0)
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("5_gbmbd")
+
+[editable path="Player/Hurtbox"]

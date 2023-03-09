@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://bb1h85dym7l4i"]
+
+[ext_resource type="Script" path="res://hitboxes/Hurtbox.gd" id="1_wmica"]
+
+[node name="Hurtbox" type="Area2D"]
+script = ExtResource("1_wmica")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+debug_color = Color(0.121569, 0.647059, 0, 0.419608)
