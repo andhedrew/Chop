@@ -1,0 +1,60 @@
+[gd_scene load_steps=7 format=3 uid="uid://duxuf5cywhs0h"]
+
+[ext_resource type="Script" path="res://Player.gd" id="1_c62mk"]
+[ext_resource type="Texture2D" uid="uid://tgfvqiycekrm" path="res://characters/Player/player.png" id="2_mwvus"]
+[ext_resource type="PackedScene" uid="uid://bb1h85dym7l4i" path="res://hitboxes/Hurtbox.tscn" id="3_om6km"]
+
+[sub_resource type="Theme" id="Theme_e62t7"]
+default_font_size = 10
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_v5543"]
+size = Vector2(16.5, 25.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_t8qf3"]
+size = Vector2(15, 26)
+
+[node name="Player" type="CharacterBody2D"]
+position = Vector2(61, 35)
+collision_mask = 2
+script = ExtResource("1_c62mk")
+
+[node name="State" type="Label" parent="."]
+visible = false
+offset_left = -15.0
+offset_top = -61.0
+offset_right = 25.0
+offset_bottom = -38.0
+theme = SubResource("Theme_e62t7")
+text = "State"
+
+[node name="Facing" type="Label" parent="."]
+offset_left = -15.0
+offset_top = -45.0
+offset_right = 25.0
+offset_bottom = -22.0
+theme = SubResource("Theme_e62t7")
+text = "Facing"
+
+[node name="Pivot" type="Marker2D" parent="."]
+
+[node name="Weapon" type="Sprite2D" parent="Pivot"]
+
+[node name="Body" type="Sprite2D" parent="Pivot"]
+texture = ExtResource("2_mwvus")
+hframes = 10
+vframes = 9
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-1.75, 1.25)
+shape = SubResource("RectangleShape2D_v5543")
+
+[node name="Hurtbox" parent="." instance=ExtResource("3_om6km")]
+
+[node name="CollisionShape2D" parent="Hurtbox" index="0"]
+position = Vector2(-1.5, 1)
+shape = SubResource("RectangleShape2D_t8qf3")
+
+[node name="AudioListener2D" type="AudioListener2D" parent="."]
+current = true
+
+[editable path="Hurtbox"]
