@@ -3,8 +3,8 @@ extends Area2D
 
 var default_speed := 200
 var travelled_distance := 0
-var max_range := 300
-var speed := 200
+var max_range := 300.0
+var speed := 500
 var spread := 0
 
 func _init():

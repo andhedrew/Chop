@@ -1,10 +1,12 @@
 extends State
 
 func enter(_msg := {}) -> void:
-	owner.velocity = Vector2.ZERO
+	pass
 
 
-func update(delta: float) -> void:
+func update(_delta: float) -> void:
+	owner.velocity.x = lerp(owner.velocity.x, 0.0, Param.FRICTION)
+	owner.move_and_slide()
 	# If you have platforms that break when standing on them, you need that check for 
 	# the character to fall.
 	if not owner.is_on_floor():

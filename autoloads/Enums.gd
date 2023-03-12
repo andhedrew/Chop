@@ -4,3 +4,5 @@ enum State {IDLE, MOVE, WALK, JUMP, FALL, DEAD, ATTACK, HURT, RELOADING, EXECUTE
 
 enum Facing {RIGHT,LEFT}
 enum Looking {UP, FORWARD, DOWN}
+
+

@@ -21,6 +21,7 @@ Enums="*res://autoloads/Enums.gd"
 GameEvents="*res://autoloads/GameEvents.gd"
 SortLayer="*res://autoloads/SortLayer.gd"
 SoundPlayer="*res://autoloads/SoundPlayer.tscn"
+Param="*res://autoloads/Param.gd"
 
 [display]
 

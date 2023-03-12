@@ -59,13 +59,6 @@ func _physics_process(_delta):
 				"Cutscene": pass
 	
 	state_last_frame = owner.state
-	
-func _set_state(next_state):
-	if state == "Fall" and (next_state == "Idle" or next_state == "Walk"): 
-		if owner.looking == Enums.Looking.UP: animation_player.play("landing_looking_up")
-		else:animation_player.play("landing")
-	await animation_player.animation_finished
-	state = next_state
 
 
 func _set_facing(player_facing_direction) -> void:

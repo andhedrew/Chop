@@ -1,16 +1,15 @@
 extends CharacterBody2D
 
 
-const speed = 300.0
-const jump_height = -500.0
+const max_speed := 120
+const acceleration := 7
+const acceleration_in_air := 5
+const jump_height = -200.0
 
 var facing := Enums.Facing.RIGHT
 var looking := Enums.Looking.FORWARD
 var default_facing = facing
 var facing_last_frame = facing
-
-
-var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
 var attack: bool
 var jump: bool
@@ -23,7 +22,7 @@ func _ready():
 	pass
 
 
-func _physics_process(delta):
+func _physics_process(_delta):
 	get_input()
 	state = $StateMachine.state.name
 	_set_debug_labels()
@@ -48,6 +47,8 @@ func get_input() -> void:
 
 
 func handle_facing() -> void:
+	if state == "Attack": 
+		return
 	if input.y == 0:
 		looking = Enums.Looking.FORWARD
 		if input.x > 0:
