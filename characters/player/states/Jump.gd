@@ -1,5 +1,7 @@
 extends State
 
+var coyote_jump: bool = false
+
 func physics_update(delta: float) -> void:
 
 	var input_direction_x: float = (
@@ -14,7 +16,11 @@ func physics_update(delta: float) -> void:
 		owner.velocity.y = owner.jump_height/2
 	elif jump and owner.is_on_floor():
 		owner.velocity.y = owner.jump_height
-		
+	elif coyote_jump:
+		owner.velocity.y = owner.jump_height
+		coyote_jump = false
+	
+	
 	owner.velocity.x = move_toward(owner.velocity.x, owner.max_speed * input_direction_x, owner.acceleration_in_air)
 	owner.velocity.y += Param.GRAVITY * delta
 	owner.move_and_slide()

@@ -2,7 +2,7 @@ extends CharacterBody2D
 
 
 const max_speed := 120
-const acceleration := 7
+const acceleration := 9
 const acceleration_in_air := 5
 const jump_height = -200.0
 

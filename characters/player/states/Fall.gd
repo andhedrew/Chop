@@ -1,6 +1,20 @@
 extends State
 
+@onready var coyote_timer := $"../../CoyoteTimer"
+@onready var jump_buffer_timer := $"../../JumpBufferTimer"
+
+
+func enter(_msg := {}) -> void:
+	pass
+
 func physics_update(delta: float) -> void:
+	var jump := Input.is_action_just_pressed("jump")
+	
+	if !coyote_timer.is_stopped() and jump:
+		state_machine.transition_to("Jump")
+		$"../Jump".coyote_jump = true
+	elif jump and jump_buffer_timer.is_stopped():
+		jump_buffer_timer.start()
 
 	var input_direction_x: float = (
 		Input.get_action_strength("right")
@@ -17,3 +31,4 @@ func physics_update(delta: float) -> void:
 	
 	if Input.is_action_just_pressed("attack"):
 		state_machine.transition_to("Attack")
+
