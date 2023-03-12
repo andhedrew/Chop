@@ -12,8 +12,6 @@ var is_landing := false
 func _ready():
 	pass
 
-
-
 func _physics_process(_delta):
 	
 	if state_last_frame == "Fall" and owner.state != "Fall":

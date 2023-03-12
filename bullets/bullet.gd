@@ -36,7 +36,7 @@ func setup(
 	transform = new_global_transform
 	max_range = new_range
 	speed = new_speed
-	rotation = new_rotation
+	rotation_degrees = new_rotation
 	spread = new_spread
 
 
