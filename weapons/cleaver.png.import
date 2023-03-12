@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dqea07rrxn0mr"
-path="res://.godot/imported/base_tileset.png-053712d7587b39c1f466d843a8077a35.ctex"
+uid="uid://c0gkkcwur73fa"
+path="res://.godot/imported/cleaver.png-d43e49345c556e8a85c6cb5a7579f476.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/base_tileset.png"
-dest_files=["res://.godot/imported/base_tileset.png-053712d7587b39c1f466d843a8077a35.ctex"]
+source_file="res://weapons/cleaver.png"
+dest_files=["res://.godot/imported/cleaver.png-d43e49345c556e8a85c6cb5a7579f476.ctex"]
 
 [params]
 

@@ -18,7 +18,7 @@ var target_node: Node
 
  
 func _ready():
-	noise.noise_type = 0
+	noise.noise_type =  0
 	GameEvents.player_changed_facing.connect(_change_lead_position)
 	GameEvents.player_attacked.connect(_SCREENSHAKE)
 	GameEvents.player_executed.connect(_BIG_SCREENSHAKE)

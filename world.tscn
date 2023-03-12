@@ -1,11 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://duur7rghblj18"]
+[gd_scene load_steps=6 format=3 uid="uid://cme8ny3tinjf3"]
 
-[ext_resource type="PackedScene" uid="uid://duxuf5cywhs0h" path="res://characters/Player/player.tscn" id="1_371ql"]
-[ext_resource type="Texture2D" uid="uid://dqea07rrxn0mr" path="res://sprites/base_tileset.png" id="3_uwn3c"]
+[ext_resource type="PackedScene" path="res://characters/Player/player.tscn" id="1_371ql"]
+[ext_resource type="Texture2D" uid="uid://dqea07rrxn0mr" path="res://sprites/tilesets/base_tileset.png" id="3_ngx7p"]
 [ext_resource type="Script" path="res://Camera.gd" id="4_e8jus"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_u3ycg"]
-texture = ExtResource("3_uwn3c")
+texture = ExtResource("3_ngx7p")
 4:0/0 = 0
 4:0/0/terrain_set = 0
 4:0/0/terrain = 0
