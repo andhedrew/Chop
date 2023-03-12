@@ -1,6 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://cme8ny3tinjf3"]
+[gd_scene load_steps=7 format=3 uid="uid://cme8ny3tinjf3"]
 
-[ext_resource type="PackedScene" path="res://characters/Player/player.tscn" id="1_371ql"]
+[ext_resource type="PackedScene" uid="uid://bu3y65bfp3aey" path="res://characters/player/player.tscn" id="1_371ql"]
+[ext_resource type="Script" path="res://world.gd" id="1_nxsgc"]
 [ext_resource type="Texture2D" uid="uid://dqea07rrxn0mr" path="res://sprites/tilesets/base_tileset.png" id="3_ngx7p"]
 [ext_resource type="Script" path="res://Camera.gd" id="4_e8jus"]
 
@@ -592,6 +593,7 @@ terrain_set_0/terrain_0/color = Color(0.698039, 0.133333, 0.141176, 1)
 sources/0 = SubResource("TileSetAtlasSource_u3ycg")
 
 [node name="World" type="Node2D"]
+script = ExtResource("1_nxsgc")
 
 [node name="Player" parent="." instance=ExtResource("1_371ql")]
 collision_mask = 3

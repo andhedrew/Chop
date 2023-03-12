@@ -18,3 +18,6 @@ func update(delta: float) -> void:
 		state_machine.transition_to("Jump")
 	elif Input.is_action_pressed("left") or Input.is_action_pressed("right"):
 		state_machine.transition_to("Walk")
+
+	if Input.is_action_just_pressed("attack"):
+		state_machine.transition_to("Attack")

@@ -21,3 +21,6 @@ func physics_update(delta: float) -> void:
 	
 	if owner.velocity.y > 0:
 		state_machine.transition_to("Fall")
+
+	if Input.is_action_just_pressed("attack"):
+		state_machine.transition_to("Attack")

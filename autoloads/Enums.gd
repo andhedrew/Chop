@@ -2,4 +2,5 @@ extends Node
 
 enum State {IDLE, MOVE, WALK, JUMP, FALL, DEAD, ATTACK, HURT, RELOADING, EXECUTE, CUTSCENE, DASH}
 
-enum Facing {RIGHT, DOWN, LEFT, UP}
+enum Facing {RIGHT,LEFT}
+enum Looking {UP, FORWARD, DOWN}
