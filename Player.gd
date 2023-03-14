@@ -1,5 +1,6 @@
 extends CharacterBody2D
 
+@export var camera : Camera2D 
 
 const max_speed := 120
 const acceleration := 9
@@ -47,7 +48,7 @@ func get_input() -> void:
 
 
 func handle_facing() -> void:
-	if state == "Attack": 
+	if state == "Attack" or state == "Execute": 
 		return
 	if input.y == 0:
 		looking = Enums.Looking.FORWARD

@@ -2,13 +2,13 @@
 
 importer="wav"
 type="AudioStreamWAV"
-uid="uid://bbykv24ye8b86"
-path="res://.godot/imported/hiss_1.wav-e5c162d346eadcb7c568ddc829c7696d.sample"
+uid="uid://b3kek0uupvvrr"
+path="res://.godot/imported/hiss_2.wav-ba6f433598f5d0ff5cd87a5acd7f4ccc.sample"
 
 [deps]
 
-source_file="res://sounds/hiss_1.wav"
-dest_files=["res://.godot/imported/hiss_1.wav-e5c162d346eadcb7c568ddc829c7696d.sample"]
+source_file="res://audio/sounds/hiss_2.wav"
+dest_files=["res://.godot/imported/hiss_2.wav-ba6f433598f5d0ff5cd87a5acd7f4ccc.sample"]
 
 [params]
 

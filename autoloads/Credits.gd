@@ -7,3 +7,5 @@ extends Node
 #punch https://freesound.org/people/thefsoundman/sounds/118513/
 #poof https://freesound.org/people/ryansitz/sounds/387834/
 # power up: https://freesound.org/people/suntemple/sounds/253172/
+#  slashkut https://freesound.org/people/Abyssmal/sounds/35213/
+#knife slash https://freesound.org/people/lmbubec/sounds/118792/

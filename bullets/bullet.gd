@@ -1,7 +1,7 @@
 class_name Bullet
 extends Area2D
 
-var default_speed := 200
+var default_speed := 500
 var travelled_distance := 0
 var max_range := 300.0
 var speed := 500
@@ -13,7 +13,7 @@ func _init():
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
+	$AnimationPlayer.play("animate_bullet")
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

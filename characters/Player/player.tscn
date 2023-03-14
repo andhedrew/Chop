@@ -463,36 +463,38 @@ size = Vector2(16.5, 25.5)
 size = Vector2(15, 26)
 
 [node name="Player" type="CharacterBody2D"]
-position = Vector2(61, 35)
 collision_mask = 2
 script = ExtResource("1_70gqt")
 
 [node name="State" type="Label" parent="."]
-offset_left = -15.0
-offset_top = -61.0
-offset_right = 25.0
-offset_bottom = -38.0
+offset_left = -13.0
+offset_top = -75.0
+offset_right = 27.0
+offset_bottom = -52.0
 theme = SubResource("Theme_e62t7")
 text = "State"
 
 [node name="Facing" type="Label" parent="."]
-offset_left = -15.0
-offset_top = -45.0
-offset_right = 25.0
-offset_bottom = -22.0
+offset_left = -13.0
+offset_top = -59.0
+offset_right = 27.0
+offset_bottom = -36.0
 theme = SubResource("Theme_e62t7")
 text = "Facing"
 
 [node name="Pivot" type="Marker2D" parent="."]
+position = Vector2(2, -14)
 script = ExtResource("2_8pqog")
 
 [node name="Weapon" type="Sprite2D" parent="Pivot"]
+position = Vector2(0, 1)
 texture = ExtResource("3_fpyci")
 hframes = 10
 vframes = 9
 frame = 10
 
 [node name="Body" type="Sprite2D" parent="Pivot"]
+position = Vector2(0, 1)
 texture = ExtResource("4_xrcf8")
 hframes = 10
 vframes = 9
@@ -506,17 +508,22 @@ libraries = {
 [node name="EffectsPlayer" type="AnimationPlayer" parent="Pivot"]
 root_node = NodePath("../..")
 
+[node name="BulletSpawn" type="Marker2D" parent="Pivot"]
+position = Vector2(17, 0)
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-1.75, 1.25)
+position = Vector2(0.25, -12.75)
 shape = SubResource("RectangleShape2D_v5543")
 
 [node name="Hurtbox" parent="." instance=ExtResource("5_qkadd")]
+position = Vector2(2, -14)
 
 [node name="CollisionShape2D" parent="Hurtbox" index="0"]
 position = Vector2(-1.5, 1)
 shape = SubResource("RectangleShape2D_t8qf3")
 
 [node name="AudioListener2D" type="AudioListener2D" parent="."]
+position = Vector2(2, -14)
 current = true
 
 [node name="StateMachine" type="Node" parent="."]

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://tbobrslot2us"
-path="res://.godot/imported/slash_bullet.png-a071af665760a974f65341678a76b9c5.ctex"
+uid="uid://dho6xihx2y1wm"
+path="res://.godot/imported/Paroot.png-ce11a0ce96d54250125c611d51ff8161.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/bullet_sprites/slash_bullet.png"
-dest_files=["res://.godot/imported/slash_bullet.png-a071af665760a974f65341678a76b9c5.ctex"]
+source_file="res://characters/enemy/paroot/Paroot.png"
+dest_files=["res://.godot/imported/Paroot.png-ce11a0ce96d54250125c611d51ff8161.ctex"]
 
 [params]
 

@@ -1,4 +1,4 @@
-class_name PlayerStateMachine
+class_name StateMachine
 extends Node
 
 
@@ -40,4 +40,4 @@ func transition_to(target_state_name: String, msg: Dictionary = {}) -> void:
 	state.exit()
 	state = get_node(target_state_name)
 	state.enter(msg)
-	GameEvents.player_changed_state.emit(state.name) 
+ 

@@ -1,9 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://cme8ny3tinjf3"]
+[gd_scene load_steps=8 format=3 uid="uid://cme8ny3tinjf3"]
 
 [ext_resource type="PackedScene" uid="uid://bu3y65bfp3aey" path="res://characters/player/player.tscn" id="1_371ql"]
 [ext_resource type="Script" path="res://world.gd" id="1_nxsgc"]
 [ext_resource type="Texture2D" uid="uid://dqea07rrxn0mr" path="res://sprites/tilesets/base_tileset.png" id="3_ngx7p"]
 [ext_resource type="Script" path="res://Camera.gd" id="4_e8jus"]
+[ext_resource type="PackedScene" uid="uid://yhe42gnq2u25" path="res://characters/enemy/enemy.tscn" id="5_28ye2"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_u3ycg"]
 texture = ExtResource("3_ngx7p")
@@ -586,7 +587,7 @@ texture = ExtResource("3_ngx7p")
 
 [sub_resource type="TileSet" id="TileSet_tiems"]
 physics_layer_0/collision_layer = 1
-physics_layer_0/collision_mask = 14
+physics_layer_0/collision_mask = 15
 terrain_set_0/mode = 0
 terrain_set_0/terrain_0/name = "Ground"
 terrain_set_0/terrain_0/color = Color(0.698039, 0.133333, 0.141176, 1)
@@ -595,10 +596,12 @@ sources/0 = SubResource("TileSetAtlasSource_u3ycg")
 [node name="World" type="Node2D"]
 script = ExtResource("1_nxsgc")
 
-[node name="Player" parent="." instance=ExtResource("1_371ql")]
+[node name="Player" parent="." node_paths=PackedStringArray("camera") instance=ExtResource("1_371ql")]
+position = Vector2(148, 35)
 collision_mask = 3
+camera = NodePath("../Camera")
 
-[node name="Camera2D" type="Camera2D" parent="."]
+[node name="Camera" type="Camera2D" parent="."]
 script = ExtResource("4_e8jus")
 target = NodePath("../Player")
 
@@ -606,3 +609,6 @@ target = NodePath("../Player")
 tile_set = SubResource("TileSet_tiems")
 format = 2
 layer_0/tile_data = PackedInt32Array(262148, 65536, 1, 262149, 65536, 1, 262150, 65536, 1, 262151, 65536, 1, 262152, 65536, 5, 262153, 65536, 1, 262154, 65536, 1, 262155, 131072, 1, 262156, 65536, 1, 262157, 65536, 1, 262158, 65536, 5, 262159, 131072, 1, 262160, 131072, 1, 262161, 65536, 1, 327684, 131072, 4, 327685, 131072, 4, 327686, 65536, 4, 327687, 65536, 4, 327688, 131072, 4, 327689, 65536, 4, 327690, 131072, 4, 327691, 65536, 4, 327692, 65536, 4, 327693, 131072, 4, 327694, 65536, 4, 327695, 65536, 4, 327696, 131072, 4, 327697, 65536, 4, 327698, 393216, 5, 262162, 196608, 1, 327683, 393216, 6, 262147, 0, 1, 327682, 0, 1, 393218, 0, 4, 393219, 196608, 4, 393234, 0, 4, 393235, 196608, 4, 327699, 196608, 1, 65557, 0, 1, 131093, 0, 4, 131094, 65536, 4, 131095, 131072, 4, 131096, 65536, 4, 131097, 131072, 4, 131098, 131072, 4, 131099, 196608, 4, 65563, 196608, 1, 65562, 131072, 1, 65561, 65536, 1, 65560, 65536, 1, 65559, 65536, 1, 65558, 65536, 1, 29, 0, 1, 65565, 0, 4, 65566, 65536, 4, 65567, 131072, 4, 65568, 65536, 4, 65569, 131072, 4, 65570, 65536, 4, 34, 65536, 1, 35, 196608, 1, 33, 65536, 1, 32, 131072, 1, 31, 131072, 1, 30, 131072, 1, 65571, 196608, 4, 196616, 393216, 2, 131080, 393216, 2, 65544, 393216, 1, 196622, 393216, 1)
+
+[node name="Enemy" parent="." instance=ExtResource("5_28ye2")]
+position = Vector2(266, 64)
