@@ -6,18 +6,15 @@ extends State
 @onready var ledge_check_right := $"../../ledge_check_right"
 
 var flipped := false
-
+var transitioned := false
 # Called when the node enters the scene tree for the first time.
-func _ready():
+func enter(_msg := {}) -> void:
 	animation_player.play("walk")
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(_delta):
-
-	
-	
-	
+func update(_delta: float) -> void:
+#	state_machine.transition_to("Idle")
 	owner.velocity.x = owner.speed * owner.direction
 	owner.move_and_slide()
 	var found_wall = owner.is_on_wall()
@@ -29,7 +26,5 @@ func _process(_delta):
 	else:
 		flipped = false
 			
-
-#
 #	if not owner.is_on_floor():
 #		state_machine.transition_to("enemy_fall")

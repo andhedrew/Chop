@@ -113,12 +113,12 @@ root_node = NodePath("../..")
 
 [node name="StateMachine" type="Node" parent="."]
 script = ExtResource("1_dk0lt")
-initial_state = NodePath("Walk")
+initial_state = NodePath("enemy_walk")
 
 [node name="Idle" type="Node" parent="StateMachine"]
 script = ExtResource("2_2vlcn")
 
-[node name="Walk" type="Node" parent="StateMachine"]
+[node name="enemy_walk" type="Node" parent="StateMachine"]
 script = ExtResource("5_dwrm6")
 
 [node name="Hurtbox" parent="." instance=ExtResource("4_8w5xb")]

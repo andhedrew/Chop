@@ -1,13 +1,8 @@
 class_name StateMachine
 extends Node
 
-
-# Path to the initial active state. We export it to be able to pick the initial state in the inspector.
 @export var initial_state := NodePath()
-
-# The current active state. At the start of the game, we get the `initial_state`.
 @onready var state: State = get_node(initial_state)
-
 
 func _ready() -> void:
 	await owner.ready
