@@ -509,7 +509,7 @@ libraries = {
 root_node = NodePath("../..")
 
 [node name="BulletSpawn" type="Marker2D" parent="Pivot"]
-position = Vector2(17, 0)
+position = Vector2(10, 1)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0.25, -12.75)

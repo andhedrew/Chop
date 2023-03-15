@@ -19,7 +19,7 @@ func _physics_process(_delta):
 	
 	match owner.looking:
 		Enums.Looking.UP:
-			$BulletSpawn.position = Vector2(0, -28)
+			$BulletSpawn.position = Vector2(0, -20)
 			match owner.state:
 				"Idle": 
 					if is_landing: 
@@ -43,7 +43,7 @@ func _physics_process(_delta):
 			if Input.is_action_pressed("down") and !owner.is_on_floor():
 				$BulletSpawn.position = Vector2(30, 20)
 			else: 
-				$BulletSpawn.position = Vector2(17, 0)
+				$BulletSpawn.position = Vector2(10, 0)
 			match owner.state:
 				"Idle": 
 					if is_landing: 

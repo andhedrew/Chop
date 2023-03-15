@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://yhe42gnq2u25"]
+[gd_scene load_steps=21 format=3 uid="uid://yhe42gnq2u25"]
 
 [ext_resource type="Texture2D" uid="uid://dho6xihx2y1wm" path="res://characters/enemy/paroot/Paroot.png" id="1_2npjf"]
 [ext_resource type="Script" path="res://characters/player/states/state_machine.gd" id="1_dk0lt"]
@@ -7,6 +7,8 @@
 [ext_resource type="PackedScene" uid="uid://bb1h85dym7l4i" path="res://hitboxes/Hurtbox.tscn" id="4_8w5xb"]
 [ext_resource type="PackedScene" uid="uid://cxfiuhgots5lg" path="res://hitboxes/Hitbox.tscn" id="5_6n0da"]
 [ext_resource type="Script" path="res://characters/enemy/states/enemy_walk.gd" id="5_dwrm6"]
+[ext_resource type="Script" path="res://characters/enemy/states/enemy_fall.gd" id="6_g7sng"]
+[ext_resource type="Script" path="res://characters/enemy/states/enemy_hurt.gd" id="7_dgvrw"]
 
 [sub_resource type="Animation" id="Animation_sljcl"]
 resource_name = "fall"
@@ -83,6 +85,44 @@ _data = {
 "walk": SubResource("Animation_i5tj7")
 }
 
+[sub_resource type="Animation" id="Animation_shhb8"]
+resource_name = "take_damage"
+length = 1.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Pivot:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 1.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 0.356863, 0.235294, 1), Color(1, 1, 1, 1), Color(1, 0.356863, 0.235294, 1), Color(1, 1, 1, 1), Color(1, 0.356863, 0.235294, 1), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_3oc4b"]
+resource_name = "RESET"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Pivot:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_3rqiy"]
+_data = {
+"RESET": SubResource("Animation_3oc4b"),
+"take_damage": SubResource("Animation_shhb8")
+}
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_b0l46"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_sdbq6"]
@@ -101,6 +141,7 @@ script = ExtResource("1_dxug5")
 position = Vector2(0, -13)
 texture = ExtResource("1_2npjf")
 hframes = 4
+frame = 2
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Pivot"]
 root_node = NodePath("../..")
@@ -110,16 +151,25 @@ libraries = {
 
 [node name="EffectsPlayer" type="AnimationPlayer" parent="Pivot"]
 root_node = NodePath("../..")
+libraries = {
+"": SubResource("AnimationLibrary_3rqiy")
+}
 
 [node name="StateMachine" type="Node" parent="."]
 script = ExtResource("1_dk0lt")
-initial_state = NodePath("enemy_walk")
+initial_state = NodePath("Idle")
 
 [node name="Idle" type="Node" parent="StateMachine"]
 script = ExtResource("2_2vlcn")
 
-[node name="enemy_walk" type="Node" parent="StateMachine"]
+[node name="Walk" type="Node" parent="StateMachine"]
 script = ExtResource("5_dwrm6")
+
+[node name="Fall" type="Node" parent="StateMachine"]
+script = ExtResource("6_g7sng")
+
+[node name="Hurt" type="Node" parent="StateMachine"]
+script = ExtResource("7_dgvrw")
 
 [node name="Hurtbox" parent="." instance=ExtResource("4_8w5xb")]
 collision_layer = 4
