@@ -4,6 +4,7 @@
 [ext_resource type="Script" path="res://characters/player/states/state_machine.gd" id="1_dk0lt"]
 [ext_resource type="Script" path="res://characters/enemy/enemy.gd" id="1_dxug5"]
 [ext_resource type="Script" path="res://characters/enemy/states/enemy_idle.gd" id="2_2vlcn"]
+[ext_resource type="Animation" uid="uid://dep0l7ft0tpjo" path="res://animations/take_damage.res" id="3_5ulc8"]
 [ext_resource type="PackedScene" uid="uid://bb1h85dym7l4i" path="res://hitboxes/Hurtbox.tscn" id="4_8w5xb"]
 [ext_resource type="PackedScene" uid="uid://cxfiuhgots5lg" path="res://hitboxes/Hitbox.tscn" id="5_6n0da"]
 [ext_resource type="Script" path="res://characters/enemy/states/enemy_walk.gd" id="5_dwrm6"]
@@ -85,22 +86,6 @@ _data = {
 "walk": SubResource("Animation_i5tj7")
 }
 
-[sub_resource type="Animation" id="Animation_shhb8"]
-resource_name = "take_damage"
-length = 1.5
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Pivot:modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 1.4),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
-"update": 0,
-"values": [Color(1, 0.356863, 0.235294, 1), Color(1, 1, 1, 1), Color(1, 0.356863, 0.235294, 1), Color(1, 1, 1, 1), Color(1, 0.356863, 0.235294, 1), Color(1, 1, 1, 1)]
-}
-
 [sub_resource type="Animation" id="Animation_3oc4b"]
 resource_name = "RESET"
 length = 0.1
@@ -120,7 +105,7 @@ tracks/0/keys = {
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_3rqiy"]
 _data = {
 "RESET": SubResource("Animation_3oc4b"),
-"take_damage": SubResource("Animation_shhb8")
+"take_damage": ExtResource("3_5ulc8")
 }
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_b0l46"]
@@ -180,8 +165,8 @@ position = Vector2(0, -10)
 shape = SubResource("RectangleShape2D_b0l46")
 
 [node name="Hitbox" parent="." instance=ExtResource("5_6n0da")]
-collision_layer = 0
-collision_mask = 0
+collision_layer = 4
+collision_mask = 2
 
 [node name="CollisionShape2D" parent="Hitbox" index="0"]
 position = Vector2(0, -9)
@@ -204,6 +189,7 @@ collide_with_areas = true
 [node name="player_detector" type="RayCast2D" parent="."]
 position = Vector2(0, -10)
 target_position = Vector2(70, 0)
+collision_mask = 3
 
 [editable path="Hurtbox"]
 [editable path="Hitbox"]

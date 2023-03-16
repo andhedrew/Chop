@@ -7,6 +7,9 @@ func enter(msg := {}) -> void:
 	owner.animation_player.play("hurt")
 	owner.effects_player.play("take_damage")
 	owner.velocity.x = owner.global_position.x - (hitbox_position.x)
+	match sign(owner.velocity.x):
+		1: owner.facing == Enums.Facing.LEFT
+		-1 :owner.facing == Enums.Facing.RIGHT
 	owner.velocity.y = -150
 
 func update(_delta: float) -> void:

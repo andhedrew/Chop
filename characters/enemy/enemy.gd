@@ -9,6 +9,7 @@ extends CharacterBody2D
 
 var speed := 20.0
 var direction := 1
+var facing := Enums.Facing.RIGHT
 
 
 func _ready() -> void:
@@ -17,6 +18,11 @@ func _ready() -> void:
 	else:
 		$Hurtbox.area_entered.connect(_take_damage)
 
+
+func _physics_process(delta):
+	var player_check = $player_detector.get_collider()
+	if player_check is Player:
+		print_debug("detecting player")
 
 func _take_damage(hitbox) -> void:
 	if hitbox is HitBox and $StateMachine.state.name != "Hurt":
@@ -28,3 +34,22 @@ func _take_damage(hitbox) -> void:
 func _deflect(hitbox) -> void:
 	$StateMachine.transition_to("Deflect")
 	pass #play deflected VFX
+
+
+func set_facing(facing_dir) -> void:
+	facing = facing_dir
+	if facing == Enums.Facing.LEFT:
+		direction = -1
+		transform.x.x = -1
+	elif facing == Enums.Facing.RIGHT:
+		direction = 1
+		transform.x.x = 1
+
+
+func switch_facing() -> void:
+	if facing == Enums.Facing.LEFT:
+		facing = Enums.Facing.RIGHT
+	elif facing == Enums.Facing.RIGHT:
+		facing = Enums.Facing.LEFT
+	set_facing(facing)
+	

@@ -1,9 +1,10 @@
-[gd_scene load_steps=32 format=3 uid="uid://bu3y65bfp3aey"]
+[gd_scene load_steps=37 format=3 uid="uid://bu3y65bfp3aey"]
 
 [ext_resource type="Script" path="res://Player.gd" id="1_70gqt"]
 [ext_resource type="Script" path="res://characters/player/PlayerAnimationController.gd" id="2_8pqog"]
 [ext_resource type="Texture2D" uid="uid://c0gkkcwur73fa" path="res://weapons/cleaver.png" id="3_fpyci"]
 [ext_resource type="Texture2D" uid="uid://tgfvqiycekrm" path="res://characters/player/player.png" id="4_xrcf8"]
+[ext_resource type="Animation" uid="uid://dep0l7ft0tpjo" path="res://animations/take_damage.res" id="5_i7udj"]
 [ext_resource type="PackedScene" uid="uid://bb1h85dym7l4i" path="res://hitboxes/Hurtbox.tscn" id="5_qkadd"]
 [ext_resource type="Script" path="res://characters/player/states/state_machine.gd" id="6_ordad"]
 [ext_resource type="Script" path="res://characters/player/states/Idle.gd" id="7_wjwjl"]
@@ -12,6 +13,7 @@
 [ext_resource type="Script" path="res://characters/player/states/Jump.gd" id="10_sp1oq"]
 [ext_resource type="Script" path="res://characters/player/states/Fall.gd" id="11_2nxde"]
 [ext_resource type="Script" path="res://characters/player/states/Execute.gd" id="12_h1f83"]
+[ext_resource type="Script" path="res://characters/player/states/Hurt.gd" id="13_0nhk4"]
 
 [sub_resource type="Theme" id="Theme_e62t7"]
 default_font_size = 10
@@ -437,6 +439,21 @@ tracks/1/keys = {
 "values": [8]
 }
 
+[sub_resource type="Animation" id="Animation_tdp1r"]
+resource_name = "hurt"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Body:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [30]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_jjl6a"]
 _data = {
 "attack": SubResource("Animation_ik58v"),
@@ -444,6 +461,7 @@ _data = {
 "execute": SubResource("Animation_xrljs"),
 "fall": SubResource("Animation_o3fmq"),
 "fall_looking_up": SubResource("Animation_ncums"),
+"hurt": SubResource("Animation_tdp1r"),
 "idle": SubResource("Animation_f7om3"),
 "idle_looking_up": SubResource("Animation_5er77"),
 "jump": SubResource("Animation_qh5tq"),
@@ -456,6 +474,28 @@ _data = {
 "watch": SubResource("Animation_av3il")
 }
 
+[sub_resource type="Animation" id="Animation_22wmf"]
+resource_name = "RESET"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Pivot:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_gr6b6"]
+_data = {
+"RESET": SubResource("Animation_22wmf"),
+"take_damage": ExtResource("5_i7udj")
+}
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_v5543"]
 size = Vector2(16.5, 25.5)
 
@@ -463,7 +503,7 @@ size = Vector2(16.5, 25.5)
 size = Vector2(15, 26)
 
 [node name="Player" type="CharacterBody2D"]
-collision_mask = 2
+collision_layer = 2
 script = ExtResource("1_70gqt")
 
 [node name="State" type="Label" parent="."]
@@ -491,14 +531,14 @@ position = Vector2(0, 1)
 texture = ExtResource("3_fpyci")
 hframes = 10
 vframes = 9
-frame = 10
+frame = 42
 
 [node name="Body" type="Sprite2D" parent="Pivot"]
 position = Vector2(0, 1)
 texture = ExtResource("4_xrcf8")
 hframes = 10
 vframes = 9
-frame = 19
+frame = 42
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Pivot"]
 libraries = {
@@ -507,6 +547,9 @@ libraries = {
 
 [node name="EffectsPlayer" type="AnimationPlayer" parent="Pivot"]
 root_node = NodePath("../..")
+libraries = {
+"fx": SubResource("AnimationLibrary_gr6b6")
+}
 
 [node name="BulletSpawn" type="Marker2D" parent="Pivot"]
 position = Vector2(10, 1)
@@ -517,6 +560,8 @@ shape = SubResource("RectangleShape2D_v5543")
 
 [node name="Hurtbox" parent="." instance=ExtResource("5_qkadd")]
 position = Vector2(2, -14)
+collision_layer = 2
+collision_mask = 4
 
 [node name="CollisionShape2D" parent="Hurtbox" index="0"]
 position = Vector2(-1.5, 1)
@@ -544,6 +589,9 @@ script = ExtResource("10_sp1oq")
 
 [node name="Fall" type="Node" parent="StateMachine"]
 script = ExtResource("11_2nxde")
+
+[node name="Hurt" type="Node" parent="StateMachine"]
+script = ExtResource("13_0nhk4")
 
 [node name="Execute" type="Node" parent="StateMachine"]
 script = ExtResource("12_h1f83")

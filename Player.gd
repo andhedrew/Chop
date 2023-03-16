@@ -1,4 +1,6 @@
+# Wilmer Dermeet
 extends CharacterBody2D
+class_name Player
 
 @export var camera : Camera2D 
 
@@ -6,6 +8,9 @@ const max_speed := 120
 const acceleration := 9
 const acceleration_in_air := 5
 const jump_height = -200.0
+
+var invulnerable := false
+var health := 10
 
 var facing := Enums.Facing.RIGHT
 var looking := Enums.Looking.FORWARD
@@ -19,8 +24,12 @@ var input: Vector2
 var state:= "Idle"
 var state_last_frame := state
 
+@onready var hurtbox := $Hurtbox
+@onready var animation_player := $Pivot/AnimationPlayer
+@onready var effects_player := $Pivot/EffectsPlayer
+
 func _ready():
-	pass
+	hurtbox.area_entered.connect(_hurtbox_on_area_entered)
 
 
 func _physics_process(_delta):
@@ -48,7 +57,7 @@ func get_input() -> void:
 
 
 func handle_facing() -> void:
-	if state == "Attack" or state == "Execute": 
+	if state == "Attack" or state == "Execute" or state == "Hurt": 
 		return
 	if input.y == 0:
 		looking = Enums.Looking.FORWARD
@@ -72,3 +81,16 @@ func handle_facing() -> void:
 		$Pivot.transform.x.x = 1
 	elif input.x < 0:
 		$Pivot.transform.x.x = -1
+
+
+func _hurtbox_on_area_entered(hitbox) -> void:
+	if !invulnerable and hitbox is HitBox:
+		var hitbox_position : Dictionary = {1:hitbox.global_position}
+		$StateMachine.transition_to("Hurt", hitbox_position)
+		take_damage(hitbox.damage)
+
+
+func take_damage(damage) -> void:
+	
+	health -= damage
+	GameEvents.player_health_changed.emit(health)
