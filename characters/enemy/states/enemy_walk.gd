@@ -13,7 +13,6 @@ func enter(_msg := {}) -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func physics_update(_delta: float) -> void:
-#	state_machine.transition_to("Idle")
 	owner.velocity.x = owner.speed * owner.direction
 	owner.move_and_slide()
 	var found_wall = owner.is_on_wall()
@@ -21,9 +20,14 @@ func physics_update(_delta: float) -> void:
 		if !flipping:
 			flipping = true
 			owner.switch_facing()
-			await get_tree().create_timer(0.1).timeout
-			flipping = false
-
+	
+	if !found_wall and ledge_check_right.is_colliding() and ledge_check_left.is_colliding():
+		flipping = false
+	
 
 	if !owner.is_on_floor():
 		state_machine.transition_to("Fall")
+
+
+func exit() -> void:
+	flipping = false

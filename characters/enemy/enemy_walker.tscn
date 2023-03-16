@@ -1,15 +1,31 @@
-[gd_scene load_steps=21 format=3 uid="uid://yhe42gnq2u25"]
+[gd_scene load_steps=22 format=3 uid="uid://n275rqax2tcb"]
 
-[ext_resource type="Texture2D" uid="uid://dho6xihx2y1wm" path="res://characters/enemy/paroot/Paroot.png" id="1_2npjf"]
-[ext_resource type="Script" path="res://characters/player/states/state_machine.gd" id="1_dk0lt"]
-[ext_resource type="Script" path="res://characters/enemy/enemy.gd" id="1_dxug5"]
-[ext_resource type="Script" path="res://characters/enemy/states/enemy_idle.gd" id="2_2vlcn"]
-[ext_resource type="Animation" uid="uid://dep0l7ft0tpjo" path="res://animations/take_damage.res" id="3_5ulc8"]
-[ext_resource type="PackedScene" uid="uid://bb1h85dym7l4i" path="res://hitboxes/Hurtbox.tscn" id="4_8w5xb"]
-[ext_resource type="PackedScene" uid="uid://cxfiuhgots5lg" path="res://hitboxes/Hitbox.tscn" id="5_6n0da"]
-[ext_resource type="Script" path="res://characters/enemy/states/enemy_walk.gd" id="5_dwrm6"]
-[ext_resource type="Script" path="res://characters/enemy/states/enemy_fall.gd" id="6_g7sng"]
-[ext_resource type="Script" path="res://characters/enemy/states/enemy_hurt.gd" id="7_dgvrw"]
+[ext_resource type="Script" path="res://characters/enemy/enemy.gd" id="1_n351c"]
+[ext_resource type="Texture2D" uid="uid://c4h0e88l2gyj7" path="res://characters/enemy/default_walker.png" id="2_5ec61"]
+[ext_resource type="Animation" uid="uid://dep0l7ft0tpjo" path="res://animations/take_damage.res" id="3_1dqka"]
+[ext_resource type="Script" path="res://characters/player/states/state_machine.gd" id="4_j1xsx"]
+[ext_resource type="Script" path="res://characters/enemy/states/enemy_idle.gd" id="5_x8cpl"]
+[ext_resource type="Script" path="res://characters/enemy/states/enemy_walk.gd" id="6_5jjcp"]
+[ext_resource type="Script" path="res://characters/enemy/states/enemy_fall.gd" id="7_7up3k"]
+[ext_resource type="Script" path="res://characters/enemy/states/enemy_hurt.gd" id="8_affm2"]
+[ext_resource type="PackedScene" uid="uid://bb1h85dym7l4i" path="res://hitboxes/Hurtbox.tscn" id="9_1uncs"]
+[ext_resource type="PackedScene" uid="uid://cxfiuhgots5lg" path="res://hitboxes/Hitbox.tscn" id="10_vu0ns"]
+
+[sub_resource type="Animation" id="Animation_g13k8"]
+resource_name = "attack"
+length = 0.8
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Pivot/Body:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [8, 9, 10, 11]
+}
 
 [sub_resource type="Animation" id="Animation_sljcl"]
 resource_name = "fall"
@@ -25,7 +41,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [2]
+"values": [13]
 }
 
 [sub_resource type="Animation" id="Animation_wu8eu"]
@@ -41,12 +57,12 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [3]
+"values": [12]
 }
 
 [sub_resource type="Animation" id="Animation_mn8r3"]
 resource_name = "idle"
-length = 0.1
+length = 0.8
 loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -55,15 +71,15 @@ tracks/0/path = NodePath("Pivot/Body:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 1,
-"values": [0]
+"values": [0, 1, 2, 3]
 }
 
 [sub_resource type="Animation" id="Animation_i5tj7"]
 resource_name = "walk"
-length = 0.4
+length = 0.8
 loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -72,14 +88,15 @@ tracks/0/path = NodePath("Pivot/Body:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.2),
-"transitions": PackedFloat32Array(1, 1),
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 1,
-"values": [1, 2]
+"values": [4, 5, 6, 7]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_pwjrq"]
 _data = {
+"attack": SubResource("Animation_g13k8"),
 "fall": SubResource("Animation_sljcl"),
 "hurt": SubResource("Animation_wu8eu"),
 "idle": SubResource("Animation_mn8r3"),
@@ -105,7 +122,7 @@ tracks/0/keys = {
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_3rqiy"]
 _data = {
 "RESET": SubResource("Animation_3oc4b"),
-"take_damage": ExtResource("3_5ulc8")
+"take_damage": ExtResource("3_1dqka")
 }
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_b0l46"]
@@ -118,15 +135,15 @@ size = Vector2(18, 18)
 [node name="Enemy" type="CharacterBody2D"]
 collision_layer = 4
 collision_mask = 13
-script = ExtResource("1_dxug5")
+script = ExtResource("1_n351c")
 
 [node name="Pivot" type="Marker2D" parent="."]
 
 [node name="Body" type="Sprite2D" parent="Pivot"]
-position = Vector2(0, -13)
-texture = ExtResource("1_2npjf")
-hframes = 4
-frame = 2
+position = Vector2(-2, -14)
+texture = ExtResource("2_5ec61")
+hframes = 14
+frame = 13
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Pivot"]
 root_node = NodePath("../..")
@@ -141,22 +158,22 @@ libraries = {
 }
 
 [node name="StateMachine" type="Node" parent="."]
-script = ExtResource("1_dk0lt")
+script = ExtResource("4_j1xsx")
 initial_state = NodePath("Idle")
 
 [node name="Idle" type="Node" parent="StateMachine"]
-script = ExtResource("2_2vlcn")
+script = ExtResource("5_x8cpl")
 
 [node name="Walk" type="Node" parent="StateMachine"]
-script = ExtResource("5_dwrm6")
+script = ExtResource("6_5jjcp")
 
 [node name="Fall" type="Node" parent="StateMachine"]
-script = ExtResource("6_g7sng")
+script = ExtResource("7_7up3k")
 
 [node name="Hurt" type="Node" parent="StateMachine"]
-script = ExtResource("7_dgvrw")
+script = ExtResource("8_affm2")
 
-[node name="Hurtbox" parent="." instance=ExtResource("4_8w5xb")]
+[node name="Hurtbox" parent="." instance=ExtResource("9_1uncs")]
 collision_layer = 4
 collision_mask = 8
 
@@ -164,7 +181,7 @@ collision_mask = 8
 position = Vector2(0, -10)
 shape = SubResource("RectangleShape2D_b0l46")
 
-[node name="Hitbox" parent="." instance=ExtResource("5_6n0da")]
+[node name="Hitbox" parent="." instance=ExtResource("10_vu0ns")]
 collision_layer = 4
 collision_mask = 2
 
@@ -177,18 +194,18 @@ position = Vector2(0, -10)
 shape = SubResource("RectangleShape2D_tk5ps")
 
 [node name="ledge_check_right" type="RayCast2D" parent="."]
-position = Vector2(9, 0)
+position = Vector2(6, 0)
 target_position = Vector2(0, 4)
 collide_with_areas = true
 
 [node name="ledge_check_left" type="RayCast2D" parent="."]
-position = Vector2(-9, 0)
+position = Vector2(-6, 0)
 target_position = Vector2(0, 4)
 collide_with_areas = true
 
 [node name="player_detector" type="RayCast2D" parent="."]
 position = Vector2(0, -10)
-target_position = Vector2(70, 0)
+target_position = Vector2(-70, 0)
 collision_mask = 3
 
 [editable path="Hurtbox"]

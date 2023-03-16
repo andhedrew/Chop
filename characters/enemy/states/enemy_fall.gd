@@ -8,6 +8,7 @@ func update(_delta: float) -> void:
 	pass
 
 func physics_update(delta: float) -> void:
+
 	owner.velocity.y += Param.GRAVITY * delta
 	owner.move_and_slide()
 	

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dho6xihx2y1wm"
-path="res://.godot/imported/paroot.png-ca2a997a3e40cee823cfe4d2df76b829.ctex"
+uid="uid://b12wq84i42c4i"
+path="res://.godot/imported/HotDog.png-95221862c7cf87965140f114a51c594f.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://characters/enemy/paroot/paroot.png"
-dest_files=["res://.godot/imported/paroot.png-ca2a997a3e40cee823cfe4d2df76b829.ctex"]
+source_file="res://characters/enemy/hotdog/HotDog.png"
+dest_files=["res://.godot/imported/HotDog.png-95221862c7cf87965140f114a51c594f.ctex"]
 
 [params]
 

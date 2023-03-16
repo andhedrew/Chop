@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://37od7uo31qxm"]
+
+[ext_resource type="PackedScene" uid="uid://n275rqax2tcb" path="res://characters/enemy/enemy_walker.tscn" id="1_2qt75"]
+[ext_resource type="Texture2D" uid="uid://dho6xihx2y1wm" path="res://characters/enemy/paroot/paroot.png" id="2_352t6"]
+
+[node name="Enemy" instance=ExtResource("1_2qt75")]
+
+[node name="Body" parent="Pivot" index="0"]
+texture = ExtResource("2_352t6")
+
+[node name="StateMachine" parent="." index="1"]
+initial_state = NodePath("Idle")
+
+[editable path="Hurtbox"]
+[editable path="Hitbox"]

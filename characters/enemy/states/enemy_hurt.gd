@@ -7,23 +7,23 @@ func enter(msg := {}) -> void:
 	owner.animation_player.play("hurt")
 	owner.effects_player.play("take_damage")
 	owner.velocity.x = owner.global_position.x - (hitbox_position.x)
-	match sign(owner.velocity.x):
-		1: owner.facing == Enums.Facing.LEFT
-		-1 :owner.facing == Enums.Facing.RIGHT
+	
+	if sign(owner.velocity.x) == 1:
+		owner.set_facing(Enums.Facing.LEFT)
+	elif sign(owner.velocity.x) == -1:
+		owner.set_facing(Enums.Facing.RIGHT)
+
 	owner.velocity.y = -150
 
 func update(_delta: float) -> void:
 	pass
 
 func physics_update(delta: float) -> void:
-	
 	owner.velocity.y += Param.GRAVITY * delta
-	if owner.is_on_floor():
-		owner.velocity.x = lerp(owner.velocity.x, 0.0, Param.FRICTION)
 	owner.move_and_slide()
-	
+
 	if owner.is_on_floor():
 		state_machine.transition_to("Idle")
 	
 func exit() -> void:
-	owner.effects_player.play("RESET")
+	pass
