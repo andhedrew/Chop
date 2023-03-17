@@ -16,10 +16,7 @@ func physics_update(delta: float) -> void:
 	elif jump and jump_buffer_timer.is_stopped():
 		jump_buffer_timer.start()
 
-	var input_direction_x: float = (
-		Input.get_action_strength("right")
-		- Input.get_action_strength("left")
-	)
+	var input_direction_x: float = Input.get_axis("left", "right")
 	owner.velocity.x = move_toward(owner.velocity.x, owner.max_speed * input_direction_x, owner.acceleration_in_air)
 	owner.velocity.y += Param.GRAVITY_ON_FALL * delta
 	owner.move_and_slide()

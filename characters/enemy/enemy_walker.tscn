@@ -137,13 +137,20 @@ collision_layer = 4
 collision_mask = 13
 script = ExtResource("1_n351c")
 
+[node name="state_label" type="Label" parent="."]
+offset_left = -20.0
+offset_top = -48.0
+offset_right = 20.0
+offset_bottom = -22.0
+text = "state"
+
 [node name="Pivot" type="Marker2D" parent="."]
 
 [node name="Body" type="Sprite2D" parent="Pivot"]
 position = Vector2(-2, -14)
 texture = ExtResource("2_5ec61")
 hframes = 14
-frame = 13
+frame = 8
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Pivot"]
 root_node = NodePath("../..")
@@ -194,12 +201,12 @@ position = Vector2(0, -10)
 shape = SubResource("RectangleShape2D_tk5ps")
 
 [node name="ledge_check_right" type="RayCast2D" parent="."]
-position = Vector2(6, 0)
+position = Vector2(9, 0)
 target_position = Vector2(0, 4)
 collide_with_areas = true
 
 [node name="ledge_check_left" type="RayCast2D" parent="."]
-position = Vector2(-6, 0)
+position = Vector2(-10, 0)
 target_position = Vector2(0, 4)
 collide_with_areas = true
 
@@ -207,6 +214,22 @@ collide_with_areas = true
 position = Vector2(0, -10)
 target_position = Vector2(-70, 0)
 collision_mask = 3
+
+[node name="wall_check_left" type="RayCast2D" parent="."]
+position = Vector2(0, -10)
+target_position = Vector2(-20, 0)
+
+[node name="adjacent_ledge_check_left" type="RayCast2D" parent="."]
+position = Vector2(0, -10)
+target_position = Vector2(-15, 15)
+
+[node name="adjacent_ledge_check_right" type="RayCast2D" parent="."]
+position = Vector2(0, -10)
+target_position = Vector2(15, 15)
+
+[node name="wall_check_right" type="RayCast2D" parent="."]
+position = Vector2(0, -10)
+target_position = Vector2(20, 0)
 
 [editable path="Hurtbox"]
 [editable path="Hitbox"]

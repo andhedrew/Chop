@@ -3,11 +3,6 @@ extends State
 var coyote_jump: bool = false
 
 func physics_update(delta: float) -> void:
-
-	var input_direction_x: float = (
-		Input.get_action_strength("right")
-		- Input.get_action_strength("left")
-	)
 	
 	var jump_release := Input.is_action_just_released("jump")
 	var jump := Input.is_action_pressed("jump")
@@ -19,8 +14,8 @@ func physics_update(delta: float) -> void:
 	elif coyote_jump:
 		owner.velocity.y = owner.jump_height
 		coyote_jump = false
-	
-	
+		
+	var input_direction_x: float = Input.get_axis("left", "right")
 	owner.velocity.x = move_toward(owner.velocity.x, owner.max_speed * input_direction_x, owner.acceleration_in_air)
 	owner.velocity.y += Param.GRAVITY * delta
 	owner.move_and_slide()

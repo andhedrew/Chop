@@ -16,7 +16,8 @@ func update(_delta: float) -> void:
 	pass
 
 func physics_update(delta: float) -> void:
-	owner.velocity.x = lerp(owner.velocity.x, 0.0, 0.05)
+	var input_direction_x: float = Input.get_axis("left", "right")
+	owner.velocity.x = move_toward(owner.velocity.x, owner.max_speed * input_direction_x, owner.acceleration_in_air)
 	owner.velocity.y += Param.GRAVITY * delta
 	owner.move_and_slide()
 

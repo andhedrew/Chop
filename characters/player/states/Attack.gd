@@ -7,7 +7,7 @@ var reload_timer := 0
 
 func enter(_msg := {}) -> void:
 	var bullet = preload("res://bullets/slash_bullet/slash_bullet.tscn").instantiate()
-	add_child(bullet)
+	owner.add_child(bullet)
 	var transform = $"../../Pivot/BulletSpawn".global_transform
 	var fire_range := 10
 	var speed := 150
