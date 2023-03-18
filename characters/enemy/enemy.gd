@@ -13,7 +13,6 @@ var direction := -1
 var facing := Enums.Facing.LEFT
 var colliding_hitbox_position : Dictionary
 
-
 func _ready() -> void:
 	if invulnerable:
 		$Hurtbox.area_entered.connect(_deflect)
@@ -22,7 +21,7 @@ func _ready() -> void:
 
 
 func _physics_process(delta):
-	var player_check = $player_detector.get_collider()
+	var player_check = $Pivot/player_detector.get_collider()
 	if player_check is Player:
 		print_debug("detecting player")
 	
@@ -56,4 +55,3 @@ func switch_facing() -> void:
 	elif facing == Enums.Facing.RIGHT:
 		facing = Enums.Facing.LEFT
 	set_facing(facing)
-	

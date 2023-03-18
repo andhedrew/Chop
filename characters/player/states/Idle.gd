@@ -17,7 +17,6 @@ func update(_delta: float) -> void:
 		state_machine.transition_to("Fall")
 		return
 
-
 	if Input.is_action_just_pressed("jump") or !jump_buffer_timer.is_stopped():
 		# As we'll only have one air state for both jump and fall, we use the `msg` dictionary 
 		# to tell the next state that we want to jump.

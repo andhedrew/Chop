@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://cp1ypc68hktll"]
+[gd_scene load_steps=18 format=3 uid="uid://cp1ypc68hktll"]
 
 [ext_resource type="PackedScene" uid="uid://bu3y65bfp3aey" path="res://characters/player/player.tscn" id="1_371ql"]
 [ext_resource type="Script" path="res://world.gd" id="1_nxsgc"]
@@ -8,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://xoihsb8asqow" path="res://user_interface/health bar/full_heart.png" id="7_uevra"]
 [ext_resource type="PackedScene" uid="uid://n275rqax2tcb" path="res://characters/enemy/enemy_walker.tscn" id="8_hxqf4"]
 [ext_resource type="Script" path="res://pickups/pickup.gd" id="8_tai2b"]
+[ext_resource type="PackedScene" uid="uid://37od7uo31qxm" path="res://characters/enemy/paroot/paroot.tscn" id="9_20fx6"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_u3ycg"]
 texture = ExtResource("3_ngx7p")
@@ -744,4 +745,10 @@ wait_time = 0.3
 one_shot = true
 
 [node name="Enemy" parent="." instance=ExtResource("8_hxqf4")]
-position = Vector2(-118, 60)
+position = Vector2(-209, -63)
+
+[node name="Enemy2" parent="." instance=ExtResource("8_hxqf4")]
+position = Vector2(338, -55)
+
+[node name="Paroot" parent="." instance=ExtResource("9_20fx6")]
+position = Vector2(-177, 72)

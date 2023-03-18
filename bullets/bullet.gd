@@ -13,13 +13,14 @@ func _init():
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	$AnimationPlayer.play("bullet_enter")
+	await $AnimationPlayer.animation_finished
 	$AnimationPlayer.play("animate_bullet")
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta):
 	var motion : Vector2 = transform.x * speed * delta
-	
 	position += motion
 	travelled_distance += speed * delta
 	if travelled_distance > max_range:
@@ -41,5 +42,7 @@ func setup(
 
 
 func _destroy() -> void:
+	$AnimationPlayer.play("bullet_exit")
+	await $AnimationPlayer.animation_finished
 	queue_free()
 	pass

@@ -4,7 +4,7 @@ extends State
 @onready var ledge_right := $"../../adjacent_ledge_check_right"
 @onready var wall_left := $"../../wall_check_left"
 @onready var wall_right := $"../../wall_check_right"
-
+@onready var player_detector := $"../../Pivot/player_detector"
 var transitioned := false
 var timer: Timer
 
@@ -14,7 +14,7 @@ func enter(_msg := {}) -> void:
 	
 	timer = Timer.new()
 	add_child(timer)
-	timer.wait_time = 1.0
+	timer.wait_time = 3.0
 	timer.one_shot = true
 	timer.start()
 
@@ -33,3 +33,10 @@ func update(delta: float) -> void:
 
 	if !owner.is_on_floor():
 		state_machine.transition_to("Fall")
+	
+	
+	if player_detector.is_colliding() and owner.is_on_floor():
+		var detected_object = player_detector.get_collider()
+		if detected_object is Player:
+			state_machine.transition_to("Attack")
+
