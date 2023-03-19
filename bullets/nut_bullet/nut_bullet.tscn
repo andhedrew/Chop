@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://h2h05xcnsnk1"]
+[gd_scene load_steps=9 format=3 uid="uid://h2h05xcnsnk1"]
 
 [ext_resource type="Script" path="res://bullets/bullet.gd" id="1_uqcyb"]
 [ext_resource type="Texture2D" uid="uid://cl04ekgg2wqmx" path="res://bullets/nut_bullet/nut_bullet.png" id="2_w6vi1"]
@@ -42,10 +42,15 @@ tracks/0/keys = {
 "values": [0, 1]
 }
 
+[sub_resource type="Animation" id="Animation_km3k7"]
+resource_name = "bullet_exit"
+length = 0.1
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_ocw25"]
 _data = {
 "animate_bullet": SubResource("Animation_re3lr"),
-"bullet_enter": SubResource("Animation_5xbje")
+"bullet_enter": SubResource("Animation_5xbje"),
+"bullet_exit": SubResource("Animation_km3k7")
 }
 
 [node name="nut_bullet" type="Area2D"]
@@ -57,6 +62,7 @@ position = Vector2(9, 0)
 scale = Vector2(-1, -1)
 texture = ExtResource("2_w6vi1")
 hframes = 6
+frame = 2
 
 [node name="Hitbox" parent="." instance=ExtResource("3_js12n")]
 position = Vector2(19, -1)

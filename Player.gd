@@ -42,10 +42,15 @@ func _physics_process(_delta):
 
 func _set_debug_labels() -> void:
 	match facing:
-		Enums.Facing.LEFT: $Facing.text = "left"
-		Enums.Facing.RIGHT: $Facing.text = "right"
+		Enums.Facing.LEFT: $Facing.text = "Facing: left"
+		Enums.Facing.RIGHT: $Facing.text = "Facing: right"
 	
 	$State.text = state
+	
+	match looking:
+		Enums.Looking.UP: $Looking.text = "Looking: up"
+		Enums.Looking.DOWN: $Looking.text = "Looking: down"
+		Enums.Looking.FORWARD: $Looking.text = "Looking: forward"
 
 
 func get_input() -> void:
@@ -71,6 +76,7 @@ func handle_facing() -> void:
 			facing = default_facing
 	elif input.y < 0:
 		looking = Enums.Looking.UP
+		$Pivot/BulletSpawn.position = Vector2(0, -20)
 	elif input.y > 0:
 		looking = Enums.Looking.DOWN
 	if facing_last_frame != facing:
@@ -81,7 +87,11 @@ func handle_facing() -> void:
 		$Pivot.transform.x.x = 1
 	elif input.x < 0:
 		$Pivot.transform.x.x = -1
-
+	
+	if Input.is_action_pressed("down") and !is_on_floor():
+		$Pivot/BulletSpawn.position = Vector2(30, 20)
+	else: 
+		$Pivot/BulletSpawn.position = Vector2(10, 0)
 
 func _hurtbox_on_area_entered(hitbox) -> void:
 	if !invulnerable and hitbox is HitBox:

@@ -19,7 +19,7 @@ func _physics_process(_delta):
 	
 	match owner.looking:
 		Enums.Looking.UP:
-			$BulletSpawn.position = Vector2(0, -20)
+			
 			match owner.state:
 				"Idle": 
 					if is_landing: 
@@ -40,10 +40,7 @@ func _physics_process(_delta):
 				"Execute":  animation_player.play("execute")
 				"Cutscene": pass
 		_: 
-			if Input.is_action_pressed("down") and !owner.is_on_floor():
-				$BulletSpawn.position = Vector2(30, 20)
-			else: 
-				$BulletSpawn.position = Vector2(10, 0)
+
 			match owner.state:
 				"Idle": 
 					if is_landing: 
@@ -68,16 +65,6 @@ func _physics_process(_delta):
 
 func _set_facing(player_facing_direction) -> void:
 	facing = player_facing_direction
-#	if owner.is_on_floor():
-#		var landing_dust = preload("res://vfx/puff_of_dust.tscn").instantiate()
-#		landing_dust.position = global_position
-#		if player_facing_direction == Enums.Facing.RIGHT:
-#			landing_dust.position.x -= 16
-#		elif player_facing_direction == Enums.Facing.LEFT:
-#			landing_dust.position.x += 16
-#		landing_dust.amount = 3
-#		landing_dust.emitting = true
-#		get_tree().get_root().add_child(landing_dust)
 
 
 func _damage_effects(damage_amount):

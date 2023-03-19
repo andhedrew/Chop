@@ -14,13 +14,16 @@ func enter(_msg := {}) -> void:
 	if owner.is_on_floor():
 		var bullet = preload("res://bullets/nut_bullet/nut_bullet.tscn").instantiate()
 		owner.add_child(bullet)
-		var transform = $"../../Pivot/BulletSpawn".global_transform
+		var transform : Transform2D = $"../../Pivot/BulletSpawn".global_transform
 		var fire_range := 80
 		var speed := 150
 		var spread := 0
 		var rotation := 0
+		if owner.facing == Enums.Facing.LEFT:
+			rotation = 180
 		bullet.setup(transform, fire_range, speed, rotation, spread)
-		SoundPlayer.play_sound("swoosh")
+		var pos = transform.origin
+		SoundPlayer.play_sound_positional("spit", pos)
 	
 
 

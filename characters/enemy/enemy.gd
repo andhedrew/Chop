@@ -1,9 +1,10 @@
 class_name Enemy
 extends CharacterBody2D
 
+@export_category("Extra Properties")
 @export var health := 3
-@export var invulnerable := false
-
+@export_range(0.0, 5.0, 0.5) var erratic_walking_amount := 0.0
+@export var hurt_sounds: Array[AudioStreamWAV]
 @onready var animation_player := $Pivot/AnimationPlayer
 @onready var effects_player := $Pivot/EffectsPlayer
 @onready var state_label: Label = $state_label
@@ -14,13 +15,10 @@ var facing := Enums.Facing.LEFT
 var colliding_hitbox_position : Dictionary
 
 func _ready() -> void:
-	if invulnerable:
-		$Hurtbox.area_entered.connect(_deflect)
-	else:
-		$Hurtbox.area_entered.connect(_take_damage)
+	$Hurtbox.area_entered.connect(_take_damage)
 
 
-func _physics_process(delta):
+func _physics_process(_delta):
 	var player_check = $Pivot/player_detector.get_collider()
 	if player_check is Player:
 		print_debug("detecting player")
@@ -32,11 +30,6 @@ func _take_damage(hitbox) -> void:
 		colliding_hitbox_position = {1: hitbox.owner.get_parent().global_position}
 		$StateMachine.transition_to("Hurt", colliding_hitbox_position)
 		health -= hitbox.damage
-
-
-func _deflect(hitbox) -> void:
-	#$StateMachine.transition_to("Deflect")
-	pass #play deflected VFX
 
 
 func set_facing(facing_dir) -> void:

@@ -23,7 +23,7 @@ func physics_update(delta: float) -> void:
 
 
 func exit() -> void:
-	owner.effects_player.play("RESET")
+	pass
 
 
 func _hurt_timer_done() -> void:

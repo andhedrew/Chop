@@ -15,8 +15,7 @@ func enter(_msg := {}) -> void:
 	var rotation := 0
 	if owner.looking == Enums.Looking.UP:
 		rotation = 270
-	
-	if owner.facing == Enums.Facing.LEFT:
+	elif owner.facing == Enums.Facing.LEFT:
 		rotation = 180
 	bullet.setup(transform, fire_range, speed, rotation, spread)
 	SoundPlayer.play_sound("swoosh")

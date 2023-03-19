@@ -14,12 +14,12 @@ func enter(_msg := {}) -> void:
 	
 	timer = Timer.new()
 	add_child(timer)
-	timer.wait_time = 3.0
+	timer.wait_time = 5.0 + randf_range(-owner.erratic_walking_amount, owner.erratic_walking_amount)
 	timer.one_shot = true
 	timer.start()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func update(delta: float) -> void:
+func update(_delta: float) -> void:
 	
 	var left_blocked = !ledge_left.is_colliding() or wall_left.is_colliding()
 	var right_blocked = !ledge_right.is_colliding() or wall_right.is_colliding()
