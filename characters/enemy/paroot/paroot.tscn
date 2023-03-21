@@ -8,10 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://b1ffa310elr21" path="res://characters/enemy/paroot/ParootPieces3.png" id="4_wb0cm"]
 
 [node name="Paroot" instance=ExtResource("1_2qt75")]
-health = 3
-death_pieces = Array[Texture]([ExtResource("2_et1jp"), ExtResource("3_7dml6"), ExtResource("4_wb0cm")])
-erratic_walking_amount = 3.0
-hurt_vocalizations = Array[AudioStreamWAV]([])
+death_pieces = Array[Resource]([ExtResource("2_et1jp"), ExtResource("3_7dml6"), ExtResource("4_wb0cm")])
 
 [node name="Body" parent="Pivot" index="0"]
 texture = ExtResource("2_352t6")

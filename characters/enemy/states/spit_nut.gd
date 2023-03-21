@@ -31,7 +31,9 @@ func enter(_msg := {}) -> void:
 func handle_input(_event: InputEvent) -> void:
 	pass
 
-func update(_delta: float) -> void:
+func physics_update(_delta: float) -> void:
+	owner.velocity.x = lerp(owner.velocity.x, 0.0, Param.FRICTION)
+	owner.move_and_slide()
 	if timer:
 		if timer.is_stopped():
 			if owner.is_on_floor():

@@ -21,21 +21,22 @@ func enter(_msg := {}) -> void:
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func update(_delta: float) -> void:
 	
-	var left_blocked = !ledge_left.is_colliding() or wall_left.is_colliding()
-	var right_blocked = !ledge_right.is_colliding() or wall_right.is_colliding()
-		
-	owner.velocity.x = lerp(owner.velocity.x, 0.0, Param.FRICTION)
-	owner.move_and_slide()
+	if owner.speed > 0:
+		var left_blocked = !ledge_left.is_colliding() or wall_left.is_colliding()
+		var right_blocked = !ledge_right.is_colliding() or wall_right.is_colliding()
+			
+		owner.velocity.x = lerp(owner.velocity.x, 0.0, Param.FRICTION)
+		owner.move_and_slide()
 
-	if timer.is_stopped() and !(left_blocked and right_blocked):
-		timer.queue_free()
-		state_machine.transition_to("Walk")
+		if timer.is_stopped() and !(left_blocked and right_blocked):
+			timer.queue_free()
+			state_machine.transition_to("Walk")
 
-	if !owner.is_on_floor():
-		state_machine.transition_to("Fall")
+		if !owner.is_on_floor():
+			state_machine.transition_to("Fall")
 	
 	
-	if player_detector.is_colliding() and owner.is_on_floor():
+	if player_detector.is_colliding():
 		var detected_object = player_detector.get_collider()
 		if detected_object is Player:
 			state_machine.transition_to("Attack")

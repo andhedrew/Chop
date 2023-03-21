@@ -1,22 +1,28 @@
 class_name Enemy
 extends CharacterBody2D
 
-@export_category("Extra Properties")
+@export_category("Properties")
 @export var health := 3
-@export var death_pieces: Array[Resource]
-@export_range(0.0, 5.0, 0.5) var erratic_walking_amount := 0.0
+@export var speed := 20.0
+@export var invulnerable : bool = false
+@export var immovable : bool = false
+
+@export_category("Sounds")
 @export var hurt_vocalizations: Array[AudioStreamWAV]
 @export var death_vocalization: AudioStreamWAV
+@export var impact_sound: AudioStreamWAV
 
+@export_category("Sprites")
+@export var death_pieces: Array[Resource]
 
 @onready var animation_player := $Pivot/AnimationPlayer
 @onready var effects_player := $Pivot/EffectsPlayer
 @onready var state_label: Label = $state_label
 
-var speed := 20.0
 var direction := -1
 var facing := Enums.Facing.LEFT
 var colliding_hitbox_position : Dictionary
+var wounded : bool = false
 
 func _ready() -> void:
 	$Hurtbox.area_entered.connect(_take_damage)
@@ -29,11 +35,16 @@ func _physics_process(_delta):
 	
 	state_label.text = $StateMachine.state.name
 	
+	if health <= 1:
+		wounded = true
+	if wounded:
+		effects_player.play("wounded")
+		
 	if health <= 0:
 		execute()
 
 func _take_damage(hitbox) -> void:
-	if hitbox is HitBox:
+	if hitbox is HitBox and !invulnerable:
 		colliding_hitbox_position = {1: hitbox.owner.get_parent().global_position}
 		$StateMachine.transition_to("Hurt", colliding_hitbox_position)
 		health -= hitbox.damage
@@ -44,9 +55,11 @@ func set_facing(facing_dir) -> void:
 	if facing == Enums.Facing.LEFT:
 		direction = -1
 		$Pivot.transform.x.x = 1
+		$BloodParticles.transform.x.x = 1
 	elif facing == Enums.Facing.RIGHT:
 		direction = 1
 		$Pivot.transform.x.x = -1
+		$BloodParticles.transform.x.x = -1
 
 
 func switch_facing() -> void:

@@ -1,11 +1,10 @@
-[gd_scene load_steps=12 format=3 uid="uid://cp1ypc68hktll"]
+[gd_scene load_steps=11 format=3 uid="uid://cp1ypc68hktll"]
 
 [ext_resource type="PackedScene" uid="uid://bu3y65bfp3aey" path="res://characters/player/player.tscn" id="1_371ql"]
 [ext_resource type="Script" path="res://world.gd" id="1_nxsgc"]
 [ext_resource type="Texture2D" uid="uid://dqea07rrxn0mr" path="res://sprites/tilesets/base_tileset.png" id="3_ngx7p"]
 [ext_resource type="Script" path="res://Camera.gd" id="4_e8jus"]
 [ext_resource type="Script" path="res://user_interface/health bar/health_bar.gd" id="6_xjfnb"]
-[ext_resource type="PackedScene" uid="uid://yhu0xdbtbecq" path="res://pickups/pickup.tscn" id="7_osn5y"]
 [ext_resource type="Texture2D" uid="uid://xoihsb8asqow" path="res://user_interface/health bar/full_heart.png" id="7_uevra"]
 [ext_resource type="PackedScene" uid="uid://n275rqax2tcb" path="res://characters/enemy/enemy_walker.tscn" id="8_hxqf4"]
 [ext_resource type="PackedScene" uid="uid://37od7uo31qxm" path="res://characters/enemy/paroot/paroot.tscn" id="9_20fx6"]
@@ -651,21 +650,11 @@ texture = ExtResource("7_uevra")
 layout_mode = 2
 texture = ExtResource("7_uevra")
 
-[node name="Pickup" parent="." instance=ExtResource("7_osn5y")]
-
 [node name="Enemy" parent="." instance=ExtResource("8_hxqf4")]
 position = Vector2(-209, -63)
-health = null
-death_pieces = null
-erratic_walking_amount = null
-hurt_vocalizations = null
 
 [node name="Enemy2" parent="." instance=ExtResource("8_hxqf4")]
 position = Vector2(338, -55)
-health = null
-death_pieces = null
-erratic_walking_amount = null
-hurt_vocalizations = null
 
 [node name="Paroot" parent="." instance=ExtResource("9_20fx6")]
-position = Vector2(-177, 72)
+position = Vector2(269, 45)
