@@ -10,16 +10,17 @@ func _ready():
 	z_index = SortLayer.IN_FRONT
 	animation_player.play("idle")
 	$Area2D.body_entered.connect(_on_body_entered)
-	if pickup_texture:
-		$Sprite.texture = pickup_texture
 	$SlowPickupTimer.start()
 
 func _physics_process(delta):
-	velocity.y += Param.GRAVITY*delta
-	velocity.y = min(velocity.y, max_fall_speed)
-	move_and_collide(velocity)
-	if is_on_floor():
+	if !is_on_floor():
+		velocity.y += Param.GRAVITY*delta
+		velocity.y = min(velocity.y, max_fall_speed)
+	else:
+		velocity.y = 0
 		apply_friction()
+	move_and_collide(velocity)
+
 
 func _on_body_entered(body) -> void:
 	if body is Player and $SlowPickupTimer.is_stopped() and body.state != "Dead":
@@ -27,11 +28,15 @@ func _on_body_entered(body) -> void:
 		animation_player.play("destroy")
 #		SoundPlayer.play_sound("pickup")
 		set_deferred("monitoring", false)
-		
+		queue_free()
 
 func _add_pickup_to_inventory(_player) -> void:
 	pass
 
 
 func apply_friction():
-	velocity.x = move_toward(velocity.x, 0, Param.FRICTION)
+	velocity.x = move_toward(velocity.x, 0.0, Param.FRICTION)
+
+
+func setup(new_texture: CompressedTexture2D) -> void:
+	$Sprite2D.texture = new_texture

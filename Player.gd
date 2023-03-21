@@ -23,6 +23,7 @@ var dash: bool
 var input: Vector2
 var state:= "Idle"
 var state_last_frame := state
+var food := 0
 
 @onready var hurtbox := $Hurtbox
 @onready var animation_player := $Pivot/AnimationPlayer

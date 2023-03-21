@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://fbvbtafbjpos"]
+[gd_scene load_steps=9 format=3 uid="uid://fbvbtafbjpos"]
 
 [ext_resource type="Script" path="res://bullets/bullet.gd" id="1_sjp2m"]
 [ext_resource type="Texture2D" uid="uid://dq2bsia8smwvw" path="res://bullets/execute_bullet/execute_bullet.png" id="2_cip1d"]
@@ -37,9 +37,17 @@ tracks/1/keys = {
 "values": [Vector2(25, 0.2), Vector2(5, 0.1), Vector2(2, 0.04)]
 }
 
+[sub_resource type="Animation" id="Animation_t3ujg"]
+resource_name = "bullet_enter"
+
+[sub_resource type="Animation" id="Animation_kpwb7"]
+resource_name = "bullet_exit"
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_ocw25"]
 _data = {
-"animate_bullet": SubResource("Animation_re3lr")
+"animate_bullet": SubResource("Animation_re3lr"),
+"bullet_enter": SubResource("Animation_t3ujg"),
+"bullet_exit": SubResource("Animation_kpwb7")
 }
 
 [node name="execute_bullet" type="Area2D"]
@@ -49,11 +57,10 @@ script = ExtResource("1_sjp2m")
 position = Vector2(19, -1)
 texture = ExtResource("2_cip1d")
 hframes = 3
-frame = 2
 
 [node name="Sprite2D2" type="Sprite2D" parent="."]
 position = Vector2(19, -1)
-scale = Vector2(2, 0.04)
+scale = Vector2(25, 0.2)
 texture = ExtResource("2_cip1d")
 hframes = 3
 

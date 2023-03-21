@@ -42,7 +42,7 @@ func fire() -> void:
 	owner.add_child(bullet)
 	var transform = $"../../Pivot/BulletSpawn".global_transform
 	var fire_range := 150
-	var speed := 1000
+	var speed := 3000
 	var spread := 0
 	var rotation := 0
 	rotation = 90

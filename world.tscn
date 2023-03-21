@@ -1,13 +1,13 @@
-[gd_scene load_steps=18 format=3 uid="uid://cp1ypc68hktll"]
+[gd_scene load_steps=12 format=3 uid="uid://cp1ypc68hktll"]
 
 [ext_resource type="PackedScene" uid="uid://bu3y65bfp3aey" path="res://characters/player/player.tscn" id="1_371ql"]
 [ext_resource type="Script" path="res://world.gd" id="1_nxsgc"]
 [ext_resource type="Texture2D" uid="uid://dqea07rrxn0mr" path="res://sprites/tilesets/base_tileset.png" id="3_ngx7p"]
 [ext_resource type="Script" path="res://Camera.gd" id="4_e8jus"]
 [ext_resource type="Script" path="res://user_interface/health bar/health_bar.gd" id="6_xjfnb"]
+[ext_resource type="PackedScene" uid="uid://yhu0xdbtbecq" path="res://pickups/pickup.tscn" id="7_osn5y"]
 [ext_resource type="Texture2D" uid="uid://xoihsb8asqow" path="res://user_interface/health bar/full_heart.png" id="7_uevra"]
 [ext_resource type="PackedScene" uid="uid://n275rqax2tcb" path="res://characters/enemy/enemy_walker.tscn" id="8_hxqf4"]
-[ext_resource type="Script" path="res://pickups/pickup.gd" id="8_tai2b"]
 [ext_resource type="PackedScene" uid="uid://37od7uo31qxm" path="res://characters/enemy/paroot/paroot.tscn" id="9_20fx6"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_u3ycg"]
@@ -597,64 +597,6 @@ terrain_set_0/terrain_0/name = "Ground"
 terrain_set_0/terrain_0/color = Color(0.698039, 0.133333, 0.141176, 1)
 sources/0 = SubResource("TileSetAtlasSource_u3ycg")
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_rrtt1"]
-radius = 10.0499
-
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_hn3r3"]
-lifetime_randomness = 0.44
-emission_shape = 3
-emission_box_extents = Vector3(6, 6, 1)
-particle_flag_disable_z = true
-spread = 33.51
-gravity = Vector3(0, -10, 0)
-orbit_velocity_min = 0.0
-orbit_velocity_max = 0.0
-scale_min = 0.0
-hue_variation_min = -0.16
-hue_variation_max = 0.29
-
-[sub_resource type="Animation" id="Animation_3hrtx"]
-resource_name = "destroy"
-length = 0.5
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:scale")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.5),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector2(1, 1), Vector2(0, 0)]
-}
-
-[sub_resource type="Animation" id="Animation_at8lx"]
-resource_name = "idle"
-length = 0.8
-loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.2, 0.4, 0.6, 0.8),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
-"update": 0,
-"values": [Vector2(0, 0), Vector2(0, 2), Vector2(0, 0), Vector2(0, -2), Vector2(0, 0)]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_vlss3"]
-_data = {
-"destroy": SubResource("Animation_3hrtx"),
-"idle": SubResource("Animation_at8lx")
-}
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_wmu1v"]
-radius = 8.0
-
 [node name="World" type="Node2D"]
 script = ExtResource("1_nxsgc")
 
@@ -709,46 +651,21 @@ texture = ExtResource("7_uevra")
 layout_mode = 2
 texture = ExtResource("7_uevra")
 
-[node name="Pickup" type="CharacterBody2D" parent="."]
-visible = false
-position = Vector2(209, 54)
-scale = Vector2(0.8, 0.8)
-collision_layer = 16
-script = ExtResource("8_tai2b")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Pickup"]
-shape = SubResource("CircleShape2D_rrtt1")
-
-[node name="Sprite2D" type="Sprite2D" parent="Pickup"]
-position = Vector2(0, 2.5)
-texture = ExtResource("7_uevra")
-
-[node name="GPUParticles2D" type="GPUParticles2D" parent="Pickup/Sprite2D"]
-amount = 20
-process_material = SubResource("ParticleProcessMaterial_hn3r3")
-lifetime = 3.0
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Pickup"]
-libraries = {
-"": SubResource("AnimationLibrary_vlss3")
-}
-
-[node name="Area2D" type="Area2D" parent="Pickup"]
-collision_layer = 16
-collision_mask = 2
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Pickup/Area2D"]
-shape = SubResource("CircleShape2D_wmu1v")
-
-[node name="SlowPickupTimer" type="Timer" parent="Pickup"]
-wait_time = 0.3
-one_shot = true
+[node name="Pickup" parent="." instance=ExtResource("7_osn5y")]
 
 [node name="Enemy" parent="." instance=ExtResource("8_hxqf4")]
 position = Vector2(-209, -63)
+health = null
+death_pieces = null
+erratic_walking_amount = null
+hurt_vocalizations = null
 
 [node name="Enemy2" parent="." instance=ExtResource("8_hxqf4")]
 position = Vector2(338, -55)
+health = null
+death_pieces = null
+erratic_walking_amount = null
+hurt_vocalizations = null
 
 [node name="Paroot" parent="." instance=ExtResource("9_20fx6")]
 position = Vector2(-177, 72)

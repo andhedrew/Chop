@@ -3,8 +3,12 @@ extends CharacterBody2D
 
 @export_category("Extra Properties")
 @export var health := 3
+@export var death_pieces: Array[Resource]
 @export_range(0.0, 5.0, 0.5) var erratic_walking_amount := 0.0
-@export var hurt_sounds: Array[AudioStreamWAV]
+@export var hurt_vocalizations: Array[AudioStreamWAV]
+@export var death_vocalization: AudioStreamWAV
+
+
 @onready var animation_player := $Pivot/AnimationPlayer
 @onready var effects_player := $Pivot/EffectsPlayer
 @onready var state_label: Label = $state_label
@@ -24,6 +28,9 @@ func _physics_process(_delta):
 		print_debug("detecting player")
 	
 	state_label.text = $StateMachine.state.name
+	
+	if health <= 0:
+		execute()
 
 func _take_damage(hitbox) -> void:
 	if hitbox is HitBox:
@@ -48,3 +55,24 @@ func switch_facing() -> void:
 	elif facing == Enums.Facing.RIGHT:
 		facing = Enums.Facing.LEFT
 	set_facing(facing)
+
+
+func execute():
+	if death_vocalization:
+		SoundPlayer.play_sound(death_vocalization)
+	await get_tree().create_timer(0.2).timeout
+	if death_pieces:
+		var spacing = 2
+		var starting_x = (death_pieces.size()*(spacing*.5))
+		for sprite in death_pieces:
+			var pickup := preload("res://pickups/food_pickup.tscn").instantiate()
+			pickup.setup(sprite)
+			pickup.position = global_position
+			pickup.velocity = Vector2(starting_x, randf_range(-4, -6))
+			starting_x -= spacing
+			get_node("/root/World").add_child(pickup)
+	die()
+
+
+func die() -> void:
+	call_deferred("queue_free")

@@ -3,9 +3,10 @@ extends State
 var hitbox_position : Vector2
 
 func enter(msg := {}) -> void:
-	var random_index = randi() % owner.hurt_sounds.size()
-	var random_value = owner.hurt_sounds[random_index]
-	SoundPlayer.play_sound_positional(random_value, owner.global_position)
+	if owner.hurt_vocalizations.size() > 0:
+		var random_index = randi() % owner.hurt_vocalizations.size()
+		var random_value = owner.hurt_vocalizations[random_index]
+		SoundPlayer.play_sound_positional(random_value, owner.global_position)
 	
 	
 	hitbox_position = msg[1]
