@@ -58,7 +58,7 @@ func _physics_process(_delta):
 				"Jump":  animation_player.play("jump")
 				"Fall":  animation_player.play("fall")
 				"Execute":  animation_player.play("execute")
-				"Cutscene": pass
+				"Cutscene": animation_player.play("watch")
 	
 	state_last_frame = owner.state
 

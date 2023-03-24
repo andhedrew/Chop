@@ -25,12 +25,15 @@ var state:= "Idle"
 var state_last_frame := state
 var food := 0
 
+var bag := []
+
 @onready var hurtbox := $Hurtbox
 @onready var animation_player := $Pivot/AnimationPlayer
 @onready var effects_player := $Pivot/EffectsPlayer
 
 func _ready():
 	hurtbox.area_entered.connect(_hurtbox_on_area_entered)
+	
 
 
 func _physics_process(_delta):
@@ -63,7 +66,7 @@ func get_input() -> void:
 
 
 func handle_facing() -> void:
-	if state == "Attack" or state == "Execute" or state == "Hurt": 
+	if state == "Attack" or state == "Execute" or state == "Hurt" or state == "Cutscene": 
 		return
 	if input.y == 0:
 		looking = Enums.Looking.FORWARD

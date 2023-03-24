@@ -9,7 +9,8 @@ extends Node
 
 func _ready() -> void:
 	await owner.ready
-
+	GameEvents.cutscene_started.connect(_on_cutscene_start)
+	GameEvents.cutscene_ended.connect(_on_cutscene_end)
 	for child in get_children():
 		child.state_machine = self
 	state.enter()
@@ -26,6 +27,7 @@ func _process(delta: float) -> void:
 
 func _physics_process(delta: float) -> void:
 	state.physics_update(delta)
+	
 
 
 func transition_to(target_state_name: String, msg: Dictionary = {}) -> void:
@@ -35,4 +37,10 @@ func transition_to(target_state_name: String, msg: Dictionary = {}) -> void:
 	state.exit()
 	state = get_node(target_state_name)
 	state.enter(msg)
-	
+
+func _on_cutscene_start() -> void:
+	transition_to("Cutscene")
+
+
+func _on_cutscene_end() -> void:
+	transition_to("Idle")

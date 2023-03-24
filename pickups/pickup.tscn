@@ -62,7 +62,7 @@ _data = {
 radius = 13.1529
 
 [node name="Pickup" type="CharacterBody2D"]
-collision_layer = 16
+collision_layer = 32
 script = ExtResource("1_4dihh")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
