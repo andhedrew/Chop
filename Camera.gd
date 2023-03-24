@@ -54,11 +54,11 @@ func add_trauma(trauma_in):
 
 
 func SCREENSHAKE() -> void:
-	add_trauma(50)
+	add_trauma(20)
 
 
 func BIG_SCREENSHAKE() -> void:
-	await get_tree().create_timer(0.2).timeout
+	await get_tree().create_timer(0.05).timeout
 	add_trauma(100)
 
 func flash_screen(flash_time: float, flash_position: Vector2) -> void:

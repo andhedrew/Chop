@@ -1,0 +1,39 @@
+[gd_scene load_steps=5 format=3 uid="uid://dodafdhfhjtg8"]
+
+[ext_resource type="Script" path="res://vfx/simple_animate.gd" id="1_pean5"]
+[ext_resource type="Texture2D" uid="uid://b6pkivhgj2lhf" path="res://vfx/slice_big.png" id="2_k7r36"]
+
+[sub_resource type="Animation" id="Animation_16wv8"]
+resource_name = "animate"
+length = 0.2
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [0, 1, 2]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_sgqmi"]
+_data = {
+"animate": SubResource("Animation_16wv8")
+}
+
+[node name="big_slice" type="Node2D"]
+script = ExtResource("1_pean5")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, -13)
+texture = ExtResource("2_k7r36")
+hframes = 3
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_sgqmi")
+}

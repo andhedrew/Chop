@@ -13,7 +13,7 @@ func enter(_msg := {}) -> void:
 	await get_tree().create_timer(0.25).timeout
 	camera.flash_screen(0.01, owner.global_position)
 	fire()
-	camera.SCREENSHAKE()
+	GameEvents.player_executed.emit()
 	owner.velocity.y = -80
 	SoundPlayer.play_sound("punch")
 	SoundPlayer.play_sound("swoosh")

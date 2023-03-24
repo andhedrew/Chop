@@ -39,15 +39,21 @@ func _physics_process(_delta):
 		wounded = true
 	if wounded:
 		effects_player.play("wounded")
-		
-	if health <= 0:
-		execute()
 
 func _take_damage(hitbox) -> void:
 	if hitbox is HitBox and !invulnerable:
 		colliding_hitbox_position = {1: hitbox.owner.get_parent().global_position}
 		$StateMachine.transition_to("Hurt", colliding_hitbox_position)
 		health -= hitbox.damage
+		if wounded and health <= 0 and hitbox.execute:
+			execute()
+		elif health <= 0:
+			die()
+		else:
+			var slice = preload("res://vfx/slice.tscn").instantiate()
+			slice.position = global_position
+			get_node("/root/").add_child(slice)
+			
 
 
 func set_facing(facing_dir) -> void:
@@ -71,6 +77,10 @@ func switch_facing() -> void:
 
 
 func execute():
+	var slice = preload("res://vfx/slice_big.tscn").instantiate()
+	slice.position = global_position
+	get_node("/root/").add_child(slice)
+	
 	if death_vocalization:
 		SoundPlayer.play_sound(death_vocalization)
 	await get_tree().create_timer(0.2).timeout
@@ -84,8 +94,15 @@ func execute():
 			pickup.velocity = Vector2(starting_x, randf_range(-4, -6))
 			starting_x -= spacing
 			get_node("/root/World").add_child(pickup)
-	die()
+		
+	die(true)
 
 
-func die() -> void:
+func die(was_executed: bool = false) -> void:
+	OS.delay_msec(80)
+	var explode := preload("res://vfx/explosion.tscn").instantiate()
+	explode.position = global_position
+	if was_executed:
+		explode.big = true
+	get_node("/root/").add_child(explode)
 	call_deferred("queue_free")

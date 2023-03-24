@@ -6,6 +6,7 @@ var reload_timer := 0
 @onready var animation_player := $"../../Pivot/AnimationPlayer"
 
 func enter(_msg := {}) -> void:
+	GameEvents.player_attacked.emit()
 	var bullet = preload("res://bullets/slash_bullet/slash_bullet.tscn").instantiate()
 	owner.add_child(bullet)
 	var transform = $"../../Pivot/BulletSpawn".global_transform
