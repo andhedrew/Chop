@@ -27,6 +27,8 @@ func _on_body_entered(body) -> void:
 		animation_player.play("destroy")
 		SoundPlayer.play_sound("pickup")
 		set_deferred("monitoring", false)
+		position = lerp(position, body.position, 0.2)
+		await get_tree().create_timer(.8).timeout
 		queue_free()
 
 func _add_pickup_to_inventory(_player) -> void:

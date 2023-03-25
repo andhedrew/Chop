@@ -1,6 +1,6 @@
 extends State
 
-
+@export var my_bullet : PackedScene = preload("res://bullets/nut_bullet/nut_bullet.tscn")
 var timer : Timer
 
 func enter(_msg := {}) -> void:
@@ -12,7 +12,7 @@ func enter(_msg := {}) -> void:
 	owner.animation_player.play("attack")
 	await get_tree().create_timer(0.25).timeout
 	if owner.is_on_floor():
-		var bullet = preload("res://bullets/nut_bullet/nut_bullet.tscn").instantiate()
+		var bullet = my_bullet.instantiate()
 		owner.add_child(bullet)
 		var transform : Transform2D = $"../../Pivot/BulletSpawn".global_transform
 		var fire_range := 80

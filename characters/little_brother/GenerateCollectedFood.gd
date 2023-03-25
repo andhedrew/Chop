@@ -15,7 +15,6 @@ func _generate_food(player) -> void:
 		player.facing = Enums.Facing.LEFT
 		get_node("../CollisionPolygon2D").set_deferred("disabled", true)
 		animation_player.play("eat")
-		var spacing = 2
 		for item in player.bag:
 				var pickup := preload("res://pickups/food_pickup.tscn").instantiate()
 				pickup.setup(item)
