@@ -2,8 +2,8 @@ extends EnemyHurt
 
 func enter(msg := {}) -> void:
 	super.enter()
+	hitbox_position = msg["position"]
 	owner.velocity.x = owner.global_position.x - (hitbox_position.x)
-	hitbox_position = msg[1]
 	if sign(owner.velocity.x) == 1:
 		owner.set_facing(Enums.Facing.LEFT)
 	elif sign(owner.velocity.x) == -1:

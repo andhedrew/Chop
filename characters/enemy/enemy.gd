@@ -42,7 +42,7 @@ func _physics_process(_delta):
 
 func _take_damage(hitbox) -> void:
 	if hitbox is HitBox and !invulnerable:
-		colliding_hitbox_position = {1: hitbox.owner.get_parent().global_position}
+		colliding_hitbox_position = {"position": hitbox.owner.get_parent().global_position}
 		$StateMachine.transition_to("Hurt", colliding_hitbox_position)
 		health -= hitbox.damage
 		if wounded and health <= 0 and hitbox.execute:

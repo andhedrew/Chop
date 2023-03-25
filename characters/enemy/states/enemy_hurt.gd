@@ -9,8 +9,6 @@ func enter(msg := {}) -> void:
 		var random_value = owner.hurt_vocalizations[random_index]
 		SoundPlayer.play_sound_positional(random_value, owner.global_position)
 	
-	
-	
 	owner.animation_player.play("hurt")
 	owner.effects_player.play("take_damage")
 	
