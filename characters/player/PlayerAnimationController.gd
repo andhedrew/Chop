@@ -28,7 +28,7 @@ func _physics_process(_delta):
 						is_landing = false
 					else: animation_player.play("idle_looking_up")
 					
-				"Walk": 
+				"Move": 
 					if is_landing: 
 						animation_player.play("landing_looking_up") 
 						await animation_player.animation_finished
@@ -48,7 +48,7 @@ func _physics_process(_delta):
 						await animation_player.animation_finished
 						is_landing = false
 					else: animation_player.play("idle")
-				"Walk": 
+				"Move": 
 					if is_landing: 
 						animation_player.play("landing") 
 						await animation_player.animation_finished

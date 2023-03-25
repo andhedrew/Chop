@@ -1,18 +1,17 @@
-[gd_scene load_steps=28 format=3 uid="uid://23cc1xm0v5jp"]
+[gd_scene load_steps=27 format=3 uid="uid://cde2c17kuh3gb"]
 
-[ext_resource type="Script" path="res://characters/enemy/enemy_walker.gd" id="1_px2j0"]
-[ext_resource type="Texture2D" uid="uid://c4h0e88l2gyj7" path="res://characters/enemy/default_walker.png" id="2_5ec61"]
-[ext_resource type="Texture2D" uid="uid://qf6s4i35sf4q" path="res://characters/enemy/default/mallow_pieces2.png" id="2_hsn2i"]
-[ext_resource type="Texture2D" uid="uid://bw4yx8vbx65so" path="res://vfx/particles/blood/blood.png" id="2_qow6m"]
-[ext_resource type="Animation" uid="uid://dep0l7ft0tpjo" path="res://animations/take_damage.res" id="3_1dqka"]
-[ext_resource type="Texture2D" uid="uid://hdwm6xnwvujm" path="res://characters/enemy/default/mallow_pieces1.png" id="3_mc02d"]
-[ext_resource type="Script" path="res://characters/player/states/state_machine.gd" id="4_j1xsx"]
-[ext_resource type="Script" path="res://characters/enemy/states/walker_idle.gd" id="6_wkyj1"]
-[ext_resource type="Script" path="res://characters/enemy/states/walker_walk.gd" id="7_swlji"]
-[ext_resource type="Script" path="res://characters/enemy/states/walker_fall.gd" id="8_33dsg"]
-[ext_resource type="PackedScene" uid="uid://bb1h85dym7l4i" path="res://hitboxes/Hurtbox.tscn" id="9_1uncs"]
-[ext_resource type="Script" path="res://characters/enemy/states/walker_hurt.gd" id="9_v3jw4"]
-[ext_resource type="PackedScene" uid="uid://cxfiuhgots5lg" path="res://hitboxes/Hitbox.tscn" id="10_vu0ns"]
+[ext_resource type="Script" path="res://characters/enemy/enemy_walker.gd" id="1_778os"]
+[ext_resource type="Texture2D" uid="uid://bw4yx8vbx65so" path="res://vfx/particles/blood/blood.png" id="2_qeps7"]
+[ext_resource type="Texture2D" uid="uid://qf6s4i35sf4q" path="res://characters/enemy/default/mallow_pieces2.png" id="2_u10g2"]
+[ext_resource type="Texture2D" uid="uid://b7d34uqc2glh5" path="res://characters/enemy/default_jumper.png" id="3_bj0i1"]
+[ext_resource type="Animation" uid="uid://dep0l7ft0tpjo" path="res://animations/take_damage.res" id="4_qnq1h"]
+[ext_resource type="Script" path="res://characters/player/states/state_machine.gd" id="5_ccglt"]
+[ext_resource type="Script" path="res://characters/enemy/jumper_idle.gd" id="6_o2i04"]
+[ext_resource type="Script" path="res://characters/enemy/jumper_jump_attack.gd" id="7_ygfex"]
+[ext_resource type="Script" path="res://characters/enemy/states/walker_fall.gd" id="8_kmr5c"]
+[ext_resource type="Script" path="res://characters/enemy/states/walker_hurt.gd" id="9_r5phl"]
+[ext_resource type="PackedScene" uid="uid://bb1h85dym7l4i" path="res://hitboxes/Hurtbox.tscn" id="10_0423f"]
+[ext_resource type="PackedScene" uid="uid://cxfiuhgots5lg" path="res://hitboxes/Hitbox.tscn" id="11_8faqc"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_72bxu"]
 particles_animation = true
@@ -159,7 +158,7 @@ tracks/0/keys = {
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_3rqiy"]
 _data = {
 "RESET": SubResource("Animation_3oc4b"),
-"take_damage": ExtResource("3_1dqka"),
+"take_damage": ExtResource("4_qnq1h"),
 "wounded": SubResource("Animation_sv5so")
 }
 
@@ -170,14 +169,13 @@ size = Vector2(18, 18)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_tk5ps"]
 
-[node name="Enemy" type="CharacterBody2D"]
+[node name="Jumper" type="CharacterBody2D"]
 collision_layer = 4
 collision_mask = 13
-script = ExtResource("1_px2j0")
-death_pieces = Array[Resource]([ExtResource("2_hsn2i"), ExtResource("3_mc02d")])
+script = ExtResource("1_778os")
+death_pieces = Array[Resource]([ExtResource("2_u10g2"), ExtResource("2_u10g2"), ExtResource("2_u10g2")])
 
 [node name="state_label" type="Label" parent="."]
-visible = false
 offset_left = -20.0
 offset_top = -48.0
 offset_right = 20.0
@@ -190,7 +188,7 @@ position = Vector2(0, -15)
 emitting = false
 amount = 3
 process_material = SubResource("ParticleProcessMaterial_8eoru")
-texture = ExtResource("2_qow6m")
+texture = ExtResource("2_qeps7")
 lifetime = 0.8
 explosiveness = 0.5
 
@@ -198,7 +196,7 @@ explosiveness = 0.5
 
 [node name="Body" type="Sprite2D" parent="Pivot"]
 position = Vector2(-2, -14)
-texture = ExtResource("2_5ec61")
+texture = ExtResource("3_bj0i1")
 hframes = 14
 frame = 8
 
@@ -220,22 +218,25 @@ target_position = Vector2(-70, 0)
 collision_mask = 3
 
 [node name="StateMachine" type="Node" parent="."]
-script = ExtResource("4_j1xsx")
+script = ExtResource("5_ccglt")
 initial_state = NodePath("Idle")
 
 [node name="Idle" type="Node" parent="StateMachine"]
-script = ExtResource("6_wkyj1")
+script = ExtResource("6_o2i04")
 
 [node name="Move" type="Node" parent="StateMachine"]
-script = ExtResource("7_swlji")
+script = ExtResource("6_o2i04")
+
+[node name="Attack" type="Node" parent="StateMachine"]
+script = ExtResource("7_ygfex")
 
 [node name="Fall" type="Node" parent="StateMachine"]
-script = ExtResource("8_33dsg")
+script = ExtResource("8_kmr5c")
 
 [node name="Hurt" type="Node" parent="StateMachine"]
-script = ExtResource("9_v3jw4")
+script = ExtResource("9_r5phl")
 
-[node name="Hurtbox" parent="." instance=ExtResource("9_1uncs")]
+[node name="Hurtbox" parent="." instance=ExtResource("10_0423f")]
 collision_layer = 4
 collision_mask = 8
 
@@ -243,7 +244,7 @@ collision_mask = 8
 position = Vector2(0, -10)
 shape = SubResource("RectangleShape2D_b0l46")
 
-[node name="Hitbox" parent="." instance=ExtResource("10_vu0ns")]
+[node name="Hitbox" parent="." instance=ExtResource("11_8faqc")]
 collision_layer = 4
 collision_mask = 2
 

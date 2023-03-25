@@ -1,3 +1,4 @@
+class_name WalkerIdle
 extends State
 
 @onready var ledge_left := $"../../adjacent_ledge_check_left"
@@ -30,7 +31,7 @@ func update(_delta: float) -> void:
 
 		if timer.is_stopped() and !(left_blocked and right_blocked):
 			timer.queue_free()
-			state_machine.transition_to("Walk")
+			state_machine.transition_to("Move")
 
 		if !owner.is_on_floor():
 			state_machine.transition_to("Fall")

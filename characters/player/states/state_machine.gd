@@ -5,7 +5,7 @@ extends Node
 
 @export var initial_state := NodePath()
 @onready var state: State = get_node(initial_state)
-
+var previous_state : String
 
 func _ready() -> void:
 	await owner.ready
@@ -27,13 +27,12 @@ func _process(delta: float) -> void:
 
 func _physics_process(delta: float) -> void:
 	state.physics_update(delta)
-	
 
 
 func transition_to(target_state_name: String, msg: Dictionary = {}) -> void:
 	if not has_node(target_state_name):
 		return
-
+	previous_state = state.name
 	state.exit()
 	state = get_node(target_state_name)
 	state.enter(msg)

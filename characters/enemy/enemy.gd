@@ -29,10 +29,6 @@ func _ready() -> void:
 
 
 func _physics_process(_delta):
-	var player_check = $Pivot/player_detector.get_collider()
-	if player_check is Player:
-		print_debug("detecting player")
-	
 	state_label.text = $StateMachine.state.name
 	
 	if health <= 1:

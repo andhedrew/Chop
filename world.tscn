@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://tnufk55njr8g"]
+[gd_scene load_steps=17 format=3 uid="uid://tnufk55njr8g"]
 
 [ext_resource type="PackedScene" uid="uid://b2pjddvoa4q07" path="res://characters/player/player.tscn" id="1_371ql"]
 [ext_resource type="Script" path="res://world.gd" id="1_nxsgc"]
@@ -7,9 +7,12 @@
 [ext_resource type="Script" path="res://user_interface/health bar/health_bar.gd" id="6_xjfnb"]
 [ext_resource type="PackedScene" uid="uid://cm208i2oyjrct" path="res://characters/enemy/hotdog/hotdog.tscn" id="7_mmpep"]
 [ext_resource type="Texture2D" uid="uid://xoihsb8asqow" path="res://user_interface/health bar/full_heart.png" id="7_uevra"]
+[ext_resource type="PackedScene" uid="uid://23cc1xm0v5jp" path="res://characters/enemy/enemy_walker.tscn" id="8_hxqf4"]
 [ext_resource type="PackedScene" uid="uid://5kxwftjlml3w" path="res://characters/little_brother/little_brother.tscn" id="8_lv0yn"]
 [ext_resource type="PackedScene" uid="uid://cp5ayypj271xk" path="res://characters/enemy/paroot/paroot.tscn" id="9_20fx6"]
+[ext_resource type="PackedScene" uid="uid://g2rn2npgnt8u" path="res://characters/enemy/enemy_flyer.tscn" id="9_kdnn6"]
 [ext_resource type="PackedScene" uid="uid://curfvdorfok3h" path="res://characters/enemy/dandicrow/dandicrow.tscn" id="9_shmiu"]
+[ext_resource type="PackedScene" uid="uid://cde2c17kuh3gb" path="res://characters/enemy/enemy_jumper.tscn" id="11_gi1o3"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_u3ycg"]
 texture = ExtResource("3_ngx7p")
@@ -600,9 +603,9 @@ sources/0 = SubResource("TileSetAtlasSource_u3ycg")
 
 [sub_resource type="Curve2D" id="Curve2D_nqvxr"]
 _data = {
-"points": PackedVector2Array(0, 0, 0, 0, 160, -144, 0, 0, 0, 0, 160, -48)
+"points": PackedVector2Array(0, 0, 0, 0, 160, -144, 0, 0, 0, 0, 159.481, -82.9101, 0, 0, 0, 0, 160, -48)
 }
-point_count = 2
+point_count = 3
 
 [node name="World" type="Node2D"]
 script = ExtResource("1_nxsgc")
@@ -666,24 +669,44 @@ layout_mode = 2
 texture = ExtResource("7_uevra")
 
 [node name="Enemy" parent="." instance=ExtResource("7_mmpep")]
-position = Vector2(352, -56)
+position = Vector2(1175, -24)
 
 [node name="Enemy2" parent="." instance=ExtResource("7_mmpep")]
-position = Vector2(440, -40)
+position = Vector2(1263, -8)
 
 [node name="Enemy3" parent="." instance=ExtResource("7_mmpep")]
-position = Vector2(496, -48)
+position = Vector2(1319, -16)
 
 [node name="Path2D" type="Path2D" parent="."]
+position = Vector2(679, 9)
 curve = SubResource("Curve2D_nqvxr")
 
 [node name="PathFollow2D" type="PathFollow2D" parent="Path2D"]
 position = Vector2(160, -144)
-rotation = 1.5708
+rotation = 1.57929
 
 [node name="EnemyFlyer" parent="Path2D/PathFollow2D" instance=ExtResource("9_shmiu")]
 position = Vector2(104, -4)
 rotation = -1.5708
+collision_mask = 13
+
+[node name="Path2D2" type="Path2D" parent="."]
+position = Vector2(443, 30)
+curve = SubResource("Curve2D_nqvxr")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Path2D2"]
+position = Vector2(160, -144)
+rotation = 1.57929
+
+[node name="EnemyFlyer" parent="Path2D2/PathFollow2D" instance=ExtResource("9_kdnn6")]
+position = Vector2(109.979, -2.93414)
+rotation = -1.57929
 
 [node name="Paroot" parent="." instance=ExtResource("9_20fx6")]
-position = Vector2(216, 72)
+position = Vector2(932, 32)
+
+[node name="Enemy4" parent="." instance=ExtResource("11_gi1o3")]
+position = Vector2(504, 73)
+
+[node name="Enemy5" parent="." instance=ExtResource("8_hxqf4")]
+position = Vector2(687, 45)
