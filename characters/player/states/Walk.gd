@@ -26,6 +26,9 @@ func physics_update(delta: float) -> void:
 
 	if Input.is_action_just_pressed("attack"):
 		state_machine.transition_to("Attack")
+	
+	if Input.is_action_just_pressed("syphon"):
+		state_machine.transition_to("Syphon")
 
 	if not owner.is_on_floor():
 		coyote_timer.start()

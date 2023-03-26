@@ -20,10 +20,7 @@ func enter(_msg := {}) -> void:
 
 
 func physics_update(delta: float) -> void:
-	var input_direction_x: float = (
-		Input.get_action_strength("right")
-		- Input.get_action_strength("left")
-	)
+	var input_direction_x: float = Input.get_axis("left", "right")
 	owner.velocity.x = move_toward(owner.velocity.x, (owner.max_speed*0.25) * input_direction_x, owner.acceleration_in_air)
 	owner.velocity.y += (Param.GRAVITY_ON_FALL*0.25) * delta
 	owner.move_and_slide()

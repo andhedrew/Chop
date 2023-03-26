@@ -7,16 +7,14 @@ var reload_timer := 0
 
 func enter(_msg := {}) -> void:
 	GameEvents.player_attacked.emit()
-	var bullet = preload("res://bullets/slash_bullet/slash_bullet.tscn").instantiate()
+	var bullet = preload("res://bullets/syphon_bullet/syphon_bullet.tscn").instantiate()
 	owner.add_child(bullet)
 	var transform = $"../../Pivot/BulletSpawn".global_transform
 	var fire_range := 10
 	var speed := 150
 	var spread := 0
 	var rotation := 0
-	if owner.looking == Enums.Looking.UP:
-		rotation = 270
-	elif owner.facing == Enums.Facing.LEFT:
+	if owner.facing == Enums.Facing.LEFT:
 		rotation = 180
 	bullet.setup(transform, fire_range, speed, rotation, spread)
 	SoundPlayer.play_sound("swoosh")

@@ -31,5 +31,8 @@ func physics_update(delta: float) -> void:
 	elif Input.is_action_just_pressed("attack"):
 		state_machine.transition_to("Attack")
 	
+	if Input.is_action_just_pressed("syphon"):
+		state_machine.transition_to("Syphon")
+	
 	if Input.is_action_just_pressed("dash"):
 		state_machine.transition_to("Dash")

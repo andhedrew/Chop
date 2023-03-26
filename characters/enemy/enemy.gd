@@ -38,6 +38,9 @@ func _physics_process(_delta):
 
 func _take_damage(hitbox) -> void:
 	if hitbox is HitBox and !invulnerable:
+		if hitbox.syphon and wounded:
+			drop_health_and_die()
+			return
 		colliding_hitbox_position = {"position": hitbox.owner.get_parent().global_position}
 		$StateMachine.transition_to("Hurt", colliding_hitbox_position)
 		health -= hitbox.damage
@@ -101,4 +104,16 @@ func die(was_executed: bool = false) -> void:
 	if was_executed:
 		explode.big = true
 	get_node("/root/").add_child(explode)
+	call_deferred("queue_free")
+
+func drop_health_and_die() -> void:
+	OS.delay_msec(80)
+	var explode := preload("res://vfx/explosion.tscn").instantiate()
+	explode.position = global_position
+	get_node("/root/").add_child(explode)
+	var sprite := preload("res://user_interface/health bar/full_heart.png")
+	var pickup := preload("res://pickups/food_pickup.tscn").instantiate()
+	pickup.setup(sprite)
+	pickup.position = global_position
+	get_node("/root/").add_child(pickup)
 	call_deferred("queue_free")

@@ -172,7 +172,7 @@ size = Vector2(18, 18)
 
 [node name="Enemy" type="CharacterBody2D"]
 collision_layer = 4
-collision_mask = 13
+collision_mask = 9
 script = ExtResource("1_px2j0")
 death_pieces = Array[Resource]([ExtResource("2_hsn2i"), ExtResource("3_mc02d")])
 

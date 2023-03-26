@@ -10,7 +10,8 @@ const acceleration_in_air := 5
 const jump_height = -200.0
 
 var invulnerable := false
-var health := 10
+var max_health := 6
+var health := max_health
 
 var facing := Enums.Facing.RIGHT
 var looking := Enums.Looking.FORWARD
@@ -27,16 +28,21 @@ var food := 0
 
 var bag := []
 
+var set_healthbar := false
+
 @onready var hurtbox := $Hurtbox
 @onready var animation_player := $Pivot/AnimationPlayer
 @onready var effects_player := $Pivot/EffectsPlayer
 
 func _ready():
 	hurtbox.area_entered.connect(_hurtbox_on_area_entered)
-	
+
 
 
 func _physics_process(_delta):
+	if !set_healthbar:
+		set_healthbar = true
+		GameEvents.player_health_changed.emit(health, max_health)
 	get_input()
 	state = $StateMachine.state.name
 	_set_debug_labels()
@@ -105,6 +111,5 @@ func _hurtbox_on_area_entered(hitbox) -> void:
 
 
 func take_damage(damage) -> void:
-	
 	health -= damage
-	GameEvents.player_health_changed.emit(health)
+	GameEvents.player_health_changed.emit(health, max_health)
