@@ -28,6 +28,10 @@ var state_last_frame := state
 var food := 0
 
 var bag := []
+var torch_charges := 3
+var max_torch_charges := torch_charges
+var charge_time := 200
+var charge_timer := charge_time
 
 var set_healthbar := false
 
@@ -42,7 +46,7 @@ func _ready():
 
 
 
-func _physics_process(_delta):
+func _physics_process(delta):
 	if !set_healthbar:
 		set_healthbar = true
 		GameEvents.player_health_changed.emit(health, max_health)
@@ -52,6 +56,10 @@ func _physics_process(_delta):
 	_set_debug_labels()
 	handle_facing()
 	state_last_frame = state
+	
+	if is_on_floor():
+		charge_time -= 1*delta
+		
 
 
 func _set_debug_labels() -> void:

@@ -1,4 +1,4 @@
-[gd_scene load_steps=44 format=3 uid="uid://b2pjddvoa4q07"]
+[gd_scene load_steps=45 format=3 uid="uid://b2pjddvoa4q07"]
 
 [ext_resource type="Script" path="res://characters/player/Player.gd" id="1_xdjdy"]
 [ext_resource type="Script" path="res://characters/player/PlayerAnimationController.gd" id="2_8pqog"]
@@ -19,6 +19,7 @@
 [ext_resource type="Script" path="res://characters/player/states/Dash.gd" id="16_qeej7"]
 [ext_resource type="Script" path="res://characters/player/BoosterPivot.gd" id="17_majmj"]
 [ext_resource type="Script" path="res://characters/player/Syphon.gd" id="18_do748"]
+[ext_resource type="Script" path="res://characters/player/set_charges.gd" id="20_xbxmu"]
 
 [sub_resource type="Theme" id="Theme_e62t7"]
 default_font_size = 10
@@ -678,5 +679,9 @@ one_shot = true
 [node name="JumpBufferTimer" type="Timer" parent="."]
 wait_time = 0.3
 one_shot = true
+
+[node name="Charges" type="Marker2D" parent="."]
+position = Vector2(0, -43)
+script = ExtResource("20_xbxmu")
 
 [editable path="Hurtbox"]

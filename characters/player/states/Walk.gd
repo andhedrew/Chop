@@ -33,3 +33,6 @@ func physics_update(delta: float) -> void:
 	if not owner.is_on_floor():
 		coyote_timer.start()
 		state_machine.transition_to("Fall")
+	
+	if Input.is_action_just_pressed("dash"):
+		state_machine.transition_to("Dash")

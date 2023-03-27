@@ -30,3 +30,6 @@ func update(_delta: float) -> void:
 
 	if Input.is_action_just_pressed("syphon"):
 		state_machine.transition_to("Syphon")
+	
+	if Input.is_action_just_pressed("dash"):
+		state_machine.transition_to("Dash")

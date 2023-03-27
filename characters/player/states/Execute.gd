@@ -31,7 +31,9 @@ func physics_update(delta: float) -> void:
 		state_machine.transition_to("Idle")
 	else: 
 		state_machine.transition_to("Fall")
-
+	
+	if Input.is_action_just_pressed("dash"):
+		state_machine.transition_to("Dash")
 
 
 func fire() -> void:
