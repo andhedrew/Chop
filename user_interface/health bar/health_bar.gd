@@ -5,9 +5,12 @@ var full_heart = preload("full_heart.png")
 var half_heart = preload("half_heart.png")
 var empty_heart = preload("empty_heart.png")
 
+var bag_contents := []
+
 func _ready():
-	
 	GameEvents.player_health_changed.connect(_on_player_health_changed)
+	GameEvents.added_food_to_bag.connect(_added_food_to_bag)
+
 
 func _on_player_health_changed(health, maximum_health):
 	var hearts = []
@@ -19,10 +22,13 @@ func _on_player_health_changed(health, maximum_health):
 		else:
 			hearts.append(empty_heart)
 	for i in range(0, 10):
-		var texture_rect = get_node("HBoxContainer/heart_" + str(i))
+		var texture_rect = get_node("VBoxContainer/HBoxContainer/heart_" + str(i))
 		texture_rect.visible = false
 		
 	for i in range(0, maximum_health/2):
-		var texture_rect = get_node("HBoxContainer/heart_" + str(i))
+		var texture_rect = get_node("VBoxContainer/HBoxContainer/heart_" + str(i))
 		texture_rect.texture = hearts[i]
 		texture_rect.visible = true
+
+func _added_food_to_bag(new_item):
+	pass

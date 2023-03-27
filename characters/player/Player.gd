@@ -13,6 +13,7 @@ var invulnerable := false
 var max_health := 6
 var health := max_health
 
+
 var facing := Enums.Facing.RIGHT
 var looking := Enums.Looking.FORWARD
 var default_facing = facing
@@ -34,6 +35,8 @@ var set_healthbar := false
 @onready var animation_player := $Pivot/AnimationPlayer
 @onready var effects_player := $Pivot/EffectsPlayer
 
+@onready var sharp_bar := $SharpBar
+
 func _ready():
 	hurtbox.area_entered.connect(_hurtbox_on_area_entered)
 
@@ -43,6 +46,7 @@ func _physics_process(_delta):
 	if !set_healthbar:
 		set_healthbar = true
 		GameEvents.player_health_changed.emit(health, max_health)
+	
 	get_input()
 	state = $StateMachine.state.name
 	_set_debug_labels()

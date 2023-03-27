@@ -112,7 +112,7 @@ func drop_health_and_die() -> void:
 	explode.position = global_position
 	get_node("/root/").add_child(explode)
 	var sprite := preload("res://user_interface/health bar/full_heart.png")
-	var pickup := preload("res://pickups/food_pickup.tscn").instantiate()
+	var pickup := preload("res://pickups/health_pickup.tscn").instantiate()
 	pickup.setup(sprite)
 	pickup.position = global_position
 	get_node("/root/").add_child(pickup)
