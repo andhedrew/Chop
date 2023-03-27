@@ -30,8 +30,9 @@ var food := 0
 var bag := []
 var torch_charges := 3
 var max_torch_charges := torch_charges
-var charge_time := 200
+var charge_time := 2.0
 var charge_timer := charge_time
+var execute_disabled := false
 
 var set_healthbar := false
 
@@ -43,6 +44,7 @@ var set_healthbar := false
 
 func _ready():
 	hurtbox.area_entered.connect(_hurtbox_on_area_entered)
+	GameEvents.enemy_took_damage.connect(_on_enemy_taking_damage)
 
 
 
@@ -57,9 +59,13 @@ func _physics_process(delta):
 	handle_facing()
 	state_last_frame = state
 	
-	if is_on_floor():
-		charge_time -= 1*delta
-		
+	if torch_charges < max_torch_charges:
+		if is_on_floor():
+			charge_time -= 1*delta
+			if charge_time < 0:
+				torch_charges += 1
+				charge_time = charge_timer
+				GameEvents.charge_amount_changed.emit(torch_charges, max_torch_charges)
 
 
 func _set_debug_labels() -> void:
@@ -125,3 +131,9 @@ func _hurtbox_on_area_entered(hitbox) -> void:
 func take_damage(damage) -> void:
 	health -= damage
 	GameEvents.player_health_changed.emit(health, max_health)
+
+
+func _on_enemy_taking_damage() -> void:
+	if torch_charges < max_torch_charges:
+		torch_charges += 1
+		GameEvents.charge_amount_changed.emit(torch_charges, max_torch_charges)

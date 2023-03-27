@@ -38,6 +38,7 @@ func _physics_process(_delta):
 
 func _take_damage(hitbox) -> void:
 	if hitbox is HitBox and !invulnerable:
+		GameEvents.enemy_took_damage.emit()
 		if hitbox.syphon and wounded:
 			drop_health_and_die()
 			return

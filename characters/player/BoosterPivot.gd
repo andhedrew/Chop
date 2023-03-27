@@ -7,7 +7,8 @@ func _ready():
 func _process(delta):
 	$Booster.visible = true
 	if $"../StateMachine".state.name == "Dash":
-		var direction = Vector2(Input.get_axis("left", "right"), Input.get_axis("up", "down")).normalized()
+#		var direction = Vector2(Input.get_axis("left", "right"), Input.get_axis("up", "down")).normalized()
+		var direction = Vector2(Input.get_axis("right", "left"), Input.get_axis("down", "up")).normalized()
 		if direction != Vector2.ZERO:
 			rotation = direction.angle()  + deg_to_rad(90)
 			if rotation > deg_to_rad(0) and rotation < deg_to_rad(180):

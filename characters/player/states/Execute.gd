@@ -7,16 +7,21 @@ var reload_timer := 0
 @onready var camera: Camera2D
 
 
+
 func enter(_msg := {}) -> void:
-	camera = owner.camera
-	owner.velocity.y = 0
-	await get_tree().create_timer(0.25).timeout
-	camera.flash_screen(0.01, owner.global_position)
-	fire()
-	GameEvents.player_executed.emit()
-	owner.velocity.y = -80
-	SoundPlayer.play_sound("punch")
-	SoundPlayer.play_sound("swoosh")
+	if !owner.execute_disabled:
+		camera = owner.camera
+		owner.velocity.y = 0
+		await get_tree().create_timer(0.25).timeout
+		camera.flash_screen(0.01, owner.global_position)
+		fire()
+		owner.execute_disabled = true
+		GameEvents.player_executed.emit()
+		owner.velocity.y = -80
+		SoundPlayer.play_sound("punch")
+		SoundPlayer.play_sound("swoosh")
+	else:
+		state_machine.transition_to("Fall")
 
 
 func physics_update(delta: float) -> void:

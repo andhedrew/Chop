@@ -4,7 +4,7 @@ extends State
 @onready var jump_buffer_timer := $"../../JumpBufferTimer"
 
 func enter(_msg := {}) -> void:
-	pass
+	owner.execute_disabled = false
 
 
 func physics_update(delta: float) -> void:

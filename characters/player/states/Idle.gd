@@ -4,7 +4,7 @@ extends State
 @onready var coyote_timer := $"../../CoyoteTimer"
 
 func enter(_msg := {}) -> void:
-	pass
+	owner.execute_disabled = false
 
 
 func update(_delta: float) -> void:

@@ -20,6 +20,7 @@ func enter(_msg := {}) -> void:
 		rotation = 180
 	bullet.setup(transform, fire_range, speed, rotation, spread)
 	SoundPlayer.play_sound("swoosh")
+	owner.velocity.y -= 100
 
 
 func physics_update(delta: float) -> void:
