@@ -40,7 +40,6 @@ var set_healthbar := false
 @onready var animation_player := $Pivot/AnimationPlayer
 @onready var effects_player := $Pivot/EffectsPlayer
 
-@onready var sharp_bar := $SharpBar
 
 func _ready():
 	hurtbox.area_entered.connect(_hurtbox_on_area_entered)

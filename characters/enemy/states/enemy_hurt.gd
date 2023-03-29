@@ -3,7 +3,7 @@ extends State
 
 var hitbox_position : Vector2
 
-func enter(msg := {}) -> void:
+func enter(_msg := {}) -> void:
 	if owner.hurt_vocalizations.size() > 0:
 		var random_index = randi() % owner.hurt_vocalizations.size()
 		var random_value = owner.hurt_vocalizations[random_index]
@@ -16,7 +16,7 @@ func enter(msg := {}) -> void:
 func update(_delta: float) -> void:
 	pass
 
-func physics_update(delta: float) -> void:
+func physics_update(_delta: float) -> void:
 	pass
 	
 func exit() -> void:

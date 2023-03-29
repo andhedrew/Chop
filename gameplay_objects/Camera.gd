@@ -30,15 +30,12 @@ func _process(delta):
 	position = lerp(position, Vector2(target_node.position.x+target_lead, target_node.position.y), lerpspeed)
 	time += delta
 
+
 	set_offset(Vector2( \
 		randf_range(-1, 1) * trauma, \
 		randf_range(-1, 1) * trauma \
 	))
 	rotation_degrees = randf_range(-max_r, max_r) * trauma
-#	offset.x = noise.get_noise_3d(time * time_scale, 0, 0) * max_x * shake
-#	offset.y = noise.get_noise_3d(0, time * time_scale, 0) * max_y * shake
-#	rotation_degrees = noise.get_noise_3d(0, 0, time * time_scale) * max_r * shake
-	
 	trauma = lerp(trauma, 0.0, 0.1)
  
 
@@ -46,7 +43,6 @@ func _change_lead_position(player_facing_dir) -> void:
 	match player_facing_dir:
 		Enums.Facing.RIGHT: lead = lead_amount
 		Enums.Facing.LEFT: lead = -lead_amount
-
 
 
 func add_trauma(trauma_in):
@@ -60,6 +56,7 @@ func SCREENSHAKE() -> void:
 func BIG_SCREENSHAKE() -> void:
 	await get_tree().create_timer(0.05).timeout
 	add_trauma(100)
+
 
 func flash_screen(flash_time: float, flash_position: Vector2) -> void:
 	var screen_size := get_viewport_rect().size*2

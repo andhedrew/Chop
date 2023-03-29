@@ -30,5 +30,5 @@ func _on_player_health_changed(health, maximum_health):
 		texture_rect.texture = hearts[i]
 		texture_rect.visible = true
 
-func _added_food_to_bag(new_item):
+func _added_food_to_bag(_new_item):
 	pass

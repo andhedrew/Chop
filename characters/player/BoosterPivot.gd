@@ -4,7 +4,7 @@ func _ready():
 	pass
 	$AnimationPlayer.play("booster")
 
-func _process(delta):
+func _process(_delta):
 	$Booster.visible = true
 	if $"../StateMachine".state.name == "Dash":
 #		var direction = Vector2(Input.get_axis("left", "right"), Input.get_axis("up", "down")).normalized()

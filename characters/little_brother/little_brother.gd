@@ -7,7 +7,7 @@ func _ready():
 	z_index = SortLayer.FOREGROUND
 	$Hurtbox.area_entered.connect(_on_hitbox_entered)
 
-func _process(delta):
+func _process(_delta):
 	if health <= 0:
 		die()
 		

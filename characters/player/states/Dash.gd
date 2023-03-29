@@ -1,24 +1,21 @@
 extends State
 
-
-var dash_time := 0.7
-var dash_timer := 0
 var dash_direction := Vector2.ZERO
-var dash_length := 350
+var dash_length := 450
 
 func enter(_msg := {}) -> void:
+	owner.execute_disabled = false
 	$"../../Pivot/Weapon".visible = false
 	
 
-func physics_update(delta: float) -> void:
+func physics_update(_delta: float) -> void:
 	if Input.is_action_pressed("dash") and owner.torch_charges > 0:
 		dash_direction = Vector2(Input.get_axis("left", "right"), Input.get_axis("up", "down")).normalized()
 #		dash_direction = Vector2(Input.get_axis("right", "left"), Input.get_axis("down", "up")).normalized()
 		owner.velocity = -dash_direction * dash_length
-		dash_timer = dash_time
-	elif dash_timer > 0 and Input.is_action_pressed("dash"):
+
+	elif Input.is_action_pressed("dash") and owner.torch_charges > 0:
 		owner.velocity = dash_direction * dash_length
-		dash_timer -= delta
 	elif owner.is_on_floor():
 		state_machine.transition_to("Idle")
 	else: 
