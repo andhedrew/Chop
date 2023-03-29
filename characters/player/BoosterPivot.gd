@@ -1,26 +1,28 @@
 extends Marker2D
 
 func _ready():
-	pass
 	$AnimationPlayer.play("booster")
+	visible = false
+	
 
 func _process(_delta):
-	$Booster.visible = true
 	if $"../StateMachine".state.name == "Dash":
-#		var direction = Vector2(Input.get_axis("left", "right"), Input.get_axis("up", "down")).normalized()
-		var direction = Vector2(Input.get_axis("right", "left"), Input.get_axis("down", "up")).normalized()
-		if direction != Vector2.ZERO:
-			rotation = direction.angle()  + deg_to_rad(90)
-			if rotation > deg_to_rad(0) and rotation < deg_to_rad(180):
-				scale.x = -1
-			else:
-				scale.x = 1
-			$Booster.position.y = 15
-#			if rotation == deg_to_rad(0) or rotation == deg_to_rad(90) or rotation == deg_to_rad(180) or rotation == deg_to_rad(270):
-#				$Booster.texture = preload("blowtorch.png")
-#			else:
-#				$Booster.texture = preload("blowtorch_angle.png")
-		else:
-			$Booster.position.y = 5
-	else:
-		$Booster.visible = false
+		visible = true
+		if owner.torch_charges <= 0:
+			var smoke = preload("res://vfx/smoke.tscn").instantiate()
+			get_node("/root/").add_child(smoke)
+			smoke.position = global_position
+			smoke.z_index = SortLayer.FOREGROUND
+			smoke.restart()
+			smoke.emitting = true
+
+	var direction = Vector2(Input.get_axis("right", "left"), Input.get_axis("down", "up")).normalized()
+	if direction != Vector2.ZERO:
+		rotation = direction.angle()  + deg_to_rad(90)
+	if owner.facing == Enums.Facing.RIGHT:
+		scale.x = -1
+		position.x = -6
+	elif  owner.facing == Enums.Facing.LEFT:
+		scale.x = 1
+		position.x = 6
+

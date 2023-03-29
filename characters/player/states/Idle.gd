@@ -5,6 +5,7 @@ extends State
 
 func enter(_msg := {}) -> void:
 	owner.execute_disabled = false
+	$"../../BoosterPivot".visible = false
 
 
 func update(_delta: float) -> void:

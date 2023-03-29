@@ -37,6 +37,7 @@ func transition_to(target_state_name: String, msg: Dictionary = {}) -> void:
 	state = get_node(target_state_name)
 	state.enter(msg)
 
+
 func _on_cutscene_start() -> void:
 	transition_to("Cutscene")
 

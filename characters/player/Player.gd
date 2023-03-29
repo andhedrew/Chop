@@ -91,16 +91,15 @@ func get_input() -> void:
 func handle_facing() -> void:
 	if state == "Attack" or state == "Execute" or state == "Hurt" or state == "Cutscene": 
 		return
+	if input.x > 0:
+		facing = Enums.Facing.RIGHT
+		default_facing = facing
+	elif input.x < 0:
+		facing = Enums.Facing.LEFT
+		default_facing = facing
+		
 	if input.y == 0:
 		looking = Enums.Looking.FORWARD
-		if input.x > 0:
-			facing = Enums.Facing.RIGHT
-			default_facing = facing
-		elif input.x < 0:
-			facing = Enums.Facing.LEFT
-			default_facing = facing
-		else:
-			facing = default_facing
 	elif input.y < 0:
 		looking = Enums.Looking.UP
 		$Pivot/BulletSpawn.position = Vector2(0, -20)
