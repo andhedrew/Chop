@@ -16,13 +16,13 @@ func _generate_food(player) -> void:
 		get_node("../CollisionPolygon2D").set_deferred("disabled", true)
 		animation_player.play("eat")
 		for item in player.bag:
+				GameEvents.removed_food_from_bag.emit()
 				var pickup := preload("res://pickups/food_pickup.tscn").instantiate()
 				pickup.setup(item)
 				get_node("/root/World").call_deferred("add_child", pickup)
 				pickup.sort_layer = SortLayer.BACKGROUND
 				pickup.position = $FoodSpawn.global_position
 				pickup.velocity = Vector2(0, randf_range(-4, -6))
-				player.food -= 1
 				food_collected += 1
 				await get_tree().create_timer(0.3).timeout
 				SoundPlayer.play_sound("glottal_stop")

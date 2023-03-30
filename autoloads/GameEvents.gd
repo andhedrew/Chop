@@ -12,3 +12,4 @@ signal added_food_to_bag
 signal removed_food_from_bag
 signal charge_amount_changed
 signal enemy_took_damage
+signal bag_capacity_changed

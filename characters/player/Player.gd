@@ -25,16 +25,16 @@ var dash: bool
 var input: Vector2
 var state:= "Idle"
 var state_last_frame := state
-var food := 0
 
 var bag := []
+var bag_capacity := 15
 var torch_charges := 3
 var max_torch_charges := torch_charges
 var charge_time := 2.0
 var charge_timer := charge_time
 var execute_disabled := false
 
-var set_healthbar := false
+var set_ui := false
 
 @onready var hurtbox := $Hurtbox
 @onready var animation_player := $Pivot/AnimationPlayer
@@ -48,9 +48,10 @@ func _ready():
 
 
 func _physics_process(delta):
-	if !set_healthbar:
-		set_healthbar = true
+	if !set_ui:
+		set_ui = true
 		GameEvents.player_health_changed.emit(health, max_health)
+		GameEvents.bag_capacity_changed.emit(bag_capacity)
 	
 	get_input()
 	state = $StateMachine.state.name

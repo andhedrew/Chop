@@ -13,8 +13,8 @@
 [ext_resource type="PackedScene" uid="uid://g2rn2npgnt8u" path="res://characters/enemy/enemy_flyer.tscn" id="9_kdnn6"]
 [ext_resource type="PackedScene" uid="uid://curfvdorfok3h" path="res://characters/enemy/dandicrow/dandicrow.tscn" id="9_shmiu"]
 [ext_resource type="PackedScene" uid="uid://cde2c17kuh3gb" path="res://characters/enemy/enemy_jumper.tscn" id="11_gi1o3"]
-[ext_resource type="PackedScene" uid="uid://crh8qoi8vvejp" path="res://pickups/health_pickup.tscn" id="14_mv2m0"]
 [ext_resource type="Texture2D" uid="uid://bshrfafv1ym2f" path="res://user_interface/bag.png" id="15_8p1gh"]
+[ext_resource type="Script" path="res://user_interface/FoodCounter.gd" id="16_h5tbb"]
 [ext_resource type="FontFile" uid="uid://bpybjwc1pwvp4" path="res://user_interface/fonts/Silver.ttf" id="16_s7j5x"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_u3ycg"]
@@ -694,15 +694,6 @@ position = Vector2(504, 73)
 [node name="Enemy5" parent="." instance=ExtResource("8_hxqf4")]
 position = Vector2(687, 45)
 
-[node name="HealthPickup" parent="." instance=ExtResource("14_mv2m0")]
-position = Vector2(236, 61)
-
-[node name="HealthPickup2" parent="." instance=ExtResource("14_mv2m0")]
-position = Vector2(95, 56)
-
-[node name="HealthPickup3" parent="." instance=ExtResource("14_mv2m0")]
-position = Vector2(57, 57)
-
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="UI" type="Control" parent="CanvasLayer"]
@@ -797,8 +788,9 @@ layout_mode = 2
 texture = ExtResource("15_8p1gh")
 stretch_mode = 2
 
-[node name="Label" type="Label" parent="CanvasLayer/UI/VBoxContainer/Food"]
+[node name="FoodCounter" type="Label" parent="CanvasLayer/UI/VBoxContainer/Food"]
 layout_mode = 2
 size_flags_vertical = 8
 theme = SubResource("Theme_djkpt")
 text = "Food: 23"
+script = ExtResource("16_h5tbb")
