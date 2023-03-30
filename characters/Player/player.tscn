@@ -32,7 +32,7 @@ loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("../Booster:frame")
+tracks/0/path = NodePath("Booster:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -551,7 +551,6 @@ collision_layer = 2
 script = ExtResource("1_xdjdy")
 
 [node name="State" type="Label" parent="."]
-visible = false
 offset_left = -13.0
 offset_top = -75.0
 offset_right = 27.0

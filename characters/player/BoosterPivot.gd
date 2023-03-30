@@ -1,4 +1,6 @@
 extends Marker2D
+var sound_player: AudioStreamPlayer
+var started_engine_sound := false
 
 func _ready():
 	$AnimationPlayer.play("booster")
@@ -16,8 +18,14 @@ func _process(_delta):
 			smoke.z_index = SortLayer.FOREGROUND
 			smoke.restart()
 			smoke.emitting = true
+			
+	elif $"../StateMachine".state.name == "Idle" or $"../StateMachine".state.name == "Walk":
+		$arrow.visible = false
 	else:
 		$arrow.visible = false
+
+	
+	
 	var direction = Vector2(Input.get_axis("right", "left"), Input.get_axis("down", "up")).normalized()
 	if direction != Vector2.ZERO:
 		rotation = direction.angle()  + deg_to_rad(90)

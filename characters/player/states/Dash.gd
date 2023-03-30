@@ -4,10 +4,11 @@ var dash_direction := Vector2.ZERO
 var dash_length := 450
 var state_timer := 0
 
+
 func enter(_msg := {}) -> void:
 	owner.execute_disabled = false
 	
-	
+
 
 func physics_update(delta: float) -> void:
 	if Input.is_action_pressed("dash") and owner.torch_charges > 0:
@@ -22,6 +23,9 @@ func physics_update(delta: float) -> void:
 
 func exit():
 	if owner.torch_charges > 0:
+		SoundPlayer.play_sound("fireball")
+#		SoundPlayer.play_sound("rev")
+		
 		owner.torch_charges -= 1
 		GameEvents.charge_amount_changed.emit(owner.torch_charges, owner.max_torch_charges)
 		var bullet = preload("res://bullets/fire_bullet/fire_bullet.tscn").instantiate()

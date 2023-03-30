@@ -9,3 +9,9 @@ extends Node
 # power up: https://freesound.org/people/suntemple/sounds/253172/
 #  slashkut https://freesound.org/people/Abyssmal/sounds/35213/
 #knife slash https://freesound.org/people/lmbubec/sounds/118792/
+#engine: https://freesound.org/people/Dominik_W/sounds/398675/
+#fireball https://freesound.org/people/HighPixel/sounds/431174/
+#slashkut https://freesound.org/people/Abyssmal/sounds/35213/
+#rev https://freesound.org/people/Henaway/sounds/127980/
+#moter dies https://freesound.org/people/lonemonk/sounds/123686/
+#backfiring vehicle https://freesound.org/people/nsstudios/sounds/351738/

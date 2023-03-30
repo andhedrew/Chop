@@ -1,12 +1,21 @@
-[gd_scene load_steps=4 format=3 uid="uid://curfvdorfok3h"]
+[gd_scene load_steps=11 format=3 uid="uid://curfvdorfok3h"]
 
 [ext_resource type="PackedScene" uid="uid://g2rn2npgnt8u" path="res://characters/enemy/enemy_flyer.tscn" id="1_g4qc5"]
 [ext_resource type="Texture2D" uid="uid://ckvra50equ7fg" path="res://characters/enemy/dandicrow/dandicrow_piece1.png" id="2_eodqv"]
+[ext_resource type="AudioStream" uid="uid://bt1vdotvhu1a1" path="res://audio/sounds/purr_growl_1.wav" id="2_qdafx"]
 [ext_resource type="Texture2D" uid="uid://dnn7iguv6wyn8" path="res://characters/enemy/dandicrow/dandicrow.png" id="3_1f2rb"]
+[ext_resource type="AudioStream" uid="uid://c4npi5xunnfo4" path="res://audio/sounds/purr_growl_2.wav" id="3_u2xng"]
+[ext_resource type="AudioStream" uid="uid://bvtx04fym4qes" path="res://audio/sounds/purr_growl_3.wav" id="4_c600n"]
+[ext_resource type="AudioStream" uid="uid://qw86yl6q184s" path="res://audio/sounds/purr_growl_4.wav" id="5_aoi4b"]
+[ext_resource type="AudioStream" uid="uid://dmh3cn18hmxrx" path="res://audio/sounds/purr_growl_5.wav" id="6_k5j7d"]
+[ext_resource type="AudioStream" uid="uid://c4at7ak7cscxs" path="res://audio/sounds/purr_growl_die.wav" id="7_bhjp8"]
+[ext_resource type="AudioStream" uid="uid://bekxwncrgx2nr" path="res://audio/sounds/impact_celery.wav" id="8_8clu6"]
 
 [node name="EnemyFlyer" instance=ExtResource("1_g4qc5")]
-collision_mask = 9
 health = 2
+hurt_vocalizations = Array[AudioStreamWAV]([ExtResource("2_qdafx"), ExtResource("3_u2xng"), ExtResource("4_c600n"), ExtResource("5_aoi4b"), ExtResource("6_k5j7d")])
+death_vocalization = ExtResource("7_bhjp8")
+impact_sound = ExtResource("8_8clu6")
 death_pieces = Array[Resource]([ExtResource("2_eodqv")])
 
 [node name="Body" parent="Pivot" index="0"]

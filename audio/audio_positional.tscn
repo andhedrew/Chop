@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://do0h7eim2u1wd"]
+
+[ext_resource type="Script" path="res://audio/audio_pos.gd" id="1_abp65"]
+
+[node name="AudioPositional" type="AudioStreamPlayer2D"]
+script = ExtResource("1_abp65")

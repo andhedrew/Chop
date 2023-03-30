@@ -19,7 +19,7 @@ func enter(_msg := {}) -> void:
 		GameEvents.player_executed.emit()
 		owner.velocity.y = -80
 		SoundPlayer.play_sound("punch")
-		SoundPlayer.play_sound("swoosh")
+		SoundPlayer.play_sound("slash_flesh")
 	else:
 		state_machine.transition_to("Fall")
 
