@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://tnufk55njr8g"]
+[gd_scene load_steps=22 format=3 uid="uid://tnufk55njr8g"]
 
 [ext_resource type="PackedScene" uid="uid://b2pjddvoa4q07" path="res://characters/player/player.tscn" id="1_371ql"]
 [ext_resource type="Script" path="res://world.gd" id="1_nxsgc"]
@@ -14,6 +14,8 @@
 [ext_resource type="PackedScene" uid="uid://curfvdorfok3h" path="res://characters/enemy/dandicrow/dandicrow.tscn" id="9_shmiu"]
 [ext_resource type="PackedScene" uid="uid://cde2c17kuh3gb" path="res://characters/enemy/enemy_jumper.tscn" id="11_gi1o3"]
 [ext_resource type="PackedScene" uid="uid://crh8qoi8vvejp" path="res://pickups/health_pickup.tscn" id="14_mv2m0"]
+[ext_resource type="Texture2D" uid="uid://bshrfafv1ym2f" path="res://user_interface/bag.png" id="15_8p1gh"]
+[ext_resource type="FontFile" uid="uid://bpybjwc1pwvp4" path="res://user_interface/fonts/Silver.ttf" id="16_s7j5x"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_u3ycg"]
 texture = ExtResource("3_ngx7p")
@@ -608,6 +610,21 @@ _data = {
 }
 point_count = 3
 
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_628ni"]
+
+[sub_resource type="Theme" id="Theme_djkpt"]
+default_font = ExtResource("16_s7j5x")
+default_font_size = 19
+Label/colors/font_color = Color(0.87451, 0.85098, 0.827451, 1)
+Label/colors/font_outline_color = Color(1, 1, 1, 1)
+Label/colors/font_shadow_color = Color(0, 0, 0, 0)
+Label/constants/line_spacing = 3
+Label/constants/outline_size = 0
+Label/constants/shadow_offset_x = 1
+Label/constants/shadow_offset_y = 1
+Label/constants/shadow_outline_size = 1
+Label/styles/normal = SubResource("StyleBoxEmpty_628ni")
+
 [node name="World" type="Node2D"]
 script = ExtResource("1_nxsgc")
 
@@ -710,56 +727,78 @@ layout_mode = 2
 visible = false
 layout_mode = 2
 texture = ExtResource("7_uevra")
+stretch_mode = 2
 
 [node name="heart_1" type="TextureRect" parent="CanvasLayer/UI/VBoxContainer/HBoxContainer"]
 visible = false
 layout_mode = 2
 texture = ExtResource("7_uevra")
+stretch_mode = 2
 
 [node name="heart_2" type="TextureRect" parent="CanvasLayer/UI/VBoxContainer/HBoxContainer"]
 visible = false
 layout_mode = 2
 texture = ExtResource("7_uevra")
+stretch_mode = 2
 
 [node name="heart_3" type="TextureRect" parent="CanvasLayer/UI/VBoxContainer/HBoxContainer"]
 visible = false
 layout_mode = 2
 texture = ExtResource("7_uevra")
+stretch_mode = 2
 
 [node name="heart_4" type="TextureRect" parent="CanvasLayer/UI/VBoxContainer/HBoxContainer"]
 visible = false
 layout_mode = 2
 texture = ExtResource("7_uevra")
+stretch_mode = 2
 
 [node name="heart_5" type="TextureRect" parent="CanvasLayer/UI/VBoxContainer/HBoxContainer"]
 visible = false
 layout_mode = 2
 texture = ExtResource("7_uevra")
+stretch_mode = 2
 
 [node name="heart_6" type="TextureRect" parent="CanvasLayer/UI/VBoxContainer/HBoxContainer"]
 visible = false
 layout_mode = 2
 texture = ExtResource("7_uevra")
+stretch_mode = 2
 
 [node name="heart_7" type="TextureRect" parent="CanvasLayer/UI/VBoxContainer/HBoxContainer"]
 visible = false
 layout_mode = 2
 texture = ExtResource("7_uevra")
+stretch_mode = 2
 
 [node name="heart_8" type="TextureRect" parent="CanvasLayer/UI/VBoxContainer/HBoxContainer"]
 visible = false
 layout_mode = 2
 texture = ExtResource("7_uevra")
+stretch_mode = 2
 
 [node name="heart_9" type="TextureRect" parent="CanvasLayer/UI/VBoxContainer/HBoxContainer"]
 visible = false
 layout_mode = 2
 texture = ExtResource("7_uevra")
+stretch_mode = 2
 
 [node name="heart_10" type="TextureRect" parent="CanvasLayer/UI/VBoxContainer/HBoxContainer"]
 visible = false
 layout_mode = 2
 texture = ExtResource("7_uevra")
+stretch_mode = 2
 
 [node name="Food" type="HBoxContainer" parent="CanvasLayer/UI/VBoxContainer"]
 layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/UI/VBoxContainer/Food"]
+layout_mode = 2
+texture = ExtResource("15_8p1gh")
+stretch_mode = 2
+
+[node name="Label" type="Label" parent="CanvasLayer/UI/VBoxContainer/Food"]
+layout_mode = 2
+size_flags_vertical = 8
+theme = SubResource("Theme_djkpt")
+text = "Food: 23"

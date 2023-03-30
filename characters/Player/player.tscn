@@ -32,7 +32,7 @@ loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Booster:frame")
+tracks/0/path = NodePath("../Booster:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -560,6 +560,7 @@ theme = SubResource("Theme_e62t7")
 text = "State"
 
 [node name="Facing" type="Label" parent="."]
+visible = false
 offset_left = -13.0
 offset_top = -66.0
 offset_right = 27.0
@@ -582,7 +583,7 @@ script = ExtResource("17_majmj")
 
 [node name="arrow" type="Sprite2D" parent="BoosterPivot"]
 position = Vector2(0, 37)
-rotation = 3.14159
+rotation = -3.14159
 texture = ExtResource("3_56qk1")
 
 [node name="Booster" type="Sprite2D" parent="BoosterPivot"]

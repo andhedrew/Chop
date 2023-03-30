@@ -8,6 +8,7 @@ func _ready():
 func _process(_delta):
 	if $"../StateMachine".state.name == "Dash":
 		visible = true
+		$arrow.visible = true
 		if owner.torch_charges <= 0:
 			var smoke = preload("res://vfx/smoke.tscn").instantiate()
 			get_node("/root/").add_child(smoke)
@@ -15,7 +16,8 @@ func _process(_delta):
 			smoke.z_index = SortLayer.FOREGROUND
 			smoke.restart()
 			smoke.emitting = true
-
+	else:
+		$arrow.visible = false
 	var direction = Vector2(Input.get_axis("right", "left"), Input.get_axis("down", "up")).normalized()
 	if direction != Vector2.ZERO:
 		rotation = direction.angle()  + deg_to_rad(90)
