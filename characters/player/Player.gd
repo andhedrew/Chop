@@ -45,8 +45,6 @@ func _ready():
 	hurtbox.area_entered.connect(_hurtbox_on_area_entered)
 	GameEvents.enemy_took_damage.connect(_on_enemy_taking_damage)
 
-
-
 func _physics_process(delta):
 	if !set_ui:
 		set_ui = true
@@ -64,6 +62,7 @@ func _physics_process(delta):
 			charge_time -= 1*delta
 			if charge_time < 0:
 				torch_charges += 1
+				SoundPlayer.play_sound("pickup_2")
 				charge_time = charge_timer
 				GameEvents.charge_amount_changed.emit(torch_charges, max_torch_charges)
 
@@ -134,5 +133,6 @@ func take_damage(damage) -> void:
 
 func _on_enemy_taking_damage() -> void:
 	if torch_charges < max_torch_charges:
+		SoundPlayer.play_sound("pickup_2")
 		torch_charges += 1
 		GameEvents.charge_amount_changed.emit(torch_charges, max_torch_charges)

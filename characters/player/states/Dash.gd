@@ -7,7 +7,7 @@ var state_timer := 0
 
 func enter(_msg := {}) -> void:
 	owner.execute_disabled = false
-	
+
 
 
 func physics_update(delta: float) -> void:

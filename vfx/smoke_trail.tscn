@@ -1,0 +1,41 @@
+[gd_scene load_steps=7 format=3 uid="uid://ku8nul6eur8g"]
+
+[ext_resource type="Texture2D" uid="uid://c3qi6qrhakdnd" path="res://vfx/smoke.png" id="1_4fd1t"]
+[ext_resource type="Script" path="res://vfx/smoke.gd" id="2_ybsuo"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_whx8a"]
+particles_animation = true
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="Curve" id="Curve_4e54e"]
+_data = [Vector2(0, 0.300613), 0.0, 0.0, 0, 0, Vector2(0.111507, 0.711656), 0.0, 0.0, 0, 0, Vector2(0.844603, 0.742331), 0.0, 0.0, 0, 0, Vector2(1, 0.226994), 0.0, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="CurveTexture" id="CurveTexture_jlu38"]
+curve = SubResource("Curve_4e54e")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_ktw41"]
+emission_shape = 3
+emission_box_extents = Vector3(5, 1, 1)
+particle_flag_disable_z = true
+direction = Vector3(0, 0, 0)
+spread = 0.0
+gravity = Vector3(0, -100, 0)
+initial_velocity_max = 15.91
+orbit_velocity_min = 0.0
+orbit_velocity_max = 0.0
+damping_min = 86.59
+damping_max = 100.0
+scale_curve = SubResource("CurveTexture_jlu38")
+anim_speed_min = 1.16
+anim_speed_max = 2.43
+
+[node name="smoke_trail" type="GPUParticles2D"]
+material = SubResource("CanvasItemMaterial_whx8a")
+amount = 10
+process_material = SubResource("ParticleProcessMaterial_ktw41")
+texture = ExtResource("1_4fd1t")
+lifetime = 3.0
+script = ExtResource("2_ybsuo")
