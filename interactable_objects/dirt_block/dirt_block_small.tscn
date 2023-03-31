@@ -1,0 +1,48 @@
+[gd_scene load_steps=6 format=3 uid="uid://cgjws2n3awij"]
+
+[ext_resource type="Script" path="res://interactable_objects/dirt_block/dirt_block_small.gd" id="1_brokc"]
+[ext_resource type="Texture2D" uid="uid://d4fseg87aj0e" path="res://interactable_objects/dirt_block/dirt_block_small.png" id="2_hkv4e"]
+[ext_resource type="PackedScene" uid="uid://bb1h85dym7l4i" path="res://hitboxes/Hurtbox.tscn" id="3_s1xra"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vrt0v"]
+size = Vector2(16, 16)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_iq8dd"]
+size = Vector2(16, 23.5294)
+
+[node name="DirtBlockSmall" type="CharacterBody2D"]
+script = ExtResource("1_brokc")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, -8)
+texture = ExtResource("2_hkv4e")
+
+[node name="Hurtbox" parent="." instance=ExtResource("3_s1xra")]
+position = Vector2(0, -8)
+collision_layer = 0
+collision_mask = 8
+monitorable = false
+
+[node name="CollisionShape2D" parent="Hurtbox" index="0"]
+shape = SubResource("RectangleShape2D_vrt0v")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -8)
+scale = Vector2(1, 0.68)
+shape = SubResource("RectangleShape2D_iq8dd")
+
+[node name="PlayerEnemyDetector" type="RayCast2D" parent="."]
+position = Vector2(-7, 0)
+target_position = Vector2(0, 5)
+collision_mask = 6
+
+[node name="PlayerEnemyDetector2" type="RayCast2D" parent="."]
+position = Vector2(7, 0)
+target_position = Vector2(0, 5)
+collision_mask = 6
+
+[node name="PlayerEnemyDetector3" type="RayCast2D" parent="."]
+target_position = Vector2(0, 5)
+collision_mask = 6
+
+[editable path="Hurtbox"]

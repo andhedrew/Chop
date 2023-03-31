@@ -4,8 +4,9 @@
 [ext_resource type="Texture2D" uid="uid://tbobrslot2us" path="res://bullets/slash_bullet/slash_bullet.png" id="2_6yh81"]
 [ext_resource type="PackedScene" uid="uid://cxfiuhgots5lg" path="res://hitboxes/Hitbox.tscn" id="3_n5uxa"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_ct61y"]
-radius = 20.0
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_nghvm"]
+radius = 19.0
+height = 58.0
 
 [sub_resource type="Animation" id="Animation_re3lr"]
 resource_name = "animate_bullet"
@@ -76,13 +77,14 @@ hframes = 3
 frame = 1
 
 [node name="Hitbox" parent="." instance=ExtResource("3_n5uxa")]
-position = Vector2(19, -1)
+position = Vector2(13, -1)
 collision_layer = 8
 collision_mask = 4
 
 [node name="CollisionShape2D" parent="Hitbox" index="0"]
 position = Vector2(10, 2)
-shape = SubResource("CircleShape2D_ct61y")
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_nghvm")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
