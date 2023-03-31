@@ -796,17 +796,14 @@ theme = SubResource("Theme_djkpt")
 text = "Food: 23"
 script = ExtResource("16_h5tbb")
 
+[node name="DirtBlock" parent="." instance=ExtResource("17_rkdip")]
+position = Vector2(216, 80)
+
 [node name="DirtBlock2" parent="." instance=ExtResource("17_rkdip")]
-position = Vector2(247, -343)
+position = Vector2(216, 48)
 
 [node name="DirtBlock3" parent="." instance=ExtResource("17_rkdip")]
-position = Vector2(237, -392)
+position = Vector2(216, 16)
 
 [node name="DirtBlock4" parent="." instance=ExtResource("17_rkdip")]
-position = Vector2(250, -496)
-
-[node name="DirtBlock5" parent="." instance=ExtResource("17_rkdip")]
-position = Vector2(235, -597)
-
-[node name="DirtBlock6" parent="." instance=ExtResource("17_rkdip")]
-position = Vector2(248, -656)
+position = Vector2(200, -16)
