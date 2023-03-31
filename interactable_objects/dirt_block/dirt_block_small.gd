@@ -21,11 +21,7 @@ func _physics_process(delta):
 func _on_area_entered(hitbox) -> void:
 	if hitbox is HitBox:
 		if !hitbox.fire and !hitbox.syphon:
-			var dirt := preload("res://vfx/dirt_explode.tscn").instantiate()
-			dirt.restart()
-			dirt.position = global_position
-			get_node("/root/").add_child(dirt)
-			queue_free()
+			_destroy()
 
 
 func _destroy() -> void:

@@ -24,7 +24,7 @@ var dashing := false
 
  
 func _ready():
-	noise.noise_type =  0
+	noise.noise_type =  FastNoiseLite.TYPE_SIMPLEX
 	GameEvents.player_attacked.connect(SCREENSHAKE)
 	GameEvents.player_executed.connect(BIG_SCREENSHAKE)
 	GameEvents.player_changed_state.connect(_on_player_changed_state)
@@ -87,7 +87,7 @@ func flash_screen(flash_time: float, flash_position: Vector2) -> void:
 	await get_tree().create_timer(flash_time).timeout
 	color_rect.queue_free()
 
-func _on_player_changed_state(new_state: String, previous_state: String) -> void:
+func _on_player_changed_state(new_state: String, _previous_state: String) -> void:
 	if new_state == "Dash":
 		dashing = true
 	

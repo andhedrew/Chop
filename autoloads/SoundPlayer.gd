@@ -28,7 +28,6 @@ func play_music(sound: String) -> AudioStreamPlayer:
 			audio_stream_player.stream = load("res://audio/music/"+ sound +".ogg")
 			audio_stream_player.play()
 			return audio_stream_player
-			break
 	return null
 
 

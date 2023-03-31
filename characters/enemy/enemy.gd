@@ -41,14 +41,13 @@ func _take_damage(hitbox) -> void:
 		GameEvents.enemy_took_damage.emit()
 		if hitbox.syphon and wounded:
 			drop_health_and_die()
-			return
 		colliding_hitbox_position = {"position": hitbox.owner.get_parent().global_position}
 		$StateMachine.transition_to("Hurt", colliding_hitbox_position)
 		health -= hitbox.damage
 		if wounded and health <= 0 and hitbox.execute:
 			execute()
 		elif health <= 0:
-			die()
+			die(false)
 		else:
 			var slice = preload("res://vfx/slice.tscn").instantiate()
 			slice.position = global_position
@@ -108,13 +107,9 @@ func die(was_executed: bool = false) -> void:
 	call_deferred("queue_free")
 
 func drop_health_and_die() -> void:
-	OS.delay_msec(80)
-	var explode := preload("res://vfx/explosion.tscn").instantiate()
-	explode.position = global_position
-	get_node("/root/").add_child(explode)
 	var sprite := preload("res://user_interface/health bar/full_heart.png")
 	var pickup := preload("res://pickups/health_pickup.tscn").instantiate()
 	pickup.setup(sprite)
 	pickup.position = global_position
-	get_node("/root/").add_child(pickup)
-	call_deferred("queue_free")
+	get_node("/root/").call_deferred("add_child", pickup)
+	die(false)
