@@ -34,6 +34,7 @@ func transition_to(target_state_name: String, msg: Dictionary = {}) -> void:
 		return
 	previous_state = state.name
 	state.exit()
+	GameEvents.player_changed_state.emit(target_state_name, previous_state)
 	state = get_node(target_state_name)
 	state.enter(msg)
 

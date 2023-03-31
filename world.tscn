@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://tnufk55njr8g"]
+[gd_scene load_steps=23 format=3 uid="uid://tnufk55njr8g"]
 
 [ext_resource type="PackedScene" uid="uid://b2pjddvoa4q07" path="res://characters/player/player.tscn" id="1_371ql"]
 [ext_resource type="Script" path="res://world.gd" id="1_nxsgc"]
@@ -16,6 +16,7 @@
 [ext_resource type="Texture2D" uid="uid://bshrfafv1ym2f" path="res://user_interface/bag.png" id="15_8p1gh"]
 [ext_resource type="Script" path="res://user_interface/FoodCounter.gd" id="16_h5tbb"]
 [ext_resource type="FontFile" uid="uid://bpybjwc1pwvp4" path="res://user_interface/fonts/Silver.ttf" id="16_s7j5x"]
+[ext_resource type="PackedScene" uid="uid://dx7fp1njyqj3s" path="res://interactable_objects/dirt_block/dirt_block.tscn" id="17_rkdip"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_u3ycg"]
 texture = ExtResource("3_ngx7p")
@@ -794,3 +795,18 @@ size_flags_vertical = 8
 theme = SubResource("Theme_djkpt")
 text = "Food: 23"
 script = ExtResource("16_h5tbb")
+
+[node name="DirtBlock2" parent="." instance=ExtResource("17_rkdip")]
+position = Vector2(247, -343)
+
+[node name="DirtBlock3" parent="." instance=ExtResource("17_rkdip")]
+position = Vector2(237, -392)
+
+[node name="DirtBlock4" parent="." instance=ExtResource("17_rkdip")]
+position = Vector2(250, -496)
+
+[node name="DirtBlock5" parent="." instance=ExtResource("17_rkdip")]
+position = Vector2(235, -597)
+
+[node name="DirtBlock6" parent="." instance=ExtResource("17_rkdip")]
+position = Vector2(248, -656)

@@ -117,7 +117,7 @@ syphon={
 2d_physics/layer_4="projectiles_player"
 2d_physics/layer_5="projectiles_enemy"
 2d_physics/layer_6="pickups"
-2d_physics/layer_7="anchors"
+2d_physics/layer_7="hazards"
 
 [rendering]
 

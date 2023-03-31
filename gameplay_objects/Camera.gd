@@ -6,7 +6,8 @@ var x_lead_amount := 150.0
 var x_lead := x_lead_amount
 var x_target_lead := x_lead
 
-var y_lead_amount := 150.0
+var y_lead_amount := -70.0
+var y_peek_amount := -70.0
 var y_lead := y_lead_amount
 var y_target_lead := y_lead
 
@@ -19,21 +20,40 @@ var noise := FastNoiseLite.new()
 @export var decay: float = 0.6
 var time := 0
 var target_node: Node
+var dashing := false
 
  
 func _ready():
 	noise.noise_type =  0
-	GameEvents.player_changed_facing.connect(_change_lead_position)
 	GameEvents.player_attacked.connect(SCREENSHAKE)
 	GameEvents.player_executed.connect(BIG_SCREENSHAKE)
+	GameEvents.player_changed_state.connect(_on_player_changed_state)
 
 
 func _process(delta):
-	x_target_lead = lerp(x_target_lead, x_lead, 0.02)
-	y_target_lead = lerp(y_target_lead, y_lead, 0.02)
+	x_target_lead = lerp(x_target_lead, x_lead, lerpspeed)
+	y_target_lead = lerp(y_target_lead, y_lead, lerpspeed)
 	target_node = get_node(target)
 	position = lerp(position, Vector2(target_node.position.x+x_target_lead, target_node.position.y+y_target_lead), lerpspeed)
 	time += delta
+	
+	if !dashing:
+		var look_direction = Vector2(Input.get_axis("right", "left"), Input.get_axis("down", "up")).normalized()
+
+		if look_direction.x > 0:
+			x_lead = -x_lead_amount
+		elif look_direction.x < 0:
+			x_lead = x_lead_amount
+		y_lead = y_lead_amount
+	else:
+		var look_direction = Vector2(Input.get_axis("right", "left"), Input.get_axis("down", "up")).normalized()
+
+		if look_direction.x > 0:
+			x_lead = -x_lead_amount
+		elif look_direction.x < 0:
+			x_lead = x_lead_amount
+
+		y_lead = 0
 
 
 	set_offset(Vector2( \
@@ -42,12 +62,6 @@ func _process(delta):
 	))
 	rotation_degrees = randf_range(-max_r, max_r) * trauma
 	trauma = lerp(trauma, 0.0, 0.1)
- 
-
-func _change_lead_position(player_facing_dir) -> void:
-	match player_facing_dir:
-		Enums.Facing.RIGHT: x_lead = x_lead_amount
-		Enums.Facing.LEFT: x_lead = -x_lead_amount
 
 
 func add_trauma(trauma_in):
@@ -73,3 +87,10 @@ func flash_screen(flash_time: float, flash_position: Vector2) -> void:
 	await get_tree().create_timer(flash_time).timeout
 	color_rect.queue_free()
 
+func _on_player_changed_state(new_state: String, previous_state: String) -> void:
+	if new_state == "Dash":
+		dashing = true
+	
+	if new_state == "Idle" or new_state == "Walk":
+		dashing = false
+	
