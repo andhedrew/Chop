@@ -6,6 +6,7 @@ func enter(msg := {}) -> void:
 	hitbox_position = msg[1]
 	owner.animation_player.play("hurt")
 	owner.effects_player.play("fx/take_damage")
+	SoundPlayer.play_sound("player_voice_oof")
 	owner.velocity.y = -150
 	owner.velocity.x = (owner.global_position.x - hitbox_position.x)*12
 	hurt_timer = get_tree().create_timer(0.5)

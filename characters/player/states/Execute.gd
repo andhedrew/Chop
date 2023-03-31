@@ -13,6 +13,7 @@ func enter(_msg := {}) -> void:
 		camera = owner.camera
 		owner.velocity.y = 0
 		await get_tree().create_timer(0.25).timeout
+		SoundPlayer.play_sound("player_voice_effort")
 		camera.flash_screen(0.01, owner.global_position)
 		fire()
 		owner.execute_disabled = true

@@ -2,9 +2,13 @@ extends Camera2D
 
 @export var target: NodePath = ""
 @export var lerpspeed: float = 0.05
-var lead_amount := 150.0
-var lead := lead_amount
-var target_lead := lead
+var x_lead_amount := 150.0
+var x_lead := x_lead_amount
+var x_target_lead := x_lead
+
+var y_lead_amount := 150.0
+var y_lead := y_lead_amount
+var y_target_lead := y_lead
 
 var noise := FastNoiseLite.new()
 @export var trauma: float = 0.0
@@ -25,9 +29,10 @@ func _ready():
 
 
 func _process(delta):
-	target_lead = lerp(target_lead, lead, 0.02)
+	x_target_lead = lerp(x_target_lead, x_lead, 0.02)
+	y_target_lead = lerp(y_target_lead, y_lead, 0.02)
 	target_node = get_node(target)
-	position = lerp(position, Vector2(target_node.position.x+target_lead, target_node.position.y), lerpspeed)
+	position = lerp(position, Vector2(target_node.position.x+x_target_lead, target_node.position.y+y_target_lead), lerpspeed)
 	time += delta
 
 
@@ -41,8 +46,8 @@ func _process(delta):
 
 func _change_lead_position(player_facing_dir) -> void:
 	match player_facing_dir:
-		Enums.Facing.RIGHT: lead = lead_amount
-		Enums.Facing.LEFT: lead = -lead_amount
+		Enums.Facing.RIGHT: x_lead = x_lead_amount
+		Enums.Facing.LEFT: x_lead = -x_lead_amount
 
 
 func add_trauma(trauma_in):

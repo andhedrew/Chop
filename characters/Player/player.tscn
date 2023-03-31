@@ -551,6 +551,7 @@ collision_layer = 2
 script = ExtResource("1_xdjdy")
 
 [node name="State" type="Label" parent="."]
+visible = false
 offset_left = -13.0
 offset_top = -75.0
 offset_right = 27.0

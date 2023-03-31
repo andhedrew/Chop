@@ -41,10 +41,10 @@ func setup(new_texture: CompressedTexture2D) -> void:
 	$CollisionShape2D.shape.extents = size / 2
 
 
-func _destroy(player) -> void:
+func _destroy(player_pos: Vector2) -> void:
 	animation_player.play("destroy")
 	SoundPlayer.play_sound("pickup")
 	set_deferred("monitoring", false)
-	position = lerp(position, player.position, 0.2)
+	position = lerp(position, player_pos, 0.2)
 	await get_tree().create_timer(.8).timeout
 	queue_free()
