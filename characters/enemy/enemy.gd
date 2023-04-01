@@ -26,6 +26,7 @@ var wounded : bool = false
 
 func _ready() -> void:
 	$Hurtbox.area_entered.connect(_take_damage)
+	GameEvents.player_started_syphoning.connect(_on_player_syphoning)
 	GameEvents.player_done_syphoning.connect(_on_player_done_syphoning)
 
 
@@ -124,3 +125,7 @@ func drop_health_and_die() -> void:
 func _on_player_done_syphoning(successful_syphon: bool) -> void:
 	if wounded and successful_syphon:
 		drop_health_and_die()
+
+func _on_player_syphoning(_player_pos) -> void:
+	if wounded:
+		$StateMachine.transition_to("Syphoned")

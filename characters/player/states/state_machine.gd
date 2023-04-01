@@ -5,6 +5,7 @@ extends Node
 
 @export var initial_state := NodePath()
 @onready var state: State = get_node(initial_state)
+@onready var initial_state_name := str(get_node(initial_state))
 var previous_state : String
 
 func _ready() -> void:

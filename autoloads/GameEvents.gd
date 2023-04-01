@@ -15,3 +15,4 @@ signal removed_food_from_bag
 signal charge_amount_changed
 signal enemy_took_damage
 signal bag_capacity_changed
+signal enemy_being_syphoned

@@ -5,7 +5,6 @@ func _ready():
 	$Hurtbox.area_entered.connect(_on_area_entered)
 
 func _physics_process(delta):
-	
 	velocity.y += Param.GRAVITY*.02
 	var colliding = move_and_collide(velocity*delta)
 	if !colliding:
@@ -14,8 +13,6 @@ func _physics_process(delta):
 			_destroy()
 	else:
 		velocity.y = 0
-	
-	
 
 
 func _on_area_entered(hitbox) -> void:

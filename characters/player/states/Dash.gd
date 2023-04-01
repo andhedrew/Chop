@@ -22,6 +22,14 @@ func physics_update(_delta: float) -> void:
 
 
 func exit():
+	if dash_direction == Vector2(0.0,0.0):
+		match owner.facing:
+			Enums.Facing.LEFT:
+				dash_direction = Vector2(1.0, 0.0)
+			Enums.Facing.RIGHT:
+				dash_direction = Vector2(-1.0, 0.0)
+		owner.velocity = -dash_direction * dash_length
+		
 	if owner.torch_charges > 0:
 		SoundPlayer.play_sound("fireball")
 #		SoundPlayer.play_sound("rev")
