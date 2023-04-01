@@ -5,6 +5,8 @@ signal player_attacked
 signal player_executed
 signal player_changed_state
 signal player_health_changed
+signal player_started_syphoning #Arg 1: player.global_position
+signal player_done_syphoning
 signal double_jump_refreshed
 signal cutscene_started
 signal cutscene_ended

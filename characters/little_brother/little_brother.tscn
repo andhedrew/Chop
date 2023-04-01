@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://5kxwftjlml3w"]
+[gd_scene load_steps=20 format=3 uid="uid://5kxwftjlml3w"]
 
 [ext_resource type="Script" path="res://characters/little_brother/little_brother.gd" id="1_cpyu1"]
 [ext_resource type="PackedScene" uid="uid://bb1h85dym7l4i" path="res://hitboxes/Hurtbox.tscn" id="1_wm6nw"]
@@ -8,9 +8,6 @@
 [ext_resource type="Texture2D" uid="uid://c6hov0fu38uet" path="res://characters/little_brother/skull.png" id="3_fjnno"]
 [ext_resource type="Script" path="res://characters/little_brother/FoodDestroyer.gd" id="3_mykfs"]
 [ext_resource type="Animation" uid="uid://dep0l7ft0tpjo" path="res://animations/take_damage.res" id="4_xkikf"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_gdh4f"]
-size = Vector2(82, 18)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_x6vmq"]
 size = Vector2(64, 20)
@@ -141,15 +138,14 @@ death_pieces = Array[Resource]([ExtResource("2_nf575"), ExtResource("2_nf575"), 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
 polygon = PackedVector2Array(-44, 0, -43, -21, -39, -40, -34, -53, -14, -63, 13, -64, 34, -61, 43, -54, 42, 0, 0, 0)
 
-[node name="Area2D" type="Area2D" parent="."]
+[node name="FoodSpawnTrigger" type="Area2D" parent="."]
 collision_mask = 2
 script = ExtResource("2_xhdg6")
 
-[node name="Trigger" type="CollisionShape2D" parent="Area2D"]
+[node name="Trigger" type="CollisionShape2D" parent="FoodSpawnTrigger"]
 position = Vector2(104, -1)
-shape = SubResource("RectangleShape2D_gdh4f")
 
-[node name="FoodSpawn" type="Marker2D" parent="Area2D"]
+[node name="FoodSpawn" type="Marker2D" parent="FoodSpawnTrigger"]
 position = Vector2(0, -120)
 
 [node name="FoodDestroyer" type="Area2D" parent="."]

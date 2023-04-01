@@ -28,6 +28,7 @@ func _ready():
 	GameEvents.player_attacked.connect(SCREENSHAKE)
 	GameEvents.player_executed.connect(BIG_SCREENSHAKE)
 	GameEvents.player_changed_state.connect(_on_player_changed_state)
+	GameEvents.player_done_syphoning.connect(_on_player_done_syphoning)
 
 
 func _process(delta):
@@ -87,10 +88,16 @@ func flash_screen(flash_time: float, flash_position: Vector2) -> void:
 	await get_tree().create_timer(flash_time).timeout
 	color_rect.queue_free()
 
-func _on_player_changed_state(new_state: String, _previous_state: String) -> void:
+func _on_player_changed_state(new_state: String, previous_state: String) -> void:
 	if new_state == "Dash":
 		dashing = true
 	
 	if new_state == "Idle" or new_state == "Walk":
 		dashing = false
-	
+
+
+func _on_player_done_syphoning(successful_syphon: bool) ->void:
+	if successful_syphon:
+		BIG_SCREENSHAKE()
+
+		

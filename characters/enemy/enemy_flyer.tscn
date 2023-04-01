@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://g2rn2npgnt8u"]
+[gd_scene load_steps=27 format=3 uid="uid://g2rn2npgnt8u"]
 
 [ext_resource type="Script" path="res://characters/enemy/enemy_flyer.gd" id="1_vmoco"]
 [ext_resource type="Texture2D" uid="uid://bw4yx8vbx65so" path="res://vfx/particles/blood/blood.png" id="2_lfdin"]
@@ -7,6 +7,7 @@
 [ext_resource type="Animation" uid="uid://dep0l7ft0tpjo" path="res://animations/take_damage.res" id="4_kcydi"]
 [ext_resource type="Texture2D" uid="uid://0rxt4jdd2ds2" path="res://characters/enemy/default/mallow_pieces3.png" id="4_m0ieq"]
 [ext_resource type="Script" path="res://characters/player/states/state_machine.gd" id="5_ktn2v"]
+[ext_resource type="Script" path="res://particles_fly_at_target.gd" id="5_tah4s"]
 [ext_resource type="Script" path="res://characters/enemy/states/flyer_move.gd" id="7_rftm1"]
 [ext_resource type="Script" path="res://characters/enemy/states/flyer_hurt.gd" id="8_6dxun"]
 [ext_resource type="PackedScene" uid="uid://bb1h85dym7l4i" path="res://hitboxes/Hurtbox.tscn" id="10_lhsku"]
@@ -191,6 +192,7 @@ process_material = SubResource("ParticleProcessMaterial_8eoru")
 texture = ExtResource("2_lfdin")
 lifetime = 0.8
 explosiveness = 0.5
+script = ExtResource("5_tah4s")
 
 [node name="Pivot" type="Marker2D" parent="."]
 

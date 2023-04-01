@@ -26,6 +26,7 @@ var wounded : bool = false
 
 func _ready() -> void:
 	$Hurtbox.area_entered.connect(_take_damage)
+	GameEvents.player_done_syphoning.connect(_on_player_done_syphoning)
 
 
 func _physics_process(_delta):
@@ -39,8 +40,6 @@ func _physics_process(_delta):
 func _take_damage(hitbox) -> void:
 	if hitbox is HitBox and !invulnerable:
 		GameEvents.enemy_took_damage.emit()
-		if hitbox.syphon and wounded:
-			drop_health_and_die()
 		colliding_hitbox_position = {"position": hitbox.owner.get_parent().global_position}
 		$StateMachine.transition_to("Hurt", colliding_hitbox_position)
 		health -= hitbox.damage
@@ -107,9 +106,21 @@ func die(was_executed: bool = false) -> void:
 	call_deferred("queue_free")
 
 func drop_health_and_die() -> void:
+	var explode := preload("res://vfx/blood_explosion.tscn").instantiate()
+	explode.position = global_position
+	explode.restart()
+	explode.emitting = true
+	get_node("/root/").add_child(explode)
+	
 	var sprite := preload("res://user_interface/health bar/full_heart.png")
 	var pickup := preload("res://pickups/health_pickup.tscn").instantiate()
 	pickup.setup(sprite)
 	pickup.position = global_position
 	get_node("/root/").call_deferred("add_child", pickup)
-	die(false)
+	
+	die(true)
+
+
+func _on_player_done_syphoning(successful_syphon: bool) -> void:
+	if wounded and successful_syphon:
+		drop_health_and_die()

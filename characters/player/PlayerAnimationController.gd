@@ -38,7 +38,11 @@ func _physics_process(_delta):
 				"Jump":  animation_player.play("jump_looking_up")
 				"Fall":  animation_player.play("fall_looking_up")
 				"Execute":  animation_player.play("execute")
-				"Cutscene": pass
+				"Cutscene": 
+					if !owner.is_on_floor():
+						animation_player.play("fall_looking_up")
+					else: 
+						animation_player.play("watch")
 		_: 
 
 			match owner.state:
@@ -55,10 +59,15 @@ func _physics_process(_delta):
 						is_landing = false
 					else: animation_player.play("walk")
 				"Attack": animation_player.play("attack")
+				"Syphon": animation_player.play("syphon")
 				"Jump":  animation_player.play("jump")
 				"Fall":  animation_player.play("fall")
 				"Execute":  animation_player.play("execute")
-				"Cutscene": animation_player.play("watch")
+				"Cutscene": 
+					if !owner.is_on_floor():
+						animation_player.play("fall")
+					else: 
+						animation_player.play("watch")
 	
 	state_last_frame = owner.state
 

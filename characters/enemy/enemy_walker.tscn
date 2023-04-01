@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=3 uid="uid://23cc1xm0v5jp"]
+[gd_scene load_steps=29 format=3 uid="uid://23cc1xm0v5jp"]
 
 [ext_resource type="Script" path="res://characters/enemy/enemy_walker.gd" id="1_px2j0"]
 [ext_resource type="Texture2D" uid="uid://c4h0e88l2gyj7" path="res://characters/enemy/default_walker.png" id="2_5ec61"]
@@ -7,6 +7,7 @@
 [ext_resource type="Animation" uid="uid://dep0l7ft0tpjo" path="res://animations/take_damage.res" id="3_1dqka"]
 [ext_resource type="Texture2D" uid="uid://hdwm6xnwvujm" path="res://characters/enemy/default/mallow_pieces1.png" id="3_mc02d"]
 [ext_resource type="Script" path="res://characters/player/states/state_machine.gd" id="4_j1xsx"]
+[ext_resource type="Script" path="res://particles_fly_at_target.gd" id="5_uo0xo"]
 [ext_resource type="Script" path="res://characters/enemy/states/walker_idle.gd" id="6_wkyj1"]
 [ext_resource type="Script" path="res://characters/enemy/states/walker_walk.gd" id="7_swlji"]
 [ext_resource type="Script" path="res://characters/enemy/states/walker_fall.gd" id="8_33dsg"]
@@ -193,6 +194,7 @@ process_material = SubResource("ParticleProcessMaterial_8eoru")
 texture = ExtResource("2_qow6m")
 lifetime = 0.8
 explosiveness = 0.5
+script = ExtResource("5_uo0xo")
 
 [node name="Pivot" type="Marker2D" parent="."]
 

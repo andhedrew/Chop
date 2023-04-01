@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://tnufk55njr8g"]
+[gd_scene load_steps=24 format=3 uid="uid://cubbodbtihgom"]
 
 [ext_resource type="PackedScene" uid="uid://b2pjddvoa4q07" path="res://characters/player/player.tscn" id="1_371ql"]
 [ext_resource type="Script" path="res://world.gd" id="1_nxsgc"]
@@ -16,6 +16,10 @@
 [ext_resource type="Texture2D" uid="uid://bshrfafv1ym2f" path="res://user_interface/bag.png" id="15_8p1gh"]
 [ext_resource type="Script" path="res://user_interface/FoodCounter.gd" id="16_h5tbb"]
 [ext_resource type="FontFile" uid="uid://bpybjwc1pwvp4" path="res://user_interface/fonts/Silver.ttf" id="16_s7j5x"]
+[ext_resource type="PackedScene" uid="uid://cl5wmh7hq8ul0" path="res://pickups/food_pickup.tscn" id="17_8b3jj"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_figp8"]
+size = Vector2(80, 121)
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_u3ycg"]
 texture = ExtResource("3_ngx7p")
@@ -644,6 +648,10 @@ target = NodePath("../Player")
 [node name="LittleBrother" parent="." instance=ExtResource("8_lv0yn")]
 position = Vector2(-72, 80)
 
+[node name="Trigger" parent="LittleBrother/FoodSpawnTrigger" index="0"]
+position = Vector2(104, -51.5)
+shape = SubResource("RectangleShape2D_figp8")
+
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = SubResource("TileSet_tiems")
 format = 2
@@ -794,3 +802,9 @@ size_flags_vertical = 8
 theme = SubResource("Theme_djkpt")
 text = "Food: 23"
 script = ExtResource("16_h5tbb")
+
+[node name="food_pickup" parent="." instance=ExtResource("17_8b3jj")]
+position = Vector2(168, 64)
+
+[editable path="LittleBrother"]
+[editable path="LittleBrother/Hurtbox"]
