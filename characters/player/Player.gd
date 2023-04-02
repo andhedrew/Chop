@@ -41,6 +41,10 @@ var set_ui := false
 @onready var effects_player := $Pivot/EffectsPlayer
 
 
+var knockback_direction : Vector2
+var knockback_strength: float = 180.0
+var knockback: Vector2
+
 func _ready():
 	hurtbox.area_entered.connect(_hurtbox_on_area_entered)
 	GameEvents.enemy_took_damage.connect(_on_enemy_taking_damage)
@@ -121,8 +125,9 @@ func handle_facing() -> void:
 
 func _hurtbox_on_area_entered(hitbox) -> void:
 	if !invulnerable and hitbox is HitBox:
-		var hitbox_position : Dictionary = {1:hitbox.global_position}
-		$StateMachine.transition_to("Hurt", hitbox_position)
+		knockback_direction = (global_position - hitbox.global_position).normalized()
+		knockback = knockback_direction * knockback_strength
+		$StateMachine.transition_to("Hurt")
 		take_damage(hitbox.damage)
 
 

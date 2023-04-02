@@ -12,10 +12,12 @@ func _physics_process(delta):
 		velocity.y = 0
 		hit_box.monitorable = false
 		hit_box.position.y = -32
+		set_collision_layer_value(1, true)
+		
 	else:
 		hit_box.monitorable = true
 		hit_box.position.y = lerp(hit_box.position.y, -16.0, .5)
-
+		set_collision_layer_value(1, false)
 
 func _on_area_entered(hitbox) -> void:
 	if hitbox is HitBox:

@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://cubbodbtihgom"]
+[gd_scene load_steps=25 format=3 uid="uid://cubbodbtihgom"]
 
 [ext_resource type="PackedScene" uid="uid://b2pjddvoa4q07" path="res://characters/player/player.tscn" id="1_371ql"]
 [ext_resource type="Script" path="res://world.gd" id="1_nxsgc"]
@@ -18,7 +18,6 @@
 [ext_resource type="FontFile" uid="uid://bpybjwc1pwvp4" path="res://user_interface/fonts/Silver.ttf" id="16_s7j5x"]
 [ext_resource type="PackedScene" uid="uid://cl5wmh7hq8ul0" path="res://pickups/food_pickup.tscn" id="17_8b3jj"]
 [ext_resource type="PackedScene" uid="uid://dx7fp1njyqj3s" path="res://interactable_objects/dirt_block/dirt_block.tscn" id="18_a71n2"]
-[ext_resource type="PackedScene" uid="uid://cgjws2n3awij" path="res://interactable_objects/dirt_block/dirt_block_small.tscn" id="19_luooe"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_figp8"]
 size = Vector2(80, 121)
@@ -639,7 +638,7 @@ script = ExtResource("1_nxsgc")
 [node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
 
 [node name="Player" parent="." node_paths=PackedStringArray("camera") instance=ExtResource("1_371ql")]
-position = Vector2(104, 80)
+position = Vector2(272, 80)
 collision_mask = 3
 camera = NodePath("../Camera")
 
@@ -809,76 +808,34 @@ script = ExtResource("16_h5tbb")
 position = Vector2(168, 64)
 
 [node name="DirtBlock" parent="." instance=ExtResource("18_a71n2")]
-position = Vector2(224, 80)
+position = Vector2(232, 16)
 
 [node name="DirtBlock2" parent="." instance=ExtResource("18_a71n2")]
-position = Vector2(224, 32)
+position = Vector2(232, -32)
 
 [node name="DirtBlock3" parent="." instance=ExtResource("18_a71n2")]
-position = Vector2(256, 48)
+position = Vector2(232, -88)
 
 [node name="DirtBlock4" parent="." instance=ExtResource("18_a71n2")]
-position = Vector2(256, 80)
+position = Vector2(272, -88)
 
 [node name="DirtBlock5" parent="." instance=ExtResource("18_a71n2")]
-position = Vector2(288, 64)
+position = Vector2(264, -48)
 
 [node name="DirtBlock6" parent="." instance=ExtResource("18_a71n2")]
-position = Vector2(288, 32)
+position = Vector2(280, -8)
 
 [node name="DirtBlock7" parent="." instance=ExtResource("18_a71n2")]
-position = Vector2(336, 32)
+position = Vector2(304, -8)
 
 [node name="DirtBlock8" parent="." instance=ExtResource("18_a71n2")]
-position = Vector2(336, 80)
+position = Vector2(304, -48)
 
-[node name="DirtBlockSmall" parent="." instance=ExtResource("19_luooe")]
-position = Vector2(216, 48)
+[node name="DirtBlock9" parent="." instance=ExtResource("18_a71n2")]
+position = Vector2(320, -88)
 
-[node name="DirtBlockSmall14" parent="." instance=ExtResource("19_luooe")]
-position = Vector2(312, 64)
-
-[node name="DirtBlockSmall15" parent="." instance=ExtResource("19_luooe")]
-position = Vector2(312, 48)
-
-[node name="DirtBlockSmall16" parent="." instance=ExtResource("19_luooe")]
-position = Vector2(312, 32)
-
-[node name="DirtBlockSmall6" parent="." instance=ExtResource("19_luooe")]
-position = Vector2(280, 80)
-
-[node name="DirtBlockSmall7" parent="." instance=ExtResource("19_luooe")]
-position = Vector2(296, 80)
-
-[node name="DirtBlockSmall8" parent="." instance=ExtResource("19_luooe")]
-position = Vector2(312, 80)
-
-[node name="DirtBlockSmall9" parent="." instance=ExtResource("19_luooe")]
-position = Vector2(328, 48)
-
-[node name="DirtBlockSmall10" parent="." instance=ExtResource("19_luooe")]
-position = Vector2(344, 48)
-
-[node name="DirtBlockSmall11" parent="." instance=ExtResource("19_luooe")]
-position = Vector2(360, 80)
-
-[node name="DirtBlockSmall12" parent="." instance=ExtResource("19_luooe")]
-position = Vector2(360, 64)
-
-[node name="DirtBlockSmall13" parent="." instance=ExtResource("19_luooe")]
-position = Vector2(376, 80)
-
-[node name="DirtBlockSmall2" parent="." instance=ExtResource("19_luooe")]
-position = Vector2(232, 48)
-
-[node name="DirtBlockSmall3" parent="." instance=ExtResource("19_luooe")]
-position = Vector2(200, 80)
-
-[node name="DirtBlockSmall4" parent="." instance=ExtResource("19_luooe")]
-position = Vector2(248, 16)
-
-[node name="DirtBlockSmall5" parent="." instance=ExtResource("19_luooe")]
-position = Vector2(264, 16)
+[node name="DirtBlock10" parent="." instance=ExtResource("18_a71n2")]
+position = Vector2(280, -144)
 
 [editable path="LittleBrother"]
 [editable path="LittleBrother/Hurtbox"]
