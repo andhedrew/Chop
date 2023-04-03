@@ -42,7 +42,7 @@ func setup(
 
 
 func _destroy() -> void:
-	$Hitbox.monitorable = false
+	$Hitbox.set_deferred("monitorable", false)
 	$AnimationPlayer.play("bullet_exit")
 	await $AnimationPlayer.animation_finished
 	queue_free()
