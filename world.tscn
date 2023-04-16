@@ -233,6 +233,7 @@ script = ExtResource("1_nxsgc")
 motion_mirroring = Vector2(2000, 1500)
 
 [node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer"]
+visible = false
 texture = ExtResource("2_xukwk")
 centered = false
 
@@ -241,6 +242,7 @@ position = Vector2(-368, -288)
 motion_mirroring = Vector2(608, 0)
 
 [node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer2"]
+visible = false
 centered = false
 
 [node name="Player" parent="." node_paths=PackedStringArray("camera") instance=ExtResource("1_371ql")]
