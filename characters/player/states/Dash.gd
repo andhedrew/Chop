@@ -10,7 +10,8 @@ func enter(_msg := {}) -> void:
 
 
 
-func physics_update(_delta: float) -> void:
+func physics_update(delta: float) -> void:
+
 	if Input.is_action_pressed("dash") and owner.torch_charges > 0:
 		dash_direction = Vector2(Input.get_axis("right", "left"), Input.get_axis("down", "up")).normalized()
 		owner.velocity = -dash_direction * dash_length
@@ -19,7 +20,7 @@ func physics_update(_delta: float) -> void:
 			state_machine.transition_to("Idle")
 		else:
 			state_machine.transition_to("Fall")
-
+		owner.position.y += 3*delta
 
 func exit():
 	if dash_direction == Vector2(0.0,0.0):

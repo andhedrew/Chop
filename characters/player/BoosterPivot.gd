@@ -32,7 +32,7 @@ func _process(_delta):
 			smoke.restart()
 			smoke.emitting = true
 			
-	elif $"../StateMachine".state.name == "Idle" or $"../StateMachine".state.name == "Walk" or $"../StateMachine".state.name == "Cutscene":
+	elif $"../StateMachine".state.name == "Idle" or $"../StateMachine".state.name == "Move" or $"../StateMachine".state.name == "Cutscene":
 		$arrow.visible = false
 		started_engine_sound = false
 		started_stalling_sound = false

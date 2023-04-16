@@ -29,6 +29,7 @@ func _ready():
 	GameEvents.player_executed.connect(BIG_SCREENSHAKE)
 	GameEvents.player_changed_state.connect(_on_player_changed_state)
 	GameEvents.player_done_syphoning.connect(_on_player_done_syphoning)
+	set_camera_limits()
 
 
 func _process(delta):
@@ -36,6 +37,7 @@ func _process(delta):
 	y_target_lead = lerp(y_target_lead, y_lead, lerpspeed)
 	target_node = get_node(target)
 	position = lerp(position, Vector2(target_node.position.x+x_target_lead, target_node.position.y+y_target_lead), lerpspeed)
+
 	time += delta
 	
 	if !dashing:
@@ -100,4 +102,10 @@ func _on_player_done_syphoning(successful_syphon: bool) ->void:
 	if successful_syphon:
 		BIG_SCREENSHAKE()
 
-		
+func set_camera_limits():
+	var map_limits = $"../TileMap".get_used_rect()
+	var map_cellsize = $"../TileMap".tile_set.tile_size
+	limit_left = map_limits.position.x * map_cellsize.x
+	limit_right = map_limits.end.x * map_cellsize.x
+	limit_top = map_limits.position.y * map_cellsize.y
+	limit_bottom = map_limits.end.y * map_cellsize.y
