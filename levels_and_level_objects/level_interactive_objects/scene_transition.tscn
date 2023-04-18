@@ -1,6 +1,6 @@
-[gd_scene load_steps=2 format=3 uid="uid://d017hm5jlkwih"]
+[gd_scene load_steps=2 format=3 uid="uid://bij0w8p02y8fp"]
 
-[ext_resource type="Script" path="res://levels_and_level_objects/level_scenes/scene_transition.gd" id="1_to76f"]
+[ext_resource type="Script" path="res://levels_and_level_objects/level_interactive_objects/scene_transition.gd" id="1_to76f"]
 
 [node name="scene_transition" type="Area2D"]
 collision_mask = 2
@@ -8,4 +8,5 @@ script = ExtResource("1_to76f")
 new_scene = "res://world.tscn"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(408, 80)
+position = Vector2(365, -7)
+debug_color = Color(0.564706, 0.556863, 0.0117647, 0.419608)
