@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://s05ppu7gwq36"
-path="res://.godot/imported/blue_noise.png-a217ca853848f841c08e8dad8ef0fd21.ctex"
+uid="uid://ctt8g27w12u2l"
+path="res://.godot/imported/GradientHorizontal.png-f4eb9b0388dd8c45558ad74d4b2d35c7.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://levels/backgrounds/blue_noise.png"
-dest_files=["res://.godot/imported/blue_noise.png-a217ca853848f841c08e8dad8ef0fd21.ctex"]
+source_file="res://addons/UniversalFade/Patterns/GradientHorizontal.png"
+dest_files=["res://.godot/imported/GradientHorizontal.png-f4eb9b0388dd8c45558ad74d4b2d35c7.ctex"]
 
 [params]
 
@@ -31,4 +31,4 @@ process/normal_map_invert_y=false
 process/hdr_as_srgb=false
 process/hdr_clamp_exposure=false
 process/size_limit=0
-detect_3d/compress_to=0
+detect_3d/compress_to=1

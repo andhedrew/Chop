@@ -5,9 +5,13 @@ extends State
 var syphon_timer := 0.0
 var syphon_time := 1.0
 var baddies_being_syphoned := false
+var signal_setup := false
+
 func enter(_msg := {}) -> void:
 	GameEvents.player_started_syphoning.emit(owner.global_position)
-	GameEvents.enemy_being_syphoned.connect(_on_enemy_syphoned)
+	if !signal_setup:
+		GameEvents.enemy_being_syphoned.connect(_on_enemy_syphoned)
+		signal_setup = true
 	syphon_timer = 0.0
 	baddies_being_syphoned = false
 

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c35wgyqt4jopt"
-path="res://.godot/imported/city_test.png-0a3540687860d18f4844537c5bced247.ctex"
+uid="uid://cachicobd5s46"
+path="res://.godot/imported/GradientVertical.png-d73fd2ef16dc23e36078647d72dc31d9.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://levels/backgrounds/city_test.png"
-dest_files=["res://.godot/imported/city_test.png-0a3540687860d18f4844537c5bced247.ctex"]
+source_file="res://addons/UniversalFade/Patterns/GradientVertical.png"
+dest_files=["res://.godot/imported/GradientVertical.png-d73fd2ef16dc23e36078647d72dc31d9.ctex"]
 
 [params]
 
@@ -31,4 +31,4 @@ process/normal_map_invert_y=false
 process/hdr_as_srgb=false
 process/hdr_clamp_exposure=false
 process/size_limit=0
-detect_3d/compress_to=0
+detect_3d/compress_to=1

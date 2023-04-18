@@ -1,15 +1,14 @@
-[gd_scene load_steps=27 format=3 uid="uid://cubbodbtihgom"]
+[gd_scene load_steps=25 format=3 uid="uid://bx185xetokw4u"]
 
 [ext_resource type="PackedScene" uid="uid://bwvi5m2prncxh" path="res://characters/player/player.tscn" id="1_371ql"]
 [ext_resource type="Script" path="res://world.gd" id="1_nxsgc"]
-[ext_resource type="Texture2D" uid="uid://s05ppu7gwq36" path="res://levels/backgrounds/blue_noise.png" id="2_xukwk"]
+[ext_resource type="Texture2D" uid="uid://s05ppu7gwq36" path="res://levels_and_level_objects/backgrounds/blue_noise.png" id="2_p4yup"]
 [ext_resource type="Texture2D" uid="uid://dqea07rrxn0mr" path="res://sprites/tilesets/base_tileset.png" id="3_ngx7p"]
 [ext_resource type="Script" path="res://gameplay_objects/Camera.gd" id="3_wenx3"]
 [ext_resource type="Script" path="res://user_interface/health bar/health_bar.gd" id="6_xjfnb"]
 [ext_resource type="PackedScene" uid="uid://cm208i2oyjrct" path="res://characters/enemy/hotdog/hotdog.tscn" id="7_mmpep"]
 [ext_resource type="Texture2D" uid="uid://xoihsb8asqow" path="res://user_interface/health bar/full_heart.png" id="7_uevra"]
 [ext_resource type="PackedScene" uid="uid://23cc1xm0v5jp" path="res://characters/enemy/enemy_walker.tscn" id="8_hxqf4"]
-[ext_resource type="PackedScene" uid="uid://5kxwftjlml3w" path="res://characters/little_brother/little_brother.tscn" id="8_lv0yn"]
 [ext_resource type="PackedScene" uid="uid://cp5ayypj271xk" path="res://characters/enemy/paroot/paroot.tscn" id="9_20fx6"]
 [ext_resource type="PackedScene" uid="uid://g2rn2npgnt8u" path="res://characters/enemy/enemy_flyer.tscn" id="9_kdnn6"]
 [ext_resource type="PackedScene" uid="uid://curfvdorfok3h" path="res://characters/enemy/dandicrow/dandicrow.tscn" id="9_shmiu"]
@@ -19,9 +18,6 @@
 [ext_resource type="FontFile" uid="uid://bpybjwc1pwvp4" path="res://user_interface/fonts/Silver.ttf" id="16_s7j5x"]
 [ext_resource type="PackedScene" uid="uid://cl5wmh7hq8ul0" path="res://pickups/food_pickup.tscn" id="17_8b3jj"]
 [ext_resource type="PackedScene" uid="uid://bb1h85dym7l4i" path="res://hitboxes/Hurtbox.tscn" id="17_vj3my"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_figp8"]
-size = Vector2(80, 121)
 
 [sub_resource type="Curve2D" id="Curve2D_nqvxr"]
 _data = {
@@ -234,7 +230,7 @@ motion_mirroring = Vector2(2000, 1500)
 
 [node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer"]
 visible = false
-texture = ExtResource("2_xukwk")
+texture = ExtResource("2_p4yup")
 centered = false
 
 [node name="ParallaxLayer2" type="ParallaxLayer" parent="ParallaxBackground"]
@@ -253,13 +249,6 @@ camera = NodePath("../Camera")
 [node name="Camera" type="Camera2D" parent="."]
 script = ExtResource("3_wenx3")
 target = NodePath("../Player")
-
-[node name="LittleBrother" parent="." instance=ExtResource("8_lv0yn")]
-position = Vector2(-72, 80)
-
-[node name="Trigger" parent="LittleBrother/FoodSpawnTrigger" index="0"]
-position = Vector2(104, -51.5)
-shape = SubResource("RectangleShape2D_figp8")
 
 [node name="Enemy" parent="." instance=ExtResource("7_mmpep")]
 position = Vector2(1175, -24)
@@ -427,6 +416,4 @@ collision_mask = 8
 position = Vector2(51.5, 7.9808)
 shape = SubResource("RectangleShape2D_gbw35")
 
-[editable path="LittleBrother"]
-[editable path="LittleBrother/Hurtbox"]
 [editable path="UI/Hurtbox"]

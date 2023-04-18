@@ -14,12 +14,12 @@ func enter(_msg := {}) -> void:
 func update(_delta: float) -> void:
 	GameEvents.enemy_being_syphoned.emit()
 
-func physics_update(delta: float) -> void:
+func physics_update(_delta: float) -> void:
 	owner.position.x += shake_pos
 	shake_pos = -shake_pos
 	
 func exit() -> void:
 	pass
 
-func _player_done_syphoning(successful_syphon: bool) -> void:
+func _player_done_syphoning(_successful_syphon: bool) -> void:
 	state_machine.transition_to(state_machine.initial_state_name)
