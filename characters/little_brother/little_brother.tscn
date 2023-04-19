@@ -1,39 +1,27 @@
-[gd_scene load_steps=20 format=3 uid="uid://5kxwftjlml3w"]
+[gd_scene load_steps=26 format=3 uid="uid://5kxwftjlml3w"]
 
 [ext_resource type="Script" path="res://characters/little_brother/little_brother.gd" id="1_cpyu1"]
-[ext_resource type="PackedScene" uid="uid://bb1h85dym7l4i" path="res://hitboxes/Hurtbox.tscn" id="1_wm6nw"]
-[ext_resource type="Texture2D" uid="uid://d3jxunvnurpe2" path="res://characters/little_brother/LittleBrotherDrop.png" id="2_nf575"]
 [ext_resource type="Script" path="res://characters/little_brother/GenerateCollectedFood.gd" id="2_xhdg6"]
-[ext_resource type="Texture2D" uid="uid://dt78hg4utmjmg" path="res://characters/little_brother/LittleBrother.png" id="3_3kq2a"]
-[ext_resource type="Texture2D" uid="uid://c6hov0fu38uet" path="res://characters/little_brother/skull.png" id="3_fjnno"]
 [ext_resource type="Script" path="res://characters/little_brother/FoodDestroyer.gd" id="3_mykfs"]
 [ext_resource type="Animation" uid="uid://dep0l7ft0tpjo" path="res://animations/take_damage.res" id="4_xkikf"]
+[ext_resource type="Texture2D" uid="uid://bi1hvekf7casi" path="res://characters/little_brother/little_brother.png" id="6_kyt5c"]
+[ext_resource type="Texture2D" uid="uid://c22ritmmx87f6" path="res://user_interface/hunger_bar/bar1.png" id="6_ypqv6"]
+[ext_resource type="Texture2D" uid="uid://cg7ie0e5i2g3i" path="res://user_interface/hunger_bar/bar2.png" id="7_lo4dm"]
+[ext_resource type="Texture2D" uid="uid://b2yffij6lxxtq" path="res://user_interface/hunger_bar/bar3.png" id="8_lc8km"]
+[ext_resource type="Texture2D" uid="uid://df2s4bmlpcapk" path="res://user_interface/hunger_bar/bar4.png" id="9_dyb3y"]
+[ext_resource type="Texture2D" uid="uid://d0erieiw4ny3y" path="res://user_interface/hunger_bar/bar5.png" id="10_6gmq6"]
+[ext_resource type="Texture2D" uid="uid://cnd64br7wfuxr" path="res://user_interface/hunger_bar/bar6.png" id="11_a3j53"]
+[ext_resource type="Texture2D" uid="uid://d0cx0ia0drsm5" path="res://user_interface/hunger_bar/bar7.png" id="12_sasjp"]
+[ext_resource type="Texture2D" uid="uid://b5g0gq0jiouao" path="res://user_interface/hunger_bar/bar8.png" id="13_p7ojp"]
+[ext_resource type="Texture2D" uid="uid://1qhpk70u2ga6" path="res://user_interface/hunger_bar/bar9.png" id="14_wwfe7"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_x6vmq"]
-size = Vector2(64, 20)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_4q54t"]
-size = Vector2(72, 56)
-
-[sub_resource type="Animation" id="Animation_wjkf2"]
-resource_name = "chew"
-length = 1.6
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Pivot/Sprite2D:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.2, 0.4, 0.6, 0.8, 1, 1.2, 1.3),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
-"update": 1,
-"values": [7, 8, 7, 8, 7, 8, 9, 10]
-}
+size = Vector2(18, 8)
 
 [sub_resource type="Animation" id="Animation_bxoov"]
 resource_name = "eat"
 length = 0.2
+loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -44,44 +32,11 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.1),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
-"values": [1, 2]
-}
-
-[sub_resource type="Animation" id="Animation_cb4rh"]
-resource_name = "happy"
-length = 0.1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Pivot/Sprite2D:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [4]
-}
-
-[sub_resource type="Animation" id="Animation_q3bm3"]
-resource_name = "hurt"
-length = 0.1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Pivot/Sprite2D:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [11]
+"values": [21, 20]
 }
 
 [sub_resource type="Animation" id="Animation_0a4sf"]
 resource_name = "idle"
-length = 0.1
 loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -90,15 +45,15 @@ tracks/0/path = NodePath("Pivot/Sprite2D:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
 "update": 1,
-"values": [0]
+"values": [0, 1]
 }
 
-[sub_resource type="Animation" id="Animation_2b3y0"]
-resource_name = "sad"
-length = 0.1
+[sub_resource type="Animation" id="Animation_w68j2"]
+resource_name = "walk"
+length = 0.8
 loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -107,20 +62,69 @@ tracks/0/path = NodePath("Pivot/Sprite2D:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 1,
-"values": [6]
+"values": [10, 11, 12, 13]
+}
+
+[sub_resource type="Animation" id="Animation_v8muw"]
+resource_name = "go_to_sleep"
+length = 0.6
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Pivot/Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [30, 31, 32]
+}
+
+[sub_resource type="Animation" id="Animation_dayhp"]
+resource_name = "sleep"
+length = 0.9
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Pivot/Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [33, 34, 35, 36, 37, 38, 39, 32]
+}
+
+[sub_resource type="Animation" id="Animation_im2lf"]
+resource_name = "wake"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Pivot/Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [40, 41, 42]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_mouf5"]
 _data = {
-"chew": SubResource("Animation_wjkf2"),
 "eat": SubResource("Animation_bxoov"),
-"happy": SubResource("Animation_cb4rh"),
-"hurt": SubResource("Animation_q3bm3"),
+"go_to_sleep": SubResource("Animation_v8muw"),
 "idle": SubResource("Animation_0a4sf"),
-"sad": SubResource("Animation_2b3y0")
+"sleep": SubResource("Animation_dayhp"),
+"wake": SubResource("Animation_im2lf"),
+"walk": SubResource("Animation_w68j2")
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_4uxo5"]
@@ -130,13 +134,12 @@ _data = {
 "take_damage": ExtResource("4_xkikf")
 }
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ocmnl"]
+size = Vector2(63, 80)
+
 [node name="LittleBrother" type="CharacterBody2D"]
 collision_mask = 6
 script = ExtResource("1_cpyu1")
-death_pieces = Array[Resource]([ExtResource("2_nf575"), ExtResource("2_nf575"), ExtResource("2_nf575"), ExtResource("2_nf575"), ExtResource("3_fjnno")])
-
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
-polygon = PackedVector2Array(-44, 0, -43, -21, -39, -40, -34, -53, -14, -63, 13, -64, 34, -61, 43, -54, 42, 0, 0, 0)
 
 [node name="FoodSpawnTrigger" type="Area2D" parent="."]
 collision_mask = 2
@@ -146,30 +149,27 @@ script = ExtResource("2_xhdg6")
 position = Vector2(104, -1)
 
 [node name="FoodSpawn" type="Marker2D" parent="FoodSpawnTrigger"]
-position = Vector2(0, -120)
+position = Vector2(47, -52)
 
 [node name="FoodDestroyer" type="Area2D" parent="."]
+position = Vector2(47, 17)
 collision_mask = 32
 monitorable = false
 script = ExtResource("3_mykfs")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="FoodDestroyer"]
+position = Vector2(-4, -19)
 shape = SubResource("RectangleShape2D_x6vmq")
-
-[node name="Hurtbox" parent="." instance=ExtResource("1_wm6nw")]
-collision_mask = 8
-
-[node name="CollisionShape2D" parent="Hurtbox" index="0"]
-position = Vector2(4, -28)
-shape = SubResource("RectangleShape2D_4q54t")
+debug_color = Color(0.94902, 0.0784314, 0.533333, 0.419608)
 
 [node name="Pivot" type="Marker2D" parent="."]
 
 [node name="Sprite2D" type="Sprite2D" parent="Pivot"]
-position = Vector2(0, -40)
-texture = ExtResource("3_3kq2a")
-hframes = 12
-frame = 4
+position = Vector2(6, -46)
+texture = ExtResource("6_kyt5c")
+hframes = 10
+vframes = 6
+frame = 21
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Pivot"]
 root_node = NodePath("../..")
@@ -184,4 +184,39 @@ libraries = {
 "effects": SubResource("AnimationLibrary_4ji8v")
 }
 
-[editable path="Hurtbox"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-5.5, -40)
+shape = SubResource("RectangleShape2D_ocmnl")
+
+[node name="BrickHungerBar" type="TextureProgressBar" parent="."]
+offset_left = -23.0
+offset_top = -100.0
+offset_right = 17.0
+offset_bottom = -60.0
+max_value = 6.0
+fill_mode = 3
+texture_under = ExtResource("6_ypqv6")
+texture_over = ExtResource("7_lo4dm")
+texture_progress = ExtResource("8_lc8km")
+
+[node name="PlantHungerBar" type="TextureProgressBar" parent="."]
+offset_left = -11.0
+offset_top = -101.0
+offset_right = 29.0
+offset_bottom = -61.0
+max_value = 6.0
+fill_mode = 3
+texture_under = ExtResource("9_dyb3y")
+texture_over = ExtResource("10_6gmq6")
+texture_progress = ExtResource("11_a3j53")
+
+[node name="MeatHungerBar" type="TextureProgressBar" parent="."]
+offset_left = 1.0
+offset_top = -101.0
+offset_right = 41.0
+offset_bottom = -61.0
+max_value = 6.0
+fill_mode = 3
+texture_under = ExtResource("12_sasjp")
+texture_over = ExtResource("13_p7ojp")
+texture_progress = ExtResource("14_wwfe7")
