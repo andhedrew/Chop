@@ -1,0 +1,115 @@
+[gd_scene load_steps=8 format=3 uid="uid://dky122sj0egps"]
+
+[ext_resource type="Script" path="res://user_interface/health bar/health_bar.gd" id="1_ng2i2"]
+[ext_resource type="Texture2D" uid="uid://xoihsb8asqow" path="res://user_interface/health bar/full_heart.png" id="2_1g7ej"]
+[ext_resource type="Script" path="res://user_interface/food_counter.gd" id="5_an0fc"]
+[ext_resource type="Texture2D" uid="uid://chg85ipph4ctc" path="res://user_interface/bag/bag1.png" id="6_17etw"]
+[ext_resource type="PackedScene" uid="uid://c04c2gw5331a2" path="res://user_interface/hunger_bars.tscn" id="6_mejh2"]
+[ext_resource type="Texture2D" uid="uid://bgd7tn3n8a8eb" path="res://user_interface/bag/bag2.png" id="7_4luk0"]
+[ext_resource type="Texture2D" uid="uid://b7f5noq4ievao" path="res://user_interface/bag/bag3.png" id="8_o3x7d"]
+
+[node name="HUD" type="Node2D"]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="UI" type="Control" parent="CanvasLayer" node_paths=PackedStringArray("camera")]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 7.0
+offset_top = 5.0
+offset_right = 47.0
+offset_bottom = 16.0
+scale = Vector2(1, 0.44)
+script = ExtResource("1_ng2i2")
+camera = NodePath("../../../Camera")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/UI"]
+layout_mode = 1
+offset_bottom = 4.0
+scale = Vector2(1, 2.36363)
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/UI/VBoxContainer"]
+layout_mode = 2
+
+[node name="heart_0" type="TextureRect" parent="CanvasLayer/UI/VBoxContainer/HBoxContainer"]
+visible = false
+layout_mode = 2
+texture = ExtResource("2_1g7ej")
+stretch_mode = 2
+
+[node name="heart_1" type="TextureRect" parent="CanvasLayer/UI/VBoxContainer/HBoxContainer"]
+visible = false
+layout_mode = 2
+texture = ExtResource("2_1g7ej")
+stretch_mode = 2
+
+[node name="heart_2" type="TextureRect" parent="CanvasLayer/UI/VBoxContainer/HBoxContainer"]
+visible = false
+layout_mode = 2
+texture = ExtResource("2_1g7ej")
+stretch_mode = 2
+
+[node name="heart_3" type="TextureRect" parent="CanvasLayer/UI/VBoxContainer/HBoxContainer"]
+visible = false
+layout_mode = 2
+texture = ExtResource("2_1g7ej")
+stretch_mode = 2
+
+[node name="heart_4" type="TextureRect" parent="CanvasLayer/UI/VBoxContainer/HBoxContainer"]
+visible = false
+layout_mode = 2
+texture = ExtResource("2_1g7ej")
+stretch_mode = 2
+
+[node name="heart_5" type="TextureRect" parent="CanvasLayer/UI/VBoxContainer/HBoxContainer"]
+visible = false
+layout_mode = 2
+texture = ExtResource("2_1g7ej")
+stretch_mode = 2
+
+[node name="heart_6" type="TextureRect" parent="CanvasLayer/UI/VBoxContainer/HBoxContainer"]
+visible = false
+layout_mode = 2
+texture = ExtResource("2_1g7ej")
+stretch_mode = 2
+
+[node name="heart_7" type="TextureRect" parent="CanvasLayer/UI/VBoxContainer/HBoxContainer"]
+visible = false
+layout_mode = 2
+texture = ExtResource("2_1g7ej")
+stretch_mode = 2
+
+[node name="heart_8" type="TextureRect" parent="CanvasLayer/UI/VBoxContainer/HBoxContainer"]
+visible = false
+layout_mode = 2
+texture = ExtResource("2_1g7ej")
+stretch_mode = 2
+
+[node name="heart_9" type="TextureRect" parent="CanvasLayer/UI/VBoxContainer/HBoxContainer"]
+visible = false
+layout_mode = 2
+texture = ExtResource("2_1g7ej")
+stretch_mode = 2
+
+[node name="heart_10" type="TextureRect" parent="CanvasLayer/UI/VBoxContainer/HBoxContainer"]
+visible = false
+layout_mode = 2
+texture = ExtResource("2_1g7ej")
+stretch_mode = 2
+
+[node name="Bag" type="HBoxContainer" parent="CanvasLayer/UI/VBoxContainer"]
+layout_mode = 2
+script = ExtResource("5_an0fc")
+
+[node name="FoodBag" type="TextureProgressBar" parent="CanvasLayer/UI/VBoxContainer/Bag"]
+layout_mode = 2
+max_value = 15.0
+fill_mode = 3
+texture_under = ExtResource("6_17etw")
+texture_over = ExtResource("7_4luk0")
+texture_progress = ExtResource("8_o3x7d")
+
+[node name="HungerBars" parent="CanvasLayer/UI/VBoxContainer/Bag" instance=ExtResource("6_mejh2")]
+layout_mode = 2
+
+[editable path="CanvasLayer/UI/VBoxContainer/Bag/HungerBars"]

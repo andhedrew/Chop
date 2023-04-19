@@ -1,0 +1,47 @@
+[gd_scene load_steps=10 format=3 uid="uid://c04c2gw5331a2"]
+
+[ext_resource type="Texture2D" uid="uid://c22ritmmx87f6" path="res://user_interface/hunger_bar/bar1.png" id="1_1wvir"]
+[ext_resource type="Texture2D" uid="uid://cg7ie0e5i2g3i" path="res://user_interface/hunger_bar/bar2.png" id="2_40m27"]
+[ext_resource type="Texture2D" uid="uid://b2yffij6lxxtq" path="res://user_interface/hunger_bar/bar3.png" id="3_o65qb"]
+[ext_resource type="Texture2D" uid="uid://df2s4bmlpcapk" path="res://user_interface/hunger_bar/bar4.png" id="4_b7m1a"]
+[ext_resource type="Texture2D" uid="uid://d0erieiw4ny3y" path="res://user_interface/hunger_bar/bar5.png" id="5_bm8st"]
+[ext_resource type="Texture2D" uid="uid://cnd64br7wfuxr" path="res://user_interface/hunger_bar/bar6.png" id="6_c60od"]
+[ext_resource type="Texture2D" uid="uid://d0cx0ia0drsm5" path="res://user_interface/hunger_bar/bar7.png" id="7_1orq7"]
+[ext_resource type="Texture2D" uid="uid://b5g0gq0jiouao" path="res://user_interface/hunger_bar/bar8.png" id="8_2bgt3"]
+[ext_resource type="Texture2D" uid="uid://1qhpk70u2ga6" path="res://user_interface/hunger_bar/bar9.png" id="9_heolv"]
+
+[node name="HungerBars" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="BrickHungerBar" type="TextureProgressBar" parent="."]
+layout_mode = 0
+offset_top = 1.0
+offset_right = 40.0
+offset_bottom = 41.0
+fill_mode = 3
+texture_under = ExtResource("1_1wvir")
+texture_over = ExtResource("2_40m27")
+texture_progress = ExtResource("3_o65qb")
+
+[node name="PlantHungerBar" type="TextureProgressBar" parent="."]
+layout_mode = 0
+offset_left = 12.0
+offset_right = 52.0
+offset_bottom = 40.0
+fill_mode = 3
+texture_under = ExtResource("4_b7m1a")
+texture_over = ExtResource("5_bm8st")
+texture_progress = ExtResource("6_c60od")
+
+[node name="MeatHungerBar" type="TextureProgressBar" parent="."]
+layout_mode = 0
+offset_left = 24.0
+offset_right = 64.0
+offset_bottom = 40.0
+fill_mode = 3
+texture_under = ExtResource("7_1orq7")
+texture_over = ExtResource("8_2bgt3")
+texture_progress = ExtResource("9_heolv")

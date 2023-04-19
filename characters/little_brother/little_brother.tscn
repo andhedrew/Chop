@@ -1,19 +1,11 @@
-[gd_scene load_steps=26 format=3 uid="uid://5kxwftjlml3w"]
+[gd_scene load_steps=18 format=3 uid="uid://5kxwftjlml3w"]
 
 [ext_resource type="Script" path="res://characters/little_brother/little_brother.gd" id="1_cpyu1"]
 [ext_resource type="Script" path="res://characters/little_brother/GenerateCollectedFood.gd" id="2_xhdg6"]
 [ext_resource type="Script" path="res://characters/little_brother/FoodDestroyer.gd" id="3_mykfs"]
 [ext_resource type="Animation" uid="uid://dep0l7ft0tpjo" path="res://animations/take_damage.res" id="4_xkikf"]
 [ext_resource type="Texture2D" uid="uid://bi1hvekf7casi" path="res://characters/little_brother/little_brother.png" id="6_kyt5c"]
-[ext_resource type="Texture2D" uid="uid://c22ritmmx87f6" path="res://user_interface/hunger_bar/bar1.png" id="6_ypqv6"]
-[ext_resource type="Texture2D" uid="uid://cg7ie0e5i2g3i" path="res://user_interface/hunger_bar/bar2.png" id="7_lo4dm"]
-[ext_resource type="Texture2D" uid="uid://b2yffij6lxxtq" path="res://user_interface/hunger_bar/bar3.png" id="8_lc8km"]
-[ext_resource type="Texture2D" uid="uid://df2s4bmlpcapk" path="res://user_interface/hunger_bar/bar4.png" id="9_dyb3y"]
-[ext_resource type="Texture2D" uid="uid://d0erieiw4ny3y" path="res://user_interface/hunger_bar/bar5.png" id="10_6gmq6"]
-[ext_resource type="Texture2D" uid="uid://cnd64br7wfuxr" path="res://user_interface/hunger_bar/bar6.png" id="11_a3j53"]
-[ext_resource type="Texture2D" uid="uid://d0cx0ia0drsm5" path="res://user_interface/hunger_bar/bar7.png" id="12_sasjp"]
-[ext_resource type="Texture2D" uid="uid://b5g0gq0jiouao" path="res://user_interface/hunger_bar/bar8.png" id="13_p7ojp"]
-[ext_resource type="Texture2D" uid="uid://1qhpk70u2ga6" path="res://user_interface/hunger_bar/bar9.png" id="14_wwfe7"]
+[ext_resource type="PackedScene" uid="uid://c04c2gw5331a2" path="res://user_interface/hunger_bars.tscn" id="6_vtvk7"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_x6vmq"]
 size = Vector2(18, 8)
@@ -188,35 +180,8 @@ libraries = {
 position = Vector2(-5.5, -40)
 shape = SubResource("RectangleShape2D_ocmnl")
 
-[node name="BrickHungerBar" type="TextureProgressBar" parent="."]
-offset_left = -23.0
-offset_top = -100.0
-offset_right = 17.0
-offset_bottom = -60.0
-max_value = 6.0
-fill_mode = 3
-texture_under = ExtResource("6_ypqv6")
-texture_over = ExtResource("7_lo4dm")
-texture_progress = ExtResource("8_lc8km")
-
-[node name="PlantHungerBar" type="TextureProgressBar" parent="."]
-offset_left = -11.0
-offset_top = -101.0
-offset_right = 29.0
-offset_bottom = -61.0
-max_value = 6.0
-fill_mode = 3
-texture_under = ExtResource("9_dyb3y")
-texture_over = ExtResource("10_6gmq6")
-texture_progress = ExtResource("11_a3j53")
-
-[node name="MeatHungerBar" type="TextureProgressBar" parent="."]
-offset_left = 1.0
-offset_top = -101.0
-offset_right = 41.0
-offset_bottom = -61.0
-max_value = 6.0
-fill_mode = 3
-texture_under = ExtResource("12_sasjp")
-texture_over = ExtResource("13_p7ojp")
-texture_progress = ExtResource("14_wwfe7")
+[node name="HungerBars" parent="." instance=ExtResource("6_vtvk7")]
+offset_left = -26.0
+offset_top = -102.0
+offset_right = 14.0
+offset_bottom = -62.0

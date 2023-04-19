@@ -1,9 +1,9 @@
 extends Area2D
 
 @onready var animation_player := $"../Pivot/AnimationPlayer"
-@onready var brick_hunger_bar := $"../BrickHungerBar"
-@onready var plant_hunger_bar := $"../PlantHungerBar"
-@onready var meat_hunger_bar := $"../MeatHungerBar"
+@onready var brick_hunger_bar := $"../HungerBars/BrickHungerBar"
+@onready var plant_hunger_bar := $"../HungerBars/PlantHungerBar"
+@onready var meat_hunger_bar := $"../HungerBars/MeatHungerBar"
 var food_collected := 0
 #@onready var collision_polygon := $"../CollisionPolygon2D"
 
@@ -19,13 +19,14 @@ func _generate_food(player) -> void:
 #		get_node("../CollisionPolygon2D").set_deferred("disabled", true)
 		animation_player.play("eat")
 		for item in player.bag:
-				GameEvents.removed_food_from_bag.emit()
+				
 				var pickup := preload("res://pickups/food_pickup.tscn").instantiate()
 				pickup.setup(item)
 				get_node("/root/World").call_deferred("add_child", pickup)
 				pickup.sort_layer = SortLayer.BACKGROUND
 				pickup.position = $FoodSpawn.global_position
 				pickup.velocity = Vector2(0, randf_range(-4, -6))
+				GameEvents.removed_food_from_bag.emit(pickup)
 				food_collected += 1
 				brick_hunger_bar.value += pickup.brick_value
 				plant_hunger_bar.value += pickup.plant_value

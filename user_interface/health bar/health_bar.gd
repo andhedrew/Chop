@@ -14,7 +14,6 @@ var current_player_health = 3
 
 func _ready():
 	GameEvents.player_health_changed.connect(_on_player_health_changed)
-	GameEvents.added_food_to_bag.connect(_added_food_to_bag)
 #	hurtbox.position = position
 #
 #	hurtbox.area_entered.connect(_on_area_entered)
@@ -41,9 +40,6 @@ func _on_player_health_changed(health, maximum_health):
 		var texture_rect = get_node("VBoxContainer/HBoxContainer/heart_" + str(i))
 		texture_rect.texture = hearts[i]
 		texture_rect.visible = true
-
-func _added_food_to_bag(_new_item):
-	pass
 
 #
 #func _on_area_entered(area) -> void:

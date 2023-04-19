@@ -1,4 +1,4 @@
-[gd_scene load_steps=50 format=3 uid="uid://bx185xetokw4u"]
+[gd_scene load_steps=42 format=3 uid="uid://bx185xetokw4u"]
 
 [ext_resource type="PackedScene" uid="uid://bwvi5m2prncxh" path="res://characters/player/player.tscn" id="1_371ql"]
 [ext_resource type="Script" path="res://world.gd" id="1_nxsgc"]
@@ -8,9 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://cn1xf5s341dxy" path="res://levels_and_level_objects/backgrounds/bg_layer_2/bg_layer_med_2.png" id="4_i41wp"]
 [ext_resource type="Texture2D" uid="uid://bra5priqghhfb" path="res://levels_and_level_objects/backgrounds/bg_layer_2/bg_layer_med_3.png" id="5_vdx38"]
 [ext_resource type="Texture2D" uid="uid://cuu2luae22ki1" path="res://levels_and_level_objects/backgrounds/bg_layer_2/bg_layer_med_4.png" id="6_ic3s6"]
-[ext_resource type="Script" path="res://user_interface/health bar/health_bar.gd" id="6_xjfnb"]
 [ext_resource type="Texture2D" uid="uid://bcdpstkoq0lbc" path="res://levels_and_level_objects/backgrounds/bg_layer_2/bg_layer_med_7.png" id="7_n42hi"]
-[ext_resource type="Texture2D" uid="uid://xoihsb8asqow" path="res://user_interface/health bar/full_heart.png" id="7_uevra"]
 [ext_resource type="Texture2D" uid="uid://bn2k3s4qj4nim" path="res://levels_and_level_objects/backgrounds/bg_layer_2/bg_layer_med_9.png" id="8_eb8xu"]
 [ext_resource type="Texture2D" uid="uid://cbvrxn2ey38pr" path="res://levels_and_level_objects/backgrounds/bg_layer_2/bg_layer_med_8.png" id="9_o1jt7"]
 [ext_resource type="Texture2D" uid="uid://c8f3w3h6i6ehe" path="res://levels_and_level_objects/backgrounds/bg_layer_2/bg_layer_med_6.png" id="10_a6kob"]
@@ -19,13 +17,9 @@
 [ext_resource type="Texture2D" uid="uid://bivxdxcjdr3u2" path="res://sprites/tilesets/dark_tileset.png" id="12_usoy5"]
 [ext_resource type="Texture2D" uid="uid://bfs15lah1qcjq" path="res://levels_and_level_objects/backgrounds/bg_layer_1/bg_layer_2.png" id="13_3vgn5"]
 [ext_resource type="Texture2D" uid="uid://10jptowcqfb1" path="res://levels_and_level_objects/backgrounds/bg_layer_1/bg_layer_4.png" id="14_6mds3"]
-[ext_resource type="Texture2D" uid="uid://bshrfafv1ym2f" path="res://user_interface/bag.png" id="15_8p1gh"]
 [ext_resource type="Texture2D" uid="uid://fwnngbtphxg8" path="res://levels_and_level_objects/backgrounds/bg_layer_1/bg_layer_5.png" id="15_mhigf"]
-[ext_resource type="Script" path="res://user_interface/FoodCounter.gd" id="16_h5tbb"]
 [ext_resource type="Texture2D" uid="uid://b0gjdftdhp0x7" path="res://levels_and_level_objects/backgrounds/bg_layer_1/bg_layer_6.png" id="16_oxt8p"]
-[ext_resource type="FontFile" uid="uid://bpybjwc1pwvp4" path="res://user_interface/fonts/Silver.ttf" id="16_s7j5x"]
 [ext_resource type="Texture2D" uid="uid://ba862idsfruq5" path="res://levels_and_level_objects/backgrounds/bg_layer_1/bg_layer_7.png" id="17_jd3x7"]
-[ext_resource type="PackedScene" uid="uid://bb1h85dym7l4i" path="res://hitboxes/Hurtbox.tscn" id="17_vj3my"]
 [ext_resource type="Texture2D" uid="uid://cprhc42al153a" path="res://levels_and_level_objects/backgrounds/bg_layer_1/bg_layer_8.png" id="18_4fvuq"]
 [ext_resource type="Texture2D" uid="uid://cs3blbrbhhoh5" path="res://levels_and_level_objects/backgrounds/foliage/dark_foliage/foliage1.png" id="19_vbpia"]
 [ext_resource type="Texture2D" uid="uid://ctf1o2bhr388i" path="res://levels_and_level_objects/backgrounds/foliage/dark_foliage/foliage2.png" id="20_4w867"]
@@ -38,29 +32,12 @@
 [ext_resource type="Texture2D" uid="uid://mol44ipuipw7" path="res://levels_and_level_objects/backgrounds/foliage/dark_foliage/foliage9.png" id="27_nirfr"]
 [ext_resource type="Texture2D" uid="uid://b3pfxh6lpumnb" path="res://levels_and_level_objects/backgrounds/foliage/dark_foliage/foliage10.png" id="28_ew58i"]
 [ext_resource type="Texture2D" uid="uid://clg4y7ls1pfeg" path="res://levels_and_level_objects/backgrounds/foliage/dark_foliage/foliage11.png" id="29_0tmwr"]
+[ext_resource type="PackedScene" uid="uid://dky122sj0egps" path="res://user_interface/hud.tscn" id="32_6yrkh"]
 [ext_resource type="PackedScene" uid="uid://5kxwftjlml3w" path="res://characters/little_brother/little_brother.tscn" id="39_wpx1l"]
 [ext_resource type="PackedScene" uid="uid://cde2c17kuh3gb" path="res://characters/enemy/enemy_jumper.tscn" id="40_47l5t"]
 [ext_resource type="PackedScene" uid="uid://23cc1xm0v5jp" path="res://characters/enemy/enemy_walker.tscn" id="41_32vm2"]
 [ext_resource type="PackedScene" uid="uid://cp5ayypj271xk" path="res://characters/enemy/paroot/paroot.tscn" id="42_bgqab"]
 [ext_resource type="PackedScene" uid="uid://cm208i2oyjrct" path="res://characters/enemy/hotdog/hotdog.tscn" id="43_sul7r"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_628ni"]
-
-[sub_resource type="Theme" id="Theme_djkpt"]
-default_font = ExtResource("16_s7j5x")
-default_font_size = 19
-Label/colors/font_color = Color(0.87451, 0.85098, 0.827451, 1)
-Label/colors/font_outline_color = Color(1, 1, 1, 1)
-Label/colors/font_shadow_color = Color(0, 0, 0, 0)
-Label/constants/line_spacing = 3
-Label/constants/outline_size = 0
-Label/constants/shadow_offset_x = 1
-Label/constants/shadow_offset_y = 1
-Label/constants/shadow_outline_size = 1
-Label/styles/normal = SubResource("StyleBoxEmpty_628ni")
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_gbw35"]
-size = Vector2(123, 35.9616)
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_16qtn"]
 texture = ExtResource("12_usoy5")
@@ -712,118 +689,7 @@ camera = NodePath("../Camera")
 script = ExtResource("3_wenx3")
 target = NodePath("../Player")
 
-[node name="UI" type="Node2D" parent="."]
-
-[node name="CanvasLayer" type="CanvasLayer" parent="UI"]
-
-[node name="UI" type="Control" parent="UI/CanvasLayer" node_paths=PackedStringArray("camera")]
-layout_mode = 3
-anchors_preset = 0
-offset_left = 7.0
-offset_top = 5.0
-offset_right = 47.0
-offset_bottom = 16.0
-scale = Vector2(1, 0.44)
-script = ExtResource("6_xjfnb")
-camera = NodePath("../../../Camera")
-
-[node name="VBoxContainer" type="VBoxContainer" parent="UI/CanvasLayer/UI"]
-layout_mode = 1
-offset_bottom = 4.0
-scale = Vector2(1, 2.36363)
-
-[node name="HBoxContainer" type="HBoxContainer" parent="UI/CanvasLayer/UI/VBoxContainer"]
-layout_mode = 2
-
-[node name="heart_0" type="TextureRect" parent="UI/CanvasLayer/UI/VBoxContainer/HBoxContainer"]
-visible = false
-layout_mode = 2
-texture = ExtResource("7_uevra")
-stretch_mode = 2
-
-[node name="heart_1" type="TextureRect" parent="UI/CanvasLayer/UI/VBoxContainer/HBoxContainer"]
-visible = false
-layout_mode = 2
-texture = ExtResource("7_uevra")
-stretch_mode = 2
-
-[node name="heart_2" type="TextureRect" parent="UI/CanvasLayer/UI/VBoxContainer/HBoxContainer"]
-visible = false
-layout_mode = 2
-texture = ExtResource("7_uevra")
-stretch_mode = 2
-
-[node name="heart_3" type="TextureRect" parent="UI/CanvasLayer/UI/VBoxContainer/HBoxContainer"]
-visible = false
-layout_mode = 2
-texture = ExtResource("7_uevra")
-stretch_mode = 2
-
-[node name="heart_4" type="TextureRect" parent="UI/CanvasLayer/UI/VBoxContainer/HBoxContainer"]
-visible = false
-layout_mode = 2
-texture = ExtResource("7_uevra")
-stretch_mode = 2
-
-[node name="heart_5" type="TextureRect" parent="UI/CanvasLayer/UI/VBoxContainer/HBoxContainer"]
-visible = false
-layout_mode = 2
-texture = ExtResource("7_uevra")
-stretch_mode = 2
-
-[node name="heart_6" type="TextureRect" parent="UI/CanvasLayer/UI/VBoxContainer/HBoxContainer"]
-visible = false
-layout_mode = 2
-texture = ExtResource("7_uevra")
-stretch_mode = 2
-
-[node name="heart_7" type="TextureRect" parent="UI/CanvasLayer/UI/VBoxContainer/HBoxContainer"]
-visible = false
-layout_mode = 2
-texture = ExtResource("7_uevra")
-stretch_mode = 2
-
-[node name="heart_8" type="TextureRect" parent="UI/CanvasLayer/UI/VBoxContainer/HBoxContainer"]
-visible = false
-layout_mode = 2
-texture = ExtResource("7_uevra")
-stretch_mode = 2
-
-[node name="heart_9" type="TextureRect" parent="UI/CanvasLayer/UI/VBoxContainer/HBoxContainer"]
-visible = false
-layout_mode = 2
-texture = ExtResource("7_uevra")
-stretch_mode = 2
-
-[node name="heart_10" type="TextureRect" parent="UI/CanvasLayer/UI/VBoxContainer/HBoxContainer"]
-visible = false
-layout_mode = 2
-texture = ExtResource("7_uevra")
-stretch_mode = 2
-
-[node name="Food" type="HBoxContainer" parent="UI/CanvasLayer/UI/VBoxContainer"]
-layout_mode = 2
-
-[node name="TextureRect" type="TextureRect" parent="UI/CanvasLayer/UI/VBoxContainer/Food"]
-layout_mode = 2
-texture = ExtResource("15_8p1gh")
-stretch_mode = 2
-
-[node name="FoodCounter" type="Label" parent="UI/CanvasLayer/UI/VBoxContainer/Food"]
-layout_mode = 2
-size_flags_vertical = 8
-theme = SubResource("Theme_djkpt")
-text = "Food: 23"
-script = ExtResource("16_h5tbb")
-
-[node name="Hurtbox" parent="UI" instance=ExtResource("17_vj3my")]
-position = Vector2(7, 5)
-scale = Vector2(1, 1.04)
-collision_mask = 8
-
-[node name="CollisionShape2D" parent="UI/Hurtbox" index="0"]
-position = Vector2(51.5, 7.9808)
-shape = SubResource("RectangleShape2D_gbw35")
+[node name="HUD" parent="." instance=ExtResource("32_6yrkh")]
 
 [node name="ParallaxBackground2" type="ParallaxBackground" parent="."]
 layer = 128
@@ -877,5 +743,4 @@ position = Vector2(104, 24)
 [node name="HotDog" parent="." instance=ExtResource("43_sul7r")]
 position = Vector2(200, -56)
 
-[editable path="UI/Hurtbox"]
 [editable path="LittleBrother"]
