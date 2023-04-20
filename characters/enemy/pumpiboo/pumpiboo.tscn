@@ -1,0 +1,31 @@
+[gd_scene load_steps=8 format=3 uid="uid://0v77alk6bcbh"]
+
+[ext_resource type="PackedScene" uid="uid://23cc1xm0v5jp" path="res://characters/enemy/enemy_walker.tscn" id="1_hlusj"]
+[ext_resource type="AudioStream" uid="uid://c2b7napty0xqn" path="res://audio/sounds/squawk_1.wav" id="2_mp5bk"]
+[ext_resource type="AudioStream" uid="uid://k7akmwtrmxvr" path="res://audio/sounds/squawk_2.wav" id="3_45mxq"]
+[ext_resource type="Texture2D" uid="uid://cu5ky2j1b72wn" path="res://characters/enemy/pumpiboo/pumpiboo_drop_1.png" id="4_ifejs"]
+[ext_resource type="Texture2D" uid="uid://cl4tm0eo6njw0" path="res://characters/enemy/pumpiboo/pumpiboo_drop_2.png" id="5_ua8fk"]
+[ext_resource type="Texture2D" uid="uid://m3k40kbaw2d3" path="res://characters/enemy/pumpiboo/pumpiboo.png" id="6_uxy5p"]
+[ext_resource type="Script" path="res://characters/enemy/states/shoot_projectile.gd" id="8_ceq36"]
+
+[node name="Pumpiboo" instance=ExtResource("1_hlusj")]
+erratic_walking_amount = 1.0
+health = 4
+speed = 30.0
+hurt_vocalizations = Array[AudioStreamWAV]([ExtResource("2_mp5bk"), ExtResource("3_45mxq")])
+death_pieces = Array[Resource]([ExtResource("5_ua8fk"), ExtResource("4_ifejs")])
+
+[node name="Body" parent="Pivot" index="0"]
+texture = ExtResource("6_uxy5p")
+
+[node name="BulletSpawn" type="Marker2D" parent="Pivot" index="3"]
+position = Vector2(-2, -10)
+
+[node name="player_detector" parent="Pivot" index="4"]
+target_position = Vector2(-120, 0)
+
+[node name="Attack" type="Node" parent="StateMachine" index="4"]
+script = ExtResource("8_ceq36")
+
+[editable path="Hurtbox"]
+[editable path="Hitbox"]

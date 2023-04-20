@@ -8,7 +8,16 @@ var nutrition_value_lookup : Dictionary = {
 	load("res://characters/enemy/default/mallow_pieces1.png") : {"brick" : 0, "meat" : 2, "plant" : 0 },
 	load("res://characters/enemy/default/mallow_pieces2.png") : {"brick" : 3, "meat" : 0, "plant" : 0 },
 	load("res://characters/enemy/default/mallow_pieces3.png") : {"brick" : 0, "meat" : 0, "plant" : 4 },
+	load("res://characters/enemy/dandicrow/dandicrow_piece1.png") : {"brick" : 0, "meat" : 0, "plant" : 1 },
+	load("res://characters/enemy/hotdog/HotDog1.png") : {"brick" : 0, "meat" : 2, "plant" : 0 },
+	load("res://characters/enemy/hotdog/HotDog2.png") : {"brick" : 0, "meat" : 2, "plant" : 0 },
+	load("res://characters/enemy/paroot/paroot_drop_1.png") : {"brick" : 0, "meat" : 0, "plant" : 1 },
+	load("res://characters/enemy/paroot/paroot_drop_2.png") : {"brick" : 0, "meat" : 1, "plant" : 1 },
+	load("res://characters/enemy/paroot/paroot_drop_3.png") : {"brick" : 0, "meat" : 0, "plant" : 1 },
+	load("res://characters/enemy/pumpiboo/pumpiboo_drop_1.png") : {"brick" : 0, "meat" : 0, "plant" : 2 },
+	load("res://characters/enemy/pumpiboo/pumpiboo_drop_2.png") : {"brick" : 0, "meat" : 0, "plant" : 2 },
 }
+
 
 
 func _add_pickup_to_inventory(player) -> void:

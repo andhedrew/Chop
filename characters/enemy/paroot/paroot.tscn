@@ -1,12 +1,12 @@
-[gd_scene load_steps=9 format=3 uid="uid://cp5ayypj271xk"]
+[gd_scene load_steps=9 format=3]
 
 [ext_resource type="PackedScene" uid="uid://23cc1xm0v5jp" path="res://characters/enemy/enemy_walker.tscn" id="1_2qt75"]
 [ext_resource type="Texture2D" uid="uid://dho6xihx2y1wm" path="res://characters/enemy/paroot/paroot.png" id="2_352t6"]
-[ext_resource type="Texture2D" uid="uid://bnltgc473omjm" path="res://characters/enemy/paroot/ParootPieces1.png" id="2_et1jp"]
+[ext_resource type="Texture2D" uid="uid://bnltgc473omjm" path="res://characters/enemy/paroot/paroot_drop_1.png" id="2_et1jp"]
 [ext_resource type="AudioStream" uid="uid://c2b7napty0xqn" path="res://audio/sounds/squawk_1.wav" id="2_np1rv"]
-[ext_resource type="Texture2D" uid="uid://smo0g21t470d" path="res://characters/enemy/paroot/ParootPieces2.png" id="3_7dml6"]
+[ext_resource type="Texture2D" uid="uid://smo0g21t470d" path="res://characters/enemy/paroot/paroot_drop_2.png" id="3_7dml6"]
 [ext_resource type="AudioStream" uid="uid://k7akmwtrmxvr" path="res://audio/sounds/squawk_2.wav" id="3_d184i"]
-[ext_resource type="Texture2D" uid="uid://b1ffa310elr21" path="res://characters/enemy/paroot/ParootPieces3.png" id="4_wb0cm"]
+[ext_resource type="Texture2D" uid="uid://b1ffa310elr21" path="res://characters/enemy/paroot/paroot_drop_3.png" id="4_wb0cm"]
 [ext_resource type="Script" path="res://characters/enemy/states/shoot_projectile.gd" id="6_ilyqa"]
 
 [node name="Paroot" instance=ExtResource("1_2qt75")]

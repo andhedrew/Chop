@@ -8,7 +8,6 @@ var empty_heart = preload("empty_heart.png")
 # The commented sectons are to be SAVED in case we want to make a killable UI aggain
 
 var bag_contents := []
-@onready var hurtbox = $"../../Hurtbox"
 
 var current_player_health = 3
 

@@ -10,6 +10,9 @@ var food_collected := 0
 func _ready():
 	self.body_entered.connect(_generate_food)
 	animation_player.play("idle")
+	brick_hunger_bar.max_value = 12
+	plant_hunger_bar.max_value = 12
+	meat_hunger_bar.max_value = 12
 
 
 func _generate_food(player) -> void:

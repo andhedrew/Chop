@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bnltgc473omjm"
-path="res://.godot/imported/ParootPieces1.png-84db2c2c45306c8c16bb3fafe6d64fa0.ctex"
+uid="uid://cl4tm0eo6njw0"
+path="res://.godot/imported/pumpiboo_drop_2.png-e99a472b8df3f7c623dfeb889592de38.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://characters/enemy/paroot/ParootPieces1.png"
-dest_files=["res://.godot/imported/ParootPieces1.png-84db2c2c45306c8c16bb3fafe6d64fa0.ctex"]
+source_file="res://characters/enemy/pumpiboo/pumpiboo_drop_2.png"
+dest_files=["res://.godot/imported/pumpiboo_drop_2.png-e99a472b8df3f7c623dfeb889592de38.ctex"]
 
 [params]
 
