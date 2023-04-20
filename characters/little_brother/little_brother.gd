@@ -1,15 +1,28 @@
 extends CharacterBody2D
-#
-#func _ready():
-#	z_index = SortLayer.FOREGROUND
+
+
+@onready var brick_hunger_bar := $"HungerBars/BrickHungerBar"
+@onready var plant_hunger_bar := $"HungerBars/PlantHungerBar"
+@onready var meat_hunger_bar := $"HungerBars/MeatHungerBar"
+
+
+func _ready():
+	z_index = SortLayer.PLAYER
 #	$Hurtbox.area_entered.connect(_on_hitbox_entered)
-#
-#func _process(_delta):
-#	if health <= 0:
-#		die()
-#
-#
-#
+
+func _process(_delta):
+	var brick_full = brick_hunger_bar.value == brick_hunger_bar.max_value
+	var plant_full = plant_hunger_bar.value == plant_hunger_bar.max_value
+	var meat_full = meat_hunger_bar.value == meat_hunger_bar.max_value
+	
+	if brick_full and plant_full and meat_full:
+		_on_is_full()
+
+
+func _on_is_full() -> void:
+	pass
+
+
 #func _on_hitbox_entered(hitbox) -> void:
 #	if hitbox is HitBox:
 #		health -= 1

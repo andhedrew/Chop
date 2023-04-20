@@ -25,6 +25,7 @@ var facing := Enums.Facing.LEFT
 var colliding_hitbox_position : Dictionary
 var wounded : bool = false
 
+
 func _ready() -> void:
 	max_health = health
 	$Hurtbox.area_entered.connect(_take_damage)
@@ -111,7 +112,6 @@ func die(was_executed: bool = false) -> void:
 	if was_executed:
 		explode.big = true
 	get_node("/root/").add_child(explode)
-	
 	get_parent().respawn()
 	queue_free()
 	

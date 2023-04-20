@@ -35,39 +35,12 @@ func _generate_food(player) -> void:
 				plant_hunger_bar.value += pickup.plant_value
 				meat_hunger_bar.value += pickup.meat_value
 				await get_tree().create_timer(0.3).timeout
-				SoundPlayer.play_sound("glottal_stop")
+
 		player.bag = []
 		await get_tree().create_timer(1.0).timeout
-		if food_collected > 0:
-			SoundPlayer.play_sound("chew")
-#			animation_player.play("chew")
-			_choose_emotion()
-		else:
-			animation_player.play("idle")
+		GameEvents.cutscene_ended.emit()
+		animation_player.play("idle")
 
 
 func _choose_emotion() -> void:
-	if food_collected > 3:
-		SoundPlayer.play_sound("little_brother_happy")
-#		_play_happy()
-		animation_player.play("idle")
-		food_collected = 0
-	else:
-		SoundPlayer.play_sound("little_brother_sad")
-#		_play_sad()
-		animation_player.play("idle")
-		food_collected = 0
-#	get_node("../CollisionPolygon2D").set_deferred("disabled", false)
-	
-	GameEvents.cutscene_ended.emit()
-
-
-#func _play_happy():
-#	await get_tree().create_timer(1.5).timeout
-#	animation_player.play("happy")
-#
-#
-#
-#func _play_sad():
-#	await get_tree().create_timer(1.7).timeout
-#	animation_player.play("sad")
+	pass

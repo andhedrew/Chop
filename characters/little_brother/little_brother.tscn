@@ -185,3 +185,5 @@ offset_left = -26.0
 offset_top = -102.0
 offset_right = 14.0
 offset_bottom = -62.0
+
+[editable path="HungerBars"]

@@ -5,9 +5,9 @@ var meat_value :int = 0
 var plant_value :int = 0
 
 var nutrition_value_lookup : Dictionary = {
-	load("res://characters/enemy/default/mallow_pieces1.png") : {"brick" : 0, "meat" : 2, "plant" : 0 },
-	load("res://characters/enemy/default/mallow_pieces2.png") : {"brick" : 3, "meat" : 0, "plant" : 0 },
-	load("res://characters/enemy/default/mallow_pieces3.png") : {"brick" : 0, "meat" : 0, "plant" : 4 },
+	load("res://characters/enemy/default/mallow_pieces1.png") : {"brick" : 20, "meat" : 22, "plant" : 20 },
+	load("res://characters/enemy/default/mallow_pieces2.png") : {"brick" : 23, "meat" : 20, "plant" : 20 },
+	load("res://characters/enemy/default/mallow_pieces3.png") : {"brick" : 20, "meat" : 20, "plant" : 24 },
 	load("res://characters/enemy/dandicrow/dandicrow_piece1.png") : {"brick" : 0, "meat" : 0, "plant" : 1 },
 	load("res://characters/enemy/hotdog/HotDog1.png") : {"brick" : 0, "meat" : 2, "plant" : 0 },
 	load("res://characters/enemy/hotdog/HotDog2.png") : {"brick" : 0, "meat" : 2, "plant" : 0 },
