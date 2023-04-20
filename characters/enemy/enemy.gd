@@ -111,7 +111,9 @@ func die(was_executed: bool = false) -> void:
 	if was_executed:
 		explode.big = true
 	get_node("/root/").add_child(explode)
-	get_parent().respawn(self)
+	
+	get_parent().respawn(self.scene_file_path)
+	queue_free()
 	
 
 func drop_health_and_die() -> void:
@@ -138,10 +140,3 @@ func _on_player_syphoning(_player_pos) -> void:
 	if wounded:
 		$StateMachine.transition_to("Syphoned")
 
-
-func reset_and_upgrade():
-	health = max_health
-	wounded = false
-	effects_player.play("RESET")
-	$BloodParticles.visible = false
-	$StateMachine.transition_to($StateMachine.initial_state)

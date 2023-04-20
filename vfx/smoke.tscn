@@ -1,7 +1,7 @@
-[gd_scene load_steps=7 format=3 uid="uid://dogkkgs0bcsf1"]
+[gd_scene load_steps=7 format=3]
 
 [ext_resource type="Texture2D" uid="uid://c3qi6qrhakdnd" path="res://vfx/smoke.png" id="1_ma0pj"]
-[ext_resource type="Script" path="res://vfx/smoke.gd" id="2_fugyk"]
+[ext_resource type="Script" path="res://vfx/free_particles_when_done_emitting.gd" id="2_fugyk"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_whx8a"]
 particles_animation = true

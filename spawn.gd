@@ -7,10 +7,12 @@ func _ready():
 	spawn_object.global_position = position
 
 
-func respawn(object):
-	remove_child(object)
-	object.reset_and_upgrade()
-	object.velocity = Vector2.ZERO
+func respawn(file_path: String):
+	await get_tree().create_timer(2.0).timeout
+	var particles = preload("res://vfx/spawn_particles.tscn").instantiate()
+	add_child(particles)
+	particles.global_position = position
+	particles.emitting = true
 	await get_tree().create_timer(1.0).timeout
-	add_child(object)
-	object.global_position = position
+	var new_spawn = load(file_path).instantiate()
+	add_child(new_spawn)

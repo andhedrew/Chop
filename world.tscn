@@ -1,4 +1,4 @@
-[gd_scene load_steps=44 format=3 uid="uid://bx185xetokw4u"]
+[gd_scene load_steps=43 format=3 uid="uid://bx185xetokw4u"]
 
 [ext_resource type="PackedScene" uid="uid://bwvi5m2prncxh" path="res://characters/player/player.tscn" id="1_371ql"]
 [ext_resource type="Script" path="res://world.gd" id="1_nxsgc"]
@@ -35,7 +35,7 @@
 [ext_resource type="PackedScene" uid="uid://dky122sj0egps" path="res://user_interface/hud.tscn" id="32_6yrkh"]
 [ext_resource type="PackedScene" uid="uid://0v77alk6bcbh" path="res://characters/enemy/pumpiboo/pumpiboo.tscn" id="37_m3886"]
 [ext_resource type="Script" path="res://spawn.gd" id="37_x1soh"]
-[ext_resource type="PackedScene" uid="uid://g2rn2npgnt8u" path="res://characters/enemy/enemy_flyer.tscn" id="39_2r0b0"]
+[ext_resource type="PackedScene" uid="uid://crplm4k3fb2hl" path="res://vfx/spawn_particles.tscn" id="39_g2wvp"]
 [ext_resource type="PackedScene" uid="uid://5kxwftjlml3w" path="res://characters/little_brother/little_brother.tscn" id="39_wpx1l"]
 [ext_resource type="PackedScene" path="res://characters/enemy/paroot/paroot.tscn" id="42_bgqab"]
 [ext_resource type="PackedScene" uid="uid://cm208i2oyjrct" path="res://characters/enemy/hotdog/hotdog.tscn" id="43_sul7r"]
@@ -466,12 +466,6 @@ terrain_set_0/terrain_0/name = "ground"
 terrain_set_0/terrain_0/color = Color(0.5, 0.34375, 0.25, 1)
 sources/1 = SubResource("TileSetAtlasSource_16qtn")
 
-[sub_resource type="Curve2D" id="Curve2D_qhnlx"]
-_data = {
-"points": PackedVector2Array(0, 0, 0, 0, -256, -104, 0, 0, 0, 0, -352, -160)
-}
-point_count = 2
-
 [node name="World" type="Node2D"]
 script = ExtResource("1_nxsgc")
 
@@ -750,19 +744,6 @@ script = ExtResource("37_x1soh")
 
 [node name="Pumpiboo" parent="spawn" instance=ExtResource("37_m3886")]
 
-[node name="Path2D" type="Path2D" parent="."]
-curve = SubResource("Curve2D_qhnlx")
-
-[node name="PathFollow2D" type="PathFollow2D" parent="Path2D"]
-position = Vector2(-256, -104)
-rotation = -2.61352
-script = ExtResource("37_x1soh")
-
-[node name="EnemyFlyer" parent="Path2D/PathFollow2D" instance=ExtResource("39_2r0b0")]
-position = Vector2(-273.53, 39.158)
-rotation = 2.61352
+[node name="spawn_particles" parent="." instance=ExtResource("39_g2wvp")]
 
 [editable path="LittleBrother"]
-[editable path="spawn/Pumpiboo"]
-[editable path="spawn/Pumpiboo/Hurtbox"]
-[editable path="spawn/Pumpiboo/Hitbox"]
