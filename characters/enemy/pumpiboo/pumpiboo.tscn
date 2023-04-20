@@ -15,6 +15,9 @@ speed = 30.0
 hurt_vocalizations = Array[AudioStreamWAV]([ExtResource("2_mp5bk"), ExtResource("3_45mxq")])
 death_pieces = Array[Resource]([ExtResource("5_ua8fk"), ExtResource("4_ifejs")])
 
+[node name="BloodParticles" parent="." index="1"]
+emitting = true
+
 [node name="Body" parent="Pivot" index="0"]
 texture = ExtResource("6_uxy5p")
 

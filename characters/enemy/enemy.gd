@@ -3,6 +3,7 @@ extends CharacterBody2D
 
 @export_category("Properties")
 @export var health := 3
+var max_health = health
 @export var speed := 20.0
 @export var invulnerable : bool = false
 @export var immovable : bool = false
@@ -25,9 +26,11 @@ var colliding_hitbox_position : Dictionary
 var wounded : bool = false
 
 func _ready() -> void:
+	max_health = health
 	$Hurtbox.area_entered.connect(_take_damage)
 	GameEvents.player_started_syphoning.connect(_on_player_syphoning)
 	GameEvents.player_done_syphoning.connect(_on_player_done_syphoning)
+	
 
 
 func _physics_process(_delta):
@@ -36,7 +39,11 @@ func _physics_process(_delta):
 	if health <= 1:
 		wounded = true
 	if wounded:
+		$BloodParticles.visible = true
 		effects_player.play("wounded")
+	else:
+		effects_player.play("RESET")
+
 
 func _take_damage(hitbox) -> void:
 	if hitbox is HitBox and !invulnerable:
@@ -104,7 +111,8 @@ func die(was_executed: bool = false) -> void:
 	if was_executed:
 		explode.big = true
 	get_node("/root/").add_child(explode)
-	call_deferred("queue_free")
+	get_parent().respawn(self)
+	
 
 func drop_health_and_die() -> void:
 	var explode := preload("res://vfx/blood_explosion.tscn").instantiate()
@@ -129,3 +137,11 @@ func _on_player_done_syphoning(successful_syphon: bool) -> void:
 func _on_player_syphoning(_player_pos) -> void:
 	if wounded:
 		$StateMachine.transition_to("Syphoned")
+
+
+func reset_and_upgrade():
+	health = max_health
+	wounded = false
+	effects_player.play("RESET")
+	$BloodParticles.visible = false
+	$StateMachine.transition_to($StateMachine.initial_state)
