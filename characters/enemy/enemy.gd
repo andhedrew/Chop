@@ -112,7 +112,7 @@ func die(was_executed: bool = false) -> void:
 		explode.big = true
 	get_node("/root/").add_child(explode)
 	
-	get_parent().respawn(self.scene_file_path)
+	get_parent().respawn()
 	queue_free()
 	
 

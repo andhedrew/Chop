@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://65chcvm66qp4"]
+
+[ext_resource type="Script" path="res://spawn.gd" id="1_l6acu"]
+[ext_resource type="PackedScene" uid="uid://cde2c17kuh3gb" path="res://characters/enemy/enemy_jumper.tscn" id="2_tjl8w"]
+
+[node name="JumperSpawn" type="Marker2D"]
+position = Vector2(0, -8)
+script = ExtResource("1_l6acu")
+
+[node name="Jumper" parent="." instance=ExtResource("2_tjl8w")]
+position = Vector2(0, 8)
