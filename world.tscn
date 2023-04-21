@@ -1,4 +1,4 @@
-[gd_scene load_steps=41 format=3 uid="uid://bx185xetokw4u"]
+[gd_scene load_steps=40 format=3 uid="uid://bx185xetokw4u"]
 
 [ext_resource type="PackedScene" uid="uid://bwvi5m2prncxh" path="res://characters/player/player.tscn" id="1_371ql"]
 [ext_resource type="Script" path="res://world.gd" id="1_nxsgc"]
@@ -37,9 +37,6 @@
 [ext_resource type="PackedScene" uid="uid://crplm4k3fb2hl" path="res://vfx/spawn_particles.tscn" id="39_g2wvp"]
 [ext_resource type="PackedScene" uid="uid://cf8s3hxbyvsv8" path="res://characters/little_brother/little_brother.tscn" id="39_wpx1l"]
 [ext_resource type="PackedScene" uid="uid://23cc1xm0v5jp" path="res://characters/enemy/enemy_walker.tscn" id="40_731kn"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_mau1x"]
-size = Vector2(66, 114)
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_16qtn"]
 texture = ExtResource("12_usoy5")
@@ -718,10 +715,6 @@ texture = ExtResource("22_ptq7j")
 [node name="LittleBrother" parent="." instance=ExtResource("39_wpx1l")]
 position = Vector2(-632, -32)
 
-[node name="Trigger" parent="LittleBrother/FoodSpawnTrigger" index="0"]
-position = Vector2(103, -47)
-shape = SubResource("RectangleShape2D_mau1x")
-
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = SubResource("TileSet_4pe8b")
 format = 2
@@ -734,4 +727,4 @@ position = Vector2(-200, -48)
 spawn = ExtResource("40_731kn")
 
 [editable path="LittleBrother"]
-[editable path="LittleBrother/HungerBars"]
+[editable path="LittleBrother/InteractZone/HungerBars"]

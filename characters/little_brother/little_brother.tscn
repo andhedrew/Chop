@@ -692,7 +692,7 @@ vertical_alignment = 1
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="InteractZone/Label"]
 position = Vector2(25, 23)
 sprite_frames = SubResource("SpriteFrames_4y64g")
-frame_progress = 0.435082
+frame_progress = 0.764503
 
 [node name="HungerBars" parent="InteractZone" instance=ExtResource("6_vtvk7")]
 offset_left = -25.0

@@ -23,6 +23,7 @@ func physics_update(delta: float) -> void:
 		owner.position.y += 3*delta
 
 func exit():
+	
 	if dash_direction == Vector2(0.0,0.0):
 		match owner.facing:
 			Enums.Facing.LEFT:
@@ -54,3 +55,4 @@ func exit():
 		spread = 0
 		rotation = rad_to_deg(atan2(dash_direction.y, dash_direction.x))+180
 		bullet.setup(transform, fire_range, speed, rotation, spread)
+

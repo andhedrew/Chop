@@ -6,6 +6,7 @@ extends Area2D
 @onready var meat_hunger_bar := $"HungerBars/MeatHungerBar"
 @onready var fade_animation_player := $FadeAnimations
 var food_collected := 0
+var label_text := ""
 #@onready var collision_polygon := $"../CollisionPolygon2D"
 var player_in_zone = false
 var player : CharacterBody2D = null
@@ -23,13 +24,13 @@ func _ready():
 
 
 func _process(delta):
+	$Label.text = label_text
 	if player_in_zone and Input.is_action_just_pressed("ui_down") and owner.is_full:
 		_sing_song()
 	elif player_in_zone and Input.is_action_just_pressed("ui_down"):
 		_generate_food(player)
-	
+
 	if owner.is_full:
-		$Label.text = "LULL"
 		$Particles1.emitting = true
 		$Particles2.emitting = true
 		$Particles3.emitting = true
@@ -43,13 +44,12 @@ func _on_player_entered(body):
 	
 	if player.bag.size() > 0 and !owner.is_full:
 		fade_animation_player.play("fade_in")
-		$Label.text = "FEED"
+		label_text = "FEED"
 		$Particles1.emitting = true
 		$Particles2.emitting = true
 		$Particles3.emitting = true
 	elif owner.is_full:
 		fade_animation_player.play("fade_in")
-		$Label.text = "LULL"
 		$Particles1.emitting = true
 		$Particles2.emitting = true
 		$Particles3.emitting = true
@@ -74,6 +74,7 @@ func _on_player_exited(_body):
 
 func _generate_food(player) -> void:
 	if player.bag.size() > 0 and not owner.is_full:
+		fade_animation_player.play("fade_out")
 		GameEvents.cutscene_started.emit()
 		player.facing = Enums.Facing.LEFT
 #		get_node("../CollisionPolygon2D").set_deferred("disabled", true)
@@ -97,6 +98,8 @@ func _generate_food(player) -> void:
 		await get_tree().create_timer(1.0).timeout
 		GameEvents.cutscene_ended.emit()
 		animation_player.play("idle")
+		fade_animation_player.play("fade_in")
+		label_text = "LULL"
 
 
 func _choose_emotion() -> void:
