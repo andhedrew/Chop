@@ -1,11 +1,536 @@
-[gd_scene load_steps=18 format=3 uid="uid://5kxwftjlml3w"]
+[gd_scene load_steps=35 format=3 uid="uid://cf8s3hxbyvsv8"]
 
 [ext_resource type="Script" path="res://characters/little_brother/little_brother.gd" id="1_cpyu1"]
-[ext_resource type="Script" path="res://characters/little_brother/GenerateCollectedFood.gd" id="2_xhdg6"]
+[ext_resource type="Script" path="res://characters/little_brother/interact_with_lil_brother_zone.gd" id="2_sa06n"]
 [ext_resource type="Script" path="res://characters/little_brother/FoodDestroyer.gd" id="3_mykfs"]
+[ext_resource type="Theme" uid="uid://b0dhfhdkknaj3" path="res://user_interface/chop_theme.tres" id="3_rs7em"]
+[ext_resource type="Texture2D" uid="uid://blfneh76djxde" path="res://user_interface/down_arrow_prompt.png" id="4_ebirs"]
 [ext_resource type="Animation" uid="uid://dep0l7ft0tpjo" path="res://animations/take_damage.res" id="4_xkikf"]
 [ext_resource type="Texture2D" uid="uid://bi1hvekf7casi" path="res://characters/little_brother/little_brother.png" id="6_kyt5c"]
 [ext_resource type="PackedScene" uid="uid://c04c2gw5331a2" path="res://user_interface/hunger_bars.tscn" id="6_vtvk7"]
+[ext_resource type="Texture2D" uid="uid://7gh56l6f27dc" path="res://user_interface/full.png" id="7_sfybx"]
+
+[sub_resource type="Animation" id="Animation_1opl7"]
+resource_name = "fade_in"
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Label:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.25),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("HungerBars/BrickHungerBar:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("HungerBars/PlantHungerBar:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("HungerBars/MeatHungerBar:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.45),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Particles1:emitting")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Particles1:modulate")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 0.8),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Particles2:emitting")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("Particles2:modulate")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0, 0.75),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("Particles3:modulate")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0, 0.85),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("Particles3:emitting")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_380tc"]
+resource_name = "fade_out"
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Label:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.6),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("HungerBars/BrickHungerBar:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("HungerBars/PlantHungerBar:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.45),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("HungerBars/MeatHungerBar:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.55),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Particles1:emitting")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0.5),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Particles1:modulate")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Particles2:emitting")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0.4),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("Particles2:modulate")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("Particles3:modulate")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0, 0.45),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("Particles3:emitting")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0.5),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_2gfun"]
+resource_name = "RESET"
+length = 0.1
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Label:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("HungerBars/BrickHungerBar:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("HungerBars/PlantHungerBar:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("HungerBars/MeatHungerBar:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Particles1:emitting")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Particles1:modulate")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Particles2:emitting")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("Particles2:modulate")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("Particles3:modulate")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("Particles3:emitting")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_8eri8"]
+resource_name = "fade_in_food"
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("HungerBars/BrickHungerBar:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("HungerBars/PlantHungerBar:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("HungerBars/MeatHungerBar:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.45),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_1qp2p"]
+resource_name = "fade_out_food"
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("HungerBars/BrickHungerBar:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("HungerBars/PlantHungerBar:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("HungerBars/MeatHungerBar:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_knrko"]
+_data = {
+"RESET": SubResource("Animation_2gfun"),
+"fade_in": SubResource("Animation_1opl7"),
+"fade_in_food": SubResource("Animation_8eri8"),
+"fade_out": SubResource("Animation_380tc"),
+"fade_out_food": SubResource("Animation_1qp2p")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6lcqp"]
+size = Vector2(45, 78)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_oqbwp"]
+atlas = ExtResource("4_ebirs")
+region = Rect2(0, 0, 13, 12)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_q2mfy"]
+atlas = ExtResource("4_ebirs")
+region = Rect2(13, 0, 13, 12)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_4y64g"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_oqbwp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_q2mfy")
+}],
+"loop": true,
+"name": &"default",
+"speed": 2.0
+}]
+
+[sub_resource type="Curve" id="Curve_i8fjo"]
+_data = [Vector2(0.00211416, 0.981595), 0.0, 0.0, 0, 0, Vector2(1, 0.337423), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_vdoo6"]
+curve = SubResource("Curve_i8fjo")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_yh4m7"]
+lifetime_randomness = 0.23
+emission_shape = 3
+emission_box_extents = Vector3(25, 1, 1)
+particle_flag_disable_z = true
+gravity = Vector3(0, -80, 0)
+orbit_velocity_min = 0.0
+orbit_velocity_max = 0.0
+angle_min = -378.3
+angle_max = 566.5
+scale_min = 2.0
+scale_max = 3.0
+scale_curve = SubResource("CurveTexture_vdoo6")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_sm053"]
+lifetime_randomness = 0.43
+emission_shape = 3
+emission_box_extents = Vector3(3, 1, 1)
+particle_flag_disable_z = true
+gravity = Vector3(0, -80, 0)
+orbit_velocity_min = 0.0
+orbit_velocity_max = 0.0
+angle_min = -378.3
+angle_max = 566.5
+scale_min = 2.0
+scale_max = 3.0
+scale_curve = SubResource("CurveTexture_vdoo6")
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_x6vmq"]
 size = Vector2(18, 8)
@@ -133,15 +658,82 @@ size = Vector2(63, 80)
 collision_mask = 6
 script = ExtResource("1_cpyu1")
 
-[node name="FoodSpawnTrigger" type="Area2D" parent="."]
+[node name="InteractZone" type="Area2D" parent="."]
 collision_mask = 2
-script = ExtResource("2_xhdg6")
+script = ExtResource("2_sa06n")
 
-[node name="Trigger" type="CollisionShape2D" parent="FoodSpawnTrigger"]
-position = Vector2(104, -1)
+[node name="FadeAnimations" type="AnimationPlayer" parent="InteractZone"]
+libraries = {
+"": SubResource("AnimationLibrary_knrko")
+}
 
-[node name="FoodSpawn" type="Marker2D" parent="FoodSpawnTrigger"]
+[node name="Trigger" type="CollisionShape2D" parent="InteractZone"]
+position = Vector2(92.5, -30)
+shape = SubResource("RectangleShape2D_6lcqp")
+
+[node name="FoodSpawn" type="Marker2D" parent="InteractZone"]
 position = Vector2(47, -52)
+
+[node name="Label" type="Label" parent="InteractZone"]
+modulate = Color(1, 1, 1, 0)
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = 68.0
+offset_top = -77.0
+offset_right = 118.0
+offset_bottom = -54.0
+grow_horizontal = 2
+theme = ExtResource("3_rs7em")
+text = "FEED"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="InteractZone/Label"]
+position = Vector2(25, 23)
+sprite_frames = SubResource("SpriteFrames_4y64g")
+frame_progress = 0.435082
+
+[node name="HungerBars" parent="InteractZone" instance=ExtResource("6_vtvk7")]
+offset_left = -25.0
+offset_top = -99.0
+offset_right = 15.0
+offset_bottom = -59.0
+
+[node name="BrickHungerBar" parent="InteractZone/HungerBars" index="0"]
+modulate = Color(1, 1, 1, 0)
+
+[node name="PlantHungerBar" parent="InteractZone/HungerBars" index="1"]
+modulate = Color(1, 1, 1, 0)
+
+[node name="MeatHungerBar" parent="InteractZone/HungerBars" index="2"]
+modulate = Color(1, 1, 1, 0)
+
+[node name="Particles1" type="GPUParticles2D" parent="InteractZone"]
+modulate = Color(1, 1, 1, 0)
+position = Vector2(93, 3)
+emitting = false
+amount = 40
+process_material = SubResource("ParticleProcessMaterial_yh4m7")
+lifetime = 1.5
+
+[node name="Particles2" type="GPUParticles2D" parent="InteractZone"]
+modulate = Color(1, 1, 1, 0)
+position = Vector2(115, 3)
+emitting = false
+amount = 20
+process_material = SubResource("ParticleProcessMaterial_sm053")
+lifetime = 1.7
+randomness = 0.53
+
+[node name="Particles3" type="GPUParticles2D" parent="InteractZone"]
+modulate = Color(1, 1, 1, 0)
+position = Vector2(70, 3)
+emitting = false
+amount = 20
+process_material = SubResource("ParticleProcessMaterial_sm053")
+lifetime = 1.7
+randomness = 0.53
 
 [node name="FoodDestroyer" type="Area2D" parent="."]
 position = Vector2(47, 17)
@@ -180,10 +772,9 @@ libraries = {
 position = Vector2(-5.5, -40)
 shape = SubResource("RectangleShape2D_ocmnl")
 
-[node name="HungerBars" parent="." instance=ExtResource("6_vtvk7")]
-offset_left = -26.0
-offset_top = -102.0
-offset_right = 14.0
-offset_bottom = -62.0
+[node name="FullMessage" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(-7, -95)
+texture = ExtResource("7_sfybx")
 
-[editable path="HungerBars"]
+[editable path="InteractZone/HungerBars"]

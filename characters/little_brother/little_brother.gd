@@ -1,10 +1,11 @@
 extends CharacterBody2D
 
 
-@onready var brick_hunger_bar := $"HungerBars/BrickHungerBar"
-@onready var plant_hunger_bar := $"HungerBars/PlantHungerBar"
-@onready var meat_hunger_bar := $"HungerBars/MeatHungerBar"
+@onready var brick_hunger_bar := $InteractZone/HungerBars/BrickHungerBar
+@onready var plant_hunger_bar := $InteractZone/HungerBars/PlantHungerBar
+@onready var meat_hunger_bar := $InteractZone/HungerBars/MeatHungerBar
 
+var is_full := false
 
 func _ready():
 	z_index = SortLayer.PLAYER
@@ -20,8 +21,9 @@ func _process(_delta):
 
 
 func _on_is_full() -> void:
-	pass
-
+	$InteractZone/HungerBars.visible = false
+	$FullMessage.visible = true
+	is_full = true
 
 #func _on_hitbox_entered(hitbox) -> void:
 #	if hitbox is HitBox:
