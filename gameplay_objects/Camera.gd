@@ -6,6 +6,9 @@ var x_lead_amount := 150.0
 var x_lead := x_lead_amount
 var x_target_lead := x_lead
 
+var x_cutscene_lead := 0.0
+var cutscene_running := false
+
 var y_lead_amount := -70.0
 var y_peek_amount := -70.0
 var y_lead := y_lead_amount
@@ -32,12 +35,16 @@ func _ready():
 	GameEvents.player_executed.connect(BIG_SCREENSHAKE)
 	GameEvents.player_changed_state.connect(_on_player_changed_state)
 	GameEvents.player_done_syphoning.connect(_on_player_done_syphoning)
+	GameEvents.cutscene_started.connect(_on_cutscene_start)
+	GameEvents.cutscene_ended.connect(_on_cutscene_end)
 	set_camera_limits()
 
 
 func _process(delta):
-	
-	x_target_lead = lerp(x_target_lead, x_lead, lerpspeed)
+	if cutscene_running:
+		x_target_lead = lerp(x_target_lead, x_cutscene_lead, lerpspeed*3)
+	else:
+		x_target_lead = lerp(x_target_lead, x_lead, lerpspeed)
 	y_target_lead = lerp(y_target_lead, y_lead, lerpspeed)
 	target_node = get_node(target)
 	position = lerp(position, Vector2(target_node.position.x+x_target_lead, target_node.position.y+y_target_lead), lerpspeed)
@@ -113,3 +120,12 @@ func set_camera_limits():
 	limit_right = map_limits.end.x * map_cellsize.x
 	limit_top = map_limits.position.y * map_cellsize.y
 	limit_bottom = map_limits.end.y * map_cellsize.y
+
+
+func _on_cutscene_start() -> void:
+	cutscene_running = true
+
+
+
+func _on_cutscene_end() -> void:
+	cutscene_running = false
