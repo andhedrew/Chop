@@ -22,6 +22,9 @@ var time := 0
 var target_node: Node
 var dashing := false
 
+var setup_letterbox := false
+var letterbox_bar_1
+var letterbox_bar_2
  
 func _ready():
 	noise.noise_type =  FastNoiseLite.TYPE_SIMPLEX
@@ -33,6 +36,7 @@ func _ready():
 
 
 func _process(delta):
+	
 	x_target_lead = lerp(x_target_lead, x_lead, lerpspeed)
 	y_target_lead = lerp(y_target_lead, y_lead, lerpspeed)
 	target_node = get_node(target)

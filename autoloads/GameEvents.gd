@@ -16,3 +16,7 @@ signal charge_amount_changed
 signal enemy_took_damage
 signal bag_capacity_changed
 signal enemy_being_syphoned
+
+# Game State signals
+
+signal end_day 

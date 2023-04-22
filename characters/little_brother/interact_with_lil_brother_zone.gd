@@ -9,7 +9,7 @@ var food_collected := 0
 var label_text := ""
 #@onready var collision_polygon := $"../CollisionPolygon2D"
 var player_in_zone = false
-var player : CharacterBody2D = null
+var player_object : CharacterBody2D = null
 func _ready():
 	fade_animation_player.play("RESET")
 	self.body_entered.connect(_on_player_entered)
@@ -28,7 +28,7 @@ func _process(delta):
 	if player_in_zone and Input.is_action_just_pressed("ui_down") and owner.is_full:
 		_sing_song()
 	elif player_in_zone and Input.is_action_just_pressed("ui_down"):
-		_generate_food(player)
+		_generate_food(player_object)
 
 	if owner.is_full:
 		$Particles1.emitting = true
@@ -38,11 +38,11 @@ func _process(delta):
 
 
 func _on_player_entered(body):
-	player = body
+	player_object = body
 
 	player_in_zone = true
 	
-	if player.bag.size() > 0 and !owner.is_full:
+	if player_object.bag.size() > 0 and !owner.is_full:
 		fade_animation_player.play("fade_in")
 		label_text = "FEED"
 		$Particles1.emitting = true
@@ -106,5 +106,5 @@ func _choose_emotion() -> void:
 	pass
 
 func _sing_song():
-#	GameEvents.cutscene_started.emit()
-	pass
+	GameEvents.cutscene_started.emit()
+	GameEvents.end_day.emit()

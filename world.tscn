@@ -1,4 +1,4 @@
-[gd_scene load_steps=40 format=3 uid="uid://bx185xetokw4u"]
+[gd_scene load_steps=46 format=3 uid="uid://bx185xetokw4u"]
 
 [ext_resource type="PackedScene" uid="uid://bwvi5m2prncxh" path="res://characters/player/player.tscn" id="1_371ql"]
 [ext_resource type="Script" path="res://world.gd" id="1_nxsgc"]
@@ -32,11 +32,16 @@
 [ext_resource type="Texture2D" uid="uid://mol44ipuipw7" path="res://levels_and_level_objects/backgrounds/foliage/dark_foliage/foliage9.png" id="27_nirfr"]
 [ext_resource type="Texture2D" uid="uid://b3pfxh6lpumnb" path="res://levels_and_level_objects/backgrounds/foliage/dark_foliage/foliage10.png" id="28_ew58i"]
 [ext_resource type="Texture2D" uid="uid://clg4y7ls1pfeg" path="res://levels_and_level_objects/backgrounds/foliage/dark_foliage/foliage11.png" id="29_0tmwr"]
+[ext_resource type="Shader" path="res://letterboxing.gdshader" id="31_unx17"]
 [ext_resource type="PackedScene" uid="uid://dky122sj0egps" path="res://user_interface/hud.tscn" id="32_6yrkh"]
 [ext_resource type="PackedScene" uid="uid://c61py6hgvk4e5" path="res://levels_and_level_objects/enemy_spawn.tscn" id="36_u6rkm"]
+[ext_resource type="PackedScene" uid="uid://cde2c17kuh3gb" path="res://characters/enemy/enemy_jumper.tscn" id="38_15vif"]
 [ext_resource type="PackedScene" uid="uid://crplm4k3fb2hl" path="res://vfx/spawn_particles.tscn" id="39_g2wvp"]
+[ext_resource type="PackedScene" uid="uid://cm208i2oyjrct" path="res://characters/enemy/hotdog/hotdog.tscn" id="39_l60bk"]
 [ext_resource type="PackedScene" uid="uid://cf8s3hxbyvsv8" path="res://characters/little_brother/little_brother.tscn" id="39_wpx1l"]
 [ext_resource type="PackedScene" uid="uid://23cc1xm0v5jp" path="res://characters/enemy/enemy_walker.tscn" id="40_731kn"]
+[ext_resource type="Script" path="res://letterboxes.gd" id="41_0qx84"]
+[ext_resource type="PackedScene" uid="uid://cl5wmh7hq8ul0" path="res://pickups/food_pickup.tscn" id="42_70ys2"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_16qtn"]
 texture = ExtResource("12_usoy5")
@@ -461,6 +466,10 @@ terrain_set_0/terrain_0/name = "ground"
 terrain_set_0/terrain_0/color = Color(0.5, 0.34375, 0.25, 1)
 sources/1 = SubResource("TileSetAtlasSource_16qtn")
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_bnyt1"]
+shader = ExtResource("31_unx17")
+shader_parameter/squishedness = 0.0
+
 [node name="World" type="Node2D"]
 script = ExtResource("1_nxsgc")
 
@@ -676,19 +685,7 @@ texture = ExtResource("29_0tmwr")
 position = Vector2(1432, -80)
 texture = ExtResource("29_0tmwr")
 
-[node name="Player" parent="." node_paths=PackedStringArray("camera") instance=ExtResource("1_371ql")]
-position = Vector2(-576, -32)
-collision_mask = 3
-camera = NodePath("../Camera")
-
-[node name="Camera" type="Camera2D" parent="."]
-script = ExtResource("3_wenx3")
-target = NodePath("../Player")
-
-[node name="HUD" parent="." instance=ExtResource("32_6yrkh")]
-
 [node name="ParallaxBackground2" type="ParallaxBackground" parent="."]
-layer = 128
 
 [node name="ParallaxLayer5" type="ParallaxLayer" parent="ParallaxBackground2"]
 modulate = Color(0.529412, 0.529412, 0.529412, 1)
@@ -712,6 +709,13 @@ texture = ExtResource("22_ptq7j")
 position = Vector2(1384, -72)
 texture = ExtResource("22_ptq7j")
 
+[node name="Player" parent="." node_paths=PackedStringArray("camera") instance=ExtResource("1_371ql")]
+position = Vector2(-576, -32)
+collision_mask = 3
+camera = NodePath("../Camera")
+
+[node name="HUD" parent="." instance=ExtResource("32_6yrkh")]
+
 [node name="LittleBrother" parent="." instance=ExtResource("39_wpx1l")]
 position = Vector2(-632, -32)
 
@@ -725,6 +729,41 @@ layer_0/tile_data = PackedInt32Array(524297, 65537, 1, 524298, 131073, 1, 524299
 [node name="EnemySpawn" parent="." instance=ExtResource("36_u6rkm")]
 position = Vector2(-200, -48)
 spawn = ExtResource("40_731kn")
+
+[node name="EnemySpawn2" parent="." instance=ExtResource("36_u6rkm")]
+position = Vector2(23, 118)
+spawn = ExtResource("38_15vif")
+
+[node name="EnemySpawn3" parent="." instance=ExtResource("36_u6rkm")]
+position = Vector2(197, -54)
+spawn = ExtResource("39_l60bk")
+
+[node name="EnemySpawn4" parent="." instance=ExtResource("36_u6rkm")]
+position = Vector2(308, -53)
+spawn = ExtResource("39_l60bk")
+
+[node name="EnemySpawn5" parent="." instance=ExtResource("36_u6rkm")]
+position = Vector2(429, -116)
+spawn = ExtResource("39_l60bk")
+
+[node name="EnemySpawn6" parent="." instance=ExtResource("36_u6rkm")]
+position = Vector2(529, -116)
+spawn = ExtResource("39_l60bk")
+
+[node name="Camera" type="Camera2D" parent="."]
+script = ExtResource("3_wenx3")
+target = NodePath("../Player")
+
+[node name="letterboxes" type="ColorRect" parent="Camera"]
+material = SubResource("ShaderMaterial_bnyt1")
+offset_left = -318.0
+offset_top = -179.0
+offset_right = 332.0
+offset_bottom = 184.0
+script = ExtResource("41_0qx84")
+
+[node name="food_pickup" parent="." instance=ExtResource("42_70ys2")]
+position = Vector2(-511, -51)
 
 [editable path="LittleBrother"]
 [editable path="LittleBrother/InteractZone/HungerBars"]

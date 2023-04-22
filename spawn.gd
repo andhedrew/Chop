@@ -6,9 +6,8 @@ extends Node2D
 
 
 func _ready():
-		if Engine.is_editor_hint():
-			var new_spawn = spawn.instantiate()
-			add_child(new_spawn)
+		var new_spawn = spawn.instantiate()
+		add_child(new_spawn)
 
 
 
