@@ -8,6 +8,8 @@ func _ready():
 
 func on_body_entered(body) -> void:
 	if body is Player:
-		await Fade.fade_out().finished
+		GameEvents.cutscene_started.emit()
+		Fade.crossfade_prepare(0.4, "ChopHorizontal")
 		get_tree().change_scene_to_file(new_scene)
-		Fade.fade_in()
+		await Fade.crossfade_execute() 
+		GameEvents.cutscene_ended.emit()

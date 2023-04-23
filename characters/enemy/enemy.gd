@@ -87,9 +87,9 @@ func execute():
 	var slice = preload("res://vfx/slice_big.tscn").instantiate()
 	slice.position = global_position
 	get_node("/root/").add_child(slice)
-	
 	if death_vocalization:
 		SoundPlayer.play_sound(death_vocalization)
+		
 	await get_tree().create_timer(0.2).timeout
 	if death_pieces:
 		var spacing = 2

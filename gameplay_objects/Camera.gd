@@ -2,11 +2,19 @@ extends Camera2D
 
 @export var target: NodePath = ""
 @export var lerpspeed: float = 0.05
+@export var trauma: float = 0.0
+@export var max_x := 150
+@export var max_y := 150
+@export var max_r := 25
+@export var time_scale := 150.0
+@export var decay: float = 0.6
+
+
 var x_lead_amount := 150.0
 var x_lead := x_lead_amount
 var x_target_lead := x_lead
 
-var x_cutscene_lead := 0.0
+var x_cutscene_lead := -30.0
 var cutscene_running := false
 
 var y_lead_amount := -70.0
@@ -15,12 +23,7 @@ var y_lead := y_lead_amount
 var y_target_lead := y_lead
 
 var noise := FastNoiseLite.new()
-@export var trauma: float = 0.0
-@export var max_x := 150
-@export var max_y := 150
-@export var max_r := 25
-@export var time_scale := 150.0
-@export var decay: float = 0.6
+
 var time := 0
 var target_node: Node
 var dashing := false

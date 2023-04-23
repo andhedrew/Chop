@@ -5,6 +5,7 @@ extends CharacterBody2D
 @onready var plant_hunger_bar := $InteractZone/HungerBars/PlantHungerBar
 @onready var meat_hunger_bar := $InteractZone/HungerBars/MeatHungerBar
 
+
 var is_full := false
 
 func _ready():

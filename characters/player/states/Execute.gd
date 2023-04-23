@@ -52,3 +52,5 @@ func fire() -> void:
 	var rotation := 0
 	rotation = 90
 	bullet.setup(transform, fire_range, speed, rotation, spread)
+	Fade.crossfade_prepare(1.0, "Chop")
+	Fade.crossfade_execute() 

@@ -47,3 +47,4 @@ func _destroy() -> void:
 	await $AnimationPlayer.animation_finished
 	queue_free()
 	pass
+
