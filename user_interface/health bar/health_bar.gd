@@ -4,7 +4,7 @@ extends Control
 var full_heart = preload("full_heart.png")
 var half_heart = preload("half_heart.png")
 var empty_heart = preload("empty_heart.png")
-
+@onready var animation_player := $AnimationPlayer
 # The commented sectons are to be SAVED in case we want to make a killable UI aggain
 
 var bag_contents := []
@@ -12,6 +12,8 @@ var bag_contents := []
 var current_player_health = 3
 
 func _ready():
+	GameEvents.cutscene_started.connect(_on_cutscene_started)
+	GameEvents.cutscene_ended.connect(_on_cutscene_ended)
 	GameEvents.player_health_changed.connect(_on_player_health_changed)
 #	hurtbox.position = position
 #
@@ -39,6 +41,14 @@ func _on_player_health_changed(health, maximum_health):
 		var texture_rect = get_node("VBoxContainer/HBoxContainer/heart_" + str(i))
 		texture_rect.texture = hearts[i]
 		texture_rect.visible = true
+
+func _on_cutscene_started() -> void:
+	animation_player.play("fade_out")
+
+
+func _on_cutscene_ended() -> void:
+	animation_player.play("fade_in")
+
 
 #
 #func _on_area_entered(area) -> void:

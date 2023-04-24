@@ -1,6 +1,5 @@
 extends Area2D
 
-@onready var animation_player := $"../Pivot/AnimationPlayer"
 @onready var brick_hunger_bar := $"HungerBars/BrickHungerBar"
 @onready var plant_hunger_bar := $"HungerBars/PlantHungerBar"
 @onready var meat_hunger_bar := $"HungerBars/MeatHungerBar"
@@ -10,11 +9,13 @@ var label_text := ""
 #@onready var collision_polygon := $"../CollisionPolygon2D"
 var player_in_zone = false
 var player_object : CharacterBody2D = null
+
+
 func _ready():
 	fade_animation_player.play("RESET")
 	self.body_entered.connect(_on_player_entered)
 	self.body_exited.connect(_on_player_exited)
-	animation_player.play("idle")
+	GameEvents.cutscene_started.connect(_on_cutscene_started)
 	brick_hunger_bar.max_value = 12
 	plant_hunger_bar.max_value = 12
 	meat_hunger_bar.max_value = 12
@@ -28,6 +29,7 @@ func _process(delta):
 	if player_in_zone and Input.is_action_just_pressed("ui_down") and owner.is_full:
 		_sing_song()
 	elif player_in_zone and Input.is_action_just_pressed("ui_down"):
+		GameEvents.started_feeding_little_brother.emit()
 		_generate_food(player_object)
 
 	if owner.is_full:
@@ -78,7 +80,6 @@ func _generate_food(player) -> void:
 		GameEvents.cutscene_started.emit()
 		player.facing = Enums.Facing.LEFT
 #		get_node("../CollisionPolygon2D").set_deferred("disabled", true)
-		animation_player.play("eat")
 		for item in player.bag:
 				
 				var pickup := preload("res://pickups/food_pickup.tscn").instantiate()
@@ -96,10 +97,11 @@ func _generate_food(player) -> void:
 
 		player.bag = []
 		await get_tree().create_timer(1.0).timeout
+		GameEvents.done_feeding_little_brother.emit()
 		GameEvents.cutscene_ended.emit()
-		animation_player.play("idle")
 		fade_animation_player.play("fade_in")
-		label_text = "LULL"
+		if owner.is_full:
+			label_text = "LULL"
 
 
 func _choose_emotion() -> void:
@@ -108,3 +110,13 @@ func _choose_emotion() -> void:
 func _sing_song():
 	GameEvents.cutscene_started.emit()
 	GameEvents.end_day.emit()
+
+
+func _on_cutscene_started() -> void:
+	$Particles1.emitting = false
+	$Particles2.emitting = false
+	$Particles3.emitting = false
+	if $Label.text == "":
+		fade_animation_player.play("fade_out_food")
+	else:
+		fade_animation_player.play("fade_out")

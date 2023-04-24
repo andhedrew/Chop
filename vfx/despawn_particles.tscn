@@ -1,0 +1,36 @@
+[gd_scene load_steps=5 format=3 uid="uid://vrbfy1o8t443"]
+
+[ext_resource type="Script" path="res://vfx/free_particles_when_done_emitting.gd" id="1_7hknb"]
+
+[sub_resource type="Curve" id="Curve_hbuuh"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_l2yc2"]
+curve = SubResource("Curve_hbuuh")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_odslx"]
+emission_shape = 3
+emission_box_extents = Vector3(6, 6, 1)
+particle_flag_disable_z = true
+direction = Vector3(0, -1, 0)
+spread = 167.71
+gravity = Vector3(0, -40, 0)
+initial_velocity_max = 20.0
+angular_velocity_max = 208.94
+orbit_velocity_min = 0.0
+orbit_velocity_max = 0.0
+angle_max = 720.0
+scale_min = 4.0
+scale_max = 5.0
+scale_curve = SubResource("CurveTexture_l2yc2")
+
+[node name="spawn_particles" type="GPUParticles2D"]
+emitting = false
+amount = 40
+process_material = SubResource("ParticleProcessMaterial_odslx")
+lifetime = 0.7
+one_shot = true
+explosiveness = 0.63
+randomness = 0.4
+script = ExtResource("1_7hknb")

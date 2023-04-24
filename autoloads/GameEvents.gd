@@ -16,7 +16,8 @@ signal charge_amount_changed
 signal enemy_took_damage
 signal bag_capacity_changed
 signal enemy_being_syphoned
-
+signal started_feeding_little_brother
+signal done_feeding_little_brother
 # Game State signals
 
 signal end_day 

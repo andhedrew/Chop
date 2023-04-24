@@ -7,10 +7,12 @@ var facing = Enums.Facing.RIGHT
 @onready var animation_player := $AnimationPlayer
 @onready var effects_player := $EffectsPlayer
 var is_landing := false
-
+var feeding := false
 
 func _ready():
-	pass
+	GameEvents.started_feeding_little_brother.connect(_on_feeding_brother)
+	GameEvents.done_feeding_little_brother.connect(_on_cutscene_end)
+	GameEvents.end_day.connect(_on_end_of_day)
 
 func _physics_process(_delta):
 	
@@ -39,10 +41,11 @@ func _physics_process(_delta):
 				"Fall":  animation_player.play("fall_looking_up")
 				"Execute":  animation_player.play("execute")
 				"Cutscene": 
-					if !owner.is_on_floor():
-						animation_player.play("fall_looking_up")
-					else: 
-						animation_player.play("watch")
+					if feeding:
+						if !owner.is_on_floor():
+							animation_player.play("fall_looking_up")
+						else: 
+							animation_player.play("watch")
 		_: 
 
 			match owner.state:
@@ -64,10 +67,11 @@ func _physics_process(_delta):
 				"Fall":  animation_player.play("fall")
 				"Execute":  animation_player.play("execute")
 				"Cutscene": 
-					if !owner.is_on_floor():
-						animation_player.play("fall")
-					else: 
-						animation_player.play("watch")
+					if feeding:
+						if !owner.is_on_floor():
+							animation_player.play("fall_looking_up")
+						else: 
+							animation_player.play("watch")
 	
 	state_last_frame = owner.state
 
@@ -81,3 +85,21 @@ func _damage_effects(damage_amount):
 		effects_player.play("take_damage")
 	else:
 		effects_player.play("heal")
+
+
+func _on_end_of_day() -> void:
+	facing = Enums.Facing.LEFT
+	animation_player.play("stick_cleaver_in_ground")
+	await animation_player.animation_finished
+	animation_player.play("sit_on_cleaver")
+	await animation_player.animation_finished
+	await get_tree().create_timer(0.5).timeout
+	animation_player.play("sing")
+
+
+func _on_feeding_brother() -> void:
+	feeding = true
+
+
+func _on_cutscene_end() -> void:
+	feeding = false

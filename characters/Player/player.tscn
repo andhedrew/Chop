@@ -1,4 +1,4 @@
-[gd_scene load_steps=49 format=3 uid="uid://bwvi5m2prncxh"]
+[gd_scene load_steps=52 format=3 uid="uid://bwvi5m2prncxh"]
 
 [ext_resource type="Script" path="res://characters/player/player.gd" id="1_70au1"]
 [ext_resource type="Texture2D" uid="uid://d1go5siomhupw" path="res://user_interface/booster_ui2.png" id="3_56qk1"]
@@ -584,6 +584,91 @@ tracks/1/keys = {
 "values": [8]
 }
 
+[sub_resource type="Animation" id="Animation_b1pps"]
+resource_name = "stick_cleaver_in_ground"
+length = 0.7
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Body:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [90, 91, 92, 93, 94, 95, 96]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Weapon:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [90, 91, 92, 93, 94, 95, 96]
+}
+
+[sub_resource type="Animation" id="Animation_65ft0"]
+resource_name = "sit_on_cleaver"
+length = 0.7
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Body:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [100, 101, 102, 103, 104, 105, 106]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Weapon:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [100, 101, 102, 103, 104, 105, 106]
+}
+
+[sub_resource type="Animation" id="Animation_3aa0n"]
+resource_name = "sing"
+length = 0.6
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Body:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [109, 110]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Weapon:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [109, 110]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_jjl6a"]
 _data = {
 "attack": SubResource("Animation_ik58v"),
@@ -598,6 +683,9 @@ _data = {
 "jump_looking_up": SubResource("Animation_gcwru"),
 "landing": SubResource("Animation_6y3hw"),
 "landing_looking_up": SubResource("Animation_ssi18"),
+"sing": SubResource("Animation_3aa0n"),
+"sit_on_cleaver": SubResource("Animation_65ft0"),
+"stick_cleaver_in_ground": SubResource("Animation_b1pps"),
 "syphon": SubResource("Animation_5gmue"),
 "template": SubResource("Animation_w1cse"),
 "walk": SubResource("Animation_6pgq5"),
@@ -691,15 +779,15 @@ script = ExtResource("5_g27gf")
 position = Vector2(2, 1)
 texture = ExtResource("3_fpyci")
 hframes = 10
-vframes = 9
-frame = 40
+vframes = 12
+frame = 109
 
 [node name="Body" type="Sprite2D" parent="Pivot"]
 position = Vector2(2, 1)
 texture = ExtResource("4_xrcf8")
 hframes = 10
-vframes = 9
-frame = 40
+vframes = 12
+frame = 109
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Pivot"]
 libraries = {

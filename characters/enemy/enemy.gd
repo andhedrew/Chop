@@ -31,6 +31,7 @@ func _ready() -> void:
 	$Hurtbox.area_entered.connect(_take_damage)
 	GameEvents.player_started_syphoning.connect(_on_player_syphoning)
 	GameEvents.player_done_syphoning.connect(_on_player_done_syphoning)
+	GameEvents.end_day.connect(_on_end_of_day)
 	
 
 
@@ -140,3 +141,12 @@ func _on_player_syphoning(_player_pos) -> void:
 	if wounded:
 		$StateMachine.transition_to("Syphoned")
 
+func _on_end_of_day() -> void:
+	var particles = preload("res://vfx/despawn_particles.tscn").instantiate()
+	get_parent().add_child(particles)
+	particles.global_position = get_parent().position
+	particles.z_index = SortLayer.IN_FRONT
+	particles.emitting = true
+	$StateMachine.transition_to("Syphoned")
+	await get_tree().create_timer(0.3).timeout
+	queue_free()

@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=3 uid="uid://cf8s3hxbyvsv8"]
+[gd_scene load_steps=36 format=3 uid="uid://cf8s3hxbyvsv8"]
 
 [ext_resource type="Script" path="res://characters/little_brother/little_brother.gd" id="1_cpyu1"]
 [ext_resource type="Script" path="res://characters/little_brother/interact_with_lil_brother_zone.gd" id="2_sa06n"]
@@ -8,6 +8,7 @@
 [ext_resource type="Animation" uid="uid://dep0l7ft0tpjo" path="res://animations/take_damage.res" id="4_xkikf"]
 [ext_resource type="Texture2D" uid="uid://bi1hvekf7casi" path="res://characters/little_brother/little_brother.png" id="6_kyt5c"]
 [ext_resource type="PackedScene" uid="uid://c04c2gw5331a2" path="res://user_interface/hunger_bars.tscn" id="6_vtvk7"]
+[ext_resource type="Script" path="res://characters/little_brother/little_brother_animation_manager.gd" id="7_6uw8g"]
 [ext_resource type="Texture2D" uid="uid://7gh56l6f27dc" path="res://user_interface/full.png" id="7_sfybx"]
 
 [sub_resource type="Animation" id="Animation_2gfun"]
@@ -747,6 +748,7 @@ shape = SubResource("RectangleShape2D_x6vmq")
 debug_color = Color(0.94902, 0.0784314, 0.533333, 0.419608)
 
 [node name="Pivot" type="Marker2D" parent="."]
+script = ExtResource("7_6uw8g")
 
 [node name="Sprite2D" type="Sprite2D" parent="Pivot"]
 position = Vector2(6, -46)
