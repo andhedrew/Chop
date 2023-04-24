@@ -77,7 +77,9 @@ func _process(delta):
 		randf_range(-1, 1) * trauma, \
 		randf_range(-1, 1) * trauma \
 	))
-	rotation_degrees = randf_range(-max_r, max_r) * trauma
+#	rotation_degrees = position.x + randf_range(-max_r, max_r) * trauma
+	position.x = position.x + randf_range(-max_r, max_r) * trauma
+	position.y = position.y + randf_range(-max_r, max_r) * trauma
 	trauma = lerp(trauma, 0.0, 0.1)
 
 
@@ -86,12 +88,12 @@ func add_trauma(trauma_in):
 
 
 func SCREENSHAKE() -> void:
-	add_trauma(20)
+	add_trauma(0.2)
 
 
 func BIG_SCREENSHAKE() -> void:
 	await get_tree().create_timer(0.05).timeout
-	add_trauma(100)
+	add_trauma(3.0)
 
 
 func flash_screen(flash_time: float, flash_position: Vector2) -> void:
