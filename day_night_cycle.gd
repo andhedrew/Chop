@@ -1,7 +1,7 @@
 extends AnimationPlayer
 
 func _ready():
-	GameEvents.end_day.connect(_on_end_of_day)
+	GameEvents.evening_started.connect(_on_end_of_day)
 
 
 func _process(delta):

@@ -8,8 +8,6 @@ signal player_health_changed
 signal player_started_syphoning #Arg 1: player.global_position
 signal player_done_syphoning
 signal double_jump_refreshed
-signal cutscene_started
-signal cutscene_ended
 signal added_food_to_bag
 signal removed_food_from_bag
 signal charge_amount_changed
@@ -18,6 +16,14 @@ signal bag_capacity_changed
 signal enemy_being_syphoned
 signal started_feeding_little_brother
 signal done_feeding_little_brother
+
 # Game State signals
 
-signal end_day 
+signal cutscene_started
+signal cutscene_ended
+
+signal evening_started 
+signal evening_ended
+
+signal map_started
+

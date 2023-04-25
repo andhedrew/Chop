@@ -12,7 +12,7 @@ var feeding := false
 func _ready():
 	GameEvents.started_feeding_little_brother.connect(_on_feeding_brother)
 	GameEvents.done_feeding_little_brother.connect(_on_cutscene_end)
-	GameEvents.end_day.connect(_on_end_of_day)
+	GameEvents.evening_started.connect(_on_end_of_day)
 
 func _physics_process(_delta):
 	
@@ -95,6 +95,8 @@ func _on_end_of_day() -> void:
 	await animation_player.animation_finished
 	await get_tree().create_timer(0.5).timeout
 	animation_player.play("sing")
+	await get_tree().create_timer(3.0).timeout
+	GameEvents.evening_ended.emit()
 
 
 func _on_feeding_brother() -> void:

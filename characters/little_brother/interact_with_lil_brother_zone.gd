@@ -109,7 +109,7 @@ func _choose_emotion() -> void:
 
 func _sing_song():
 	GameEvents.cutscene_started.emit()
-	GameEvents.end_day.emit()
+	GameEvents.evening_started.emit()
 
 
 func _on_cutscene_started() -> void:

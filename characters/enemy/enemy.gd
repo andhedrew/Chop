@@ -31,7 +31,7 @@ func _ready() -> void:
 	$Hurtbox.area_entered.connect(_take_damage)
 	GameEvents.player_started_syphoning.connect(_on_player_syphoning)
 	GameEvents.player_done_syphoning.connect(_on_player_done_syphoning)
-	GameEvents.end_day.connect(_on_end_of_day)
+	GameEvents.evening_started.connect(_on_end_of_day)
 	
 
 

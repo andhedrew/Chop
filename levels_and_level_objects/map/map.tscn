@@ -1,0 +1,78 @@
+[gd_scene load_steps=9 format=3 uid="uid://b06gyuhub517b"]
+
+[ext_resource type="Script" path="res://map_manager.gd" id="1_pdu78"]
+[ext_resource type="Texture2D" uid="uid://no1np22mqjey" path="res://user_interface/map/map4.png" id="2_t55li"]
+[ext_resource type="Texture2D" uid="uid://uh54wtad4ivm" path="res://user_interface/map/map3.png" id="3_1qywo"]
+[ext_resource type="Texture2D" uid="uid://cax14ylt5wqg4" path="res://user_interface/map/map2.png" id="4_nv3b8"]
+[ext_resource type="Texture2D" uid="uid://sfqkcyk72bao" path="res://user_interface/map/map.png" id="5_lyjky"]
+
+[sub_resource type="Animation" id="Animation_v6rjy"]
+resource_name = "roll"
+length = 2.0
+step = 0.01
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Control/roll:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.9),
+"transitions": PackedFloat32Array(0.208823, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(575, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_3oms0"]
+_data = {
+"roll": SubResource("Animation_v6rjy")
+}
+
+[sub_resource type="Curve2D" id="Curve2D_8hath"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 158, 228, 0, 0, 0, 0, 199, 228, 0, 0, 0, 0, 242, 214, 0, 0, 0, 0, 264, 206, 0, 0, 0, 0, 302, 197, 0, 0, 0, 0, 349, 200, 0, 0, 0, 0, 398, 211, 0, 0, 0, 0, 426, 211, 0, 0, 0, 0, 474, 207)
+}
+point_count = 9
+
+[node name="Map" type="Node2D"]
+script = ExtResource("1_pdu78")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_3oms0")
+}
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="paper" type="TextureRect" parent="Control"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("2_t55li")
+
+[node name="map" type="TextureRect" parent="Control/paper"]
+layout_mode = 0
+offset_right = 639.0
+offset_bottom = 358.0
+texture = ExtResource("3_1qywo")
+
+[node name="Path2D" type="Path2D" parent="Control"]
+curve = SubResource("Curve2D_8hath")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Control/Path2D"]
+position = Vector2(158, 228)
+rotates = false
+
+[node name="Sprite2D" type="Sprite2D" parent="Control/Path2D/PathFollow2D"]
+position = Vector2(-4, -2)
+texture = ExtResource("4_nv3b8")
+
+[node name="roll" type="TextureRect" parent="Control"]
+layout_mode = 0
+offset_right = 639.006
+offset_bottom = 358.0
+texture = ExtResource("5_lyjky")
