@@ -12,11 +12,12 @@ func _ready():
 	GameEvents.cutscene_started.emit()
 	animation_player.play("roll")
 	GameEvents.map_started.connect(_setup)
+	$Control/Path2D/PathFollow2D.progress_ratio = SaveManager.load_item("map_pos")
 
 
 func _process(delta):
 	if !test:
-		GameEvents.map_started.emit(15.0, "res://levels_and_level_objects/level_scenes/city_level_2.tscn")
+		GameEvents.map_started.emit(3.0, "res://levels_and_level_objects/level_scenes/city_level_2.tscn")
 		test = true
 	
 	if move_pin:
@@ -24,17 +25,19 @@ func _process(delta):
 		if $Control/Path2D/PathFollow2D.progress_ratio+0.01 >= pos:
 			_end_scene()
 			move_pin = false
+			
 
 
 func _setup(new_position: float, next_scene: String) -> void:
 	target_position = new_position
 	new_scene = next_scene
-	pos = target_position/number_of_levels
+	pos = $Control/Path2D/PathFollow2D.progress_ratio + (target_position/number_of_levels)
 	await get_tree().create_timer(1.0).timeout
 	move_pin = true
 
 
 func _end_scene() -> void:
+	SaveManager.save_item("map_pos", $Control/Path2D/PathFollow2D.progress_ratio)
 	await get_tree().create_timer(0.5).timeout
 	Fade.crossfade_prepare(0.4, "ChopHorizontal")
 	get_tree().change_scene_to_file(new_scene)

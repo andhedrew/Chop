@@ -76,3 +76,8 @@ layout_mode = 0
 offset_right = 639.006
 offset_bottom = 358.0
 texture = ExtResource("5_lyjky")
+
+[node name="t" type="Sprite2D" parent="Control"]
+visible = false
+position = Vector2(593, 266)
+texture = ExtResource("5_lyjky")
