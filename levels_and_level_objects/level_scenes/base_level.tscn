@@ -1,4 +1,4 @@
-[gd_scene load_steps=49 format=3 uid="uid://dm85xjdq5mkk3"]
+[gd_scene load_steps=50 format=3 uid="uid://dm85xjdq5mkk3"]
 
 [ext_resource type="Script" path="res://levels_and_level_objects/level_scenes/world.gd" id="1_2owuw"]
 [ext_resource type="Script" path="res://day_night_cycle.gd" id="2_h45bf"]
@@ -37,6 +37,7 @@
 [ext_resource type="Shader" path="res://letterboxing.gdshader" id="35_yhlm4"]
 [ext_resource type="Script" path="res://letterboxes.gd" id="36_esgaj"]
 [ext_resource type="PackedScene" uid="uid://dky122sj0egps" path="res://user_interface/hud.tscn" id="37_kg8q0"]
+[ext_resource type="PackedScene" uid="uid://cl5wmh7hq8ul0" path="res://pickups/food_pickup.tscn" id="38_55tyk"]
 
 [sub_resource type="Animation" id="Animation_vp1kt"]
 resource_name = "day"
@@ -1248,6 +1249,9 @@ position = Vector2(345, 345)
 rotation = 2.26544
 scale = Vector2(4, 4)
 skew = 0.0383973
+
+[node name="food_pickup" parent="." instance=ExtResource("38_55tyk")]
+position = Vector2(-502, -63)
 
 [editable path="LittleBrother"]
 [editable path="LittleBrother/InteractZone/HungerBars"]

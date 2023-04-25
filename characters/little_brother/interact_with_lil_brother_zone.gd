@@ -24,7 +24,7 @@ func _ready():
 	$Particles3.emitting = false
 
 
-func _process(delta):
+func _process(_delta):
 	$Label.text = label_text
 	if player_in_zone and Input.is_action_just_pressed("ui_down") and owner.is_full:
 		_sing_song()

@@ -12,7 +12,7 @@ func _ready():
 	GameEvents.cutscene_ended.connect(_on_cutscene_end)
 	self.material.set_shader_parameter("squishedness", 0.0)
 
-func _process(delta):
+func _process(_delta):
 	if cutscene_running:
 		if squish_factor < maximum_squish_factor:
 			squish_factor += speed

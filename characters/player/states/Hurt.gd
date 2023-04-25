@@ -2,7 +2,7 @@ extends State
 
 var hitbox_position : Vector2
 var hurt_timer: SceneTreeTimer
-func enter(msg := {}) -> void:
+func enter(_msg := {}) -> void:
 	owner.animation_player.play("hurt")
 	owner.effects_player.play("fx/take_damage")
 	SoundPlayer.play_sound("player_voice_oof")

@@ -4,7 +4,7 @@ func _ready():
 	GameEvents.evening_started.connect(_on_end_of_day)
 
 
-func _process(delta):
+func _process(_delta):
 	if Input.is_action_just_pressed("1"):
 		play("sunrise")
 	if Input.is_action_just_pressed("2"):

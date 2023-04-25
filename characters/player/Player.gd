@@ -48,6 +48,8 @@ var knockback: Vector2
 func _ready():
 	hurtbox.area_entered.connect(_hurtbox_on_area_entered)
 	GameEvents.enemy_took_damage.connect(_on_enemy_taking_damage)
+	max_health = SaveManager.load_item("player_health")
+	health = max_health
 
 func _physics_process(delta):
 	if !set_ui:

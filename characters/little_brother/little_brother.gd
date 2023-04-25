@@ -42,7 +42,7 @@ func _on_end_of_day() -> void:
 	GameEvents.cutscene_started.emit()
 	Fade.crossfade_prepare(0.4, "ChopHorizontal")
 	get_tree().change_scene_to_file(next_level)
-	await Fade.crossfade_execute() 
+	Fade.crossfade_execute() 
 	GameEvents.cutscene_ended.emit()
 #func _on_hitbox_entered(hitbox) -> void:
 #	if hitbox is HitBox:
