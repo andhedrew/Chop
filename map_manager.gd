@@ -8,10 +8,12 @@ var pos := 0.0
 var target_position := 0.0
 var new_scene : String
 var move_pin := false
+
+
 func _ready():
 	GameEvents.cutscene_started.emit()
 	animation_player.play("roll")
-	GameEvents.map_started.connect(_setup)
+	GameEvents.map_started.connect(_setup) #pass position and next scene
 	$Control/Path2D/PathFollow2D.progress_ratio = SaveManager.load_item("map_pos")
 
 
@@ -32,6 +34,8 @@ func _setup(new_position: float, next_scene: String) -> void:
 	target_position = new_position
 	new_scene = next_scene
 	pos = $Control/Path2D/PathFollow2D.progress_ratio + (target_position/number_of_levels)
+	if pos > 1:
+		pos = 1
 	await get_tree().create_timer(1.0).timeout
 	move_pin = true
 

@@ -1,10 +1,5 @@
 extends CharacterBody2D
 
-@export var dream_image: Texture
-@export var map_position: int
-@export_file("*.tscn") var next_level
-
-
 @onready var brick_hunger_bar := $InteractZone/HungerBars/BrickHungerBar
 @onready var plant_hunger_bar := $InteractZone/HungerBars/PlantHungerBar
 @onready var meat_hunger_bar := $InteractZone/HungerBars/MeatHungerBar
@@ -15,7 +10,6 @@ var is_full := false
 func _ready():
 	z_index = SortLayer.PLAYER
 	GameEvents.evening_started.connect(_on_start_of_evening)
-	GameEvents.evening_ended.connect(_on_end_of_day)
 #	$Hurtbox.area_entered.connect(_on_hitbox_entered)
 
 func _process(_delta):
@@ -38,12 +32,6 @@ func _on_start_of_evening() -> void:
 
 
 
-func _on_end_of_day() -> void:
-	GameEvents.cutscene_started.emit()
-	Fade.crossfade_prepare(0.4, "ChopHorizontal")
-	get_tree().change_scene_to_file(next_level)
-	Fade.crossfade_execute() 
-	GameEvents.cutscene_ended.emit()
 #func _on_hitbox_entered(hitbox) -> void:
 #	if hitbox is HitBox:
 #		health -= 1

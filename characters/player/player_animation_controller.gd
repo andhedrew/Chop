@@ -89,13 +89,17 @@ func _damage_effects(damage_amount):
 
 func _on_end_of_day() -> void:
 	facing = Enums.Facing.LEFT
-	animation_player.play("stick_cleaver_in_ground")
-	await animation_player.animation_finished
+#	animation_player.play("stick_cleaver_in_ground")
+#	await animation_player.animation_finished
 	animation_player.play("sit_on_cleaver")
 	await animation_player.animation_finished
 	await get_tree().create_timer(0.5).timeout
 	animation_player.play("sing")
-	await get_tree().create_timer(3.0).timeout
+#	await get_tree().create_timer(12.0).timeout
+	# Play song
+	# play night music ambient noise
+	animation_player.play("sleep")
+#	await get_tree().create_timer(3.0).timeout
 	GameEvents.evening_ended.emit()
 
 
