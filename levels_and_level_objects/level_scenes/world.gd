@@ -20,6 +20,7 @@ func _process(_delta):
 
 func _on_evening_ended() -> void:
 	var dream := preload("res://levels_and_level_objects/dream/dream.tscn").instantiate()
+	dream.get_node("Dream/Sprite2D").texture = dream_image
 	add_child(dream)
 
 
