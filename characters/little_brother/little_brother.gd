@@ -12,8 +12,11 @@ var state := Enums.State.IDLE
 func _ready():
 	z_index = SortLayer.PLAYER
 	GameEvents.evening_started.connect(_on_start_of_evening)
-	
+	state = Enums.State.MOVE
+	await get_tree().create_timer(2).timeout
 #	$Hurtbox.area_entered.connect(_on_hitbox_entered)
+	state = Enums.State.IDLE
+
 
 func _process(_delta):
 	var brick_full = brick_hunger_bar.value == brick_hunger_bar.max_value
@@ -24,7 +27,7 @@ func _process(_delta):
 		_on_is_full()
 	
 	if state == Enums.State.MOVE:
-		position.x += 0.3
+		position.x += 0.5
 
 
 func _on_is_full() -> void:
@@ -36,7 +39,6 @@ func _on_is_full() -> void:
 func _on_start_of_evening() -> void:
 	$FullMessage.visible = false
 	
-
 
 
 

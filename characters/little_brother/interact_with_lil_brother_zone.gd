@@ -85,6 +85,8 @@ func _generate_food(player) -> void:
 				
 				var pickup := preload("res://pickups/food_pickup.tscn").instantiate()
 				pickup.setup(item)
+				owner.get_node("BeakCollider").disabled = true
+				owner.get_node("HeadCollider").disabled = true
 				get_node("/root/World").call_deferred("add_child", pickup)
 				pickup.sort_layer = SortLayer.BACKGROUND
 				pickup.position = $FoodSpawn.global_position
@@ -95,7 +97,9 @@ func _generate_food(player) -> void:
 				plant_hunger_bar.value += pickup.plant_value
 				meat_hunger_bar.value += pickup.meat_value
 				await get_tree().create_timer(0.3).timeout
-
+				
+		owner.get_node("BeakCollider").disabled = false
+		owner.get_node("HeadCollider").disabled = false
 		player.bag = []
 		await get_tree().create_timer(1.0).timeout
 		GameEvents.done_feeding_little_brother.emit()

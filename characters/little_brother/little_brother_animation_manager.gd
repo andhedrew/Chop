@@ -6,9 +6,21 @@ extends Marker2D
 func _ready():
 	animation_player.play("idle")
 	GameEvents.started_feeding_little_brother.connect(_on_feeding)
-	GameEvents.done_feeding_little_brother.connect(_on_done_feeding)
+#	GameEvents.done_feeding_little_brother.connect(_on_done_feeding)
 	GameEvents.evening_started.connect(_on_evening_start)
 	GameEvents.morning_started.connect(_on_start_of_day)
+	GameEvents.cutscene_started.connect(_on_cutscene_start)
+	GameEvents.cutscene_ended.connect(_on_cutscene_end)
+
+
+func _process(delta):
+	match owner.state:
+		Enums.State.MOVE:
+			animation_player.play("walk")
+		Enums.State.IDLE:
+			animation_player.play("idle")
+		Enums.State.PLAYER_ON_BEAK:
+			animation_player.play("player_on_beak")
 
 
 
@@ -16,9 +28,9 @@ func _on_feeding() -> void:
 	animation_player.play("eat")
 
 
-
-func _on_done_feeding() -> void:
-	animation_player.play("idle")
+#
+#func _on_done_feeding() -> void:
+#	owner.state = Enums.State.IDLE
 
 
 func _on_evening_start() -> void:
@@ -31,6 +43,11 @@ func _on_evening_start() -> void:
 func _on_start_of_day() -> void:
 	animation_player.play("wake")
 	await get_tree().create_timer(3.0).timeout
-	animation_player.play("walk")
 	owner.state = Enums.State.MOVE
-	
+
+
+func _on_cutscene_start() -> void:
+	owner.state = Enums.State.CUTSCENE
+
+func _on_cutscene_end() -> void:
+	owner.state = Enums.State.IDLE

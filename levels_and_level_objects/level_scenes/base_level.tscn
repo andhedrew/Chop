@@ -901,7 +901,7 @@ libraries = {
 script = ExtResource("2_h45bf")
 
 [node name="Player" parent="." node_paths=PackedStringArray("camera") instance=ExtResource("31_fx83i")]
-position = Vector2(-576, -32)
+position = Vector2(-657, -113)
 collision_mask = 3
 camera = NodePath("../Camera")
 
@@ -1167,7 +1167,7 @@ position = Vector2(1384, -72)
 texture = ExtResource("23_mvdwt")
 
 [node name="LittleBrother" parent="." instance=ExtResource("32_hyjhu")]
-position = Vector2(-632, -32)
+position = Vector2(-666, -32)
 
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = SubResource("TileSet_4pe8b")
