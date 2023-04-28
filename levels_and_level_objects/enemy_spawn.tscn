@@ -5,3 +5,11 @@
 [node name="EnemySpawn" type="Marker2D"]
 position = Vector2(-464, -40)
 script = ExtResource("1_mu8be")
+
+[node name="ActiveLabel" type="Label" parent="."]
+visible = false
+offset_left = -16.0
+offset_top = -48.0
+offset_right = 24.0
+offset_bottom = -25.0
+text = "test"

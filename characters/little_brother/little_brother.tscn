@@ -661,6 +661,7 @@ script = ExtResource("1_cpyu1")
 
 [node name="InteractZone" type="Area2D" parent="."]
 collision_mask = 2
+monitorable = false
 script = ExtResource("2_sa06n")
 
 [node name="FadeAnimations" type="AnimationPlayer" parent="InteractZone"]
@@ -755,7 +756,7 @@ position = Vector2(6, -46)
 texture = ExtResource("6_kyt5c")
 hframes = 10
 vframes = 6
-frame = 21
+frame = 40
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Pivot"]
 root_node = NodePath("../..")

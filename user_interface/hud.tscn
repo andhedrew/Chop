@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://dky122sj0egps"]
+[gd_scene load_steps=14 format=3 uid="uid://dky122sj0egps"]
 
 [ext_resource type="Script" path="res://user_interface/health bar/health_bar.gd" id="1_ng2i2"]
 [ext_resource type="Texture2D" uid="uid://xoihsb8asqow" path="res://user_interface/health bar/full_heart.png" id="2_1g7ej"]
@@ -6,23 +6,10 @@
 [ext_resource type="Texture2D" uid="uid://chg85ipph4ctc" path="res://user_interface/bag/bag1.png" id="6_17etw"]
 [ext_resource type="PackedScene" uid="uid://c04c2gw5331a2" path="res://user_interface/hunger_bars.tscn" id="6_mejh2"]
 [ext_resource type="Texture2D" uid="uid://bgd7tn3n8a8eb" path="res://user_interface/bag/bag2.png" id="7_4luk0"]
+[ext_resource type="Texture2D" uid="uid://dtqifieelo0lf" path="res://user_interface/coin.png" id="8_8656r"]
 [ext_resource type="Texture2D" uid="uid://b7f5noq4ievao" path="res://user_interface/bag/bag3.png" id="8_o3x7d"]
-
-[sub_resource type="Animation" id="Animation_oajqu"]
-resource_name = "fade_out"
-length = 0.5
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("UI/VBoxContainer:modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.4),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
-}
+[ext_resource type="Theme" uid="uid://b0dhfhdkknaj3" path="res://user_interface/chop_theme.tres" id="9_4qqds"]
+[ext_resource type="FontFile" uid="uid://bpybjwc1pwvp4" path="res://user_interface/fonts/Silver.ttf" id="10_6h1o1"]
 
 [sub_resource type="Animation" id="Animation_i45vy"]
 resource_name = "fade_in"
@@ -38,6 +25,22 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_oajqu"]
+resource_name = "fade_out"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("UI/VBoxContainer:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_lv2iv"]
@@ -155,5 +158,23 @@ texture_progress = ExtResource("8_o3x7d")
 
 [node name="HungerBars" parent="CanvasLayer/UI/VBoxContainer/Bag" instance=ExtResource("6_mejh2")]
 layout_mode = 2
+
+[node name="MoneyCounter" type="HBoxContainer" parent="CanvasLayer/UI/VBoxContainer"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/UI/VBoxContainer/MoneyCounter"]
+layout_mode = 2
+size_flags_vertical = 0
+texture = ExtResource("8_8656r")
+stretch_mode = 3
+
+[node name="Label" type="Label" parent="CanvasLayer/UI/VBoxContainer/MoneyCounter"]
+layout_mode = 2
+size_flags_horizontal = 0
+theme = ExtResource("9_4qqds")
+theme_override_fonts/font = ExtResource("10_6h1o1")
+theme_override_font_sizes/font_size = 16
+text = "524"
+vertical_alignment = 1
 
 [editable path="CanvasLayer/UI/VBoxContainer/Bag/HungerBars"]

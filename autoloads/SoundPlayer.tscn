@@ -7,6 +7,8 @@ script = ExtResource("1_h2b64")
 
 [node name="AudioPlayers" type="Node" parent="."]
 
+[node name="AmbientSoundPlayers" type="Node" parent="."]
+
 [node name="MusicPlayers" type="Node" parent="."]
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="MusicPlayers"]

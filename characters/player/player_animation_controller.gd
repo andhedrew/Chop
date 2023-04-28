@@ -13,6 +13,7 @@ func _ready():
 	GameEvents.started_feeding_little_brother.connect(_on_feeding_brother)
 	GameEvents.done_feeding_little_brother.connect(_on_cutscene_end)
 	GameEvents.evening_started.connect(_on_end_of_day)
+	GameEvents.morning_started.connect(_on_start_of_day)
 
 func _physics_process(_delta):
 	
@@ -88,19 +89,29 @@ func _damage_effects(damage_amount):
 
 
 func _on_end_of_day() -> void:
+	
 	facing = Enums.Facing.LEFT
-#	animation_player.play("stick_cleaver_in_ground")
-#	await animation_player.animation_finished
+	animation_player.play("stick_cleaver_in_ground")
+	SoundPlayer.play_sound("swoosh")
+	SoundPlayer.play_sound("stab1")
+	await animation_player.animation_finished
+	SoundPlayer.play_music("lull")
 	animation_player.play("sit_on_cleaver")
 	await animation_player.animation_finished
 	await get_tree().create_timer(0.5).timeout
 	animation_player.play("sing")
-#	await get_tree().create_timer(12.0).timeout
-	# Play song
-	# play night music ambient noise
+	await get_tree().create_timer(10.0).timeout
+	
 	animation_player.play("sleep")
-#	await get_tree().create_timer(3.0).timeout
+	await get_tree().create_timer(3.0).timeout
 	GameEvents.evening_ended.emit()
+
+
+func _on_start_of_day() -> void:
+	animation_player.play("wake_up")
+	await animation_player.animation_finished
+	animation_player.play_backwards("sit_on_cleaver")
+	await animation_player.animation_finished
 
 
 func _on_feeding_brother() -> void:

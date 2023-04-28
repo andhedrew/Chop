@@ -12,7 +12,7 @@ const jump_height = -200.0
 var invulnerable := false
 var max_health := 6
 var health := max_health
-
+var money := 0
 
 var facing := Enums.Facing.RIGHT
 var looking := Enums.Looking.FORWARD
@@ -28,6 +28,7 @@ var state_last_frame := state
 
 var bag := []
 var bag_capacity := 15
+var has_booster_upgrade := false
 var torch_charges := 3
 var max_torch_charges := torch_charges
 var charge_time := 2.0
@@ -35,6 +36,8 @@ var charge_timer := charge_time
 var execute_disabled := false
 
 var set_ui := false
+
+var cutscene_walk := false
 
 @onready var hurtbox := $Hurtbox
 @onready var animation_player := $Pivot/AnimationPlayer
@@ -48,8 +51,21 @@ var knockback: Vector2
 func _ready():
 	hurtbox.area_entered.connect(_hurtbox_on_area_entered)
 	GameEvents.enemy_took_damage.connect(_on_enemy_taking_damage)
+	GameEvents.morning_started.connect(_on_morning_start)
+	
 	max_health = SaveManager.load_item("player_health")
 	health = max_health
+	
+	var bag_size = SaveManager.load_item("bag_size")
+	if bag_size != null:
+		bag_capacity = bag_size
+	
+	var money_amt = SaveManager.load_item("bag_size")
+	if money_amt != null:
+		money = money_amt
+
+	has_booster_upgrade = SaveManager.load_item("booster_upgrade")
+	
 
 func _physics_process(delta):
 	if !set_ui:
@@ -71,6 +87,9 @@ func _physics_process(delta):
 				SoundPlayer.play_sound("pickup_2")
 				charge_time = charge_timer
 				GameEvents.charge_amount_changed.emit(torch_charges, max_torch_charges)
+	
+	if cutscene_walk:
+		position.x += 1
 
 
 func _set_debug_labels() -> void:
@@ -143,3 +162,12 @@ func _on_enemy_taking_damage() -> void:
 		SoundPlayer.play_sound("pickup_2")
 		torch_charges += 1
 		GameEvents.charge_amount_changed.emit(torch_charges, max_torch_charges)
+
+
+func _on_morning_start() -> void:
+	await get_tree().create_timer(4.0).timeout
+	$StateMachine.transition_to("Cutscene")
+	facing = Enums.Facing.RIGHT
+	$Pivot.transform.x.x = 1
+	$Pivot.animation_player.play("walk")
+	cutscene_walk = true

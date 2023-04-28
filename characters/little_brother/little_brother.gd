@@ -7,9 +7,12 @@ extends CharacterBody2D
 
 var is_full := false
 
+var state := Enums.State.IDLE
+
 func _ready():
 	z_index = SortLayer.PLAYER
 	GameEvents.evening_started.connect(_on_start_of_evening)
+	
 #	$Hurtbox.area_entered.connect(_on_hitbox_entered)
 
 func _process(_delta):
@@ -19,6 +22,9 @@ func _process(_delta):
 	
 	if brick_full and plant_full and meat_full and not is_full:
 		_on_is_full()
+	
+	if state == Enums.State.MOVE:
+		position.x += 0.3
 
 
 func _on_is_full() -> void:
@@ -29,6 +35,8 @@ func _on_is_full() -> void:
 
 func _on_start_of_evening() -> void:
 	$FullMessage.visible = false
+	
+
 
 
 

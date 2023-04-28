@@ -1,0 +1,38 @@
+[gd_scene load_steps=8 format=3 uid="uid://bp1trhdcesbwc"]
+
+[ext_resource type="Theme" uid="uid://b0dhfhdkknaj3" path="res://user_interface/chop_theme.tres" id="1_l0vya"]
+[ext_resource type="Script" path="res://user_interface/new_day_ui.gd" id="1_wnnwh"]
+
+[sub_resource type="InputEventKey" id="InputEventKey_46b7x"]
+keycode = 4194309
+
+[sub_resource type="InputEventKey" id="InputEventKey_kqep1"]
+keycode = 32
+
+[sub_resource type="InputEventKey" id="InputEventKey_ow7uj"]
+device = -1
+keycode = 88
+unicode = 120
+
+[sub_resource type="InputEventKey" id="InputEventKey_xlfg1"]
+device = -1
+keycode = 90
+unicode = 122
+
+[sub_resource type="Shortcut" id="Shortcut_t7r2c"]
+events = [SubResource("InputEventKey_46b7x"), SubResource("InputEventKey_kqep1"), SubResource("InputEventKey_ow7uj"), SubResource("InputEventKey_xlfg1")]
+
+[node name="new_day_ui" type="CanvasLayer"]
+script = ExtResource("1_wnnwh")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Button" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme = ExtResource("1_l0vya")
+shortcut = SubResource("Shortcut_t7r2c")
+text = "Travel On"

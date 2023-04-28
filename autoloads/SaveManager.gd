@@ -16,9 +16,9 @@ func setup_json() -> void:
 	var save_data := {
 		"level" : "res://levels_and_level_objects/level_scenes/city_level_1.tscn",
 		"map_pos" : 0.0,
-		"player_health" : 3,
-		"player_cash" : 0,
-		"player_bag_size" : 15,
+		"health" : 3,
+		"money" : 0,
+		"bag_size" : 15,
 		"booster_upgrade" : false,
 		"booster_charges" : 3,
 		"syphon_upgrade" : false,

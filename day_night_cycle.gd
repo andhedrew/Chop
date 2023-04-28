@@ -2,6 +2,7 @@ extends AnimationPlayer
 
 func _ready():
 	GameEvents.evening_started.connect(_on_end_of_day)
+	GameEvents.morning_started.connect(_on_start_of_day)
 
 
 func _process(_delta):
@@ -18,5 +19,15 @@ func _process(_delta):
 func _on_end_of_day() -> void:
 	await get_tree().create_timer(5.0).timeout
 	play("sunset")
+	SoundPlayer.play_ambient("cricket")
 	await animation_finished
 	play("night")
+
+
+
+func _on_start_of_day() -> void:
+	await get_tree().create_timer(5.0).timeout
+	play("sunrise")
+	SoundPlayer.play_ambient("bird")
+	await animation_finished
+	play("day")

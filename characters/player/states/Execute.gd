@@ -38,7 +38,7 @@ func physics_update(delta: float) -> void:
 	else: 
 		state_machine.transition_to("Fall")
 	
-	if Input.is_action_just_pressed("dash"):
+	if Input.is_action_just_pressed("dash") and owner.has_booster_upgrade:
 		state_machine.transition_to("Dash")
 
 

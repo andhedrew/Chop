@@ -25,5 +25,8 @@ signal cutscene_ended
 signal evening_started 
 signal evening_ended
 
+signal transition_to_map
 signal map_started
+
+signal morning_started
 

@@ -15,3 +15,5 @@ extends Node
 #rev https://freesound.org/people/Henaway/sounds/127980/
 #moter dies https://freesound.org/people/lonemonk/sounds/123686/
 #backfiring vehicle https://freesound.org/people/nsstudios/sounds/351738/
+#crickets https://freesound.org/people/joanaseabra/sounds/424871/
+#birdsong ambient https://freesound.org/people/SamsterBirdies/sounds/639985/

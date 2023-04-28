@@ -31,6 +31,8 @@ var dashing := false
 var setup_letterbox := false
 var letterbox_bar_1
 var letterbox_bar_2
+
+var freeze_camera := false
  
 func _ready():
 	noise.noise_type =  FastNoiseLite.TYPE_SIMPLEX
@@ -40,47 +42,48 @@ func _ready():
 	GameEvents.player_done_syphoning.connect(_on_player_done_syphoning)
 	GameEvents.cutscene_started.connect(_on_cutscene_start)
 	GameEvents.cutscene_ended.connect(_on_cutscene_end)
+	GameEvents.morning_started.connect(_on_morning_start)
 	set_camera_limits()
 
 
 func _process(delta):
-	if cutscene_running:
-		x_target_lead = lerp(x_target_lead, x_cutscene_lead, lerpspeed*3)
-	else:
-		x_target_lead = lerp(x_target_lead, x_lead, lerpspeed)
-	y_target_lead = lerp(y_target_lead, y_lead, lerpspeed)
-	target_node = get_node(target)
-	position = lerp(position, Vector2(target_node.position.x+x_target_lead, target_node.position.y+y_target_lead), lerpspeed)
+	if !freeze_camera:
+		if cutscene_running:
+			x_target_lead = lerp(x_target_lead, x_cutscene_lead, lerpspeed*3)
+		else:
+			x_target_lead = lerp(x_target_lead, x_lead, lerpspeed)
+		y_target_lead = lerp(y_target_lead, y_lead, lerpspeed)
+		target_node = get_node(target)
+		position = lerp(position, Vector2(target_node.position.x+x_target_lead, target_node.position.y+y_target_lead), lerpspeed)
 
-	time += delta
-	
-	if !dashing:
-		var look_direction = Vector2(Input.get_axis("right", "left"), Input.get_axis("down", "up")).normalized()
+		time += delta
+		
+		if !dashing:
+			var look_direction = Vector2(Input.get_axis("right", "left"), Input.get_axis("down", "up")).normalized()
 
-		if look_direction.x > 0:
-			x_lead = -x_lead_amount
-		elif look_direction.x < 0:
-			x_lead = x_lead_amount
-		y_lead = y_lead_amount
-	else:
-		var look_direction = Vector2(Input.get_axis("right", "left"), Input.get_axis("down", "up")).normalized()
+			if look_direction.x > 0:
+				x_lead = -x_lead_amount
+			elif look_direction.x < 0:
+				x_lead = x_lead_amount
+			y_lead = y_lead_amount
+		else:
+			var look_direction = Vector2(Input.get_axis("right", "left"), Input.get_axis("down", "up")).normalized()
 
-		if look_direction.x > 0:
-			x_lead = -x_lead_amount
-		elif look_direction.x < 0:
-			x_lead = x_lead_amount
+			if look_direction.x > 0:
+				x_lead = -x_lead_amount
+			elif look_direction.x < 0:
+				x_lead = x_lead_amount
 
-		y_lead = 0
+			y_lead = 0
 
 
-	set_offset(Vector2( \
-		randf_range(-1, 1) * trauma, \
-		randf_range(-1, 1) * trauma \
-	))
-#	rotation_degrees = position.x + randf_range(-max_r, max_r) * trauma
-	position.x = position.x + randf_range(-max_r, max_r) * trauma
-	position.y = position.y + randf_range(-max_r, max_r) * trauma
-	trauma = lerp(trauma, 0.0, 0.1)
+		set_offset(Vector2( \
+			randf_range(-1, 1) * trauma, \
+			randf_range(-1, 1) * trauma \
+		))
+		position.x = position.x + randf_range(-max_r, max_r) * trauma
+		position.y = position.y + randf_range(-max_r, max_r) * trauma
+		trauma = lerp(trauma, 0.0, 0.1)
 
 
 func add_trauma(trauma_in):
@@ -134,3 +137,7 @@ func _on_cutscene_start() -> void:
 
 func _on_cutscene_end() -> void:
 	cutscene_running = false
+
+
+func _on_morning_start() -> void:
+	freeze_camera = true

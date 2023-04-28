@@ -2,6 +2,7 @@ extends Node
 
 
 @onready var audio_players := $AudioPlayers
+@onready var ambient_players := $AmbientSoundPlayers
 @onready var music_players := $MusicPlayers
 @onready var positional_audio_players := $PositionalAudioPlayers
 
@@ -18,9 +19,33 @@ func play_sound(sound: Variant) -> AudioStreamPlayer:
 		audio_stream_player.stream = sound
 	audio_stream_player.play()
 	return audio_stream_player
-	
-	
 
+
+func play_ambient(sound: Variant) -> AudioStreamPlayer:
+	var old_player = null
+	var old_player_tween = null
+	if ambient_players.get_child_count() > 0:
+		old_player = ambient_players.get_child(0)
+		old_player_tween = get_tree().create_tween()
+		old_player_tween.tween_property(old_player, "volume_db", -80, 5.0)
+		old_player_tween.play()
+	var audio_stream_player = preload("res://audio/audio.tscn").instantiate()
+	ambient_players.add_child(audio_stream_player)
+	if sound is String:
+		audio_stream_player.stream = load("res://audio/ambient/"+ sound +".wav")
+	elif sound is AudioStreamWAV:
+		audio_stream_player.stream = sound
+	# Fade in the sound
+	var tween = get_tree().create_tween()
+	audio_stream_player.set_volume_db(-80)
+	audio_stream_player.play()
+	tween.tween_property(audio_stream_player, "volume_db", -30, 5.0)
+	tween.play()
+	if old_player:
+		await old_player_tween.finished
+		old_player.queue_free()
+	return audio_stream_player
+	
 
 func play_music(sound: String) -> AudioStreamPlayer:
 	for audio_stream_player in music_players.get_children():

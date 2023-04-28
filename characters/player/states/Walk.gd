@@ -9,8 +9,6 @@ func enter(_msg := {}) -> void:
 
 
 func physics_update(delta: float) -> void:
-
-
 	var input_direction_x: float = (
 		Input.get_action_strength("right")
 		- Input.get_action_strength("left")
@@ -35,5 +33,5 @@ func physics_update(delta: float) -> void:
 		coyote_timer.start()
 		state_machine.transition_to("Fall")
 	
-	if Input.is_action_just_pressed("dash"):
+	if Input.is_action_just_pressed("dash") and owner.has_booster_upgrade:
 		state_machine.transition_to("Dash")

@@ -16,6 +16,7 @@ func _ready():
 	self.body_entered.connect(_on_player_entered)
 	self.body_exited.connect(_on_player_exited)
 	GameEvents.cutscene_started.connect(_on_cutscene_started)
+	GameEvents.cutscene_ended.connect(_on_cutscene_ended)
 	brick_hunger_bar.max_value = 12
 	plant_hunger_bar.max_value = 12
 	meat_hunger_bar.max_value = 12
@@ -113,6 +114,7 @@ func _sing_song():
 
 
 func _on_cutscene_started() -> void:
+	monitoring = false
 	$Particles1.emitting = false
 	$Particles2.emitting = false
 	$Particles3.emitting = false
@@ -120,3 +122,7 @@ func _on_cutscene_started() -> void:
 		fade_animation_player.play("fade_out_food")
 	else:
 		fade_animation_player.play("fade_out")
+
+
+func _on_cutscene_ended() -> void:
+	monitoring = true

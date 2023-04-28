@@ -1,8 +1,8 @@
-[gd_scene load_steps=51 format=3 uid="uid://dm85xjdq5mkk3"]
+[gd_scene load_steps=53 format=3 uid="uid://dm85xjdq5mkk3"]
 
 [ext_resource type="Script" path="res://levels_and_level_objects/level_scenes/world.gd" id="1_2owuw"]
+[ext_resource type="Texture2D" uid="uid://cnlnu7f5pipb8" path="res://levels_and_level_objects/dream/dream_2.png" id="2_36ia8"]
 [ext_resource type="Script" path="res://day_night_cycle.gd" id="2_h45bf"]
-[ext_resource type="Texture2D" uid="uid://1e4ocu0ypf2p" path="res://levels_and_level_objects/dream/dream_4.png" id="2_yc5p5"]
 [ext_resource type="Texture2D" uid="uid://dwyxrunm7hkj6" path="res://levels_and_level_objects/backgrounds/bg_layer_3/bg_layer_far.png" id="3_j3wag"]
 [ext_resource type="Texture2D" uid="uid://b2bd8m23lp011" path="res://levels_and_level_objects/backgrounds/bg_layer_2/bg_layer_med_1.png" id="4_4bxbs"]
 [ext_resource type="Texture2D" uid="uid://cn1xf5s341dxy" path="res://levels_and_level_objects/backgrounds/bg_layer_2/bg_layer_med_2.png" id="5_5y666"]
@@ -39,6 +39,8 @@
 [ext_resource type="Script" path="res://letterboxes.gd" id="36_esgaj"]
 [ext_resource type="PackedScene" uid="uid://dky122sj0egps" path="res://user_interface/hud.tscn" id="37_kg8q0"]
 [ext_resource type="PackedScene" uid="uid://cl5wmh7hq8ul0" path="res://pickups/food_pickup.tscn" id="38_55tyk"]
+[ext_resource type="PackedScene" uid="uid://23cc1xm0v5jp" path="res://characters/enemy/enemy_walker.tscn" id="40_78578"]
+[ext_resource type="PackedScene" uid="uid://c61py6hgvk4e5" path="res://levels_and_level_objects/enemy_spawn.tscn" id="40_sm1yr"]
 
 [sub_resource type="Animation" id="Animation_vp1kt"]
 resource_name = "day"
@@ -888,10 +890,9 @@ shader_parameter/squishedness = 0.0
 
 [node name="World" type="Node2D" node_paths=PackedStringArray("camera")]
 script = ExtResource("1_2owuw")
-dream_image = ExtResource("2_yc5p5")
+dream_image = ExtResource("2_36ia8")
+next_level = "res://levels_and_level_objects/level_scenes/city_level_1.tscn"
 camera = NodePath("Camera")
-
-[node name="CutscenePlayer" type="AnimationPlayer" parent="."]
 
 [node name="DayCyclePlayer" type="AnimationPlayer" parent="."]
 libraries = {
@@ -920,6 +921,7 @@ scroll_offset = Vector2(1, 1)
 [node name="ParallaxLayer" type="ParallaxLayer" parent="Stars"]
 
 [node name="Stars" type="GPUParticles2D" parent="Stars/ParallaxLayer"]
+visible = false
 z_index = -4096
 position = Vector2(-570, -113)
 amount = 700
@@ -1188,6 +1190,10 @@ script = ExtResource("36_esgaj")
 
 [node name="food_pickup" parent="." instance=ExtResource("38_55tyk")]
 position = Vector2(-502, -63)
+
+[node name="EnemySpawn" parent="." instance=ExtResource("40_sm1yr")]
+position = Vector2(-434, -33)
+spawn = ExtResource("40_78578")
 
 [editable path="LittleBrother"]
 [editable path="LittleBrother/InteractZone/HungerBars"]
