@@ -11,13 +11,15 @@ func _ready():
 	$Area2D.body_entered.connect(_on_body_entered)
 	$SlowPickupTimer.start()
 
+
 func _physics_process(delta):
 	if !is_on_floor():
 		velocity.y += Param.GRAVITY*delta
 		velocity.y = min(velocity.y, max_fall_speed)
 	else:
 		velocity.y = 0
-		apply_friction()
+
+	apply_friction()
 	move_and_collide(velocity)
 
 

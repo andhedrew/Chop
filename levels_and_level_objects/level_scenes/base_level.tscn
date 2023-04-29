@@ -1,4 +1,4 @@
-[gd_scene load_steps=53 format=3 uid="uid://dm85xjdq5mkk3"]
+[gd_scene load_steps=54 format=3 uid="uid://dm85xjdq5mkk3"]
 
 [ext_resource type="Script" path="res://levels_and_level_objects/level_scenes/world.gd" id="1_2owuw"]
 [ext_resource type="Texture2D" uid="uid://cnlnu7f5pipb8" path="res://levels_and_level_objects/dream/dream_2.png" id="2_36ia8"]
@@ -39,8 +39,9 @@
 [ext_resource type="Script" path="res://letterboxes.gd" id="36_esgaj"]
 [ext_resource type="PackedScene" uid="uid://dky122sj0egps" path="res://user_interface/hud.tscn" id="37_kg8q0"]
 [ext_resource type="PackedScene" uid="uid://cl5wmh7hq8ul0" path="res://pickups/food_pickup.tscn" id="38_55tyk"]
-[ext_resource type="PackedScene" uid="uid://23cc1xm0v5jp" path="res://characters/enemy/enemy_walker.tscn" id="40_78578"]
 [ext_resource type="PackedScene" uid="uid://c61py6hgvk4e5" path="res://levels_and_level_objects/enemy_spawn.tscn" id="40_sm1yr"]
+[ext_resource type="PackedScene" uid="uid://boakvecc6j1ta" path="res://characters/enemy/paroot/paroot.tscn" id="41_nepwt"]
+[ext_resource type="PackedScene" uid="uid://duq3hbv7istwg" path="res://pickups/coin_pickup.tscn" id="42_lhqe7"]
 
 [sub_resource type="Animation" id="Animation_vp1kt"]
 resource_name = "day"
@@ -891,6 +892,7 @@ shader_parameter/squishedness = 0.0
 [node name="World" type="Node2D" node_paths=PackedStringArray("camera")]
 script = ExtResource("1_2owuw")
 dream_image = ExtResource("2_36ia8")
+map_position = 20.0
 next_level = "res://levels_and_level_objects/level_scenes/city_level_1.tscn"
 camera = NodePath("Camera")
 
@@ -1193,7 +1195,19 @@ position = Vector2(-502, -63)
 
 [node name="EnemySpawn" parent="." instance=ExtResource("40_sm1yr")]
 position = Vector2(-434, -33)
-spawn = ExtResource("40_78578")
+spawn = ExtResource("41_nepwt")
+
+[node name="CoinPickup" parent="." instance=ExtResource("42_lhqe7")]
+position = Vector2(-368, -102)
+collision_mask = 33
+
+[node name="CoinPickup2" parent="." instance=ExtResource("42_lhqe7")]
+position = Vector2(-371, -143)
+collision_mask = 33
+
+[node name="CoinPickup3" parent="." instance=ExtResource("42_lhqe7")]
+position = Vector2(-360, -122)
+collision_mask = 33
 
 [editable path="LittleBrother"]
 [editable path="LittleBrother/InteractZone/HungerBars"]

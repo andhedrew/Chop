@@ -586,6 +586,23 @@ tracks/0/keys = {
 "values": [0, 1]
 }
 
+[sub_resource type="Animation" id="Animation_os7um"]
+resource_name = "player_on_beak"
+length = 5.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Pivot/Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 3.6, 3.8),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [50, 51, 50]
+}
+
 [sub_resource type="Animation" id="Animation_dayhp"]
 resource_name = "sleep"
 length = 0.9
@@ -634,23 +651,6 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 1,
 "values": [10, 11, 12, 13]
-}
-
-[sub_resource type="Animation" id="Animation_os7um"]
-resource_name = "player_on_beak"
-length = 5.0
-loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Pivot/Sprite2D:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 3.6, 3.8),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 1,
-"values": [50, 51, 50]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_mouf5"]

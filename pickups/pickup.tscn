@@ -3,8 +3,9 @@
 [ext_resource type="Script" path="res://pickups/pickup.gd" id="1_4dihh"]
 [ext_resource type="Texture2D" uid="uid://xoihsb8asqow" path="res://user_interface/health bar/full_heart.png" id="2_vhtev"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_tdnsw"]
-size = Vector2(23, 24)
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_x810u"]
+radius = 7.0
+height = 16.0
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_hn3r3"]
 lifetime_randomness = 0.44
@@ -66,8 +67,7 @@ collision_layer = 32
 script = ExtResource("1_4dihh")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-0.5, -1)
-shape = SubResource("RectangleShape2D_tdnsw")
+shape = SubResource("CapsuleShape2D_x810u")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("2_vhtev")

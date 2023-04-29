@@ -13,8 +13,9 @@ var max_health = health
 @export var death_vocalization: AudioStreamWAV
 @export var impact_sound: AudioStreamWAV
 
-@export_category("Sprites")
+@export_category("Drops")
 @export var death_pieces: Array[Resource]
+@export var bounty: int = 5
 
 @onready var animation_player := $Pivot/AnimationPlayer
 @onready var effects_player := $Pivot/EffectsPlayer
@@ -93,14 +94,15 @@ func execute():
 		
 	await get_tree().create_timer(0.2).timeout
 	if death_pieces:
-		var spacing = 2
-		var starting_x = (death_pieces.size()*(spacing*.5))
+		var number_of_drops = death_pieces.size()
+		var index = 0
 		for sprite in death_pieces:
 			var pickup := preload("res://pickups/food_pickup.tscn").instantiate()
 			pickup.setup(sprite)
 			pickup.position = global_position
-			pickup.velocity = Vector2(starting_x, randf_range(-4, -6))
-			starting_x -= spacing
+			index += 1
+			pickup.position.x = global_position.x - (16*index)
+			
 			get_node("/root/World").add_child(pickup)
 		
 	die(true)
@@ -112,6 +114,16 @@ func die(was_executed: bool = false) -> void:
 	explode.position = global_position
 	if was_executed:
 		explode.big = true
+	else:
+		var number_of_drops = death_pieces.size()
+		var index = 0
+		for i in bounty:
+			var pickup := preload("res://pickups/coin_pickup.tscn").instantiate()
+			pickup.position = global_position
+			index += 1
+			pickup.position.x = global_position.x - (16*index)
+			get_node("/root/World").add_child(pickup)
+
 	get_node("/root/").add_child(explode)
 	get_parent().respawn()
 	queue_free()

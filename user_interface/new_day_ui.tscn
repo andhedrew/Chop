@@ -1,8 +1,9 @@
-[gd_scene load_steps=9 format=3 uid="uid://bp1trhdcesbwc"]
+[gd_scene load_steps=10 format=3 uid="uid://bp1trhdcesbwc"]
 
 [ext_resource type="Theme" uid="uid://b0dhfhdkknaj3" path="res://user_interface/chop_theme.tres" id="1_l0vya"]
 [ext_resource type="Script" path="res://user_interface/new_day_ui.gd" id="1_wnnwh"]
 [ext_resource type="Texture2D" uid="uid://dtqifieelo0lf" path="res://user_interface/coin.png" id="2_hqmts"]
+[ext_resource type="PackedScene" uid="uid://de2lypqmnkj8i" path="res://user_interface/store/store_item.tscn" id="4_56bio"]
 
 [sub_resource type="InputEventKey" id="InputEventKey_46b7x"]
 keycode = 4194309
@@ -27,79 +28,60 @@ events = [SubResource("InputEventKey_46b7x"), SubResource("InputEventKey_kqep1")
 script = ExtResource("1_wnnwh")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -274.0
-offset_right = 274.0
-offset_bottom = 152.0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
 grow_horizontal = 2
+grow_vertical = 2
 size_flags_horizontal = 4
 theme = ExtResource("1_l0vya")
 
 [node name="MarginContainer" type="MarginContainer" parent="VBoxContainer"]
 layout_mode = 2
 theme_override_constants/margin_left = 20
-theme_override_constants/margin_top = 60
+theme_override_constants/margin_top = 30
 theme_override_constants/margin_right = 20
 theme_override_constants/margin_bottom = 20
 
-[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/MarginContainer"]
-layout_mode = 2
-
-[node name="Label" type="Label" parent="VBoxContainer/MarginContainer/HBoxContainer"]
+[node name="Label" type="Label" parent="VBoxContainer/MarginContainer"]
+custom_minimum_size = Vector2(400, 0)
 layout_mode = 2
 theme = ExtResource("1_l0vya")
 theme_override_font_sizes/font_size = 50
 text = "Upgrades "
 horizontal_alignment = 1
 
-[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/MarginContainer/HBoxContainer"]
+[node name="HBoxContainer2" type="HBoxContainer" parent="VBoxContainer/MarginContainer"]
+custom_minimum_size = Vector2(100, 20)
 layout_mode = 2
 
-[node name="TextureRect" type="TextureRect" parent="VBoxContainer/MarginContainer/HBoxContainer/HBoxContainer"]
+[node name="TextureRect" type="TextureRect" parent="VBoxContainer/MarginContainer/HBoxContainer2"]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 texture = ExtResource("2_hqmts")
 stretch_mode = 2
 
-[node name="Label" type="Label" parent="VBoxContainer/MarginContainer/HBoxContainer/HBoxContainer"]
+[node name="Label" type="Label" parent="VBoxContainer/MarginContainer/HBoxContainer2"]
 layout_mode = 2
 size_flags_horizontal = 4
 theme = ExtResource("1_l0vya")
 text = "500"
 vertical_alignment = 1
 
-[node name="HBoxContainer2" type="HBoxContainer" parent="VBoxContainer"]
+[node name="Upgrades_1" type="HBoxContainer" parent="VBoxContainer"]
 layout_mode = 2
-
-[node name="Label" type="Label" parent="VBoxContainer/HBoxContainer2"]
-layout_mode = 2
-text = "Some stuff will be right here"
-
-[node name="Label2" type="Label" parent="VBoxContainer/HBoxContainer2"]
-layout_mode = 2
-text = "Some stuff will be right here"
-
-[node name="HBoxContainer3" type="HBoxContainer" parent="VBoxContainer"]
-layout_mode = 2
-
-[node name="Label2" type="Label" parent="VBoxContainer/HBoxContainer3"]
-layout_mode = 2
-text = "Some stuff will be right here"
-
-[node name="Label3" type="Label" parent="VBoxContainer/HBoxContainer3"]
-layout_mode = 2
-text = "Some stuff will be right here"
 
 [node name="HBoxContainer4" type="HBoxContainer" parent="VBoxContainer"]
 layout_mode = 2
+size_flags_horizontal = 4
 
-[node name="Button" type="Button" parent="VBoxContainer"]
+[node name="Button" type="Button" parent="VBoxContainer/HBoxContainer4"]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 theme = ExtResource("1_l0vya")
 shortcut = SubResource("Shortcut_t7r2c")
 text = "Proceed"
+
+[node name="StoreItem" parent="." instance=ExtResource("4_56bio")]

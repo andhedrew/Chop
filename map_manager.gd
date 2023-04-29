@@ -13,7 +13,6 @@ func _ready():
 	GameEvents.map_started.connect(_setup) #pass position and next scene
 	await get_tree().create_timer(2.0).timeout
 	animation_player.play("roll")
-	$Control/Path2D/PathFollow2D.progress_ratio = SaveManager.load_item("map_pos")
 
 
 func _process(delta):
@@ -27,18 +26,19 @@ func _process(delta):
 
 
 func _setup(new_position: float, next_scene: String) -> void:
-	target_position = new_position
+	var start_pos = new_position - 1.0
+	var end_pos = new_position/number_of_levels
+	var start_pos_adj = start_pos/number_of_levels
 	new_scene = next_scene
-	pos = $Control/Path2D/PathFollow2D.progress_ratio + (target_position/number_of_levels)
+	$Control/Path2D/PathFollow2D.progress_ratio = start_pos_adj
+	pos = end_pos
 	if pos > 1:
 		pos = 1
-	await get_tree().create_timer(3.0).timeout
+	await get_tree().create_timer(4.0).timeout
 	move_pin = true
 
 
 func _end_scene() -> void:
-	SaveManager.save_item("map_pos", $Control/Path2D/PathFollow2D.progress_ratio)
-	await get_tree().create_timer(0.5).timeout
 	Fade.crossfade_prepare(0.4, "ChopHorizontal")
 	get_tree().change_scene_to_file(new_scene)
 	Fade.crossfade_execute() 

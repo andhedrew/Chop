@@ -15,9 +15,13 @@ func _ready():
 	GameEvents.cutscene_started.connect(_on_cutscene_started)
 	GameEvents.cutscene_ended.connect(_on_cutscene_ended)
 	GameEvents.player_health_changed.connect(_on_player_health_changed)
-#	hurtbox.position = position
-#
-#	hurtbox.area_entered.connect(_on_area_entered)
+	GameEvents.player_money_changed.connect(_on_player_money_changed)
+	
+	var money_amt = SaveManager.load_item("money")
+	if money_amt != null:
+		$VBoxContainer/MoneyCounter/Label.text = str(money_amt)
+	else:
+		$VBoxContainer/MoneyCounter/Label.text = str(0)
 
 #
 #func _process(delta):
@@ -49,6 +53,9 @@ func _on_cutscene_started() -> void:
 func _on_cutscene_ended() -> void:
 	animation_player.play("fade_in")
 
+
+func _on_player_money_changed(new_total) -> void:
+	$VBoxContainer/MoneyCounter/Label.text = str(new_total)
 
 #
 #func _on_area_entered(area) -> void:

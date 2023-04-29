@@ -16,6 +16,8 @@ signal bag_capacity_changed
 signal enemy_being_syphoned
 signal started_feeding_little_brother
 signal done_feeding_little_brother
+signal player_money_changed #pass current amount of money
+
 
 # Game State signals
 

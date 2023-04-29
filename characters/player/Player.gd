@@ -60,7 +60,7 @@ func _ready():
 	if bag_size != null:
 		bag_capacity = bag_size
 	
-	var money_amt = SaveManager.load_item("bag_size")
+	var money_amt = SaveManager.load_item("money")
 	if money_amt != null:
 		money = money_amt
 

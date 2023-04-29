@@ -36,6 +36,3 @@ func setup(new_texture: CompressedTexture2D) -> void:
 	brick_value = nutrition_value_lookup[new_texture]["brick"]
 	meat_value = nutrition_value_lookup[new_texture]["meat"]
 	plant_value = nutrition_value_lookup[new_texture]["plant"]
-	print_debug("brick" + str(brick_value))
-	print_debug("meat" + str(meat_value))
-	print_debug("plant" + str(plant_value))

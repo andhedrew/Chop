@@ -7,7 +7,6 @@ extends Node2D
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass
 #	SoundPlayer.play_music("blues")
 	GameEvents.evening_ended.connect(_on_evening_ended)
 	GameEvents.transition_to_map.connect(_on_transitioning_to_map)
