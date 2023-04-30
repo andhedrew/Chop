@@ -94,15 +94,28 @@ func execute():
 		
 	await get_tree().create_timer(0.2).timeout
 	if death_pieces:
-		var number_of_drops = death_pieces.size()
-		var index = 0
+#		var number_of_drops = death_pieces.size()
+#		var index = 0
+#		for sprite in death_pieces:
+#			var pickup := preload("res://pickups/food_pickup.tscn").instantiate()
+#			pickup.setup(sprite)
+#			pickup.position = global_position
+#			index += 1
+#			pickup.position.x = global_position.x - (16*index)
+#
+#			get_node("/root/World").add_child(pickup)
+#
+		var spread = 6 # adjust this value to increase or decrease the spread of the pickups
+		var velocity = Vector2(0, -12) # adjust this value to control the initial velocity of the pickups
+		var death_pieces_size = death_pieces.size()
+		var i = 0
 		for sprite in death_pieces:
-			var pickup := preload("res://pickups/food_pickup.tscn").instantiate()
+			var pickup = preload("res://pickups/food_pickup.tscn").instantiate()
 			pickup.setup(sprite)
-			pickup.position = global_position
-			index += 1
-			pickup.position.x = global_position.x - (16*index)
-			
+			var angle = i * 2 * PI / death_pieces_size
+			i += 1
+			pickup.position = global_position + Vector2(cos(angle), sin(angle)) * spread
+			pickup.velocity = velocity.rotated(angle)
 			get_node("/root/World").add_child(pickup)
 		
 	die(true)
@@ -115,13 +128,14 @@ func die(was_executed: bool = false) -> void:
 	if was_executed:
 		explode.big = true
 	else:
-		var number_of_drops = death_pieces.size()
-		var index = 0
-		for i in bounty:
-			var pickup := preload("res://pickups/coin_pickup.tscn").instantiate()
-			pickup.position = global_position
-			index += 1
-			pickup.position.x = global_position.x - (16*index)
+		
+		var spread = 2 # adjust this value to increase or decrease the spread of the pickups
+		var velocity = Vector2(0, -5) # adjust this value to control the initial velocity of the pickups
+		for i in range(bounty):
+			var pickup = preload("res://pickups/coin_pickup.tscn").instantiate()
+			var angle = i * 2 * PI / bounty
+			pickup.position = global_position + Vector2(cos(angle), sin(angle)) * spread
+			pickup.velocity = velocity.rotated(angle)
 			get_node("/root/World").add_child(pickup)
 
 	get_node("/root/").add_child(explode)

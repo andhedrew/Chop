@@ -2,7 +2,7 @@ class_name Pickup
 extends CharacterBody2D
 
 @onready var animation_player := $AnimationPlayer as AnimationPlayer
-var max_fall_speed := 2
+var max_fall_speed := 3.0
 var sort_layer = SortLayer.IN_FRONT
 
 func _ready():
@@ -14,14 +14,17 @@ func _ready():
 
 func _physics_process(delta):
 	if !is_on_floor():
-		velocity.y += Param.GRAVITY*delta
-		velocity.y = min(velocity.y, max_fall_speed)
-	else:
-		velocity.y = 0
+		velocity.y = lerp(velocity.y, max_fall_speed, 0.1)
 
+	else:
+		velocity.y = 1.0
+	
 	apply_friction()
 	move_and_collide(velocity)
 
+
+func apply_friction():
+	velocity.x = lerp(velocity.x, 0.0, 0.2)
 
 func _on_body_entered(body) -> void:
 	if body is Player and $SlowPickupTimer.is_stopped() and body.state != "Dead":
@@ -32,8 +35,6 @@ func _add_pickup_to_inventory(player) -> void:
 	_destroy(player)
 
 
-func apply_friction():
-	velocity.x = move_toward(velocity.x, 0.0, Param.FRICTION)
 
 
 func setup(new_texture: CompressedTexture2D) -> void:
