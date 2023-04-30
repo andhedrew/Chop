@@ -14,6 +14,8 @@ func _ready():
 func _on_button_pressed() -> void:
 	var current_cash = SaveManager.load_item("money")
 	if current_cash >= cost:
+		current_cash -= cost
+		SaveManager.save_item("money", current_cash)
 		_buy_item()
 	else:
 		_cannot_buy()
@@ -24,3 +26,4 @@ func _buy_item() -> void:
 
 func _cannot_buy() -> void:
 	$AnimationPlayer.play("cant_buy")
+

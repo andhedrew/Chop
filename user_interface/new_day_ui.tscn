@@ -1,9 +1,10 @@
-[gd_scene load_steps=10 format=3 uid="uid://bp1trhdcesbwc"]
+[gd_scene load_steps=11 format=3 uid="uid://bp1trhdcesbwc"]
 
 [ext_resource type="Theme" uid="uid://b0dhfhdkknaj3" path="res://user_interface/chop_theme.tres" id="1_l0vya"]
 [ext_resource type="Script" path="res://user_interface/new_day_ui.gd" id="1_wnnwh"]
 [ext_resource type="Texture2D" uid="uid://dtqifieelo0lf" path="res://user_interface/coin.png" id="2_hqmts"]
 [ext_resource type="PackedScene" uid="uid://de2lypqmnkj8i" path="res://user_interface/store/store_item.tscn" id="4_56bio"]
+[ext_resource type="Script" path="res://user_interface/money_counter.gd" id="4_e2khv"]
 
 [sub_resource type="InputEventKey" id="InputEventKey_46b7x"]
 keycode = 4194309
@@ -68,6 +69,7 @@ size_flags_horizontal = 4
 theme = ExtResource("1_l0vya")
 text = "500"
 vertical_alignment = 1
+script = ExtResource("4_e2khv")
 
 [node name="Upgrades_1" type="HBoxContainer" parent="VBoxContainer"]
 layout_mode = 2
@@ -85,3 +87,4 @@ shortcut = SubResource("Shortcut_t7r2c")
 text = "Proceed"
 
 [node name="StoreItem" parent="." instance=ExtResource("4_56bio")]
+visible = false

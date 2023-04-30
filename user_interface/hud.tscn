@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://dky122sj0egps"]
+[gd_scene load_steps=15 format=3 uid="uid://dky122sj0egps"]
 
 [ext_resource type="Script" path="res://user_interface/health bar/health_bar.gd" id="1_ng2i2"]
 [ext_resource type="Texture2D" uid="uid://xoihsb8asqow" path="res://user_interface/health bar/full_heart.png" id="2_1g7ej"]
@@ -10,6 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://b7f5noq4ievao" path="res://user_interface/bag/bag3.png" id="8_o3x7d"]
 [ext_resource type="Theme" uid="uid://b0dhfhdkknaj3" path="res://user_interface/chop_theme.tres" id="9_4qqds"]
 [ext_resource type="FontFile" uid="uid://bpybjwc1pwvp4" path="res://user_interface/fonts/Silver.ttf" id="10_6h1o1"]
+[ext_resource type="Script" path="res://user_interface/money_counter.gd" id="11_3pmc5"]
 
 [sub_resource type="Animation" id="Animation_i45vy"]
 resource_name = "fade_in"
@@ -176,5 +177,6 @@ theme_override_fonts/font = ExtResource("10_6h1o1")
 theme_override_font_sizes/font_size = 16
 text = "524"
 vertical_alignment = 1
+script = ExtResource("11_3pmc5")
 
 [editable path="CanvasLayer/UI/VBoxContainer/Bag/HungerBars"]
