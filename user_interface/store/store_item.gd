@@ -6,10 +6,10 @@ extends Control
 @export var description: String
 
 func _ready():
-	$ColorRect/MarginContainer/ColorRect/MarginContainer/Panel/Button.button_up.connect(_on_button_pressed)
+	$Button.button_down.connect(_on_button_pressed)
 	$ColorRect/MarginContainer/ColorRect/MarginContainer/Panel/MarginContainer/Label.text = description
 	$ColorRect/MarginContainer/ColorRect/MarginContainer/Panel/TextureRect.texture = img
-	$ColorRect/MarginContainer/ColorRect/MarginContainer/Panel/Button.text = str("BUY " + str(cost))
+	$Button.text = str("BUY " + str(cost))
 
 func _on_button_pressed() -> void:
 	var current_cash = SaveManager.load_item("money")
@@ -22,6 +22,7 @@ func _on_button_pressed() -> void:
 
 
 func _buy_item() -> void:
+	print_debug("bought_it")
 	pass
 
 func _cannot_buy() -> void:

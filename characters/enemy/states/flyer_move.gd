@@ -1,7 +1,7 @@
 extends State
 
 @onready var player_detector := $"../../Pivot/player_detector"
-@onready var path := owner.get_parent()
+@onready var path := owner.get_parent().get_parent()
 
 var flipped := false
 var speed := 0.01

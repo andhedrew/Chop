@@ -1,4 +1,4 @@
-[gd_scene load_steps=54 format=3 uid="uid://dm85xjdq5mkk3"]
+[gd_scene load_steps=56 format=3 uid="uid://dm85xjdq5mkk3"]
 
 [ext_resource type="Script" path="res://levels_and_level_objects/level_scenes/world.gd" id="1_2owuw"]
 [ext_resource type="Texture2D" uid="uid://cnlnu7f5pipb8" path="res://levels_and_level_objects/dream/dream_2.png" id="2_36ia8"]
@@ -38,10 +38,11 @@
 [ext_resource type="Shader" path="res://letterboxing.gdshader" id="35_yhlm4"]
 [ext_resource type="Script" path="res://letterboxes.gd" id="36_esgaj"]
 [ext_resource type="PackedScene" uid="uid://dky122sj0egps" path="res://user_interface/hud.tscn" id="37_kg8q0"]
-[ext_resource type="PackedScene" uid="uid://cl5wmh7hq8ul0" path="res://pickups/food_pickup.tscn" id="38_55tyk"]
 [ext_resource type="PackedScene" uid="uid://c61py6hgvk4e5" path="res://levels_and_level_objects/enemy_spawn.tscn" id="40_sm1yr"]
 [ext_resource type="PackedScene" uid="uid://boakvecc6j1ta" path="res://characters/enemy/paroot/paroot.tscn" id="41_nepwt"]
-[ext_resource type="PackedScene" uid="uid://duq3hbv7istwg" path="res://pickups/coin_pickup.tscn" id="42_lhqe7"]
+[ext_resource type="PackedScene" uid="uid://cm208i2oyjrct" path="res://characters/enemy/hotdog/hotdog.tscn" id="41_nl8we"]
+[ext_resource type="PackedScene" uid="uid://0v77alk6bcbh" path="res://characters/enemy/pumpiboo/pumpiboo.tscn" id="42_lujbj"]
+[ext_resource type="PackedScene" uid="uid://curfvdorfok3h" path="res://characters/enemy/dandicrow/dandicrow.tscn" id="43_4nbcp"]
 
 [sub_resource type="Animation" id="Animation_vp1kt"]
 resource_name = "day"
@@ -889,6 +890,12 @@ sources/1 = SubResource("TileSetAtlasSource_16qtn")
 shader = ExtResource("35_yhlm4")
 shader_parameter/squishedness = 0.0
 
+[sub_resource type="Curve2D" id="Curve2D_g0mr8"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, -223, -226, 0, 0, 0, 0, -217, -94)
+}
+point_count = 2
+
 [node name="World" type="Node2D" node_paths=PackedStringArray("camera")]
 script = ExtResource("1_2owuw")
 dream_image = ExtResource("2_36ia8")
@@ -1190,24 +1197,32 @@ script = ExtResource("36_esgaj")
 
 [node name="HUD" parent="Camera" instance=ExtResource("37_kg8q0")]
 
-[node name="food_pickup" parent="." instance=ExtResource("38_55tyk")]
-position = Vector2(-502, -63)
-
 [node name="EnemySpawn" parent="." instance=ExtResource("40_sm1yr")]
 position = Vector2(-434, -33)
 spawn = ExtResource("41_nepwt")
 
-[node name="CoinPickup" parent="." instance=ExtResource("42_lhqe7")]
-position = Vector2(-368, -102)
-collision_mask = 33
+[node name="EnemySpawn2" parent="." instance=ExtResource("40_sm1yr")]
+position = Vector2(13, 26)
+spawn = ExtResource("41_nl8we")
 
-[node name="CoinPickup2" parent="." instance=ExtResource("42_lhqe7")]
-position = Vector2(-371, -143)
-collision_mask = 33
+[node name="EnemySpawn3" parent="." instance=ExtResource("40_sm1yr")]
+position = Vector2(271, -52)
+spawn = ExtResource("41_nl8we")
 
-[node name="CoinPickup3" parent="." instance=ExtResource("42_lhqe7")]
-position = Vector2(-360, -122)
-collision_mask = 33
+[node name="EnemySpawn4" parent="." instance=ExtResource("40_sm1yr")]
+position = Vector2(269, 122)
+spawn = ExtResource("42_lujbj")
+
+[node name="Path2D" type="Path2D" parent="."]
+curve = SubResource("Curve2D_g0mr8")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Path2D"]
+position = Vector2(-223, -226)
+rotates = false
+
+[node name="EnemySpawn5" parent="Path2D/PathFollow2D" instance=ExtResource("40_sm1yr")]
+position = Vector2(2, 5)
+spawn = ExtResource("43_4nbcp")
 
 [editable path="LittleBrother"]
 [editable path="LittleBrother/InteractZone/HungerBars"]

@@ -28,7 +28,7 @@ var state_last_frame := state
 
 var bag := []
 var bag_capacity := 15
-var has_booster_upgrade := false
+var has_booster_upgrade := true
 var torch_charges := 3
 var max_torch_charges := torch_charges
 var charge_time := 2.0
@@ -64,7 +64,7 @@ func _ready():
 	if money_amt != null:
 		money = money_amt
 
-	has_booster_upgrade = SaveManager.load_item("booster_upgrade")
+#	has_booster_upgrade = SaveManager.load_item("booster_upgrade")
 	
 
 func _physics_process(delta):

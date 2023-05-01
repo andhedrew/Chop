@@ -2,7 +2,7 @@ extends CanvasLayer
 
 
 func _process(delta):
-	if $VBoxContainer/HBoxContainer4/Button.button_pressed:
+	if $VBoxContainer/Button.button_pressed:
 		_on_button_pressed()
 
 
