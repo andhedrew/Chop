@@ -1,4 +1,4 @@
-[gd_scene load_steps=53 format=3 uid="uid://dm85xjdq5mkk3"]
+[gd_scene load_steps=57 format=3 uid="uid://dm85xjdq5mkk3"]
 
 [ext_resource type="Script" path="res://levels_and_level_objects/level_scenes/world.gd" id="1_2owuw"]
 [ext_resource type="Texture2D" uid="uid://cnlnu7f5pipb8" path="res://levels_and_level_objects/dream/dream_2.png" id="2_36ia8"]
@@ -38,9 +38,9 @@
 [ext_resource type="Shader" path="res://letterboxing.gdshader" id="35_yhlm4"]
 [ext_resource type="Script" path="res://letterboxes.gd" id="36_esgaj"]
 [ext_resource type="PackedScene" uid="uid://dky122sj0egps" path="res://user_interface/hud.tscn" id="37_kg8q0"]
-[ext_resource type="PackedScene" uid="uid://c61py6hgvk4e5" path="res://levels_and_level_objects/enemy_spawn.tscn" id="40_sm1yr"]
-[ext_resource type="PackedScene" uid="uid://dx7fp1njyqj3s" path="res://interactable_objects/dirt_block/dirt_block.tscn" id="41_lvbct"]
-[ext_resource type="PackedScene" uid="uid://cm208i2oyjrct" path="res://characters/enemy/hotdog/hotdog.tscn" id="41_nl8we"]
+[ext_resource type="Script" path="res://interactable_objects/building_block/chunk.gd" id="39_jn3ev"]
+[ext_resource type="Texture2D" uid="uid://dito26cgjlrbg" path="res://interactable_objects/dirt_block/dirt_block.png" id="40_jhd02"]
+[ext_resource type="PackedScene" uid="uid://bb1h85dym7l4i" path="res://hitboxes/Hurtbox.tscn" id="41_8lwk2"]
 
 [sub_resource type="Animation" id="Animation_vp1kt"]
 resource_name = "day"
@@ -888,6 +888,18 @@ sources/1 = SubResource("TileSetAtlasSource_16qtn")
 shader = ExtResource("35_yhlm4")
 shader_parameter/squishedness = 0.0
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0aot3"]
+size = Vector2(30, 31)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_c7wy7"]
+size = Vector2(31, 30)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2hrsv"]
+size = Vector2(81, 167)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_brg05"]
+size = Vector2(81.5, 169)
+
 [node name="World" type="Node2D" node_paths=PackedStringArray("camera")]
 script = ExtResource("1_2owuw")
 dream_image = ExtResource("2_36ia8")
@@ -1189,33 +1201,50 @@ script = ExtResource("36_esgaj")
 
 [node name="HUD" parent="Camera" instance=ExtResource("37_kg8q0")]
 
-[node name="EnemySpawn" parent="." instance=ExtResource("40_sm1yr")]
-position = Vector2(-381, -55)
-spawn = ExtResource("41_nl8we")
+[node name="ChoppableChunk" type="RigidBody2D" parent="."]
+position = Vector2(-455, -49)
+collision_mask = 9
+script = ExtResource("39_jn3ev")
 
-[node name="DirtBlock" parent="." instance=ExtResource("41_lvbct")]
-position = Vector2(-521, -47)
+[node name="Sprite2D" type="Sprite2D" parent="ChoppableChunk"]
+texture = ExtResource("40_jhd02")
+region_enabled = true
+region_rect = Rect2(0, 0, 30, 30)
 
-[node name="DirtBlock2" parent="." instance=ExtResource("41_lvbct")]
-position = Vector2(-525, -101)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ChoppableChunk"]
+position = Vector2(0, 0.5)
+shape = SubResource("RectangleShape2D_0aot3")
 
-[node name="DirtBlock3" parent="." instance=ExtResource("41_lvbct")]
-position = Vector2(-484, -71)
+[node name="Hurtbox" parent="ChoppableChunk" instance=ExtResource("41_8lwk2")]
+collision_mask = 8
 
-[node name="DirtBlock4" parent="." instance=ExtResource("41_lvbct")]
-position = Vector2(-487, -123)
+[node name="CollisionShape2D" parent="ChoppableChunk/Hurtbox" index="0"]
+position = Vector2(-0.5, 0)
+shape = SubResource("RectangleShape2D_c7wy7")
 
-[node name="DirtBlock5" parent="." instance=ExtResource("41_lvbct")]
-position = Vector2(-525, -154)
+[node name="ChoppableChunk2" type="RigidBody2D" parent="."]
+position = Vector2(-319, -120)
+collision_mask = 9
+script = ExtResource("39_jn3ev")
 
-[node name="DirtBlock6" parent="." instance=ExtResource("41_lvbct")]
-position = Vector2(-529, -208)
+[node name="Sprite2D" type="Sprite2D" parent="ChoppableChunk2"]
+modulate = Color(0.411765, 0.411765, 0.411765, 1)
+texture = ExtResource("8_j6egl")
+region_enabled = true
+region_rect = Rect2(10, 40, 80, 170)
 
-[node name="DirtBlock7" parent="." instance=ExtResource("41_lvbct")]
-position = Vector2(-488, -178)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ChoppableChunk2"]
+position = Vector2(0.5, 1.5)
+shape = SubResource("RectangleShape2D_2hrsv")
 
-[node name="DirtBlock8" parent="." instance=ExtResource("41_lvbct")]
-position = Vector2(-491, -230)
+[node name="Hurtbox" parent="ChoppableChunk2" instance=ExtResource("41_8lwk2")]
+collision_mask = 8
+
+[node name="CollisionShape2D" parent="ChoppableChunk2/Hurtbox" index="0"]
+position = Vector2(1.25, 0.5)
+shape = SubResource("RectangleShape2D_brg05")
 
 [editable path="LittleBrother"]
 [editable path="LittleBrother/InteractZone/HungerBars"]
+[editable path="ChoppableChunk/Hurtbox"]
+[editable path="ChoppableChunk2/Hurtbox"]
