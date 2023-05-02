@@ -25,7 +25,7 @@ var direction := -1
 var facing := Enums.Facing.LEFT
 var colliding_hitbox_position : Dictionary
 var wounded : bool = false
-
+var has_respawned := false
 
 func _ready() -> void:
 	max_health = health
@@ -90,23 +90,13 @@ func execute():
 	slice.position = global_position
 	get_node("/root/").add_child(slice)
 	if death_vocalization:
-		SoundPlayer.play_sound(death_vocalization)
+		SoundPlayer.play_sound_positional(death_vocalization, position)
 		
 	await get_tree().create_timer(0.2).timeout
 	if death_pieces:
-#		var number_of_drops = death_pieces.size()
-#		var index = 0
-#		for sprite in death_pieces:
-#			var pickup := preload("res://pickups/food_pickup.tscn").instantiate()
-#			pickup.setup(sprite)
-#			pickup.position = global_position
-#			index += 1
-#			pickup.position.x = global_position.x - (16*index)
-#
-#			get_node("/root/World").add_child(pickup)
 #
 		var spread = 6 # adjust this value to increase or decrease the spread of the pickups
-		var velocity = Vector2(0, -12) # adjust this value to control the initial velocity of the pickups
+		var new_velocity = Vector2(0, -12) # adjust this value to control the initial velocity of the pickups
 		var death_pieces_size = death_pieces.size()
 		var i = 0
 		for sprite in death_pieces:
@@ -115,7 +105,7 @@ func execute():
 			var angle = i * 2 * PI / death_pieces_size
 			i += 1
 			pickup.position = global_position + Vector2(cos(angle), sin(angle)) * spread
-			pickup.velocity = velocity.rotated(angle)
+			pickup.velocity = new_velocity.rotated(angle)
 			get_node("/root/World").add_child(pickup)
 		
 	die(true)
@@ -127,26 +117,25 @@ func die(was_executed: bool = false) -> void:
 	explode.position = global_position
 	if was_executed:
 		explode.big = true
-	else:
+	elif not has_respawned:
 		
 		var spread = 2 # adjust this value to increase or decrease the spread of the pickups
-		var velocity = Vector2(0, -5) # adjust this value to control the initial velocity of the pickups
+		var new_velocity = Vector2(0, -5) # adjust this value to control the initial velocity of the pickups
 		for i in range(bounty):
 			var pickup = preload("res://pickups/coin_pickup.tscn").instantiate()
 			var angle = i * 2 * PI / bounty
 			pickup.position = global_position + Vector2(cos(angle), sin(angle)) * spread
-			pickup.velocity = velocity.rotated(angle)
+			pickup.velocity = new_velocity.rotated(angle)
 			get_node("/root/World").add_child(pickup)
 
 	get_node("/root/").add_child(explode)
-	get_parent().respawn()
+	get_parent().respawn() 
 	queue_free()
 	
 
 func drop_health_and_die() -> void:
 	var explode := preload("res://vfx/blood_explosion.tscn").instantiate()
 	explode.position = global_position
-	explode.restart()
 	explode.emitting = true
 	get_node("/root/").add_child(explode)
 	

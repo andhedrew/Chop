@@ -8,8 +8,8 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_l8i85"]
 size = Vector2(32, 32)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_ww18c"]
-size = Vector2(28, 30.9999)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_s6w0a"]
+size = Vector2(28, 3.49995)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_nrb74"]
 size = Vector2(30, 46.3235)
@@ -39,8 +39,8 @@ collision_mask = 6
 monitoring = false
 
 [node name="CollisionShape2D" parent="Hitbox" index="0"]
-position = Vector2(0, 1)
-shape = SubResource("RectangleShape2D_ww18c")
+position = Vector2(0, 14.75)
+shape = SubResource("RectangleShape2D_s6w0a")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -15.25)

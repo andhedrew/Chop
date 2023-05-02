@@ -1,4 +1,4 @@
-[gd_scene load_steps=56 format=3 uid="uid://dm85xjdq5mkk3"]
+[gd_scene load_steps=53 format=3 uid="uid://dm85xjdq5mkk3"]
 
 [ext_resource type="Script" path="res://levels_and_level_objects/level_scenes/world.gd" id="1_2owuw"]
 [ext_resource type="Texture2D" uid="uid://cnlnu7f5pipb8" path="res://levels_and_level_objects/dream/dream_2.png" id="2_36ia8"]
@@ -39,10 +39,8 @@
 [ext_resource type="Script" path="res://letterboxes.gd" id="36_esgaj"]
 [ext_resource type="PackedScene" uid="uid://dky122sj0egps" path="res://user_interface/hud.tscn" id="37_kg8q0"]
 [ext_resource type="PackedScene" uid="uid://c61py6hgvk4e5" path="res://levels_and_level_objects/enemy_spawn.tscn" id="40_sm1yr"]
-[ext_resource type="PackedScene" uid="uid://boakvecc6j1ta" path="res://characters/enemy/paroot/paroot.tscn" id="41_nepwt"]
+[ext_resource type="PackedScene" uid="uid://dx7fp1njyqj3s" path="res://interactable_objects/dirt_block/dirt_block.tscn" id="41_lvbct"]
 [ext_resource type="PackedScene" uid="uid://cm208i2oyjrct" path="res://characters/enemy/hotdog/hotdog.tscn" id="41_nl8we"]
-[ext_resource type="PackedScene" uid="uid://0v77alk6bcbh" path="res://characters/enemy/pumpiboo/pumpiboo.tscn" id="42_lujbj"]
-[ext_resource type="PackedScene" uid="uid://curfvdorfok3h" path="res://characters/enemy/dandicrow/dandicrow.tscn" id="43_4nbcp"]
 
 [sub_resource type="Animation" id="Animation_vp1kt"]
 resource_name = "day"
@@ -890,12 +888,6 @@ sources/1 = SubResource("TileSetAtlasSource_16qtn")
 shader = ExtResource("35_yhlm4")
 shader_parameter/squishedness = 0.0
 
-[sub_resource type="Curve2D" id="Curve2D_g0mr8"]
-_data = {
-"points": PackedVector2Array(0, 0, 0, 0, -223, -226, 0, 0, 0, 0, -217, -94)
-}
-point_count = 2
-
 [node name="World" type="Node2D" node_paths=PackedStringArray("camera")]
 script = ExtResource("1_2owuw")
 dream_image = ExtResource("2_36ia8")
@@ -1198,31 +1190,32 @@ script = ExtResource("36_esgaj")
 [node name="HUD" parent="Camera" instance=ExtResource("37_kg8q0")]
 
 [node name="EnemySpawn" parent="." instance=ExtResource("40_sm1yr")]
-position = Vector2(-434, -33)
-spawn = ExtResource("41_nepwt")
-
-[node name="EnemySpawn2" parent="." instance=ExtResource("40_sm1yr")]
-position = Vector2(13, 26)
+position = Vector2(-381, -55)
 spawn = ExtResource("41_nl8we")
 
-[node name="EnemySpawn3" parent="." instance=ExtResource("40_sm1yr")]
-position = Vector2(271, -52)
-spawn = ExtResource("41_nl8we")
+[node name="DirtBlock" parent="." instance=ExtResource("41_lvbct")]
+position = Vector2(-521, -47)
 
-[node name="EnemySpawn4" parent="." instance=ExtResource("40_sm1yr")]
-position = Vector2(269, 122)
-spawn = ExtResource("42_lujbj")
+[node name="DirtBlock2" parent="." instance=ExtResource("41_lvbct")]
+position = Vector2(-525, -101)
 
-[node name="Path2D" type="Path2D" parent="."]
-curve = SubResource("Curve2D_g0mr8")
+[node name="DirtBlock3" parent="." instance=ExtResource("41_lvbct")]
+position = Vector2(-484, -71)
 
-[node name="PathFollow2D" type="PathFollow2D" parent="Path2D"]
-position = Vector2(-223, -226)
-rotates = false
+[node name="DirtBlock4" parent="." instance=ExtResource("41_lvbct")]
+position = Vector2(-487, -123)
 
-[node name="EnemySpawn5" parent="Path2D/PathFollow2D" instance=ExtResource("40_sm1yr")]
-position = Vector2(2, 5)
-spawn = ExtResource("43_4nbcp")
+[node name="DirtBlock5" parent="." instance=ExtResource("41_lvbct")]
+position = Vector2(-525, -154)
+
+[node name="DirtBlock6" parent="." instance=ExtResource("41_lvbct")]
+position = Vector2(-529, -208)
+
+[node name="DirtBlock7" parent="." instance=ExtResource("41_lvbct")]
+position = Vector2(-488, -178)
+
+[node name="DirtBlock8" parent="." instance=ExtResource("41_lvbct")]
+position = Vector2(-491, -230)
 
 [editable path="LittleBrother"]
 [editable path="LittleBrother/InteractZone/HungerBars"]

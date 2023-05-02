@@ -1,5 +1,4 @@
 extends CharacterBody2D
-@onready var hit_box := $Hitbox
 
 func _ready():
 	$Hurtbox.area_entered.connect(_on_area_entered)
@@ -24,7 +23,8 @@ func _on_area_entered(hitbox) -> void:
 func _destroy() -> void:
 	var dirt := preload("res://vfx/dirt_explode.tscn").instantiate()
 	dirt.restart()
-	dirt.amount = 15
+	dirt.amount = 5
+	SoundPlayer.play_sound("dirt")
 	dirt.position = global_position
 	get_node("/root/").add_child(dirt)
 	queue_free()

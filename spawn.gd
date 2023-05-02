@@ -21,6 +21,7 @@ func respawn():
 		await get_tree().create_timer(1.0).timeout
 		var new_spawn = spawn.instantiate()
 		add_child(new_spawn)
+		new_spawn.has_respawned = true
 
 
 func _cutscene_started():

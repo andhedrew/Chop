@@ -80,9 +80,7 @@ func _generate_food(player) -> void:
 		fade_animation_player.play("fade_out")
 		GameEvents.cutscene_started.emit()
 		player.facing = Enums.Facing.LEFT
-#		get_node("../CollisionPolygon2D").set_deferred("disabled", true)
 		for item in player.bag:
-				
 				var pickup := preload("res://pickups/food_pickup.tscn").instantiate()
 				pickup.setup(item)
 				owner.get_node("BeakCollider").disabled = true
@@ -98,10 +96,10 @@ func _generate_food(player) -> void:
 				meat_hunger_bar.value += pickup.meat_value
 				await get_tree().create_timer(0.3).timeout
 				
+		await get_tree().create_timer(1.0).timeout
 		owner.get_node("BeakCollider").disabled = false
 		owner.get_node("HeadCollider").disabled = false
 		player.bag = []
-		await get_tree().create_timer(1.0).timeout
 		GameEvents.done_feeding_little_brother.emit()
 		GameEvents.cutscene_ended.emit()
 		fade_animation_player.play("fade_in")

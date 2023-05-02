@@ -6,17 +6,20 @@ extends Node
 @onready var music_players := $MusicPlayers
 @onready var positional_audio_players := $PositionalAudioPlayers
 
+var approved_sound
+
 func _ready():
 	pass
 
-func play_sound(sound: Variant) -> AudioStreamPlayer:
+func play_sound(sound: String) -> AudioStreamPlayer:
+	for child in audio_players.get_children():
+		if sound == child.stream.resource_path.get_file().get_basename():
+			child.playing = false
+	approved_sound = load("res://audio/sounds/"+ sound +".wav")
 	var audio_stream_player = preload("res://audio/audio.tscn").instantiate()
 	audio_stream_player.pitch_scale = randf_range(0.95, 1.05)
 	audio_players.add_child(audio_stream_player)
-	if sound is String:
-		audio_stream_player.stream = load("res://audio/sounds/"+ sound +".wav")
-	elif sound is AudioStreamWAV:
-		audio_stream_player.stream = sound
+	audio_stream_player.stream = approved_sound
 	audio_stream_player.play()
 	return audio_stream_player
 
