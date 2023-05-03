@@ -15,7 +15,7 @@ var max_health = health
 
 @export_category("Drops")
 @export var death_pieces: Array[Resource]
-@export var bounty: int = 5
+@export var bounty: int = 15
 
 @onready var animation_player := $Pivot/AnimationPlayer
 @onready var effects_player := $Pivot/EffectsPlayer
@@ -106,7 +106,7 @@ func execute():
 			i += 1
 			pickup.position = global_position + Vector2(cos(angle), sin(angle)) * spread
 			pickup.velocity = new_velocity.rotated(angle)
-			get_node("/root/World").add_child(pickup)
+			get_node("/root/World").call_deferred("add_child", pickup)
 		
 	die(true)
 
@@ -118,23 +118,27 @@ func die(was_executed: bool = false) -> void:
 	if was_executed:
 		explode.big = true
 	elif not has_respawned:
-		
-		var spread = 2 # adjust this value to increase or decrease the spread of the pickups
-		var new_velocity = Vector2(0, -5) # adjust this value to control the initial velocity of the pickups
-
+		var spread = 6 # adjust this value to increase or decrease the spread of the pickups
+		var new_velocity = Vector2(0, -12) # adjust this value to control the initial velocity of the pickups
 		if bounty > 0:
-			var coin_pickup_scene = load("res://pickups/coin_pickup.tscn")
 			var coins = [8, 4, 2, 1]
+			var total_coins = 0
+			var bounty_tracker = bounty
+			for coin in coins:
+				total_coins += int(bounty_tracker / coin)
+				if coin <= bounty_tracker:
+					bounty_tracker = bounty_tracker % coin
+			bounty = int(bounty)
 			var i = 0
 			for coin in coins:
 				while bounty >= coin:
-					var pickup = coin_pickup_scene.instantiate()
-					var angle = i * 2 * PI / bounty
+					var pickup = preload("res://pickups/coin_pickup.tscn").instantiate()
+					var angle = i * 2 * PI / total_coins
 					i += 1
 					pickup.position = global_position + Vector2(cos(angle), sin(angle)) * spread
 					pickup.velocity = new_velocity.rotated(angle)
 					pickup.value = coin
-					get_node("/root/World").add_child(pickup)
+					get_node("/root/").call_deferred("add_child", pickup)
 					bounty -= coin
 	get_node("/root/").add_child(explode)
 	get_parent().respawn() 

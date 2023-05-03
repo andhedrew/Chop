@@ -35,8 +35,6 @@ func _add_pickup_to_inventory(player) -> void:
 	_destroy(player)
 
 
-
-
 func setup(new_texture: CompressedTexture2D) -> void:
 	$Sprite2D.texture = new_texture
 	var size = $Sprite2D.texture.get_size()

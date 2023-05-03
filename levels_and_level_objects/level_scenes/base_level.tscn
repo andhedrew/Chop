@@ -39,12 +39,12 @@
 [ext_resource type="Shader" path="res://letterboxing.gdshader" id="35_yhlm4"]
 [ext_resource type="Script" path="res://letterboxes.gd" id="36_esgaj"]
 [ext_resource type="PackedScene" uid="uid://dky122sj0egps" path="res://user_interface/hud.tscn" id="37_kg8q0"]
+[ext_resource type="PackedScene" uid="uid://cl5wmh7hq8ul0" path="res://pickups/food_pickup.tscn" id="38_55tyk"]
 [ext_resource type="Script" path="res://interactable_objects/building_block/chunk.gd" id="39_jn3ev"]
 [ext_resource type="PackedScene" uid="uid://c61py6hgvk4e5" path="res://levels_and_level_objects/enemy_spawn.tscn" id="40_sm1yr"]
 [ext_resource type="PackedScene" uid="uid://bb1h85dym7l4i" path="res://hitboxes/Hurtbox.tscn" id="41_8lwk2"]
 [ext_resource type="PackedScene" uid="uid://boakvecc6j1ta" path="res://characters/enemy/paroot/paroot.tscn" id="41_nepwt"]
 [ext_resource type="Texture2D" uid="uid://bkov8urly2mo3" path="res://interactable_objects/choppable/yumm_tonic_billboard.png" id="42_er8s5"]
-[ext_resource type="PackedScene" uid="uid://duq3hbv7istwg" path="res://pickups/coin_pickup.tscn" id="42_lhqe7"]
 
 [sub_resource type="Animation" id="Animation_vp1kt"]
 resource_name = "day"
@@ -1228,20 +1228,8 @@ script = ExtResource("36_esgaj")
 position = Vector2(-417, -46)
 spawn = ExtResource("41_nepwt")
 
-[node name="CoinPickup" parent="." instance=ExtResource("42_lhqe7")]
-position = Vector2(-514, -98)
-value = 8
-
-[node name="CoinPickup2" parent="." instance=ExtResource("42_lhqe7")]
-position = Vector2(-464, -118)
-value = 4
-
-[node name="CoinPickup3" parent="." instance=ExtResource("42_lhqe7")]
-position = Vector2(-401, -120)
-value = 2
-
-[node name="CoinPickup4" parent="." instance=ExtResource("42_lhqe7")]
-position = Vector2(-336, -121)
+[node name="food_pickup" parent="." instance=ExtResource("38_55tyk")]
+position = Vector2(-545, -57)
 
 [editable path="LittleBrother"]
 [editable path="LittleBrother/InteractZone/HungerBars"]

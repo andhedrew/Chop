@@ -8,5 +8,11 @@
 script = ExtResource("2_6cwrx")
 value = 1
 
+[node name="CollisionShape2D" parent="." index="0"]
+position = Vector2(0, 0)
+
 [node name="Sprite2D" parent="." index="1"]
 texture = ExtResource("3_slc2x")
+
+[node name="Area2D" parent="." index="3"]
+collision_layer = 32
