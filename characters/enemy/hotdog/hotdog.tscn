@@ -10,7 +10,7 @@
 [ext_resource type="AudioStream" uid="uid://bekxwncrgx2nr" path="res://audio/sounds/impact_celery.wav" id="5_vh1cq"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_yx30w"]
-size = Vector2(36, 15)
+size = Vector2(32, 15)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_057po"]
 size = Vector2(30, 13)
@@ -26,22 +26,52 @@ death_vocalization = ExtResource("4_6x326")
 impact_sound = ExtResource("5_vh1cq")
 death_pieces = Array[Resource]([ExtResource("3_nw7ee"), ExtResource("2_bgvra")])
 
+[node name="BloodParticles" parent="." index="1"]
+position = Vector2(0, -16)
+
+[node name="Pivot" parent="." index="2"]
+position = Vector2(0, -1)
+
 [node name="Body" parent="Pivot" index="0"]
 position = Vector2(-2, -12)
 texture = ExtResource("4_tgoi2")
 frame = 0
 
+[node name="Hurtbox" parent="." index="4"]
+position = Vector2(0, -1)
+
 [node name="CollisionShape2D" parent="Hurtbox" index="0"]
 position = Vector2(-1, -7.5)
 shape = SubResource("RectangleShape2D_yx30w")
+
+[node name="Hitbox" parent="." index="5"]
+position = Vector2(0, -1)
 
 [node name="CollisionShape2D" parent="Hitbox" index="0"]
 position = Vector2(0, -6)
 shape = SubResource("RectangleShape2D_057po")
 
 [node name="CollisionShape2D" parent="." index="6"]
-position = Vector2(0, -6)
+position = Vector2(0, -7)
 shape = SubResource("RectangleShape2D_0cxn4")
+
+[node name="ledge_check_right" parent="." index="7"]
+position = Vector2(9, -1)
+
+[node name="ledge_check_left" parent="." index="8"]
+position = Vector2(-10, -1)
+
+[node name="wall_check_left" parent="." index="9"]
+position = Vector2(0, -11)
+
+[node name="adjacent_ledge_check_left" parent="." index="10"]
+position = Vector2(0, -11)
+
+[node name="adjacent_ledge_check_right" parent="." index="11"]
+position = Vector2(0, -11)
+
+[node name="wall_check_right" parent="." index="12"]
+position = Vector2(0, -11)
 
 [editable path="Hurtbox"]
 [editable path="Hitbox"]

@@ -288,6 +288,7 @@ collide_with_areas = true
 [node name="wall_check_left" type="RayCast2D" parent="."]
 position = Vector2(0, -10)
 target_position = Vector2(-20, 0)
+collision_mask = 65
 
 [node name="adjacent_ledge_check_left" type="RayCast2D" parent="."]
 position = Vector2(0, -10)
@@ -300,6 +301,7 @@ target_position = Vector2(15, 15)
 [node name="wall_check_right" type="RayCast2D" parent="."]
 position = Vector2(0, -10)
 target_position = Vector2(20, 0)
+collision_mask = 65
 
 [editable path="Hurtbox"]
 [editable path="Hitbox"]

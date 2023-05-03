@@ -34,6 +34,9 @@ func physics_update(_delta: float) -> void:
 	var left_blocked = !ledge_left.is_colliding() or wall_left.is_colliding()
 	var right_blocked = !ledge_right.is_colliding() or wall_right.is_colliding()
 	
+
+	
+	
 	if timer.is_stopped() or (left_blocked and right_blocked):
 			timer.queue_free()
 			state_machine.transition_to("Idle")
@@ -41,13 +44,14 @@ func physics_update(_delta: float) -> void:
 
 	owner.velocity.x = owner.speed * owner.direction
 	owner.move_and_slide()
-	var found_wall = owner.is_on_wall()
-	if found_wall or !ledge_check_right.is_colliding() or !ledge_check_left.is_colliding():
+	var found_hazard = wall_left.is_colliding() or wall_right.is_colliding()
+	if found_hazard or !ledge_check_right.is_colliding() or !ledge_check_left.is_colliding():
 		if !flipping:
 			flipping = true
 			owner.switch_facing()
+
 	
-	if !found_wall and ledge_check_right.is_colliding() and ledge_check_left.is_colliding():
+	if !found_hazard and ledge_check_right.is_colliding() and ledge_check_left.is_colliding():
 		flipping = false
 
 

@@ -5,6 +5,9 @@ extends Node2D
 
 var active := true
 
+var timer_minimum := 30.0
+var timer_maximum := 80.0
+
 func _ready():
 		var new_spawn = spawn.instantiate()
 		add_child(new_spawn)
@@ -12,7 +15,7 @@ func _ready():
 		GameEvents.cutscene_ended.connect(_cutscene_ended)
 
 func respawn():
-	await get_tree().create_timer(randf_range(9.0, 12.0)).timeout
+	await get_tree().create_timer(randf_range(timer_minimum, timer_maximum)).timeout
 	if active:
 		var particles = preload("res://vfx/spawn_particles.tscn").instantiate()
 		add_child(particles)
