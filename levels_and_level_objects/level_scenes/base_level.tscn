@@ -39,12 +39,11 @@
 [ext_resource type="Shader" path="res://letterboxing.gdshader" id="35_yhlm4"]
 [ext_resource type="Script" path="res://letterboxes.gd" id="36_esgaj"]
 [ext_resource type="PackedScene" uid="uid://dky122sj0egps" path="res://user_interface/hud.tscn" id="37_kg8q0"]
-[ext_resource type="PackedScene" uid="uid://cl5wmh7hq8ul0" path="res://pickups/food_pickup.tscn" id="38_55tyk"]
 [ext_resource type="Script" path="res://interactable_objects/building_block/chunk.gd" id="39_jn3ev"]
-[ext_resource type="PackedScene" uid="uid://c61py6hgvk4e5" path="res://levels_and_level_objects/enemy_spawn.tscn" id="40_sm1yr"]
 [ext_resource type="PackedScene" uid="uid://bb1h85dym7l4i" path="res://hitboxes/Hurtbox.tscn" id="41_8lwk2"]
-[ext_resource type="PackedScene" uid="uid://boakvecc6j1ta" path="res://characters/enemy/paroot/paroot.tscn" id="41_nepwt"]
 [ext_resource type="Texture2D" uid="uid://bkov8urly2mo3" path="res://interactable_objects/choppable/yumm_tonic_billboard.png" id="42_er8s5"]
+[ext_resource type="Texture2D" uid="uid://ckgyfddfudpdt" path="res://levels_and_level_objects/hazards/spikes.png" id="43_ewhnt"]
+[ext_resource type="PackedScene" uid="uid://cxfiuhgots5lg" path="res://hitboxes/Hitbox.tscn" id="44_7qidw"]
 
 [sub_resource type="Animation" id="Animation_vp1kt"]
 resource_name = "day"
@@ -898,6 +897,10 @@ sources/1 = SubResource("TileSetAtlasSource_16qtn")
 shader = ExtResource("35_yhlm4")
 shader_parameter/squishedness = 0.0
 
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_feuyy"]
+radius = 7.99925
+height = 35.9966
+
 [node name="World" type="Node2D" node_paths=PackedStringArray("camera")]
 script = ExtResource("1_2owuw")
 dream_image = ExtResource("2_36ia8")
@@ -1224,13 +1227,23 @@ script = ExtResource("36_esgaj")
 
 [node name="HUD" parent="Camera" instance=ExtResource("37_kg8q0")]
 
-[node name="EnemySpawn" parent="." instance=ExtResource("40_sm1yr")]
-position = Vector2(-417, -46)
-spawn = ExtResource("41_nepwt")
+[node name="Spikes" type="Node2D" parent="."]
+position = Vector2(-472, -40)
 
-[node name="food_pickup" parent="." instance=ExtResource("38_55tyk")]
-position = Vector2(-545, -57)
+[node name="Sprite2D" type="Sprite2D" parent="Spikes"]
+position = Vector2(0, 4)
+texture = ExtResource("43_ewhnt")
+
+[node name="Hitbox" parent="Spikes" instance=ExtResource("44_7qidw")]
+position = Vector2(0, 4)
+collision_layer = 64
+collision_mask = 2
+
+[node name="CollisionShape2D" parent="Spikes/Hitbox" index="0"]
+rotation = -1.55711
+shape = SubResource("CapsuleShape2D_feuyy")
 
 [editable path="LittleBrother"]
 [editable path="LittleBrother/InteractZone/HungerBars"]
 [editable path="ChoppableChunk2/Hurtbox"]
+[editable path="Spikes/Hitbox"]

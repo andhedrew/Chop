@@ -2,9 +2,11 @@ extends Marker2D
 
 
 @onready var animation_player := $"AnimationPlayer"
+@onready var emotion_bubble := $"EmotionBubble"
 
 func _ready():
 	animation_player.play("idle")
+	emotion_bubble.visible = false
 	GameEvents.started_feeding_little_brother.connect(_on_feeding)
 #	GameEvents.done_feeding_little_brother.connect(_on_done_feeding)
 	GameEvents.evening_started.connect(_on_evening_start)
@@ -21,6 +23,8 @@ func _process(delta):
 			animation_player.play("idle")
 		Enums.State.PLAYER_ON_BEAK:
 			animation_player.play("player_on_beak")
+		Enums.State.HUNGRY:
+			animation_player.play("hungry")
 
 
 

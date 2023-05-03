@@ -14,7 +14,8 @@ func _ready():
 	GameEvents.evening_started.connect(_on_start_of_evening)
 	state = Enums.State.MOVE
 	await get_tree().create_timer(2).timeout
-#	$Hurtbox.area_entered.connect(_on_hitbox_entered)
+	state = Enums.State.HUNGRY
+	await get_tree().create_timer(3).timeout
 	state = Enums.State.IDLE
 
 
