@@ -6,6 +6,7 @@
 
 [node name="CoinPickup" instance=ExtResource("1_4smdq")]
 script = ExtResource("2_6cwrx")
+value = 1
 
 [node name="Sprite2D" parent="." index="1"]
 texture = ExtResource("3_slc2x")

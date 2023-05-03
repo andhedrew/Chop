@@ -1,0 +1,34 @@
+[gd_scene load_steps=6 format=3 uid="uid://bjulejw13kaox"]
+
+[ext_resource type="Script" path="res://interactable_objects/building_block/chunk.gd" id="1_ao7ah"]
+[ext_resource type="Texture2D" uid="uid://dito26cgjlrbg" path="res://interactable_objects/dirt_block/dirt_block.png" id="2_bbd0w"]
+[ext_resource type="PackedScene" uid="uid://bb1h85dym7l4i" path="res://hitboxes/Hurtbox.tscn" id="3_ojrxp"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0aot3"]
+size = Vector2(30, 31)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_c7wy7"]
+size = Vector2(31, 30)
+
+[node name="ChoppableChunk" type="RigidBody2D"]
+position = Vector2(-455, -49)
+collision_mask = 9
+script = ExtResource("1_ao7ah")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_bbd0w")
+region_enabled = true
+region_rect = Rect2(0, 0, 30, 30)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 0.5)
+shape = SubResource("RectangleShape2D_0aot3")
+
+[node name="Hurtbox" parent="." instance=ExtResource("3_ojrxp")]
+collision_mask = 8
+
+[node name="CollisionShape2D" parent="Hurtbox" index="0"]
+position = Vector2(-0.5, 0)
+shape = SubResource("RectangleShape2D_c7wy7")
+
+[editable path="Hurtbox"]

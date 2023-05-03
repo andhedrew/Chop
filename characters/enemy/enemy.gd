@@ -121,13 +121,21 @@ func die(was_executed: bool = false) -> void:
 		
 		var spread = 2 # adjust this value to increase or decrease the spread of the pickups
 		var new_velocity = Vector2(0, -5) # adjust this value to control the initial velocity of the pickups
-		for i in range(bounty):
-			var pickup = preload("res://pickups/coin_pickup.tscn").instantiate()
-			var angle = i * 2 * PI / bounty
-			pickup.position = global_position + Vector2(cos(angle), sin(angle)) * spread
-			pickup.velocity = new_velocity.rotated(angle)
-			get_node("/root/World").add_child(pickup)
 
+		if bounty > 0:
+			var coin_pickup_scene = load("res://pickups/coin_pickup.tscn")
+			var coins = [8, 4, 2, 1]
+			var i = 0
+			for coin in coins:
+				while bounty >= coin:
+					var pickup = coin_pickup_scene.instantiate()
+					var angle = i * 2 * PI / bounty
+					i += 1
+					pickup.position = global_position + Vector2(cos(angle), sin(angle)) * spread
+					pickup.velocity = new_velocity.rotated(angle)
+					pickup.value = coin
+					get_node("/root/World").add_child(pickup)
+					bounty -= coin
 	get_node("/root/").add_child(explode)
 	get_parent().respawn() 
 	queue_free()
