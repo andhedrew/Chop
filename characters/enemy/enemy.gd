@@ -112,6 +112,7 @@ func execute():
 
 
 func die(was_executed: bool = false) -> void:
+	SoundPlayer.play_sound_positional(death_vocalization, global_position)
 	OS.delay_msec(80)
 	var explode := preload("res://vfx/explosion.tscn").instantiate()
 	explode.position = global_position
@@ -141,7 +142,8 @@ func die(was_executed: bool = false) -> void:
 					get_node("/root/").call_deferred("add_child", pickup)
 					bounty -= coin
 	get_node("/root/").add_child(explode)
-	get_parent().respawn() 
+	if get_parent().has_method("respawn"):
+		get_parent().respawn() 
 	queue_free()
 	
 

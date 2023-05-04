@@ -29,7 +29,7 @@ func update(_delta: float) -> void:
 		owner.velocity.x = lerp(owner.velocity.x, 0.0, Param.FRICTION)
 		owner.move_and_slide()
 
-		if timer.is_stopped() and !(left_blocked and right_blocked):
+		if timer.is_stopped() and !(left_blocked and right_blocked) and state_machine.has_node("Move"):
 			timer.queue_free()
 			state_machine.transition_to("Move")
 

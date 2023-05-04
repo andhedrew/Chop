@@ -16,6 +16,9 @@ var nutrition_value_lookup : Dictionary = {
 	load("res://characters/enemy/paroot/paroot_drop_3.png") : {"brick" : 0, "meat" : 0, "plant" : 1 },
 	load("res://characters/enemy/pumpiboo/pumpiboo_drop_1.png") : {"brick" : 0, "meat" : 0, "plant" : 2 },
 	load("res://characters/enemy/pumpiboo/pumpiboo_drop_2.png") : {"brick" : 0, "meat" : 0, "plant" : 2 },
+	
+	load("res://characters/enemy/eggplant/egg_plant_drop_1.png") : {"brick" : 0, "meat" : 0, "plant" : 1 },
+	load("res://characters/enemy/eggplant/egg_plant_drop_2.png") : {"brick" : 0, "meat" : 0, "plant" : 1 },
 }
 
 

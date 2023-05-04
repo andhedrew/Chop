@@ -18,3 +18,5 @@ extends Node
 #crickets https://freesound.org/people/joanaseabra/sounds/424871/
 #birdsong ambient https://freesound.org/people/SamsterBirdies/sounds/639985/
 #dig https://freesound.org/people/maxthrower/sounds/168810/
+#squish https://freesound.org/people/ominouswhoosh/sounds/684877/
+# death squish https://freesound.org/people/HonorHunter/sounds/271666/

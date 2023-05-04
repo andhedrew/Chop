@@ -27,9 +27,7 @@ func enter(_msg := {}) -> void:
 	timer.one_shot = true
 	timer.start()
 
-func update(_delta: float) -> void:
-	pass
-# Called every frame. 'delta' is the elapsed time since the previous frame.
+
 func physics_update(_delta: float) -> void:
 	var left_blocked = !ledge_left.is_colliding() or wall_left.is_colliding()
 	var right_blocked = !ledge_right.is_colliding() or wall_right.is_colliding()

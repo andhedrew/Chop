@@ -1,0 +1,23 @@
+[gd_scene load_steps=7 format=3 uid="uid://d0nt04yk2h548"]
+
+[ext_resource type="PackedScene" uid="uid://drg8rxk8unocu" path="res://characters/enemy/enemy_idler.tscn" id="1_x5xyx"]
+[ext_resource type="Texture2D" uid="uid://bihoniblrsymj" path="res://characters/enemy/eggplant/egg_plant.png" id="2_1ifnq"]
+[ext_resource type="AudioStream" uid="uid://hwnqrs5j8xd6" path="res://audio/sounds/squish.wav" id="2_8nwgb"]
+[ext_resource type="AudioStream" uid="uid://bqc47jeekbuiy" path="res://audio/sounds/squish_impact.wav" id="3_k26n1"]
+[ext_resource type="Texture2D" uid="uid://b0taecx6fosyo" path="res://characters/enemy/eggplant/egg_plant_drop_1.png" id="4_8apbx"]
+[ext_resource type="Texture2D" uid="uid://u6ajf7g7st2n" path="res://characters/enemy/eggplant/egg_plant_drop_2.png" id="5_2bs32"]
+
+[node name="Enemy" instance=ExtResource("1_x5xyx")]
+hurt_vocalizations = Array[AudioStreamWAV]([ExtResource("3_k26n1")])
+death_vocalization = ExtResource("2_8nwgb")
+death_pieces = Array[Resource]([ExtResource("5_2bs32"), ExtResource("4_8apbx")])
+bounty = 1
+
+[node name="Body" parent="Pivot" index="0"]
+texture = ExtResource("2_1ifnq")
+
+[node name="CollisionShape2D" parent="Hitbox" index="0"]
+shape = null
+
+[editable path="Hurtbox"]
+[editable path="Hitbox"]
