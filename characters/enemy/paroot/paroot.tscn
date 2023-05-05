@@ -15,6 +15,7 @@ death_pieces = Array[Resource]([ExtResource("2_et1jp"), ExtResource("3_7dml6"), 
 
 [node name="Body" parent="Pivot" index="0"]
 texture = ExtResource("2_352t6")
+frame = 0
 
 [node name="BulletSpawn" type="Marker2D" parent="Pivot" index="3"]
 position = Vector2(-2, -10)
