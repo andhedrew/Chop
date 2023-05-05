@@ -28,7 +28,7 @@ func physics_update(delta: float) -> void:
 	elif owner.is_on_floor():
 		state_machine.transition_to("Move")
 	
-	if Input.is_action_just_pressed("attack") and Input.is_action_pressed("down"):
+	if Input.is_action_pressed("down"):
 		state_machine.transition_to("Execute")
 	elif Input.is_action_just_pressed("attack"):
 		state_machine.transition_to("Attack")

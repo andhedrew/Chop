@@ -6,9 +6,10 @@ var reload_timer := 0
 @onready var animation_player := $"../../Pivot/AnimationPlayer"
 @onready var camera: Camera2D
 
-
+var gravity_multiplier := 0.35
 
 func enter(_msg := {}) -> void:
+
 	if !owner.execute_disabled:
 		camera = owner.camera
 		owner.velocity.y = 0
@@ -28,16 +29,18 @@ func enter(_msg := {}) -> void:
 func physics_update(delta: float) -> void:
 	var input_direction_x: float = Input.get_axis("left", "right")
 	owner.velocity.x = move_toward(owner.velocity.x, (owner.max_speed*0.25) * input_direction_x, owner.acceleration_in_air)
-	owner.velocity.y += (Param.GRAVITY_ON_FALL*0.25) * delta
+	owner.velocity.y += (Param.GRAVITY_ON_FALL*gravity_multiplier) * delta
 	owner.move_and_slide()
 	
 	
 	await animation_player.animation_finished
-	if owner.is_on_floor():
+	if owner.is_on_floor() and not Input.is_action_pressed("down"):
 		state_machine.transition_to("Idle")
-	else: 
+	elif not Input.is_action_pressed("down"): 
 		state_machine.transition_to("Fall")
-	
+	else:
+		state_machine.transition_to("Execute")
+		
 	if Input.is_action_just_pressed("dash") and owner.has_booster_upgrade:
 		state_machine.transition_to("Dash")
 

@@ -6,21 +6,25 @@ var reload_timer := 0
 @onready var animation_player := $"../../Pivot/AnimationPlayer"
 
 func enter(_msg := {}) -> void:
-	GameEvents.player_attacked.emit()
-	var bullet = preload("res://bullets/slash_bullet/slash_bullet.tscn").instantiate()
-	owner.add_child(bullet)
-	var transform = $"../../Pivot/BulletSpawn".global_transform
-	var fire_range := 10
-	var speed := 150
-	var spread := 0
-	var rotation := 0
-	if owner.looking == Enums.Looking.UP:
-		rotation = 270
-	elif owner.facing == Enums.Facing.LEFT:
-		rotation = 180
-	bullet.setup(transform, fire_range, speed, rotation, spread)
-	SoundPlayer.play_sound("swoosh")
-	owner.velocity.y -= 100
+#	await get_tree().create_timer(0.1).timeout
+#	if Input.is_action_pressed("down") and not owner.is_on_floor():
+#		state_machine.transition_to("Execute")
+#	else:
+#		GameEvents.player_attacked.emit()
+		var bullet = preload("res://bullets/slash_bullet/slash_bullet.tscn").instantiate()
+		owner.add_child(bullet)
+		var transform = $"../../Pivot/BulletSpawn".global_transform
+		var fire_range := 10
+		var speed := 150
+		var spread := 0
+		var rotation := 0
+		if owner.looking == Enums.Looking.UP:
+			rotation = 270
+		elif owner.facing == Enums.Facing.LEFT:
+			rotation = 180
+		bullet.setup(transform, fire_range, speed, rotation, spread)
+		SoundPlayer.play_sound("swoosh")
+		owner.velocity.y -= 100
 
 
 func physics_update(delta: float) -> void:
