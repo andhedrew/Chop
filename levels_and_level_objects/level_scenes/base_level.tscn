@@ -927,7 +927,7 @@ tile_set = SubResource("TileSet_4pe8b")
 format = 2
 
 [node name="ForegroundScenery" type="ParallaxBackground" parent="."]
-layer = 100
+layer = 1
 
 [node name="ParallaxLayer" type="ParallaxLayer" parent="ForegroundScenery"]
 modulate = Color(0.529412, 0.529412, 0.529412, 1)

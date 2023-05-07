@@ -1,7 +1,7 @@
 extends State
 
 var dash_direction := Vector2.ZERO
-var dash_length := 300
+var dash_length := 380
 var state_timer := 0
 
 

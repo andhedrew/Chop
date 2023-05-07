@@ -12,6 +12,11 @@ func _ready():
 	GameEvents.transition_to_map.connect(_on_transitioning_to_map)
 	GameEvents.morning_started.connect(_on_morning_started)
 	SaveManager.save_item("level", scene_file_path)
+	var dialogue = preload("res://user_interface/dialogue.tscn").instantiate()
+	dialogue.dialog = ["testing", "testing", "it works"]
+	camera.add_child(dialogue)
+	dialogue.position = Vector2(0.0,0.0)
+	
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

@@ -17,12 +17,15 @@ signal enemy_being_syphoned
 signal started_feeding_little_brother
 signal done_feeding_little_brother
 signal player_money_changed #pass current amount of money
-
+signal hunt_started
 
 # Game State signals
 
 signal cutscene_started
 signal cutscene_ended
+
+signal dialogue_started
+signal dialogue_ended
 
 signal evening_started 
 signal evening_ended
