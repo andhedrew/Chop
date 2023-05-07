@@ -1,3 +1,4 @@
+class_name LevelManager
 extends Node2D
 
 @export var dream_image: Texture
@@ -12,10 +13,7 @@ func _ready():
 	GameEvents.transition_to_map.connect(_on_transitioning_to_map)
 	GameEvents.morning_started.connect(_on_morning_started)
 	SaveManager.save_item("level", scene_file_path)
-	var dialogue = preload("res://user_interface/dialogue.tscn").instantiate()
-	dialogue.dialog = ["testing", "testing", "it works"]
-	camera.add_child(dialogue)
-	dialogue.position = Vector2(0.0,0.0)
+	GameEvents.hunt_started.connect(_on_hunt_started)
 	
 
 
@@ -43,3 +41,6 @@ func _on_transitioning_to_map() -> void:
 func _on_morning_started() -> void:
 	var start_day_ui := preload("res://user_interface/new_day_ui.tscn").instantiate()
 	add_child(start_day_ui)
+
+func _on_hunt_started() -> void:
+	pass

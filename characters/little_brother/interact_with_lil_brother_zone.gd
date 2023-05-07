@@ -68,17 +68,15 @@ func _on_player_exited(_body):
 		$Particles1.emitting = false
 		$Particles2.emitting = false
 		$Particles3.emitting = false
-		if $Label.text == "":
-			fade_animation_player.play("fade_out_food")
-		else:
-			fade_animation_player.play("fade_out")
-		
+		fade_animation_player.play("fade_out")
+
 
 
 func _generate_food(player) -> void:
 	if player.bag.size() > 0 and not owner.is_full:
-		fade_animation_player.play("fade_out")
+		fade_animation_player.play("fade_out_non_food")
 		GameEvents.cutscene_started.emit()
+
 		player.facing = Enums.Facing.LEFT
 		for item in player.bag:
 				var pickup := preload("res://pickups/food_pickup.tscn").instantiate()
@@ -120,10 +118,6 @@ func _on_cutscene_started() -> void:
 	$Particles1.emitting = false
 	$Particles2.emitting = false
 	$Particles3.emitting = false
-	if $Label.text == "":
-		fade_animation_player.play("fade_out_food")
-	else:
-		fade_animation_player.play("fade_out")
 
 
 func _on_cutscene_ended() -> void:

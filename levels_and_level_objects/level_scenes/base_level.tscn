@@ -1,7 +1,6 @@
-[gd_scene load_steps=22 format=3 uid="uid://dm85xjdq5mkk3"]
+[gd_scene load_steps=21 format=3 uid="uid://dm85xjdq5mkk3"]
 
-[ext_resource type="Script" path="res://levels_and_level_objects/level_scenes/world.gd" id="1_2owuw"]
-[ext_resource type="Texture2D" uid="uid://cnlnu7f5pipb8" path="res://levels_and_level_objects/dream/dream_2.png" id="2_36ia8"]
+[ext_resource type="Script" path="res://levels_and_level_objects/level_scenes/level_manager.gd" id="1_ity0y"]
 [ext_resource type="Script" path="res://day_night_cycle.gd" id="2_h45bf"]
 [ext_resource type="PackedScene" uid="uid://bwvi5m2prncxh" path="res://characters/player/player.tscn" id="31_fx83i"]
 [ext_resource type="PackedScene" uid="uid://cf8s3hxbyvsv8" path="res://characters/little_brother/little_brother.tscn" id="32_hyjhu"]
@@ -858,10 +857,7 @@ shader = ExtResource("35_yhlm4")
 shader_parameter/squishedness = 0.0
 
 [node name="World" type="Node2D" node_paths=PackedStringArray("camera")]
-script = ExtResource("1_2owuw")
-dream_image = ExtResource("2_36ia8")
-map_position = 20.0
-next_level = "res://levels_and_level_objects/level_scenes/city_level_1.tscn"
+script = ExtResource("1_ity0y")
 camera = NodePath("Camera")
 
 [node name="DayCyclePlayer" type="AnimationPlayer" parent="."]

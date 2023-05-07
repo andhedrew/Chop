@@ -8,12 +8,15 @@ var dialog := [
 
 var dialog_index = 0
 var finished = false
-@onready var label := $MarginContainer/RichTextLabel
+@onready var label := $VBoxContainer/Label
 func _ready():
+	GameEvents.cutscene_started.emit()
 	load_dialog()
 
 func _process(delta):
-	$NinePatchRect/Sprite2D.visible = finished
+	if Input.is_action_just_pressed("jump"):
+		_kill()
+	$VBoxContainer/Label/MarginContainer/NinePatchRect/Sprite2D.visible = finished
 	if Input.is_action_just_pressed("ui_accept") and finished:
 		
 		load_dialog()
@@ -28,6 +31,7 @@ func load_dialog():
 		tween.tween_property(label, "visible_ratio", 1, .03 * character_count)
 		tween.finished.connect(_on_tween_finished)
 	else:
+		GameEvents.cutscene_ended.emit()
 		queue_free()
 	dialog_index += 1
 
@@ -35,3 +39,8 @@ func load_dialog():
 func _on_tween_finished() -> void:
 	await get_tree().create_timer(0.5).timeout
 	finished = true
+
+
+func _kill() -> void:
+	GameEvents.cutscene_ended.emit()
+	queue_free()

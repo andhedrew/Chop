@@ -42,9 +42,9 @@ func physics_update(delta: float) -> void:
 
 		
 	await animation_player.animation_finished
-	if owner.is_on_floor():
+	if owner.is_on_floor() and owner.state != "Cutscene":
 		state_machine.transition_to("Idle")
-	else: 
+	elif owner.state != "Cutscene": 
 		state_machine.transition_to("Fall")
 	
 	

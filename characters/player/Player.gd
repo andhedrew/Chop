@@ -165,7 +165,7 @@ func _on_enemy_taking_damage() -> void:
 
 
 func _on_morning_start() -> void:
-	await get_tree().create_timer(4.0).timeout
+	await get_tree().create_timer(3.0).timeout
 	$StateMachine.transition_to("Cutscene")
 	facing = Enums.Facing.RIGHT
 	$Pivot.transform.x.x = 1

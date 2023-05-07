@@ -118,29 +118,41 @@ func die(was_executed: bool = false) -> void:
 	explode.position = global_position
 	if was_executed:
 		explode.big = true
-	elif not has_respawned:
-		var spread = 6 # adjust this value to increase or decrease the spread of the pickups
-		var new_velocity = Vector2(0, -12) # adjust this value to control the initial velocity of the pickups
-		if bounty > 0:
-			var coins = [8, 4, 2, 1]
-			var total_coins = 0
-			var bounty_tracker = bounty
-			for coin in coins:
-				total_coins += int(bounty_tracker / coin)
-				if coin <= bounty_tracker:
-					bounty_tracker = bounty_tracker % coin
-			bounty = int(bounty)
-			var i = 0
-			for coin in coins:
-				while bounty >= coin:
-					var pickup = preload("res://pickups/coin_pickup.tscn").instantiate()
-					var angle = i * 2 * PI / total_coins
-					i += 1
-					pickup.position = global_position + Vector2(cos(angle), sin(angle)) * spread
-					pickup.velocity = new_velocity.rotated(angle)
-					pickup.value = coin
-					get_node("/root/").call_deferred("add_child", pickup)
-					bounty -= coin
+	elif not has_respawned: # drop stuff
+		randomize()
+		var options = [1, 2, 3]
+		var rand_index: int = randi() % options.size()
+		if rand_index == 1:
+			var spread = 6 # adjust this value to increase or decrease the spread of the pickups
+			var new_velocity = Vector2(0, -12) # adjust this value to control the initial velocity of the pickups
+			if bounty > 0:
+				var coins = [8, 4, 2, 1]
+				var total_coins = 0
+				var bounty_tracker = bounty
+				for coin in coins:
+					total_coins += int(bounty_tracker / coin)
+					if coin <= bounty_tracker:
+						bounty_tracker = bounty_tracker % coin
+				bounty = int(bounty)
+				var i = 0
+				for coin in coins:
+					while bounty >= coin:
+						var pickup = preload("res://pickups/coin_pickup.tscn").instantiate()
+						var angle = i * 2 * PI / total_coins
+						i += 1
+						pickup.position = global_position + Vector2(cos(angle), sin(angle)) * spread
+						pickup.velocity = new_velocity.rotated(angle)
+						pickup.value = coin
+						get_node("/root/").call_deferred("add_child", pickup)
+						bounty -= coin
+		elif rand_index == 2:
+			var sprite := preload("res://user_interface/health bar/full_heart.png")
+			var pickup := preload("res://pickups/health_pickup.tscn").instantiate()
+			pickup.setup(sprite)
+			pickup.position = global_position
+			get_node("/root/").call_deferred("add_child", pickup)
+		elif rand_index == 3:
+			pass
 	get_node("/root/").add_child(explode)
 	if get_parent().has_method("respawn"):
 		get_parent().respawn() 
