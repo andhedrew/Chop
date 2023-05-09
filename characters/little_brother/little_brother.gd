@@ -20,7 +20,7 @@ func _ready():
 	state = Enums.State.IDLE
 	GameEvents.cutscene_ended.emit()
 	GameEvents.hunt_started.emit()
-
+	
 
 func _process(_delta):
 	var brick_full = brick_hunger_bar.value == brick_hunger_bar.max_value

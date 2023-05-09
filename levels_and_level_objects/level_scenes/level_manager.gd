@@ -14,14 +14,20 @@ func _ready():
 	GameEvents.morning_started.connect(_on_morning_started)
 	SaveManager.save_item("level", scene_file_path)
 	GameEvents.hunt_started.connect(_on_hunt_started)
-	
+	GameEvents.player_died.connect(_restart_level)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
 	if Input.is_action_just_pressed("quit"):
-		get_tree().reload_current_scene()
+		_restart_level()
 
+
+func _restart_level() -> void:
+	print_debug("restarting")
+	Fade.crossfade_prepare(0.4, "ChopHorizontal")
+	get_tree().change_scene_to_file(get_tree().current_scene.scene_file_path)
+	Fade.crossfade_execute() 
 
 func _on_evening_ended() -> void:
 	var dream := preload("res://levels_and_level_objects/dream/dream.tscn").instantiate()

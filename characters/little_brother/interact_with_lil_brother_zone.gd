@@ -25,6 +25,7 @@ func _ready():
 	$Particles3.emitting = false
 
 
+
 func _process(_delta):
 	$Label.text = label_text
 	if player_in_zone and Input.is_action_just_pressed("ui_down") and owner.is_full:
@@ -98,9 +99,11 @@ func _generate_food(player) -> void:
 		owner.get_node("BeakCollider").disabled = false
 		owner.get_node("HeadCollider").disabled = false
 		player.bag = []
-		GameEvents.done_feeding_little_brother.emit()
+		
 		GameEvents.cutscene_ended.emit()
-		fade_animation_player.play("fade_in")
+		if plant_hunger_bar.value == plant_hunger_bar.max_value:
+			GameEvents.plant_hunger_bar_filled.emit()
+		GameEvents.done_feeding_little_brother.emit()
 		if owner.is_full:
 			label_text = "LULL"
 
@@ -114,7 +117,6 @@ func _sing_song():
 
 
 func _on_cutscene_started() -> void:
-	monitoring = false
 	$Particles1.emitting = false
 	$Particles2.emitting = false
 	$Particles3.emitting = false

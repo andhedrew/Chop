@@ -27,7 +27,7 @@ var state:= "Idle"
 var state_last_frame := state
 
 var bag := []
-var bag_capacity := 15
+var bag_capacity := 10
 var has_booster_upgrade := true
 var torch_charges := 3
 var max_torch_charges := torch_charges
@@ -56,6 +56,9 @@ func _ready():
 	max_health = SaveManager.load_item("player_health")
 	health = max_health
 	
+	###REMOVE
+	SaveManager.save_item("bag_size", bag_capacity)
+	###REMOVE
 	var bag_size = SaveManager.load_item("bag_size")
 	if bag_size != null:
 		bag_capacity = bag_size

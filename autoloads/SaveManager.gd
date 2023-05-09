@@ -23,6 +23,14 @@ func setup_json() -> void:
 		"booster_charges" : 3,
 		"syphon_upgrade" : false,
 		"bbq_upgrade" : false,
+		"tutorial" : {
+			"enemy_execute_prompted": false,
+			"adding_food_prompted": false,
+			"done_feeding_prompted": false,
+			"coin_prompted": false,
+			"plant_bar_prompted": false,
+			"start_of_level_prompted": false,
+				}
 	}
 	var json_data := JSON.stringify(save_data)
 	var file_access := FileAccess.open(SAVE_PATH, FileAccess.WRITE)
