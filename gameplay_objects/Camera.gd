@@ -43,6 +43,7 @@ func _ready():
 	GameEvents.cutscene_started.connect(_on_cutscene_start)
 	GameEvents.cutscene_ended.connect(_on_cutscene_end)
 	GameEvents.morning_started.connect(_on_morning_start)
+	GameEvents.player_died.connect(_on_player_die)
 	set_camera_limits()
 
 
@@ -141,3 +142,9 @@ func _on_cutscene_end() -> void:
 
 func _on_morning_start() -> void:
 	freeze_camera = true
+
+
+func _on_player_die() -> void:
+	$AnimationPlayer.play("fade_in")
+	freeze_camera = true
+

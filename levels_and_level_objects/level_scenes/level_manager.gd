@@ -21,13 +21,18 @@ func _ready():
 func _process(_delta):
 	if Input.is_action_just_pressed("quit"):
 		_restart_level()
+	if Input.is_action_just_pressed("reset_save_data"):
+		SaveManager.reset_save()
+		
 
 
 func _restart_level() -> void:
 	print_debug("restarting")
 	Fade.crossfade_prepare(0.4, "ChopHorizontal")
+	get_tree().reload_current_scene()
 	get_tree().change_scene_to_file(get_tree().current_scene.scene_file_path)
 	Fade.crossfade_execute() 
+	
 
 func _on_evening_ended() -> void:
 	var dream := preload("res://levels_and_level_objects/dream/dream.tscn").instantiate()

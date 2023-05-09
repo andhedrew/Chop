@@ -37,6 +37,8 @@ signal map_started
 signal morning_started
 
 
+signal SaveDataReady
+
 # tutorial
 signal plant_hunger_bar_filled # no parameters
 signal ui_tutorial # no parameters

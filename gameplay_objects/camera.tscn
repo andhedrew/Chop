@@ -1,0 +1,87 @@
+[gd_scene load_steps=9 format=3 uid="uid://bqg8q7u0o16hm"]
+
+[ext_resource type="Script" path="res://gameplay_objects/Camera.gd" id="1_l580n"]
+[ext_resource type="Shader" path="res://letterboxing.gdshader" id="2_6dewy"]
+[ext_resource type="Script" path="res://letterboxes.gd" id="3_0go20"]
+[ext_resource type="Theme" uid="uid://b0dhfhdkknaj3" path="res://user_interface/chop_theme.tres" id="4_0ynlv"]
+[ext_resource type="PackedScene" uid="uid://dky122sj0egps" path="res://user_interface/hud.tscn" id="5_aoqpc"]
+
+[sub_resource type="Animation" id="Animation_ps34p"]
+resource_name = "fade_in"
+length = 3.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Camera/CanvasLayer/RestartLabel:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.9, 3),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Camera/CanvasLayer/RestartLabel:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1.6),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_cvo5o"]
+_data = {
+"fade_in": SubResource("Animation_ps34p")
+}
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_bnyt1"]
+shader = ExtResource("2_6dewy")
+shader_parameter/squishedness = 0.0
+
+[node name="Camera" type="Camera2D"]
+script = ExtResource("1_l580n")
+target = NodePath("../Player")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+root_node = NodePath("../..")
+libraries = {
+"": SubResource("AnimationLibrary_cvo5o")
+}
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="letterboxes" type="ColorRect" parent="CanvasLayer"]
+material = SubResource("ShaderMaterial_bnyt1")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(3.76, 1)
+script = ExtResource("3_0go20")
+
+[node name="RestartLabel" type="Label" parent="CanvasLayer"]
+visible = false
+modulate = Color(1, 1, 1, 0.727273)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -89.5
+offset_top = -11.5
+offset_right = 89.5
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("4_0ynlv")
+text = "Restart? Press ESC."
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HUD" parent="." instance=ExtResource("5_aoqpc")]

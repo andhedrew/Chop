@@ -10,7 +10,7 @@ var is_full := false
 var state := Enums.State.IDLE
 
 func _ready():
-	GameEvents.cutscene_started.emit()
+#	GameEvents.cutscene_started.emit()
 	z_index = SortLayer.PLAYER
 	GameEvents.evening_started.connect(_on_start_of_evening)
 	state = Enums.State.MOVE
@@ -18,7 +18,7 @@ func _ready():
 	state = Enums.State.HUNGRY
 	await get_tree().create_timer(3).timeout
 	state = Enums.State.IDLE
-	GameEvents.cutscene_ended.emit()
+#	GameEvents.cutscene_ended.emit()
 	GameEvents.hunt_started.emit()
 	
 

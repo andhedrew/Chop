@@ -222,5 +222,8 @@ texture = ExtResource("19_0fdhn")
 [node name="food_pickup" parent="." index="11" instance=ExtResource("21_omsi4")]
 position = Vector2(-80, -144)
 
+[node name="Spikes" parent="." index="12" instance=ExtResource("19_dp02i")]
+position = Vector2(136, -40)
+
 [editable path="LittleBrother"]
 [editable path="LittleBrother/InteractZone/HungerBars"]

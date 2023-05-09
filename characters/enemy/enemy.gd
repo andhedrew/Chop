@@ -94,7 +94,6 @@ func execute():
 		
 	await get_tree().create_timer(0.2).timeout
 	if death_pieces:
-#
 		var spread = 6 # adjust this value to increase or decrease the spread of the pickups
 		var new_velocity = Vector2(0, -12) # adjust this value to control the initial velocity of the pickups
 		var death_pieces_size = death_pieces.size()

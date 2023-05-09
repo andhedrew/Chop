@@ -19,6 +19,10 @@ var nutrition_value_lookup : Dictionary = {
 	
 	load("res://characters/enemy/eggplant/egg_plant_drop_1.png") : {"brick" : 0, "meat" : 0, "plant" : 1 },
 	load("res://characters/enemy/eggplant/egg_plant_drop_2.png") : {"brick" : 0, "meat" : 0, "plant" : 1 },
+	
+	load("res://characters/player/death_pieces/player_death_pieces_1.png") : {"brick" : 0, "meat" : 1000000, "plant" : 0 },
+	load("res://characters/player/death_pieces/player_death_pieces_2.png") : {"brick" : 0, "meat" : 1000000, "plant" : 0 },
+	load("res://characters/player/death_pieces/player_death_pieces_3.png") : {"brick" : 0, "meat" : 1000000, "plant" : 0 },
 }
 
 

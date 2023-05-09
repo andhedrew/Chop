@@ -6,10 +6,10 @@ const SAVE_PATH := "user://save-data-captain-picard.json"
 var data := {}
 
 func _ready() -> void:
-	
 	if not FileAccess.file_exists(SAVE_PATH):
 		setup_json()
 	load_json()
+	GameEvents.SaveDataReady.emit()
 
 
 func setup_json() -> void:
@@ -61,3 +61,10 @@ func load_item(key):
 		return data[key]
 	else:
 		return null
+
+
+func reset_save() -> void:
+	if FileAccess.file_exists(SAVE_PATH):
+		OS.move_to_trash(ProjectSettings.globalize_path(SAVE_PATH))
+		setup_json()
+		print_debug("Save Data Reset")

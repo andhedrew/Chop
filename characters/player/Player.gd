@@ -3,7 +3,7 @@ extends CharacterBody2D
 class_name Player
 
 @export var camera : Camera2D 
-
+@export var death_pieces: Array[Resource]
 const max_speed := 120
 const acceleration := 9
 const acceleration_in_air := 5
@@ -52,13 +52,16 @@ func _ready():
 	hurtbox.area_entered.connect(_hurtbox_on_area_entered)
 	GameEvents.enemy_took_damage.connect(_on_enemy_taking_damage)
 	GameEvents.morning_started.connect(_on_morning_start)
-	
+	GameEvents.SaveDataReady.connect(_load_data)
+
+
+#	has_booster_upgrade = SaveManager.load_item("booster_upgrade")
+
+
+func _load_data() -> void:
 	max_health = SaveManager.load_item("player_health")
 	health = max_health
 	
-	###REMOVE
-	SaveManager.save_item("bag_size", bag_capacity)
-	###REMOVE
 	var bag_size = SaveManager.load_item("bag_size")
 	if bag_size != null:
 		bag_capacity = bag_size
@@ -66,8 +69,6 @@ func _ready():
 	var money_amt = SaveManager.load_item("money")
 	if money_amt != null:
 		money = money_amt
-
-#	has_booster_upgrade = SaveManager.load_item("booster_upgrade")
 	
 
 func _physics_process(delta):
@@ -158,6 +159,36 @@ func _hurtbox_on_area_entered(hitbox) -> void:
 func take_damage(damage) -> void:
 	health -= damage
 	GameEvents.player_health_changed.emit(health, max_health)
+	if health <= 0:
+		GameEvents.player_died.emit()
+		_die()
+
+func _die() -> void:
+	if death_pieces:
+		var spread = 16 # adjust this value to increase or decrease the spread of the pickups
+		var new_velocity = Vector2(0, -12) # adjust this value to control the initial velocity of the pickups
+		var death_pieces_size = death_pieces.size()
+		var i = 0
+		for sprite in death_pieces:
+			var pickup = preload("res://pickups/food_pickup.tscn").instantiate()
+			pickup.setup(sprite)
+			var angle = i * 2 * PI / death_pieces_size
+			i += 1
+			pickup.position = global_position + Vector2(cos(angle), sin(angle)) * spread
+			pickup.velocity = new_velocity.rotated(angle)
+			get_node("/root/World").call_deferred("add_child", pickup)
+	OS.delay_msec(80)
+	var explode := preload("res://vfx/blood_explosion.tscn").instantiate()
+	explode.position = global_position
+	explode.emitting = true
+	get_node("/root/").add_child(explode)
+	
+	explode = preload("res://vfx/explosion.tscn").instantiate()
+	explode.position = global_position
+	explode.big = true
+	get_node("/root/").add_child(explode)
+	queue_free()
+
 
 
 func _on_enemy_taking_damage() -> void:

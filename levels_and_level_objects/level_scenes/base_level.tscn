@@ -1,14 +1,11 @@
-[gd_scene load_steps=21 format=3 uid="uid://dm85xjdq5mkk3"]
+[gd_scene load_steps=17 format=3 uid="uid://dm85xjdq5mkk3"]
 
 [ext_resource type="Script" path="res://levels_and_level_objects/level_scenes/level_manager.gd" id="1_ity0y"]
 [ext_resource type="Script" path="res://day_night_cycle.gd" id="2_h45bf"]
+[ext_resource type="PackedScene" uid="uid://bqg8q7u0o16hm" path="res://gameplay_objects/camera.tscn" id="6_818il"]
 [ext_resource type="PackedScene" uid="uid://bwvi5m2prncxh" path="res://characters/player/player.tscn" id="31_fx83i"]
 [ext_resource type="PackedScene" uid="uid://cf8s3hxbyvsv8" path="res://characters/little_brother/little_brother.tscn" id="32_hyjhu"]
 [ext_resource type="Texture2D" uid="uid://bivxdxcjdr3u2" path="res://sprites/tilesets/dark_tileset.png" id="33_x28vh"]
-[ext_resource type="Script" path="res://gameplay_objects/Camera.gd" id="34_qo2jc"]
-[ext_resource type="Shader" path="res://letterboxing.gdshader" id="35_yhlm4"]
-[ext_resource type="Script" path="res://letterboxes.gd" id="36_esgaj"]
-[ext_resource type="PackedScene" uid="uid://dky122sj0egps" path="res://user_interface/hud.tscn" id="37_kg8q0"]
 
 [sub_resource type="Animation" id="Animation_vp1kt"]
 resource_name = "day"
@@ -852,10 +849,6 @@ terrain_set_0/terrain_0/name = "ground"
 terrain_set_0/terrain_0/color = Color(0.5, 0.34375, 0.25, 1)
 sources/1 = SubResource("TileSetAtlasSource_16qtn")
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_bnyt1"]
-shader = ExtResource("35_yhlm4")
-shader_parameter/squishedness = 0.0
-
 [node name="World" type="Node2D" node_paths=PackedStringArray("camera")]
 script = ExtResource("1_ity0y")
 camera = NodePath("Camera")
@@ -931,23 +924,7 @@ z_index = 1000
 z_as_relative = false
 motion_scale = Vector2(1.1, 1.1)
 
-[node name="Camera" type="Camera2D" parent="."]
-script = ExtResource("34_qo2jc")
-target = NodePath("../Player")
-
-[node name="CanvasLayer" type="CanvasLayer" parent="Camera"]
-
-[node name="letterboxes" type="ColorRect" parent="Camera/CanvasLayer"]
-material = SubResource("ShaderMaterial_bnyt1")
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-scale = Vector2(3.76, 1)
-script = ExtResource("36_esgaj")
-
-[node name="HUD" parent="Camera" instance=ExtResource("37_kg8q0")]
+[node name="Camera" parent="." instance=ExtResource("6_818il")]
 
 [editable path="LittleBrother"]
 [editable path="LittleBrother/InteractZone/HungerBars"]
