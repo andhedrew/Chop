@@ -33,7 +33,6 @@
 [ext_resource type="Texture2D" uid="uid://pixdi8kaumrj" path="res://interactable_objects/dynamic_scenery/Sprites/plant_3.png" id="27_js5gl"]
 [ext_resource type="Texture2D" uid="uid://dg67fga7svata" path="res://interactable_objects/dynamic_scenery/Sprites/plant_2.png" id="27_sex1l"]
 [ext_resource type="Texture2D" uid="uid://dklcgkvu7rmwh" path="res://pickups/sprites/brick.png" id="31_w5hvv"]
-[ext_resource type="PackedScene" uid="uid://crh8qoi8vvejp" path="res://pickups/health_pickup.tscn" id="34_gdyl8"]
 
 [sub_resource type="Curve2D" id="Curve2D_xhirr"]
 _data = {
@@ -49,6 +48,9 @@ size = Vector2(32, 8)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0iod5"]
 size = Vector2(32, 11.7647)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mvv0k"]
+size = Vector2(41, 6)
 
 [node name="World" instance=ExtResource("1_hhmaj")]
 script = ExtResource("2_fakv0")
@@ -347,7 +349,64 @@ shape = SubResource("RectangleShape2D_10g5b")
 position = Vector2(0, -4)
 shape = SubResource("RectangleShape2D_0iod5")
 
-[node name="DynamicScenery9" parent="DynamicSceneryObjects" index="7" instance=ExtResource("26_4runp")]
+[node name="DirtBlock" parent="DynamicSceneryObjects" index="7" instance=ExtResource("26_havp1")]
+position = Vector2(4456, -256)
+
+[node name="DirtBlock2" parent="DynamicSceneryObjects" index="8" instance=ExtResource("26_havp1")]
+position = Vector2(4456, -288)
+
+[node name="DirtBlock3" parent="DynamicSceneryObjects" index="9" instance=ExtResource("26_havp1")]
+position = Vector2(4456, -320)
+
+[node name="DirtBlock4" parent="DynamicSceneryObjects" index="10" instance=ExtResource("26_havp1")]
+position = Vector2(4456, -352)
+
+[node name="DirtBlock5" parent="DynamicSceneryObjects" index="11" instance=ExtResource("26_havp1")]
+position = Vector2(4456, -384)
+
+[node name="DirtBlock6" parent="DynamicSceneryObjects" index="12" instance=ExtResource("26_havp1")]
+position = Vector2(4488, -272)
+
+[node name="DirtBlock7" parent="DynamicSceneryObjects" index="13" instance=ExtResource("26_havp1")]
+position = Vector2(4488, -304)
+
+[node name="DirtBlock8" parent="DynamicSceneryObjects" index="14" instance=ExtResource("26_havp1")]
+position = Vector2(4424, -256)
+
+[node name="DirtBlock9" parent="DynamicSceneryObjects" index="15" instance=ExtResource("26_havp1")]
+position = Vector2(3632, -144)
+
+[node name="DirtBlock10" parent="DynamicSceneryObjects" index="16" instance=ExtResource("26_havp1")]
+position = Vector2(3296, -160)
+
+[node name="DirtBlock11" parent="DynamicSceneryObjects" index="17" instance=ExtResource("26_havp1")]
+position = Vector2(3328, -160)
+
+[node name="DirtBlock12" parent="DynamicSceneryObjects" index="18" instance=ExtResource("26_havp1")]
+position = Vector2(3320, -192)
+
+[node name="DirtBlock14" parent="DynamicSceneryObjects" index="19" instance=ExtResource("26_havp1")]
+position = Vector2(2064, -64)
+
+[node name="DirtBlock20" parent="DynamicSceneryObjects" index="20" instance=ExtResource("26_havp1")]
+position = Vector2(2440, -64)
+
+[node name="DirtBlock21" parent="DynamicSceneryObjects" index="21" instance=ExtResource("26_havp1")]
+position = Vector2(2440, -96)
+
+[node name="DirtBlock22" parent="DynamicSceneryObjects" index="22" instance=ExtResource("26_havp1")]
+position = Vector2(2472, -64)
+
+[node name="DirtBlock15" parent="DynamicSceneryObjects" index="23" instance=ExtResource("26_havp1")]
+position = Vector2(1536, -48)
+
+[node name="DirtBlockSmall" parent="DynamicSceneryObjects" index="24" instance=ExtResource("27_b71v5")]
+position = Vector2(4480, -256)
+
+[node name="DirtBlockSmall3" parent="DynamicSceneryObjects" index="25" instance=ExtResource("27_b71v5")]
+position = Vector2(4496, -256)
+
+[node name="DynamicScenery9" parent="DynamicSceneryObjects" index="26" instance=ExtResource("26_4runp")]
 position = Vector2(1240, -48)
 
 [node name="Sprite2D" parent="DynamicSceneryObjects/DynamicScenery9" index="0"]
@@ -361,75 +420,24 @@ shape = SubResource("RectangleShape2D_10g5b")
 position = Vector2(0, -4)
 shape = SubResource("RectangleShape2D_0iod5")
 
-[node name="DirtBlock" parent="." index="13" instance=ExtResource("26_havp1")]
-position = Vector2(4456, -256)
-
-[node name="DirtBlock2" parent="." index="14" instance=ExtResource("26_havp1")]
-position = Vector2(4456, -288)
-
-[node name="DirtBlock3" parent="." index="15" instance=ExtResource("26_havp1")]
-position = Vector2(4456, -320)
-
-[node name="DirtBlock4" parent="." index="16" instance=ExtResource("26_havp1")]
-position = Vector2(4456, -352)
-
-[node name="DirtBlock5" parent="." index="17" instance=ExtResource("26_havp1")]
-position = Vector2(4456, -384)
-
-[node name="DirtBlock6" parent="." index="18" instance=ExtResource("26_havp1")]
-position = Vector2(4488, -272)
-
-[node name="DirtBlock7" parent="." index="19" instance=ExtResource("26_havp1")]
-position = Vector2(4488, -304)
-
-[node name="DirtBlock8" parent="." index="20" instance=ExtResource("26_havp1")]
-position = Vector2(4424, -256)
-
-[node name="DirtBlock9" parent="." index="21" instance=ExtResource("26_havp1")]
-position = Vector2(3632, -144)
-
-[node name="DirtBlock10" parent="." index="22" instance=ExtResource("26_havp1")]
-position = Vector2(3296, -160)
-
-[node name="DirtBlock11" parent="." index="23" instance=ExtResource("26_havp1")]
-position = Vector2(3328, -160)
-
-[node name="DirtBlock12" parent="." index="24" instance=ExtResource("26_havp1")]
-position = Vector2(3320, -192)
-
-[node name="DirtBlock14" parent="." index="25" instance=ExtResource("26_havp1")]
-position = Vector2(2064, -64)
-
-[node name="DirtBlock20" parent="." index="26" instance=ExtResource("26_havp1")]
-position = Vector2(2440, -64)
-
-[node name="DirtBlock21" parent="." index="27" instance=ExtResource("26_havp1")]
-position = Vector2(2440, -96)
-
-[node name="DirtBlock22" parent="." index="28" instance=ExtResource("26_havp1")]
-position = Vector2(2472, -64)
-
-[node name="DirtBlock15" parent="." index="29" instance=ExtResource("26_havp1")]
-position = Vector2(1536, -48)
-
-[node name="DirtBlockSmall" parent="." index="30" instance=ExtResource("27_b71v5")]
-position = Vector2(4480, -256)
-
-[node name="DirtBlockSmall3" parent="." index="31" instance=ExtResource("27_b71v5")]
-position = Vector2(4496, -256)
-
-[node name="food_pickup" parent="." index="32" instance=ExtResource("21_omsi4")]
+[node name="food_pickup" parent="." index="13" instance=ExtResource("21_omsi4")]
 position = Vector2(4456, -440)
 
 [node name="Sprite2D" parent="food_pickup" index="1"]
 position = Vector2(0, -8)
 texture = ExtResource("31_w5hvv")
 
-[node name="HealthPickup" parent="." index="33" instance=ExtResource("34_gdyl8")]
-position = Vector2(112, -48)
+[node name="StaticBody2D" type="StaticBody2D" parent="." index="14"]
+position = Vector2(227, -64)
+collision_mask = 2
 
-[node name="food_pickup2" parent="." index="34" instance=ExtResource("21_omsi4")]
-position = Vector2(152, -48)
+[node name="Sprite2D" type="Sprite2D" parent="StaticBody2D" index="0"]
+texture = ExtResource("31_w5hvv")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" index="1"]
+position = Vector2(6, -5)
+shape = SubResource("RectangleShape2D_mvv0k")
+one_way_collision = true
 
 [editable path="LittleBrother"]
 [editable path="LittleBrother/InteractZone/HungerBars"]

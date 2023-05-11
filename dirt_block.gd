@@ -8,33 +8,34 @@ func _ready():
 	$Hurtbox.area_entered.connect(_on_area_entered)
 
 func _physics_process(delta):
-	
 	velocity.y += Param.GRAVITY*.02
 	var colliding = move_and_collide(velocity*delta)
-	if colliding:
+	if $RayCast2D.is_colliding() or $RayCast2D2.is_colliding():
 		velocity.y = 0
 		hit_box.monitorable = false
-		hit_box.position.y = -32
 		set_collision_layer_value(1, true)
-		
 	else:
 		hit_box.monitorable = true
-		hit_box.position.y = lerp(hit_box.position.y, -16.0, .5)
 		set_collision_layer_value(1, false)
+		if $PlayerEnemyDetector.is_colliding() or $PlayerEnemyDetector2.is_colliding() or $PlayerEnemyDetector3.is_colliding():
+			$CollisionShape2D.queue_free()
+			_destroy()
+		
 
 func _on_area_entered(hitbox) -> void:
 	if hitbox is HitBox:
 		if !hitbox.fire and !hitbox.syphon:
-			var dirt := preload("res://vfx/dirt_explode.tscn").instantiate()
-			SoundPlayer.play_sound("dirt")
-			dirt.restart()
-			dirt.position = global_position
-			get_node("/root/").add_child(dirt)
+			
 			_destroy()
 	hitbox.owner._destroy()
 
 
 func _destroy() -> void:
+	var dirt := preload("res://vfx/dirt_explode.tscn").instantiate()
+	SoundPlayer.play_sound("dirt")
+	dirt.restart()
+	dirt.position = global_position
+	get_node("/root/").add_child(dirt)
 	randomize()
 	var options = [1, 2, 3]
 	var rand_index: int = randi() % options.size()

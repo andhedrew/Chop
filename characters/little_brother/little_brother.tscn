@@ -970,14 +970,17 @@ shape = SubResource("RectangleShape2D_ocmnl")
 [node name="BeakCollider" type="CollisionShape2D" parent="."]
 position = Vector2(36, -25)
 shape = SubResource("RectangleShape2D_poim7")
+one_way_collision = true
 
 [node name="HeadCollider" type="CollisionShape2D" parent="."]
 position = Vector2(27.5, -30)
 shape = SubResource("RectangleShape2D_cydai")
+one_way_collision = true
 
 [node name="ACCollider" type="CollisionShape2D" parent="."]
 position = Vector2(-36.75, -29)
 shape = SubResource("RectangleShape2D_plkfx")
+one_way_collision = true
 
 [node name="FullMessage" type="Sprite2D" parent="."]
 visible = false

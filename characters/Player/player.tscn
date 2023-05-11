@@ -762,6 +762,7 @@ size = Vector2(15, 26)
 
 [node name="Player" type="CharacterBody2D"]
 collision_layer = 2
+collision_mask = 129
 script = ExtResource("1_70au1")
 death_pieces = Array[Resource]([ExtResource("2_76euu"), ExtResource("3_2pmyc"), ExtResource("4_yklkn")])
 
