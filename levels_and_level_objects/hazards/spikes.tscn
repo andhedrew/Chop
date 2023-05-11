@@ -22,6 +22,7 @@ texture = ExtResource("1_plifg")
 position = Vector2(0, 4)
 collision_layer = 64
 collision_mask = 2
+damage = 2
 
 [node name="CollisionShape2D" parent="Hitbox" index="0"]
 rotation = -1.55711

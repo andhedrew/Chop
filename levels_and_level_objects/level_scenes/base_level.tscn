@@ -926,5 +926,7 @@ motion_scale = Vector2(1.1, 1.1)
 
 [node name="Camera" parent="." instance=ExtResource("6_818il")]
 
+[node name="DynamicSceneryObjects" type="Node" parent="."]
+
 [editable path="LittleBrother"]
 [editable path="LittleBrother/InteractZone/HungerBars"]

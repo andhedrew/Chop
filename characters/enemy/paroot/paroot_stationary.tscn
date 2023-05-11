@@ -1,0 +1,34 @@
+[gd_scene load_steps=10 format=3 uid="uid://brm8j8o7p8cd3"]
+
+[ext_resource type="PackedScene" uid="uid://23cc1xm0v5jp" path="res://characters/enemy/enemy_walker.tscn" id="1_ru2dp"]
+[ext_resource type="AudioStream" uid="uid://c2b7napty0xqn" path="res://audio/sounds/squawk_1.wav" id="2_sidtw"]
+[ext_resource type="AudioStream" uid="uid://k7akmwtrmxvr" path="res://audio/sounds/squawk_2.wav" id="3_kghlj"]
+[ext_resource type="Texture2D" uid="uid://bnltgc473omjm" path="res://characters/enemy/paroot/paroot_drop_1.png" id="4_r5mcm"]
+[ext_resource type="Texture2D" uid="uid://smo0g21t470d" path="res://characters/enemy/paroot/paroot_drop_2.png" id="5_gvjfh"]
+[ext_resource type="Texture2D" uid="uid://b1ffa310elr21" path="res://characters/enemy/paroot/paroot_drop_3.png" id="6_ahrwf"]
+[ext_resource type="Texture2D" uid="uid://dho6xihx2y1wm" path="res://characters/enemy/paroot/paroot.png" id="7_dw4vj"]
+[ext_resource type="Script" path="res://characters/enemy/states/walker_idle.gd" id="8_odq6q"]
+[ext_resource type="Script" path="res://characters/enemy/states/shoot_projectile.gd" id="8_pm7m4"]
+
+[node name="Paroot" instance=ExtResource("1_ru2dp")]
+hurt_vocalizations = Array[AudioStreamWAV]([ExtResource("2_sidtw"), ExtResource("3_kghlj")])
+death_pieces = Array[Resource]([ExtResource("4_r5mcm"), ExtResource("5_gvjfh"), ExtResource("6_ahrwf")])
+
+[node name="Body" parent="Pivot" index="0"]
+texture = ExtResource("7_dw4vj")
+frame = 0
+
+[node name="BulletSpawn" type="Marker2D" parent="Pivot" index="3"]
+position = Vector2(-2, -10)
+
+[node name="player_detector" parent="Pivot" index="4"]
+target_position = Vector2(-120, 0)
+
+[node name="Move" parent="StateMachine" index="1"]
+script = ExtResource("8_odq6q")
+
+[node name="Attack" type="Node" parent="StateMachine" index="4"]
+script = ExtResource("8_pm7m4")
+
+[editable path="Hurtbox"]
+[editable path="Hitbox"]

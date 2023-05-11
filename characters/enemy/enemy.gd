@@ -145,7 +145,7 @@ func die(was_executed: bool = false) -> void:
 						get_node("/root/").call_deferred("add_child", pickup)
 						bounty -= coin
 		elif rand_index == 2:
-			var sprite := preload("res://user_interface/health bar/full_heart.png")
+			var sprite := preload("res://user_interface/healthbar/full_heart.png")
 			var pickup := preload("res://pickups/health_pickup.tscn").instantiate()
 			pickup.setup(sprite)
 			pickup.position = global_position
@@ -164,7 +164,7 @@ func drop_health_and_die() -> void:
 	explode.emitting = true
 	get_node("/root/").add_child(explode)
 	
-	var sprite := preload("res://user_interface/health bar/full_heart.png")
+	var sprite := preload("res://user_interface/healthbar/full_heart.png")
 	var pickup := preload("res://pickups/health_pickup.tscn").instantiate()
 	pickup.setup(sprite)
 	pickup.position = global_position

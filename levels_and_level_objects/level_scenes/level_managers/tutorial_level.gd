@@ -6,7 +6,8 @@ var tutorial = {
 	"adding_food_prompted": false,
 	"done_feeding_prompted": false,
 	"coin_prompted": false,
-	"plant_bar_prompted": false
+	"plant_bar_prompted": false,
+	"full_bag_prompted": false,
 }
 
 func _ready():
@@ -21,7 +22,20 @@ func _ready():
 	GameEvents.done_feeding_little_brother.connect(_on_done_feeding)
 	GameEvents.player_money_changed.connect(_on_collected_a_coin)
 	GameEvents.plant_hunger_bar_filled.connect(_on_plant_bar_filled)
+	GameEvents.bag_full.connect(_on_full_bag)
 
+
+func _on_full_bag() -> void:
+	if not SaveManager.load_item("tutorial/full_bag_prompted"):
+		var dialogue = preload("res://user_interface/dialogue.tscn").instantiate()
+		dialogue.dialog = [
+			"Bag's full.", 
+			"Won't be able to carry no more food until I feed him.",
+			]
+		camera.add_child(dialogue)
+		var dialogue_width := 180.0
+		dialogue.position = Vector2(-(dialogue_width * 0.5)+95, -45.0)
+		SaveManager.save_item("tutorial/full_bag_prompted", true)
 
 func _on_plant_bar_filled() -> void:
 	if not SaveManager.load_item("tutorial/plant_bar_prompted"):
@@ -63,15 +77,6 @@ func _on_done_feeding() -> void:
 		var dialogue_width := 180.0
 		dialogue.position = Vector2(-(dialogue_width * 0.5)+95, -45.0)
 		
-		await dialogue.is_finished
-		GameEvents.ui_tutorial.emit()
-		
-		dialogue = preload("res://user_interface/dialogue.tscn").instantiate()
-		dialogue.dialog = [
-			"Check how full your bag is up here, and see what kinds of food you got.",
-			]
-		camera.add_child(dialogue)
-		dialogue.position = Vector2(-(dialogue_width * 0.5)-160.0, -110.0)
 		SaveManager.save_item("tutorial/done_feeding_prompted", true)
 
 

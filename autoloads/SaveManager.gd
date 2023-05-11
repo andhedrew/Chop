@@ -30,6 +30,7 @@ func setup_json() -> void:
 			"coin_prompted": false,
 			"plant_bar_prompted": false,
 			"start_of_level_prompted": false,
+			"full_bag_prompted": false,
 				}
 	}
 	var json_data := JSON.stringify(save_data)

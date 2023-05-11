@@ -8,6 +8,7 @@ var cutscene_running := false
 var speed := 0.01
 
 func _ready():
+	
 	GameEvents.cutscene_started.connect(_on_cutscene_start)
 	GameEvents.cutscene_ended.connect(_on_cutscene_end)
 	self.material.set_shader_parameter("squishedness", 0.0)

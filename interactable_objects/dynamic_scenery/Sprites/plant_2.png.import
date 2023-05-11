@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://xoihsb8asqow"
-path="res://.godot/imported/full_heart.png-97e31e29b575744fa7dabc873568e702.ctex"
+uid="uid://dg67fga7svata"
+path="res://.godot/imported/plant_2.png-2ebf6a1ff63bd89209b6d3ea70e836e2.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://user_interface/health bar/full_heart.png"
-dest_files=["res://.godot/imported/full_heart.png-97e31e29b575744fa7dabc873568e702.ctex"]
+source_file="res://interactable_objects/dynamic_scenery/Sprites/plant_2.png"
+dest_files=["res://.godot/imported/plant_2.png-2ebf6a1ff63bd89209b6d3ea70e836e2.ctex"]
 
 [params]
 

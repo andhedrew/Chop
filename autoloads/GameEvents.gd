@@ -9,8 +9,9 @@ signal player_started_syphoning #Arg 1: player.global_position
 signal player_done_syphoning
 signal player_died
 signal double_jump_refreshed
-signal added_food_to_bag # Arg 1: the food
+signal added_food_to_bag # Arg 1: the food_pickup
 signal removed_food_from_bag
+signal bag_full
 signal charge_amount_changed
 signal enemy_took_damage
 signal bag_capacity_changed
@@ -41,4 +42,4 @@ signal SaveDataReady
 
 # tutorial
 signal plant_hunger_bar_filled # no parameters
-signal ui_tutorial # no parameters
+

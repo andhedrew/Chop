@@ -3,7 +3,7 @@ extends Pickup
 var brick_value :int = 0
 var meat_value :int = 0
 var plant_value :int = 0
-
+@onready var current_texture = $Sprite2D.texture
 var nutrition_value_lookup : Dictionary = {
 	load("res://characters/enemy/default/mallow_pieces1.png") : {"brick" : 20, "meat" : 22, "plant" : 20 },
 	load("res://characters/enemy/default/mallow_pieces2.png") : {"brick" : 23, "meat" : 20, "plant" : 20 },
@@ -23,9 +23,18 @@ var nutrition_value_lookup : Dictionary = {
 	load("res://characters/player/death_pieces/player_death_pieces_1.png") : {"brick" : 0, "meat" : 1000000, "plant" : 0 },
 	load("res://characters/player/death_pieces/player_death_pieces_2.png") : {"brick" : 0, "meat" : 1000000, "plant" : 0 },
 	load("res://characters/player/death_pieces/player_death_pieces_3.png") : {"brick" : 0, "meat" : 1000000, "plant" : 0 },
+	
+	load("res://pickups/sprites/brick.png") : {"brick" : 100, "meat" : 0, "plant" : 0 },
+	
+	load("res://user_interface/healthbar/full_heart.png") : {"brick" : 0, "meat" : 0, "plant" : 0 },
 }
 
-
+func _ready():
+	super()
+	brick_value = nutrition_value_lookup[current_texture]["brick"]
+	meat_value = nutrition_value_lookup[current_texture]["meat"]
+	plant_value = nutrition_value_lookup[current_texture]["plant"]
+	
 
 func _add_pickup_to_inventory(player) -> void:
 	if player.bag_capacity > player.bag.size():

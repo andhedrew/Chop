@@ -4,7 +4,7 @@
 [ext_resource type="Shader" path="res://letterboxing.gdshader" id="2_6dewy"]
 [ext_resource type="Script" path="res://letterboxes.gd" id="3_0go20"]
 [ext_resource type="Theme" uid="uid://b0dhfhdkknaj3" path="res://user_interface/chop_theme.tres" id="4_0ynlv"]
-[ext_resource type="PackedScene" uid="uid://dky122sj0egps" path="res://user_interface/hud.tscn" id="5_aoqpc"]
+[ext_resource type="PackedScene" uid="uid://c61grkud6tjtu" path="res://user_interface/hud.tscn" id="5_aoqpc"]
 
 [sub_resource type="Animation" id="Animation_ps34p"]
 resource_name = "fade_in"
@@ -84,4 +84,6 @@ text = "Restart? Press ESC."
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="HUD" parent="." instance=ExtResource("5_aoqpc")]
+[node name="CanvasLayer2" type="CanvasLayer" parent="."]
+
+[node name="HUD" parent="CanvasLayer2" instance=ExtResource("5_aoqpc")]

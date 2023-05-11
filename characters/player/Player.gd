@@ -53,8 +53,6 @@ func _ready():
 	GameEvents.enemy_took_damage.connect(_on_enemy_taking_damage)
 	GameEvents.morning_started.connect(_on_morning_start)
 	GameEvents.SaveDataReady.connect(_load_data)
-
-
 #	has_booster_upgrade = SaveManager.load_item("booster_upgrade")
 
 
@@ -160,10 +158,10 @@ func take_damage(damage) -> void:
 	health -= damage
 	GameEvents.player_health_changed.emit(health, max_health)
 	if health <= 0:
-		GameEvents.player_died.emit()
 		_die()
 
 func _die() -> void:
+	GameEvents.player_died.emit()
 	if death_pieces:
 		var spread = 16 # adjust this value to increase or decrease the spread of the pickups
 		var new_velocity = Vector2(0, -12) # adjust this value to control the initial velocity of the pickups
