@@ -20,3 +20,4 @@ extends Node
 #dig https://freesound.org/people/maxthrower/sounds/168810/
 #squish https://freesound.org/people/ominouswhoosh/sounds/684877/
 # death squish https://freesound.org/people/HonorHunter/sounds/271666/
+#ping https://freesound.org/people/wilhellboy/sounds/351371/

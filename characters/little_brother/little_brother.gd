@@ -9,6 +9,7 @@ var is_full := false
 
 var state := Enums.State.IDLE
 
+
 func _ready():
 	z_index = SortLayer.PLAYER
 	GameEvents.evening_started.connect(_on_start_of_evening)
@@ -30,6 +31,8 @@ func _process(_delta):
 	
 	if state == Enums.State.MOVE:
 		position.x += 0.5
+	
+
 
 
 func _on_is_full() -> void:

@@ -1,4 +1,4 @@
-[gd_scene load_steps=45 format=3 uid="uid://cf8s3hxbyvsv8"]
+[gd_scene load_steps=51 format=3 uid="uid://cf8s3hxbyvsv8"]
 
 [ext_resource type="Script" path="res://characters/little_brother/little_brother.gd" id="1_cpyu1"]
 [ext_resource type="Script" path="res://characters/little_brother/interact_with_lil_brother_zone.gd" id="2_sa06n"]
@@ -12,6 +12,7 @@
 [ext_resource type="Texture2D" uid="uid://7gh56l6f27dc" path="res://user_interface/full.png" id="7_sfybx"]
 [ext_resource type="Script" path="res://characters/little_brother/player_on_beak_detection.gd" id="11_b20kr"]
 [ext_resource type="Texture2D" uid="uid://c8an51e0ltepr" path="res://user_interface/emotion_bubbles/hungry.png" id="12_nb7pa"]
+[ext_resource type="Script" path="res://characters/little_brother/little_brother_parry.gd" id="13_bqpne"]
 
 [sub_resource type="Animation" id="Animation_2gfun"]
 resource_name = "RESET"
@@ -625,12 +626,11 @@ scale_max = 3.0
 scale_curve = SubResource("CurveTexture_vdoo6")
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_x6vmq"]
-size = Vector2(18, 8)
+size = Vector2(16, 5)
 
 [sub_resource type="Animation" id="Animation_bxoov"]
 resource_name = "eat"
 length = 0.2
-loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -641,7 +641,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.1),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
-"values": [21, 20]
+"values": [21, 22]
 }
 
 [sub_resource type="Animation" id="Animation_v8muw"]
@@ -807,14 +807,83 @@ tracks/0/keys = {
 "values": [10, 11, 12, 13]
 }
 
+[sub_resource type="Animation" id="Animation_a84qk"]
+resource_name = "chew"
+length = 0.8
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Pivot/Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [24, 25]
+}
+
+[sub_resource type="Animation" id="Animation_x7tx8"]
+resource_name = "swallow"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Pivot/Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [27]
+}
+
+[sub_resource type="Animation" id="Animation_pvm88"]
+resource_name = "parry_1"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Pivot/Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [55]
+}
+
+[sub_resource type="Animation" id="Animation_4wlvr"]
+resource_name = "parry_2"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Pivot/Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [56]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_mouf5"]
 _data = {
+"chew": SubResource("Animation_a84qk"),
 "eat": SubResource("Animation_bxoov"),
 "go_to_sleep": SubResource("Animation_v8muw"),
 "hungry": SubResource("Animation_3vm4l"),
 "idle": SubResource("Animation_0a4sf"),
+"parry_1": SubResource("Animation_pvm88"),
+"parry_2": SubResource("Animation_4wlvr"),
 "player_on_beak": SubResource("Animation_os7um"),
 "sleep": SubResource("Animation_dayhp"),
+"swallow": SubResource("Animation_x7tx8"),
 "wake": SubResource("Animation_im2lf"),
 "walk": SubResource("Animation_w68j2")
 }
@@ -839,7 +908,10 @@ size = Vector2(19, 16)
 size = Vector2(18.5, 14)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_iea46"]
-size = Vector2(29, 25)
+size = Vector2(29, 17)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qkx3h"]
+size = Vector2(35, 49)
 
 [node name="LittleBrother" type="CharacterBody2D"]
 collision_mask = 6
@@ -860,7 +932,7 @@ position = Vector2(92.5, 4)
 shape = SubResource("RectangleShape2D_6lcqp")
 
 [node name="FoodSpawn" type="Marker2D" parent="InteractZone"]
-position = Vector2(47, -52)
+position = Vector2(40, -97)
 
 [node name="Label" type="Label" parent="InteractZone"]
 modulate = Color(1, 1, 1, 0)
@@ -930,7 +1002,7 @@ monitorable = false
 script = ExtResource("3_mykfs")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="FoodDestroyer"]
-position = Vector2(-4, -19)
+position = Vector2(-9, -56)
 shape = SubResource("RectangleShape2D_x6vmq")
 debug_color = Color(0.94902, 0.0784314, 0.533333, 0.419608)
 
@@ -949,6 +1021,7 @@ position = Vector2(6, -46)
 texture = ExtResource("6_kyt5c")
 hframes = 10
 vframes = 6
+frame = 56
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Pivot"]
 root_node = NodePath("../..")
@@ -994,8 +1067,18 @@ monitorable = false
 script = ExtResource("11_b20kr")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerDetection"]
-position = Vector2(39.5, -27.5)
+position = Vector2(39.5, -34.5)
 shape = SubResource("RectangleShape2D_iea46")
 debug_color = Color(0.666667, 0.509804, 0.117647, 0.419608)
+
+[node name="PlayerAttackDetection" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 8
+script = ExtResource("13_bqpne")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerAttackDetection"]
+position = Vector2(39.5, -24.5)
+shape = SubResource("RectangleShape2D_qkx3h")
+debug_color = Color(0, 0.643137, 0.290196, 0.419608)
 
 [editable path="InteractZone/HungerBars"]

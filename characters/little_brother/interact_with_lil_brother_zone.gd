@@ -84,6 +84,7 @@ func _generate_food(player) -> void:
 				pickup.setup(item)
 				owner.get_node("BeakCollider").disabled = true
 				owner.get_node("HeadCollider").disabled = true
+				owner.get_node("CollisionShape2D").disabled = true
 				get_node("/root/World").call_deferred("add_child", pickup)
 				pickup.sort_layer = SortLayer.BACKGROUND
 				pickup.position = $FoodSpawn.global_position
@@ -98,6 +99,7 @@ func _generate_food(player) -> void:
 		await get_tree().create_timer(1.0).timeout
 		owner.get_node("BeakCollider").disabled = false
 		owner.get_node("HeadCollider").disabled = false
+		owner.get_node("CollisionShape2D").disabled = false
 		player.bag = []
 		
 		GameEvents.cutscene_ended.emit()

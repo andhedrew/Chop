@@ -1,7 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://doc1oh7t4brwt"]
+[gd_scene load_steps=6 format=3]
 
 [ext_resource type="Script" path="res://interactable_objects/dynamic_scenery/dynamic_scenery.gd" id="1_myft6"]
-[ext_resource type="Texture2D" uid="uid://yb6ka7jfofgx" path="res://interactable_objects/dynamic_scenery/plant_1.png" id="2_eb7lg"]
+[ext_resource type="Texture2D" uid="uid://yb6ka7jfofgx" path="res://interactable_objects/dynamic_scenery/Sprites/plant_1.png" id="2_eb7lg"]
 [ext_resource type="PackedScene" uid="uid://bb1h85dym7l4i" path="res://hitboxes/Hurtbox.tscn" id="3_c8syv"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fkxev"]

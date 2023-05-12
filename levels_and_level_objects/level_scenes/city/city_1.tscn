@@ -1,4 +1,4 @@
-[gd_scene load_steps=39 format=3 uid="uid://ba650tywfrn0e"]
+[gd_scene load_steps=43 format=3 uid="uid://ba650tywfrn0e"]
 
 [ext_resource type="PackedScene" uid="uid://dm85xjdq5mkk3" path="res://levels_and_level_objects/level_scenes/base_level.tscn" id="1_hhmaj"]
 [ext_resource type="PackedScene" uid="uid://c61py6hgvk4e5" path="res://levels_and_level_objects/enemy_spawn.tscn" id="2_cj47y"]
@@ -18,8 +18,12 @@
 [ext_resource type="Texture2D" uid="uid://bn2k3s4qj4nim" path="res://levels_and_level_objects/backgrounds/bg_layer_2/bg_layer_med_9.png" id="6_mbdfd"]
 [ext_resource type="Texture2D" uid="uid://dtfal6cbpyfl" path="res://levels_and_level_objects/backgrounds/city_1_backgrounds/2_first_enemy/parallax_2.png" id="8_b2xom"]
 [ext_resource type="Texture2D" uid="uid://vasw68kyc7jr" path="res://levels_and_level_objects/backgrounds/city_1_backgrounds/2_first_enemy/parallax_1.png" id="9_xf7vd"]
+[ext_resource type="Texture2D" uid="uid://pgpfipegs14j" path="res://levels_and_level_objects/backgrounds/foliage/tree2.png" id="11_cgo8d"]
 [ext_resource type="Texture2D" uid="uid://botpatxfggygm" path="res://levels_and_level_objects/backgrounds/city_1_backgrounds/2_first_enemy/dark_foreground.png" id="13_5mmpf"]
+[ext_resource type="Texture2D" uid="uid://ctee7w7h3bh74" path="res://levels_and_level_objects/backgrounds/foliage/dark_foliage/foliage8.png" id="16_2qdto"]
 [ext_resource type="Texture2D" uid="uid://dhslqoafifksv" path="res://levels_and_level_objects/backgrounds/city_1_backgrounds/2_first_enemy/template.png" id="17_by6hx"]
+[ext_resource type="Texture2D" uid="uid://clg4y7ls1pfeg" path="res://levels_and_level_objects/backgrounds/foliage/dark_foliage/foliage11.png" id="17_d55st"]
+[ext_resource type="Texture2D" uid="uid://b6x0rgwwkhvoa" path="res://levels_and_level_objects/backgrounds/foliage/dark_foliage/foliage18.png" id="18_m27y1"]
 [ext_resource type="Texture2D" uid="uid://bob6tkxpoiqfy" path="res://levels_and_level_objects/backgrounds/city_1_backgrounds/2_first_enemy/extreme_foreground.png" id="19_0fdhn"]
 [ext_resource type="PackedScene" uid="uid://curfvdorfok3h" path="res://characters/enemy/dandicrow/dandicrow.tscn" id="19_1ryf4"]
 [ext_resource type="PackedScene" uid="uid://b0sq1f61b07wm" path="res://levels_and_level_objects/hazards/spikes.tscn" id="19_dp02i"]
@@ -27,7 +31,7 @@
 [ext_resource type="PackedScene" uid="uid://brm8j8o7p8cd3" path="res://characters/enemy/paroot/paroot_stationary.tscn" id="20_wmg34"]
 [ext_resource type="PackedScene" uid="uid://cl5wmh7hq8ul0" path="res://pickups/food_pickup.tscn" id="21_omsi4"]
 [ext_resource type="PackedScene" uid="uid://m4thc3uygref" path="res://levels_and_level_objects/level_interactive_objects/death_zone.tscn" id="24_r1old"]
-[ext_resource type="PackedScene" uid="uid://doc1oh7t4brwt" path="res://interactable_objects/dynamic_scenery/dynamic_scenery.tscn" id="26_4runp"]
+[ext_resource type="PackedScene" path="res://interactable_objects/dynamic_scenery/dynamic_scenery.tscn" id="26_4runp"]
 [ext_resource type="PackedScene" uid="uid://dx7fp1njyqj3s" path="res://interactable_objects/dirt_block/dirt_block.tscn" id="26_havp1"]
 [ext_resource type="PackedScene" uid="uid://cgjws2n3awij" path="res://interactable_objects/dirt_block/dirt_block_small.tscn" id="27_b71v5"]
 [ext_resource type="Texture2D" uid="uid://pixdi8kaumrj" path="res://interactable_objects/dynamic_scenery/Sprites/plant_3.png" id="27_js5gl"]
@@ -49,8 +53,8 @@ size = Vector2(32, 8)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0iod5"]
 size = Vector2(32, 11.7647)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_mvv0k"]
-size = Vector2(41, 6)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0m1nl"]
+size = Vector2(30, 29)
 
 [node name="World" instance=ExtResource("1_hhmaj")]
 script = ExtResource("2_fakv0")
@@ -59,7 +63,7 @@ map_position = 1.0
 next_level = "res://levels_and_level_objects/level_scenes/city/city_2.tscn"
 
 [node name="Player" parent="." index="1"]
-position = Vector2(8, -112)
+position = Vector2(16, -113)
 
 [node name="ParallaxLayer4" parent="Background" index="0"]
 motion_scale = Vector2(0.9, 1)
@@ -99,27 +103,63 @@ texture = ExtResource("4_0igqo")
 position = Vector2(1010, -106)
 texture = ExtResource("8_b2xom")
 
-[node name="Parallax2" type="Sprite2D" parent="Background/UnmovingScenery" index="0"]
+[node name="Tree2" type="Sprite2D" parent="Background/UnmovingScenery" index="0"]
+position = Vector2(-161, -282)
+texture = ExtResource("11_cgo8d")
+
+[node name="Parallax2" type="Sprite2D" parent="Background/UnmovingScenery" index="1"]
 position = Vector2(1018, -122)
 texture = ExtResource("9_xf7vd")
 
-[node name="Parallax1" type="Sprite2D" parent="Background/UnmovingScenery" index="1"]
+[node name="Parallax1" type="Sprite2D" parent="Background/UnmovingScenery" index="2"]
 position = Vector2(278, -116)
 texture = ExtResource("6_j5rug")
 
-[node name="Foliage5" type="Sprite2D" parent="Background/UnmovingScenery" index="2"]
+[node name="Foliage5" type="Sprite2D" parent="Background/UnmovingScenery" index="3"]
 position = Vector2(664, -141)
 texture = ExtResource("2_y2q1x")
 
-[node name="Foliage6" type="Sprite2D" parent="Background/UnmovingScenery" index="3"]
+[node name="Foliage6" type="Sprite2D" parent="Background/UnmovingScenery" index="4"]
 position = Vector2(768, -136)
 texture = ExtResource("2_y2q1x")
 
-[node name="DarkForeground" type="Sprite2D" parent="Background/UnmovingScenery" index="4"]
+[node name="DarkForeground" type="Sprite2D" parent="Background/UnmovingScenery" index="5"]
 position = Vector2(278, -116)
 texture = ExtResource("5_fctxt")
 
-[node name="DarkForeground2" type="Sprite2D" parent="Background/UnmovingScenery" index="5"]
+[node name="Foliage7" type="Sprite2D" parent="Background/UnmovingScenery" index="6"]
+position = Vector2(-196, -273)
+texture = ExtResource("2_y2q1x")
+
+[node name="Foliage10" type="Sprite2D" parent="Background/UnmovingScenery" index="7"]
+position = Vector2(-245, -594)
+texture = ExtResource("2_y2q1x")
+
+[node name="Foliage8" type="Sprite2D" parent="Background/UnmovingScenery" index="8"]
+position = Vector2(-90, -159)
+texture = ExtResource("2_y2q1x")
+
+[node name="Foliage9" type="Sprite2D" parent="Background/UnmovingScenery" index="9"]
+position = Vector2(-97, -203)
+texture = ExtResource("16_2qdto")
+
+[node name="Foliage11" type="Sprite2D" parent="Background/UnmovingScenery" index="10"]
+position = Vector2(-184, -266)
+texture = ExtResource("17_d55st")
+
+[node name="Foliage12" type="Sprite2D" parent="Background/UnmovingScenery" index="11"]
+position = Vector2(-100, -124)
+texture = ExtResource("17_d55st")
+
+[node name="Foliage13" type="Sprite2D" parent="Background/UnmovingScenery" index="12"]
+position = Vector2(-279, -379)
+texture = ExtResource("17_d55st")
+
+[node name="Foliage18" type="Sprite2D" parent="Background/UnmovingScenery" index="13"]
+position = Vector2(-257, -210)
+texture = ExtResource("18_m27y1")
+
+[node name="DarkForeground2" type="Sprite2D" parent="Background/UnmovingScenery" index="14"]
 position = Vector2(1018, -122)
 texture = ExtResource("13_5mmpf")
 
@@ -287,13 +327,28 @@ position = Vector2(-88, -56)
 [node name="Sprite2D" parent="DynamicSceneryObjects/DynamicScenery3" index="0"]
 texture = ExtResource("27_sex1l")
 
-[node name="DynamicScenery10" parent="DynamicSceneryObjects" index="2" instance=ExtResource("26_4runp")]
+[node name="DynamicScenery4" parent="DynamicSceneryObjects" index="2" instance=ExtResource("26_4runp")]
+position = Vector2(-204, -140)
+
+[node name="DynamicScenery11" parent="DynamicSceneryObjects" index="3" instance=ExtResource("26_4runp")]
+position = Vector2(-186, -121)
+
+[node name="DynamicScenery12" parent="DynamicSceneryObjects" index="4" instance=ExtResource("26_4runp")]
+position = Vector2(-109, -58)
+
+[node name="DynamicScenery13" parent="DynamicSceneryObjects" index="5" instance=ExtResource("26_4runp")]
+position = Vector2(-61, -30)
+
+[node name="DynamicScenery14" parent="DynamicSceneryObjects" index="6" instance=ExtResource("26_4runp")]
+position = Vector2(-236, -264)
+
+[node name="DynamicScenery10" parent="DynamicSceneryObjects" index="7" instance=ExtResource("26_4runp")]
 position = Vector2(1152, -40)
 
 [node name="Sprite2D" parent="DynamicSceneryObjects/DynamicScenery10" index="0"]
 texture = ExtResource("27_sex1l")
 
-[node name="DynamicScenery5" parent="DynamicSceneryObjects" index="3" instance=ExtResource("26_4runp")]
+[node name="DynamicScenery5" parent="DynamicSceneryObjects" index="8" instance=ExtResource("26_4runp")]
 position = Vector2(424, -32)
 
 [node name="Sprite2D" parent="DynamicSceneryObjects/DynamicScenery5" index="0"]
@@ -307,7 +362,7 @@ shape = SubResource("RectangleShape2D_10g5b")
 position = Vector2(0, -4)
 shape = SubResource("RectangleShape2D_0iod5")
 
-[node name="DynamicScenery6" parent="DynamicSceneryObjects" index="4" instance=ExtResource("26_4runp")]
+[node name="DynamicScenery6" parent="DynamicSceneryObjects" index="9" instance=ExtResource("26_4runp")]
 position = Vector2(544, -32)
 
 [node name="Sprite2D" parent="DynamicSceneryObjects/DynamicScenery6" index="0"]
@@ -321,7 +376,7 @@ shape = SubResource("RectangleShape2D_10g5b")
 position = Vector2(0, -4)
 shape = SubResource("RectangleShape2D_0iod5")
 
-[node name="DynamicScenery7" parent="DynamicSceneryObjects" index="5" instance=ExtResource("26_4runp")]
+[node name="DynamicScenery7" parent="DynamicSceneryObjects" index="10" instance=ExtResource("26_4runp")]
 position = Vector2(752, -32)
 
 [node name="Sprite2D" parent="DynamicSceneryObjects/DynamicScenery7" index="0"]
@@ -335,7 +390,7 @@ shape = SubResource("RectangleShape2D_10g5b")
 position = Vector2(0, -4)
 shape = SubResource("RectangleShape2D_0iod5")
 
-[node name="DynamicScenery8" parent="DynamicSceneryObjects" index="6" instance=ExtResource("26_4runp")]
+[node name="DynamicScenery8" parent="DynamicSceneryObjects" index="11" instance=ExtResource("26_4runp")]
 position = Vector2(792, -32)
 
 [node name="Sprite2D" parent="DynamicSceneryObjects/DynamicScenery8" index="0"]
@@ -349,64 +404,64 @@ shape = SubResource("RectangleShape2D_10g5b")
 position = Vector2(0, -4)
 shape = SubResource("RectangleShape2D_0iod5")
 
-[node name="DirtBlock" parent="DynamicSceneryObjects" index="7" instance=ExtResource("26_havp1")]
+[node name="DirtBlock" parent="DynamicSceneryObjects" index="12" instance=ExtResource("26_havp1")]
 position = Vector2(4456, -256)
 
-[node name="DirtBlock2" parent="DynamicSceneryObjects" index="8" instance=ExtResource("26_havp1")]
+[node name="DirtBlock2" parent="DynamicSceneryObjects" index="13" instance=ExtResource("26_havp1")]
 position = Vector2(4456, -288)
 
-[node name="DirtBlock3" parent="DynamicSceneryObjects" index="9" instance=ExtResource("26_havp1")]
+[node name="DirtBlock3" parent="DynamicSceneryObjects" index="14" instance=ExtResource("26_havp1")]
 position = Vector2(4456, -320)
 
-[node name="DirtBlock4" parent="DynamicSceneryObjects" index="10" instance=ExtResource("26_havp1")]
+[node name="DirtBlock4" parent="DynamicSceneryObjects" index="15" instance=ExtResource("26_havp1")]
 position = Vector2(4456, -352)
 
-[node name="DirtBlock5" parent="DynamicSceneryObjects" index="11" instance=ExtResource("26_havp1")]
+[node name="DirtBlock5" parent="DynamicSceneryObjects" index="16" instance=ExtResource("26_havp1")]
 position = Vector2(4456, -384)
 
-[node name="DirtBlock6" parent="DynamicSceneryObjects" index="12" instance=ExtResource("26_havp1")]
+[node name="DirtBlock6" parent="DynamicSceneryObjects" index="17" instance=ExtResource("26_havp1")]
 position = Vector2(4488, -272)
 
-[node name="DirtBlock7" parent="DynamicSceneryObjects" index="13" instance=ExtResource("26_havp1")]
+[node name="DirtBlock7" parent="DynamicSceneryObjects" index="18" instance=ExtResource("26_havp1")]
 position = Vector2(4488, -304)
 
-[node name="DirtBlock8" parent="DynamicSceneryObjects" index="14" instance=ExtResource("26_havp1")]
+[node name="DirtBlock8" parent="DynamicSceneryObjects" index="19" instance=ExtResource("26_havp1")]
 position = Vector2(4424, -256)
 
-[node name="DirtBlock9" parent="DynamicSceneryObjects" index="15" instance=ExtResource("26_havp1")]
+[node name="DirtBlock9" parent="DynamicSceneryObjects" index="20" instance=ExtResource("26_havp1")]
 position = Vector2(3632, -144)
 
-[node name="DirtBlock10" parent="DynamicSceneryObjects" index="16" instance=ExtResource("26_havp1")]
+[node name="DirtBlock10" parent="DynamicSceneryObjects" index="21" instance=ExtResource("26_havp1")]
 position = Vector2(3296, -160)
 
-[node name="DirtBlock11" parent="DynamicSceneryObjects" index="17" instance=ExtResource("26_havp1")]
+[node name="DirtBlock11" parent="DynamicSceneryObjects" index="22" instance=ExtResource("26_havp1")]
 position = Vector2(3328, -160)
 
-[node name="DirtBlock12" parent="DynamicSceneryObjects" index="18" instance=ExtResource("26_havp1")]
+[node name="DirtBlock12" parent="DynamicSceneryObjects" index="23" instance=ExtResource("26_havp1")]
 position = Vector2(3320, -192)
 
-[node name="DirtBlock14" parent="DynamicSceneryObjects" index="19" instance=ExtResource("26_havp1")]
+[node name="DirtBlock14" parent="DynamicSceneryObjects" index="24" instance=ExtResource("26_havp1")]
 position = Vector2(2064, -64)
 
-[node name="DirtBlock20" parent="DynamicSceneryObjects" index="20" instance=ExtResource("26_havp1")]
+[node name="DirtBlock20" parent="DynamicSceneryObjects" index="25" instance=ExtResource("26_havp1")]
 position = Vector2(2440, -64)
 
-[node name="DirtBlock21" parent="DynamicSceneryObjects" index="21" instance=ExtResource("26_havp1")]
+[node name="DirtBlock21" parent="DynamicSceneryObjects" index="26" instance=ExtResource("26_havp1")]
 position = Vector2(2440, -96)
 
-[node name="DirtBlock22" parent="DynamicSceneryObjects" index="22" instance=ExtResource("26_havp1")]
+[node name="DirtBlock22" parent="DynamicSceneryObjects" index="27" instance=ExtResource("26_havp1")]
 position = Vector2(2472, -64)
 
-[node name="DirtBlock15" parent="DynamicSceneryObjects" index="23" instance=ExtResource("26_havp1")]
+[node name="DirtBlock15" parent="DynamicSceneryObjects" index="28" instance=ExtResource("26_havp1")]
 position = Vector2(1536, -48)
 
-[node name="DirtBlockSmall" parent="DynamicSceneryObjects" index="24" instance=ExtResource("27_b71v5")]
+[node name="DirtBlockSmall" parent="DynamicSceneryObjects" index="29" instance=ExtResource("27_b71v5")]
 position = Vector2(4480, -256)
 
-[node name="DirtBlockSmall3" parent="DynamicSceneryObjects" index="25" instance=ExtResource("27_b71v5")]
+[node name="DirtBlockSmall3" parent="DynamicSceneryObjects" index="30" instance=ExtResource("27_b71v5")]
 position = Vector2(4496, -256)
 
-[node name="DynamicScenery9" parent="DynamicSceneryObjects" index="26" instance=ExtResource("26_4runp")]
+[node name="DynamicScenery9" parent="DynamicSceneryObjects" index="31" instance=ExtResource("26_4runp")]
 position = Vector2(1240, -48)
 
 [node name="Sprite2D" parent="DynamicSceneryObjects/DynamicScenery9" index="0"]
@@ -422,22 +477,15 @@ shape = SubResource("RectangleShape2D_0iod5")
 
 [node name="food_pickup" parent="." index="13" instance=ExtResource("21_omsi4")]
 position = Vector2(4456, -440)
+collision_mask = 129
+
+[node name="CollisionShape2D" parent="food_pickup" index="0"]
+position = Vector2(0, -2.5)
+shape = SubResource("RectangleShape2D_0m1nl")
 
 [node name="Sprite2D" parent="food_pickup" index="1"]
 position = Vector2(0, -8)
 texture = ExtResource("31_w5hvv")
-
-[node name="StaticBody2D" type="StaticBody2D" parent="." index="14"]
-position = Vector2(227, -64)
-collision_mask = 2
-
-[node name="Sprite2D" type="Sprite2D" parent="StaticBody2D" index="0"]
-texture = ExtResource("31_w5hvv")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" index="1"]
-position = Vector2(6, -5)
-shape = SubResource("RectangleShape2D_mvv0k")
-one_way_collision = true
 
 [editable path="LittleBrother"]
 [editable path="LittleBrother/InteractZone/HungerBars"]
@@ -446,6 +494,16 @@ one_way_collision = true
 [editable path="DynamicSceneryObjects/DynamicScenery2/Hurtbox"]
 [editable path="DynamicSceneryObjects/DynamicScenery3"]
 [editable path="DynamicSceneryObjects/DynamicScenery3/Hurtbox"]
+[editable path="DynamicSceneryObjects/DynamicScenery4"]
+[editable path="DynamicSceneryObjects/DynamicScenery4/Hurtbox"]
+[editable path="DynamicSceneryObjects/DynamicScenery11"]
+[editable path="DynamicSceneryObjects/DynamicScenery11/Hurtbox"]
+[editable path="DynamicSceneryObjects/DynamicScenery12"]
+[editable path="DynamicSceneryObjects/DynamicScenery12/Hurtbox"]
+[editable path="DynamicSceneryObjects/DynamicScenery13"]
+[editable path="DynamicSceneryObjects/DynamicScenery13/Hurtbox"]
+[editable path="DynamicSceneryObjects/DynamicScenery14"]
+[editable path="DynamicSceneryObjects/DynamicScenery14/Hurtbox"]
 [editable path="DynamicSceneryObjects/DynamicScenery10"]
 [editable path="DynamicSceneryObjects/DynamicScenery10/Hurtbox"]
 [editable path="DynamicSceneryObjects/DynamicScenery5"]
