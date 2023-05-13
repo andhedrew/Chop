@@ -893,16 +893,15 @@ local_coords = true
 
 [node name="ParallaxLayer4" type="ParallaxLayer" parent="Background"]
 position = Vector2(0, -50)
-motion_scale = Vector2(0.9, 1.1)
-motion_mirroring = Vector2(1276, 0)
+motion_scale = Vector2(0.2, 1)
 
 [node name="ParallaxLayer3" type="ParallaxLayer" parent="Background"]
 position = Vector2(0, -32)
-motion_scale = Vector2(0.9, 1.2)
+motion_scale = Vector2(0.5, 1)
 
 [node name="ParallaxLayer2" type="ParallaxLayer" parent="Background"]
 position = Vector2(8, -16)
-motion_scale = Vector2(0.8, 1.3)
+motion_scale = Vector2(0.8, 1)
 
 [node name="UnmovingScenery" type="ParallaxLayer" parent="Background"]
 
@@ -925,8 +924,6 @@ z_as_relative = false
 motion_scale = Vector2(1.1, 1.1)
 
 [node name="Camera" parent="." instance=ExtResource("6_818il")]
-
-[node name="DynamicSceneryObjects" type="Node" parent="."]
 
 [editable path="LittleBrother"]
 [editable path="LittleBrother/InteractZone/HungerBars"]

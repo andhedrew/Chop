@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://d4fseg87aj0e"
-path="res://.godot/imported/dirt_block_small.png-3e3eb97b4abee2d7c024e593c4d87116.ctex"
+uid="uid://dg67fga7svata"
+path="res://.godot/imported/plant_2.png-17ea64a4c0339ffe88fc6f121370320c.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://interactable_objects/dirt_block/dirt_block_small.png"
-dest_files=["res://.godot/imported/dirt_block_small.png-3e3eb97b4abee2d7c024e593c4d87116.ctex"]
+source_file="res://levels_and_level_objects/destructible_plants/Sprites/plant_2.png"
+dest_files=["res://.godot/imported/plant_2.png-17ea64a4c0339ffe88fc6f121370320c.ctex"]
 
 [params]
 

@@ -1,0 +1,23 @@
+[gd_scene load_steps=5 format=3]
+
+[ext_resource type="Texture2D" uid="uid://yb6ka7jfofgx" path="res://levels_and_level_objects/destructible_plants/Sprites/plant_1.png" id="1_qn7fj"]
+[ext_resource type="Script" path="res://levels_and_level_objects/destructible_plants/chop_foliage.gd" id="2_j5nsp"]
+[ext_resource type="PackedScene" uid="uid://bb1h85dym7l4i" path="res://hitboxes/Hurtbox.tscn" id="3_ohe8c"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_624tn"]
+size = Vector2(21, 31)
+
+[node name="ChopFoliage" type="Sprite2D"]
+position = Vector2(150, -47)
+texture = ExtResource("1_qn7fj")
+script = ExtResource("2_j5nsp")
+
+[node name="Hurtbox" parent="." instance=ExtResource("3_ohe8c")]
+collision_mask = 8
+monitorable = false
+
+[node name="CollisionShape2D" parent="Hurtbox" index="0"]
+position = Vector2(-0.5, -0.5)
+shape = SubResource("RectangleShape2D_624tn")
+
+[editable path="Hurtbox"]

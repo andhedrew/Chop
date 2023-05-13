@@ -1,7 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://bjulejw13kaox"]
+[gd_scene load_steps=6 format=3]
 
-[ext_resource type="Script" path="res://interactable_objects/building_block/chunk.gd" id="1_ao7ah"]
-[ext_resource type="Texture2D" uid="uid://dito26cgjlrbg" path="res://interactable_objects/dirt_block/dirt_block.png" id="2_bbd0w"]
+[ext_resource type="Script" path="res://levels_and_level_objects/building_block/chunk.gd" id="1_ao7ah"]
+[ext_resource type="Texture2D" uid="uid://dito26cgjlrbg" path="res://levels_and_level_objects/dirt_block/dirt_block.png" id="2_bbd0w"]
 [ext_resource type="PackedScene" uid="uid://bb1h85dym7l4i" path="res://hitboxes/Hurtbox.tscn" id="3_ojrxp"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0aot3"]

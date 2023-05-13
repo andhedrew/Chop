@@ -1,7 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://cgjws2n3awij"]
+[gd_scene load_steps=6 format=3]
 
-[ext_resource type="Script" path="res://interactable_objects/dirt_block/dirt_block_small.gd" id="1_brokc"]
-[ext_resource type="Texture2D" uid="uid://d4fseg87aj0e" path="res://interactable_objects/dirt_block/dirt_block_small.png" id="2_hkv4e"]
+[ext_resource type="Script" path="res://levels_and_level_objects/dirt_block/dirt_block_small.gd" id="1_brokc"]
+[ext_resource type="Texture2D" uid="uid://d4fseg87aj0e" path="res://levels_and_level_objects/dirt_block/dirt_block_small.png" id="2_hkv4e"]
 [ext_resource type="PackedScene" uid="uid://bb1h85dym7l4i" path="res://hitboxes/Hurtbox.tscn" id="3_s1xra"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vrt0v"]

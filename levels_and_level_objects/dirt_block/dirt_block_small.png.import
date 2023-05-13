@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bkov8urly2mo3"
-path="res://.godot/imported/yumm_tonic_billboard.png-fc6609708dd4a17792d5f576d2a347a6.ctex"
+uid="uid://d4fseg87aj0e"
+path="res://.godot/imported/dirt_block_small.png-c1a55d820660d7551c316cfa87f2db80.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://interactable_objects/choppable/yumm_tonic_billboard.png"
-dest_files=["res://.godot/imported/yumm_tonic_billboard.png-fc6609708dd4a17792d5f576d2a347a6.ctex"]
+source_file="res://levels_and_level_objects/dirt_block/dirt_block_small.png"
+dest_files=["res://.godot/imported/dirt_block_small.png-c1a55d820660d7551c316cfa87f2db80.ctex"]
 
 [params]
 

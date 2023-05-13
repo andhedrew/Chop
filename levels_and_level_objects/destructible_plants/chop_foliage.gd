@@ -1,4 +1,4 @@
-extends StaticBody2D
+extends Sprite2D
 
 @export var death_sound: AudioStreamWAV = null
 
@@ -13,7 +13,7 @@ func _on_area_entered(hitbox) -> void:
 			SoundPlayer.play_sound_positional(death_sound, global_position)
 		else:
 			SoundPlayer.play_sound_positional("dirt", global_position)
-		particles.texture = $Sprite2D.texture
+		particles.texture = texture
 		particles.restart()
 		particles.position = global_position
 		get_node("/root/").add_child(particles)

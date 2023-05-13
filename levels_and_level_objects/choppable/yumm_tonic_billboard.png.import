@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://pixdi8kaumrj"
-path="res://.godot/imported/plant_3.png-bfd217f45b63e61758bf71a512384cef.ctex"
+uid="uid://bkov8urly2mo3"
+path="res://.godot/imported/yumm_tonic_billboard.png-a5c164d6e53d985f39cecaa0c60ba905.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://interactable_objects/dynamic_scenery/Sprites/plant_3.png"
-dest_files=["res://.godot/imported/plant_3.png-bfd217f45b63e61758bf71a512384cef.ctex"]
+source_file="res://levels_and_level_objects/choppable/yumm_tonic_billboard.png"
+dest_files=["res://.godot/imported/yumm_tonic_billboard.png-a5c164d6e53d985f39cecaa0c60ba905.ctex"]
 
 [params]
 
