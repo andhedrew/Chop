@@ -18,9 +18,12 @@ var x_cutscene_lead := -30.0
 var cutscene_running := false
 
 var y_lead_amount := -70.0
+var y_air_lead_amount := y_lead_amount + 200.0
 var y_peek_amount := -70.0
 var y_lead := y_lead_amount
 var y_target_lead := y_lead
+var airtime_index := 0.0
+var airspeed := 0.0
 
 var noise := FastNoiseLite.new()
 
@@ -48,13 +51,27 @@ func _ready():
 
 
 func _process(delta):
+	target_node = get_node(target)
+	
 	if !freeze_camera:
 		if cutscene_running:
 			x_target_lead = lerp(x_target_lead, x_cutscene_lead, lerpspeed*3)
 		else:
 			x_target_lead = lerp(x_target_lead, x_lead, lerpspeed)
+		
+		if target_node is Player:
+			if target_node.is_on_floor():
+				airtime_index = 0.0
+				airspeed = 0.0
+				y_lead = y_lead_amount
+			else:
+				airtime_index += airspeed
+				airspeed += 0.01
+				airtime_index = clamp(airtime_index, y_lead_amount, y_air_lead_amount)
+				y_lead = airtime_index
+				
 		y_target_lead = lerp(y_target_lead, y_lead, lerpspeed)
-		target_node = get_node(target)
+			
 		position = lerp(position, Vector2(target_node.position.x+x_target_lead, target_node.position.y+y_target_lead), lerpspeed)
 
 		time += delta
@@ -74,7 +91,6 @@ func _process(delta):
 				x_lead = -x_lead_amount
 			elif look_direction.x < 0:
 				x_lead = x_lead_amount
-
 			y_lead = 0
 
 
