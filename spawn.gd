@@ -2,7 +2,7 @@
 extends Node2D
 
 @export var spawn : PackedScene
-
+@export_enum("Left", "Right") var facing = "Left"
 var active := true
 
 var timer_minimum := 30.0
@@ -11,6 +11,11 @@ var timer_maximum := 80.0
 func _ready():
 		var new_spawn = spawn.instantiate()
 		add_child(new_spawn)
+		if facing == "Left":
+			new_spawn.facing = Enums.Facing.LEFT
+		elif facing == "Right":
+			new_spawn.facing = Enums.Facing.RIGHT
+		new_spawn.set_facing(new_spawn.facing)
 		GameEvents.cutscene_started.connect(_cutscene_started)
 		GameEvents.cutscene_ended.connect(_cutscene_ended)
 

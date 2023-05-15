@@ -4,6 +4,7 @@
 
 [node name="EnemySpawn" type="Marker2D"]
 script = ExtResource("1_mu8be")
+facing = null
 
 [node name="ActiveLabel" type="Label" parent="."]
 visible = false
