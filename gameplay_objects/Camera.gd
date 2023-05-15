@@ -2,6 +2,7 @@ extends Camera2D
 
 @export var target: NodePath = ""
 @export var lerpspeed: float = 0.05
+var base_lerpspeed: float = 0.05
 @export var trauma: float = 0.0
 @export var max_x := 150
 @export var max_y := 150
@@ -18,7 +19,7 @@ var x_cutscene_lead := -30.0
 var cutscene_running := false
 
 var y_lead_amount := -70.0
-var y_air_lead_amount := y_lead_amount + 200.0
+var y_air_lead_amount := y_lead_amount + 160.0
 var y_peek_amount := -70.0
 var y_lead := y_lead_amount
 var y_target_lead := y_lead
@@ -61,15 +62,13 @@ func _process(delta):
 		
 		if target_node is Player:
 			if target_node.is_on_floor():
-				airtime_index = 0.0
-				airspeed = 0.0
 				y_lead = y_lead_amount
+				lerpspeed = base_lerpspeed
 			else:
-				airtime_index += airspeed
-				airspeed += 0.01
-				airtime_index = clamp(airtime_index, y_lead_amount, y_air_lead_amount)
-				y_lead = airtime_index
-				
+				y_lead = 0.0
+				lerpspeed = base_lerpspeed * 1.5
+
+
 		y_target_lead = lerp(y_target_lead, y_lead, lerpspeed)
 			
 		position = lerp(position, Vector2(target_node.position.x+x_target_lead, target_node.position.y+y_target_lead), lerpspeed)

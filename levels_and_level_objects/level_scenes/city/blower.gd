@@ -1,5 +1,9 @@
 extends Area2D
 
+# NEEDS: directions
+
+
+
 # Set the upward force to apply
 @export var upward_force = Vector2(0, -10)
 var player_in_area := false
