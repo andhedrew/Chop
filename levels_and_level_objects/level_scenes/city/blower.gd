@@ -11,6 +11,8 @@ var player = null
 func _ready():
 	self.body_entered.connect(_on_body_entered)
 	self.body_exited.connect(_on_body_exited)
+	var visibility_rect = $GPUParticles2D.visibility_rect
+	visibility_rect.size = $CollisionShape2D.shape.extents * 2
 
 
 func _physics_process(delta):

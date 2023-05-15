@@ -64,6 +64,7 @@ shape = SubResource("RectangleShape2D_gt524")
 [node name="GPUParticles2D" parent="Blower" index="1"]
 amount = 150
 lifetime = 4.7
+visibility_rect = Rect2(0, 0, 500, 1500)
 
 [editable path="LittleBrother"]
 [editable path="LittleBrother/InteractZone/HungerBars"]
