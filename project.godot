@@ -34,6 +34,11 @@ window/size/window_height_override=1440
 window/stretch/mode="viewport"
 window/stretch/aspect="keep_height"
 
+[editor]
+
+movie_writer/mjpeg_quality=0.9
+movie_writer/movie_file="C:/Files/HermitGames/Chop Working Files/movies/chop.avi"
+
 [importer_defaults]
 
 texture={

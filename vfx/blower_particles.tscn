@@ -1,0 +1,20 @@
+[gd_scene load_steps=2 format=3 uid="uid://dspajgnwk753l"]
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_os3wo"]
+emission_shape = 3
+emission_box_extents = Vector3(15, 15, 1)
+particle_flag_disable_z = true
+gravity = Vector3(0, -98, 0)
+angular_velocity_min = 177.36
+angular_velocity_max = 177.36
+orbit_velocity_min = 0.0
+orbit_velocity_max = 0.0
+scale_min = 2.0
+scale_max = 2.0
+
+[node name="BlowerParticles" type="GPUParticles2D"]
+amount = 15
+process_material = SubResource("ParticleProcessMaterial_os3wo")
+lifetime = 5.0
+preprocess = 8.0
+visibility_rect = Rect2(-2500, -2500, 5000, 5000)

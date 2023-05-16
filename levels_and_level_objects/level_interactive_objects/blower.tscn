@@ -1,30 +1,13 @@
 [gd_scene load_steps=3 format=3 uid="uid://dgefbp1qfkfw2"]
 
 [ext_resource type="Script" path="res://levels_and_level_objects/level_scenes/city/blower.gd" id="1_w3ov7"]
-
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_os3wo"]
-emission_shape = 3
-emission_box_extents = Vector3(20, 5, 1)
-particle_flag_disable_z = true
-gravity = Vector3(0, -98, 0)
-angular_velocity_min = 177.36
-angular_velocity_max = 177.36
-orbit_velocity_min = 0.0
-orbit_velocity_max = 0.0
-scale_min = 2.0
-scale_max = 2.0
+[ext_resource type="PackedScene" uid="uid://dspajgnwk753l" path="res://vfx/blower_particles.tscn" id="2_ub5bl"]
 
 [node name="Blower" type="Area2D"]
-position = Vector2(208, -64)
 collision_mask = 6
 script = ExtResource("1_w3ov7")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(11, -68)
 debug_color = Color(0, 0.584314, 0.772549, 0.419608)
 
-[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
-position = Vector2(8, 32)
-amount = 15
-process_material = SubResource("ParticleProcessMaterial_os3wo")
-lifetime = 5.0
+[node name="BlowerParticles" parent="." instance=ExtResource("2_ub5bl")]
