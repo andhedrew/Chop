@@ -17,3 +17,6 @@ func physics_update(_delta: float) -> void:
 
 func exit() -> void:
 	pass
+
+#func drop() -> void:
+#	owner.position.y += 1

@@ -18,7 +18,6 @@ func update(_delta: float) -> void:
 		return
 
 	if Input.is_action_just_pressed("jump") or !jump_buffer_timer.is_stopped():
-
 		state_machine.transition_to("Jump")
 		jump_buffer_timer.stop()
 	elif Input.is_action_pressed("left") or Input.is_action_pressed("right"):
@@ -32,3 +31,6 @@ func update(_delta: float) -> void:
 	
 	if Input.is_action_just_pressed("dash") and owner.has_booster_upgrade:
 		state_machine.transition_to("Dash")
+	
+	if Input.is_action_just_pressed("down"):
+		owner.position.y += 1
