@@ -10,13 +10,8 @@ var player = null
 func _ready():
 	self.body_entered.connect(_on_body_entered)
 	self.body_exited.connect(_on_body_exited)
-
 	z_index = SortLayer.FOREGROUND
-	
-	var collision_width = collision_shape.shape.extents.x
-	var collision_height = collision_shape.shape.extents.y
 
-	
 
 func _physics_process(delta):
 	if player_in_area:
@@ -26,13 +21,13 @@ func _physics_process(delta):
 				player.velocity.y = clamp(player.velocity.y, -250, 0)
 			"LEFT":
 				player.velocity.x -= force.x
-				player.velocity.y = clamp(player.velocity.y, 250, 0)
+				player.velocity.x = clamp(player.velocity.y, -250, 0)
 			"DOWN":
 				player.velocity.y -= force.y
 				player.velocity.x = clamp(player.velocity.x, 250, 0)
 			"RIGHT":
 				player.velocity.x += force.x
-				player.velocity.x = clamp(player.velocity.x, -250, 0)
+				player.velocity.x = clamp(player.velocity.x, 250, 0)
 	else:
 		pass
 
