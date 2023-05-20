@@ -1,7 +1,7 @@
 [gd_scene load_steps=9 format=3 uid="uid://yhu0xdbtbecq"]
 
 [ext_resource type="Script" path="res://pickups/pickup.gd" id="1_4dihh"]
-[ext_resource type="Texture2D" uid="uid://xoihsb8asqow" path="res://user_interface/health bar/full_heart.png" id="2_vhtev"]
+[ext_resource type="Texture2D" uid="uid://xoihsb8asqow" path="res://user_interface/healthbar/full_heart.png" id="2_vhtev"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_i5c87"]
 size = Vector2(15, 13)

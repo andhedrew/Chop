@@ -9,14 +9,21 @@ extends RigidBody2D
 var pop_up_duration = 0.2 # Duration of the pop up motion in seconds
 var pop_up_velocity = Vector2(0, -200) # Velocity of the pop up motion
 var brick_explode_scene = preload("res://vfx/brick_explode.tscn")
+var chop_counter := 0
 
 func _ready():
 	hurtbox.area_entered.connect(_chop_up)
+	hurtbox_collision_shape.shape.extents.x = sprite.region_rect.size.x/2
+	collision_shape.shape.extents.x = sprite.region_rect.size.x/2
+	hurtbox_collision_shape.shape.extents.y = sprite.region_rect.size.y/2
+	collision_shape.shape.extents.y = sprite.region_rect.size.y/2
 
 func _chop_up(hitbox) -> void:
 	if hitbox is HitBox:
+		chop_counter += 1
+		_drop()
 		# Check if width or height is smaller than 1 pixel and run destroy function if necessary
-		if sprite.region_rect.size.x < 1 or sprite.region_rect.size.y < 1:
+		if sprite.region_rect.size.x < 1 or sprite.region_rect.size.y < 1 or chop_counter > 3:
 			destroy()
 		else:
 			# Instantiate particle system when object is chopped
@@ -52,3 +59,11 @@ func _chop_up(hitbox) -> void:
 
 func destroy():
 	queue_free()
+
+
+func _drop() -> void:
+	var pickup = preload("res://pickups/food_pickup.tscn").instantiate()
+	var sprite_piece := preload("res://pickups/sprites/brick.png")
+	pickup.position = global_position
+	pickup.setup(sprite_piece)
+	get_node("/root/World").call_deferred("add_child", pickup)

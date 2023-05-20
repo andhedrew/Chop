@@ -113,9 +113,9 @@ func _on_enemy_took_damage() -> void:
 		var dialogue = preload("res://user_interface/dialogue.tscn").instantiate()
 		dialogue.dialog = [
 			"It's bleeding, one health left.", 
-			"1. Jump using Z", 
-			"2. Press down in midair to execute a bleeding enemy",
-			"Executed enemies drop food."
+			"1. Jump using Z. Keep it held down", 
+			"2. Press down while jumping to chop a bleeding enemy",
+			"Chop enemies when they're bleeding to chop 'em up into food."
 			]
 		camera.add_child(dialogue)
 		var dialogue_width := 180.0

@@ -1,5 +1,8 @@
 extends Pickup
 
+
+
+
 var brick_value :int = 0
 var meat_value :int = 0
 var plant_value :int = 0
@@ -31,9 +34,14 @@ var nutrition_value_lookup : Dictionary = {
 
 func _ready():
 	super()
-	brick_value = nutrition_value_lookup[current_texture]["brick"]
-	meat_value = nutrition_value_lookup[current_texture]["meat"]
-	plant_value = nutrition_value_lookup[current_texture]["plant"]
+	if nutrition_value_lookup.has(current_texture):
+		brick_value = nutrition_value_lookup[current_texture]["brick"]
+		meat_value = nutrition_value_lookup[current_texture]["meat"]
+		plant_value = nutrition_value_lookup[current_texture]["plant"]
+	else:
+		brick_value = 1
+		meat_value = 0
+		plant_value = 0
 	
 
 func _add_pickup_to_inventory(player) -> void:
@@ -49,6 +57,14 @@ func setup(new_texture: CompressedTexture2D) -> void:
 	$CollisionShape2D.shape = RectangleShape2D.new()
 	$CollisionShape2D.shape.extents = size / 2
 	
-	brick_value = nutrition_value_lookup[new_texture]["brick"]
-	meat_value = nutrition_value_lookup[new_texture]["meat"]
-	plant_value = nutrition_value_lookup[new_texture]["plant"]
+	if nutrition_value_lookup.has(current_texture):
+		brick_value = nutrition_value_lookup[new_texture]["brick"]
+		meat_value = nutrition_value_lookup[new_texture]["meat"]
+		plant_value = nutrition_value_lookup[new_texture]["plant"]
+	else:
+		brick_value = 1
+		meat_value = 0
+		plant_value = 0
+
+	velocity.x = randf_range(-200, 200)
+	velocity.y = -300

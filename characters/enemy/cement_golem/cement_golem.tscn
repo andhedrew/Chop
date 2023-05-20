@@ -1,0 +1,77 @@
+[gd_scene load_steps=12 format=3 uid="uid://b1n0gcm7axson"]
+
+[ext_resource type="PackedScene" uid="uid://23cc1xm0v5jp" path="res://characters/enemy/enemy_walker.tscn" id="1_jkiwb"]
+[ext_resource type="AudioStream" uid="uid://culw6y08ooo7s" path="res://audio/sounds/sad_dog_1.wav" id="2_7wbdc"]
+[ext_resource type="AudioStream" uid="uid://dvl876ufhnffk" path="res://audio/sounds/sad_dog_2.wav" id="3_l66ed"]
+[ext_resource type="AudioStream" uid="uid://cjwahiy2j2af3" path="res://audio/sounds/sad_dog_die.wav" id="4_nns6h"]
+[ext_resource type="AudioStream" uid="uid://bekxwncrgx2nr" path="res://audio/sounds/impact_celery.wav" id="5_cihqq"]
+[ext_resource type="Texture2D" uid="uid://bsg0n5c4p4stf" path="res://characters/enemy/hotdog/HotDog2.png" id="6_ofp46"]
+[ext_resource type="Texture2D" uid="uid://dhlkp2vwhtqpp" path="res://characters/enemy/hotdog/HotDog1.png" id="7_kclnl"]
+[ext_resource type="Texture2D" uid="uid://b12wq84i42c4i" path="res://characters/enemy/hotdog/HotDog.png" id="8_o5kpu"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_yx30w"]
+size = Vector2(32, 15)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_057po"]
+size = Vector2(30, 13)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0cxn4"]
+size = Vector2(24, 12)
+
+[node name="HotDog" instance=ExtResource("1_jkiwb")]
+erratic_walking_amount = 3.0
+speed = 25.0
+hurt_vocalizations = Array[AudioStreamWAV]([ExtResource("2_7wbdc"), ExtResource("3_l66ed")])
+death_vocalization = ExtResource("4_nns6h")
+impact_sound = ExtResource("5_cihqq")
+death_pieces = Array[Resource]([ExtResource("6_ofp46"), ExtResource("7_kclnl")])
+
+[node name="BloodParticles" parent="." index="1"]
+position = Vector2(0, -16)
+
+[node name="Pivot" parent="." index="2"]
+position = Vector2(0, -1)
+
+[node name="Body" parent="Pivot" index="0"]
+position = Vector2(-2, -12)
+texture = ExtResource("8_o5kpu")
+frame = 0
+
+[node name="Hurtbox" parent="." index="4"]
+position = Vector2(0, -1)
+
+[node name="CollisionShape2D" parent="Hurtbox" index="0"]
+position = Vector2(-1, -7.5)
+shape = SubResource("RectangleShape2D_yx30w")
+
+[node name="Hitbox" parent="." index="5"]
+position = Vector2(0, -1)
+
+[node name="CollisionShape2D" parent="Hitbox" index="0"]
+position = Vector2(0, -6)
+shape = SubResource("RectangleShape2D_057po")
+
+[node name="CollisionShape2D" parent="." index="6"]
+position = Vector2(0, -7)
+shape = SubResource("RectangleShape2D_0cxn4")
+
+[node name="ledge_check_right" parent="." index="7"]
+position = Vector2(9, -1)
+
+[node name="ledge_check_left" parent="." index="8"]
+position = Vector2(-10, -1)
+
+[node name="wall_check_left" parent="." index="9"]
+position = Vector2(0, -11)
+
+[node name="adjacent_ledge_check_left" parent="." index="10"]
+position = Vector2(0, -11)
+
+[node name="adjacent_ledge_check_right" parent="." index="11"]
+position = Vector2(0, -11)
+
+[node name="wall_check_right" parent="." index="12"]
+position = Vector2(0, -11)
+
+[editable path="Hurtbox"]
+[editable path="Hitbox"]
