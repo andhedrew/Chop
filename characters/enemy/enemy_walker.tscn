@@ -215,7 +215,7 @@ script = ExtResource("5_uo0xo")
 position = Vector2(-2, -14)
 texture = ExtResource("2_5ec61")
 hframes = 14
-frame = 12
+frame = 8
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Pivot"]
 root_node = NodePath("../..")
