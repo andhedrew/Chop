@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://boakvecc6j1ta"]
+[gd_scene load_steps=11 format=3 uid="uid://boakvecc6j1ta"]
 
 [ext_resource type="PackedScene" uid="uid://23cc1xm0v5jp" path="res://characters/enemy/enemy_walker.tscn" id="1_2qt75"]
 [ext_resource type="Texture2D" uid="uid://dho6xihx2y1wm" path="res://characters/enemy/paroot/paroot.png" id="2_352t6"]
@@ -8,6 +8,8 @@
 [ext_resource type="AudioStream" uid="uid://k7akmwtrmxvr" path="res://audio/sounds/squawk_2.wav" id="3_d184i"]
 [ext_resource type="Texture2D" uid="uid://b1ffa310elr21" path="res://characters/enemy/paroot/paroot_drop_3.png" id="4_wb0cm"]
 [ext_resource type="Script" path="res://characters/enemy/states/shoot_projectile.gd" id="6_ilyqa"]
+[ext_resource type="Script" path="res://characters/enemy/states/walker_idle.gd" id="9_dwo6d"]
+[ext_resource type="Script" path="res://characters/enemy/states/walker_walk.gd" id="10_52621"]
 
 [node name="Paroot" instance=ExtResource("1_2qt75")]
 hurt_vocalizations = Array[AudioStreamWAV]([ExtResource("2_np1rv"), ExtResource("3_d184i")])
@@ -23,8 +25,17 @@ position = Vector2(-2, -10)
 [node name="player_detector" parent="Pivot" index="4"]
 target_position = Vector2(-120, 0)
 
-[node name="Attack" type="Node" parent="StateMachine" index="4"]
+[node name="StateMachine" parent="." index="3"]
+initial_state = NodePath("Idle")
+
+[node name="Attack" type="Node" parent="StateMachine" index="3"]
 script = ExtResource("6_ilyqa")
+
+[node name="Idle" type="Node" parent="StateMachine" index="4"]
+script = ExtResource("9_dwo6d")
+
+[node name="Move" type="Node" parent="StateMachine" index="5"]
+script = ExtResource("10_52621")
 
 [editable path="Hurtbox"]
 [editable path="Hitbox"]

@@ -75,6 +75,9 @@ target_position = Vector2(-70, -45)
 [node name="CementGolem" parent="." index="12" instance=ExtResource("7_iatkr")]
 position = Vector2(208, -32)
 
+[node name="Paroot" parent="." index="13" instance=ExtResource("4_o12ev")]
+position = Vector2(344, -40)
+
 [editable path="LittleBrother"]
 [editable path="LittleBrother/InteractZone/HungerBars"]
 [editable path="Blower"]

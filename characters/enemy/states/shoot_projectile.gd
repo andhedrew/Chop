@@ -2,6 +2,7 @@ extends State
 
 @export var my_bullet : PackedScene = preload("res://bullets/nut_bullet/nut_bullet.tscn")
 var timer : Timer
+@export var speed := 150
 
 func enter(_msg := {}) -> void:
 	timer = Timer.new()

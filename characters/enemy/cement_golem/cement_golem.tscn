@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://b1n0gcm7axson"]
+[gd_scene load_steps=15 format=3 uid="uid://b1n0gcm7axson"]
 
 [ext_resource type="PackedScene" uid="uid://23cc1xm0v5jp" path="res://characters/enemy/enemy_walker.tscn" id="1_jkiwb"]
 [ext_resource type="AudioStream" uid="uid://culw6y08ooo7s" path="res://audio/sounds/sad_dog_1.wav" id="2_7wbdc"]
@@ -9,6 +9,8 @@
 [ext_resource type="Texture2D" uid="uid://dhlkp2vwhtqpp" path="res://characters/enemy/hotdog/HotDog1.png" id="7_kclnl"]
 [ext_resource type="Texture2D" uid="uid://dvl5606hliwni" path="res://characters/enemy/cement_golem/cement_golem.png" id="8_71r7h"]
 [ext_resource type="PackedScene" uid="uid://b0sq1f61b07wm" path="res://levels_and_level_objects/hazards/spikes.tscn" id="9_6sfra"]
+[ext_resource type="Script" path="res://characters/enemy/states/walker_idle.gd" id="9_twh0q"]
+[ext_resource type="Script" path="res://characters/enemy/states/walker_walk.gd" id="10_c5wps"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0bdm5"]
 size = Vector2(25, 20)
@@ -37,6 +39,12 @@ position = Vector2(0, -1)
 position = Vector2(-2, -12)
 texture = ExtResource("8_71r7h")
 frame = 0
+
+[node name="Idle" type="Node" parent="StateMachine" index="3"]
+script = ExtResource("9_twh0q")
+
+[node name="Move" type="Node" parent="StateMachine" index="4"]
+script = ExtResource("10_c5wps")
 
 [node name="Hurtbox" parent="." index="4"]
 position = Vector2(0, -1)

@@ -1,4 +1,4 @@
-[gd_scene load_steps=48 format=3 uid="uid://q1sqyadjmbaw"]
+[gd_scene load_steps=47 format=3 uid="uid://q1sqyadjmbaw"]
 
 [ext_resource type="PackedScene" uid="uid://bwvi5m2prncxh" path="res://characters/player/player.tscn" id="1_371ql"]
 [ext_resource type="Script" path="res://levels_and_level_objects/level_scenes/level_manager.gd" id="1_nxsgc"]
@@ -33,10 +33,9 @@
 [ext_resource type="Texture2D" uid="uid://b3pfxh6lpumnb" path="res://levels_and_level_objects/backgrounds/foliage/dark_foliage/foliage10.png" id="28_ew58i"]
 [ext_resource type="Texture2D" uid="uid://clg4y7ls1pfeg" path="res://levels_and_level_objects/backgrounds/foliage/dark_foliage/foliage11.png" id="29_0tmwr"]
 [ext_resource type="PackedScene" uid="uid://bqg8q7u0o16hm" path="res://gameplay_objects/camera.tscn" id="34_ck663"]
-[ext_resource type="PackedScene" uid="uid://b72q0g6eleo7q" path="res://levels_and_level_objects/choppable/choppable_chunk.tscn" id="39_v62oa"]
+[ext_resource type="PackedScene" uid="uid://0v77alk6bcbh" path="res://characters/enemy/pumpiboo/pumpiboo.tscn" id="37_3mll4"]
 [ext_resource type="PackedScene" uid="uid://cf8s3hxbyvsv8" path="res://characters/little_brother/little_brother.tscn" id="39_wpx1l"]
 [ext_resource type="PackedScene" uid="uid://b0sq1f61b07wm" path="res://levels_and_level_objects/hazards/spikes.tscn" id="40_o63gs"]
-[ext_resource type="PackedScene" uid="uid://cl5wmh7hq8ul0" path="res://pickups/food_pickup.tscn" id="42_70ys2"]
 
 [sub_resource type="Animation" id="Animation_vp1kt"]
 resource_name = "day"
@@ -1007,7 +1006,7 @@ position = Vector2(-240, -64)
 texture = ExtResource("5_vdx38")
 
 [node name="BgLayerMed16" type="Sprite2D" parent="Background2/ParallaxLayer2"]
-position = Vector2(-368, -96)
+position = Vector2(-307, -14)
 texture = ExtResource("3_ek11j")
 
 [node name="BgLayerMed17" type="Sprite2D" parent="Background2/ParallaxLayer2"]
@@ -1183,26 +1182,8 @@ layer_0/tile_data = PackedInt32Array(524297, 65537, 1, 524298, 131073, 1, 524299
 
 [node name="Camera" parent="." instance=ExtResource("34_ck663")]
 
-[node name="food_pickup" parent="." instance=ExtResource("42_70ys2")]
-position = Vector2(-484, -70)
-
-[node name="ChoppableChunk" parent="." instance=ExtResource("39_v62oa")]
-position = Vector2(-400, -54)
-
-[node name="ChoppableChunk2" parent="." instance=ExtResource("39_v62oa")]
-position = Vector2(-378, -105)
-
-[node name="ChoppableChunk3" parent="." instance=ExtResource("39_v62oa")]
-position = Vector2(-357, -60)
-
-[node name="ChoppableChunk4" parent="." instance=ExtResource("39_v62oa")]
-position = Vector2(-355, -159)
-
-[node name="ChoppableChunk5" parent="." instance=ExtResource("39_v62oa")]
-position = Vector2(-336, -111)
-
-[node name="ChoppableChunk6" parent="." instance=ExtResource("39_v62oa")]
-position = Vector2(-310, -50)
+[node name="Pumpiboo" parent="." instance=ExtResource("37_3mll4")]
+position = Vector2(-405, -61)
 
 [node name="Spikes" parent="." instance=ExtResource("40_o63gs")]
 position = Vector2(-222, -40)
