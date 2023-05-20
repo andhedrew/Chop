@@ -57,7 +57,7 @@ func setup(new_texture: CompressedTexture2D) -> void:
 	$CollisionShape2D.shape = RectangleShape2D.new()
 	$CollisionShape2D.shape.extents = size / 2
 	
-	if nutrition_value_lookup.has(current_texture):
+	if nutrition_value_lookup.has(new_texture):
 		brick_value = nutrition_value_lookup[new_texture]["brick"]
 		meat_value = nutrition_value_lookup[new_texture]["meat"]
 		plant_value = nutrition_value_lookup[new_texture]["plant"]

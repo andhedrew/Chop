@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://b1n0gcm7axson"]
+[gd_scene load_steps=13 format=3 uid="uid://b1n0gcm7axson"]
 
 [ext_resource type="PackedScene" uid="uid://23cc1xm0v5jp" path="res://characters/enemy/enemy_walker.tscn" id="1_jkiwb"]
 [ext_resource type="AudioStream" uid="uid://culw6y08ooo7s" path="res://audio/sounds/sad_dog_1.wav" id="2_7wbdc"]
@@ -7,18 +7,19 @@
 [ext_resource type="AudioStream" uid="uid://bekxwncrgx2nr" path="res://audio/sounds/impact_celery.wav" id="5_cihqq"]
 [ext_resource type="Texture2D" uid="uid://bsg0n5c4p4stf" path="res://characters/enemy/hotdog/HotDog2.png" id="6_ofp46"]
 [ext_resource type="Texture2D" uid="uid://dhlkp2vwhtqpp" path="res://characters/enemy/hotdog/HotDog1.png" id="7_kclnl"]
-[ext_resource type="Texture2D" uid="uid://b12wq84i42c4i" path="res://characters/enemy/hotdog/HotDog.png" id="8_o5kpu"]
+[ext_resource type="Texture2D" uid="uid://dvl5606hliwni" path="res://characters/enemy/cement_golem/cement_golem.png" id="8_71r7h"]
+[ext_resource type="PackedScene" uid="uid://b0sq1f61b07wm" path="res://levels_and_level_objects/hazards/spikes.tscn" id="9_6sfra"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_yx30w"]
-size = Vector2(32, 15)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0bdm5"]
+size = Vector2(25, 20)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_057po"]
-size = Vector2(30, 13)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ew0tv"]
+size = Vector2(22, 21.5)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_0cxn4"]
-size = Vector2(24, 12)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_k2fqy"]
+size = Vector2(23, 20)
 
-[node name="HotDog" instance=ExtResource("1_jkiwb")]
+[node name="CementGolem" instance=ExtResource("1_jkiwb")]
 erratic_walking_amount = 3.0
 speed = 25.0
 hurt_vocalizations = Array[AudioStreamWAV]([ExtResource("2_7wbdc"), ExtResource("3_l66ed")])
@@ -34,26 +35,26 @@ position = Vector2(0, -1)
 
 [node name="Body" parent="Pivot" index="0"]
 position = Vector2(-2, -12)
-texture = ExtResource("8_o5kpu")
+texture = ExtResource("8_71r7h")
 frame = 0
 
 [node name="Hurtbox" parent="." index="4"]
 position = Vector2(0, -1)
 
 [node name="CollisionShape2D" parent="Hurtbox" index="0"]
-position = Vector2(-1, -7.5)
-shape = SubResource("RectangleShape2D_yx30w")
+position = Vector2(-1.5, -10)
+shape = SubResource("RectangleShape2D_0bdm5")
 
 [node name="Hitbox" parent="." index="5"]
 position = Vector2(0, -1)
 
 [node name="CollisionShape2D" parent="Hitbox" index="0"]
-position = Vector2(0, -6)
-shape = SubResource("RectangleShape2D_057po")
+position = Vector2(-1, -10.25)
+shape = SubResource("RectangleShape2D_ew0tv")
 
 [node name="CollisionShape2D" parent="." index="6"]
-position = Vector2(0, -7)
-shape = SubResource("RectangleShape2D_0cxn4")
+position = Vector2(-1.5, -11)
+shape = SubResource("RectangleShape2D_k2fqy")
 
 [node name="ledge_check_right" parent="." index="7"]
 position = Vector2(9, -1)
@@ -72,6 +73,10 @@ position = Vector2(0, -11)
 
 [node name="wall_check_right" parent="." index="12"]
 position = Vector2(0, -11)
+
+[node name="Spikes" parent="." index="13" instance=ExtResource("9_6sfra")]
+position = Vector2(-2, -28)
+scale = Vector2(0.8, 0.8)
 
 [editable path="Hurtbox"]
 [editable path="Hitbox"]
