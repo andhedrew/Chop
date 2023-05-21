@@ -1,34 +1,211 @@
-[gd_scene load_steps=16 format=3 uid="uid://b1n0gcm7axson"]
+[gd_scene load_steps=27 format=3 uid="uid://b1n0gcm7axson"]
 
 [ext_resource type="PackedScene" uid="uid://23cc1xm0v5jp" path="res://characters/enemy/enemy_walker.tscn" id="1_jkiwb"]
-[ext_resource type="AudioStream" uid="uid://culw6y08ooo7s" path="res://audio/sounds/sad_dog_1.wav" id="2_7wbdc"]
-[ext_resource type="AudioStream" uid="uid://dvl876ufhnffk" path="res://audio/sounds/sad_dog_2.wav" id="3_l66ed"]
-[ext_resource type="AudioStream" uid="uid://cjwahiy2j2af3" path="res://audio/sounds/sad_dog_die.wav" id="4_nns6h"]
-[ext_resource type="AudioStream" uid="uid://bekxwncrgx2nr" path="res://audio/sounds/impact_celery.wav" id="5_cihqq"]
-[ext_resource type="Texture2D" uid="uid://bsg0n5c4p4stf" path="res://characters/enemy/hotdog/HotDog2.png" id="6_ofp46"]
-[ext_resource type="Texture2D" uid="uid://dhlkp2vwhtqpp" path="res://characters/enemy/hotdog/HotDog1.png" id="7_kclnl"]
+[ext_resource type="AudioStream" uid="uid://hevnh2sjqgrp" path="res://audio/sounds/grunt.wav" id="4_22js0"]
+[ext_resource type="AudioStream" uid="uid://bdrhtkor6762v" path="res://audio/sounds/concrete.wav" id="5_ywi4b"]
+[ext_resource type="Texture2D" uid="uid://bbx3vpsfp6t5j" path="res://characters/enemy/cement_golem/cement_golem_piece_1.png" id="6_uronb"]
+[ext_resource type="Texture2D" uid="uid://ntitf7t3jsc7" path="res://characters/enemy/cement_golem/cement_golem_piece_2.png" id="7_l5tjt"]
 [ext_resource type="Texture2D" uid="uid://dvl5606hliwni" path="res://characters/enemy/cement_golem/cement_golem.png" id="8_71r7h"]
-[ext_resource type="PackedScene" uid="uid://b0sq1f61b07wm" path="res://levels_and_level_objects/hazards/spikes.tscn" id="9_6sfra"]
+[ext_resource type="Texture2D" uid="uid://cvs8td0tpywqi" path="res://characters/enemy/cement_golem/cement_golem_piece_3.png" id="8_lsq4i"]
 [ext_resource type="Script" path="res://characters/enemy/states/walker_idle.gd" id="9_twh0q"]
 [ext_resource type="Script" path="res://characters/enemy/states/walker_walk.gd" id="10_c5wps"]
 [ext_resource type="Script" path="res://characters/enemy/states/rush_attack.gd" id="11_f487f"]
+[ext_resource type="Texture2D" uid="uid://ceokl1ev8sk15" path="res://vfx/smoke_white.png" id="13_0o6xv"]
+
+[sub_resource type="Animation" id="Animation_v48wb"]
+resource_name = "attack"
+length = 0.2
+loop_mode = 1
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Pivot/Body:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.1, 0.15),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [8, 9, 10, 11]
+}
+
+[sub_resource type="Animation" id="Animation_65g74"]
+resource_name = "fall"
+length = 0.1
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Pivot/Body:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [13]
+}
+
+[sub_resource type="Animation" id="Animation_2yxic"]
+resource_name = "get_angry"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Pivot/Body:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [9]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("GPUParticles2D:emitting")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_ynxhm"]
+resource_name = "hurt"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Pivot/Body:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [12]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("GPUParticles2D:emitting")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_pap31"]
+resource_name = "idle"
+length = 0.8
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Pivot/Body:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3]
+}
+
+[sub_resource type="Animation" id="Animation_58rnm"]
+resource_name = "walk"
+length = 0.4
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Pivot/Body:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [4, 5, 6, 7]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("GPUParticles2D:emitting")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_mgj15"]
+_data = {
+"attack": SubResource("Animation_v48wb"),
+"fall": SubResource("Animation_65g74"),
+"get_angry": SubResource("Animation_2yxic"),
+"hurt": SubResource("Animation_ynxhm"),
+"idle": SubResource("Animation_pap31"),
+"walk": SubResource("Animation_58rnm")
+}
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0bdm5"]
-size = Vector2(25, 20)
+size = Vector2(31, 25)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ew0tv"]
-size = Vector2(22, 21.5)
+size = Vector2(26.5, 21.75)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_k2fqy"]
 size = Vector2(23, 20)
 
+[sub_resource type="Gradient" id="Gradient_gpwbl"]
+offsets = PackedFloat32Array(0, 0.0982906, 1)
+colors = PackedColorArray(0.970773, 0.82193, 0.757273, 1, 0.963801, 0.894419, 0.861991, 1, 1, 1, 1, 0.847059)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_nggty"]
+gradient = SubResource("Gradient_gpwbl")
+
+[sub_resource type="Curve" id="Curve_s5nuh"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.623047, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.331288), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_jjxwj"]
+curve = SubResource("Curve_s5nuh")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_ysr57"]
+emission_shape = 3
+emission_box_extents = Vector3(15, 1, 1)
+particle_flag_disable_z = true
+gravity = Vector3(0, -30, 0)
+orbit_velocity_min = 0.0
+orbit_velocity_max = 0.0
+radial_accel_min = 10.0
+radial_accel_max = 10.0
+scale_min = 0.1
+scale_max = 0.2
+scale_curve = SubResource("CurveTexture_jjxwj")
+color_ramp = SubResource("GradientTexture1D_nggty")
+turbulence_noise_speed_random = 3.74
+
 [node name="CementGolem" instance=ExtResource("1_jkiwb")]
 erratic_walking_amount = 3.0
+health = 8
 speed = 25.0
-hurt_vocalizations = Array[AudioStreamWAV]([ExtResource("2_7wbdc"), ExtResource("3_l66ed")])
-death_vocalization = ExtResource("4_nns6h")
-impact_sound = ExtResource("5_cihqq")
-death_pieces = Array[Resource]([ExtResource("6_ofp46"), ExtResource("7_kclnl")])
+hurt_vocalizations = Array[AudioStreamWAV]([ExtResource("5_ywi4b")])
+death_vocalization = ExtResource("4_22js0")
+impact_sound = ExtResource("5_ywi4b")
+death_pieces = Array[Resource]([ExtResource("6_uronb"), ExtResource("7_l5tjt"), ExtResource("8_lsq4i")])
+bounty = 1
 
 [node name="BloodParticles" parent="." index="1"]
 position = Vector2(0, -16)
@@ -37,8 +214,17 @@ position = Vector2(0, -16)
 position = Vector2(0, -1)
 
 [node name="Body" parent="Pivot" index="0"]
-position = Vector2(-2, -12)
+position = Vector2(0, -14)
 texture = ExtResource("8_71r7h")
+frame = 4
+
+[node name="AnimationPlayer" parent="Pivot" index="1"]
+libraries = {
+"": SubResource("AnimationLibrary_mgj15")
+}
+
+[node name="player_detector" parent="Pivot" index="3"]
+target_position = Vector2(-120, 0)
 
 [node name="StateMachine" parent="." index="3"]
 initial_state = NodePath("Idle")
@@ -56,14 +242,14 @@ script = ExtResource("11_f487f")
 position = Vector2(0, -1)
 
 [node name="CollisionShape2D" parent="Hurtbox" index="0"]
-position = Vector2(-1.5, -10)
+position = Vector2(-0.5, -10.5)
 shape = SubResource("RectangleShape2D_0bdm5")
 
 [node name="Hitbox" parent="." index="5"]
 position = Vector2(0, -1)
 
 [node name="CollisionShape2D" parent="Hitbox" index="0"]
-position = Vector2(-1, -10.25)
+position = Vector2(-0.25, -9.875)
 shape = SubResource("RectangleShape2D_ew0tv")
 
 [node name="CollisionShape2D" parent="." index="6"]
@@ -88,9 +274,12 @@ position = Vector2(0, -11)
 [node name="wall_check_right" parent="." index="12"]
 position = Vector2(0, -11)
 
-[node name="Spikes" parent="." index="13" instance=ExtResource("9_6sfra")]
-position = Vector2(-2, -28)
-scale = Vector2(0.8, 0.8)
+[node name="GPUParticles2D" type="GPUParticles2D" parent="." index="13"]
+position = Vector2(0, -22)
+emitting = false
+amount = 5
+process_material = SubResource("ParticleProcessMaterial_ysr57")
+texture = ExtResource("13_0o6xv")
 
 [editable path="Hurtbox"]
 [editable path="Hitbox"]

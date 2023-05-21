@@ -33,7 +33,7 @@
 [ext_resource type="Texture2D" uid="uid://b3pfxh6lpumnb" path="res://levels_and_level_objects/backgrounds/foliage/dark_foliage/foliage10.png" id="28_ew58i"]
 [ext_resource type="Texture2D" uid="uid://clg4y7ls1pfeg" path="res://levels_and_level_objects/backgrounds/foliage/dark_foliage/foliage11.png" id="29_0tmwr"]
 [ext_resource type="PackedScene" uid="uid://bqg8q7u0o16hm" path="res://gameplay_objects/camera.tscn" id="34_ck663"]
-[ext_resource type="PackedScene" uid="uid://0v77alk6bcbh" path="res://characters/enemy/pumpiboo/pumpiboo.tscn" id="37_3mll4"]
+[ext_resource type="PackedScene" uid="uid://b1n0gcm7axson" path="res://characters/enemy/cement_golem/cement_golem.tscn" id="36_uqstc"]
 [ext_resource type="PackedScene" uid="uid://cf8s3hxbyvsv8" path="res://characters/little_brother/little_brother.tscn" id="39_wpx1l"]
 [ext_resource type="PackedScene" uid="uid://b0sq1f61b07wm" path="res://levels_and_level_objects/hazards/spikes.tscn" id="40_o63gs"]
 
@@ -1182,11 +1182,11 @@ layer_0/tile_data = PackedInt32Array(524297, 65537, 1, 524298, 131073, 1, 524299
 
 [node name="Camera" parent="." instance=ExtResource("34_ck663")]
 
-[node name="Pumpiboo" parent="." instance=ExtResource("37_3mll4")]
-position = Vector2(-405, -61)
-
 [node name="Spikes" parent="." instance=ExtResource("40_o63gs")]
 position = Vector2(-222, -40)
+
+[node name="CementGolem" parent="." instance=ExtResource("36_uqstc")]
+position = Vector2(-394, -41)
 
 [editable path="LittleBrother"]
 [editable path="LittleBrother/InteractZone/HungerBars"]

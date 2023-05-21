@@ -12,7 +12,6 @@ func _ready():
 	self.body_exited.connect(_on_body_exited)
 	z_index = SortLayer.FOREGROUND
 
-
 func _physics_process(delta):
 	if player_in_area:
 		match blow_direction:

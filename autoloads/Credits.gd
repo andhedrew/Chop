@@ -21,3 +21,12 @@ extends Node
 #squish https://freesound.org/people/ominouswhoosh/sounds/684877/
 # death squish https://freesound.org/people/HonorHunter/sounds/271666/
 #ping https://freesound.org/people/wilhellboy/sounds/351371/
+# footstep https://freesound.org/people/Nox_Sound/sounds/530588/
+# footstep metal https://freesound.org/people/elgronbo/sounds/144096/
+# helicopter loop https://freesound.org/people/unikumpu/sounds/609460/
+# bleeding sound https://freesound.org/people/tetri5/sounds/385784/
+# blade hitting hard surface https://freesound.org/people/ralph.whitehead/sounds/565729/
+# grind stone https://freesound.org/people/CaptainYulef/sounds/641247/
+# cough https://freesound.org/people/Duisterwho/sounds/641448/
+# growl https://freesound.org/people/RebelEdit/sounds/520745/
+# angry fox https://freesound.org/people/tilano408/sounds/445658/
