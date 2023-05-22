@@ -3,6 +3,10 @@
 [ext_resource type="FontFile" uid="uid://b1dvl3838i5ja" path="res://user_interface/fonts/Peaberry-Mono.otf" id="1_hncx2"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_g634i"]
+content_margin_left = 2.0
+content_margin_top = 5.0
+content_margin_right = 2.0
+content_margin_bottom = 2.0
 bg_color = Color(0.694118, 0.580392, 0.364706, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_36kbi"]

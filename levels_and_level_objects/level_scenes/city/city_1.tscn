@@ -1,4 +1,4 @@
-[gd_scene load_steps=38 format=3 uid="uid://ba650tywfrn0e"]
+[gd_scene load_steps=39 format=3 uid="uid://ba650tywfrn0e"]
 
 [ext_resource type="PackedScene" uid="uid://dm85xjdq5mkk3" path="res://levels_and_level_objects/level_scenes/base_level.tscn" id="1_hhmaj"]
 [ext_resource type="PackedScene" uid="uid://c61py6hgvk4e5" path="res://levels_and_level_objects/enemy_spawn.tscn" id="2_cj47y"]
@@ -35,6 +35,7 @@
 [ext_resource type="Texture2D" uid="uid://dklcgkvu7rmwh" path="res://pickups/sprites/brick.png" id="31_w5hvv"]
 [ext_resource type="PackedScene" path="res://levels_and_level_objects/destructible_plants/chop_foliage.tscn" id="33_l58ku"]
 [ext_resource type="Texture2D" uid="uid://dg67fga7svata" path="res://levels_and_level_objects/destructible_plants/Sprites/plant_2.png" id="34_fla44"]
+[ext_resource type="Texture2D" uid="uid://hdwm6xnwvujm" path="res://characters/enemy/default/mallow_pieces1.png" id="36_vgu35"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_isebe"]
 size = Vector2(688, 140)
@@ -403,7 +404,14 @@ texture = ExtResource("31_w5hvv")
 [node name="ChopFoliage" parent="." index="13" instance=ExtResource("33_l58ku")]
 texture = ExtResource("34_fla44")
 
+[node name="food_pickup2" parent="." index="14" instance=ExtResource("21_omsi4")]
+position = Vector2(112, -64)
+
+[node name="Sprite2D" parent="food_pickup2" index="1"]
+texture = ExtResource("36_vgu35")
+
 [editable path="LittleBrother"]
 [editable path="LittleBrother/InteractZone/HungerBars"]
 [editable path="death_zone2"]
 [editable path="food_pickup"]
+[editable path="food_pickup2"]
