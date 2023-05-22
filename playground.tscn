@@ -1,4 +1,4 @@
-[gd_scene load_steps=47 format=3 uid="uid://q1sqyadjmbaw"]
+[gd_scene load_steps=48 format=3 uid="uid://q1sqyadjmbaw"]
 
 [ext_resource type="PackedScene" uid="uid://bwvi5m2prncxh" path="res://characters/player/player.tscn" id="1_371ql"]
 [ext_resource type="Script" path="res://levels_and_level_objects/level_scenes/level_manager.gd" id="1_nxsgc"]
@@ -34,6 +34,7 @@
 [ext_resource type="Texture2D" uid="uid://clg4y7ls1pfeg" path="res://levels_and_level_objects/backgrounds/foliage/dark_foliage/foliage11.png" id="29_0tmwr"]
 [ext_resource type="PackedScene" uid="uid://bqg8q7u0o16hm" path="res://gameplay_objects/camera.tscn" id="34_ck663"]
 [ext_resource type="PackedScene" uid="uid://b1n0gcm7axson" path="res://characters/enemy/cement_golem/cement_golem.tscn" id="36_uqstc"]
+[ext_resource type="PackedScene" path="res://characters/enemy/eggplant/egg_plant.tscn" id="37_6po71"]
 [ext_resource type="PackedScene" uid="uid://cf8s3hxbyvsv8" path="res://characters/little_brother/little_brother.tscn" id="39_wpx1l"]
 [ext_resource type="PackedScene" uid="uid://b0sq1f61b07wm" path="res://levels_and_level_objects/hazards/spikes.tscn" id="40_o63gs"]
 
@@ -939,6 +940,7 @@ motion_scale = Vector2(0.9, 1.1)
 motion_mirroring = Vector2(1276, 0)
 
 [node name="BgLayerFar" type="Sprite2D" parent="Background2/ParallaxLayer"]
+position = Vector2(65, 98)
 texture = ExtResource("2_i2th0")
 
 [node name="ParallaxLayer2" type="ParallaxLayer" parent="Background2"]
@@ -1187,6 +1189,9 @@ position = Vector2(-222, -40)
 
 [node name="CementGolem" parent="." instance=ExtResource("36_uqstc")]
 position = Vector2(-394, -41)
+
+[node name="Enemy" parent="." instance=ExtResource("37_6po71")]
+position = Vector2(-476, -36)
 
 [editable path="LittleBrother"]
 [editable path="LittleBrother/InteractZone/HungerBars"]

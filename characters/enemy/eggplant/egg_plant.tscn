@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=3 uid="uid://d0nt04yk2h548"]
+[gd_scene load_steps=34 format=3]
 
 [ext_resource type="Script" path="res://characters/enemy/enemy_walker.gd" id="1_ks3h6"]
 [ext_resource type="Texture2D" uid="uid://bihoniblrsymj" path="res://characters/enemy/eggplant/egg_plant.png" id="2_1ifnq"]
@@ -11,7 +11,7 @@
 [ext_resource type="Animation" uid="uid://7rbaagwrdwqk" path="res://animations/syphoning.res" id="9_68aml"]
 [ext_resource type="Animation" uid="uid://dep0l7ft0tpjo" path="res://animations/take_damage.res" id="10_2ubha"]
 [ext_resource type="Script" path="res://characters/player/states/state_machine.gd" id="11_gfk3f"]
-[ext_resource type="Script" path="res://characters/enemy/eggplant/idler_idle.gd" id="12_u0euo"]
+[ext_resource type="Script" path="res://characters/enemy/states/idler_idle.gd" id="12_u0euo"]
 [ext_resource type="Script" path="res://characters/enemy/states/walker_fall.gd" id="13_l0eh1"]
 [ext_resource type="Script" path="res://characters/enemy/states/idler_hurt.gd" id="14_nby2m"]
 [ext_resource type="Script" path="res://characters/enemy/states/enemy_syphoned.gd" id="15_pl88n"]

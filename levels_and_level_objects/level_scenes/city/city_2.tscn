@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://c8ohk2k61y8ue"]
+[gd_scene load_steps=8 format=3 uid="uid://c8ohk2k61y8ue"]
 
 [ext_resource type="PackedScene" uid="uid://dm85xjdq5mkk3" path="res://levels_and_level_objects/level_scenes/base_level.tscn" id="1_jfywk"]
 [ext_resource type="PackedScene" uid="uid://c61py6hgvk4e5" path="res://levels_and_level_objects/enemy_spawn.tscn" id="2_mwyhf"]
@@ -6,7 +6,6 @@
 [ext_resource type="PackedScene" uid="uid://cm208i2oyjrct" path="res://characters/enemy/hotdog/hotdog.tscn" id="3_io1xg"]
 [ext_resource type="PackedScene" uid="uid://boakvecc6j1ta" path="res://characters/enemy/paroot/paroot.tscn" id="4_o12ev"]
 [ext_resource type="PackedScene" uid="uid://dgefbp1qfkfw2" path="res://levels_and_level_objects/level_interactive_objects/blower.tscn" id="6_x7nlt"]
-[ext_resource type="PackedScene" uid="uid://b1n0gcm7axson" path="res://characters/enemy/cement_golem/cement_golem.tscn" id="7_iatkr"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mlhfd"]
 size = Vector2(40, 1160)
@@ -72,8 +71,8 @@ position = Vector2(-112, -32)
 [node name="player_detector" parent="Interceptor/Pivot" index="3"]
 target_position = Vector2(-70, -45)
 
-[node name="CementGolem" parent="." index="12" instance=ExtResource("7_iatkr")]
-position = Vector2(208, -32)
+[node name="Paroot" parent="." index="12" instance=ExtResource("4_o12ev")]
+position = Vector2(224, -248)
 
 [editable path="LittleBrother"]
 [editable path="LittleBrother/InteractZone/HungerBars"]
