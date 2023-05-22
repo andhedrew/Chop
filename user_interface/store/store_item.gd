@@ -35,7 +35,7 @@ func upgrade_bag_size() -> void:
 	print_debug("hupgrab bbough")
 
 func buy_booster() -> void:
-	pass
+	print_debug("boggt buster")
 
 func upgrade_booster_charges() -> void:
-	pass
+	print_debug("oppgrudded buster sharjez")
