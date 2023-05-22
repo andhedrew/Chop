@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://brm8j8o7p8cd3"]
+[gd_scene load_steps=16 format=3 uid="uid://brm8j8o7p8cd3"]
 
 [ext_resource type="PackedScene" uid="uid://23cc1xm0v5jp" path="res://characters/enemy/enemy_walker.tscn" id="1_ru2dp"]
 [ext_resource type="AudioStream" uid="uid://c2b7napty0xqn" path="res://audio/sounds/squawk_1.wav" id="2_sidtw"]
@@ -8,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://b1ffa310elr21" path="res://characters/enemy/paroot/paroot_drop_3.png" id="6_ahrwf"]
 [ext_resource type="Texture2D" uid="uid://dho6xihx2y1wm" path="res://characters/enemy/paroot/paroot.png" id="7_dw4vj"]
 [ext_resource type="Script" path="res://characters/enemy/states/shoot_projectile.gd" id="8_pm7m4"]
+[ext_resource type="Script" path="res://characters/enemy/states/walker_idle.gd" id="9_fxuuo"]
 
 [sub_resource type="Animation" id="Animation_1muha"]
 resource_name = "attack"
@@ -121,8 +122,14 @@ position = Vector2(-2, -10)
 [node name="player_detector" parent="Pivot" index="4"]
 target_position = Vector2(-120, 0)
 
+[node name="StateMachine" parent="." index="3"]
+initial_state = NodePath("Idle")
+
 [node name="Attack" type="Node" parent="StateMachine" index="3"]
 script = ExtResource("8_pm7m4")
+
+[node name="Idle" type="Node" parent="StateMachine" index="4"]
+script = ExtResource("9_fxuuo")
 
 [editable path="Hurtbox"]
 [editable path="Hitbox"]
