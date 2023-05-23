@@ -828,7 +828,7 @@ position = Vector2(2, 1)
 texture = ExtResource("4_xrcf8")
 hframes = 10
 vframes = 12
-frame = 1
+frame = 30
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Pivot"]
 libraries = {
@@ -899,13 +899,12 @@ script = ExtResource("18_do748")
 wait_time = 0.1
 one_shot = true
 
+[node name="Charges" type="Marker2D" parent="."]
+position = Vector2(-9, -13)
+script = ExtResource("20_xbxmu")
+
 [node name="JumpBufferTimer" type="Timer" parent="."]
 wait_time = 0.3
 one_shot = true
-
-[node name="Charges" type="Marker2D" parent="."]
-visible = false
-position = Vector2(0, -43)
-script = ExtResource("20_xbxmu")
 
 [editable path="Hurtbox"]
