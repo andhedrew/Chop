@@ -1,16 +1,19 @@
 extends State
 
 @onready var player_detector := $"../../Pivot/player_detector"
-@onready var path := owner.get_parent().get_parent()
+var path
 
 var flipped := false
 var speed := 0.01
 var target_speed := speed
+
+func _ready() -> void:
+	path = owner.get_parent().get_parent()
+
 # Called when the node enters the scene tree for the first time.
 func enter(_msg := {}) -> void:
 	owner.animation_player.play("walk")
 	path.set_rotates(false)
-
 
 func physics_update(_delta: float) -> void:
 	if path.progress_ratio >= 0.95 and !flipped:

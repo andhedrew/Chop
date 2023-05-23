@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://cxn7jo1be6y6r"]
+[gd_scene load_steps=16 format=3 uid="uid://cxn7jo1be6y6r"]
 
 [ext_resource type="Script" path="res://user_interface/shop.gd" id="1_qya3q"]
 [ext_resource type="Theme" uid="uid://b0dhfhdkknaj3" path="res://user_interface/chop_theme.tres" id="2_syqwu"]
@@ -28,10 +28,31 @@ unicode = 122
 [sub_resource type="Shortcut" id="Shortcut_t7r2c"]
 events = [SubResource("InputEventKey_46b7x"), SubResource("InputEventKey_kqep1"), SubResource("InputEventKey_ow7uj"), SubResource("InputEventKey_xlfg1")]
 
+[sub_resource type="Animation" id="Animation_skycn"]
+resource_name = "fade_in"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("VBoxContainer:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.6),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_snh35"]
+_data = {
+"fade_in": SubResource("Animation_skycn")
+}
+
 [node name="new_day_ui" type="CanvasLayer"]
 script = ExtResource("1_qya3q")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
+modulate = Color(1, 1, 1, 0)
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -168,3 +189,8 @@ size_flags_vertical = 4
 theme = ExtResource("2_syqwu")
 shortcut = SubResource("Shortcut_t7r2c")
 text = "Proceed"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_snh35")
+}

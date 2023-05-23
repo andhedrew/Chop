@@ -15,6 +15,7 @@ func _ready():
 	GameEvents.evening_ended.connect(_on_evening_ended)
 	GameEvents.transition_to_map.connect(_on_transitioning_to_map)
 	GameEvents.morning_started.connect(_on_morning_started)
+	GameEvents.continue_day.connect(_on_morning_started)
 	SaveManager.save_item("level", scene_file_path)
 	GameEvents.hunt_started.connect(_on_hunt_started)
 	GameEvents.enemy_took_damage.connect(_on_enemy_took_damage)

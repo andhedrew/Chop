@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://curfvdorfok3h"]
+[gd_scene load_steps=18 format=3 uid="uid://curfvdorfok3h"]
 
 [ext_resource type="PackedScene" uid="uid://g2rn2npgnt8u" path="res://characters/enemy/enemy_flyer.tscn" id="1_g4qc5"]
 [ext_resource type="Texture2D" uid="uid://ckvra50equ7fg" path="res://characters/enemy/dandicrow/dandicrow_piece1.png" id="2_eodqv"]
@@ -11,15 +11,122 @@
 [ext_resource type="AudioStream" uid="uid://c4at7ak7cscxs" path="res://audio/sounds/purr_growl_die.wav" id="7_bhjp8"]
 [ext_resource type="AudioStream" uid="uid://bekxwncrgx2nr" path="res://audio/sounds/impact_celery.wav" id="8_8clu6"]
 
-[node name="EnemyFlyer" instance=ExtResource("1_g4qc5")]
+[sub_resource type="Animation" id="Animation_aro3j"]
+resource_name = "attack"
+length = 0.8
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Pivot/Body:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.25, 0.3, 0.75),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [8, 9, 10, 11]
+}
+
+[sub_resource type="Animation" id="Animation_ndi75"]
+resource_name = "fall"
+length = 0.1
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Pivot/Body:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [13]
+}
+
+[sub_resource type="Animation" id="Animation_e6j4f"]
+resource_name = "hurt"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Pivot/Body:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [12]
+}
+
+[sub_resource type="Animation" id="Animation_k36tg"]
+resource_name = "idle"
+length = 0.4
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Pivot/Body:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3]
+}
+
+[sub_resource type="Animation" id="Animation_iudsa"]
+resource_name = "walk"
+length = 0.8
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Pivot/Body:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [4, 5, 6, 7]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_87aa4"]
+_data = {
+"attack": SubResource("Animation_aro3j"),
+"fall": SubResource("Animation_ndi75"),
+"hurt": SubResource("Animation_e6j4f"),
+"idle": SubResource("Animation_k36tg"),
+"walk": SubResource("Animation_iudsa")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0uqrf"]
+size = Vector2(20, 24)
+
+[node name="DandiRaven" instance=ExtResource("1_g4qc5")]
 health = 2
 hurt_vocalizations = Array[AudioStreamWAV]([ExtResource("2_qdafx"), ExtResource("3_u2xng"), ExtResource("4_c600n"), ExtResource("5_aoi4b"), ExtResource("6_k5j7d")])
 death_vocalization = ExtResource("7_bhjp8")
 impact_sound = ExtResource("8_8clu6")
 death_pieces = Array[Resource]([ExtResource("2_eodqv")])
+bounty = 1
 
 [node name="Body" parent="Pivot" index="0"]
 texture = ExtResource("3_1f2rb")
+frame = 12
+
+[node name="AnimationPlayer" parent="Pivot" index="1"]
+libraries = {
+"": SubResource("AnimationLibrary_87aa4")
+}
+
+[node name="CollisionShape2D" parent="Hurtbox" index="0"]
+position = Vector2(0, -12)
+shape = SubResource("RectangleShape2D_0uqrf")
 
 [editable path="Hurtbox"]
 [editable path="Hitbox"]

@@ -47,6 +47,7 @@ func _ready():
 	GameEvents.cutscene_started.connect(_on_cutscene_start)
 	GameEvents.cutscene_ended.connect(_on_cutscene_end)
 	GameEvents.morning_started.connect(_on_morning_start)
+	GameEvents.continue_day.connect(_on_morning_start)
 	GameEvents.player_died.connect(_on_player_die)
 	set_camera_limits()
 

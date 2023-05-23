@@ -52,6 +52,7 @@ func _ready():
 	hurtbox.area_entered.connect(_hurtbox_on_area_entered)
 	GameEvents.enemy_took_damage.connect(_on_enemy_taking_damage)
 	GameEvents.morning_started.connect(_on_morning_start)
+	GameEvents.continue_day.connect(_on_continue_day)
 	GameEvents.SaveDataReady.connect(_load_data)
 	has_booster_upgrade = SaveManager.load_item("booster_upgrade")
 	_load_data()
@@ -200,6 +201,15 @@ func _on_enemy_taking_damage() -> void:
 
 func _on_morning_start() -> void:
 	await get_tree().create_timer(3.0).timeout
+	$StateMachine.transition_to("Cutscene")
+	facing = Enums.Facing.RIGHT
+	$Pivot.transform.x.x = 1
+	$Pivot.animation_player.play("walk")
+	cutscene_walk = true
+
+
+func _on_continue_day() -> void:
+	await get_tree().create_timer(1.0).timeout
 	$StateMachine.transition_to("Cutscene")
 	facing = Enums.Facing.RIGHT
 	$Pivot.transform.x.x = 1

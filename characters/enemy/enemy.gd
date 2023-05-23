@@ -33,7 +33,7 @@ func _ready() -> void:
 	GameEvents.player_started_syphoning.connect(_on_player_syphoning)
 	GameEvents.player_done_syphoning.connect(_on_player_done_syphoning)
 	GameEvents.evening_started.connect(_on_end_of_day)
-	
+	GameEvents.continue_day.connect(_on_end_of_day)
 
 
 func _physics_process(_delta):

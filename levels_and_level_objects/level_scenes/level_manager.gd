@@ -1,7 +1,7 @@
 class_name LevelManager
 extends Node2D
 
-@export var dream_image: Texture
+@export var dream_images: Array[Texture]
 @export var map_position: float
 @export_file("*.tscn") var next_level
 @export var camera: Camera2D
@@ -12,6 +12,7 @@ func _ready():
 	GameEvents.evening_ended.connect(_on_evening_ended)
 	GameEvents.transition_to_map.connect(_on_transitioning_to_map)
 	GameEvents.morning_started.connect(_on_morning_started)
+	GameEvents.continue_day.connect(_on_morning_started)
 	SaveManager.save_item("level", scene_file_path)
 	GameEvents.hunt_started.connect(_on_hunt_started)
 	GameEvents.player_died.connect(_restart_level)
@@ -36,7 +37,8 @@ func _restart_level() -> void:
 
 func _on_evening_ended() -> void:
 	var dream := preload("res://levels_and_level_objects/dream/dream.tscn").instantiate()
-	dream.get_node("Dream/Sprite2D").texture = dream_image
+	dream.get_node("Dream/Sprite2D").texture = dream_images[0]
+	dream.dream_slides = dream_images
 	add_child(dream)
 
 
@@ -51,6 +53,7 @@ func _on_transitioning_to_map() -> void:
 
 func _on_morning_started() -> void:
 	var start_day_ui := preload("res://user_interface/shop.tscn").instantiate()
+	await get_tree().create_timer(3.0).timeout
 	add_child(start_day_ui)
 
 func _on_hunt_started() -> void:

@@ -11,6 +11,7 @@ func _ready():
 #	GameEvents.done_feeding_little_brother.connect(_on_done_feeding)
 	GameEvents.evening_started.connect(_on_evening_start)
 	GameEvents.morning_started.connect(_on_start_of_day)
+	GameEvents.continue_day.connect(_on_continue_day)
 	GameEvents.cutscene_started.connect(_on_cutscene_start)
 	GameEvents.cutscene_ended.connect(_on_cutscene_end)
 
@@ -32,11 +33,6 @@ func _on_feeding() -> void:
 	animation_player.play("eat")
 
 
-#
-#func _on_done_feeding() -> void:
-#	owner.state = Enums.State.IDLE
-
-
 func _on_evening_start() -> void:
 	await get_tree().create_timer(8.0).timeout
 	animation_player.play("go_to_sleep")
@@ -49,6 +45,10 @@ func _on_start_of_day() -> void:
 	await get_tree().create_timer(3.0).timeout
 	owner.state = Enums.State.MOVE
 
+func _on_continue_day() -> void:
+	$"../FullMessage".visible = false
+	await get_tree().create_timer(3.0).timeout
+	owner.state = Enums.State.MOVE
 
 func _on_cutscene_start() -> void:
 	owner.state = Enums.State.CUTSCENE

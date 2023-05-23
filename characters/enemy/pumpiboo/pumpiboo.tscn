@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://0v77alk6bcbh"]
+[gd_scene load_steps=17 format=3 uid="uid://0v77alk6bcbh"]
 
 [ext_resource type="PackedScene" uid="uid://23cc1xm0v5jp" path="res://characters/enemy/enemy_walker.tscn" id="1_hlusj"]
 [ext_resource type="AudioStream" uid="uid://c2b7napty0xqn" path="res://audio/sounds/squawk_1.wav" id="2_mp5bk"]
@@ -10,6 +10,99 @@
 [ext_resource type="Script" path="res://characters/enemy/states/shoot_projectile.gd" id="8_ceq36"]
 [ext_resource type="PackedScene" uid="uid://7ai3a1nd7v35" path="res://bullets/vine_whip_bullet/vine_whip_bullet.tscn" id="8_vitcu"]
 [ext_resource type="Script" path="res://characters/enemy/states/walker_walk.gd" id="9_plqso"]
+
+[sub_resource type="Animation" id="Animation_8g3w0"]
+resource_name = "attack"
+length = 0.8
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Pivot/Body:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.15, 0.2, 0.75),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [8, 9, 10, 11]
+}
+
+[sub_resource type="Animation" id="Animation_xuvpm"]
+resource_name = "fall"
+length = 0.1
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Pivot/Body:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [13]
+}
+
+[sub_resource type="Animation" id="Animation_cpqq3"]
+resource_name = "hurt"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Pivot/Body:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [12]
+}
+
+[sub_resource type="Animation" id="Animation_p33b2"]
+resource_name = "idle"
+length = 0.8
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Pivot/Body:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3]
+}
+
+[sub_resource type="Animation" id="Animation_f0btm"]
+resource_name = "walk"
+length = 0.4
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Pivot/Body:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [4, 5, 6, 7]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_win2m"]
+_data = {
+"attack": SubResource("Animation_8g3w0"),
+"fall": SubResource("Animation_xuvpm"),
+"hurt": SubResource("Animation_cpqq3"),
+"idle": SubResource("Animation_p33b2"),
+"walk": SubResource("Animation_f0btm")
+}
 
 [node name="Pumpiboo" instance=ExtResource("1_hlusj")]
 erratic_walking_amount = 1.0
@@ -23,6 +116,12 @@ emitting = true
 
 [node name="Body" parent="Pivot" index="0"]
 texture = ExtResource("6_uxy5p")
+frame = 4
+
+[node name="AnimationPlayer" parent="Pivot" index="1"]
+libraries = {
+"": SubResource("AnimationLibrary_win2m")
+}
 
 [node name="BulletSpawn" type="Marker2D" parent="Pivot" index="3"]
 position = Vector2(-2, -10)

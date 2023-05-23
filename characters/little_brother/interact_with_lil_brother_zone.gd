@@ -29,7 +29,7 @@ func _ready():
 func _process(_delta):
 	$Label.text = label_text
 	if player_in_zone and Input.is_action_just_pressed("ui_down") and owner.is_full:
-		_sing_song()
+		_end_level()
 	elif player_in_zone and Input.is_action_just_pressed("ui_down"):
 		GameEvents.started_feeding_little_brother.emit()
 		_generate_food(player_object)
@@ -113,9 +113,14 @@ func _generate_food(player) -> void:
 func _choose_emotion() -> void:
 	pass
 
-func _sing_song():
+func _end_level():
 	GameEvents.cutscene_started.emit()
-	GameEvents.evening_started.emit()
+	var level_number = int(owner.get_parent().map_position)
+	
+	if level_number % 4 == 0:
+		GameEvents.evening_started.emit()
+	else:
+		GameEvents.continue_day.emit()
 
 
 func _on_cutscene_started() -> void:

@@ -1,4 +1,4 @@
-[gd_scene load_steps=40 format=3 uid="uid://ba650tywfrn0e"]
+[gd_scene load_steps=43 format=3 uid="uid://ba650tywfrn0e"]
 
 [ext_resource type="PackedScene" uid="uid://dm85xjdq5mkk3" path="res://levels_and_level_objects/level_scenes/base_level.tscn" id="1_hhmaj"]
 [ext_resource type="PackedScene" uid="uid://c61py6hgvk4e5" path="res://levels_and_level_objects/enemy_spawn.tscn" id="2_cj47y"]
@@ -6,14 +6,17 @@
 [ext_resource type="Texture2D" uid="uid://bhre2d52xhtkh" path="res://levels_and_level_objects/backgrounds/city_1_backgrounds/garden_area/parallax_4.png" id="2_o46md"]
 [ext_resource type="Texture2D" uid="uid://4j6hrg2gqbxw" path="res://levels_and_level_objects/backgrounds/foliage/dark_foliage/foliage5.png" id="2_y2q1x"]
 [ext_resource type="PackedScene" uid="uid://cm208i2oyjrct" path="res://characters/enemy/hotdog/hotdog.tscn" id="3_13y6d"]
-[ext_resource type="Texture2D" uid="uid://cu5agq4euw4xs" path="res://levels_and_level_objects/dream/dream_1.png" id="3_g8c3o"]
+[ext_resource type="Texture2D" uid="uid://cu5agq4euw4xs" path="res://levels_and_level_objects/dream/dream_1.png" id="3_eh8ft"]
 [ext_resource type="Texture2D" uid="uid://2wtqnlbvvh8k" path="res://levels_and_level_objects/backgrounds/city_1_backgrounds/garden_area/parallax_3.png" id="3_sqqki"]
 [ext_resource type="PackedScene" path="res://characters/enemy/eggplant/egg_plant.tscn" id="3_tjka3"]
 [ext_resource type="Texture2D" uid="uid://dg2cjc0nttj0y" path="res://levels_and_level_objects/backgrounds/city_1_backgrounds/2_first_enemy/parallax_4.png" id="3_wbd7w"]
 [ext_resource type="Texture2D" uid="uid://b1qqxku762qld" path="res://levels_and_level_objects/backgrounds/city_1_backgrounds/garden_area/parallax_2.png" id="4_0igqo"]
 [ext_resource type="Texture2D" uid="uid://c2wxe5xmxn2ub" path="res://levels_and_level_objects/backgrounds/city_1_backgrounds/garden_area/extreme_foreground.png" id="4_4yk0m"]
+[ext_resource type="Texture2D" uid="uid://cnlnu7f5pipb8" path="res://levels_and_level_objects/dream/dream_2.png" id="4_uq0r1"]
 [ext_resource type="Texture2D" uid="uid://lcltunp7xkhg" path="res://levels_and_level_objects/backgrounds/city_1_backgrounds/2_first_enemy/parallax_3.png" id="5_b8sut"]
 [ext_resource type="Texture2D" uid="uid://j7rshb6sphb3" path="res://levels_and_level_objects/backgrounds/city_1_backgrounds/garden_area/dark_foreground.png" id="5_fctxt"]
+[ext_resource type="Texture2D" uid="uid://dffikivla5nn4" path="res://levels_and_level_objects/dream/dream_3.png" id="5_j1joi"]
+[ext_resource type="Texture2D" uid="uid://1e4ocu0ypf2p" path="res://levels_and_level_objects/dream/dream_4.png" id="6_6c6qf"]
 [ext_resource type="Texture2D" uid="uid://b0cv0prr7h5d3" path="res://levels_and_level_objects/backgrounds/city_1_backgrounds/garden_area/parallax_1.png" id="6_j5rug"]
 [ext_resource type="Texture2D" uid="uid://bn2k3s4qj4nim" path="res://levels_and_level_objects/backgrounds/bg_layer_2/bg_layer_med_9.png" id="6_mbdfd"]
 [ext_resource type="Texture2D" uid="uid://dtfal6cbpyfl" path="res://levels_and_level_objects/backgrounds/city_1_backgrounds/2_first_enemy/parallax_2.png" id="8_b2xom"]
@@ -35,8 +38,7 @@
 [ext_resource type="Texture2D" uid="uid://dklcgkvu7rmwh" path="res://pickups/sprites/brick.png" id="31_w5hvv"]
 [ext_resource type="PackedScene" path="res://levels_and_level_objects/destructible_plants/chop_foliage.tscn" id="33_l58ku"]
 [ext_resource type="Texture2D" uid="uid://dg67fga7svata" path="res://levels_and_level_objects/destructible_plants/Sprites/plant_2.png" id="34_fla44"]
-[ext_resource type="Texture2D" uid="uid://hdwm6xnwvujm" path="res://characters/enemy/default/mallow_pieces1.png" id="36_vgu35"]
-[ext_resource type="PackedScene" uid="uid://duq3hbv7istwg" path="res://pickups/coin_pickup.tscn" id="37_k3mid"]
+[ext_resource type="PackedScene" uid="uid://curfvdorfok3h" path="res://characters/enemy/dandicrow/dandicrow.tscn" id="39_wt1ur"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_isebe"]
 size = Vector2(688, 140)
@@ -44,9 +46,15 @@ size = Vector2(688, 140)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0m1nl"]
 size = Vector2(30, 29)
 
+[sub_resource type="Curve2D" id="Curve2D_nqfpm"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 130, -166, 0, 0, 0, 0, 131, -77)
+}
+point_count = 2
+
 [node name="World" instance=ExtResource("1_hhmaj")]
 script = ExtResource("2_fakv0")
-dream_image = ExtResource("3_g8c3o")
+dream_images = Array[Texture]([ExtResource("3_eh8ft"), ExtResource("4_uq0r1"), ExtResource("5_j1joi"), ExtResource("6_6c6qf")])
 map_position = 1.0
 next_level = "res://levels_and_level_objects/level_scenes/city/city_2.tscn"
 
@@ -405,50 +413,18 @@ texture = ExtResource("31_w5hvv")
 [node name="ChopFoliage" parent="." index="13" instance=ExtResource("33_l58ku")]
 texture = ExtResource("34_fla44")
 
-[node name="food_pickup2" parent="." index="14" instance=ExtResource("21_omsi4")]
-position = Vector2(112, -64)
+[node name="Path2D" type="Path2D" parent="." index="14"]
+curve = SubResource("Curve2D_nqfpm")
 
-[node name="Sprite2D" parent="food_pickup2" index="1"]
-texture = ExtResource("36_vgu35")
+[node name="PathFollow2D" type="PathFollow2D" parent="Path2D" index="0"]
+position = Vector2(130, -166)
+rotation = 1.55956
 
-[node name="CoinPickup" parent="." index="15" instance=ExtResource("37_k3mid")]
-position = Vector2(227, -96)
-value = 8
-
-[node name="CoinPickup2" parent="." index="16" instance=ExtResource("37_k3mid")]
-position = Vector2(194, -139)
-value = 8
-
-[node name="CoinPickup3" parent="." index="17" instance=ExtResource("37_k3mid")]
-position = Vector2(230, -149)
-value = 8
-
-[node name="CoinPickup4" parent="." index="18" instance=ExtResource("37_k3mid")]
-position = Vector2(196, -100)
-value = 8
-
-[node name="CoinPickup5" parent="." index="19" instance=ExtResource("37_k3mid")]
-position = Vector2(205, -173)
-value = 8
-
-[node name="CoinPickup6" parent="." index="20" instance=ExtResource("37_k3mid")]
-position = Vector2(251, -116)
-value = 8
-
-[node name="CoinPickup7" parent="." index="21" instance=ExtResource("37_k3mid")]
-position = Vector2(194, -70)
-value = 8
-
-[node name="CoinPickup8" parent="." index="22" instance=ExtResource("37_k3mid")]
-position = Vector2(215, -123)
-value = 8
-
-[node name="CoinPickup9" parent="." index="23" instance=ExtResource("37_k3mid")]
-position = Vector2(249, -176)
-value = 8
+[node name="EnemySpawn" parent="Path2D/PathFollow2D" index="0" instance=ExtResource("2_cj47y")]
+spawn = ExtResource("39_wt1ur")
+facing = "Left"
 
 [editable path="LittleBrother"]
 [editable path="LittleBrother/InteractZone/HungerBars"]
 [editable path="death_zone2"]
 [editable path="food_pickup"]
-[editable path="food_pickup2"]

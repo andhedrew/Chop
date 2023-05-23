@@ -29,17 +29,18 @@ signal cutscene_ended
 signal dialogue_started
 signal dialogue_finished
 
+signal morning_started
+signal continue_day
 signal evening_started 
 signal evening_ended
 
 signal transition_to_map
 signal map_started
 
-signal morning_started
-
-
 signal SaveDataReady
+
 
 # tutorial
 signal plant_hunger_bar_filled # no parameters
+
 
