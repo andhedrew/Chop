@@ -1,4 +1,4 @@
-[gd_scene load_steps=39 format=3 uid="uid://ba650tywfrn0e"]
+[gd_scene load_steps=40 format=3 uid="uid://ba650tywfrn0e"]
 
 [ext_resource type="PackedScene" uid="uid://dm85xjdq5mkk3" path="res://levels_and_level_objects/level_scenes/base_level.tscn" id="1_hhmaj"]
 [ext_resource type="PackedScene" uid="uid://c61py6hgvk4e5" path="res://levels_and_level_objects/enemy_spawn.tscn" id="2_cj47y"]
@@ -36,6 +36,7 @@
 [ext_resource type="PackedScene" path="res://levels_and_level_objects/destructible_plants/chop_foliage.tscn" id="33_l58ku"]
 [ext_resource type="Texture2D" uid="uid://dg67fga7svata" path="res://levels_and_level_objects/destructible_plants/Sprites/plant_2.png" id="34_fla44"]
 [ext_resource type="Texture2D" uid="uid://hdwm6xnwvujm" path="res://characters/enemy/default/mallow_pieces1.png" id="36_vgu35"]
+[ext_resource type="PackedScene" uid="uid://duq3hbv7istwg" path="res://pickups/coin_pickup.tscn" id="37_k3mid"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_isebe"]
 size = Vector2(688, 140)
@@ -409,6 +410,42 @@ position = Vector2(112, -64)
 
 [node name="Sprite2D" parent="food_pickup2" index="1"]
 texture = ExtResource("36_vgu35")
+
+[node name="CoinPickup" parent="." index="15" instance=ExtResource("37_k3mid")]
+position = Vector2(227, -96)
+value = 8
+
+[node name="CoinPickup2" parent="." index="16" instance=ExtResource("37_k3mid")]
+position = Vector2(194, -139)
+value = 8
+
+[node name="CoinPickup3" parent="." index="17" instance=ExtResource("37_k3mid")]
+position = Vector2(230, -149)
+value = 8
+
+[node name="CoinPickup4" parent="." index="18" instance=ExtResource("37_k3mid")]
+position = Vector2(196, -100)
+value = 8
+
+[node name="CoinPickup5" parent="." index="19" instance=ExtResource("37_k3mid")]
+position = Vector2(205, -173)
+value = 8
+
+[node name="CoinPickup6" parent="." index="20" instance=ExtResource("37_k3mid")]
+position = Vector2(251, -116)
+value = 8
+
+[node name="CoinPickup7" parent="." index="21" instance=ExtResource("37_k3mid")]
+position = Vector2(194, -70)
+value = 8
+
+[node name="CoinPickup8" parent="." index="22" instance=ExtResource("37_k3mid")]
+position = Vector2(215, -123)
+value = 8
+
+[node name="CoinPickup9" parent="." index="23" instance=ExtResource("37_k3mid")]
+position = Vector2(249, -176)
+value = 8
 
 [editable path="LittleBrother"]
 [editable path="LittleBrother/InteractZone/HungerBars"]

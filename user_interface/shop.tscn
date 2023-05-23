@@ -1,0 +1,170 @@
+[gd_scene load_steps=14 format=3 uid="uid://cxn7jo1be6y6r"]
+
+[ext_resource type="Script" path="res://user_interface/shop.gd" id="1_qya3q"]
+[ext_resource type="Theme" uid="uid://b0dhfhdkknaj3" path="res://user_interface/chop_theme.tres" id="2_syqwu"]
+[ext_resource type="Texture2D" uid="uid://dtqifieelo0lf" path="res://user_interface/coin.png" id="3_l2equ"]
+[ext_resource type="Script" path="res://user_interface/money_counter.gd" id="4_xpecs"]
+[ext_resource type="PackedScene" uid="uid://de2lypqmnkj8i" path="res://user_interface/store/store_item.tscn" id="5_tfq6r"]
+[ext_resource type="Texture2D" uid="uid://xoihsb8asqow" path="res://user_interface/healthbar/full_heart.png" id="6_rxqss"]
+[ext_resource type="Texture2D" uid="uid://b7f5noq4ievao" path="res://user_interface/bag/bag3.png" id="7_l3kwy"]
+[ext_resource type="Texture2D" uid="uid://fqlj0b6q2saa" path="res://characters/player/torch_chimney.png" id="8_atysg"]
+
+[sub_resource type="InputEventKey" id="InputEventKey_46b7x"]
+keycode = 4194309
+
+[sub_resource type="InputEventKey" id="InputEventKey_kqep1"]
+keycode = 32
+
+[sub_resource type="InputEventKey" id="InputEventKey_ow7uj"]
+device = -1
+keycode = 88
+unicode = 120
+
+[sub_resource type="InputEventKey" id="InputEventKey_xlfg1"]
+device = -1
+keycode = 90
+unicode = 122
+
+[sub_resource type="Shortcut" id="Shortcut_t7r2c"]
+events = [SubResource("InputEventKey_46b7x"), SubResource("InputEventKey_kqep1"), SubResource("InputEventKey_ow7uj"), SubResource("InputEventKey_xlfg1")]
+
+[node name="new_day_ui" type="CanvasLayer"]
+script = ExtResource("1_qya3q")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+theme = ExtResource("2_syqwu")
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 50
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 50
+theme_override_constants/margin_bottom = 5
+
+[node name="ColorRect" type="ColorRect" parent="VBoxContainer/MarginContainer"]
+custom_minimum_size = Vector2(500, 65)
+layout_mode = 2
+color = Color(0.0862745, 0.0862745, 0.0862745, 1)
+
+[node name="MarginContainer2" type="MarginContainer" parent="VBoxContainer/MarginContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 60
+
+[node name="Label" type="Label" parent="VBoxContainer/MarginContainer/MarginContainer2"]
+custom_minimum_size = Vector2(400, 0)
+layout_mode = 2
+theme = ExtResource("2_syqwu")
+theme_override_font_sizes/font_size = 42
+text = "Upgrades "
+
+[node name="Container" type="Container" parent="VBoxContainer/MarginContainer"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/MarginContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 400
+theme_override_constants/margin_top = 15
+theme_override_constants/margin_right = 15
+theme_override_constants/margin_bottom = 15
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="VBoxContainer/MarginContainer/MarginContainer"]
+custom_minimum_size = Vector2(120, 20)
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="VBoxContainer/MarginContainer/MarginContainer/HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("3_l2equ")
+stretch_mode = 2
+
+[node name="Label" type="Label" parent="VBoxContainer/MarginContainer/MarginContainer/HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme = ExtResource("2_syqwu")
+theme_override_font_sizes/font_size = 18
+text = "500"
+horizontal_alignment = 2
+vertical_alignment = 1
+script = ExtResource("4_xpecs")
+
+[node name="MarginContainer2" type="MarginContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="VBoxContainer/MarginContainer2"]
+custom_minimum_size = Vector2(600, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/MarginContainer2/VBoxContainer2"]
+layout_mode = 2
+
+[node name="StoreItem" parent="VBoxContainer/MarginContainer2/VBoxContainer2/HBoxContainer" instance=ExtResource("5_tfq6r")]
+custom_minimum_size = Vector2(200, 90)
+layout_mode = 2
+img = ExtResource("6_rxqss")
+header = "Fresh Heart"
+description = "Get more iron in you. Take another hit."
+
+[node name="StoreItem2" parent="VBoxContainer/MarginContainer2/VBoxContainer2/HBoxContainer" instance=ExtResource("5_tfq6r")]
+custom_minimum_size = Vector2(200, 90)
+layout_mode = 2
+img = ExtResource("7_l3kwy")
+header = "Bag Upgrade"
+description = "Got the muscle, just need the storage."
+buy_function = "upgrade_bag_size"
+
+[node name="StoreItem3" parent="VBoxContainer/MarginContainer2/VBoxContainer2/HBoxContainer" instance=ExtResource("5_tfq6r")]
+custom_minimum_size = Vector2(200, 90)
+layout_mode = 2
+img = ExtResource("8_atysg")
+header = "Booster"
+description = "Press Spacebar."
+buy_function = "buy_booster"
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="VBoxContainer/MarginContainer2/VBoxContainer2"]
+layout_mode = 2
+
+[node name="StoreItem" parent="VBoxContainer/MarginContainer2/VBoxContainer2/HBoxContainer2" instance=ExtResource("5_tfq6r")]
+custom_minimum_size = Vector2(200, 90)
+layout_mode = 2
+header = "Extra Boost"
+description = "Boost one more time before it kicks the bucket."
+buy_function = "upgrade_booster_charges"
+
+[node name="StoreItem2" parent="VBoxContainer/MarginContainer2/VBoxContainer2/HBoxContainer2" instance=ExtResource("5_tfq6r")]
+visible = false
+custom_minimum_size = Vector2(200, 90)
+layout_mode = 2
+
+[node name="StoreItem3" parent="VBoxContainer/MarginContainer2/VBoxContainer2/HBoxContainer2" instance=ExtResource("5_tfq6r")]
+visible = false
+custom_minimum_size = Vector2(200, 90)
+layout_mode = 2
+
+[node name="Container" type="Container" parent="VBoxContainer"]
+custom_minimum_size = Vector2(0, 15)
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="Container2" type="Container" parent="VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(540, 0)
+layout_mode = 2
+
+[node name="Button" type="Button" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme = ExtResource("2_syqwu")
+shortcut = SubResource("Shortcut_t7r2c")
+text = "Proceed"

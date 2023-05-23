@@ -28,7 +28,7 @@ var state_last_frame := state
 
 var bag := []
 var bag_capacity := 10
-var has_booster_upgrade := true
+var has_booster_upgrade := false
 var torch_charges := 3
 var max_torch_charges := torch_charges
 var charge_time := 2.0
@@ -53,12 +53,14 @@ func _ready():
 	GameEvents.enemy_took_damage.connect(_on_enemy_taking_damage)
 	GameEvents.morning_started.connect(_on_morning_start)
 	GameEvents.SaveDataReady.connect(_load_data)
-#	has_booster_upgrade = SaveManager.load_item("booster_upgrade")
+	has_booster_upgrade = SaveManager.load_item("booster_upgrade")
+	_load_data()
 
 
 func _load_data() -> void:
-	max_health = SaveManager.load_item("player_health")
+	max_health = SaveManager.load_item("health")
 	health = max_health
+	GameEvents.player_health_changed.emit(health, max_health)
 	
 	var bag_size = SaveManager.load_item("bag_size")
 	if bag_size != null:

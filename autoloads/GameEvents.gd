@@ -4,7 +4,7 @@ signal player_changed_facing
 signal player_attacked
 signal player_executed
 signal player_changed_state
-signal player_health_changed
+signal player_health_changed # Arg 1: health Arg 2: Max health
 signal player_started_syphoning #Arg 1: player.global_position
 signal player_done_syphoning
 signal player_died

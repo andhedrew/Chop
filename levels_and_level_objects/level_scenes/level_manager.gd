@@ -32,7 +32,7 @@ func _restart_level() -> void:
 	get_tree().reload_current_scene()
 	get_tree().change_scene_to_file(get_tree().current_scene.scene_file_path)
 	Fade.crossfade_execute() 
-	
+
 
 func _on_evening_ended() -> void:
 	var dream := preload("res://levels_and_level_objects/dream/dream.tscn").instantiate()
@@ -50,7 +50,7 @@ func _on_transitioning_to_map() -> void:
 	
 
 func _on_morning_started() -> void:
-	var start_day_ui := preload("res://user_interface/new_day_ui.tscn").instantiate()
+	var start_day_ui := preload("res://user_interface/shop.tscn").instantiate()
 	add_child(start_day_ui)
 
 func _on_hunt_started() -> void:
