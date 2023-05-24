@@ -3,6 +3,7 @@ extends State
 @export var my_bullet : PackedScene = preload("res://bullets/nut_bullet/nut_bullet.tscn")
 var timer : Timer
 @export var speed := 150
+@export var lifetime := 80
 
 func enter(_msg := {}) -> void:
 	timer = Timer.new()
@@ -16,7 +17,7 @@ func enter(_msg := {}) -> void:
 		var bullet = my_bullet.instantiate()
 		owner.add_child(bullet)
 		var transform : Transform2D = $"../../Pivot/BulletSpawn".global_transform
-		var fire_range := 80
+		var fire_range := lifetime
 		var speed := 150
 		var spread := 0
 		var rotation := 0

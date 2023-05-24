@@ -12,7 +12,7 @@ signal double_jump_refreshed
 signal added_food_to_bag # Arg 1: the food_pickup
 signal removed_food_from_bag
 signal bag_full
-signal charge_amount_changed
+signal charge_amount_changed # Arg 1: Torch Charges Arg 2: Max charges
 signal enemy_took_damage
 signal bag_capacity_changed
 signal enemy_being_syphoned

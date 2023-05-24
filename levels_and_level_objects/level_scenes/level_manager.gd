@@ -16,6 +16,9 @@ func _ready():
 	SaveManager.save_item("level", scene_file_path)
 	GameEvents.hunt_started.connect(_on_hunt_started)
 	GameEvents.player_died.connect(_restart_level)
+	
+	GameEvents.cutscene_started.connect(_cutscene_started)
+	GameEvents.cutscene_ended.connect(_cutscene_ended)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -49,12 +52,21 @@ func _on_transitioning_to_map() -> void:
 	add_child(map_scene)
 	Fade.crossfade_execute() 
 	GameEvents.map_started.emit(map_position, next_level)
-	
+
 
 func _on_morning_started() -> void:
 	var start_day_ui := preload("res://user_interface/shop.tscn").instantiate()
 	await get_tree().create_timer(3.0).timeout
 	add_child(start_day_ui)
 
+
 func _on_hunt_started() -> void:
 	pass
+
+
+func _cutscene_started():
+	print_debug("cutscene_started")
+
+
+func _cutscene_ended():
+	print_debug("cutscene_ended")

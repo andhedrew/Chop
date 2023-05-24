@@ -1,4 +1,4 @@
-[gd_scene load_steps=43 format=3 uid="uid://ba650tywfrn0e"]
+[gd_scene load_steps=44 format=3 uid="uid://ba650tywfrn0e"]
 
 [ext_resource type="PackedScene" uid="uid://dm85xjdq5mkk3" path="res://levels_and_level_objects/level_scenes/base_level.tscn" id="1_hhmaj"]
 [ext_resource type="PackedScene" uid="uid://c61py6hgvk4e5" path="res://levels_and_level_objects/enemy_spawn.tscn" id="2_cj47y"]
@@ -39,6 +39,7 @@
 [ext_resource type="PackedScene" path="res://levels_and_level_objects/destructible_plants/chop_foliage.tscn" id="33_l58ku"]
 [ext_resource type="Texture2D" uid="uid://dg67fga7svata" path="res://levels_and_level_objects/destructible_plants/Sprites/plant_2.png" id="34_fla44"]
 [ext_resource type="PackedScene" uid="uid://curfvdorfok3h" path="res://characters/enemy/dandicrow/dandicrow.tscn" id="39_wt1ur"]
+[ext_resource type="Texture2D" uid="uid://hdwm6xnwvujm" path="res://characters/enemy/default/mallow_pieces1.png" id="40_x2t6k"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_isebe"]
 size = Vector2(688, 140)
@@ -48,9 +49,9 @@ size = Vector2(30, 29)
 
 [sub_resource type="Curve2D" id="Curve2D_nqfpm"]
 _data = {
-"points": PackedVector2Array(0, 0, 0, 0, 130, -166, 0, 0, 0, 0, 131, -77)
+"points": PackedVector2Array(0, 0, 0, 0, 130, -166, 0, 0, 0, 0, 132.312, -150.485, 0, 0, 0, 0, 131, -77)
 }
-point_count = 2
+point_count = 3
 
 [node name="World" instance=ExtResource("1_hhmaj")]
 script = ExtResource("2_fakv0")
@@ -414,17 +415,25 @@ texture = ExtResource("31_w5hvv")
 texture = ExtResource("34_fla44")
 
 [node name="Path2D" type="Path2D" parent="." index="14"]
+position = Vector2(203, -489)
 curve = SubResource("Curve2D_nqfpm")
 
 [node name="PathFollow2D" type="PathFollow2D" parent="Path2D" index="0"]
 position = Vector2(130, -166)
-rotation = 1.55956
+rotation = 1.42289
 
 [node name="EnemySpawn" parent="Path2D/PathFollow2D" index="0" instance=ExtResource("2_cj47y")]
 spawn = ExtResource("39_wt1ur")
 facing = "Left"
 
+[node name="food_pickup2" parent="." index="15" instance=ExtResource("21_omsi4")]
+position = Vector2(188, -112)
+
+[node name="Sprite2D" parent="food_pickup2" index="1"]
+texture = ExtResource("40_x2t6k")
+
 [editable path="LittleBrother"]
 [editable path="LittleBrother/InteractZone/HungerBars"]
 [editable path="death_zone2"]
 [editable path="food_pickup"]
+[editable path="food_pickup2"]

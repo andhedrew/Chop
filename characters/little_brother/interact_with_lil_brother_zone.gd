@@ -9,7 +9,9 @@ var label_text := ""
 #@onready var collision_polygon := $"../CollisionPolygon2D"
 var player_in_zone = false
 var player_object : CharacterBody2D = null
-
+var cutscene_running := false
+var faded_in := false
+var food_faded_in := false
 
 func _ready():
 	fade_animation_player.play("RESET")
@@ -28,32 +30,39 @@ func _ready():
 
 func _process(_delta):
 	$Label.text = label_text
-	if player_in_zone and Input.is_action_just_pressed("ui_down") and owner.is_full:
-		_end_level()
-	elif player_in_zone and Input.is_action_just_pressed("ui_down"):
-		GameEvents.started_feeding_little_brother.emit()
-		_generate_food(player_object)
+	if not cutscene_running:
+		var player_interacting = player_in_zone and Input.is_action_just_pressed("ui_down")
+		if player_interacting and owner.is_full:
+			_end_level()
+		elif player_interacting:
+			GameEvents.started_feeding_little_brother.emit()
+			_generate_food(player_object)
 
-	if owner.is_full:
-		$Particles1.emitting = true
-		$Particles2.emitting = true
-		$Particles3.emitting = true
-		$Label.visible = true
+		if owner.is_full:
+			$Particles1.emitting = true
+			$Particles2.emitting = true
+			$Particles3.emitting = true
+			$Label.visible = true
+	else:
+		$Particles1.emitting = false
+		$Particles2.emitting = false
+		$Particles3.emitting = false
+		$Label.visible = false
 
 
 func _on_player_entered(body):
 	player_object = body
-
-	player_in_zone = true
 	
 	if player_object.bag.size() > 0 and !owner.is_full:
 		fade_animation_player.play("fade_in")
+		faded_in = true
 		label_text = "FEED"
 		$Particles1.emitting = true
 		$Particles2.emitting = true
 		$Particles3.emitting = true
 	elif owner.is_full:
 		fade_animation_player.play("fade_in")
+		faded_in = true
 		$Particles1.emitting = true
 		$Particles2.emitting = true
 		$Particles3.emitting = true
@@ -61,21 +70,27 @@ func _on_player_entered(body):
 		fade_animation_player.play("fade_in_food")
 		$Label.text = ""
 		
+	player_in_zone = true
 
 
 func _on_player_exited(_body):
 		player_in_zone = false
-		
 		$Particles1.emitting = false
 		$Particles2.emitting = false
 		$Particles3.emitting = false
-		fade_animation_player.play("fade_out")
+		if faded_in:
+			fade_animation_player.play("fade_out")
+			faded_in = false
+		else:
+			fade_animation_player.play("fade_out_food")
 
 
 
 func _generate_food(player) -> void:
 	if player.bag.size() > 0 and not owner.is_full:
 		fade_animation_player.play("fade_out_non_food")
+		faded_in = false
+		food_faded_in = true
 		GameEvents.cutscene_started.emit()
 
 		player.facing = Enums.Facing.LEFT
@@ -107,16 +122,16 @@ func _generate_food(player) -> void:
 			GameEvents.plant_hunger_bar_filled.emit()
 		GameEvents.done_feeding_little_brother.emit()
 		if owner.is_full:
-			label_text = "LULL"
+			var level_number = int(owner.get_parent().map_position)
+			if level_number % 4 == 0:
+				label_text = "LULL"
+			else:
+				label_text = "GO"
 
-
-func _choose_emotion() -> void:
-	pass
 
 func _end_level():
 	GameEvents.cutscene_started.emit()
 	var level_number = int(owner.get_parent().map_position)
-	
 	if level_number % 4 == 0:
 		GameEvents.evening_started.emit()
 	else:
@@ -124,10 +139,30 @@ func _end_level():
 
 
 func _on_cutscene_started() -> void:
-	$Particles1.emitting = false
-	$Particles2.emitting = false
-	$Particles3.emitting = false
+	cutscene_running = true
+
 
 
 func _on_cutscene_ended() -> void:
+	cutscene_running = false
 	monitoring = true
+	if player_in_zone:
+		if player_object.bag.size() > 0 and !owner.is_full:
+			fade_animation_player.play("fade_in")
+			faded_in = true
+			label_text = "FEED"
+			$Particles1.emitting = true
+			$Particles2.emitting = true
+			$Particles3.emitting = true
+		elif owner.is_full:
+			fade_animation_player.play("fade_in")
+			faded_in = true
+			$Particles1.emitting = true
+			$Particles2.emitting = true
+			$Particles3.emitting = true
+		else:
+			
+			if not food_faded_in:
+				fade_animation_player.play("fade_in_food")
+				food_faded_in = true
+			$Label.text = ""

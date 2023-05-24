@@ -135,6 +135,7 @@ initial_state = NodePath("Idle")
 [node name="Attack" type="Node" parent="StateMachine" index="3"]
 script = ExtResource("8_ceq36")
 my_bullet = ExtResource("8_vitcu")
+lifetime = 20
 
 [node name="Idle" type="Node" parent="StateMachine" index="4"]
 script = ExtResource("8_22vw5")
