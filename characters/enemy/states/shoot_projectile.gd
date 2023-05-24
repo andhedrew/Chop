@@ -4,6 +4,7 @@ extends State
 var timer : Timer
 @export var speed := 150
 @export var lifetime := 80
+@export var attack_sound: AudioStreamWAV
 
 func enter(_msg := {}) -> void:
 	timer = Timer.new()
@@ -25,7 +26,7 @@ func enter(_msg := {}) -> void:
 			rotation = 180
 		bullet.setup(transform, fire_range, speed, rotation, spread)
 		var pos = transform.origin
-		SoundPlayer.play_sound_positional("spit", pos)
+		SoundPlayer.play_sound_positional(attack_sound, pos)
 	
 
 

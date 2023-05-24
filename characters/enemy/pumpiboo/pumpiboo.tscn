@@ -1,15 +1,19 @@
-[gd_scene load_steps=17 format=3 uid="uid://0v77alk6bcbh"]
+[gd_scene load_steps=21 format=3 uid="uid://0v77alk6bcbh"]
 
 [ext_resource type="PackedScene" uid="uid://23cc1xm0v5jp" path="res://characters/enemy/enemy_walker.tscn" id="1_hlusj"]
-[ext_resource type="AudioStream" uid="uid://c2b7napty0xqn" path="res://audio/sounds/squawk_1.wav" id="2_mp5bk"]
-[ext_resource type="AudioStream" uid="uid://k7akmwtrmxvr" path="res://audio/sounds/squawk_2.wav" id="3_45mxq"]
+[ext_resource type="AudioStream" uid="uid://drmlcvjndh74i" path="res://audio/sounds/throat_ow.wav" id="2_y7r37"]
+[ext_resource type="AudioStream" uid="uid://dgnambj00hirj" path="res://audio/sounds/throat_ow_2.wav" id="3_dgtxx"]
 [ext_resource type="Texture2D" uid="uid://cu5ky2j1b72wn" path="res://characters/enemy/pumpiboo/pumpiboo_drop_1.png" id="4_ifejs"]
+[ext_resource type="AudioStream" uid="uid://db5wcuc1rrvre" path="res://audio/sounds/throat_ow_3.wav" id="4_itogj"]
+[ext_resource type="AudioStream" uid="uid://db82g47y15cch" path="res://audio/sounds/throat_die.wav" id="5_aogmt"]
 [ext_resource type="Texture2D" uid="uid://cl4tm0eo6njw0" path="res://characters/enemy/pumpiboo/pumpiboo_drop_2.png" id="5_ua8fk"]
 [ext_resource type="Texture2D" uid="uid://m3k40kbaw2d3" path="res://characters/enemy/pumpiboo/pumpiboo.png" id="6_uxy5p"]
+[ext_resource type="AudioStream" uid="uid://bekxwncrgx2nr" path="res://audio/sounds/impact_celery.wav" id="6_ysrov"]
 [ext_resource type="Script" path="res://characters/enemy/states/walker_idle.gd" id="8_22vw5"]
 [ext_resource type="Script" path="res://characters/enemy/states/shoot_projectile.gd" id="8_ceq36"]
 [ext_resource type="PackedScene" uid="uid://7ai3a1nd7v35" path="res://bullets/vine_whip_bullet/vine_whip_bullet.tscn" id="8_vitcu"]
 [ext_resource type="Script" path="res://characters/enemy/states/walker_walk.gd" id="9_plqso"]
+[ext_resource type="AudioStream" uid="uid://dvspp684q0vfx" path="res://audio/sounds/swoosh.wav" id="12_7psy8"]
 
 [sub_resource type="Animation" id="Animation_8g3w0"]
 resource_name = "attack"
@@ -108,8 +112,11 @@ _data = {
 erratic_walking_amount = 1.0
 health = 4
 speed = 30.0
-hurt_vocalizations = Array[AudioStreamWAV]([ExtResource("2_mp5bk"), ExtResource("3_45mxq")])
+hurt_vocalizations = Array[AudioStreamWAV]([ExtResource("2_y7r37"), ExtResource("3_dgtxx"), ExtResource("4_itogj")])
+death_vocalization = ExtResource("5_aogmt")
+impact_sound = ExtResource("6_ysrov")
 death_pieces = Array[Resource]([ExtResource("5_ua8fk"), ExtResource("4_ifejs")])
+bounty = 2
 
 [node name="BloodParticles" parent="." index="1"]
 emitting = true
@@ -136,6 +143,7 @@ initial_state = NodePath("Idle")
 script = ExtResource("8_ceq36")
 my_bullet = ExtResource("8_vitcu")
 lifetime = 20
+attack_sound = ExtResource("12_7psy8")
 
 [node name="Idle" type="Node" parent="StateMachine" index="4"]
 script = ExtResource("8_22vw5")

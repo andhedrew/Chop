@@ -83,6 +83,7 @@ func _prepare_fade(color: Color, pattern: Texture2D, reverse: bool, smooth: bool
 
 func _fade(animation: StringName, time: float):
 	assert(time > 0, "Time must be greater than 0.")
+	
 	var player := $AnimationPlayer as AnimationPlayer
 	player.play(animation, -1, 1.0 / time)
 	player.advance(0)

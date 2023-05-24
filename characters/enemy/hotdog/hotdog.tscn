@@ -120,6 +120,7 @@ hurt_vocalizations = Array[AudioStreamWAV]([ExtResource("2_y8un6"), ExtResource(
 death_vocalization = ExtResource("4_6x326")
 impact_sound = ExtResource("5_vh1cq")
 death_pieces = Array[Resource]([ExtResource("3_nw7ee"), ExtResource("2_bgvra")])
+bounty = 2
 
 [node name="BloodParticles" parent="." index="1"]
 position = Vector2(0, -16)

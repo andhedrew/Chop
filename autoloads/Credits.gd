@@ -30,3 +30,4 @@ extends Node
 # cough https://freesound.org/people/Duisterwho/sounds/641448/
 # growl https://freesound.org/people/RebelEdit/sounds/520745/
 # angry fox https://freesound.org/people/tilano408/sounds/445658/
+# ripping paper https://freesound.org/people/chartertechfilms/sounds/521787/

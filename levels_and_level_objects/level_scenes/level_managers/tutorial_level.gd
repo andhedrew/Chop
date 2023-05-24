@@ -87,6 +87,8 @@ func _on_adding_food_to_bag(_food) -> void:
 		dialogue.dialog = [
 			"Got some food in your bag.", 
 			"Go back any time to feed him.", 
+			"If you bag gets full, can't pick up no more.", 
+			"Can press 'D' to empty some out.", 
 			]
 		camera.add_child(dialogue)
 		var dialogue_width := 180.0

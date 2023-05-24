@@ -33,6 +33,7 @@ func _process(_delta):
 func _restart_level() -> void:
 	print_debug("restarting")
 	Fade.crossfade_prepare(0.4, "ChopHorizontal")
+	SoundPlayer.play_sound("paper_rip")
 	get_tree().reload_current_scene()
 	get_tree().change_scene_to_file(get_tree().current_scene.scene_file_path)
 	Fade.crossfade_execute() 
@@ -47,6 +48,7 @@ func _on_evening_ended() -> void:
 
 func _on_transitioning_to_map() -> void:
 	Fade.crossfade_prepare(0.4, "ChopHorizontal")
+	SoundPlayer.play_sound("paper_rip")
 	var map_scene := preload("res://levels_and_level_objects/map/map.tscn").instantiate()
 	map_scene.new_scene = next_level
 	add_child(map_scene)

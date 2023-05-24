@@ -95,7 +95,24 @@ func _physics_process(delta):
 	
 	if cutscene_walk:
 		position.x += 1
+	
+	if Input.is_action_just_pressed("unload_bag"):
+		drop_last_item()
 
+
+func drop_last_item() -> void:
+	if bag.size() > 0:
+		var item = bag.pop_back()
+		var pickup = preload("res://pickups/food_pickup.tscn").instantiate()
+		pickup.setup(item)
+		get_node("/root/World").call_deferred("add_child", pickup)
+		pickup.sort_layer = SortLayer.BACKGROUND
+		pickup.position = global_position
+		if facing == Enums.Facing.RIGHT:
+			pickup.velocity = Vector2(randf_range(60, 80), 0 )
+		else:
+			pickup.velocity = Vector2(randf_range(-60, -80), 0 )
+		GameEvents.removed_food_from_bag.emit(pickup)
 
 func _set_debug_labels() -> void:
 	match facing:

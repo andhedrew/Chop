@@ -40,6 +40,7 @@ func _setup(new_position: float, next_scene: String) -> void:
 
 func _end_scene() -> void:
 	Fade.crossfade_prepare(0.4, "ChopHorizontal")
+	SoundPlayer.play_sound("paper_rip")
 	get_tree().change_scene_to_file(new_scene)
 	Fade.crossfade_execute() 
 
