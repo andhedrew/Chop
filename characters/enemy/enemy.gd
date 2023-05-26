@@ -26,6 +26,7 @@ var facing := Enums.Facing.LEFT
 var colliding_hitbox_position : Dictionary
 var wounded : bool = false
 var has_respawned := false
+var player_health_full := true
 
 func _ready() -> void:
 	max_health = health
@@ -34,6 +35,7 @@ func _ready() -> void:
 	GameEvents.player_done_syphoning.connect(_on_player_done_syphoning)
 	GameEvents.evening_started.connect(_on_end_of_day)
 	GameEvents.continue_day.connect(_on_end_of_day)
+	GameEvents.player_health_changed.connect(_on_player_health_change)
 
 
 func _physics_process(_delta):
@@ -117,11 +119,19 @@ func die(was_executed: bool = false) -> void:
 	explode.position = global_position
 	if was_executed:
 		explode.big = true
-	elif not has_respawned: # drop stuff
+	else: # drop stuff
 		randomize()
 		var options = [1, 2, 3]
 		var rand_index: int = randi() % options.size()
 		if rand_index == 1:
+			pass
+		elif rand_index == 2 and not player_health_full:
+			var sprite := preload("res://user_interface/healthbar/full_heart.png")
+			var pickup := preload("res://pickups/health_pickup.tscn").instantiate()
+			pickup.setup(sprite)
+			pickup.position = global_position
+			get_node("/root/").call_deferred("add_child", pickup)
+		else:
 			var spread = 6 # adjust this value to increase or decrease the spread of the pickups
 			var new_velocity = Vector2(0, -12) # adjust this value to control the initial velocity of the pickups
 			if bounty > 0:
@@ -144,14 +154,6 @@ func die(was_executed: bool = false) -> void:
 						pickup.value = coin
 						get_node("/root/").call_deferred("add_child", pickup)
 						bounty -= coin
-		elif rand_index == 2:
-			var sprite := preload("res://user_interface/healthbar/full_heart.png")
-			var pickup := preload("res://pickups/health_pickup.tscn").instantiate()
-			pickup.setup(sprite)
-			pickup.position = global_position
-			get_node("/root/").call_deferred("add_child", pickup)
-		elif rand_index == 3:
-			pass
 	get_node("/root/").add_child(explode)
 	if get_parent().has_method("respawn"):
 		get_parent().respawn() 
@@ -190,3 +192,10 @@ func _on_end_of_day() -> void:
 	$StateMachine.transition_to("Syphoned")
 	await get_tree().create_timer(0.3).timeout
 	queue_free()
+
+
+func _on_player_health_change(player_health, max_health) -> void:
+	if player_health == max_health:
+		player_health_full = true
+	else:
+		player_health_full = false

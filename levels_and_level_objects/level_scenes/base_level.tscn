@@ -1,8 +1,9 @@
-[gd_scene load_steps=17 format=3 uid="uid://dm85xjdq5mkk3"]
+[gd_scene load_steps=18 format=3 uid="uid://dm85xjdq5mkk3"]
 
 [ext_resource type="Script" path="res://levels_and_level_objects/level_scenes/level_manager.gd" id="1_ity0y"]
 [ext_resource type="Script" path="res://day_night_cycle.gd" id="2_h45bf"]
 [ext_resource type="PackedScene" uid="uid://bqg8q7u0o16hm" path="res://gameplay_objects/camera.tscn" id="6_818il"]
+[ext_resource type="Script" path="res://levels_and_level_objects/level_scenes/debug.gd" id="7_wmhq8"]
 [ext_resource type="PackedScene" uid="uid://bwvi5m2prncxh" path="res://characters/player/player.tscn" id="31_fx83i"]
 [ext_resource type="PackedScene" uid="uid://cf8s3hxbyvsv8" path="res://characters/little_brother/little_brother.tscn" id="32_hyjhu"]
 [ext_resource type="Texture2D" uid="uid://bivxdxcjdr3u2" path="res://sprites/tilesets/dark_tileset.png" id="33_x28vh"]
@@ -106,6 +107,18 @@ tracks/7/keys = {
 "update": 1,
 "values": [false]
 }
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("InteractiveProps:modulate")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
 
 [sub_resource type="Animation" id="Animation_mllls"]
 resource_name = "night"
@@ -193,6 +206,18 @@ tracks/6/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [Color(0.568627, 0.568627, 0.568627, 1)]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("InteractiveProps:modulate")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0.321569, 0.321569, 0.321569, 1)]
 }
 
 [sub_resource type="Animation" id="Animation_vn1rq"]
@@ -294,6 +319,18 @@ tracks/7/keys = {
 "update": 1,
 "values": [false]
 }
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("InteractiveProps:modulate")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0.1, 2.2, 6.9),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(0.321569, 0.321569, 0.321569, 1), Color(0.521569, 0.745098, 0.94902, 1), Color(1, 1, 1, 1)]
+}
 
 [sub_resource type="Animation" id="Animation_de4mn"]
 resource_name = "sunset"
@@ -393,6 +430,18 @@ tracks/7/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [true]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("InteractiveProps:modulate")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0, 2.1, 3.3, 4.8),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(0.811765, 0.45098, 0.282353, 1), Color(0.811765, 0.45098, 0.282353, 1), Color(0.321569, 0.321569, 0.321569, 1)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_s2q0i"]
@@ -933,7 +982,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0.690196, 0.65098, 0.560784, 1)
+color = Color(0.690196, 0.65098, 0.560784, 0)
 
 [node name="Stars" type="ParallaxBackground" parent="."]
 scroll_offset = Vector2(1, 1)
@@ -966,6 +1015,8 @@ motion_scale = Vector2(0.8, 1)
 
 [node name="UnmovingScenery" type="ParallaxLayer" parent="Background"]
 
+[node name="InteractiveProps" type="Node2D" parent="."]
+
 [node name="LittleBrother" parent="." instance=ExtResource("32_hyjhu")]
 position = Vector2(0, -31)
 
@@ -979,12 +1030,19 @@ format = 2
 layer = 1
 
 [node name="ParallaxLayer" type="ParallaxLayer" parent="ForegroundScenery"]
-modulate = Color(0.529412, 0.529412, 0.529412, 1)
 z_index = 1000
 z_as_relative = false
 motion_scale = Vector2(1.1, 1.1)
 
 [node name="Camera" parent="." instance=ExtResource("6_818il")]
+
+[node name="Debug" type="CanvasLayer" parent="."]
+script = ExtResource("7_wmhq8")
+
+[node name="DebugMode" type="Label" parent="Debug"]
+offset_right = 40.0
+offset_bottom = 23.0
+text = "DebugMode"
 
 [editable path="LittleBrother"]
 [editable path="LittleBrother/InteractZone/HungerBars"]

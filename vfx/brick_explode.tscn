@@ -1,6 +1,6 @@
-[gd_scene load_steps=7 format=3 uid="uid://dkbci065c0vle"]
+[gd_scene load_steps=7 format=3]
 
-[ext_resource type="Texture2D" uid="uid://c8f3w3h6i6ehe" path="res://levels_and_level_objects/backgrounds/bg_layer_2/bg_layer_med_6.png" id="1_uxly1"]
+[ext_resource type="Texture2D" uid="uid://c8f3w3h6i6ehe" path="res://levels_and_level_objects/backgrounds/layer_3_medium/bg_layer_med_6.png" id="1_uxly1"]
 [ext_resource type="Script" path="res://vfx/dirt_explode.gd" id="2_iufu8"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_n448d"]

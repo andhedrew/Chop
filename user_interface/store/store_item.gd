@@ -66,15 +66,18 @@ func _buy_item() -> void:
 	call(buy_function)
 
 
+
 func _cannot_buy() -> void:
 	$AnimationPlayer.play("cant_buy")
 
 
 func buy_health() -> void:
 	var current_health = SaveManager.load_item("health")
-	current_health += 1
+	current_health += 2
 	GameEvents.player_health_changed.emit(current_health, current_health)
+	SaveManager.save_item("health", current_health)
 	await get_tree().create_timer(1.5).timeout
+	cost = current_health * 5
 	set_button_text()
 	just_bought = false
 
@@ -84,8 +87,10 @@ func upgrade_bag_size() -> void:
 	bag_size += 5
 	SaveManager.save_item("bag_size", bag_size)
 	await get_tree().create_timer(1.5).timeout
+	cost = bag_size
 	set_button_text()
 	just_bought = false
+	
 
 
 func buy_booster() -> void:
@@ -98,6 +103,7 @@ func upgrade_booster_charges() -> void:
 	booster_charge_number += 1
 	SaveManager.save_item("booster_charges", booster_charge_number)
 	await get_tree().create_timer(1.5).timeout
+	cost = 7 * booster_charge_number
 	set_button_text()
 	just_bought = false
 
