@@ -245,5 +245,5 @@ grow_vertical = 0
 size_flags_horizontal = 3
 theme = ExtResource("1_o8m06")
 action_mode = 0
-text = "Bought"
+text = "NOT ENOUGH MONEY"
 icon_alignment = 2

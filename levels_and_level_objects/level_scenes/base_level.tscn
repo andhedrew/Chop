@@ -997,6 +997,7 @@ amount = 700
 process_material = SubResource("ParticleProcessMaterial_7gis1")
 lifetime = 600.0
 preprocess = 303.83
+visibility_rect = Rect2(0, 0, 5000, 5000)
 local_coords = true
 
 [node name="Background" type="ParallaxBackground" parent="."]

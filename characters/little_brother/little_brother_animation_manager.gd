@@ -14,6 +14,7 @@ func _ready():
 	GameEvents.continue_day.connect(_on_continue_day)
 	GameEvents.cutscene_started.connect(_on_cutscene_start)
 	GameEvents.cutscene_ended.connect(_on_cutscene_end)
+	GameEvents.done_feeding_little_brother.connect(_on_done_feeding)
 
 
 func _process(delta):
@@ -28,10 +29,19 @@ func _process(delta):
 			animation_player.play("hungry")
 
 
-
 func _on_feeding() -> void:
 	animation_player.play("eat")
 
+func _chewing_animation_sound() -> void:
+	SoundPlayer.play_sound("chew")
+
+func _on_done_feeding() -> void:
+	animation_player.play("chew")
+	await get_tree().create_timer(3.5).timeout
+	animation_player.play("swallow")
+	await animation_player.animation_finished
+	GameEvents.cutscene_ended.emit()
+	
 
 func _on_evening_start() -> void:
 	await get_tree().create_timer(8.0).timeout

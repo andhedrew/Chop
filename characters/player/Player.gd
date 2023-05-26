@@ -89,7 +89,6 @@ func _physics_process(delta):
 			charge_time -= 1*delta
 			if charge_time < 0:
 				torch_charges += 1
-				SoundPlayer.play_sound("pickup_2")
 				charge_time = charge_timer
 				GameEvents.charge_amount_changed.emit(torch_charges, max_torch_charges)
 	

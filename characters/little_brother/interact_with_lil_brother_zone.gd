@@ -95,6 +95,7 @@ func _generate_food(player) -> void:
 
 		player.facing = Enums.Facing.LEFT
 		for item in player.bag:
+				
 				var pickup := preload("res://pickups/food_pickup.tscn").instantiate()
 				pickup.setup(item)
 				owner.get_node("BeakCollider").disabled = true
@@ -110,6 +111,7 @@ func _generate_food(player) -> void:
 				plant_hunger_bar.value += pickup.plant_value
 				meat_hunger_bar.value += pickup.meat_value
 				await get_tree().create_timer(0.3).timeout
+				SoundPlayer.play_sound("glottal_stop")
 				
 		await get_tree().create_timer(1.0).timeout
 		owner.get_node("BeakCollider").disabled = false
@@ -117,7 +119,6 @@ func _generate_food(player) -> void:
 		owner.get_node("CollisionShape2D").disabled = false
 		player.bag = []
 		
-		GameEvents.cutscene_ended.emit()
 		if plant_hunger_bar.value == plant_hunger_bar.max_value:
 			GameEvents.plant_hunger_bar_filled.emit()
 		GameEvents.done_feeding_little_brother.emit()
