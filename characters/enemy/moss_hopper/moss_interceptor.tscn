@@ -1,0 +1,48 @@
+[gd_scene load_steps=11 format=3 uid="uid://drtdv1vohnfg8"]
+
+[ext_resource type="PackedScene" uid="uid://cde2c17kuh3gb" path="res://characters/enemy/enemy_jumper.tscn" id="1_ogsou"]
+[ext_resource type="AudioStream" uid="uid://cumxo1o14y2b1" path="res://audio/sounds/eh_1.wav" id="2_6e332"]
+[ext_resource type="AudioStream" uid="uid://cdoeouc3kibso" path="res://audio/sounds/eh_2.wav" id="3_q5130"]
+[ext_resource type="AudioStream" uid="uid://bvwri3qvnq464" path="res://audio/sounds/eh_sad.wav" id="4_221x5"]
+[ext_resource type="AudioStream" uid="uid://jho7dsipvxxe" path="res://audio/sounds/bush.wav" id="5_neele"]
+[ext_resource type="Texture2D" uid="uid://dsytwujasps1a" path="res://characters/enemy/moss_hopper/moss_hopper_piece.png" id="6_hks8e"]
+[ext_resource type="Texture2D" uid="uid://bpr06obcrevnb" path="res://characters/enemy/moss_hopper/moss_interceptor.png" id="7_880rh"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bfije"]
+size = Vector2(30, 23)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fodsv"]
+size = Vector2(21.5, 20)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rrjv3"]
+size = Vector2(24, 18)
+
+[node name="MossInterceptor" instance=ExtResource("1_ogsou")]
+hurt_vocalizations = Array[AudioStreamWAV]([ExtResource("2_6e332"), ExtResource("3_q5130")])
+death_vocalization = ExtResource("4_221x5")
+impact_sound = ExtResource("5_neele")
+death_pieces = Array[Resource]([ExtResource("6_hks8e")])
+bounty = 2
+
+[node name="Body" parent="Pivot" index="0"]
+position = Vector2(0, -13)
+texture = ExtResource("7_880rh")
+frame = 0
+
+[node name="player_detector" parent="Pivot" index="3"]
+target_position = Vector2(-91, -26)
+
+[node name="CollisionShape2D" parent="Hurtbox" index="0"]
+position = Vector2(0, -11.5)
+shape = SubResource("RectangleShape2D_bfije")
+
+[node name="CollisionShape2D" parent="Hitbox" index="0"]
+position = Vector2(-1, -10)
+shape = SubResource("RectangleShape2D_fodsv")
+
+[node name="CollisionShape2D" parent="." index="6"]
+position = Vector2(0, -9)
+shape = SubResource("RectangleShape2D_rrjv3")
+
+[editable path="Hurtbox"]
+[editable path="Hitbox"]

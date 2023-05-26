@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Chop"
-run/main_scene="res://levels_and_level_objects/level_scenes/city/city_1.tscn"
+run/main_scene="res://levels_and_level_objects/level_scenes/city/city_3.tscn"
 config/features=PackedStringArray("4.0", "GL Compatibility")
 config/icon="res://icon.svg"
 

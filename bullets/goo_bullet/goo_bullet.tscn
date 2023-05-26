@@ -20,7 +20,19 @@ step = 0.05
 
 [sub_resource type="Animation" id="Animation_km3k7"]
 resource_name = "bullet_exit"
-length = 0.1
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("GPUParticles2D:emitting")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_ocw25"]
 _data = {
@@ -29,25 +41,26 @@ _data = {
 "bullet_exit": SubResource("Animation_km3k7")
 }
 
-[sub_resource type="Curve" id="Curve_q5674"]
-_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.800781, 0.699386), 0.0, 0.0, 0, 0, Vector2(1, 0.177914), 0.0, 0.0, 0, 0]
-point_count = 3
+[sub_resource type="Curve" id="Curve_8oiru"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.392638), 0.0, 0.0, 0, 0]
+point_count = 2
 
-[sub_resource type="CurveTexture" id="CurveTexture_ix2et"]
-curve = SubResource("Curve_q5674")
+[sub_resource type="CurveTexture" id="CurveTexture_g8h0l"]
+curve = SubResource("Curve_8oiru")
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_1syyq"]
+lifetime_randomness = 0.1
 particle_flag_disable_z = true
-direction = Vector3(1, 1, 0)
-spread = 180.0
+spread = 0.0
 gravity = Vector3(0, 0, 0)
 initial_velocity_max = 30.0
 orbit_velocity_min = 0.0
 orbit_velocity_max = 0.0
-scale_min = 0.3
-scale_max = 0.3
-scale_curve = SubResource("CurveTexture_ix2et")
+scale_min = 0.2
+scale_max = 0.5
+scale_curve = SubResource("CurveTexture_g8h0l")
 color = Color(0.902158, 0.531783, 0.215793, 1)
+hue_variation_max = 0.05
 anim_speed_min = 2.44
 anim_speed_max = 2.62
 
@@ -56,12 +69,10 @@ collision_layer = 0
 script = ExtResource("1_3ljiq")
 
 [node name="Hitbox" parent="." instance=ExtResource("3_l1got")]
-position = Vector2(19, -1)
 collision_layer = 16
 collision_mask = 2
 
 [node name="CollisionShape2D" parent="Hitbox" index="0"]
-position = Vector2(-10, 1)
 shape = SubResource("CircleShape2D_qr55v")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
@@ -70,10 +81,9 @@ libraries = {
 }
 
 [node name="GPUParticles2D" type="GPUParticles2D" parent="."]
-position = Vector2(9, 0)
-amount = 100
+amount = 70
 process_material = SubResource("ParticleProcessMaterial_1syyq")
 texture = ExtResource("3_2xe3u")
-lifetime = 0.3
+lifetime = 0.2
 
 [editable path="Hitbox"]

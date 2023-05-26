@@ -107,11 +107,12 @@ func drop_last_item() -> void:
 		pickup.setup(item)
 		get_node("/root/World").call_deferred("add_child", pickup)
 		pickup.sort_layer = SortLayer.BACKGROUND
-		pickup.position = global_position
+		pickup.position.y = global_position.y - 30
 		if facing == Enums.Facing.RIGHT:
-			pickup.velocity = Vector2(randf_range(60, 80), 0 )
+			pickup.position.x = global_position.x + 23
 		else:
-			pickup.velocity = Vector2(randf_range(-60, -80), 0 )
+			pickup.position.x = global_position.x - 30
+		pickup.velocity = Vector2.ZERO
 		GameEvents.removed_food_from_bag.emit(pickup)
 
 func _set_debug_labels() -> void:

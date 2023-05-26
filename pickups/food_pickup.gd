@@ -30,6 +30,7 @@ var nutrition_value_lookup : Dictionary = {
 	load("res://pickups/sprites/brick.png") : {"brick" : 100, "meat" : 0, "plant" : 0 },
 	
 	load("res://user_interface/healthbar/full_heart.png") : {"brick" : 0, "meat" : 0, "plant" : 0 },
+	load("res://characters/enemy/moss_hopper/moss_hopper_piece.png") : {"brick" : 0, "meat" : 0, "plant" : 1 },
 }
 
 func _ready():

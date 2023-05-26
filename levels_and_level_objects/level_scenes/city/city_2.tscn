@@ -11,6 +11,7 @@
 size = Vector2(40, 1160)
 
 [node name="World" instance=ExtResource("1_jfywk")]
+map_position = 1.0
 
 [node name="Timer" type="Timer" parent="LittleBrother" index="10"]
 
@@ -65,19 +66,7 @@ shape = SubResource("RectangleShape2D_mlhfd")
 [node name="BlowerParticles" parent="Blower" index="1"]
 position = Vector2(0, 32)
 
-[node name="Interceptor" parent="." index="11" instance=ExtResource("3_1jh41")]
-position = Vector2(-112, -32)
-
-[node name="player_detector" parent="Interceptor/Pivot" index="3"]
-target_position = Vector2(-70, -45)
-
-[node name="Paroot" parent="." index="12" instance=ExtResource("4_o12ev")]
-position = Vector2(224, -248)
-
 [editable path="LittleBrother"]
 [editable path="LittleBrother/InteractZone/HungerBars"]
 [editable path="Blower"]
 [editable path="Blower/BlowerParticles"]
-[editable path="Interceptor"]
-[editable path="Interceptor/Hurtbox"]
-[editable path="Interceptor/Hitbox"]
