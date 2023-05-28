@@ -1,0 +1,26 @@
+[gd_scene load_steps=4 format=3 uid="uid://duso2d4n3uj8h"]
+
+[ext_resource type="PackedScene" uid="uid://c61py6hgvk4e5" path="res://levels_and_level_objects/enemy_spawn.tscn" id="1_u05ek"]
+[ext_resource type="PackedScene" uid="uid://curfvdorfok3h" path="res://characters/enemy/dandicrow/dandicrow.tscn" id="2_k46rq"]
+
+[sub_resource type="Curve2D" id="Curve2D_nqfpm"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 130, -166, 0, 0, 0, 0, 132.312, -150.485, 0, 0, 0, 0, 131, -77)
+}
+point_count = 3
+
+[node name="Path2D" type="Path2D"]
+curve = SubResource("Curve2D_nqfpm")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="."]
+rotation = 1.42287
+
+[node name="EnemySpawn" parent="PathFollow2D" instance=ExtResource("1_u05ek")]
+spawn = ExtResource("2_k46rq")
+facing = "Left"
+
+[node name="DandiRaven" parent="PathFollow2D/EnemySpawn" instance=ExtResource("2_k46rq")]
+
+[node name="346979" type="Timer" parent="PathFollow2D"]
+wait_time = 0.2
+one_shot = true
