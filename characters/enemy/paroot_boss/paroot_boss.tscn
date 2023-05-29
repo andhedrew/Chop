@@ -1,10 +1,12 @@
-[gd_scene load_steps=16 format=3 uid="uid://cf4huiwomsgtu"]
+[gd_scene load_steps=19 format=3 uid="uid://dnsw5r66w3a15"]
 
 [ext_resource type="PackedScene" uid="uid://23cc1xm0v5jp" path="res://characters/enemy/enemy_walker.tscn" id="1_o5c4o"]
-[ext_resource type="Script" path="res://characters/enemy/paroot_boss/paroot_boss_enemy.gd" id="2_jxtly"]
 [ext_resource type="Texture2D" uid="uid://cwmxarjv7qjc8" path="res://characters/enemy/paroot_boss/paroot_boss.png" id="2_koeju"]
-[ext_resource type="Script" path="res://characters/enemy/paroot_boss/paroot_boss_idle.gd" id="3_2r18j"]
+[ext_resource type="Script" path="res://characters/enemy/states/paroot_boss_enemy.gd" id="2_y2kgg"]
 [ext_resource type="Script" path="res://characters/enemy/states/rush_attack.gd" id="4_jv8wq"]
+[ext_resource type="PackedScene" uid="uid://bb1h85dym7l4i" path="res://hitboxes/Hurtbox.tscn" id="5_1hm1y"]
+[ext_resource type="Script" path="res://characters/enemy/states/paroot_boss_idle.gd" id="5_xqv18"]
+[ext_resource type="PackedScene" uid="uid://hf8oc665xro5" path="res://hitboxes/shieldbox.tscn" id="6_ida67"]
 
 [sub_resource type="Animation" id="Animation_jj5yi"]
 resource_name = "attack"
@@ -27,6 +29,21 @@ tracks/0/keys = {
 resource_name = "fall"
 length = 0.1
 loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Pivot/Body:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [13]
+}
+
+[sub_resource type="Animation" id="Animation_in2gv"]
+resource_name = "get_angry"
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -90,21 +107,6 @@ tracks/0/keys = {
 "values": [4, 5, 6, 7]
 }
 
-[sub_resource type="Animation" id="Animation_in2gv"]
-resource_name = "get_angry"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Pivot/Body:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [13]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_6y6mw"]
 _data = {
 "attack": SubResource("Animation_jj5yi"),
@@ -115,17 +117,20 @@ _data = {
 "walk": SubResource("Animation_e5kun")
 }
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_vwkac"]
-size = Vector2(47, 46)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xc0jx"]
+size = Vector2(37, 45)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ih1wh"]
+size = Vector2(23, 44)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_46sin"]
-size = Vector2(43, 44)
+size = Vector2(53, 48)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xi3g1"]
 size = Vector2(39, 42)
 
 [node name="Enemy" instance=ExtResource("1_o5c4o")]
-script = ExtResource("2_jxtly")
+script = ExtResource("2_y2kgg")
 death_pieces = Array[Resource]([])
 
 [node name="state_label" parent="." index="0"]
@@ -148,22 +153,35 @@ libraries = {
 [node name="player_detector" parent="Pivot" index="3"]
 target_position = Vector2(-120, 0)
 
+[node name="Shield" parent="Pivot" index="4" instance=ExtResource("6_ida67")]
+
+[node name="CollisionShape2D" parent="Pivot/Shield" index="0"]
+position = Vector2(-14.5, -22.5)
+shape = SubResource("RectangleShape2D_xc0jx")
+
+[node name="Hurtbox" parent="Pivot" index="5" instance=ExtResource("5_1hm1y")]
+collision_mask = 8
+
+[node name="CollisionShape2D" parent="Pivot/Hurtbox" index="0"]
+position = Vector2(13.5, -23)
+shape = SubResource("RectangleShape2D_ih1wh")
+
 [node name="StateMachine" parent="." index="3"]
 initial_state = NodePath("Idle")
 
 [node name="Attack" type="Node" parent="StateMachine" index="3"]
 script = ExtResource("4_jv8wq")
-speed_boost = 7.0
+speed_boost = 4.0
 
 [node name="Idle" type="Node" parent="StateMachine" index="4"]
-script = ExtResource("3_2r18j")
+script = ExtResource("5_xqv18")
 
 [node name="CollisionShape2D" parent="Hurtbox" index="0"]
-position = Vector2(1.5, -23)
-shape = SubResource("RectangleShape2D_vwkac")
+position = Vector2(15, -23)
+shape = null
 
 [node name="CollisionShape2D" parent="Hitbox" index="0"]
-position = Vector2(1.5, -22)
+position = Vector2(-0.5, -24)
 shape = SubResource("RectangleShape2D_46sin")
 
 [node name="CollisionShape2D" parent="." index="6"]
@@ -188,5 +206,7 @@ position = Vector2(12, -10)
 [node name="wall_check_right" parent="." index="12"]
 target_position = Vector2(30, 0)
 
+[editable path="Pivot/Shield"]
+[editable path="Pivot/Hurtbox"]
 [editable path="Hurtbox"]
 [editable path="Hitbox"]

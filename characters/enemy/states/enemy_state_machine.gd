@@ -29,14 +29,11 @@ func _physics_process(delta: float) -> void:
 func transition_to(target_state_name: String, msg: Dictionary = {}) -> void:
 		if not has_node(target_state_name):
 			return
-			
 		previous_state = state.name
 		state.exit()
 		state = get_node(target_state_name)
 		state.enter(msg)
-		
 		state_timer = 0
-
 
 
 func _on_cutscene_start() -> void:

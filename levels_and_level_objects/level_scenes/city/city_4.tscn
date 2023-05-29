@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://cs7mg84qb48r"]
+[gd_scene load_steps=4 format=3 uid="uid://cs7mg84qb48r"]
 
 [ext_resource type="PackedScene" uid="uid://dm85xjdq5mkk3" path="res://levels_and_level_objects/level_scenes/base_level.tscn" id="1_bldwn"]
-[ext_resource type="PackedScene" uid="uid://cf4huiwomsgtu" path="res://characters/enemy/paroot_boss/paroot_boss.tscn" id="2_wq7ff"]
+[ext_resource type="PackedScene" uid="uid://dnsw5r66w3a15" path="res://characters/enemy/paroot_boss/paroot_boss.tscn" id="2_wq7ff"]
+[ext_resource type="PackedScene" uid="uid://hf8oc665xro5" path="res://hitboxes/shieldbox.tscn" id="3_eslmr"]
 
 [node name="World" instance=ExtResource("1_bldwn")]
 
@@ -10,6 +11,8 @@ layer_0/tile_data = PackedInt32Array(655396, 65537, 2, 589860, 65537, 3, 524324,
 
 [node name="Enemy" parent="." index="12" instance=ExtResource("2_wq7ff")]
 position = Vector2(968, 48)
+
+[node name="Shield" parent="." index="13" instance=ExtResource("3_eslmr")]
 
 [editable path="LittleBrother"]
 [editable path="LittleBrother/InteractZone/HungerBars"]
