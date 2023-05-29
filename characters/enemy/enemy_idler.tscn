@@ -8,7 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://c4h0e88l2gyj7" path="res://characters/enemy/default_walker.png" id="6_oukol"]
 [ext_resource type="Animation" uid="uid://7rbaagwrdwqk" path="res://animations/syphoning.res" id="7_xgbyx"]
 [ext_resource type="Animation" uid="uid://dep0l7ft0tpjo" path="res://animations/take_damage.res" id="8_pv8uj"]
-[ext_resource type="Script" path="res://characters/player/states/state_machine.gd" id="9_efyhv"]
+[ext_resource type="Script" path="res://characters/enemy/states/enemy_state_machine.gd" id="9_ww5ys"]
 [ext_resource type="Script" path="res://characters/enemy/states/walker_idle.gd" id="10_urqif"]
 [ext_resource type="Script" path="res://characters/enemy/states/walker_fall.gd" id="12_5wbwm"]
 [ext_resource type="Script" path="res://characters/enemy/states/idler_hurt.gd" id="12_ymwoe"]
@@ -236,7 +236,7 @@ target_position = Vector2(-70, 0)
 collision_mask = 3
 
 [node name="StateMachine" type="Node" parent="."]
-script = ExtResource("9_efyhv")
+script = ExtResource("9_ww5ys")
 initial_state = NodePath("Idle")
 
 [node name="Idle" type="Node" parent="StateMachine"]

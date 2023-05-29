@@ -30,6 +30,7 @@ texture = ExtResource("2_lt8fv")
 frame = 0
 
 [node name="player_detector" parent="Pivot" index="3"]
+position = Vector2(0, -5)
 target_position = Vector2(-90, 0)
 
 [node name="CollisionShape2D" parent="Hurtbox" index="0"]

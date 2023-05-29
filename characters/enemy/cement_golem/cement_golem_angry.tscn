@@ -1,17 +1,15 @@
-[gd_scene load_steps=28 format=3 uid="uid://b1n0gcm7axson"]
+[gd_scene load_steps=26 format=3 uid="uid://dlbwhgsw2uisf"]
 
-[ext_resource type="PackedScene" uid="uid://23cc1xm0v5jp" path="res://characters/enemy/enemy_walker.tscn" id="1_jkiwb"]
-[ext_resource type="AudioStream" uid="uid://hevnh2sjqgrp" path="res://audio/sounds/grunt.wav" id="4_22js0"]
-[ext_resource type="AudioStream" uid="uid://bdrhtkor6762v" path="res://audio/sounds/concrete.wav" id="5_ywi4b"]
-[ext_resource type="Texture2D" uid="uid://bbx3vpsfp6t5j" path="res://characters/enemy/cement_golem/cement_golem_piece_1.png" id="6_uronb"]
-[ext_resource type="Texture2D" uid="uid://ntitf7t3jsc7" path="res://characters/enemy/cement_golem/cement_golem_piece_2.png" id="7_l5tjt"]
-[ext_resource type="Texture2D" uid="uid://dvl5606hliwni" path="res://characters/enemy/cement_golem/cement_golem.png" id="8_71r7h"]
-[ext_resource type="Texture2D" uid="uid://cvs8td0tpywqi" path="res://characters/enemy/cement_golem/cement_golem_piece_3.png" id="8_lsq4i"]
-[ext_resource type="Script" path="res://characters/enemy/states/heavy_enemy_hurt.gd" id="8_se6ww"]
-[ext_resource type="Script" path="res://characters/enemy/states/walker_idle.gd" id="9_twh0q"]
-[ext_resource type="Script" path="res://characters/enemy/states/walker_walk.gd" id="10_c5wps"]
-[ext_resource type="Script" path="res://characters/enemy/states/rush_attack.gd" id="11_f487f"]
-[ext_resource type="Texture2D" uid="uid://ceokl1ev8sk15" path="res://vfx/smoke_white.png" id="13_0o6xv"]
+[ext_resource type="PackedScene" uid="uid://23cc1xm0v5jp" path="res://characters/enemy/enemy_walker.tscn" id="1_lf8dv"]
+[ext_resource type="AudioStream" uid="uid://bdrhtkor6762v" path="res://audio/sounds/concrete.wav" id="2_7ymbe"]
+[ext_resource type="AudioStream" uid="uid://hevnh2sjqgrp" path="res://audio/sounds/grunt.wav" id="3_te05t"]
+[ext_resource type="Texture2D" uid="uid://bbx3vpsfp6t5j" path="res://characters/enemy/cement_golem/cement_golem_piece_1.png" id="4_hs3d8"]
+[ext_resource type="Texture2D" uid="uid://ntitf7t3jsc7" path="res://characters/enemy/cement_golem/cement_golem_piece_2.png" id="5_cla47"]
+[ext_resource type="Texture2D" uid="uid://cvs8td0tpywqi" path="res://characters/enemy/cement_golem/cement_golem_piece_3.png" id="6_v6bmq"]
+[ext_resource type="Texture2D" uid="uid://dvl5606hliwni" path="res://characters/enemy/cement_golem/cement_golem.png" id="7_lwy0x"]
+[ext_resource type="Script" path="res://characters/enemy/states/heavy_enemy_hurt.gd" id="8_a6213"]
+[ext_resource type="Script" path="res://characters/enemy/states/rush_attack.gd" id="11_opu77"]
+[ext_resource type="Texture2D" uid="uid://ceokl1ev8sk15" path="res://vfx/smoke_white.png" id="12_aqqoy"]
 
 [sub_resource type="Animation" id="Animation_v48wb"]
 resource_name = "attack"
@@ -198,14 +196,14 @@ scale_curve = SubResource("CurveTexture_jjxwj")
 color_ramp = SubResource("GradientTexture1D_nggty")
 turbulence_noise_speed_random = 3.74
 
-[node name="CementGolem" instance=ExtResource("1_jkiwb")]
+[node name="CementGolem" instance=ExtResource("1_lf8dv")]
 erratic_walking_amount = 3.0
 health = 8
 speed = 25.0
-hurt_vocalizations = Array[AudioStreamWAV]([ExtResource("5_ywi4b")])
-death_vocalization = ExtResource("4_22js0")
-impact_sound = ExtResource("5_ywi4b")
-death_pieces = Array[Resource]([ExtResource("6_uronb"), ExtResource("7_l5tjt"), ExtResource("8_lsq4i")])
+hurt_vocalizations = Array[AudioStreamWAV]([ExtResource("2_7ymbe")])
+death_vocalization = ExtResource("3_te05t")
+impact_sound = ExtResource("2_7ymbe")
+death_pieces = Array[Resource]([ExtResource("4_hs3d8"), ExtResource("5_cla47"), ExtResource("6_v6bmq")])
 bounty = 2
 
 [node name="BloodParticles" parent="." index="1"]
@@ -216,7 +214,7 @@ position = Vector2(0, -1)
 
 [node name="Body" parent="Pivot" index="0"]
 position = Vector2(0, -14)
-texture = ExtResource("8_71r7h")
+texture = ExtResource("7_lwy0x")
 frame = 4
 
 [node name="AnimationPlayer" parent="Pivot" index="1"]
@@ -231,16 +229,16 @@ target_position = Vector2(-120, 0)
 initial_state = NodePath("Idle")
 
 [node name="Hurt" parent="StateMachine" index="1"]
-script = ExtResource("8_se6ww")
+script = ExtResource("8_a6213")
 
 [node name="Idle" type="Node" parent="StateMachine" index="3"]
-script = ExtResource("9_twh0q")
+script = ExtResource("11_opu77")
 
 [node name="Move" type="Node" parent="StateMachine" index="4"]
-script = ExtResource("10_c5wps")
+script = ExtResource("11_opu77")
 
 [node name="Attack" type="Node" parent="StateMachine" index="5"]
-script = ExtResource("11_f487f")
+script = ExtResource("11_opu77")
 
 [node name="Hurtbox" parent="." index="4"]
 position = Vector2(0, -1)
@@ -283,7 +281,7 @@ position = Vector2(0, -22)
 emitting = false
 amount = 5
 process_material = SubResource("ParticleProcessMaterial_ysr57")
-texture = ExtResource("13_0o6xv")
+texture = ExtResource("12_aqqoy")
 
 [editable path="Hurtbox"]
 [editable path="Hitbox"]

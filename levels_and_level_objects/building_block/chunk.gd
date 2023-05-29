@@ -5,11 +5,15 @@ extends RigidBody2D
 @onready var sprite := $Sprite2D
 @onready var collision_shape := $CollisionShape2D
 @onready var hurtbox_collision_shape := $Hurtbox/CollisionShape2D
+@export var drop_pieces: Array[Resource]
 
 var pop_up_duration = 0.2 # Duration of the pop up motion in seconds
 var pop_up_velocity = Vector2(0, -200) # Velocity of the pop up motion
 var brick_explode_scene = preload("res://vfx/brick_explode.tscn")
 var chop_counter := 0
+var counter := 0
+var last_velocity_x = null
+@export var chop_sound: AudioStreamWAV
 
 func _ready():
 	hurtbox.area_entered.connect(_chop_up)
@@ -19,6 +23,7 @@ func _ready():
 	collision_shape.shape.extents.y = sprite.region_rect.size.y/2
 
 func _chop_up(hitbox) -> void:
+	SoundPlayer.play_sound_positional(chop_sound, position)
 	if hitbox is HitBox:
 		chop_counter += 1
 		_drop()
@@ -60,10 +65,51 @@ func _chop_up(hitbox) -> void:
 func destroy():
 	queue_free()
 
-
 func _drop() -> void:
-	var pickup = preload("res://pickups/food_pickup.tscn").instantiate()
-	var sprite_piece := preload("res://pickups/sprites/brick.png")
-	pickup.position = global_position
-	pickup.setup(sprite_piece)
-	get_node("/root/World").call_deferred("add_child", pickup)
+	var probability = 0.5 + (counter * 0.1)
+	var position_offset_y = 20
+	var velocity_y = -4.0
+	var velocity_x1 = 12.0
+	var velocity_x2 = -12.0
+	
+	if randf() < probability:
+		var pickup1 = preload("res://pickups/food_pickup.tscn").instantiate()
+		var pickup2 = preload("res://pickups/food_pickup.tscn").instantiate()
+		var sprite_piece1 = drop_pieces[randi() % drop_pieces.size()]
+		var sprite_piece2 = drop_pieces[randi() % drop_pieces.size()]
+		
+		pickup1.setup(sprite_piece1)
+		pickup1.position = global_position
+		pickup1.position.y -= position_offset_y
+		pickup1.velocity.y = velocity_y
+		pickup1.velocity.x = velocity_x1
+		
+		pickup2.setup(sprite_piece2)
+		pickup2.position = global_position
+		pickup2.position.y -= position_offset_y
+		pickup2.velocity.y = velocity_y
+		pickup2.velocity.x = velocity_x2
+		
+		get_node("/root/").call_deferred("add_child", pickup1)
+		get_node("/root/").call_deferred("add_child", pickup2)
+		
+		counter = 0
+	else:
+		var pickup = preload("res://pickups/food_pickup.tscn").instantiate()
+		var sprite_piece = drop_pieces[randi() % drop_pieces.size()]
+		
+		pickup.setup(sprite_piece)
+		pickup.position = global_position
+		pickup.position.y -= position_offset_y
+		pickup.velocity.y = velocity_y
+		
+		if last_velocity_x == null or last_velocity_x == velocity_x1:
+			pickup.velocity.x = velocity_x2
+			last_velocity_x = velocity_x2
+		else:
+			pickup.velocity.x = velocity_x1
+			last_velocity_x = velocity_x1
+		
+		get_node("/root/").call_deferred("add_child", pickup)
+		
+		counter += 1

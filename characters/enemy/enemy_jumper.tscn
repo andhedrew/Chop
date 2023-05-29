@@ -6,11 +6,11 @@
 [ext_resource type="Texture2D" uid="uid://b7d34uqc2glh5" path="res://characters/enemy/default_jumper.png" id="3_bj0i1"]
 [ext_resource type="Script" path="res://particles_fly_at_target.gd" id="4_13nud"]
 [ext_resource type="Animation" uid="uid://dep0l7ft0tpjo" path="res://animations/take_damage.res" id="4_qnq1h"]
-[ext_resource type="Script" path="res://characters/player/states/state_machine.gd" id="5_ccglt"]
 [ext_resource type="Script" path="res://characters/enemy/jumper_idle.gd" id="6_o2i04"]
 [ext_resource type="Animation" uid="uid://7rbaagwrdwqk" path="res://animations/syphoning.res" id="7_ao65i"]
 [ext_resource type="Script" path="res://characters/enemy/jumper_jump_attack.gd" id="7_ygfex"]
 [ext_resource type="Script" path="res://characters/enemy/states/walker_fall.gd" id="8_kmr5c"]
+[ext_resource type="Script" path="res://characters/enemy/states/enemy_state_machine.gd" id="8_omn8b"]
 [ext_resource type="Script" path="res://characters/enemy/states/walker_hurt.gd" id="9_r5phl"]
 [ext_resource type="PackedScene" uid="uid://bb1h85dym7l4i" path="res://hitboxes/Hurtbox.tscn" id="10_0423f"]
 [ext_resource type="PackedScene" uid="uid://cxfiuhgots5lg" path="res://hitboxes/Hitbox.tscn" id="11_8faqc"]
@@ -236,7 +236,7 @@ target_position = Vector2(-70, 0)
 collision_mask = 3
 
 [node name="StateMachine" type="Node" parent="."]
-script = ExtResource("5_ccglt")
+script = ExtResource("8_omn8b")
 initial_state = NodePath("Idle")
 
 [node name="Idle" type="Node" parent="StateMachine"]

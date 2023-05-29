@@ -1,4 +1,4 @@
-class_name StateMachine
+class_name EnemyStateMachine
 extends Node
 
 @export var initial_state := NodePath()
@@ -6,7 +6,6 @@ extends Node
 @onready var initial_state_name := str(get_node(initial_state))
 var previous_state : String
 var state_timer := 0.0
-var invulnerable_timer := 0.0
 
 func _ready() -> void:
 	await owner.ready
@@ -18,36 +17,26 @@ func _ready() -> void:
 	state_timer = 0
 
 
-# The state machine subscribes to node callbacks and delegates them to the state objects.
-func _unhandled_input(event: InputEvent) -> void:
-	state.handle_input(event)
-
-
 func _process(delta: float) -> void:
 	state.update(delta)
-	
 
 
 func _physics_process(delta: float) -> void:
 	state.physics_update(delta)
 	state_timer += delta
-	if invulnerable_timer > 0:
-		owner.invulnerable = true
-		invulnerable_timer -= delta
-	else:
-		owner.invulnerable = false
 
 
 func transition_to(target_state_name: String, msg: Dictionary = {}) -> void:
 		if not has_node(target_state_name):
 			return
-
+			
 		previous_state = state.name
 		state.exit()
-		GameEvents.player_changed_state.emit(target_state_name, previous_state)
 		state = get_node(target_state_name)
 		state.enter(msg)
+		
 		state_timer = 0
+
 
 
 func _on_cutscene_start() -> void:

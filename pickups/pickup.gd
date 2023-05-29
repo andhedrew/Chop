@@ -15,10 +15,8 @@ func _ready():
 func _physics_process(delta):
 	if !is_on_floor():
 		velocity.y = lerp(velocity.y, max_fall_speed, 0.1)
-
 	else:
 		velocity.y = 1.0
-	
 	apply_friction()
 	move_and_collide(velocity)
 

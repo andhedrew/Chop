@@ -1,0 +1,51 @@
+[gd_scene load_steps=7 format=3 uid="uid://qv6gksctkg10"]
+
+[ext_resource type="PackedScene" uid="uid://dntp68sjcmo8j" path="res://levels_and_level_objects/level_scenes/city/level_chunks/tower_bottom.tscn" id="1_ftelg"]
+[ext_resource type="PackedScene" uid="uid://c61py6hgvk4e5" path="res://levels_and_level_objects/enemy_spawn.tscn" id="2_4v4ci"]
+[ext_resource type="PackedScene" uid="uid://cb53nea0b2ud5" path="res://characters/enemy/moss_hopper/moss_hopper.tscn" id="3_m8rf6"]
+[ext_resource type="PackedScene" uid="uid://dlbwhgsw2uisf" path="res://characters/enemy/cement_golem/cement_golem_angry.tscn" id="4_cogy7"]
+[ext_resource type="PackedScene" uid="uid://curfvdorfok3h" path="res://characters/enemy/dandicrow/dandicrow.tscn" id="5_fft0v"]
+
+[sub_resource type="Curve2D" id="Curve2D_46k8r"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, -176, -456, 0, 0, 0, 0, -176, -344)
+}
+point_count = 2
+
+[node name="tower_bottom_2" instance=ExtResource("1_ftelg")]
+
+[node name="EnemySpawn" parent="." index="14" instance=ExtResource("2_4v4ci")]
+position = Vector2(-8, -224)
+spawn = ExtResource("3_m8rf6")
+facing = "Left"
+
+[node name="EnemySpawn2" parent="." index="15" instance=ExtResource("2_4v4ci")]
+position = Vector2(176, -224)
+spawn = ExtResource("3_m8rf6")
+facing = "Left"
+
+[node name="EnemySpawn4" parent="." index="16" instance=ExtResource("2_4v4ci")]
+position = Vector2(-56, -400)
+spawn = ExtResource("3_m8rf6")
+facing = "Left"
+
+[node name="EnemySpawn5" parent="." index="17" instance=ExtResource("2_4v4ci")]
+position = Vector2(216, -416)
+spawn = ExtResource("3_m8rf6")
+facing = "Left"
+
+[node name="EnemySpawn3" parent="." index="18" instance=ExtResource("2_4v4ci")]
+position = Vector2(48, -320)
+spawn = ExtResource("4_cogy7")
+facing = "Right"
+
+[node name="Path2D" type="Path2D" parent="." index="19"]
+curve = SubResource("Curve2D_46k8r")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Path2D" index="0"]
+position = Vector2(-176, -456)
+rotation = 1.5708
+
+[node name="EnemySpawn4" parent="Path2D/PathFollow2D" index="0" instance=ExtResource("2_4v4ci")]
+spawn = ExtResource("5_fft0v")
+facing = "Right"

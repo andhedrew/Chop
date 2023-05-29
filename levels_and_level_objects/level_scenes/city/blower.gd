@@ -4,7 +4,7 @@ extends Area2D
 @export_enum("UP", "LEFT", "DOWN", "RIGHT") var blow_direction: String
 var player_in_area := false
 var player = null
-@onready var particles: GPUParticles2D = $GPUParticles2D
+@onready var particles: GPUParticles2D = $BlowerParticles
 @onready var collision_shape: CollisionShape2D = $CollisionShape2D
 
 func _ready():

@@ -1,10 +1,33 @@
-[gd_scene load_steps=3 format=3 uid="uid://b3s0frk1811ht"]
+[gd_scene load_steps=6 format=3 uid="uid://b3s0frk1811ht"]
 
 [ext_resource type="PackedScene" uid="uid://dntp68sjcmo8j" path="res://levels_and_level_objects/level_scenes/city/level_chunks/tower_bottom.tscn" id="1_nibqn"]
-[ext_resource type="PackedScene" uid="uid://boakvecc6j1ta" path="res://characters/enemy/paroot/paroot.tscn" id="2_ve5ei"]
+[ext_resource type="PackedScene" uid="uid://c61py6hgvk4e5" path="res://levels_and_level_objects/enemy_spawn.tscn" id="2_em1x2"]
+[ext_resource type="PackedScene" uid="uid://cm208i2oyjrct" path="res://characters/enemy/hotdog/hotdog.tscn" id="3_06gtb"]
+[ext_resource type="PackedScene" uid="uid://dlbwhgsw2uisf" path="res://characters/enemy/cement_golem/cement_golem_angry.tscn" id="4_2jvki"]
+[ext_resource type="PackedScene" uid="uid://b1n0gcm7axson" path="res://characters/enemy/cement_golem/cement_golem.tscn" id="5_8guml"]
 
 [node name="tower_bottom_1" instance=ExtResource("1_nibqn")]
 
-[node name="EnemySpawn" parent="." index="1"]
-position = Vector2(-16, -224)
-spawn = ExtResource("2_ve5ei")
+[node name="EnemySpawn" parent="." index="10" instance=ExtResource("2_em1x2")]
+position = Vector2(-8, -224)
+spawn = ExtResource("3_06gtb")
+
+[node name="EnemySpawn6" parent="." index="11" instance=ExtResource("2_em1x2")]
+position = Vector2(248, -416)
+spawn = ExtResource("3_06gtb")
+
+[node name="EnemySpawn2" parent="." index="12" instance=ExtResource("2_em1x2")]
+position = Vector2(184, -224)
+spawn = ExtResource("3_06gtb")
+
+[node name="EnemySpawn3" parent="." index="13" instance=ExtResource("2_em1x2")]
+position = Vector2(32, -320)
+spawn = ExtResource("4_2jvki")
+
+[node name="EnemySpawn4" parent="." index="14" instance=ExtResource("2_em1x2")]
+position = Vector2(-232, -416)
+spawn = ExtResource("3_06gtb")
+
+[node name="EnemySpawn5" parent="." index="15" instance=ExtResource("2_em1x2")]
+position = Vector2(-48, -400)
+spawn = ExtResource("5_8guml")

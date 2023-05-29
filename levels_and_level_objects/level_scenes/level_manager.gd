@@ -6,6 +6,7 @@ extends Node2D
 @export_file("*.tscn") var next_level
 @export var camera: Camera2D
 
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 #	SoundPlayer.play_music("blues")

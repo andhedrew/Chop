@@ -17,6 +17,10 @@ func _ready():
 
 func _physics_process(_delta):
 	
+	if owner.invulnerable:
+		effects_player.play("fx/invulnerable")
+	else:
+		effects_player.play("fx/RESET")
 	if state_last_frame == "Fall" and owner.state != "Fall":
 		is_landing = true
 	

@@ -9,13 +9,11 @@ func enter(msg := {}) -> void:
 	elif sign(owner.velocity.x) == -1:
 		owner.set_facing(Enums.Facing.RIGHT)
 
-	owner.velocity.y = -90
-
 
 func physics_update(delta: float) -> void:
 	owner.velocity.y += Param.GRAVITY * delta
 	owner.move_and_slide()
 
-	if owner.is_on_floor():
+	if state_machine.state_timer >= 0.15:
 		state_machine.transition_to("Idle")
 	

@@ -50,23 +50,6 @@ func _physics_process(_delta):
 		effects_player.play("RESET")
 
 
-func _take_damage(hitbox) -> void:
-	if hitbox is HitBox and !invulnerable:
-		GameEvents.enemy_took_damage.emit()
-		colliding_hitbox_position = {"position": hitbox.owner.get_parent().global_position}
-		$StateMachine.transition_to("Hurt", colliding_hitbox_position)
-		health -= hitbox.damage
-		if wounded and health <= 0 and hitbox.execute:
-			execute()
-		elif health <= 0:
-			die(false)
-		else:
-			var slice = preload("res://vfx/slice.tscn").instantiate()
-			slice.position = global_position
-			get_node("/root/").add_child(slice)
-			
-
-
 func set_facing(facing_dir) -> void:
 	facing = facing_dir
 	if facing == Enums.Facing.LEFT:
@@ -85,6 +68,23 @@ func switch_facing() -> void:
 	elif facing == Enums.Facing.RIGHT:
 		facing = Enums.Facing.LEFT
 	set_facing(facing)
+
+
+func _take_damage(hitbox) -> void:
+	if hitbox is HitBox and !invulnerable:
+		GameEvents.enemy_took_damage.emit()
+		colliding_hitbox_position = {"position": hitbox.owner.get_parent().global_position}
+		$StateMachine.transition_to("Hurt", colliding_hitbox_position)
+		health -= hitbox.damage
+		if wounded and health <= 0 and hitbox.execute:
+			execute()
+		elif health <= 0:
+			die(false)
+		else:
+			var slice = preload("res://vfx/slice.tscn").instantiate()
+			slice.position = global_position
+			get_node("/root/").add_child(slice)
+			
 
 
 func execute():

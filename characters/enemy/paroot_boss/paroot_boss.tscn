@@ -1,0 +1,192 @@
+[gd_scene load_steps=16 format=3 uid="uid://cf4huiwomsgtu"]
+
+[ext_resource type="PackedScene" uid="uid://23cc1xm0v5jp" path="res://characters/enemy/enemy_walker.tscn" id="1_o5c4o"]
+[ext_resource type="Script" path="res://characters/enemy/paroot_boss/paroot_boss_enemy.gd" id="2_jxtly"]
+[ext_resource type="Texture2D" uid="uid://cwmxarjv7qjc8" path="res://characters/enemy/paroot_boss/paroot_boss.png" id="2_koeju"]
+[ext_resource type="Script" path="res://characters/enemy/paroot_boss/paroot_boss_idle.gd" id="3_2r18j"]
+[ext_resource type="Script" path="res://characters/enemy/states/rush_attack.gd" id="4_jv8wq"]
+
+[sub_resource type="Animation" id="Animation_jj5yi"]
+resource_name = "attack"
+length = 0.8
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Pivot/Body:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.25, 0.3, 0.75),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [8, 9, 10, 11]
+}
+
+[sub_resource type="Animation" id="Animation_jlwo1"]
+resource_name = "fall"
+length = 0.1
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Pivot/Body:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [13]
+}
+
+[sub_resource type="Animation" id="Animation_51sfn"]
+resource_name = "hurt"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Pivot/Body:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [12]
+}
+
+[sub_resource type="Animation" id="Animation_drbmi"]
+resource_name = "idle"
+length = 0.8
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Pivot/Body:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3]
+}
+
+[sub_resource type="Animation" id="Animation_e5kun"]
+resource_name = "walk"
+length = 0.8
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Pivot/Body:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [4, 5, 6, 7]
+}
+
+[sub_resource type="Animation" id="Animation_in2gv"]
+resource_name = "get_angry"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Pivot/Body:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [13]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_6y6mw"]
+_data = {
+"attack": SubResource("Animation_jj5yi"),
+"fall": SubResource("Animation_jlwo1"),
+"get_angry": SubResource("Animation_in2gv"),
+"hurt": SubResource("Animation_51sfn"),
+"idle": SubResource("Animation_drbmi"),
+"walk": SubResource("Animation_e5kun")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vwkac"]
+size = Vector2(47, 46)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_46sin"]
+size = Vector2(43, 44)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xi3g1"]
+size = Vector2(39, 42)
+
+[node name="Enemy" instance=ExtResource("1_o5c4o")]
+script = ExtResource("2_jxtly")
+death_pieces = Array[Resource]([])
+
+[node name="state_label" parent="." index="0"]
+visible = true
+offset_left = -22.0
+offset_top = -79.0
+offset_right = 18.0
+offset_bottom = -53.0
+
+[node name="Body" parent="Pivot" index="0"]
+position = Vector2(-2, -26)
+texture = ExtResource("2_koeju")
+frame = 13
+
+[node name="AnimationPlayer" parent="Pivot" index="1"]
+libraries = {
+"": SubResource("AnimationLibrary_6y6mw")
+}
+
+[node name="player_detector" parent="Pivot" index="3"]
+target_position = Vector2(-120, 0)
+
+[node name="StateMachine" parent="." index="3"]
+initial_state = NodePath("Idle")
+
+[node name="Attack" type="Node" parent="StateMachine" index="3"]
+script = ExtResource("4_jv8wq")
+speed_boost = 7.0
+
+[node name="Idle" type="Node" parent="StateMachine" index="4"]
+script = ExtResource("3_2r18j")
+
+[node name="CollisionShape2D" parent="Hurtbox" index="0"]
+position = Vector2(1.5, -23)
+shape = SubResource("RectangleShape2D_vwkac")
+
+[node name="CollisionShape2D" parent="Hitbox" index="0"]
+position = Vector2(1.5, -22)
+shape = SubResource("RectangleShape2D_46sin")
+
+[node name="CollisionShape2D" parent="." index="6"]
+position = Vector2(1.5, -21)
+shape = SubResource("RectangleShape2D_xi3g1")
+
+[node name="ledge_check_right" parent="." index="7"]
+position = Vector2(25, 0)
+
+[node name="ledge_check_left" parent="." index="8"]
+position = Vector2(-22, 0)
+
+[node name="wall_check_left" parent="." index="9"]
+target_position = Vector2(-30, 0)
+
+[node name="adjacent_ledge_check_left" parent="." index="10"]
+position = Vector2(-10, -10)
+
+[node name="adjacent_ledge_check_right" parent="." index="11"]
+position = Vector2(12, -10)
+
+[node name="wall_check_right" parent="." index="12"]
+target_position = Vector2(30, 0)
+
+[editable path="Hurtbox"]
+[editable path="Hitbox"]

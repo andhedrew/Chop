@@ -1,0 +1,39 @@
+[gd_scene load_steps=6 format=3 uid="uid://dfqu62bqmc01x"]
+
+[ext_resource type="PackedScene" uid="uid://cx66svbkq4lrc" path="res://levels_and_level_objects/level_scenes/city/level_chunks/tower_mid_bottom.tscn" id="1_jb7ih"]
+[ext_resource type="PackedScene" uid="uid://c61py6hgvk4e5" path="res://levels_and_level_objects/enemy_spawn.tscn" id="2_7h1sl"]
+[ext_resource type="PackedScene" uid="uid://6tnhih60x5lm" path="res://characters/enemy/pumpaboo_spitter/pumpiboo_spitter.tscn" id="3_60yla"]
+[ext_resource type="PackedScene" uid="uid://cb53nea0b2ud5" path="res://characters/enemy/moss_hopper/moss_hopper.tscn" id="4_acpmh"]
+[ext_resource type="PackedScene" uid="uid://0v77alk6bcbh" path="res://characters/enemy/pumpiboo/pumpiboo.tscn" id="5_d58dd"]
+
+[node name="tower_mid_1" instance=ExtResource("1_jb7ih")]
+
+[node name="EnemySpawn" parent="." index="0" instance=ExtResource("2_7h1sl")]
+position = Vector2(-246, -257)
+spawn = ExtResource("3_60yla")
+facing = "Right"
+
+[node name="EnemySpawn2" parent="." index="1" instance=ExtResource("2_7h1sl")]
+position = Vector2(-244, -337)
+spawn = ExtResource("3_60yla")
+facing = "Right"
+
+[node name="EnemySpawn3" parent="." index="2" instance=ExtResource("2_7h1sl")]
+position = Vector2(-246, -417)
+spawn = ExtResource("3_60yla")
+facing = "Right"
+
+[node name="EnemySpawn4" parent="." index="3" instance=ExtResource("2_7h1sl")]
+position = Vector2(248, -256)
+spawn = ExtResource("4_acpmh")
+facing = "Left"
+
+[node name="EnemySpawn5" parent="." index="4" instance=ExtResource("2_7h1sl")]
+position = Vector2(200, -384)
+spawn = ExtResource("4_acpmh")
+facing = "Right"
+
+[node name="EnemySpawn6" parent="." index="5" instance=ExtResource("2_7h1sl")]
+position = Vector2(-16, -192)
+spawn = ExtResource("5_d58dd")
+facing = "Right"

@@ -6,12 +6,12 @@
 [ext_resource type="Texture2D" uid="uid://bw4yx8vbx65so" path="res://vfx/particles/blood/blood.png" id="2_qow6m"]
 [ext_resource type="Animation" uid="uid://dep0l7ft0tpjo" path="res://animations/take_damage.res" id="3_1dqka"]
 [ext_resource type="Texture2D" uid="uid://hdwm6xnwvujm" path="res://characters/enemy/default/mallow_pieces1.png" id="3_mc02d"]
-[ext_resource type="Script" path="res://characters/player/states/state_machine.gd" id="4_j1xsx"]
 [ext_resource type="Script" path="res://particles_fly_at_target.gd" id="5_uo0xo"]
 [ext_resource type="Script" path="res://characters/enemy/states/walker_fall.gd" id="8_33dsg"]
 [ext_resource type="Animation" uid="uid://7rbaagwrdwqk" path="res://animations/syphoning.res" id="8_tnorf"]
 [ext_resource type="PackedScene" uid="uid://bb1h85dym7l4i" path="res://hitboxes/Hurtbox.tscn" id="9_1uncs"]
 [ext_resource type="Script" path="res://characters/enemy/states/walker_hurt.gd" id="9_v3jw4"]
+[ext_resource type="Script" path="res://characters/enemy/states/enemy_state_machine.gd" id="9_vty1f"]
 [ext_resource type="PackedScene" uid="uid://cxfiuhgots5lg" path="res://hitboxes/Hitbox.tscn" id="10_vu0ns"]
 [ext_resource type="Script" path="res://characters/enemy/states/enemy_syphoned.gd" id="14_j3t10"]
 
@@ -235,7 +235,7 @@ target_position = Vector2(-70, 0)
 collision_mask = 3
 
 [node name="StateMachine" type="Node" parent="."]
-script = ExtResource("4_j1xsx")
+script = ExtResource("9_vty1f")
 
 [node name="Fall" type="Node" parent="StateMachine"]
 script = ExtResource("8_33dsg")

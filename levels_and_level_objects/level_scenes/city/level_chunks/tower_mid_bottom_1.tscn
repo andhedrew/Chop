@@ -1,0 +1,39 @@
+[gd_scene load_steps=6 format=3 uid="uid://62n6ngymt4un"]
+
+[ext_resource type="PackedScene" uid="uid://cx66svbkq4lrc" path="res://levels_and_level_objects/level_scenes/city/level_chunks/tower_mid_bottom.tscn" id="1_i47pf"]
+[ext_resource type="PackedScene" uid="uid://c61py6hgvk4e5" path="res://levels_and_level_objects/enemy_spawn.tscn" id="2_n467i"]
+[ext_resource type="PackedScene" uid="uid://brm8j8o7p8cd3" path="res://characters/enemy/paroot/paroot_stationary.tscn" id="3_vg4qc"]
+[ext_resource type="PackedScene" uid="uid://cb53nea0b2ud5" path="res://characters/enemy/moss_hopper/moss_hopper.tscn" id="4_hf628"]
+[ext_resource type="PackedScene" uid="uid://boakvecc6j1ta" path="res://characters/enemy/paroot/paroot.tscn" id="5_kkmkh"]
+
+[node name="tower_mid_1" instance=ExtResource("1_i47pf")]
+
+[node name="EnemySpawn" parent="." index="4" instance=ExtResource("2_n467i")]
+position = Vector2(-246, -257)
+spawn = ExtResource("3_vg4qc")
+facing = "Right"
+
+[node name="EnemySpawn2" parent="." index="5" instance=ExtResource("2_n467i")]
+position = Vector2(-244, -337)
+spawn = ExtResource("3_vg4qc")
+facing = "Right"
+
+[node name="EnemySpawn3" parent="." index="6" instance=ExtResource("2_n467i")]
+position = Vector2(-246, -417)
+spawn = ExtResource("3_vg4qc")
+facing = "Right"
+
+[node name="EnemySpawn4" parent="." index="7" instance=ExtResource("2_n467i")]
+position = Vector2(248, -256)
+spawn = ExtResource("4_hf628")
+facing = "Left"
+
+[node name="EnemySpawn5" parent="." index="8" instance=ExtResource("2_n467i")]
+position = Vector2(200, -384)
+spawn = ExtResource("4_hf628")
+facing = "Right"
+
+[node name="EnemySpawn6" parent="." index="9" instance=ExtResource("2_n467i")]
+position = Vector2(-16, -192)
+spawn = ExtResource("5_kkmkh")
+facing = "Right"
