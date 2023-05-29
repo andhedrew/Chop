@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://cbeqlim4liq65"]
+
+[ext_resource type="Script" path="res://levels_and_level_objects/level_scenes/city/level_chunk.gd" id="1_tqmye"]
+
+[node name="LevelChunk" type="Node"]
+script = ExtResource("1_tqmye")

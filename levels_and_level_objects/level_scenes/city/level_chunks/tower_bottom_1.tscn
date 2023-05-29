@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://b3s0frk1811ht"]
+
+[ext_resource type="PackedScene" uid="uid://dntp68sjcmo8j" path="res://levels_and_level_objects/level_scenes/city/level_chunks/tower_bottom.tscn" id="1_nibqn"]
+[ext_resource type="PackedScene" uid="uid://boakvecc6j1ta" path="res://characters/enemy/paroot/paroot.tscn" id="2_ve5ei"]
+
+[node name="tower_bottom_1" instance=ExtResource("1_nibqn")]
+
+[node name="EnemySpawn" parent="." index="1"]
+position = Vector2(-16, -224)
+spawn = ExtResource("2_ve5ei")
