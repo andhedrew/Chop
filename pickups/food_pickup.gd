@@ -66,6 +66,6 @@ func setup(new_texture: CompressedTexture2D) -> void:
 		brick_value = 1
 		meat_value = 0
 		plant_value = 0
-
-	velocity.x = randf_range(-200, 200)
-	velocity.y = -300
+#
+#	velocity.x = randf_range(-200, 200)
+#	velocity.y = -300

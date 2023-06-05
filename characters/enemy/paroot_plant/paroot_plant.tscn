@@ -1,22 +1,16 @@
-[gd_scene load_steps=34 format=3 uid="uid://b00gv80nahyvm"]
+[gd_scene load_steps=26 format=3 uid="uid://co7jmlxirgqtt"]
 
-[ext_resource type="Script" path="res://characters/enemy/enemy_walker.gd" id="1_ks3h6"]
-[ext_resource type="Texture2D" uid="uid://bihoniblrsymj" path="res://characters/enemy/eggplant/egg_plant.png" id="2_1ifnq"]
-[ext_resource type="AudioStream" uid="uid://hwnqrs5j8xd6" path="res://audio/sounds/squish.wav" id="2_8nwgb"]
-[ext_resource type="AudioStream" uid="uid://cvqpg4u68fm0u" path="res://audio/sounds/slice_squish_medium.wav" id="2_njo8y"]
-[ext_resource type="Texture2D" uid="uid://b0taecx6fosyo" path="res://characters/enemy/eggplant/egg_plant_drop_1.png" id="4_8apbx"]
-[ext_resource type="Texture2D" uid="uid://u6ajf7g7st2n" path="res://characters/enemy/eggplant/egg_plant_drop_2.png" id="5_2bs32"]
+[ext_resource type="Script" path="res://characters/enemy/paroot_plant/paroot_plant.gd" id="1_lsjgx"]
+[ext_resource type="Texture2D" uid="uid://cyc008cp8w5q5" path="res://characters/enemy/paroot_plant/paroot_plant.png" id="3_hqjh3"]
 [ext_resource type="Texture2D" uid="uid://bw4yx8vbx65so" path="res://vfx/particles/blood/blood.png" id="6_0aivx"]
+[ext_resource type="Script" path="res://characters/enemy/paroot_plant/paroot_plant_idlel.gd" id="7_hxj7x"]
 [ext_resource type="Script" path="res://particles_fly_at_target.gd" id="7_ucodu"]
 [ext_resource type="Animation" uid="uid://7rbaagwrdwqk" path="res://animations/syphoning.res" id="9_68aml"]
+[ext_resource type="Script" path="res://characters/enemy/paroot_plant/spawn.gd" id="9_lvsfu"]
 [ext_resource type="Animation" uid="uid://dep0l7ft0tpjo" path="res://animations/take_damage.res" id="10_2ubha"]
 [ext_resource type="Script" path="res://characters/player/states/state_machine.gd" id="11_gfk3f"]
-[ext_resource type="Script" path="res://characters/enemy/states/idler_idle.gd" id="12_u0euo"]
-[ext_resource type="Script" path="res://characters/enemy/states/walker_fall.gd" id="13_l0eh1"]
 [ext_resource type="Script" path="res://characters/enemy/states/idler_hurt.gd" id="14_nby2m"]
-[ext_resource type="Script" path="res://characters/enemy/states/enemy_syphoned.gd" id="15_pl88n"]
 [ext_resource type="PackedScene" uid="uid://bb1h85dym7l4i" path="res://hitboxes/Hurtbox.tscn" id="16_11mf1"]
-[ext_resource type="Script" path="res://characters/enemy/states/eggplant_atack.gd" id="16_a04sv"]
 [ext_resource type="PackedScene" uid="uid://cxfiuhgots5lg" path="res://hitboxes/Hitbox.tscn" id="17_p01tk"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_72bxu"]
@@ -209,24 +203,14 @@ _data = {
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7w218"]
 size = Vector2(11, 10)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_yjmbp"]
-size = Vector2(18.5, 20)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_yqfym"]
+size = Vector2(18, 11)
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_o1s4w"]
-radius = 9.51315
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_348hb"]
-size = Vector2(17, 10)
-
-[node name="Enemy" type="CharacterBody2D"]
+[node name="ParotPlant" type="CharacterBody2D"]
+position = Vector2(0, -8)
 collision_layer = 5
 collision_mask = 11
-script = ExtResource("1_ks3h6")
-health = 2
-hurt_vocalizations = Array[AudioStreamWAV]([ExtResource("2_njo8y")])
-death_vocalization = ExtResource("2_8nwgb")
-death_pieces = Array[Resource]([ExtResource("5_2bs32"), ExtResource("4_8apbx")])
-bounty = 1
+script = ExtResource("1_lsjgx")
 
 [node name="state_label" type="Label" parent="."]
 visible = false
@@ -248,12 +232,12 @@ explosiveness = 0.5
 script = ExtResource("7_ucodu")
 
 [node name="Pivot" type="Marker2D" parent="."]
+position = Vector2(0, 8)
 
 [node name="Body" type="Sprite2D" parent="Pivot"]
 position = Vector2(-2, -13)
-texture = ExtResource("2_1ifnq")
-hframes = 14
-frame = 1
+texture = ExtResource("3_hqjh3")
+hframes = 4
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Pivot"]
 root_node = NodePath("../..")
@@ -282,27 +266,21 @@ script = ExtResource("11_gfk3f")
 initial_state = NodePath("Idle")
 
 [node name="Idle" type="Node" parent="StateMachine"]
-script = ExtResource("12_u0euo")
-
-[node name="Fall" type="Node" parent="StateMachine"]
-script = ExtResource("13_l0eh1")
+script = ExtResource("7_hxj7x")
 
 [node name="Hurt" type="Node" parent="StateMachine"]
 script = ExtResource("14_nby2m")
 
-[node name="Syphoned" type="Node" parent="StateMachine"]
-script = ExtResource("15_pl88n")
-
-[node name="Attack" type="Node" parent="StateMachine"]
-script = ExtResource("16_a04sv")
+[node name="Spawn" type="Node" parent="StateMachine"]
+script = ExtResource("9_lvsfu")
 
 [node name="Hurtbox" parent="." instance=ExtResource("16_11mf1")]
 collision_layer = 4
 collision_mask = 72
 
 [node name="CollisionShape2D" parent="Hurtbox" index="0"]
-position = Vector2(-1, -9)
-shape = SubResource("RectangleShape2D_yjmbp")
+position = Vector2(-2, 1.5)
+shape = SubResource("RectangleShape2D_yqfym")
 
 [node name="Hitbox" parent="." instance=ExtResource("17_p01tk")]
 collision_layer = 4
@@ -310,42 +288,6 @@ collision_mask = 2
 
 [node name="CollisionShape2D" parent="Hitbox" index="0"]
 position = Vector2(0, -9)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-2, -10)
-shape = SubResource("CircleShape2D_o1s4w")
-
-[node name="ledge_check_right" type="RayCast2D" parent="."]
-position = Vector2(9, 0)
-target_position = Vector2(0, 4)
-collide_with_areas = true
-
-[node name="ledge_check_left" type="RayCast2D" parent="."]
-position = Vector2(-10, 0)
-target_position = Vector2(0, 4)
-collide_with_areas = true
-
-[node name="wall_check_left" type="RayCast2D" parent="."]
-position = Vector2(0, -10)
-target_position = Vector2(-20, 0)
-collision_mask = 65
-
-[node name="adjacent_ledge_check_left" type="RayCast2D" parent="."]
-position = Vector2(0, -10)
-target_position = Vector2(-15, 15)
-
-[node name="adjacent_ledge_check_right" type="RayCast2D" parent="."]
-position = Vector2(0, -10)
-target_position = Vector2(15, 15)
-
-[node name="wall_check_right" type="RayCast2D" parent="."]
-position = Vector2(0, -10)
-target_position = Vector2(20, 0)
-collision_mask = 65
-
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="."]
-position = Vector2(-1.5, -5)
-shape = SubResource("RectangleShape2D_348hb")
 
 [editable path="Hurtbox"]
 [editable path="Hitbox"]

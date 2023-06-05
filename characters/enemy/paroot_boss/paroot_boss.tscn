@@ -1,16 +1,44 @@
-[gd_scene load_steps=19 format=3 uid="uid://dnsw5r66w3a15"]
+[gd_scene load_steps=37 format=3 uid="uid://dnsw5r66w3a15"]
 
-[ext_resource type="PackedScene" uid="uid://23cc1xm0v5jp" path="res://characters/enemy/enemy_walker.tscn" id="1_o5c4o"]
 [ext_resource type="Texture2D" uid="uid://cwmxarjv7qjc8" path="res://characters/enemy/paroot_boss/paroot_boss.png" id="2_koeju"]
+[ext_resource type="Texture2D" uid="uid://bw4yx8vbx65so" path="res://vfx/particles/blood/blood.png" id="2_rwf12"]
 [ext_resource type="Script" path="res://characters/enemy/states/paroot_boss_enemy.gd" id="2_y2kgg"]
-[ext_resource type="Script" path="res://characters/enemy/states/rush_attack.gd" id="4_jv8wq"]
+[ext_resource type="Script" path="res://particles_fly_at_target.gd" id="3_67ebo"]
 [ext_resource type="PackedScene" uid="uid://bb1h85dym7l4i" path="res://hitboxes/Hurtbox.tscn" id="5_1hm1y"]
-[ext_resource type="Script" path="res://characters/enemy/states/paroot_boss_idle.gd" id="5_xqv18"]
+[ext_resource type="Animation" uid="uid://7rbaagwrdwqk" path="res://animations/syphoning.res" id="5_11rws"]
+[ext_resource type="Animation" uid="uid://dep0l7ft0tpjo" path="res://animations/take_damage.res" id="6_0ng76"]
 [ext_resource type="PackedScene" uid="uid://hf8oc665xro5" path="res://hitboxes/shieldbox.tscn" id="6_ida67"]
+[ext_resource type="Script" path="res://characters/enemy/BossStateMachine.gd" id="9_1hfmb"]
+[ext_resource type="Script" path="res://characters/enemy/paroot_boss/fall_1.gd" id="10_7mis3"]
+[ext_resource type="Script" path="res://characters/enemy/states/walker_hurt.gd" id="11_dmnrl"]
+[ext_resource type="Script" path="res://characters/enemy/paroot_boss/attack_2.gd" id="12_ad3ps"]
+[ext_resource type="Script" path="res://characters/enemy/paroot_boss/move1.gd" id="12_d1f2g"]
+[ext_resource type="Script" path="res://characters/enemy/paroot_boss/attack_1.gd" id="12_pshqs"]
+[ext_resource type="Script" path="res://characters/enemy/paroot_boss/move2.gd" id="13_ha1m7"]
+[ext_resource type="Script" path="res://characters/enemy/paroot_boss/transition_1.gd" id="14_myobs"]
+[ext_resource type="PackedScene" uid="uid://cxfiuhgots5lg" path="res://hitboxes/Hitbox.tscn" id="15_d2jks"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_72bxu"]
+particles_animation = true
+particles_anim_h_frames = 4
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_8eoru"]
+particle_flag_disable_z = true
+direction = Vector3(1, -1, 0)
+spread = 20.0
+gravity = Vector3(0, 98, 0)
+initial_velocity_min = 31.25
+initial_velocity_max = 91.35
+orbit_velocity_min = 0.0
+orbit_velocity_max = 0.0
+anim_speed_min = 0.65
+anim_speed_max = 1.19
 
 [sub_resource type="Animation" id="Animation_jj5yi"]
-resource_name = "attack"
-length = 0.8
+resource_name = "attack1"
+length = 1.5
 step = 0.05
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -19,10 +47,27 @@ tracks/0/path = NodePath("Pivot/Body:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.25, 0.3, 0.75),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
+"times": PackedFloat32Array(0, 0.2, 0.25, 1.2, 1.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
 "update": 1,
-"values": [8, 9, 10, 11]
+"values": [8, 9, 10, 11, 8]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("StateMachine/Attack1")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.25, 1.2),
+"transitions": PackedFloat32Array(1, 1),
+"values": [{
+"args": [],
+"method": &"activate_hitboxes"
+}, {
+"args": [],
+"method": &"deactivate_hitboxes"
+}]
 }
 
 [sub_resource type="Animation" id="Animation_jlwo1"]
@@ -57,8 +102,24 @@ tracks/0/keys = {
 "values": [13]
 }
 
+[sub_resource type="Animation" id="Animation_rsql1"]
+resource_name = "hurt1"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Pivot/Body:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [12]
+}
+
 [sub_resource type="Animation" id="Animation_51sfn"]
-resource_name = "hurt"
+resource_name = "hurt2"
 length = 0.1
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -91,8 +152,8 @@ tracks/0/keys = {
 }
 
 [sub_resource type="Animation" id="Animation_e5kun"]
-resource_name = "walk"
-length = 0.8
+resource_name = "walk1"
+length = 0.4
 loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -101,111 +162,256 @@ tracks/0/path = NodePath("Pivot/Body:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.2, 0.4, 0.6),
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 1,
 "values": [4, 5, 6, 7]
 }
 
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_6y6mw"]
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_kyamo"]
 _data = {
-"attack": SubResource("Animation_jj5yi"),
+"attack1": SubResource("Animation_jj5yi"),
 "fall": SubResource("Animation_jlwo1"),
 "get_angry": SubResource("Animation_in2gv"),
-"hurt": SubResource("Animation_51sfn"),
+"hurt1": SubResource("Animation_rsql1"),
+"hurt2": SubResource("Animation_51sfn"),
 "idle": SubResource("Animation_drbmi"),
-"walk": SubResource("Animation_e5kun")
+"walk1": SubResource("Animation_e5kun")
 }
 
+[sub_resource type="Animation" id="Animation_3oc4b"]
+resource_name = "RESET"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Pivot:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("BloodParticles:emitting")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.1),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_sv5so"]
+resource_name = "wounded"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("BloodParticles:emitting")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_3rqiy"]
+_data = {
+"RESET": SubResource("Animation_3oc4b"),
+"syphoning": ExtResource("5_11rws"),
+"take_damage": ExtResource("6_0ng76"),
+"wounded": SubResource("Animation_sv5so")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_t7q2l"]
+size = Vector2(20, 3)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1mtlq"]
+size = Vector2(20.9946, 21.0255)
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xc0jx"]
-size = Vector2(37, 45)
+size = Vector2(40, 43)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ih1wh"]
-size = Vector2(23, 44)
+size = Vector2(14, 43)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_46sin"]
-size = Vector2(53, 48)
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_xt80q"]
+radius = 16.9998
+height = 50.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xi3g1"]
 size = Vector2(39, 42)
 
-[node name="Enemy" instance=ExtResource("1_o5c4o")]
+[node name="Enemy" type="CharacterBody2D"]
+collision_layer = 4
+collision_mask = 9
 script = ExtResource("2_y2kgg")
-death_pieces = Array[Resource]([])
+speed = 50.0
 
-[node name="state_label" parent="." index="0"]
-visible = true
+[node name="state_label" type="Label" parent="."]
 offset_left = -22.0
 offset_top = -79.0
 offset_right = 18.0
 offset_bottom = -53.0
+text = "state"
 
-[node name="Body" parent="Pivot" index="0"]
+[node name="BloodParticles" type="GPUParticles2D" parent="."]
+material = SubResource("CanvasItemMaterial_72bxu")
+position = Vector2(0, -15)
+emitting = false
+amount = 3
+process_material = SubResource("ParticleProcessMaterial_8eoru")
+texture = ExtResource("2_rwf12")
+lifetime = 0.8
+explosiveness = 0.5
+script = ExtResource("3_67ebo")
+
+[node name="Pivot" type="Marker2D" parent="."]
+
+[node name="Body" type="Sprite2D" parent="Pivot"]
 position = Vector2(-2, -26)
 texture = ExtResource("2_koeju")
-frame = 13
+hframes = 14
+frame = 10
 
-[node name="AnimationPlayer" parent="Pivot" index="1"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Pivot"]
+root_node = NodePath("../..")
 libraries = {
-"": SubResource("AnimationLibrary_6y6mw")
+"": SubResource("AnimationLibrary_kyamo")
 }
 
-[node name="player_detector" parent="Pivot" index="3"]
-target_position = Vector2(-120, 0)
+[node name="EffectsPlayer" type="AnimationPlayer" parent="Pivot"]
+root_node = NodePath("../..")
+libraries = {
+"": SubResource("AnimationLibrary_3rqiy")
+}
 
-[node name="Shield" parent="Pivot" index="4" instance=ExtResource("6_ida67")]
+[node name="player_detector" type="RayCast2D" parent="Pivot"]
+position = Vector2(0, -10)
+target_position = Vector2(-120, 0)
+collision_mask = 3
+
+[node name="AttackHurtbox" parent="Pivot" instance=ExtResource("5_1hm1y")]
+position = Vector2(40, -2)
+collision_layer = 4
+collision_mask = 72
+monitoring = false
+monitorable = false
+
+[node name="CollisionShape2D" parent="Pivot/AttackHurtbox" index="0"]
+position = Vector2(-32, -14.5)
+shape = SubResource("RectangleShape2D_t7q2l")
+
+[node name="AttackHitbox" parent="Pivot" instance=ExtResource("15_d2jks")]
+position = Vector2(40, -2)
+collision_layer = 4
+collision_mask = 2
+monitoring = false
+monitorable = false
+
+[node name="CollisionShape2D" parent="Pivot/AttackHitbox" index="0"]
+position = Vector2(-49.4994, -13.6237)
+rotation = 1.57595
+shape = SubResource("RectangleShape2D_1mtlq")
+
+[node name="Shield" parent="Pivot" instance=ExtResource("6_ida67")]
 
 [node name="CollisionShape2D" parent="Pivot/Shield" index="0"]
-position = Vector2(-14.5, -22.5)
+position = Vector2(-2, -21.5)
 shape = SubResource("RectangleShape2D_xc0jx")
 
-[node name="Hurtbox" parent="Pivot" index="5" instance=ExtResource("5_1hm1y")]
+[node name="Hurtbox" parent="Pivot" instance=ExtResource("5_1hm1y")]
 collision_mask = 8
+monitoring = false
+monitorable = false
 
 [node name="CollisionShape2D" parent="Pivot/Hurtbox" index="0"]
-position = Vector2(13.5, -23)
+position = Vector2(18, -22.5)
 shape = SubResource("RectangleShape2D_ih1wh")
 
-[node name="StateMachine" parent="." index="3"]
-initial_state = NodePath("Idle")
+[node name="StateMachine" type="Node" parent="."]
+script = ExtResource("9_1hfmb")
+initial_state = NodePath("Move1")
 
-[node name="Attack" type="Node" parent="StateMachine" index="3"]
-script = ExtResource("4_jv8wq")
-speed_boost = 4.0
+[node name="Fall1" type="Node" parent="StateMachine"]
+script = ExtResource("10_7mis3")
 
-[node name="Idle" type="Node" parent="StateMachine" index="4"]
-script = ExtResource("5_xqv18")
+[node name="Hurt2" type="Node" parent="StateMachine"]
+script = ExtResource("11_dmnrl")
+
+[node name="Attack1" type="Node" parent="StateMachine"]
+script = ExtResource("12_pshqs")
+
+[node name="Attack2" type="Node" parent="StateMachine"]
+script = ExtResource("12_ad3ps")
+
+[node name="Move1" type="Node" parent="StateMachine"]
+script = ExtResource("12_d1f2g")
+
+[node name="Move2" type="Node" parent="StateMachine"]
+script = ExtResource("13_ha1m7")
+
+[node name="Transition1" type="Node" parent="StateMachine"]
+script = ExtResource("14_myobs")
+
+[node name="Hurtbox" parent="." instance=ExtResource("5_1hm1y")]
+collision_layer = 4
+collision_mask = 72
 
 [node name="CollisionShape2D" parent="Hurtbox" index="0"]
 position = Vector2(15, -23)
-shape = null
+
+[node name="Hitbox" parent="." instance=ExtResource("15_d2jks")]
+collision_layer = 4
+collision_mask = 2
 
 [node name="CollisionShape2D" parent="Hitbox" index="0"]
-position = Vector2(-0.5, -24)
-shape = SubResource("RectangleShape2D_46sin")
+position = Vector2(-1, -19)
+rotation = 1.57595
+shape = SubResource("CapsuleShape2D_xt80q")
 
-[node name="CollisionShape2D" parent="." index="6"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
 position = Vector2(1.5, -21)
 shape = SubResource("RectangleShape2D_xi3g1")
 
-[node name="ledge_check_right" parent="." index="7"]
+[node name="ledge_check_right" type="RayCast2D" parent="."]
 position = Vector2(25, 0)
+target_position = Vector2(0, 4)
+collide_with_areas = true
 
-[node name="ledge_check_left" parent="." index="8"]
+[node name="ledge_check_left" type="RayCast2D" parent="."]
 position = Vector2(-22, 0)
+target_position = Vector2(0, 4)
+collide_with_areas = true
 
-[node name="wall_check_left" parent="." index="9"]
+[node name="wall_check_left" type="RayCast2D" parent="."]
+position = Vector2(0, -10)
 target_position = Vector2(-30, 0)
+collision_mask = 65
 
-[node name="adjacent_ledge_check_left" parent="." index="10"]
+[node name="adjacent_ledge_check_left" type="RayCast2D" parent="."]
 position = Vector2(-10, -10)
+target_position = Vector2(-15, 15)
 
-[node name="adjacent_ledge_check_right" parent="." index="11"]
+[node name="adjacent_ledge_check_right" type="RayCast2D" parent="."]
 position = Vector2(12, -10)
+target_position = Vector2(15, 15)
 
-[node name="wall_check_right" parent="." index="12"]
+[node name="wall_check_right" type="RayCast2D" parent="."]
+position = Vector2(0, -10)
 target_position = Vector2(30, 0)
+collision_mask = 65
 
+[editable path="Pivot/AttackHurtbox"]
+[editable path="Pivot/AttackHitbox"]
 [editable path="Pivot/Shield"]
 [editable path="Pivot/Hurtbox"]
 [editable path="Hurtbox"]
