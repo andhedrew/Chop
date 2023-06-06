@@ -5,7 +5,8 @@ extends State
 func enter(_msg := {}) -> void:
 	GameEvents.boss_stomped.emit()
 	GameEvents.boss_stomped.emit()
-	GameEvents.boss_stomped.emit()
+	if randf() > 0.5:
+		GameEvents.boss_stomped.emit()
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

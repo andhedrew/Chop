@@ -2,12 +2,15 @@ extends Marker2D
 
 @onready var state
 
-var facing = Enums.Facing.RIGHT
+@onready var facing = owner.facing
+@onready var facing_last_frame = facing
 @onready var state_last_frame = owner.state
 @onready var animation_player := $AnimationPlayer
 @onready var effects_player := $EffectsPlayer
 var is_landing := false
 var feeding := false
+var dust_emitted := false
+
 
 func _ready():
 	GameEvents.started_feeding_little_brother.connect(_on_feeding_brother)
@@ -22,7 +25,23 @@ func _physics_process(_delta):
 	else:
 		effects_player.play("fx/RESET")
 	if state_last_frame == "Fall" and owner.state != "Fall":
+		if !dust_emitted and owner.is_on_floor():
+			var dust := preload("res://vfx/dust.tscn").instantiate()
+			get_node("/root/").add_child(dust)
+			dust.position = Vector2(global_position.x, global_position.y + 13)
+			dust_emitted = true
+			
 		is_landing = true
+	
+	if !is_landing:
+		dust_emitted = false
+	
+	if facing_last_frame != owner.facing and owner.is_on_floor():
+		var dust := preload("res://vfx/dust.tscn").instantiate()
+		get_node("/root/").add_child(dust)
+		dust.position = Vector2(global_position.x, global_position.y + 13)
+		dust.amount = 3
+	facing_last_frame = owner.facing
 	
 	match owner.looking:
 		Enums.Looking.UP:

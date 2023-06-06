@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3]
+[gd_scene load_steps=7 format=3 uid="uid://g8r4nj8ni02c"]
 
 [ext_resource type="Texture2D" uid="uid://c3qi6qrhakdnd" path="res://vfx/smoke.png" id="1_ma0pj"]
 [ext_resource type="Script" path="res://vfx/free_particles_when_done_emitting.gd" id="2_fugyk"]
