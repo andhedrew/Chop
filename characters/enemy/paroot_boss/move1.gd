@@ -11,16 +11,27 @@ extends State
 
 var flipping := false
 var transitioned := false
-var state_timer:= 29
-var wait_time := 2
-var timer: Timer
+var time := 3.0
+var timer := 0.0
+
+var plants_planted := 0
 
 # Called when the node enters the scene tree for the first time.
 func enter(_msg := {}) -> void:
 	owner.animation_player.play("walk1")
 
 
-func physics_update(_delta: float) -> void:
+func physics_update(delta: float) -> void:
+	timer += delta
+	if timer > time:
+		plants_planted += 1
+		if plants_planted > 2:
+			state_machine.transition_to("Stomp")
+		var spawn := preload("res://characters/enemy/paroot_plant/paroot_plant.tscn").instantiate()
+		spawn.position = owner.global_position
+		get_node("/root/").add_child(spawn)
+		timer = 0.0
+	
 	var left_blocked = !ledge_left.is_colliding() or wall_left.is_colliding()
 	var right_blocked = !ledge_right.is_colliding() or wall_right.is_colliding()
 	

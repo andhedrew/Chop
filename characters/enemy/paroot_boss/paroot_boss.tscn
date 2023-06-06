@@ -1,4 +1,4 @@
-[gd_scene load_steps=37 format=3 uid="uid://dnsw5r66w3a15"]
+[gd_scene load_steps=39 format=3 uid="uid://dnsw5r66w3a15"]
 
 [ext_resource type="Texture2D" uid="uid://cwmxarjv7qjc8" path="res://characters/enemy/paroot_boss/paroot_boss.png" id="2_koeju"]
 [ext_resource type="Texture2D" uid="uid://bw4yx8vbx65so" path="res://vfx/particles/blood/blood.png" id="2_rwf12"]
@@ -17,6 +17,8 @@
 [ext_resource type="Script" path="res://characters/enemy/paroot_boss/move2.gd" id="13_ha1m7"]
 [ext_resource type="Script" path="res://characters/enemy/paroot_boss/transition_1.gd" id="14_myobs"]
 [ext_resource type="PackedScene" uid="uid://cxfiuhgots5lg" path="res://hitboxes/Hitbox.tscn" id="15_d2jks"]
+[ext_resource type="Script" path="res://characters/enemy/paroot_boss/idle_1.gd" id="18_80oxr"]
+[ext_resource type="Script" path="res://characters/enemy/paroot_boss/stomp1.gd" id="19_60d7b"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_72bxu"]
 particles_animation = true
@@ -240,7 +242,7 @@ size = Vector2(20.9946, 21.0255)
 size = Vector2(40, 43)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ih1wh"]
-size = Vector2(14, 43)
+size = Vector2(44, 43.5)
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_xt80q"]
 radius = 16.9998
@@ -279,7 +281,6 @@ script = ExtResource("3_67ebo")
 position = Vector2(-2, -26)
 texture = ExtResource("2_koeju")
 hframes = 14
-frame = 10
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Pivot"]
 root_node = NodePath("../..")
@@ -333,12 +334,12 @@ monitoring = false
 monitorable = false
 
 [node name="CollisionShape2D" parent="Pivot/Hurtbox" index="0"]
-position = Vector2(18, -22.5)
+position = Vector2(-2, -23.25)
 shape = SubResource("RectangleShape2D_ih1wh")
 
 [node name="StateMachine" type="Node" parent="."]
 script = ExtResource("9_1hfmb")
-initial_state = NodePath("Move1")
+initial_state = NodePath("Idle1")
 
 [node name="Fall1" type="Node" parent="StateMachine"]
 script = ExtResource("10_7mis3")
@@ -360,6 +361,12 @@ script = ExtResource("13_ha1m7")
 
 [node name="Transition1" type="Node" parent="StateMachine"]
 script = ExtResource("14_myobs")
+
+[node name="Idle1" type="Node" parent="StateMachine"]
+script = ExtResource("18_80oxr")
+
+[node name="Stomp1" type="Node" parent="StateMachine"]
+script = ExtResource("19_60d7b")
 
 [node name="Hurtbox" parent="." instance=ExtResource("5_1hm1y")]
 collision_layer = 4

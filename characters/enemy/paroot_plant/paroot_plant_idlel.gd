@@ -26,29 +26,39 @@ func spawn() -> void:
 	SoundPlayer.play_sound_positional("spit", owner.global_position)
 	frame = 0
 	var new_spawn = scene.instantiate()
-	add_child(new_spawn)
+	get_node("/root/").add_child(new_spawn)
 	new_spawn.position = owner.global_position
 	new_spawn.velocity = Vector2( 0, -30)
 	sprite.frame = frame
 
 
 func take_damage() -> void:
-	if frame > 1 and frame < 2:
-		var pickup = preload("res://pickups/food_pickup.tscn").instantiate()
-		var sprite := preload("res://characters/enemy/paroot_plant/paroot_plant_drop_1.png")
-		pickup.setup(sprite)
-		
-		add_child(pickup)
-		print_debug(str(owner.global_position))
-		pickup.position = owner.global_position
-		SoundPlayer.play_sound_positional("spit", owner.global_position)
-	elif frame > 2:
+	var adjusted_position := Vector2(owner.global_position.x,  owner.global_position.y - 10)
+	var particles := preload("res://vfx/dynamic_scenery_particles.tscn").instantiate()
+	var texture = $"../../Pivot/Body".texture
+	particles.texture = texture
+	particles.amount = 25
+	particles.restart()
+	particles.position = adjusted_position
+	get_node("/root/").add_child(particles)
+	
+	if frame > 2:
+		if randf() < 0.25:
+			var pickup = preload("res://pickups/food_pickup.tscn").instantiate()
+			var sprite := preload("res://characters/enemy/paroot_plant/paroot_plant_drop_1.png")
+			pickup.setup(sprite)
+			
+			add_child(pickup)
+			pickup.position = adjusted_position
+			SoundPlayer.play_sound_positional("spit", adjusted_position)
+	else:
 		if randf() < 0.25:
 			var sprite := preload("res://user_interface/healthbar/full_heart.png")
 			var pickup := preload("res://pickups/health_pickup.tscn").instantiate()
 			pickup.setup(sprite)
-			pickup.position = owner.global_position
+			pickup.position = adjusted_position
 			get_node("/root/").call_deferred("add_child", pickup)
 		
-	SoundPlayer.play_sound_positional("bush", owner.global_position)
+	SoundPlayer.play_sound_positional("bush", adjusted_position)
 	frame = 0
+	owner.queue_free()

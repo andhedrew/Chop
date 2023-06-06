@@ -40,7 +40,11 @@ signal map_started
 signal SaveDataReady
 
 
+#boss
+signal boss_stomped
+
 # tutorial
 signal plant_hunger_bar_filled # no parameters
+
 
 
