@@ -1,4 +1,4 @@
-[gd_scene load_steps=48 format=3]
+[gd_scene load_steps=47 format=3 uid="uid://bvuqbhwqfo41j"]
 
 [ext_resource type="PackedScene" uid="uid://bwvi5m2prncxh" path="res://characters/player/player.tscn" id="1_371ql"]
 [ext_resource type="Script" path="res://levels_and_level_objects/level_scenes/level_manager.gd" id="1_nxsgc"]
@@ -33,8 +33,7 @@
 [ext_resource type="Texture2D" uid="uid://b3pfxh6lpumnb" path="res://levels_and_level_objects/backgrounds/unmoving_scenery_dark/foliage10.png" id="28_ew58i"]
 [ext_resource type="Texture2D" uid="uid://clg4y7ls1pfeg" path="res://levels_and_level_objects/backgrounds/unmoving_scenery_dark/foliage11.png" id="29_0tmwr"]
 [ext_resource type="PackedScene" uid="uid://bqg8q7u0o16hm" path="res://gameplay_objects/camera.tscn" id="34_ck663"]
-[ext_resource type="PackedScene" uid="uid://b1n0gcm7axson" path="res://characters/enemy/cement_golem/cement_golem.tscn" id="36_uqstc"]
-[ext_resource type="PackedScene" path="res://characters/enemy/eggplant/egg_plant.tscn" id="37_6po71"]
+[ext_resource type="PackedScene" uid="uid://dh6hstxtatowo" path="res://characters/enemy/paroot/pareet.tscn" id="36_e4cyr"]
 [ext_resource type="PackedScene" uid="uid://cf8s3hxbyvsv8" path="res://characters/little_brother/little_brother.tscn" id="39_wpx1l"]
 [ext_resource type="PackedScene" uid="uid://b0sq1f61b07wm" path="res://levels_and_level_objects/hazards/spikes.tscn" id="40_o63gs"]
 
@@ -1187,11 +1186,8 @@ layer_0/tile_data = PackedInt32Array(524297, 65537, 1, 524298, 131073, 1, 524299
 [node name="Spikes" parent="." instance=ExtResource("40_o63gs")]
 position = Vector2(-222, -40)
 
-[node name="CementGolem" parent="." instance=ExtResource("36_uqstc")]
-position = Vector2(-394, -41)
-
-[node name="Enemy" parent="." instance=ExtResource("37_6po71")]
-position = Vector2(-476, -36)
+[node name="Pareet" parent="." instance=ExtResource("36_e4cyr")]
+position = Vector2(-441, -42)
 
 [editable path="LittleBrother"]
 [editable path="LittleBrother/InteractZone/HungerBars"]

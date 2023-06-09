@@ -27,6 +27,7 @@ size = Vector2(40, 1160)
 
 [node name="World" instance=ExtResource("1_jfywk")]
 map_position = 2.0
+next_level = "res://levels_and_level_objects/level_scenes/city/city_3.tscn"
 
 [node name="Timer" type="Timer" parent="LittleBrother" index="10"]
 

@@ -15,7 +15,7 @@
 [node name="World" instance=ExtResource("1_yegxm")]
 dream_images = Array[Texture]([ExtResource("2_332dd")])
 map_position = 3.0
-next_level = "res://levels_and_level_objects/level_scenes/city/city_1.tscn"
+next_level = "res://levels_and_level_objects/level_scenes/city/city_4.tscn"
 
 [node name="Player" parent="." index="1"]
 position = Vector2(8, -152)

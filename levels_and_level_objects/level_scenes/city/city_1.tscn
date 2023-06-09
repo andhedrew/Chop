@@ -5,7 +5,7 @@
 [ext_resource type="Script" path="res://levels_and_level_objects/level_scenes/level_managers/tutorial_level.gd" id="2_fakv0"]
 [ext_resource type="PackedScene" uid="uid://cm208i2oyjrct" path="res://characters/enemy/hotdog/hotdog.tscn" id="3_13y6d"]
 [ext_resource type="Texture2D" uid="uid://cu5agq4euw4xs" path="res://levels_and_level_objects/dream/dream_1.png" id="3_eh8ft"]
-[ext_resource type="PackedScene" path="res://characters/enemy/eggplant/egg_plant.tscn" id="3_tjka3"]
+[ext_resource type="PackedScene" uid="uid://b00gv80nahyvm" path="res://characters/enemy/eggplant/egg_plant.tscn" id="3_tjka3"]
 [ext_resource type="Texture2D" uid="uid://cnlnu7f5pipb8" path="res://levels_and_level_objects/dream/dream_2.png" id="4_uq0r1"]
 [ext_resource type="Texture2D" uid="uid://dffikivla5nn4" path="res://levels_and_level_objects/dream/dream_3.png" id="5_j1joi"]
 [ext_resource type="Texture2D" uid="uid://1e4ocu0ypf2p" path="res://levels_and_level_objects/dream/dream_4.png" id="6_6c6qf"]
@@ -92,7 +92,7 @@ point_count = 2
 [node name="World" instance=ExtResource("1_hhmaj")]
 script = ExtResource("2_fakv0")
 dream_images = Array[Texture]([ExtResource("3_eh8ft"), ExtResource("4_uq0r1"), ExtResource("5_j1joi"), ExtResource("6_6c6qf")])
-map_position = 4.0
+map_position = 1.0
 next_level = "res://levels_and_level_objects/level_scenes/city/city_2.tscn"
 
 [node name="Player" parent="." index="1"]
@@ -814,9 +814,6 @@ offset_left = 504.0
 offset_top = 24.0
 offset_right = 598.0
 offset_bottom = 50.0
-
-[node name="food_pickup2" parent="." index="15" instance=ExtResource("21_omsi4")]
-position = Vector2(184, -96)
 
 [editable path="death_zone2"]
 [editable path="food_pickup"]

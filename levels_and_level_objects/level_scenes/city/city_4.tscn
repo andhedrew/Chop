@@ -16,6 +16,7 @@ _data = {
 point_count = 2
 
 [node name="World" instance=ExtResource("1_bldwn")]
+map_position = 4.0
 
 [node name="Sprite2D" type="Sprite2D" parent="Background/UnmovingScenery" index="0"]
 position = Vector2(616, 8)
