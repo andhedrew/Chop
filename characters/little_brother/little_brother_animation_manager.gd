@@ -17,7 +17,7 @@ func _ready():
 	GameEvents.done_feeding_little_brother.connect(_on_done_feeding)
 
 
-func _process(delta):
+func _process(_delta):
 	match owner.state:
 		Enums.State.MOVE:
 			animation_player.play("walk")

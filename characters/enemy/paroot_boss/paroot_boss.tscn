@@ -233,10 +233,10 @@ _data = {
 }
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_t7q2l"]
-size = Vector2(20, 3)
+size = Vector2(88, 25)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1mtlq"]
-size = Vector2(20.9946, 21.0255)
+size = Vector2(16.1932, 83.0273)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xc0jx"]
 size = Vector2(40, 43)
@@ -245,7 +245,7 @@ size = Vector2(40, 43)
 size = Vector2(44, 43.5)
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_xt80q"]
-radius = 16.9998
+radius = 20.9997
 height = 50.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xi3g1"]
@@ -278,9 +278,10 @@ script = ExtResource("3_67ebo")
 [node name="Pivot" type="Marker2D" parent="."]
 
 [node name="Body" type="Sprite2D" parent="Pivot"]
-position = Vector2(-2, -26)
+position = Vector2(5, -29)
 texture = ExtResource("2_koeju")
-hframes = 14
+hframes = 15
+frame = 10
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Pivot"]
 root_node = NodePath("../..")
@@ -296,29 +297,29 @@ libraries = {
 
 [node name="player_detector" type="RayCast2D" parent="Pivot"]
 position = Vector2(0, -10)
-target_position = Vector2(-120, 0)
+target_position = Vector2(-100, 0)
 collision_mask = 3
 
 [node name="AttackHurtbox" parent="Pivot" instance=ExtResource("5_1hm1y")]
-position = Vector2(40, -2)
+position = Vector2(107, -3)
 collision_layer = 4
 collision_mask = 72
 monitoring = false
 monitorable = false
 
 [node name="CollisionShape2D" parent="Pivot/AttackHurtbox" index="0"]
-position = Vector2(-32, -14.5)
+position = Vector2(-107, -12.5)
 shape = SubResource("RectangleShape2D_t7q2l")
 
 [node name="AttackHitbox" parent="Pivot" instance=ExtResource("15_d2jks")]
-position = Vector2(40, -2)
+position = Vector2(107, -3)
 collision_layer = 4
 collision_mask = 2
 monitoring = false
 monitorable = false
 
 [node name="CollisionShape2D" parent="Pivot/AttackHitbox" index="0"]
-position = Vector2(-49.4994, -13.6237)
+position = Vector2(-105.529, -12.6896)
 rotation = 1.57595
 shape = SubResource("RectangleShape2D_1mtlq")
 
@@ -380,7 +381,7 @@ collision_layer = 4
 collision_mask = 2
 
 [node name="CollisionShape2D" parent="Hitbox" index="0"]
-position = Vector2(-1, -19)
+position = Vector2(0, -25)
 rotation = 1.57595
 shape = SubResource("CapsuleShape2D_xt80q")
 

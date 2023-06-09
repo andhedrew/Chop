@@ -12,7 +12,7 @@ func _ready():
 	await get_tree().create_timer(15.0).timeout
 	$AnimationPlayer.play("text_fade_in")
 
-func _process(delta):
+func _process(_delta):
 	if can_skip:
 		if Input.is_anything_pressed():
 			if can_change_slide:

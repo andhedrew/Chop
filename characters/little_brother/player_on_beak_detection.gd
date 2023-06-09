@@ -6,7 +6,7 @@ func _ready():
 
 
 
-func _player_on_beak(body) -> void:
+func _player_on_beak(_body) -> void:
 	if owner.state == Enums.State.IDLE:
 		owner.state = Enums.State.PLAYER_ON_BEAK
 

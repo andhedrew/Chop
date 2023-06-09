@@ -194,8 +194,8 @@ func _on_end_of_day() -> void:
 	queue_free()
 
 
-func _on_player_health_change(player_health, max_health) -> void:
-	if player_health == max_health:
+func _on_player_health_change(player_health, full_health) -> void:
+	if player_health == full_health:
 		player_health_full = true
 	else:
 		player_health_full = false

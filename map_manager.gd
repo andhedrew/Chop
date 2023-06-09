@@ -15,7 +15,7 @@ func _ready():
 	animation_player.play("roll")
 
 
-func _process(delta):
+func _process(_delta):
 	if move_pin:
 		$Control/Path2D/PathFollow2D.progress_ratio = lerp($Control/Path2D/PathFollow2D.progress_ratio, pos, 0.05)
 		if $Control/Path2D/PathFollow2D.progress_ratio+0.01 >= pos:

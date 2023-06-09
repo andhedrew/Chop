@@ -73,3 +73,5 @@ func _destroy() -> void:
 	elif rand_index == 3:
 		pass
 	queue_free()
+
+#testing

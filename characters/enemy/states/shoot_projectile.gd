@@ -19,12 +19,12 @@ func enter(_msg := {}) -> void:
 		owner.add_child(bullet)
 		var transform : Transform2D = $"../../Pivot/BulletSpawn".global_transform
 		var fire_range := lifetime
-		var speed := 150
+		var bullet_speed := 150
 		var spread := 0
 		var rotation := 0
 		if owner.facing == Enums.Facing.LEFT:
 			rotation = 180
-		bullet.setup(transform, fire_range, speed, rotation, spread)
+		bullet.setup(transform, fire_range, bullet_speed, rotation, spread)
 		var pos = transform.origin
 		SoundPlayer.play_sound_positional(attack_sound, pos)
 	

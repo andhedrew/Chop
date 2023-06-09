@@ -45,17 +45,16 @@ func take_damage() -> void:
 	if frame > 2:
 		if randf() < 0.25:
 			var pickup = preload("res://pickups/food_pickup.tscn").instantiate()
-			var sprite := preload("res://characters/enemy/paroot_plant/paroot_plant_drop_1.png")
-			pickup.setup(sprite)
-			
-			add_child(pickup)
+			var pickup_sprite := preload("res://characters/enemy/paroot_plant/paroot_plant_drop_1.png")
+			pickup.setup(pickup_sprite)
+			call_deferred("add_child", pickup)
 			pickup.position = adjusted_position
 			SoundPlayer.play_sound_positional("spit", adjusted_position)
 	else:
 		if randf() < 0.25:
-			var sprite := preload("res://user_interface/healthbar/full_heart.png")
+			var pickup_sprite := preload("res://user_interface/healthbar/full_heart.png")
 			var pickup := preload("res://pickups/health_pickup.tscn").instantiate()
-			pickup.setup(sprite)
+			pickup.setup(pickup_sprite)
 			pickup.position = adjusted_position
 			get_node("/root/").call_deferred("add_child", pickup)
 		

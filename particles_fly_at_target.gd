@@ -31,7 +31,7 @@ func _process(_delta):
 
 
 
-func _player_not_in_syphon_state(succussful_syphon : bool) -> void:
+func _player_not_in_syphon_state(_succussful_syphon : bool) -> void:
 	target_position = Vector2.ZERO
 	process_material.direction.x = original_settings["direction_x"]
 	process_material.direction.y = original_settings["direction_y"]

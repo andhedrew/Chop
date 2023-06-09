@@ -8,7 +8,7 @@ func _ready():
 	add_child(block_timer)
 	block_timer.timeout.connect(_on_block_timer_timeout)
 
-func _process(delta):
+func _process(_delta):
 	pass
 
 func _on_hit_by_projectile(_area) -> void:

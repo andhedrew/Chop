@@ -2,7 +2,7 @@ extends CanvasLayer
 
 var debug := false
 
-func _process(delta):
+func _process(_delta):
 	if debug:
 		$DebugMode.visible = true
 	else:

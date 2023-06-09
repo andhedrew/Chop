@@ -10,5 +10,5 @@ func enter(_msg := {}) -> void:
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass
+func update(_delta):
+	state_machine.transition_to("Move")
