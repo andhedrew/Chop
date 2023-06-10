@@ -6,9 +6,7 @@ func enter(msg := {}) -> void:
 
 
 
-func physics_update(delta: float) -> void:
-
-
+func update(delta: float) -> void:
 	if state_machine.state_timer > 0.5:
-		state_machine.transition_to("Move")
+		state_machine.transition_to("Charge")
 	

@@ -1,9 +1,6 @@
 extends State
 
-@onready var ledge_check_left := $"../../ledge_check_left"
-@onready var ledge_check_right := $"../../ledge_check_right"
-@onready var ledge_left := $"../../adjacent_ledge_check_left"
-@onready var ledge_right := $"../../adjacent_ledge_check_right"
+
 @onready var wall_left := $"../../wall_check_left"
 @onready var wall_right := $"../../wall_check_right"
 @onready var player_detector := $"../../Pivot/player_detector"
@@ -11,7 +8,7 @@ extends State
 
 var flipping := false
 var transitioned := false
-var time := 3.0
+var time := 3.5
 var timer := 0.0
 
 var plants_planted := 0
@@ -26,25 +23,25 @@ func physics_update(delta: float) -> void:
 	if timer > time:
 		plants_planted += 1
 		if plants_planted > 2:
+			plants_planted = 0
 			state_machine.transition_to("Stomp")
 		var spawn := preload("res://characters/enemy/paroot_plant/paroot_plant.tscn").instantiate()
 		spawn.position = owner.global_position
 		get_node("/root/").add_child(spawn)
 		timer = 0.0
 	
-	var left_blocked = !ledge_left.is_colliding() or wall_left.is_colliding()
-	var right_blocked = !ledge_right.is_colliding() or wall_right.is_colliding()
-	
 	owner.velocity.x = owner.speed * owner.direction
 	owner.move_and_slide()
 	
-	var found_hazard = wall_left.is_colliding() or wall_right.is_colliding()
-	if found_hazard or !ledge_check_right.is_colliding() or !ledge_check_left.is_colliding():
+	var collided = wall_left.is_colliding() or wall_right.is_colliding()
+
+	if collided:
 		if !flipping:
 			flipping = true
 			owner.switch_facing()
-	
-	if !found_hazard and ledge_check_right.is_colliding() and ledge_check_left.is_colliding():
+			print_debug("ffound hazard is true")
+
+	if !collided:
 		flipping = false
 
 	if !owner.is_on_floor():

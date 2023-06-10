@@ -1,4 +1,4 @@
-[gd_scene load_steps=40 format=3 uid="uid://dnsw5r66w3a15"]
+[gd_scene load_steps=42 format=3 uid="uid://dnsw5r66w3a15"]
 
 [ext_resource type="Texture2D" uid="uid://cwmxarjv7qjc8" path="res://characters/enemy/paroot_boss/paroot_boss.png" id="2_koeju"]
 [ext_resource type="Texture2D" uid="uid://bw4yx8vbx65so" path="res://vfx/particles/blood/blood.png" id="2_rwf12"]
@@ -41,7 +41,7 @@ anim_speed_max = 1.19
 
 [sub_resource type="Animation" id="Animation_jj5yi"]
 resource_name = "attack1"
-length = 2.0
+length = 2.5
 step = 0.05
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -50,7 +50,7 @@ tracks/0/path = NodePath("Pivot/Body:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.2, 0.25, 1.7, 1.85),
+"times": PackedFloat32Array(0, 0.7, 0.75, 2.2, 2.35),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1),
 "update": 1,
 "values": [8, 9, 10, 11, 8]
@@ -62,7 +62,7 @@ tracks/1/path = NodePath("StateMachine/Attack1")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0.25, 1.95),
+"times": PackedFloat32Array(0.75, 1.95),
 "transitions": PackedFloat32Array(1, 1),
 "values": [{
 "args": [],
@@ -121,6 +121,22 @@ tracks/0/keys = {
 "values": [12]
 }
 
+[sub_resource type="Animation" id="Animation_rsql1"]
+resource_name = "hurt_1"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Pivot/Body:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [13]
+}
+
 [sub_resource type="Animation" id="Animation_drbmi"]
 resource_name = "idle"
 length = 0.8
@@ -155,9 +171,9 @@ tracks/0/keys = {
 "values": [4, 5, 6, 7]
 }
 
-[sub_resource type="Animation" id="Animation_rsql1"]
-resource_name = "hurt_1"
-length = 0.1
+[sub_resource type="Animation" id="Animation_njjf7"]
+resource_name = "stomp"
+length = 3.0
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -165,20 +181,53 @@ tracks/0/path = NodePath("Pivot/Body:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
 "update": 1,
-"values": [13]
+"values": [15, 16]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("StateMachine/Stomp1")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.5),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"add_velocity"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_ibho5"]
+resource_name = "charge"
+length = 0.4
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Pivot/Body:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_kyamo"]
 _data = {
 "attack1": SubResource("Animation_jj5yi"),
+"charge": SubResource("Animation_ibho5"),
 "fall": SubResource("Animation_jlwo1"),
 "get_angry": SubResource("Animation_in2gv"),
 "hurt2": SubResource("Animation_51sfn"),
 "hurt_1": SubResource("Animation_rsql1"),
 "idle": SubResource("Animation_drbmi"),
+"stomp": SubResource("Animation_njjf7"),
 "walk1": SubResource("Animation_e5kun")
 }
 
@@ -279,10 +328,9 @@ script = ExtResource("3_67ebo")
 [node name="Pivot" type="Marker2D" parent="."]
 
 [node name="Body" type="Sprite2D" parent="Pivot"]
-position = Vector2(5, -29)
+position = Vector2(5, -28)
 texture = ExtResource("2_koeju")
-hframes = 15
-frame = 8
+hframes = 17
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Pivot"]
 root_node = NodePath("../..")
@@ -361,7 +409,7 @@ script = ExtResource("12_ad3ps")
 [node name="Move1" type="Node" parent="StateMachine"]
 script = ExtResource("12_d1f2g")
 
-[node name="Move2" type="Node" parent="StateMachine"]
+[node name="Charge1" type="Node" parent="StateMachine"]
 script = ExtResource("13_ha1m7")
 
 [node name="Transition1" type="Node" parent="StateMachine"]
@@ -390,32 +438,13 @@ rotation = 1.57595
 shape = SubResource("CapsuleShape2D_xt80q")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-visible = false
 position = Vector2(1.5, -21)
 shape = SubResource("RectangleShape2D_xi3g1")
-
-[node name="ledge_check_right" type="RayCast2D" parent="."]
-position = Vector2(25, 0)
-target_position = Vector2(0, 4)
-collide_with_areas = true
-
-[node name="ledge_check_left" type="RayCast2D" parent="."]
-position = Vector2(-22, 0)
-target_position = Vector2(0, 4)
-collide_with_areas = true
 
 [node name="wall_check_left" type="RayCast2D" parent="."]
 position = Vector2(0, -10)
 target_position = Vector2(-30, 0)
 collision_mask = 65
-
-[node name="adjacent_ledge_check_left" type="RayCast2D" parent="."]
-position = Vector2(-10, -10)
-target_position = Vector2(-15, 15)
-
-[node name="adjacent_ledge_check_right" type="RayCast2D" parent="."]
-position = Vector2(12, -10)
-target_position = Vector2(15, 15)
 
 [node name="wall_check_right" type="RayCast2D" parent="."]
 position = Vector2(0, -10)

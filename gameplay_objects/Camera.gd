@@ -49,6 +49,8 @@ func _ready():
 	GameEvents.morning_started.connect(_on_morning_start)
 	GameEvents.continue_day.connect(_on_morning_start)
 	GameEvents.player_died.connect(_on_player_die)
+	GameEvents.boss_stomped.connect(BIG_SCREENSHAKE)
+	GameEvents.boss_hit_wall.connect(SCREENSHAKE)
 	set_camera_limits()
 
 

@@ -42,6 +42,7 @@ signal SaveDataReady
 
 #boss
 signal boss_stomped
+signal boss_hit_wall
 
 # tutorial
 signal plant_hunger_bar_filled # no parameters
