@@ -4,9 +4,8 @@ extends State
 var jumped := false
 
 func enter(_msg := {}) -> void:
+	jumped = false
 	owner.animation_player.play("stomp")
-	
-	
 
 
 func update(delta):
@@ -16,13 +15,13 @@ func update(delta):
 	else:
 		owner.velocity.x = lerp(owner.velocity.x, 0.0, 0.2)
 	
-	if jumped and owner.is_on_floor():
+	if jumped and owner.is_on_floor() and state_machine.state_timer > 0.1:
 		jumped = false
 		GameEvents.boss_stomped.emit()
-		await get_tree().create_timer(0.5).timeout
-		state_machine.transition_to("Move")
+		if owner.animation_player.animation_finished:
+			state_machine.transition_to("Move")
 
 
 func add_velocity() -> void:
-	owner.velocity.y = -150
+	owner.velocity.y = -300 / state_machine.phase
 	jumped = true

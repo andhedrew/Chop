@@ -1,8 +1,11 @@
 extends EnemyHurt
 
 func enter(msg := {}) -> void:
-	super.enter()
+	owner.effects_player.play("take_damage")
 	owner.animation_player.play("hurt_1")
+	owner.health -= 1
+	if owner.health == 3:
+		state_machine.phase = 2
 
 
 

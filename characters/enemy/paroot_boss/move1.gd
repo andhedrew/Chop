@@ -20,6 +20,8 @@ func enter(_msg := {}) -> void:
 
 func physics_update(delta: float) -> void:
 	timer += delta
+	if state_machine.phase == 2:
+		time = 2.0
 	if timer > time:
 		plants_planted += 1
 		if plants_planted > 2:
@@ -39,7 +41,6 @@ func physics_update(delta: float) -> void:
 		if !flipping:
 			flipping = true
 			owner.switch_facing()
-			print_debug("ffound hazard is true")
 
 	if !collided:
 		flipping = false
@@ -47,7 +48,7 @@ func physics_update(delta: float) -> void:
 	if !owner.is_on_floor():
 		state_machine.transition_to("Fall")
 	
-	if player_detector.is_colliding() and owner.is_on_floor():
+	if player_detector.is_colliding() and owner.is_on_floor() and state_machine.state_timer > 0.1:
 		var detected_object = player_detector.get_collider()
 		if detected_object is Player:
 			state_machine.transition_to("Attack")

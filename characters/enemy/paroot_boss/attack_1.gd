@@ -41,10 +41,11 @@ func activate_hitboxes() -> void:
 func deactivate_hitboxes() -> void:
 	hurtbox_collision.shape.size.x = 1
 	hitbox_collision.shape.size.x = 1
-	attack_hurtbox.monitoring = false
-	attack_hitbox.monitorable = false
+	attack_hurtbox.set_deferred("monitoring", false)
+	attack_hitbox.set_deferred("monitorable", false)
 	attack_hurtbox.position -= move_amount
 	attack_hitbox.position -= move_amount
+	
 
 
 func on_tongue_attacked(_hitbox) -> void:
