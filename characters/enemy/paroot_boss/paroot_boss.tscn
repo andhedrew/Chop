@@ -341,7 +341,7 @@ script = ExtResource("3_67ebo")
 [node name="Pivot" type="Marker2D" parent="."]
 
 [node name="Body" type="Sprite2D" parent="Pivot"]
-position = Vector2(5, -28)
+position = Vector2(5, -27)
 texture = ExtResource("2_koeju")
 hframes = 17
 frame = 15

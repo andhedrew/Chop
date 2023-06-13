@@ -55,7 +55,8 @@ func _ready():
 
 
 func _process(delta):
-	target_node = get_node(target)
+	if has_node(target):
+		target_node = get_node(target)
 	
 	if !freeze_camera:
 		if cutscene_running:

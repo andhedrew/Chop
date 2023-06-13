@@ -28,16 +28,15 @@ func _process(_delta):
 		_restart_level()
 	if Input.is_action_just_pressed("reset_save_data"):
 		SaveManager.reset_save()
-		
+
 
 
 func _restart_level() -> void:
-	print_debug("restarting")
-	Fade.crossfade_prepare(0.4, "ChopHorizontal")
-	SoundPlayer.play_sound("paper_rip")
+#	Fade.crossfade_prepare(0.4, "ChopHorizontal")
+#	SoundPlayer.play_sound("paper_rip")
 	get_tree().reload_current_scene()
-	get_tree().change_scene_to_file(get_tree().current_scene.scene_file_path)
-	Fade.crossfade_execute() 
+#	get_tree().change_scene_to_file(get_tree().current_scene.scene_file_path)
+#	Fade.crossfade_execute() 
 
 
 func _on_evening_ended() -> void:
