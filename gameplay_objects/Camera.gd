@@ -1,6 +1,7 @@
 extends Camera2D
 
 @export var target: NodePath = ""
+var original_target := target
 @export var lerpspeed: float = 0.05
 var base_lerpspeed: float = 0.05
 @export var trauma: float = 0.0
@@ -49,9 +50,16 @@ func _ready():
 	GameEvents.morning_started.connect(_on_morning_start)
 	GameEvents.continue_day.connect(_on_morning_start)
 	GameEvents.player_died.connect(_on_player_die)
+	
 	GameEvents.boss_stomped.connect(BIG_SCREENSHAKE)
-	GameEvents.boss_hit_wall.connect(SCREENSHAKE)
+	GameEvents.boss_hit_wall.connect(SCREENSHAKE) 
+	GameEvents.big_explosion.connect(on_big_explosion)
+	GameEvents.big_explosion.connect(BIG_SCREENSHAKE)
+	
+	GameEvents.camera_change_focus.connect(on_change_focus)
+	
 	set_camera_limits()
+	original_target = target
 
 
 func _process(delta):
@@ -119,6 +127,10 @@ func BIG_SCREENSHAKE() -> void:
 	add_trauma(3.0)
 
 
+func on_big_explosion() -> void:
+	flash_screen(0.01, get_node(target).global_position)
+
+
 func flash_screen(flash_time: float, flash_position: Vector2) -> void:
 	var screen_size := get_viewport_rect().size*2
 	var color_rect = ColorRect.new()
@@ -157,6 +169,7 @@ func _on_cutscene_start() -> void:
 
 func _on_cutscene_end() -> void:
 	cutscene_running = false
+	target = original_target
 
 
 func _on_morning_start() -> void:
@@ -167,3 +180,5 @@ func _on_player_die() -> void:
 	$AnimationPlayer.play("fade_in")
 	freeze_camera = true
 
+func on_change_focus(new_target: Node) -> void:
+	target = new_target.get_path()

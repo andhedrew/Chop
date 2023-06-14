@@ -3,6 +3,7 @@ extends Node
 signal player_changed_facing
 signal player_attacked
 signal player_executed
+signal big_explosion
 signal player_changed_state
 signal player_health_changed # Arg 1: health Arg 2: Max health
 signal player_started_syphoning #Arg 1: player.global_position
@@ -44,6 +45,9 @@ signal SaveDataReady
 signal boss_stomped
 signal boss_hit_wall
 
+#utility
+signal camera_change_focus #Param 1: new node target
+signal camera_reset_focus
 # tutorial
 signal plant_hunger_bar_filled # no parameters
 

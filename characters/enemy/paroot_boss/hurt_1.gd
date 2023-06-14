@@ -6,6 +6,9 @@ func enter(msg := {}) -> void:
 	owner.health -= 1
 	if owner.health == 3:
 		state_machine.phase = 2
+	
+	if owner.health <= 0:
+		state_machine.transition_to("Die")
 
 
 

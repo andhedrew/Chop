@@ -1,13 +1,17 @@
-[gd_scene load_steps=40 format=3 uid="uid://dnsw5r66w3a15"]
+[gd_scene load_steps=46 format=3 uid="uid://dnsw5r66w3a15"]
 
+[ext_resource type="Texture2D" uid="uid://7q4foqfhgb8j" path="res://characters/enemy/paroot_boss/paroot_boss_deathpiece_1.png" id="2_bl0q7"]
 [ext_resource type="Texture2D" uid="uid://cwmxarjv7qjc8" path="res://characters/enemy/paroot_boss/paroot_boss.png" id="2_koeju"]
 [ext_resource type="Texture2D" uid="uid://bw4yx8vbx65so" path="res://vfx/particles/blood/blood.png" id="2_rwf12"]
 [ext_resource type="Script" path="res://characters/enemy/states/paroot_boss_enemy.gd" id="2_y2kgg"]
 [ext_resource type="Script" path="res://particles_fly_at_target.gd" id="3_67ebo"]
+[ext_resource type="Texture2D" uid="uid://c50hp6ekmcyma" path="res://characters/enemy/paroot_boss/paroot_boss_deathpiece_2.png" id="3_tncna"]
+[ext_resource type="Texture2D" uid="uid://qb5xghqrlhi6" path="res://characters/enemy/paroot_boss/paroot_boss_deathpiece_3.png" id="4_omtka"]
 [ext_resource type="PackedScene" uid="uid://bb1h85dym7l4i" path="res://hitboxes/Hurtbox.tscn" id="5_1hm1y"]
 [ext_resource type="Animation" uid="uid://7rbaagwrdwqk" path="res://animations/syphoning.res" id="5_11rws"]
 [ext_resource type="Animation" uid="uid://dep0l7ft0tpjo" path="res://animations/take_damage.res" id="6_0ng76"]
 [ext_resource type="PackedScene" uid="uid://hf8oc665xro5" path="res://hitboxes/shieldbox.tscn" id="6_ida67"]
+[ext_resource type="Texture2D" uid="uid://br5eeajpu3o03" path="res://characters/enemy/paroot_boss/paroot_boss_deathpiece_5.png" id="6_litvv"]
 [ext_resource type="Script" path="res://characters/enemy/BossStateMachine.gd" id="9_1hfmb"]
 [ext_resource type="Script" path="res://characters/enemy/paroot_boss/fall_1.gd" id="10_7mis3"]
 [ext_resource type="Script" path="res://characters/enemy/paroot_boss/move1.gd" id="12_d1f2g"]
@@ -18,6 +22,7 @@
 [ext_resource type="PackedScene" uid="uid://cxfiuhgots5lg" path="res://hitboxes/Hitbox.tscn" id="15_d2jks"]
 [ext_resource type="Script" path="res://characters/enemy/paroot_boss/idle_1.gd" id="18_80oxr"]
 [ext_resource type="Script" path="res://characters/enemy/paroot_boss/stomp1.gd" id="19_60d7b"]
+[ext_resource type="Script" path="res://characters/enemy/paroot_boss/die.gd" id="19_c5mth"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_72bxu"]
 particles_animation = true
@@ -230,10 +235,41 @@ tracks/0/keys = {
 "values": [4, 5, 6, 7]
 }
 
+[sub_resource type="Animation" id="Animation_04nrm"]
+resource_name = "die"
+length = 0.2
+loop_mode = 1
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Pivot/Body:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [16]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Pivot:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.1, 0.15),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [Vector2(0, 0), Vector2(-5, 0), Vector2(0, 0), Vector2(5, 0)]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_kyamo"]
 _data = {
 "attack1": SubResource("Animation_jj5yi"),
 "charge": SubResource("Animation_ibho5"),
+"die": SubResource("Animation_04nrm"),
 "fall": SubResource("Animation_jlwo1"),
 "get_angry": SubResource("Animation_in2gv"),
 "hurt2": SubResource("Animation_51sfn"),
@@ -317,8 +353,9 @@ size = Vector2(39, 42)
 collision_layer = 4
 collision_mask = 9
 script = ExtResource("2_y2kgg")
-health = 4
+health = 1
 speed = 50.0
+death_pieces = Array[Resource]([ExtResource("4_omtka"), ExtResource("4_omtka"), ExtResource("3_tncna"), ExtResource("3_tncna"), ExtResource("2_bl0q7"), ExtResource("4_omtka"), ExtResource("4_omtka"), ExtResource("6_litvv")])
 
 [node name="state_label" type="Label" parent="."]
 visible = false
@@ -345,7 +382,7 @@ script = ExtResource("3_67ebo")
 position = Vector2(5, -27)
 texture = ExtResource("2_koeju")
 hframes = 17
-frame = 15
+frame = 16
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Pivot"]
 root_node = NodePath("../..")
@@ -444,6 +481,9 @@ script = ExtResource("19_60d7b")
 
 [node name="Stomp2" type="Node" parent="StateMachine"]
 script = ExtResource("19_60d7b")
+
+[node name="Die2" type="Node" parent="StateMachine"]
+script = ExtResource("19_c5mth")
 
 [node name="Hurtbox" parent="." instance=ExtResource("5_1hm1y")]
 collision_layer = 4

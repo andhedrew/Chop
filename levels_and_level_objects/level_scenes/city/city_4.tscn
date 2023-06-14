@@ -18,6 +18,9 @@ point_count = 2
 [node name="World" instance=ExtResource("1_bldwn")]
 map_position = 4.0
 
+[node name="Player" parent="." index="1"]
+position = Vector2(568, -48)
+
 [node name="Sprite2D" type="Sprite2D" parent="Background/UnmovingScenery" index="0"]
 position = Vector2(616, 8)
 texture = ExtResource("2_0se26")
@@ -52,6 +55,7 @@ texture = ExtResource("5_kyayf")
 
 [node name="Enemy" parent="." index="8" instance=ExtResource("2_wq7ff")]
 position = Vector2(824, 96)
+health = 2
 
 [node name="ParootSpawner" type="Path2D" parent="." index="9"]
 curve = SubResource("Curve2D_w5pjn")

@@ -32,6 +32,11 @@ var nutrition_value_lookup : Dictionary = {
 	load("res://user_interface/healthbar/full_heart.png") : {"brick" : 0, "meat" : 0, "plant" : 0 },
 	load("res://characters/enemy/moss_hopper/moss_hopper_piece.png") : {"brick" : 0, "meat" : 0, "plant" : 1 },
 	load("res://characters/enemy/paroot/pareet_drop.png") : {"brick" : 0, "meat" : 1, "plant" : 1 },
+	load("res://characters/enemy/paroot_boss/paroot_boss_deathpiece_1.png") : {"brick" : 10, "meat" : 1, "plant" : 3 },
+	load("res://characters/enemy/paroot_boss/paroot_boss_deathpiece_2.png") : {"brick" : 8, "meat" : 1, "plant" : 2 },
+	load("res://characters/enemy/paroot_boss/paroot_boss_deathpiece_4.png") : {"brick" : 3, "meat" : 1, "plant" : 1 },
+	load("res://characters/enemy/paroot_boss/paroot_boss_deathpiece_4.png") : {"brick" : 1, "meat" : 1, "plant" : 1 },
+	load("res://characters/enemy/paroot_boss/paroot_boss_deathpiece_5.png") : {"brick" : 0, "meat" : 20, "plant" : 10 },
 }
 
 func _ready():
