@@ -83,14 +83,14 @@ func _take_damage(hitbox) -> void:
 		else:
 			var slice = preload("res://vfx/slice.tscn").instantiate()
 			slice.position = global_position
-			get_node("/root/").add_child(slice)
+			get_node("/root/World").add_child(slice)
 			
 
 
 func execute():
 	var slice = preload("res://vfx/slice_big.tscn").instantiate()
 	slice.position = global_position
-	get_node("/root/").add_child(slice)
+	get_node("/root/World").add_child(slice)
 	if death_vocalization:
 		SoundPlayer.play_sound_positional(death_vocalization, position)
 		
@@ -154,7 +154,7 @@ func die(was_executed: bool = false) -> void:
 						pickup.value = coin
 						get_node("/root/").call_deferred("add_child", pickup)
 						bounty -= coin
-	get_node("/root/").add_child(explode)
+	get_node("/root/World").add_child(explode)
 	if get_parent().has_method("respawn"):
 		get_parent().respawn() 
 	queue_free()
@@ -164,7 +164,7 @@ func drop_health_and_die() -> void:
 	var explode := preload("res://vfx/blood_explosion.tscn").instantiate()
 	explode.position = global_position
 	explode.emitting = true
-	get_node("/root/").add_child(explode)
+	get_node("/root/World").add_child(explode)
 	
 	var sprite := preload("res://user_interface/healthbar/full_heart.png")
 	var pickup := preload("res://pickups/health_pickup.tscn").instantiate()

@@ -57,7 +57,7 @@ func _on_cutscene_ended() -> void:
 #	explode.position = global_position
 #	if was_executed:
 #		explode.big = true
-#	get_node("/root/").add_child(explode)
+#	get_node("/root/World").add_child(explode)
 #	visible = false
 #
 #func drop_health_and_die() -> void:
@@ -65,7 +65,7 @@ func _on_cutscene_ended() -> void:
 #	explode.position = global_position
 #	explode.restart()
 #	explode.emitting = true
-#	get_node("/root/").add_child(explode)
+#	get_node("/root/World").add_child(explode)
 #
 #	var pos = 30
 #	for i in current_player_health*.5:

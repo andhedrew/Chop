@@ -15,7 +15,7 @@ func spawn() -> void:
 	if spawn_counter == 0:
 		SoundPlayer.play_sound_positional("spit", owner.global_position)
 		var new_spawn = scene.instantiate()
-		get_node("/root/").add_child(new_spawn)
+		get_node("/root/World").add_child(new_spawn)
 		var mob_spawn_location = get_node("MobSpawnLocation")
 		mob_spawn_location.progress_ratio = randf()
 		new_spawn.position = mob_spawn_location.position
@@ -24,7 +24,7 @@ func spawn() -> void:
 	else:
 		SoundPlayer.play_sound_positional("spit", owner.global_position)
 		var new_spawn = scene2.instantiate()
-		get_node("/root/").add_child(new_spawn)
+		get_node("/root/World").add_child(new_spawn)
 		var mob_spawn_location = get_node("MobSpawnLocation")
 		mob_spawn_location.progress_ratio = randf()
 		new_spawn.position = mob_spawn_location.position

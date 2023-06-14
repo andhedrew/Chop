@@ -35,7 +35,7 @@ func _destroy() -> void:
 	SoundPlayer.play_sound("dirt")
 	dirt.restart()
 	dirt.position = global_position
-	get_node("/root/").add_child(dirt)
+	get_node("/root/World").add_child(dirt)
 	randomize()
 	var options = [1, 2, 3]
 	var rand_index: int = randi() % options.size()

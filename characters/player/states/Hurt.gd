@@ -9,7 +9,7 @@ func enter(_msg := {}) -> void:
 	owner.velocity = owner.knockback
 	hurt_timer = get_tree().create_timer(0.5)
 	hurt_timer.timeout.connect(_hurt_timer_done)
-	state_machine.invulnerable_timer = 0.5
+	state_machine.invulnerable_timer = 0.8
 	
 
 func update(_delta: float) -> void:

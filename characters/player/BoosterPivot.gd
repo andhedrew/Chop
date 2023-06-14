@@ -28,7 +28,7 @@ func _process(_delta):
 		if owner.torch_charges <= 0:
 			
 			var smoke = preload("res://vfx/smoke.tscn").instantiate()
-			get_node("/root/").add_child(smoke)
+			get_node("/root/World").add_child(smoke)
 			smoke.position = global_position
 			smoke.z_index = SortLayer.FOREGROUND
 			smoke.restart()

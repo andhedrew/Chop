@@ -26,5 +26,5 @@ func _destroy() -> void:
 	dirt.amount = 5
 	SoundPlayer.play_sound("dirt")
 	dirt.position = global_position
-	get_node("/root/").add_child(dirt)
+	get_node("/root/World").add_child(dirt)
 	queue_free()

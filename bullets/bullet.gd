@@ -47,7 +47,7 @@ func _destroy() -> void:
 	if exploding_bullet:
 		var explode := preload("res://vfx/explosion.tscn").instantiate()
 		explode.position = global_position
-		get_node("/root/").add_child(explode)
+		get_node("/root/World").add_child(explode)
 	$Hitbox.set_deferred("monitorable", false)
 	$AnimationPlayer.play("bullet_exit")
 	await $AnimationPlayer.animation_finished

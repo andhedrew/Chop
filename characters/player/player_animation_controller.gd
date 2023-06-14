@@ -27,7 +27,7 @@ func _physics_process(_delta):
 	if state_last_frame == "Fall" and owner.state != "Fall":
 		if !dust_emitted and owner.is_on_floor():
 			var dust := preload("res://vfx/dust.tscn").instantiate()
-			get_node("/root/").add_child(dust)
+			get_node("/root/World").add_child(dust)
 			dust.position = Vector2(global_position.x, global_position.y + 13)
 			dust_emitted = true
 			
@@ -38,7 +38,7 @@ func _physics_process(_delta):
 	
 	if facing_last_frame != owner.facing and owner.is_on_floor():
 		var dust := preload("res://vfx/dust.tscn").instantiate()
-		get_node("/root/").add_child(dust)
+		get_node("/root/World").add_child(dust)
 		dust.position = Vector2(global_position.x, global_position.y + 13)
 		dust.amount = 3
 	facing_last_frame = owner.facing

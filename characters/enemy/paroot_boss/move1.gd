@@ -29,7 +29,7 @@ func physics_update(delta: float) -> void:
 			state_machine.transition_to("Stomp")
 		var spawn := preload("res://characters/enemy/paroot_plant/paroot_plant.tscn").instantiate()
 		spawn.position = owner.global_position
-		get_node("/root/").add_child(spawn)
+		get_node("/root/World").add_child(spawn)
 		timer = 0.0
 	
 	owner.velocity.x = owner.speed * owner.direction

@@ -17,7 +17,7 @@ func _on_hit_by_projectile(_area) -> void:
 	var slice = preload("res://vfx/slice.tscn").instantiate()
 	slice.position.x = global_position.x + 50
 	slice.position.y = global_position.y
-	get_node("/root/").add_child(slice)
+	get_node("/root/World").add_child(slice)
 	SoundPlayer.play_sound_positional("ping", global_position)
 	match which_parry:
 		1: 

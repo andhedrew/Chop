@@ -26,7 +26,7 @@ func spawn() -> void:
 	SoundPlayer.play_sound_positional("spit", owner.global_position)
 	frame = 0
 	var new_spawn = scene.instantiate()
-	get_node("/root/").add_child(new_spawn)
+	get_node("/root/World").add_child(new_spawn)
 	new_spawn.position = owner.global_position
 	new_spawn.velocity = Vector2( 0, -30)
 	sprite.frame = frame
@@ -40,7 +40,7 @@ func take_damage() -> void:
 	particles.amount = 25
 	particles.restart()
 	particles.position = adjusted_position
-	get_node("/root/").add_child(particles)
+	get_node("/root/World").add_child(particles)
 	
 	if frame > 2:
 		if randf() < 0.25:

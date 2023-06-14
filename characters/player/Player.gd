@@ -199,12 +199,12 @@ func _die() -> void:
 	var explode := preload("res://vfx/blood_explosion.tscn").instantiate()
 	explode.position = global_position
 	explode.emitting = true
-	get_node("/root/").add_child(explode)
+	get_node("/root/World").add_child(explode)
 	
 	explode = preload("res://vfx/explosion.tscn").instantiate()
 	explode.position = global_position
 	explode.big = true
-	get_node("/root/").add_child(explode)
+	get_node("/root/World").add_child(explode)
 	queue_free()
 
 
