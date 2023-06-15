@@ -30,7 +30,6 @@ func _process(_delta):
 		SaveManager.reset_save()
 
 
-
 func _restart_level() -> void:
 	print_debug("restarting")
 	Fade.crossfade_prepare(0.4, "ChopHorizontal")

@@ -55,7 +55,6 @@ texture = ExtResource("5_kyayf")
 
 [node name="Enemy" parent="." index="8" instance=ExtResource("2_wq7ff")]
 position = Vector2(824, 96)
-health = 2
 
 [node name="ParootSpawner" type="Path2D" parent="." index="9"]
 curve = SubResource("Curve2D_w5pjn")

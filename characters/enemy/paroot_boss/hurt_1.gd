@@ -6,11 +6,8 @@ func enter(msg := {}) -> void:
 	owner.health -= 1
 	if owner.health == 3:
 		state_machine.phase = 2
-	
-	if owner.health <= 0:
-		state_machine.transition_to("Die")
-
-
+		state_machine.transition_to("Transition")
+		print_debug("tried to transition")
 
 func update(delta: float) -> void:
 	if state_machine.state_timer > 0.5:
