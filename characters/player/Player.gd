@@ -99,6 +99,7 @@ func _physics_process(delta):
 		drop_last_item()
 
 
+
 func drop_last_item() -> void:
 	if bag.size() > 0:
 		var item = bag.pop_back()

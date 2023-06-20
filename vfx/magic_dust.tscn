@@ -1,0 +1,68 @@
+[gd_scene load_steps=9 format=3 uid="uid://cdff1yfomma85"]
+
+[ext_resource type="Texture2D" uid="uid://b1abyejbk6qyr" path="res://vfx/smoke_dust.png" id="1_ci25j"]
+[ext_resource type="Script" path="res://vfx/magic_dust.gd" id="2_yve70"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_whx8a"]
+particles_animation = true
+particles_anim_h_frames = 7
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="Curve" id="Curve_pruu8"]
+min_value = -1.0
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, -0.558282), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_nb0yt"]
+curve = SubResource("Curve_pruu8")
+
+[sub_resource type="Curve" id="Curve_gwf50"]
+_data = [Vector2(0, 0.834356), 0.0, 0.0, 0, 0, Vector2(0.678934, 0.638037), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_qjed5"]
+curve = SubResource("Curve_gwf50")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_vyte7"]
+lifetime_randomness = 0.37
+emission_shape = 3
+emission_box_extents = Vector3(3, 3, 1)
+particle_flag_disable_z = true
+direction = Vector3(0, 0, 0)
+spread = 12.0
+flatness = 1.0
+gravity = Vector3(0, -10, 0)
+initial_velocity_min = -30.0
+initial_velocity_max = 30.0
+angular_velocity_min = 132.17
+angular_velocity_max = 132.17
+orbit_velocity_min = 0.0
+orbit_velocity_max = 0.0
+linear_accel_min = 10.0
+linear_accel_max = 20.0
+damping_min = 6.67
+damping_max = 26.53
+angle_min = -326.6
+angle_max = 349.6
+scale_min = 0.8
+scale_max = 0.8
+scale_curve = SubResource("CurveTexture_qjed5")
+color = Color(0.294118, 0.266667, 0.211765, 1)
+hue_variation_max = 0.05
+hue_variation_curve = SubResource("CurveTexture_nb0yt")
+anim_speed_min = 0.2
+anim_speed_max = 1.0
+
+[node name="dust" type="GPUParticles2D"]
+material = SubResource("CanvasItemMaterial_whx8a")
+position = Vector2(0, 8)
+emitting = false
+amount = 3
+process_material = SubResource("ParticleProcessMaterial_vyte7")
+texture = ExtResource("1_ci25j")
+lifetime = 0.5
+one_shot = true
+explosiveness = 1.0
+visibility_rect = Rect2(0, 0, 0, 0)
+script = ExtResource("2_yve70")

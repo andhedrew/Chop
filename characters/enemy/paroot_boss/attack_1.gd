@@ -22,12 +22,14 @@ func _ready():
 
 
 func enter(_msg := {}) -> void:
+	SoundPlayer.play_sound("paroot_boss_spit")
 	owner.animation_player.play("attack1")
 	move_amount = Vector2(-70, 0)
 
 
 func transition_to_move() ->void:
 	state_machine.transition_to("Move")
+
 
 func activate_hitboxes() -> void:
 	hitbox_collision.shape.size.x = hitbox_original_width
@@ -45,7 +47,6 @@ func deactivate_hitboxes() -> void:
 	attack_hitbox.set_deferred("monitorable", false)
 	attack_hurtbox.position -= move_amount
 	attack_hitbox.position -= move_amount
-	
 
 
 func on_tongue_attacked(_hitbox) -> void:

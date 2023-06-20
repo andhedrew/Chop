@@ -1,4 +1,4 @@
-[gd_scene load_steps=49 format=3 uid="uid://dnsw5r66w3a15"]
+[gd_scene load_steps=50 format=3 uid="uid://dnsw5r66w3a15"]
 
 [ext_resource type="Texture2D" uid="uid://7q4foqfhgb8j" path="res://characters/enemy/paroot_boss/paroot_boss_deathpiece_1.png" id="2_bl0q7"]
 [ext_resource type="Texture2D" uid="uid://cwmxarjv7qjc8" path="res://characters/enemy/paroot_boss/paroot_boss.png" id="2_koeju"]
@@ -94,6 +94,36 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 1,
 "values": [0, 1, 2, 3]
+}
+
+[sub_resource type="Animation" id="Animation_04nrm"]
+resource_name = "die"
+length = 0.2
+loop_mode = 1
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Pivot/Body:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [16]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Pivot:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.1, 0.15),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [Vector2(0, 0), Vector2(-5, 0), Vector2(0, 0), Vector2(5, 0)]
 }
 
 [sub_resource type="Animation" id="Animation_jlwo1"]
@@ -238,36 +268,6 @@ tracks/0/keys = {
 "values": [4, 5, 6, 7]
 }
 
-[sub_resource type="Animation" id="Animation_04nrm"]
-resource_name = "die"
-length = 0.2
-loop_mode = 1
-step = 0.05
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Pivot/Body:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [16]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Pivot:position")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.05, 0.1, 0.15),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 1,
-"values": [Vector2(0, 0), Vector2(-5, 0), Vector2(0, 0), Vector2(5, 0)]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_kyamo"]
 _data = {
 "attack1": SubResource("Animation_jj5yi"),
@@ -310,6 +310,23 @@ tracks/1/keys = {
 "values": [false]
 }
 
+[sub_resource type="Animation" id="Animation_ovfbf"]
+resource_name = "invulnerable"
+length = 2.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Pivot:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 0.878431, 0.85098, 0.235294)]
+}
+
 [sub_resource type="Animation" id="Animation_sv5so"]
 resource_name = "wounded"
 tracks/0/type = "value"
@@ -328,6 +345,7 @@ tracks/0/keys = {
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_3rqiy"]
 _data = {
 "RESET": SubResource("Animation_3oc4b"),
+"invulnerable": SubResource("Animation_ovfbf"),
 "syphoning": ExtResource("5_11rws"),
 "take_damage": ExtResource("6_0ng76"),
 "wounded": SubResource("Animation_sv5so")
@@ -352,15 +370,16 @@ height = 46.0097
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xi3g1"]
 size = Vector2(39, 42)
 
-[node name="Enemy" type="CharacterBody2D"]
+[node name="ParootBoss" type="CharacterBody2D"]
 collision_layer = 4
 collision_mask = 9
 script = ExtResource("2_y2kgg")
-health = 5
+health = 7
 speed = 50.0
 death_pieces = Array[Resource]([ExtResource("4_omtka"), ExtResource("4_omtka"), ExtResource("3_tncna"), ExtResource("3_tncna"), ExtResource("2_bl0q7"), ExtResource("4_omtka"), ExtResource("4_omtka"), ExtResource("6_litvv")])
 
 [node name="state_label" type="Label" parent="."]
+visible = false
 offset_left = -22.0
 offset_top = -79.0
 offset_right = 18.0
@@ -384,7 +403,7 @@ script = ExtResource("3_67ebo")
 position = Vector2(5, -27)
 texture = ExtResource("2_koeju")
 hframes = 17
-frame = 12
+frame = 8
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Pivot"]
 root_node = NodePath("../..")

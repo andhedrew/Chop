@@ -27,6 +27,7 @@ var colliding_hitbox_position : Dictionary
 var wounded : bool = false
 var has_respawned := false
 var player_health_full := true
+var reset_effects_player := false
 
 func _ready() -> void:
 	max_health = health
@@ -46,8 +47,10 @@ func _physics_process(_delta):
 	if wounded:
 		$BloodParticles.visible = true
 		effects_player.play("wounded")
-	else:
+		reset_effects_player = true
+	elif reset_effects_player:
 		effects_player.play("RESET")
+		reset_effects_player = false
 
 
 func set_facing(facing_dir) -> void:
@@ -93,22 +96,10 @@ func execute():
 	get_node("/root/World").add_child(slice)
 	if death_vocalization:
 		SoundPlayer.play_sound_positional(death_vocalization, position)
-		
 	await get_tree().create_timer(0.2).timeout
-	if death_pieces:
-		var spread = 6 # adjust this value to increase or decrease the spread of the pickups
-		var new_velocity = Vector2(0, -12) # adjust this value to control the initial velocity of the pickups
-		var death_pieces_size = death_pieces.size()
-		var i = 0
-		for sprite in death_pieces:
-			var pickup = preload("res://pickups/food_pickup.tscn").instantiate()
-			pickup.setup(sprite)
-			var angle = i * 2 * PI / death_pieces_size
-			i += 1
-			pickup.position = global_position + Vector2(cos(angle), sin(angle)) * spread
-			pickup.velocity = new_velocity.rotated(angle)
-			get_node("/root/World").call_deferred("add_child", pickup)
-		
+	
+	GameEvents.drop_food.emit(death_pieces)
+	
 	die(true)
 
 
@@ -126,34 +117,10 @@ func die(was_executed: bool = false) -> void:
 		if rand_index == 1:
 			pass
 		elif rand_index == 2 and not player_health_full:
-			var sprite := preload("res://user_interface/healthbar/full_heart.png")
-			var pickup := preload("res://pickups/health_pickup.tscn").instantiate()
-			pickup.setup(sprite)
-			pickup.position = global_position
-			get_node("/root/").call_deferred("add_child", pickup)
+			GameEvents.drop_health.emit(global_position)
 		else:
-			var spread = 6 # adjust this value to increase or decrease the spread of the pickups
-			var new_velocity = Vector2(0, -12) # adjust this value to control the initial velocity of the pickups
-			if bounty > 0:
-				var coins = [8, 4, 2, 1]
-				var total_coins = 0
-				var bounty_tracker = bounty
-				for coin in coins:
-					total_coins += int(bounty_tracker / coin)
-					if coin <= bounty_tracker:
-						bounty_tracker = bounty_tracker % coin
-				bounty = int(bounty)
-				var i = 0
-				for coin in coins:
-					while bounty >= coin:
-						var pickup = preload("res://pickups/coin_pickup.tscn").instantiate()
-						var angle = i * 2 * PI / total_coins
-						i += 1
-						pickup.position = global_position + Vector2(cos(angle), sin(angle)) * spread
-						pickup.velocity = new_velocity.rotated(angle)
-						pickup.value = coin
-						get_node("/root/").call_deferred("add_child", pickup)
-						bounty -= coin
+			GameEvents.drop_coins.emit(bounty, global_position)
+			
 	get_node("/root/World").add_child(explode)
 	if get_parent().has_method("respawn"):
 		get_parent().respawn() 
@@ -166,11 +133,7 @@ func drop_health_and_die() -> void:
 	explode.emitting = true
 	get_node("/root/World").add_child(explode)
 	
-	var sprite := preload("res://user_interface/healthbar/full_heart.png")
-	var pickup := preload("res://pickups/health_pickup.tscn").instantiate()
-	pickup.setup(sprite)
-	pickup.position = global_position
-	get_node("/root/").call_deferred("add_child", pickup)
+	GameEvents.drop_health.emit(global_position)
 	
 	die(true)
 
@@ -179,9 +142,11 @@ func _on_player_done_syphoning(successful_syphon: bool) -> void:
 	if wounded and successful_syphon:
 		drop_health_and_die()
 
+
 func _on_player_syphoning(_player_pos) -> void:
 	if wounded:
 		$StateMachine.transition_to("Syphoned")
+
 
 func _on_end_of_day() -> void:
 	var particles = preload("res://vfx/despawn_particles.tscn").instantiate()

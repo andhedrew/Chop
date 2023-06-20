@@ -16,6 +16,9 @@ func enter(_msg := {}) -> void:
 
 
 func update(_delta: float) -> void:
+	if owner.invulnerable and state_machine.state_timer > 1.5:
+		owner.invulnerable = false
+
 	speed_mult = lerp(speed_mult, 3.0, 0.2)
 	owner.velocity.x = (owner.speed * speed_mult) * owner.direction
 	owner.move_and_slide()

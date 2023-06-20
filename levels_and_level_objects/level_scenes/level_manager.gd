@@ -20,6 +20,10 @@ func _ready():
 	
 	GameEvents.cutscene_started.connect(_cutscene_started)
 	GameEvents.cutscene_ended.connect(_cutscene_ended)
+	
+	GameEvents.drop_food.connect(drop_food)
+	GameEvents.drop_health.connect(drop_health)
+	GameEvents.drop_coins.connect(drop_coins)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -72,3 +76,54 @@ func _cutscene_started():
 
 func _cutscene_ended():
 	print_debug("cutscene_ended")
+
+
+
+func drop_food(food : Array, drop_position : Vector2) -> void:
+	var spread = 6 # adjust this value to increase or decrease the spread of the pickups
+	var new_velocity = Vector2(0, -12) # adjust this value to control the initial velocity of the pickups
+	var food_size = food.size()
+	var i = 0
+	for sprite in food:
+		var pickup = preload("res://pickups/food_pickup.tscn").instantiate()
+		pickup.setup(sprite)
+		var angle = (PI/2) + (i * PI / food_size) + 180
+		i += 1
+		pickup.position = drop_position + Vector2(cos(angle), sin(angle)) * spread
+		pickup.velocity = new_velocity.rotated(angle)
+		call_deferred("add_child", pickup)
+
+
+func drop_health(drop_position : Vector2) -> void:
+	var sprite := preload("res://user_interface/healthbar/full_heart.png")
+	var pickup := preload("res://pickups/health_pickup.tscn").instantiate()
+	var new_velocity = Vector2(0, -6)
+	pickup.setup(sprite)
+	pickup.position = drop_position
+	pickup.velocity = new_velocity
+	call_deferred("add_child", pickup)
+
+
+func drop_coins(bounty: int, drop_position : Vector2) -> void:
+	var spread = 6 # adjust this value to increase or decrease the spread of the pickups
+	var new_velocity = Vector2(0, -12) # adjust this value to control the initial velocity of the pickups
+	if bounty > 0:
+		var coins = [8, 4, 2, 1]
+		var total_coins = 0
+		var bounty_tracker = bounty
+		for coin in coins:
+			total_coins += int(bounty_tracker / coin)
+			if coin <= bounty_tracker:
+				bounty_tracker = bounty_tracker % coin
+		bounty = int(bounty)
+		var i = 0
+		for coin in coins:
+			while bounty >= coin:
+				var pickup = preload("res://pickups/coin_pickup.tscn").instantiate()
+				var angle = (PI/2) + (i * PI / total_coins) + 180
+				i += 1
+				pickup.position = drop_position
+				pickup.velocity = new_velocity.rotated(angle)
+				pickup.value = coin
+				call_deferred("add_child", pickup)
+				bounty -= coin

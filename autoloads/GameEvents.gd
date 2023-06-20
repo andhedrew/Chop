@@ -44,10 +44,16 @@ signal SaveDataReady
 #boss
 signal boss_stomped
 signal boss_hit_wall
+signal boss_defeated
 
 #utility
 signal camera_change_focus #Param 1: new node target
 signal camera_reset_focus
+
+# Drops
+signal drop_food # Arg 1: array of sprites # Arg 2: Position
+signal drop_health # Arg 1: Position
+signal drop_coins # Arg 1: amount to drop (bounty) # Arg 2: Position
 # tutorial
 signal plant_hunger_bar_filled # no parameters
 

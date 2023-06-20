@@ -4,7 +4,7 @@ func enter(msg := {}) -> void:
 	owner.effects_player.play("take_damage")
 	owner.animation_player.play("hurt2")
 	owner.health -= 1
-
+	owner.invulnerable = true
 
 
 func update(delta: float) -> void:
