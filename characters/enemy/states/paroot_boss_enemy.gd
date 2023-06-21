@@ -4,7 +4,7 @@ extends Enemy
 
 signal stomped
 var count := 0
-
+var reset_animation = false
 func _ready():
 	super._ready()
 	$Pivot/Hurtbox.area_entered.connect(_take_damage)
@@ -12,9 +12,12 @@ func _ready():
 
 func _process(delta):
 	count += 1
-	if invulnerable:
-		print_debug("invulnerable" + str(count))
-		effects_player.play("invulnerable")
+#	if invulnerable:
+#		reset_animation = false
+#		effects_player.play("invulnerable")
+#	elif !reset_animation:
+#		effects_player.play("RESET")
+#		reset_animation = true
 
 
 func _take_damage(hitbox) -> void:

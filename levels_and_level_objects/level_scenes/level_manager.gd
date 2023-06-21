@@ -78,8 +78,8 @@ func _cutscene_ended():
 	print_debug("cutscene_ended")
 
 
-
 func drop_food(food : Array, drop_position : Vector2) -> void:
+	print_debug("dropping food")
 	var spread = 6 # adjust this value to increase or decrease the spread of the pickups
 	var new_velocity = Vector2(0, -12) # adjust this value to control the initial velocity of the pickups
 	var food_size = food.size()

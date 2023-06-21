@@ -97,9 +97,7 @@ func execute():
 	if death_vocalization:
 		SoundPlayer.play_sound_positional(death_vocalization, position)
 	await get_tree().create_timer(0.2).timeout
-	
-	GameEvents.drop_food.emit(death_pieces)
-	
+	GameEvents.drop_food.emit(death_pieces, global_position)
 	die(true)
 
 

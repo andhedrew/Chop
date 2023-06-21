@@ -1,4 +1,4 @@
-[gd_scene load_steps=50 format=3 uid="uid://dnsw5r66w3a15"]
+[gd_scene load_steps=51 format=3 uid="uid://dnsw5r66w3a15"]
 
 [ext_resource type="Texture2D" uid="uid://7q4foqfhgb8j" path="res://characters/enemy/paroot_boss/paroot_boss_deathpiece_1.png" id="2_bl0q7"]
 [ext_resource type="Texture2D" uid="uid://cwmxarjv7qjc8" path="res://characters/enemy/paroot_boss/paroot_boss.png" id="2_koeju"]
@@ -192,7 +192,7 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id="Animation_drbmi"]
 resource_name = "idle"
-length = 0.8
+length = 3.0
 loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -201,10 +201,10 @@ tracks/0/path = NodePath("Pivot/Body:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.2, 0.4, 0.6),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
+"times": PackedFloat32Array(0, 1.4),
+"transitions": PackedFloat32Array(1, 1),
 "update": 1,
-"values": [0, 1, 2, 3]
+"values": [17, 18]
 }
 
 [sub_resource type="Animation" id="Animation_njjf7"]
@@ -310,23 +310,6 @@ tracks/1/keys = {
 "values": [false]
 }
 
-[sub_resource type="Animation" id="Animation_ovfbf"]
-resource_name = "invulnerable"
-length = 2.0
-loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Pivot:modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(1, 0.878431, 0.85098, 0.235294)]
-}
-
 [sub_resource type="Animation" id="Animation_sv5so"]
 resource_name = "wounded"
 tracks/0/type = "value"
@@ -342,10 +325,45 @@ tracks/0/keys = {
 "values": [true]
 }
 
+[sub_resource type="Animation" id="Animation_ovfbf"]
+resource_name = "old"
+length = 2.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Pivot:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 0.878431, 0.85098, 0.733333), Color(1, 0.878431, 0.85098, 0.988235)]
+}
+
+[sub_resource type="Animation" id="Animation_iciwc"]
+resource_name = "invulnerable"
+length = 1.5
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Pivot:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0.811765, 0.403922, 0.207843, 1)]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_3rqiy"]
 _data = {
 "RESET": SubResource("Animation_3oc4b"),
-"invulnerable": SubResource("Animation_ovfbf"),
+"invulnerable": SubResource("Animation_iciwc"),
+"old": SubResource("Animation_ovfbf"),
 "syphoning": ExtResource("5_11rws"),
 "take_damage": ExtResource("6_0ng76"),
 "wounded": SubResource("Animation_sv5so")
@@ -374,7 +392,7 @@ size = Vector2(39, 42)
 collision_layer = 4
 collision_mask = 9
 script = ExtResource("2_y2kgg")
-health = 7
+health = 10
 speed = 50.0
 death_pieces = Array[Resource]([ExtResource("4_omtka"), ExtResource("4_omtka"), ExtResource("3_tncna"), ExtResource("3_tncna"), ExtResource("2_bl0q7"), ExtResource("4_omtka"), ExtResource("4_omtka"), ExtResource("6_litvv")])
 
@@ -402,8 +420,8 @@ script = ExtResource("3_67ebo")
 [node name="Body" type="Sprite2D" parent="Pivot"]
 position = Vector2(5, -27)
 texture = ExtResource("2_koeju")
-hframes = 17
-frame = 8
+hframes = 19
+frame = 17
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Pivot"]
 root_node = NodePath("../..")

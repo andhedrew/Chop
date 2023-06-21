@@ -18,6 +18,7 @@ func update(delta):
 	if jumped and owner.is_on_floor() and state_machine.state_timer > 0.1:
 		jumped = false
 		GameEvents.boss_stomped.emit()
+		SoundPlayer.play_sound_positional("impact_with_dirt", owner.global_position)
 		if owner.animation_player.animation_finished:
 			state_machine.transition_to("Move")
 

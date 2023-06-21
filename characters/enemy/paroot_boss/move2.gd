@@ -12,6 +12,7 @@ var timer: Timer
 var speed_mult := 0.0
 # Called when the node enters the scene tree for the first time.
 func enter(_msg := {}) -> void:
+	
 	owner.animation_player.play("charge")
 
 
@@ -25,6 +26,7 @@ func update(_delta: float) -> void:
 	var colliding = wall_left.is_colliding() or wall_right.is_colliding()
 	if colliding:
 		if !flipping:
+			SoundPlayer.play_sound_positional("impact_with_dirt", owner.global_position)
 			flipping = true
 			owner.switch_facing()
 			GameEvents.boss_hit_wall.emit()

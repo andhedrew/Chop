@@ -5,6 +5,7 @@ extends Node
 @onready var initial_state_name := str(get_node(initial_state))
 var previous_state : String
 var state_timer := 0.0
+var invulnerable_timer := 0.0
 
 var phase := 1
 
@@ -24,6 +25,13 @@ func _process(delta: float) -> void:
 func _physics_process(delta: float) -> void:
 	state.physics_update(delta)
 	state_timer += delta
+	
+	if invulnerable_timer > 0.0:
+		owner.invulnerable = true
+		invulnerable_timer -= delta
+	else:
+		owner.invulnerable = false
+		invulnerable_timer = 0.0
 
 
 func transition_to(target_state_name: String, msg: Dictionary = {}) -> void:
