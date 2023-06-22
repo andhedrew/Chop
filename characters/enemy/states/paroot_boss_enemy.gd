@@ -12,12 +12,6 @@ func _ready():
 
 func _process(delta):
 	count += 1
-#	if invulnerable:
-#		reset_animation = false
-#		effects_player.play("invulnerable")
-#	elif !reset_animation:
-#		effects_player.play("RESET")
-#		reset_animation = true
 
 
 func _take_damage(hitbox) -> void:

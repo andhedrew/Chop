@@ -36,7 +36,8 @@ func _chop_up(hitbox) -> void:
 			brick_explode.texture = sprite.texture
 			brick_explode.modulate = sprite.modulate
 			brick_explode.amount = min(sprite.region_rect.size.x, sprite.region_rect.size.y)
-			brick_explode.process_material.scale_max = min(sprite.region_rect.size.x, sprite.region_rect.size.y) * 0.02
+			var max_scale = min(sprite.region_rect.size.x, sprite.region_rect.size.y) * 0.02
+			brick_explode.process_material.scale_max = max_scale
 			brick_explode.restart()
 			get_parent().add_child(brick_explode)
 			brick_explode.position = position
@@ -45,16 +46,16 @@ func _chop_up(hitbox) -> void:
 			var new_region_rect = sprite.region_rect
 			new_region_rect.size.x /= 2
 			sprite.region_rect = new_region_rect
-			# Adjust hurtbox and collision shape to match sprite's region_rect
-			hurtbox_collision_shape.shape.extents.x = sprite.region_rect.size.x / 2 - 2
-			collision_shape.shape.extents.x = sprite.region_rect.size.x / 2 - 2
+			var col_shape = max(0, sprite.region_rect.size.x / 2 - 2)
+			hurtbox_collision_shape.shape.extents.x = col_shape
+			collision_shape.shape.extents.x = col_shape
 		else:
 			var new_region_rect = sprite.region_rect
 			new_region_rect.size.y /= 2
 			sprite.region_rect = new_region_rect
-			# Adjust hurtbox and collision shape to match sprite's region_rect
-			hurtbox_collision_shape.shape.extents.y = sprite.region_rect.size.y / 2 - 2
-			collision_shape.shape.extents.y = sprite.region_rect.size.y / 2 - 2
+			var col_shape = max(0, sprite.region_rect.size.y / 2 - 2)
+			hurtbox_collision_shape.shape.extents.y = col_shape
+			collision_shape.shape.extents.y = col_shape
 
 	# Add pop up motion to simulate impact
 	linear_velocity = pop_up_velocity

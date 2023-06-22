@@ -23,6 +23,10 @@ func setup_json() -> void:
 		"booster_charges" : 3,
 		"syphon_upgrade" : false,
 		"bbq_upgrade" : false,
+		"brick_stomach" : 0.0,
+		"plant_stomach" : 0.0,
+		"meat_stomach" : 0.0,
+		"lb_position" : Vector2.ZERO,
 		"tutorial" : {
 			"enemy_execute_prompted": false,
 			"adding_food_prompted": false,

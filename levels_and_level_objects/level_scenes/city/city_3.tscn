@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://dngdtb1i4uxxl"]
+[gd_scene load_steps=13 format=3 uid="uid://dngdtb1i4uxxl"]
 
 [ext_resource type="PackedScene" uid="uid://dm85xjdq5mkk3" path="res://levels_and_level_objects/level_scenes/base_level.tscn" id="1_yegxm"]
 [ext_resource type="Texture2D" uid="uid://1e4ocu0ypf2p" path="res://levels_and_level_objects/dream/dream_4.png" id="2_332dd"]
@@ -10,6 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://dfqu62bqmc01x" path="res://levels_and_level_objects/level_scenes/city/level_chunks/tower_mid_bottom_2.tscn" id="8_hjbix"]
 [ext_resource type="PackedScene" uid="uid://c61py6hgvk4e5" path="res://levels_and_level_objects/enemy_spawn.tscn" id="10_52lrv"]
 [ext_resource type="PackedScene" uid="uid://boakvecc6j1ta" path="res://characters/enemy/paroot/paroot.tscn" id="11_dfjyv"]
+[ext_resource type="PackedScene" uid="uid://cl5wmh7hq8ul0" path="res://pickups/food_pickup.tscn" id="12_2v716"]
 [ext_resource type="PackedScene" uid="uid://cjwnxykdeenj7" path="res://levels_and_level_objects/level_scenes/city/level_chunks/tower_mid_top_2.tscn" id="16_pr6km"]
 
 [node name="World" instance=ExtResource("1_yegxm")]
@@ -49,6 +50,9 @@ position = Vector2(496, -1032)
 [node name="EnemySpawn" parent="." index="16" instance=ExtResource("10_52lrv")]
 position = Vector2(464, -120)
 spawn = ExtResource("11_dfjyv")
+
+[node name="food_pickup" parent="." index="17" instance=ExtResource("12_2v716")]
+position = Vector2(144, -1406)
 
 [editable path="LittleBrother"]
 [editable path="LittleBrother/InteractZone/HungerBars"]

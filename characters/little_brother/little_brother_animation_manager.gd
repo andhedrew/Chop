@@ -60,6 +60,7 @@ func _on_continue_day() -> void:
 	$"../FullMessage".visible = false
 	await get_tree().create_timer(3.0).timeout
 	owner.state = Enums.State.MOVE
+	owner.clear_stomachs()
 
 func _on_cutscene_start() -> void:
 	owner.state = Enums.State.CUTSCENE

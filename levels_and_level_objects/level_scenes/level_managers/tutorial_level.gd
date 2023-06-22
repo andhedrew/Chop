@@ -24,6 +24,11 @@ func _ready():
 	GameEvents.player_money_changed.connect(_on_collected_a_coin)
 	GameEvents.plant_hunger_bar_filled.connect(_on_plant_bar_filled)
 	GameEvents.bag_full.connect(_on_full_bag)
+	
+		
+	GameEvents.drop_food.connect(drop_food)
+	GameEvents.drop_health.connect(drop_health)
+	GameEvents.drop_coins.connect(drop_coins)
 
 
 func _on_full_bag() -> void:
