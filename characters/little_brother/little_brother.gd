@@ -28,9 +28,9 @@ func _ready():
 		await get_tree().create_timer(2).timeout
 		state = Enums.State.HUNGRY
 		await get_tree().create_timer(3).timeout
-		SaveManager.save_item("lb_position", get_position())
+		SaveManager.save_item("lb_position", position.x)
 	else:
-		var pos : Vector2 = SaveManager.load_item("lb_position")
+		var pos : Vector2 = Vector2(SaveManager.load_item("lb_position"), position.y)
 		if pos != null:
 			position = pos
 	state = Enums.State.IDLE
