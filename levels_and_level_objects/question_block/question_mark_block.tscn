@@ -1,0 +1,31 @@
+[gd_scene load_steps=9 format=3 uid="uid://dnjasyv6stmn4"]
+
+[ext_resource type="Texture2D" uid="uid://doikwp1wjypbs" path="res://levels_and_level_objects/question_block/question_block.png" id="1_f6ybg"]
+[ext_resource type="Script" path="res://levels_and_level_objects/question_block/question_mark_block.gd" id="1_waprg"]
+[ext_resource type="Texture2D" uid="uid://ddy0qa5aet1b1" path="res://levels_and_level_objects/question_block/question_block_pieces_1.png" id="2_da72q"]
+[ext_resource type="PackedScene" uid="uid://bb1h85dym7l4i" path="res://hitboxes/Hurtbox.tscn" id="2_yui4t"]
+[ext_resource type="Texture2D" uid="uid://dkd8gijxrkkgo" path="res://levels_and_level_objects/question_block/question_block_pieces_2.png" id="3_ugfaj"]
+[ext_resource type="Texture2D" uid="uid://dhgvam4cshwwl" path="res://levels_and_level_objects/question_block/question_block_pieces_3.png" id="4_tjrmi"]
+[ext_resource type="Texture2D" uid="uid://cj833gawwu63p" path="res://levels_and_level_objects/question_block/question_block_pieces_4.png" id="5_etm41"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_iiyo1"]
+size = Vector2(29, 30)
+
+[node name="QuestionMarkBlock" type="Node2D"]
+script = ExtResource("1_waprg")
+death_pieces = Array[Resource]([ExtResource("2_da72q"), ExtResource("3_ugfaj")])
+death_pieces2 = Array[Resource]([ExtResource("4_tjrmi"), ExtResource("5_etm41")])
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_f6ybg")
+hframes = 4
+
+[node name="Hurtbox" parent="." instance=ExtResource("2_yui4t")]
+collision_layer = 0
+collision_mask = 8
+
+[node name="CollisionShape2D" parent="Hurtbox" index="0"]
+position = Vector2(-1, 0)
+shape = SubResource("RectangleShape2D_iiyo1")
+
+[editable path="Hurtbox"]

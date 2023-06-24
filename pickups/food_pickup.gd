@@ -37,6 +37,8 @@ var nutrition_value_lookup : Dictionary = {
 	load("res://characters/enemy/paroot_boss/paroot_boss_deathpiece_4.png") : {"brick" : 3, "meat" : 1, "plant" : 1 },
 	load("res://characters/enemy/paroot_boss/paroot_boss_deathpiece_4.png") : {"brick" : 1, "meat" : 1, "plant" : 1 },
 	load("res://characters/enemy/paroot_boss/paroot_boss_deathpiece_5.png") : {"brick" : 0, "meat" : 20, "plant" : 10 },
+	load("res://levels_and_level_objects/question_block/question_block_pieces_1.png") : {"brick" : 1, "meat" : 0, "plant" : 0 },
+	load("res://levels_and_level_objects/question_block/question_block_pieces_2.png") : {"brick" : 1, "meat" : 0, "plant" : 0 },
 }
 
 func _ready():

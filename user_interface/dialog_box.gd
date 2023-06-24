@@ -22,17 +22,33 @@ func _process(delta):
 	if Input.is_action_just_pressed("ui_accept") and finished:
 		load_dialog()
 
+#func load_dialog():
+#	GameEvents.cutscene_started.emit()
+#	GameEvents.dialogue_started.emit()
+#	if dialog_index < dialog.size():
+#		finished = false
+#		label.text = dialog[dialog_index]
+#		label.visible_ratio = 0
+#		var character_count =  dialog[dialog_index].length()
+#		var tween = create_tween()
+#		tween.tween_property(label, "visible_ratio", 1, .03 * character_count)
+#		tween.finished.connect(_on_tween_finished)
+#	else:
+#		GameEvents.cutscene_ended.emit()
+#		GameEvents.dialogue_finished.emit()
+#		queue_free()
+#		is_finished.emit()
+#	dialog_index += 1
+
 func load_dialog():
 	GameEvents.cutscene_started.emit()
 	GameEvents.dialogue_started.emit()
 	if dialog_index < dialog.size():
 		finished = false
 		label.text = dialog[dialog_index]
-		label.visible_ratio = 0
-		var character_count =  dialog[dialog_index].length()
-		var tween = create_tween()
-		tween.tween_property(label, "visible_ratio", 1, .03 * character_count)
-		tween.finished.connect(_on_tween_finished)
+		label.visible_ratio = 1
+		await get_tree().create_timer(0.5).timeout
+		finished = true
 	else:
 		GameEvents.cutscene_ended.emit()
 		GameEvents.dialogue_finished.emit()
@@ -40,10 +56,6 @@ func load_dialog():
 		is_finished.emit()
 	dialog_index += 1
 
-
-func _on_tween_finished() -> void:
-	await get_tree().create_timer(0.5).timeout
-	finished = true
 
 
 func _kill() -> void:

@@ -9,7 +9,7 @@ func _ready():
 	if big:
 		$Sprite2D.texture = preload("res://vfx/explosion_x2.png")
 		
-	SoundPlayer.play_sound("explosion")
+	SoundPlayer.play_sound_positional("explosion", position)
 	await animation_player.animation_finished
 	
 	queue_free()

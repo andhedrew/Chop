@@ -1,4 +1,4 @@
-[gd_scene load_steps=47 format=3 uid="uid://bvuqbhwqfo41j"]
+[gd_scene load_steps=46 format=3 uid="uid://bvuqbhwqfo41j"]
 
 [ext_resource type="PackedScene" uid="uid://bwvi5m2prncxh" path="res://characters/player/player.tscn" id="1_371ql"]
 [ext_resource type="Script" path="res://levels_and_level_objects/level_scenes/level_manager.gd" id="1_nxsgc"]
@@ -33,9 +33,8 @@
 [ext_resource type="Texture2D" uid="uid://b3pfxh6lpumnb" path="res://levels_and_level_objects/backgrounds/unmoving_scenery_dark/foliage10.png" id="28_ew58i"]
 [ext_resource type="Texture2D" uid="uid://clg4y7ls1pfeg" path="res://levels_and_level_objects/backgrounds/unmoving_scenery_dark/foliage11.png" id="29_0tmwr"]
 [ext_resource type="PackedScene" uid="uid://bqg8q7u0o16hm" path="res://gameplay_objects/camera.tscn" id="34_ck663"]
-[ext_resource type="PackedScene" uid="uid://dh6hstxtatowo" path="res://characters/enemy/paroot/pareet.tscn" id="36_e4cyr"]
+[ext_resource type="PackedScene" uid="uid://dnjasyv6stmn4" path="res://levels_and_level_objects/question_block/question_mark_block.tscn" id="35_4hbm0"]
 [ext_resource type="PackedScene" uid="uid://cf8s3hxbyvsv8" path="res://characters/little_brother/little_brother.tscn" id="39_wpx1l"]
-[ext_resource type="PackedScene" uid="uid://b0sq1f61b07wm" path="res://levels_and_level_objects/hazards/spikes.tscn" id="40_o63gs"]
 
 [sub_resource type="Animation" id="Animation_vp1kt"]
 resource_name = "day"
@@ -1183,11 +1182,23 @@ layer_0/tile_data = PackedInt32Array(524297, 65537, 1, 524298, 131073, 1, 524299
 
 [node name="Camera" parent="." instance=ExtResource("34_ck663")]
 
-[node name="Spikes" parent="." instance=ExtResource("40_o63gs")]
-position = Vector2(-222, -40)
+[node name="QuestionMarkBlock" parent="." instance=ExtResource("35_4hbm0")]
+position = Vector2(-443, -82)
 
-[node name="Pareet" parent="." instance=ExtResource("36_e4cyr")]
-position = Vector2(-441, -42)
+[node name="QuestionMarkBlock2" parent="." instance=ExtResource("35_4hbm0")]
+position = Vector2(-399, -86)
+
+[node name="QuestionMarkBlock3" parent="." instance=ExtResource("35_4hbm0")]
+position = Vector2(-346, -86)
+
+[node name="QuestionMarkBlock4" parent="." instance=ExtResource("35_4hbm0")]
+position = Vector2(-276, -86)
+
+[node name="QuestionMarkBlock5" parent="." instance=ExtResource("35_4hbm0")]
+position = Vector2(-231, -89)
+
+[node name="QuestionMarkBlock6" parent="." instance=ExtResource("35_4hbm0")]
+position = Vector2(-181, -85)
 
 [editable path="LittleBrother"]
 [editable path="LittleBrother/InteractZone/HungerBars"]

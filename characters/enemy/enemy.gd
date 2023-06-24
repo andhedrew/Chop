@@ -153,7 +153,6 @@ func _on_end_of_day() -> void:
 	particles.z_index = SortLayer.IN_FRONT
 	particles.emitting = true
 	$StateMachine.transition_to("Syphoned")
-	await get_tree().create_timer(0.3).timeout
 	queue_free()
 
 

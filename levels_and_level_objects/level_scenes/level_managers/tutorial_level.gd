@@ -11,6 +11,7 @@ var tutorial = {
 }
 
 func _ready():
+	SoundPlayer.play_music("blues")
 	tutorial = SaveManager.load_item("tutorial")
 	GameEvents.evening_ended.connect(_on_evening_ended)
 	GameEvents.transition_to_map.connect(_on_transitioning_to_map)
