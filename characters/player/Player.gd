@@ -29,7 +29,7 @@ var state_last_frame := state
 var bag := []
 var bag_capacity := 10
 var has_booster_upgrade := false
-var torch_charges := 6
+var torch_charges := 1
 var max_torch_charges := torch_charges
 var charge_time := 2.0
 var charge_timer := charge_time
@@ -55,6 +55,11 @@ func _ready():
 	GameEvents.continue_day.connect(_on_continue_day)
 	GameEvents.SaveDataReady.connect(_load_data)
 	has_booster_upgrade = SaveManager.load_item("booster_upgrade")
+	var charges = SaveManager.load_item("booster_charges")
+	if charges != null:
+		torch_charges = charges
+		max_torch_charges = torch_charges
+		GameEvents.charge_amount_changed.emit(torch_charges, max_torch_charges)
 	_load_data()
 
 

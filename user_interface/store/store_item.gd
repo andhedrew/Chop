@@ -6,14 +6,13 @@ var cost: int = 20
 @export var description: String
 @export_enum("buy_health", "upgrade_bag_size", "buy_booster", "upgrade_booster_charges") var buy_function: String
 
+@export var one_time_purchase : bool = false
+
 
 var is_active := true
 var just_bought := false
 
 func _ready():
-	$ColorRect/MarginContainer/ColorRect/MarginContainer/Panel/TextureRect.texture = img
-	$ColorRect/MarginContainer/ColorRect/MarginContainer/Panel/Heading.text = header
-	$ColorRect/MarginContainer/ColorRect/MarginContainer/Panel/Description.text = description
 	
 	$AnimationPlayer.play("RESET")
 	$Button.pressed.connect(_on_button_pressed)
@@ -28,14 +27,25 @@ func _ready():
 			cost = bag_size
 		"buy_booster": 
 			var booster_got = SaveManager.load_item("booster_upgrade")
-			cost = 25
+			print_debug(str(booster_got))
 			if booster_got:
-				is_active = false
+				buy_function = "upgrade_booster_charges"
+				img = load("res://user_interface/torch_charges/charge.png")
+				header = "Extra Boost"
+				description = "One more boost before it kicks the bucket."
+				var booster_charge_number = SaveManager.load_item("booster_charges")
+				cost = 7 * booster_charge_number
+			else:
+				cost = 25
 		"upgrade_booster_charges": 
 			var booster_charge_number = SaveManager.load_item("booster_charges")
 			cost = 7 * booster_charge_number
+	$ColorRect/MarginContainer/ColorRect/MarginContainer/Panel/TextureRect.texture = img
+	$ColorRect/MarginContainer/ColorRect/MarginContainer/Panel/Heading.text = header
+	$ColorRect/MarginContainer/ColorRect/MarginContainer/Panel/Description.text = description
 	
 	set_button_text()
+
 
 
 func set_button_text() -> void:

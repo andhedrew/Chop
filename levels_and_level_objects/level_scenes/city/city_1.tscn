@@ -1,4 +1,4 @@
-[gd_scene load_steps=68 format=3 uid="uid://103qye0bhxnw"]
+[gd_scene load_steps=69 format=3 uid="uid://103qye0bhxnw"]
 
 [ext_resource type="PackedScene" uid="uid://dm85xjdq5mkk3" path="res://levels_and_level_objects/level_scenes/base_level.tscn" id="1_hhmaj"]
 [ext_resource type="PackedScene" uid="uid://c61py6hgvk4e5" path="res://levels_and_level_objects/enemy_spawn.tscn" id="2_cj47y"]
@@ -61,6 +61,7 @@
 [ext_resource type="Texture2D" uid="uid://dh31qhwwphog6" path="res://levels_and_level_objects/destructible_plants/Sprites/plant_7.png" id="48_xcu2u"]
 [ext_resource type="Texture2D" uid="uid://d23c1hxoq1uoo" path="res://levels_and_level_objects/destructible_plants/Sprites/plant_8.png" id="49_tc7wp"]
 [ext_resource type="Texture2D" uid="uid://dciau4mywkcux" path="res://levels_and_level_objects/destructible_plants/Sprites/plant_10.png" id="50_ccix3"]
+[ext_resource type="PackedScene" uid="uid://duq3hbv7istwg" path="res://pickups/coin_pickup.tscn" id="62_wrgpr"]
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_3y7sf"]
 load_path = "res://.godot/imported/template.png-d292e9f28b8a681a444b7e0c8329363b.ctex"
@@ -814,6 +815,41 @@ offset_bottom = 50.0
 
 [node name="LittleBrother" parent="." index="14"]
 position = Vector2(0, -32)
+
+[node name="food_pickup2" parent="." index="15" instance=ExtResource("21_omsi4")]
+position = Vector2(168, -46)
+
+[node name="CoinPickup" parent="." index="16" instance=ExtResource("62_wrgpr")]
+position = Vector2(200, -64)
+value = 8
+
+[node name="CoinPickup2" parent="." index="17" instance=ExtResource("62_wrgpr")]
+position = Vector2(216, -96)
+value = 8
+
+[node name="CoinPickup3" parent="." index="18" instance=ExtResource("62_wrgpr")]
+position = Vector2(232, -72)
+value = 8
+
+[node name="CoinPickup4" parent="." index="19" instance=ExtResource("62_wrgpr")]
+position = Vector2(208, -120)
+value = 8
+
+[node name="CoinPickup5" parent="." index="20" instance=ExtResource("62_wrgpr")]
+position = Vector2(232, -112)
+value = 8
+
+[node name="CoinPickup6" parent="." index="21" instance=ExtResource("62_wrgpr")]
+position = Vector2(200, -152)
+value = 8
+
+[node name="CoinPickup7" parent="." index="22" instance=ExtResource("62_wrgpr")]
+position = Vector2(216, -48)
+value = 8
+
+[node name="CoinPickup8" parent="." index="23" instance=ExtResource("62_wrgpr")]
+position = Vector2(240, -48)
+value = 8
 
 [editable path="death_zone2"]
 [editable path="food_pickup"]
