@@ -1043,4 +1043,4 @@ offset_bottom = 23.0
 text = "DebugMode"
 
 [node name="LittleBrother" parent="." instance=ExtResource("32_hyjhu")]
-position = Vector2(8, -24)
+position = Vector2(8, -32)

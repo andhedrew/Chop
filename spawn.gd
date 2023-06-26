@@ -5,8 +5,8 @@ extends Node2D
 @export_enum("Left", "Right") var facing = "Left"
 var active := true
 
-var timer_minimum := 3.0
-var timer_maximum := 8.0
+var timer_minimum := 40.0
+var timer_maximum := 80.0
 
 func _ready():
 		var new_spawn = spawn.instantiate()

@@ -34,3 +34,5 @@ extends Node
 # thumps https://freesound.org/people/Nox_Sound/sounds/554148/
 # Dinosaur https://freesound.org/people/JhennaSide/sounds/455906/
 # parrot https://freesound.org/people/Breviceps/sounds/445119/
+# button click https://freesound.org/people/TheWilliamSounds/sounds/686557/
+# money bag https://freesound.org/people/PhilSavlem/sounds/338260/

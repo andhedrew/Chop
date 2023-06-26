@@ -46,12 +46,12 @@ func physics_update(delta: float) -> void:
 
 
 func fire() -> void:
-	var bullet = preload("res://bullets/execute_bullet/execute_bullet.tscn").instantiate()
+	var bullet = owner.execute_bullet.instantiate()
 	owner.add_child(bullet)
 	var transform = $"../../Pivot/BulletSpawn".global_transform
-	var fire_range := 150
-	var speed := 3000
-	var spread := 0
+	var fire_range = owner.execute_range
+	var speed = owner.execute_speed
+	var spread = owner.execute_spread
 	var rotation := 0
 	rotation = 90
 	bullet.setup(transform, fire_range, speed, rotation, spread)

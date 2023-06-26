@@ -11,11 +11,13 @@ var cost: int = 20
 
 var is_active := true
 var just_bought := false
+var is_hovering := false
 
 func _ready():
 	
 	$AnimationPlayer.play("RESET")
 	$Button.pressed.connect(_on_button_pressed)
+	
 	
 	# Setup
 	match buy_function:
@@ -48,12 +50,14 @@ func _ready():
 
 
 
+
 func set_button_text() -> void:
 	$Button.text = str("Buy for " + str(cost) + "¢")
 
 
 func _on_button_pressed() -> void:
 	if not just_bought:
+		SoundPlayer.play_sound("hover_button")
 		var current_cash = SaveManager.load_item("money")
 		
 		if current_cash >= cost:
@@ -73,11 +77,13 @@ func _on_button_pressed() -> void:
 
 func _buy_item() -> void:
 	just_bought = true
+	SoundPlayer.play_sound("buy")
 	call(buy_function)
 
 
 
 func _cannot_buy() -> void:
+	SoundPlayer.play_sound("uhuh")
 	$AnimationPlayer.play("cant_buy")
 
 
@@ -116,4 +122,3 @@ func upgrade_booster_charges() -> void:
 	cost = 7 * booster_charge_number
 	set_button_text()
 	just_bought = false
-

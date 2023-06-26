@@ -119,7 +119,7 @@ speed = 25.0
 hurt_vocalizations = Array[AudioStreamWAV]([ExtResource("2_y8un6"), ExtResource("3_73c7m")])
 death_vocalization = ExtResource("4_6x326")
 impact_sound = ExtResource("5_vh1cq")
-death_pieces = Array[Resource]([ExtResource("3_nw7ee"), ExtResource("2_bgvra")])
+death_pieces = Array[Resource]([ExtResource("2_bgvra"), ExtResource("3_nw7ee")])
 bounty = 2
 
 [node name="BloodParticles" parent="." index="1"]

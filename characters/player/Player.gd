@@ -39,6 +39,7 @@ var set_ui := false
 
 var cutscene_walk := false
 
+
 @onready var hurtbox := $Hurtbox
 @onready var animation_player := $Pivot/AnimationPlayer
 @onready var effects_player := $Pivot/EffectsPlayer
@@ -47,6 +48,19 @@ var cutscene_walk := false
 var knockback_direction : Vector2
 var knockback_strength: float = 180.0
 var knockback: Vector2
+
+var weapon := Enums.Weapon.BASIC
+var bullet = preload("res://bullets/slash_bullet/slash_bullet.tscn")
+var bullet_range := 10
+var bullet_speed := 150
+var bullet_spread := 0
+var attack_upward_force := 100
+var attack_delay := 0.3
+
+var execute_bullet := preload("res://bullets/execute_bullet/execute_bullet.tscn")
+var execute_range := 150
+var execute_speed := 3000
+var execute_spread := 0
 
 func _ready():
 	hurtbox.area_entered.connect(_hurtbox_on_area_entered)
@@ -102,7 +116,47 @@ func _physics_process(delta):
 	
 	if Input.is_action_just_pressed("unload_bag"):
 		drop_last_item()
+	
+	if Input.is_action_just_pressed("1"):
+		change_weapon(Enums.Weapon.BASIC)
+	elif Input.is_action_just_pressed("2"):
+		change_weapon(Enums.Weapon.FAST)
 
+
+func change_weapon(new_weapon) -> void:
+	weapon = new_weapon
+	match weapon:
+		Enums.Weapon.BASIC:
+			$Pivot/Weapon.texture = preload("res://weapons/cleaver.png")
+			bullet = preload("res://bullets/slash_bullet/slash_bullet.tscn")
+			bullet_range = 10
+			bullet_speed = 150
+			bullet_spread = 0
+			attack_upward_force = 100
+			attack_delay = 0.8
+
+			execute_bullet = preload("res://bullets/execute_bullet/execute_bullet.tscn")
+			execute_range = 150
+			execute_speed = 3000
+			execute_spread = 0
+			
+		Enums.Weapon.FAST:
+			$Pivot/Weapon.texture = preload("res://weapons/fast_knife.png")
+			bullet = preload("res://bullets/slash_bullet/slash_bullet.tscn")
+			bullet_range = 4
+			bullet_speed = 250
+			bullet_spread = 0
+			attack_upward_force = 30
+			attack_delay = 0.1
+
+			execute_bullet = preload("res://bullets/execute_bullet/execute_bullet.tscn")
+			execute_range = 150
+			execute_speed = 3000
+			execute_spread = 0
+			
+		Enums.Weapon.STRONG: pass
+		Enums.Weapon.LONG: pass
+		Enums.Weapon.CURSED: pass
 
 
 func drop_last_item() -> void:

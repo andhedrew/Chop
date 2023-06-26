@@ -6,17 +6,12 @@ var reload_timer := 0
 @onready var animation_player := $"../../Pivot/AnimationPlayer"
 
 func enter(_msg := {}) -> void:
-#	await get_tree().create_timer(0.1).timeout
-#	if Input.is_action_pressed("down") and not owner.is_on_floor():
-#		state_machine.transition_to("Execute")
-#	else:
-#		GameEvents.player_attacked.emit()
-		var bullet = preload("res://bullets/slash_bullet/slash_bullet.tscn").instantiate()
+		var bullet = owner.bullet.instantiate()
 		owner.add_child(bullet)
 		var transform = $"../../Pivot/BulletSpawn".global_transform
-		var fire_range := 10
-		var speed := 150
-		var spread := 0
+		var fire_range = owner.bullet_range
+		var speed = owner.bullet_speed
+		var spread = owner.bullet_spread
 		var rotation := 0
 		if owner.looking == Enums.Looking.UP:
 			rotation = 270
@@ -24,7 +19,7 @@ func enter(_msg := {}) -> void:
 			rotation = 180
 		bullet.setup(transform, fire_range, speed, rotation, spread)
 		SoundPlayer.play_sound("swoosh")
-		owner.velocity.y -= 100
+		owner.velocity.y -= owner.attack_upward_force
 
 
 func physics_update(delta: float) -> void:
@@ -42,7 +37,7 @@ func physics_update(delta: float) -> void:
 
 		
 	await animation_player.animation_finished
-	if owner.is_on_floor() and owner.state != "Cutscene":
+	if state_machine.state_timer > owner.attack_delay and owner.state != "Cutscene":
 		state_machine.transition_to("Idle")
 	elif owner.state != "Cutscene": 
 		state_machine.transition_to("Fall")

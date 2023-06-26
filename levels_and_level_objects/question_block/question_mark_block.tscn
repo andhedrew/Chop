@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://dnjasyv6stmn4"]
+[gd_scene load_steps=10 format=3 uid="uid://dnjasyv6stmn4"]
 
 [ext_resource type="Texture2D" uid="uid://doikwp1wjypbs" path="res://levels_and_level_objects/question_block/question_block.png" id="1_f6ybg"]
 [ext_resource type="Script" path="res://levels_and_level_objects/question_block/question_mark_block.gd" id="1_waprg"]
@@ -11,7 +11,10 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_iiyo1"]
 size = Vector2(29, 30)
 
-[node name="QuestionMarkBlock" type="Node2D"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_nevsp"]
+size = Vector2(32, 32)
+
+[node name="QuestionMarkBlock" type="StaticBody2D"]
 script = ExtResource("1_waprg")
 death_pieces = Array[Resource]([ExtResource("2_da72q"), ExtResource("3_ugfaj")])
 death_pieces2 = Array[Resource]([ExtResource("4_tjrmi"), ExtResource("5_etm41")])
@@ -27,5 +30,8 @@ collision_mask = 8
 [node name="CollisionShape2D" parent="Hurtbox" index="0"]
 position = Vector2(-1, 0)
 shape = SubResource("RectangleShape2D_iiyo1")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_nevsp")
 
 [editable path="Hurtbox"]

@@ -1,4 +1,4 @@
-extends Node2D
+extends StaticBody2D
 
 @onready var hurtbox := $Hurtbox
 @export var death_pieces: Array[Resource]

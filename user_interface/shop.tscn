@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://cxn7jo1be6y6r"]
+[gd_scene load_steps=11 format=3 uid="uid://cxn7jo1be6y6r"]
 
 [ext_resource type="Script" path="res://user_interface/shop.gd" id="1_qya3q"]
 [ext_resource type="Theme" uid="uid://b0dhfhdkknaj3" path="res://user_interface/chop_theme.tres" id="2_syqwu"]
@@ -8,25 +8,6 @@
 [ext_resource type="Texture2D" uid="uid://xoihsb8asqow" path="res://user_interface/healthbar/full_heart.png" id="6_rxqss"]
 [ext_resource type="Texture2D" uid="uid://b7f5noq4ievao" path="res://user_interface/bag/bag3.png" id="7_l3kwy"]
 [ext_resource type="Texture2D" uid="uid://fqlj0b6q2saa" path="res://characters/player/torch_chimney.png" id="8_atysg"]
-
-[sub_resource type="InputEventKey" id="InputEventKey_46b7x"]
-keycode = 4194309
-
-[sub_resource type="InputEventKey" id="InputEventKey_kqep1"]
-keycode = 32
-
-[sub_resource type="InputEventKey" id="InputEventKey_ow7uj"]
-device = -1
-keycode = 88
-unicode = 120
-
-[sub_resource type="InputEventKey" id="InputEventKey_xlfg1"]
-device = -1
-keycode = 90
-unicode = 122
-
-[sub_resource type="Shortcut" id="Shortcut_t7r2c"]
-events = [SubResource("InputEventKey_46b7x"), SubResource("InputEventKey_kqep1"), SubResource("InputEventKey_ow7uj"), SubResource("InputEventKey_xlfg1")]
 
 [sub_resource type="Animation" id="Animation_skycn"]
 resource_name = "fade_in"
@@ -187,7 +168,6 @@ layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 theme = ExtResource("2_syqwu")
-shortcut = SubResource("Shortcut_t7r2c")
 text = "Proceed"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
