@@ -3,7 +3,7 @@ extends CharacterBody2D
 @onready var brick_hunger_bar := $InteractZone/HungerBars/BrickHungerBar
 @onready var plant_hunger_bar := $InteractZone/HungerBars/PlantHungerBar
 @onready var meat_hunger_bar := $InteractZone/HungerBars/MeatHungerBar
-@onready var animation_player := $Pivot/AnimationPlayer
+
 
 var is_full := false
 

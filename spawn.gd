@@ -5,8 +5,8 @@ extends Node2D
 @export_enum("Left", "Right") var facing = "Left"
 var active := true
 
-var timer_minimum := 30.0
-var timer_maximum := 80.0
+var timer_minimum := 3.0
+var timer_maximum := 8.0
 
 func _ready():
 		var new_spawn = spawn.instantiate()
@@ -24,8 +24,9 @@ func respawn():
 	if active:
 		var particles = preload("res://vfx/spawn_particles.tscn").instantiate()
 		add_child(particles)
-		particles.global_position = position
+		particles.position = Vector2(0,-5)
 		particles.emitting = true
+		SoundPlayer.play_sound_positional("spawn", position)
 		await get_tree().create_timer(1.0).timeout
 		var new_spawn = spawn.instantiate()
 		add_child(new_spawn)

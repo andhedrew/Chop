@@ -1018,9 +1018,6 @@ motion_scale = Vector2(0.8, 1)
 
 [node name="InteractiveProps" type="Node2D" parent="."]
 
-[node name="LittleBrother" parent="." instance=ExtResource("32_hyjhu")]
-position = Vector2(0, -31)
-
 [node name="Level" type="Node2D" parent="."]
 
 [node name="TileMap" type="TileMap" parent="."]
@@ -1045,5 +1042,5 @@ offset_right = 40.0
 offset_bottom = 23.0
 text = "DebugMode"
 
-[editable path="LittleBrother"]
-[editable path="LittleBrother/InteractZone/HungerBars"]
+[node name="LittleBrother" parent="." instance=ExtResource("32_hyjhu")]
+position = Vector2(8, -24)

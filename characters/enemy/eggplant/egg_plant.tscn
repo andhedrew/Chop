@@ -225,7 +225,7 @@ script = ExtResource("1_ks3h6")
 health = 2
 hurt_vocalizations = Array[AudioStreamWAV]([ExtResource("2_njo8y")])
 death_vocalization = ExtResource("2_8nwgb")
-death_pieces = Array[Resource]([ExtResource("5_2bs32"), ExtResource("4_8apbx")])
+death_pieces = Array[Resource]([ExtResource("4_8apbx"), ExtResource("5_2bs32")])
 bounty = 1
 
 [node name="state_label" type="Label" parent="."]
