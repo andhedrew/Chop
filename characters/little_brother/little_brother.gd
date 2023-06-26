@@ -3,7 +3,7 @@ extends CharacterBody2D
 @onready var brick_hunger_bar := $InteractZone/HungerBars/BrickHungerBar
 @onready var plant_hunger_bar := $InteractZone/HungerBars/PlantHungerBar
 @onready var meat_hunger_bar := $InteractZone/HungerBars/MeatHungerBar
-
+@onready var animation_player := $Pivot/AnimationPlayer
 
 var is_full := false
 
@@ -53,7 +53,7 @@ func _process(_delta):
 	
 	if state == Enums.State.MOVE:
 		position.x += 0.5
-
+	
 
 func _on_is_full() -> void:
 	$InteractZone/HungerBars.visible = false

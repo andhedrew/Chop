@@ -11,6 +11,7 @@ func _ready():
 func _take_damage(area):
 	if area is HitBox:
 		if area.execute:
+			GameEvents.new_vfx.emit("res://vfx/explosion.tscn", global_position)
 			GameEvents.drop_food.emit(death_pieces, global_position)
 			var bounty := randf_range(1, 8)
 			GameEvents.drop_coins.emit(bounty, global_position)

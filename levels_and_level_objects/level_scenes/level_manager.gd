@@ -24,6 +24,7 @@ func _ready():
 	GameEvents.drop_food.connect(drop_food)
 	GameEvents.drop_health.connect(drop_health)
 	GameEvents.drop_coins.connect(drop_coins)
+	GameEvents.new_vfx.connect(vfx)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -127,3 +128,9 @@ func drop_coins(bounty: int, drop_position : Vector2) -> void:
 				pickup.value = coin
 				call_deferred("add_child", pickup)
 				bounty -= coin
+
+
+func vfx(effect : String, vfx_position : Vector2) -> void:
+	var new_vfx = load(effect).instantiate()
+	new_vfx.position = vfx_position
+	call_deferred("add_child", new_vfx)

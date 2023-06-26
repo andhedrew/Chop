@@ -27,6 +27,8 @@ func _process(_delta):
 			animation_player.play("player_on_beak")
 		Enums.State.HUNGRY:
 			animation_player.play("hungry")
+		Enums.State.TRILL:
+			animation_player.play("swallow")
 
 
 func _on_feeding() -> void:
@@ -39,12 +41,12 @@ func _on_done_feeding() -> void:
 	animation_player.play("chew")
 	await get_tree().create_timer(3.5).timeout
 	animation_player.play("swallow")
-	SoundPlayer.play_sound("lil_bro_trill")
 	await animation_player.animation_finished
 	GameEvents.cutscene_ended.emit()
 	
 
 func _on_evening_start() -> void:
+	SoundPlayer.play_sound("lil_bro_trill_2")
 	await get_tree().create_timer(8.0).timeout
 	animation_player.play("go_to_sleep")
 	await animation_player.animation_finished

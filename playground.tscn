@@ -1168,7 +1168,7 @@ position = Vector2(1384, -72)
 texture = ExtResource("22_ptq7j")
 
 [node name="Player" parent="." node_paths=PackedStringArray("camera") instance=ExtResource("1_371ql")]
-position = Vector2(-576, -32)
+position = Vector2(-600, -217)
 collision_mask = 3
 camera = NodePath("../Camera")
 
