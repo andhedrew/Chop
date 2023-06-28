@@ -10,7 +10,7 @@ var player = null
 func _ready():
 	self.body_entered.connect(_on_body_entered)
 	self.body_exited.connect(_on_body_exited)
-	z_index = SortLayer.FOREGROUND
+	z_index = SortLayer.PLAYER
 
 func _physics_process(delta):
 	if player_in_area:

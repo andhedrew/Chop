@@ -19,10 +19,19 @@ func enter(_msg := {}) -> void:
 			rotation = 180
 		bullet.setup(transform, fire_range, speed, rotation, spread)
 		SoundPlayer.play_sound("swoosh")
+		if owner.facing == Enums.Facing.LEFT:
+			owner.velocity.x += owner.attack_backward_force
+		else:
+			owner.velocity.x -= owner.attack_backward_force
 		owner.velocity.y -= owner.attack_upward_force
+		
 
 
 func physics_update(delta: float) -> void:
+	if owner.weapon == Enums.Weapon.FAST:
+		if Input.is_action_just_pressed("attack"):
+			state_machine.transition_to("Attack")
+	
 	if owner.is_on_floor():
 		owner.velocity.x = lerp(owner.velocity.x, 0.0, Param.FRICTION)
 		

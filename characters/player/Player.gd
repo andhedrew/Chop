@@ -55,6 +55,7 @@ var bullet_range := 10
 var bullet_speed := 150
 var bullet_spread := 0
 var attack_upward_force := 100
+var attack_backward_force := 80
 var attack_delay := 0.3
 
 var execute_bullet := preload("res://bullets/execute_bullet/execute_bullet.tscn")
@@ -133,6 +134,7 @@ func change_weapon(new_weapon) -> void:
 			bullet_speed = 150
 			bullet_spread = 0
 			attack_upward_force = 100
+			attack_backward_force = 80
 			attack_delay = 0.8
 
 			execute_bullet = preload("res://bullets/execute_bullet/execute_bullet.tscn")
@@ -147,6 +149,7 @@ func change_weapon(new_weapon) -> void:
 			bullet_speed = 250
 			bullet_spread = 0
 			attack_upward_force = 30
+			attack_backward_force = 0
 			attack_delay = 0.1
 
 			execute_bullet = preload("res://bullets/execute_bullet/execute_bullet.tscn")

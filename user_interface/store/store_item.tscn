@@ -7,7 +7,7 @@
 [ext_resource type="FontFile" uid="uid://bpybjwc1pwvp4" path="res://user_interface/fonts/Silver.ttf" id="4_avp5i"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_oewnl"]
-bg_color = Color(0.172549, 0.172549, 0.12549, 1)
+bg_color = Color(0.0941176, 0.105882, 0.12549, 1)
 
 [sub_resource type="Animation" id="Animation_t6jwu"]
 resource_name = "RESET"
@@ -131,7 +131,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0.0666667, 0.0588235, 0.0392157, 0.556863)
+color = Color(0.0666667, 0.0588235, 0.0392157, 0)
 
 [node name="MarginContainer" type="MarginContainer" parent="ColorRect"]
 layout_mode = 1

@@ -20,7 +20,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 1.9),
 "transitions": PackedFloat32Array(0.208823, 1),
 "update": 0,
-"values": [Vector2(0, 0), Vector2(575, 0)]
+"values": [Vector2(0, 0), Vector2(629, 0)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_3oms0"]
@@ -30,9 +30,9 @@ _data = {
 
 [sub_resource type="Curve2D" id="Curve2D_8hath"]
 _data = {
-"points": PackedVector2Array(0, 0, 0, 0, 158, 228, 0, 0, 0, 0, 199, 228, 0, 0, 0, 0, 242, 214, 0, 0, 0, 0, 264, 206, 0, 0, 0, 0, 302, 197, 0, 0, 0, 0, 349, 200, 0, 0, 0, 0, 398, 211, 0, 0, 0, 0, 426, 211, 0, 0, 0, 0, 474, 207)
+"points": PackedVector2Array(0, 0, 0, 0, 111, 261, 0, 0, 0, 0, 120, 270, 0, 0, 0, 0, 138, 278, 0, 0, 0, 0, 158, 281, 0, 0, 0, 0, 185, 278, 0, 0, 0, 0, 209, 264, 0, 0, 0, 0, 212, 212, 0, 0, 0, 0, 224, 202, 0, 0, 0, 0, 246, 208, 0, 0, 0, 0, 285, 235, 0, 0, 0, 0, 317, 261, 0, 0, 0, 0, 332, 263, 0, 0, 0, 0, 346, 260, 0, 0, 0, 0, 360, 248, 0, 0, 0, 0, 385, 237, 0, 0, 0, 0, 396, 220, 0, 0, 0, 0, 424, 207, 0, 0, 0, 0, 442, 205, 0, 0, 0, 0, 460, 213, 0, 0, 0, 0, 484, 211, 0, 0, 0, 0, 516, 186, 0, 0, 0, 0, 520, 162, 0, 0, 0, 0, 546, 126, 0, 0, 0, 0, 571, 98)
 }
-point_count = 9
+point_count = 24
 
 [node name="Map" type="CanvasLayer"]
 script = ExtResource("1_pdu78")
@@ -64,7 +64,7 @@ texture = ExtResource("3_1qywo")
 curve = SubResource("Curve2D_8hath")
 
 [node name="PathFollow2D" type="PathFollow2D" parent="Control/Path2D"]
-position = Vector2(158, 228)
+position = Vector2(111, 261)
 rotates = false
 
 [node name="Sprite2D" type="Sprite2D" parent="Control/Path2D/PathFollow2D"]

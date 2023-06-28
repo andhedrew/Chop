@@ -1,7 +1,8 @@
-[gd_scene load_steps=18 format=3 uid="uid://dm85xjdq5mkk3"]
+[gd_scene load_steps=20 format=3 uid="uid://dm85xjdq5mkk3"]
 
 [ext_resource type="Script" path="res://levels_and_level_objects/level_scenes/level_manager.gd" id="1_ity0y"]
 [ext_resource type="Script" path="res://day_night_cycle.gd" id="2_h45bf"]
+[ext_resource type="Texture2D" uid="uid://bhfspiv72jv8u" path="res://sprites/tilesets/fan.png" id="5_7cpu6"]
 [ext_resource type="PackedScene" uid="uid://bqg8q7u0o16hm" path="res://gameplay_objects/camera.tscn" id="6_818il"]
 [ext_resource type="Script" path="res://levels_and_level_objects/level_scenes/debug.gd" id="7_wmhq8"]
 [ext_resource type="PackedScene" uid="uid://bwvi5m2prncxh" path="res://characters/player/player.tscn" id="31_fx83i"]
@@ -950,6 +951,38 @@ texture = ExtResource("33_x28vh")
 2:9/0 = 0
 2:9/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 2:9/0/physics_layer_0/angular_velocity = 0.0
+7:6/animation_columns = 2
+7:6/animation_speed = 0.2
+7:6/animation_frame_0/duration = 0.02
+7:6/animation_frame_1/duration = 0.02
+7:6/0 = 0
+7:6/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+7:6/0/physics_layer_0/angular_velocity = 0.0
+9:6/animation_columns = 2
+9:6/animation_speed = 0.2
+9:6/animation_frame_0/duration = 0.02
+9:6/animation_frame_1/duration = 0.02
+9:6/0 = 0
+9:6/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+9:6/0/physics_layer_0/angular_velocity = 0.0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_6cnpp"]
+texture = ExtResource("5_7cpu6")
+0:0/animation_columns = 4
+0:0/animation_separation = Vector2i(1, 0)
+0:0/animation_speed = 0.2
+0:0/animation_frame_0/duration = 0.2
+0:0/animation_frame_1/duration = 0.2
+0:0/0 = 0
+0:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+0:0/0/physics_layer_0/angular_velocity = 0.0
+1:0/animation_columns = 4
+1:0/animation_separation = Vector2i(1, 0)
+1:0/animation_frame_0/duration = 0.2
+1:0/animation_frame_1/duration = 0.2
+1:0/0 = 0
+1:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+1:0/0/physics_layer_0/angular_velocity = 0.0
 
 [sub_resource type="TileSet" id="TileSet_4pe8b"]
 physics_layer_0/collision_layer = 1
@@ -958,6 +991,7 @@ terrain_set_0/mode = 0
 terrain_set_0/terrain_0/name = "ground"
 terrain_set_0/terrain_0/color = Color(0.5, 0.34375, 0.25, 1)
 sources/1 = SubResource("TileSetAtlasSource_16qtn")
+sources/2 = SubResource("TileSetAtlasSource_6cnpp")
 
 [node name="World" type="Node2D" node_paths=PackedStringArray("camera")]
 script = ExtResource("1_ity0y")
@@ -968,11 +1002,6 @@ libraries = {
 "": SubResource("AnimationLibrary_s2q0i")
 }
 script = ExtResource("2_h45bf")
-
-[node name="Player" parent="." node_paths=PackedStringArray("camera") instance=ExtResource("31_fx83i")]
-position = Vector2(9, -112)
-collision_mask = 3
-camera = NodePath("../Camera")
 
 [node name="BackgroundSky" type="ParallaxBackground" parent="."]
 
@@ -1019,6 +1048,11 @@ motion_scale = Vector2(0.8, 1)
 [node name="InteractiveProps" type="Node2D" parent="."]
 
 [node name="Level" type="Node2D" parent="."]
+
+[node name="Player" parent="." node_paths=PackedStringArray("camera") instance=ExtResource("31_fx83i")]
+position = Vector2(9, -112)
+collision_mask = 3
+camera = NodePath("../Camera")
 
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = SubResource("TileSet_4pe8b")

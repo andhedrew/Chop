@@ -16,7 +16,7 @@ func enter(_msg := {}) -> void:
 	await get_tree().create_timer(0.25).timeout
 	if owner.is_on_floor():
 		var bullet = my_bullet.instantiate()
-		owner.add_child(bullet)
+		get_node("/root/World/").add_child(bullet)
 		var transform : Transform2D = $"../../Pivot/BulletSpawn".global_transform
 		var fire_range := lifetime
 		var bullet_speed := 150

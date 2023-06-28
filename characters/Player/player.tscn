@@ -110,7 +110,7 @@ _data = {
 
 [sub_resource type="Animation" id="Animation_ik58v"]
 resource_name = "attack"
-length = 0.5
+length = 0.45
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -850,14 +850,14 @@ position = Vector2(2, 1)
 texture = ExtResource("3_fpyci")
 hframes = 10
 vframes = 12
-frame = 42
+frame = 40
 
 [node name="Body" type="Sprite2D" parent="Pivot"]
 position = Vector2(2, 1)
 texture = ExtResource("4_xrcf8")
 hframes = 10
 vframes = 12
-frame = 42
+frame = 40
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Pivot"]
 libraries = {

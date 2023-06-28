@@ -5,7 +5,7 @@ extends StaticBody2D
 @export var death_pieces2: Array[Resource]
 
 func _ready():
-	z_index = SortLayer.BACKGROUND
+	z_index = SortLayer.PLAYER
 	hurtbox.area_entered.connect(_take_damage)
 
 func _take_damage(area):
