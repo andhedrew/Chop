@@ -6,6 +6,7 @@ var jumped := false
 func enter(_msg := {}) -> void:
 	jumped = false
 	owner.animation_player.play("stomp")
+	owner.invulnerable = true
 
 
 func update(delta):
@@ -25,3 +26,7 @@ func update(delta):
 func add_velocity() -> void:
 	owner.velocity.y = -300 / state_machine.phase
 	jumped = true
+
+
+func exit() -> void:
+	owner.invulnerable = false

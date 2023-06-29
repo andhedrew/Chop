@@ -7,13 +7,12 @@ extends State
 @onready var hitbox_collision := $"../../Pivot/AttackHitbox/CollisionShape2D"
 @onready var move_amount = Vector2.ZERO # Change this to the desired move amount
 var move_duration = 0.2 # Change this to the desired move duration
-var hitbox_original_width
-var hurtbox_original_width
+var hitbox_original_width := 16
+var hurtbox_original_width := 88
 
 
 func _ready():
-	hitbox_original_width = hitbox_collision.shape.size.x
-	hurtbox_original_width = hurtbox_collision.shape.size.x
+
 	attack_hurtbox.area_entered.connect(on_tongue_attacked)
 	hurtbox_collision.shape.size.x = 1
 	hitbox_collision.shape.size.x = 1

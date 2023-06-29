@@ -19,11 +19,13 @@ func _ready() -> void:
 
 
 func _process(delta: float) -> void:
-	state.update(delta)
+	if !owner.cutscene_running:
+		state.update(delta)
 
 
 func _physics_process(delta: float) -> void:
-	state.physics_update(delta)
+	if !owner.cutscene_running:
+		state.physics_update(delta)
 	state_timer += delta
 	
 	if invulnerable_timer > 0.0:

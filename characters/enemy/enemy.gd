@@ -28,6 +28,7 @@ var wounded : bool = false
 var has_respawned := false
 var player_health_full := true
 var reset_effects_player := false
+var cutscene_running := false
 
 func _ready() -> void:
 	max_health = health
@@ -37,6 +38,8 @@ func _ready() -> void:
 	GameEvents.evening_started.connect(_on_end_of_day)
 	GameEvents.continue_day.connect(_on_end_of_day)
 	GameEvents.player_health_changed.connect(_on_player_health_change)
+	GameEvents.cutscene_started.connect(_on_start_cutscene)
+	GameEvents.cutscene_ended.connect(_on_end_cutscene)
 
 
 func _physics_process(_delta):
@@ -161,3 +164,11 @@ func _on_player_health_change(player_health, full_health) -> void:
 		player_health_full = true
 	else:
 		player_health_full = false
+
+
+func _on_start_cutscene() -> void:
+	cutscene_running = true
+
+
+func _on_end_cutscene() -> void:
+	cutscene_running =  false
