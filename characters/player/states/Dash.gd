@@ -48,7 +48,7 @@ func exit():
 		bullet.setup(transform, fire_range, speed, rotation, spread)
 
 		bullet = preload("res://bullets/slice_charge_bullet/slice_charge_bullet.tscn").instantiate()
-		owner.add_child(bullet)
+		owner.call_deferred("add_child", bullet)
 		transform = $"../../BoosterPivot".global_transform
 		fire_range = 10
 		speed = 200

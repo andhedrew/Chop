@@ -11,7 +11,7 @@ var state := Enums.State.IDLE
 
 
 func _ready():
-#	GameEvents.cutscene_started.emit() TK
+	GameEvents.cutscene_started.emit()
 	z_index = SortLayer.PLAYER
 	
 	var brick_stomach = SaveManager.load_item("brick_stomach")
@@ -52,7 +52,7 @@ func _process(_delta):
 		_on_is_full()
 	
 	if state == Enums.State.MOVE:
-		position.x += 0.5
+		position.x += 0.4
 	
 
 func _on_is_full() -> void:

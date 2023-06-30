@@ -111,6 +111,7 @@ death_pieces = Array[Resource]([ExtResource("4_r5mcm"), ExtResource("5_gvjfh"), 
 bounty = 2
 
 [node name="Body" parent="Pivot" index="0"]
+position = Vector2(-3, -13)
 texture = ExtResource("7_dw4vj")
 
 [node name="AnimationPlayer" parent="Pivot" index="1"]

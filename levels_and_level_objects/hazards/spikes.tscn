@@ -1,10 +1,11 @@
-[gd_scene load_steps=5 format=3 uid="uid://b0sq1f61b07wm"]
+[gd_scene load_steps=6 format=3 uid="uid://b0sq1f61b07wm"]
 
+[ext_resource type="Script" path="res://levels_and_level_objects/hazards/spikes.gd" id="1_ey305"]
 [ext_resource type="Texture2D" uid="uid://ckgyfddfudpdt" path="res://levels_and_level_objects/hazards/spikes.png" id="1_plifg"]
 [ext_resource type="PackedScene" uid="uid://cxfiuhgots5lg" path="res://hitboxes/Hitbox.tscn" id="2_5xqir"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_feuyy"]
-radius = 7.99925
+radius = 4.99953
 height = 35.9966
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ilgmv"]
@@ -13,6 +14,7 @@ size = Vector2(32, 25)
 [node name="Spikes" type="StaticBody2D"]
 position = Vector2(0, -8)
 collision_layer = 64
+script = ExtResource("1_ey305")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(0, 4)
@@ -25,6 +27,7 @@ collision_mask = 2
 damage = 2
 
 [node name="CollisionShape2D" parent="Hitbox" index="0"]
+position = Vector2(0, -1)
 rotation = -1.55711
 shape = SubResource("CapsuleShape2D_feuyy")
 

@@ -106,7 +106,6 @@ func drop_health(drop_position : Vector2) -> void:
 
 
 func drop_coins(bounty: int, drop_position : Vector2) -> void:
-	var spread = 6 # adjust this value to increase or decrease the spread of the pickups
 	var new_velocity = Vector2(0, -12) # adjust this value to control the initial velocity of the pickups
 	if bounty > 0:
 		var coins = [8, 4, 2, 1]

@@ -1050,9 +1050,12 @@ motion_scale = Vector2(0.8, 1)
 [node name="Level" type="Node2D" parent="."]
 
 [node name="Player" parent="." node_paths=PackedStringArray("camera") instance=ExtResource("31_fx83i")]
-position = Vector2(9, -112)
+position = Vector2(24, -112)
 collision_mask = 3
 camera = NodePath("../Camera")
+
+[node name="LittleBrother" parent="." instance=ExtResource("32_hyjhu")]
+position = Vector2(8, -32)
 
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = SubResource("TileSet_4pe8b")
@@ -1075,6 +1078,3 @@ script = ExtResource("7_wmhq8")
 offset_right = 40.0
 offset_bottom = 23.0
 text = "DebugMode"
-
-[node name="LittleBrother" parent="." instance=ExtResource("32_hyjhu")]
-position = Vector2(8, -32)

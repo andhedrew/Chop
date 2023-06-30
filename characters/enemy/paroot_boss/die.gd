@@ -2,6 +2,7 @@ extends State
 
 
 func enter(_msg := {}) -> void:
+	$"../../Hitbox".monitoring = false
 	GameEvents.cutscene_started.emit()
 	GameEvents.camera_change_focus.emit(owner)
 	owner.animation_player.play("die")

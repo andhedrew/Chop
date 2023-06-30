@@ -21,6 +21,7 @@ var max_health = health
 @onready var effects_player := $Pivot/EffectsPlayer
 @onready var state_label: Label = $state_label
 
+
 var direction := -1
 var facing := Enums.Facing.LEFT
 var colliding_hitbox_position : Dictionary

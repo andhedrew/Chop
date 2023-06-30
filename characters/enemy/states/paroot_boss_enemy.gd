@@ -10,7 +10,7 @@ func _ready():
 	$Pivot/Hurtbox.area_entered.connect(_take_damage)
 
 
-func _process(delta):
+func _process(_delta):
 	count += 1
 	$state_label2.text = str(health)
 

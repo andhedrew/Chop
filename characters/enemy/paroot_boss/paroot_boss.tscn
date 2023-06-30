@@ -392,7 +392,7 @@ size = Vector2(39, 42)
 collision_layer = 4
 collision_mask = 9
 script = ExtResource("2_y2kgg")
-health = 14
+health = 4
 speed = 50.0
 death_pieces = Array[Resource]([ExtResource("4_omtka"), ExtResource("4_omtka"), ExtResource("3_tncna"), ExtResource("3_tncna"), ExtResource("2_bl0q7"), ExtResource("4_omtka"), ExtResource("4_omtka"), ExtResource("6_litvv")])
 
