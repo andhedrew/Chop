@@ -1,0 +1,201 @@
+[gd_scene load_steps=19 format=3 uid="uid://cce1rkl4yiv8g"]
+
+[ext_resource type="Script" path="res://main_menu.gd" id="1_rluoc"]
+[ext_resource type="Theme" uid="uid://b0dhfhdkknaj3" path="res://user_interface/chop_theme.tres" id="2_h2fyh"]
+[ext_resource type="Texture2D" uid="uid://d4cpdtp6ng8ou" path="res://user_interface/main_menu/menu_beast.png" id="2_rwphk"]
+[ext_resource type="Texture2D" uid="uid://clrb5gif84bdf" path="res://user_interface/main_menu/menu_butcher.png" id="3_pvcq2"]
+[ext_resource type="Texture2D" uid="uid://8gy7beu6w5fj" path="res://user_interface/main_menu/menu_logo.png" id="4_m3cka"]
+[ext_resource type="Texture2D" uid="uid://d2sfjwkrv1clw" path="res://vfx/rain_drop.png" id="6_dpn0x"]
+[ext_resource type="Texture2D" uid="uid://bilkanq4ivsho" path="res://vfx/rain_striking.png" id="7_03ygk"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_84x4k"]
+bg_color = Color(0.156863, 0.14902, 0.156863, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_eytvx"]
+bg_color = Color(0.2, 0.143267, 0.126, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vfl18"]
+bg_color = Color(0.101961, 0.0941176, 0.101961, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7cqy0"]
+bg_color = Color(0.278431, 0.266667, 0.278431, 1)
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_sy1oe"]
+emission_shape = 3
+emission_box_extents = Vector3(400, 5, 1)
+particle_flag_disable_z = true
+direction = Vector3(0, 1, 0)
+spread = 0.0
+gravity = Vector3(0, 0, 0)
+initial_velocity_min = 300.0
+initial_velocity_max = 300.0
+orbit_velocity_min = 0.0
+orbit_velocity_max = 0.0
+color = Color(1, 1, 1, 0.584314)
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_jmwst"]
+particles_animation = true
+particles_anim_h_frames = 6
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="Gradient" id="Gradient_qorv8"]
+colors = PackedColorArray(1, 1, 1, 1, 0.231518, 0.231518, 0.231518, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_ruwf1"]
+gradient = SubResource("Gradient_qorv8")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_nq8je"]
+emission_shape = 3
+emission_box_extents = Vector3(8, 1, 1)
+particle_flag_disable_z = true
+gravity = Vector3(0, 0, 0)
+orbit_velocity_min = 0.0
+orbit_velocity_max = 0.0
+color = Color(1, 1, 1, 0.87451)
+color_ramp = SubResource("GradientTexture1D_ruwf1")
+anim_speed_min = 0.4
+anim_speed_max = 0.4
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_7gh33"]
+emission_shape = 3
+emission_box_extents = Vector3(30, 30, 1)
+particle_flag_disable_z = true
+gravity = Vector3(0, 0, 0)
+orbit_velocity_min = 0.0
+orbit_velocity_max = 0.0
+color = Color(1, 1, 1, 0.87451)
+color_ramp = SubResource("GradientTexture1D_ruwf1")
+anim_speed_min = 0.4
+anim_speed_max = 0.4
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_1r2yo"]
+emission_shape = 3
+emission_box_extents = Vector3(1, 6, 1)
+particle_flag_disable_z = true
+direction = Vector3(0, 1, 0)
+spread = 0.0
+gravity = Vector3(0, 0, 0)
+initial_velocity_min = 300.0
+initial_velocity_max = 300.0
+orbit_velocity_min = 0.0
+orbit_velocity_max = 0.0
+color = Color(1, 1, 1, 0.584314)
+
+[node name="MainMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_rluoc")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.156863, 0.14902, 0.156863, 1)
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("2_rwphk")
+
+[node name="TextureRect2" type="TextureRect" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("3_pvcq2")
+
+[node name="TextureRect3" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = -68.0
+offset_top = -97.0
+offset_right = 572.0
+offset_bottom = 263.0
+texture = ExtResource("4_m3cka")
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 0
+offset_left = 90.0
+offset_top = 193.0
+offset_right = 186.0
+offset_bottom = 224.0
+theme = ExtResource("2_h2fyh")
+theme_override_styles/normal = SubResource("StyleBoxFlat_84x4k")
+theme_override_styles/hover = SubResource("StyleBoxFlat_eytvx")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_vfl18")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_7cqy0")
+text = "New Game"
+
+[node name="Button3" type="Button" parent="."]
+layout_mode = 0
+offset_left = 90.0
+offset_top = 237.0
+offset_right = 224.0
+offset_bottom = 268.0
+theme = ExtResource("2_h2fyh")
+theme_override_styles/normal = SubResource("StyleBoxFlat_84x4k")
+theme_override_styles/hover = SubResource("StyleBoxFlat_eytvx")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_vfl18")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_7cqy0")
+disabled = true
+text = "Continue Game"
+
+[node name="Button2" type="Button" parent="."]
+layout_mode = 0
+offset_left = 90.0
+offset_top = 283.0
+offset_right = 194.0
+offset_bottom = 314.0
+theme = ExtResource("2_h2fyh")
+theme_override_styles/normal = SubResource("StyleBoxFlat_84x4k")
+theme_override_styles/hover = SubResource("StyleBoxFlat_eytvx")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_vfl18")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_7cqy0")
+text = "Quit Game"
+
+[node name="rain" type="GPUParticles2D" parent="."]
+position = Vector2(304, -26)
+amount = 200
+process_material = SubResource("ParticleProcessMaterial_sy1oe")
+texture = ExtResource("6_dpn0x")
+lifetime = 4.0
+
+[node name="GPUParticles2D2" type="GPUParticles2D" parent="."]
+material = SubResource("CanvasItemMaterial_jmwst")
+position = Vector2(449, 133)
+amount = 1
+process_material = SubResource("ParticleProcessMaterial_nq8je")
+texture = ExtResource("7_03ygk")
+lifetime = 0.2
+randomness = 0.43
+
+[node name="GPUParticles2D5" type="GPUParticles2D" parent="."]
+material = SubResource("CanvasItemMaterial_jmwst")
+position = Vector2(300, 346)
+amount = 1
+process_material = SubResource("ParticleProcessMaterial_7gh33")
+texture = ExtResource("7_03ygk")
+lifetime = 0.2
+
+[node name="GPUParticles2D6" type="GPUParticles2D" parent="."]
+material = SubResource("CanvasItemMaterial_jmwst")
+position = Vector2(344, 49)
+rotation = -0.5044
+amount = 1
+process_material = SubResource("ParticleProcessMaterial_7gh33")
+texture = ExtResource("7_03ygk")
+lifetime = 0.2
+
+[node name="rain2" type="GPUParticles2D" parent="."]
+position = Vector2(280, 111)
+amount = 12
+process_material = SubResource("ParticleProcessMaterial_1r2yo")
+texture = ExtResource("6_dpn0x")
+lifetime = 4.0

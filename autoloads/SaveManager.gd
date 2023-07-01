@@ -35,6 +35,7 @@ func setup_json() -> void:
 			"plant_bar_prompted": false,
 			"start_of_level_prompted": false,
 			"full_bag_prompted": false,
+			"saved_data": false
 				}
 	}
 	var json_data := JSON.stringify(save_data)
@@ -54,6 +55,7 @@ func load_json() -> void:
 
 
 func save_item(key, new_value) -> void:
+	data["saved_data"] = true
 	data[key] = new_value
 	var json_data := JSON.stringify(data)
 	var file_access := FileAccess.open(SAVE_PATH, FileAccess.WRITE)

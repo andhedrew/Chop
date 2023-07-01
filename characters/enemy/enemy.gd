@@ -153,7 +153,7 @@ func _on_player_syphoning(_player_pos) -> void:
 func _on_end_of_day() -> void:
 	var particles = preload("res://vfx/despawn_particles.tscn").instantiate()
 	get_parent().add_child(particles)
-	particles.global_position = get_parent().position
+	particles.position = Vector2(0,-5)
 	particles.z_index = SortLayer.IN_FRONT
 	particles.emitting = true
 	$StateMachine.transition_to("Syphoned")
