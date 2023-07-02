@@ -58,15 +58,16 @@ func _physics_process(_delta):
 
 
 func set_facing(facing_dir) -> void:
-	facing = facing_dir
-	if facing == Enums.Facing.LEFT:
+	if facing_dir == Enums.Facing.LEFT:
 		direction = -1
 		$Pivot.transform.x.x = 1
 		$BloodParticles.transform.x.x = 1
-	elif facing == Enums.Facing.RIGHT:
+	elif facing_dir == Enums.Facing.RIGHT:
 		direction = 1
 		$Pivot.transform.x.x = -1
 		$BloodParticles.transform.x.x = -1
+	
+	facing = facing_dir
 
 
 func switch_facing() -> void:

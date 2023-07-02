@@ -52,7 +52,7 @@ func _process(_delta):
 		_on_is_full()
 	
 	if state == Enums.State.MOVE:
-		position.x += 0.4
+		position.x += 0.6
 	
 
 func _on_is_full() -> void:

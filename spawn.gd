@@ -5,11 +5,12 @@ extends Node2D
 @export_enum("Left", "Right") var facing = "Left"
 var active := true
 
-var timer_minimum := 40.0
-var timer_maximum := 80.0
+var timer_minimum := 2.0
+var timer_maximum := 4.0
 
 func _ready():
 		var new_spawn = spawn.instantiate()
+		
 		add_child(new_spawn)
 		if facing == "Left":
 			new_spawn.facing = Enums.Facing.LEFT
@@ -30,6 +31,11 @@ func respawn():
 		await get_tree().create_timer(1.0).timeout
 		var new_spawn = spawn.instantiate()
 		add_child(new_spawn)
+		if facing == "Left":
+			new_spawn.facing = Enums.Facing.LEFT
+		elif facing == "Right":
+			new_spawn.facing = Enums.Facing.RIGHT
+		new_spawn.set_facing(new_spawn.facing)
 		new_spawn.has_respawned = true
 
 
