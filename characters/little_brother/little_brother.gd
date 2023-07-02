@@ -37,10 +37,11 @@ func _ready():
 	state = Enums.State.IDLE
 	
 	GameEvents.evening_started.connect(_on_start_of_evening)
-	GameEvents.cutscene_ended.emit()
-	GameEvents.hunt_started.emit()
 	GameEvents.done_feeding_little_brother.connect(save_stomachs)
 	
+	await get_tree().create_timer(0.1).timeout
+	GameEvents.cutscene_ended.emit()
+	GameEvents.hunt_started.emit()
 
 
 func _process(_delta):

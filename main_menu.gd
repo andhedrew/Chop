@@ -18,6 +18,8 @@ func _process(delta):
 
 func _new_game() -> void:
 	SaveManager.reset_save()
+	SaveManager.setup_json()
+	SaveManager.load_json()
 	Fade.crossfade_prepare(0.4, "ChopHorizontal")
 	SoundPlayer.play_sound("paper_rip")
 	get_tree().change_scene_to_file("res://levels_and_level_objects/level_scenes/city/city_1.tscn")

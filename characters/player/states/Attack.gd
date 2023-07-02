@@ -23,7 +23,9 @@ func enter(_msg := {}) -> void:
 			owner.velocity.x += owner.attack_backward_force
 		else:
 			owner.velocity.x -= owner.attack_backward_force
-		owner.velocity.y -= owner.attack_upward_force
+		
+		if owner.looking != Enums.Looking.UP:
+			owner.velocity.y -= owner.attack_upward_force
 		
 
 

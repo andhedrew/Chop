@@ -36,7 +36,7 @@ func _process(_delta):
 
 
 func _restart_level() -> void:
-	print_debug("restarting")
+	GameEvents.cutscene_started.emit()
 	Fade.crossfade_prepare(0.4, "ChopHorizontal")
 	SoundPlayer.play_sound("paper_rip")
 	get_tree().reload_current_scene()

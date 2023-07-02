@@ -18,6 +18,10 @@ func _ready():
 	brick_hunger_bar.max_value = 100
 	plant_hunger_bar.max_value = 100
 	meat_hunger_bar.max_value = 100
+	
+	brick_hunger_bar.value = brick_value
+	plant_hunger_bar.value = plant_value
+	meat_hunger_bar.value = meat_value
 
 
 func _on_gaining_food(pickup) -> void:
