@@ -22,6 +22,7 @@ health = 2
 speed = 15.0
 hurt_vocalizations = Array[AudioStreamWAV]([ExtResource("2_x4sfk"), ExtResource("3_k5rm7")])
 death_pieces = Array[Resource]([ExtResource("2_0yvwt")])
+bounty = 1
 
 [node name="Body" parent="Pivot" index="0"]
 position = Vector2(-1, -6)

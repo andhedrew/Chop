@@ -36,3 +36,6 @@ extends Node
 # parrot https://freesound.org/people/Breviceps/sounds/445119/
 # button click https://freesound.org/people/TheWilliamSounds/sounds/686557/
 # money bag https://freesound.org/people/PhilSavlem/sounds/338260/
+# Rain and Thunder https://freesound.org/people/FlatHill/sounds/237729/
+# Scary Violins https://freesound.org/people/lennyboy/sounds/244417/
+#page turn https://freesound.org/people/flag2/sounds/63318/

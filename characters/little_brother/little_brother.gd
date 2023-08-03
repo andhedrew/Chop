@@ -13,7 +13,6 @@ var state := Enums.State.IDLE
 func _ready():
 	GameEvents.cutscene_started.emit()
 	z_index = SortLayer.PLAYER
-	
 	var brick_stomach = SaveManager.load_item("brick_stomach")
 	if brick_stomach != null:
 		brick_hunger_bar.value = brick_stomach
@@ -53,8 +52,9 @@ func _process(_delta):
 		_on_is_full()
 	
 	if state == Enums.State.MOVE:
-		position.x += 0.6
+		position.x += 0.75
 	
+
 
 func _on_is_full() -> void:
 	$InteractZone/HungerBars.visible = false

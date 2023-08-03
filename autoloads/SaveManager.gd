@@ -16,11 +16,11 @@ func setup_json() -> void:
 	var save_data := {
 		"level" : "res://levels_and_level_objects/level_scenes/city_level_1.tscn",
 		"map_pos" : 0.0,
-		"health" : 6,
+		"health" : 4,
 		"money" : 0,
-		"bag_size" : 15,
+		"bag_size" : 10,
 		"booster_upgrade" : false,
-		"booster_charges" : 3,
+		"booster_charges" : 2,
 		"syphon_upgrade" : false,
 		"bbq_upgrade" : false,
 		"brick_stomach" : 0.0,
@@ -35,7 +35,8 @@ func setup_json() -> void:
 			"plant_bar_prompted": false,
 			"start_of_level_prompted": false,
 			"full_bag_prompted": false,
-			"saved_data": false
+		"saved_data": false
+			
 				}
 	}
 	var json_data := JSON.stringify(save_data)

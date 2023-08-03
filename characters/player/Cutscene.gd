@@ -2,7 +2,7 @@ extends State
 
 
 func enter(_msg := {}) -> void:
-	pass
+	$"../../Pivot/AnimationPlayer".pause()
 
 
 func update(_delta: float) -> void:

@@ -27,7 +27,7 @@ var state:= "Idle"
 var state_last_frame := state
 
 var bag := []
-var bag_capacity := 10
+var bag_capacity := 8
 var has_booster_upgrade := false
 var torch_charges := 1
 var max_torch_charges := torch_charges
@@ -75,7 +75,9 @@ func _ready():
 		torch_charges = charges
 		max_torch_charges = torch_charges
 		GameEvents.charge_amount_changed.emit(torch_charges, max_torch_charges)
+	z_index = SortLayer.PLAYER
 	_load_data()
+	
 
 
 func _load_data() -> void:
@@ -117,11 +119,6 @@ func _physics_process(delta):
 	
 	if Input.is_action_just_pressed("unload_bag"):
 		drop_last_item()
-	
-	if Input.is_action_just_pressed("1"):
-		change_weapon(Enums.Weapon.BASIC)
-	elif Input.is_action_just_pressed("2"):
-		change_weapon(Enums.Weapon.FAST)
 
 
 func change_weapon(new_weapon) -> void:
@@ -168,7 +165,7 @@ func drop_last_item() -> void:
 		var pickup = preload("res://pickups/food_pickup.tscn").instantiate()
 		pickup.setup(item)
 		get_node("/root/World").call_deferred("add_child", pickup)
-		pickup.sort_layer = SortLayer.BACKGROUND
+		pickup.sort_layer = SortLayer.PLAYER
 		pickup.position.y = global_position.y - 30
 		if facing == Enums.Facing.RIGHT:
 			pickup.position.x = global_position.x + 23

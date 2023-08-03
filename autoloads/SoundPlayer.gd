@@ -35,7 +35,7 @@ func play_ambient(sound: Variant) -> AudioStreamPlayer:
 	var audio_stream_player = preload("res://audio/audio.tscn").instantiate()
 	ambient_players.add_child(audio_stream_player)
 	if sound is String:
-		audio_stream_player.stream = load("res://audio/ambient/"+ sound +".wav")
+		audio_stream_player.stream = load("res://audio/ambient/"+ sound +".ogg")
 	elif sound is AudioStreamWAV:
 		audio_stream_player.stream = sound
 	# Fade in the sound

@@ -11,7 +11,7 @@ var tutorial = {
 }
 
 func _ready():
-	SoundPlayer.play_music("blues")
+#	SoundPlayer.play_music("blues")
 	tutorial = SaveManager.load_item("tutorial")
 	GameEvents.evening_ended.connect(_on_evening_ended)
 	GameEvents.transition_to_map.connect(_on_transitioning_to_map)
@@ -36,8 +36,8 @@ func _on_full_bag() -> void:
 	if not SaveManager.load_item("tutorial/full_bag_prompted"):
 		var dialogue = preload("res://user_interface/dialogue.tscn").instantiate()
 		dialogue.dialog = [
-			"Bag's full.", 
-			"Won't be able to carry no more food until I feed him.",
+			"Bag's full, can't pick up no more.", 
+			"Can press 'D' to empty some out, or go feed the beast", 
 			]
 		camera.add_child(dialogue)
 		var dialogue_width := 180.0
@@ -93,8 +93,6 @@ func _on_adding_food_to_bag(_food) -> void:
 		dialogue.dialog = [
 			"Got some food in your bag.", 
 			"Go back any time to feed him.", 
-			"If you bag gets full, can't pick up no more.", 
-			"Can press 'D' to empty some out.", 
 			]
 		camera.add_child(dialogue)
 		var dialogue_width := 180.0
@@ -122,9 +120,9 @@ func _on_enemy_took_damage() -> void:
 		var dialogue = preload("res://user_interface/dialogue.tscn").instantiate()
 		dialogue.dialog = [
 			"It's bleeding, one health left.", 
-			"1. Jump using Z. Keep it held down", 
-			"2. Press down while jumping to chop a bleeding enemy",
-			"Chop enemies when they're bleeding to chop 'em up into food."
+			"Press Z to jump.", 
+			"While holding down Z, press down to CHOP!", 
+			"CHOP enemies when they're bleeding to slice 'em up into food."
 			]
 		camera.add_child(dialogue)
 		var dialogue_width := 180.0

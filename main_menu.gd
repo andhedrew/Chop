@@ -1,6 +1,9 @@
 extends Control
 
 
+var music: AudioStreamPlayer
+var ambient: AudioStreamPlayer
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	var saved = SaveManager.load_item("saved_data")
@@ -9,6 +12,8 @@ func _ready():
 	$Button.pressed.connect(_new_game)
 	$Button3.pressed.connect(_continue_game)
 	$Button2.pressed.connect(_end_game)
+	music = SoundPlayer.play_music("violins")
+	ambient = SoundPlayer.play_music("rain")
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -39,3 +44,10 @@ func _continue_game() -> void:
 func _end_game() -> void:
 	get_tree().quit()
 	print_debug("end_game")
+
+
+func _exit_tree():
+	print_debug("exited")
+	music.playing = false
+	ambient.playing = false
+	

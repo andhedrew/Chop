@@ -13,6 +13,7 @@ var cutscene_running := false
 var faded_in := false
 var food_faded_in := false
 
+
 func _ready():
 	fade_animation_player.play("RESET")
 	self.body_entered.connect(_on_player_entered)

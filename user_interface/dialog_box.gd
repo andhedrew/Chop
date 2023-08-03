@@ -13,11 +13,10 @@ signal is_finished
 
 func _ready():
 	load_dialog()
+	z_index = SortLayer.HUD
 	#GameEvents.dialogue_finished.connect(load_dialog)
 
 func _process(delta):
-	if Input.is_action_just_pressed("debug_1"):
-		_kill()
 	$VBoxContainer/Label/MarginContainer/NinePatchRect/Sprite2D.visible = finished
 	if Input.is_action_just_pressed("ui_accept") and finished:
 		load_dialog()
@@ -41,6 +40,7 @@ func _process(delta):
 #	dialog_index += 1
 
 func load_dialog():
+	SoundPlayer.play_sound("page")
 	GameEvents.cutscene_started.emit()
 	GameEvents.dialogue_started.emit()
 	if dialog_index < dialog.size():
@@ -55,6 +55,7 @@ func load_dialog():
 		queue_free()
 		is_finished.emit()
 	dialog_index += 1
+	
 
 
 

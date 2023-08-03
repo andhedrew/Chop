@@ -58,6 +58,8 @@ func _add_pickup_to_inventory(player) -> void:
 		player.bag.append($Sprite2D.texture)
 		GameEvents.added_food_to_bag.emit(self)
 		_destroy(player.position)
+	else:
+		GameEvents.bag_full.emit()
 
 
 func setup(new_texture: CompressedTexture2D) -> void:
