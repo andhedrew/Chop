@@ -10,8 +10,8 @@ config_version=5
 
 [application]
 
-config/name="Chop"
-run/main_scene="res://user_interface/main_menu.tscn"
+config/name="Butcher and the Beast"
+run/main_scene="res://playground.tscn"
 config/features=PackedStringArray("4.0", "GL Compatibility")
 config/icon="res://icon.svg"
 

@@ -18,7 +18,10 @@ func update(_delta: float) -> void:
 func physics_update(delta: float) -> void:
 	var input_direction_x: float = Input.get_axis("left", "right")
 	owner.velocity.x = move_toward(owner.velocity.x, owner.max_speed * input_direction_x, owner.acceleration_in_air)
-	owner.velocity.y += Param.GRAVITY * delta
+	if owner.in_water:
+		owner.velocity.y += Param.WATER_GRAVITY * delta
+	else:
+		owner.velocity.y += Param.GRAVITY * delta
 	owner.move_and_slide()
 
 

@@ -14,7 +14,10 @@ func physics_update(delta: float) -> void:
 		- Input.get_action_strength("left")
 	)
 	owner.velocity.x = move_toward(owner.velocity.x, owner.max_speed * input_direction_x, owner.acceleration)
-	owner.velocity.y += Param.GRAVITY * delta
+	if owner.in_water:
+		owner.velocity.y += Param.WATER_GRAVITY * delta
+	else:
+		owner.velocity.y += Param.GRAVITY * delta
 	owner.move_and_slide()
 
 	if Input.is_action_just_pressed("jump") or !jump_buffer_timer.is_stopped():

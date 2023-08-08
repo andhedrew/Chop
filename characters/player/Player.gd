@@ -19,6 +19,8 @@ var looking := Enums.Looking.FORWARD
 var default_facing = facing
 var facing_last_frame = facing
 
+var in_water := false
+
 var attack: bool
 var jump: bool
 var dash: bool
