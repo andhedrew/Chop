@@ -173,7 +173,6 @@ func splash(index, speed):
 	pass
 
 func _on_Water_Body_Area_body_entered(body):
-		print_debug(str(body))
 		body.is_in_water()
 
 		#creates a instace of the particle system
@@ -184,6 +183,7 @@ func _on_Water_Body_Area_body_entered(body):
 
 		#sets the position of the particle to the same of the body
 		s.global_position = body.global_position
+		s.z_index = SortLayer.BACKGROUND
 
 		pass # Replace with function body.
 

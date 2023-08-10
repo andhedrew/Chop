@@ -1191,6 +1191,7 @@ position = Vector2(-632, -32)
 
 [node name="Water_Body" parent="." instance=ExtResource("36_hcpxa")]
 position = Vector2(-440, 13)
+spring_number = 8
 
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = SubResource("TileSet_4pe8b")

@@ -15,11 +15,12 @@ var height = 0
 var target_height = 0
 
 @onready var collision = $Area2D/CollisionShape2D
+@onready var area = $Area2D
 
 # the index of this spring
 #we will set it on initialize
 var index = 0
-
+var counter := 0
 #how much an external object movement will affect this spring
 var motion_factor = 0.02
 
@@ -31,11 +32,15 @@ var collided_with = null
 #to make our wave move!
 signal splash
 
+func _ready():
+	area.body_exited.connect(_on_body_exited)
+
+
 func water_update(spring_constant, dampening):
 	## This function applies the hooke's law force to the spring!!
 	## This function will be called in each frame
 	## hooke's law ---> F =  - K * x 
-	
+	counter += 1
 	#update the height value based on our current position
 	height = position.y
 	
@@ -93,3 +98,7 @@ func _on_Area2D_body_entered(body):
 	#emit the signal "splash" to call the splash function, at our water body script
 	emit_signal("splash",index,speed)
 	pass # Replace with function body.
+	
+
+func _on_body_exited(body) -> void:
+	collided_with = null

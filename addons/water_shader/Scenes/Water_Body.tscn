@@ -6,7 +6,7 @@
 
 [sub_resource type="ShaderMaterial" id="4"]
 shader = ExtResource("2_qernt")
-shader_parameter/tint = Color(0.439216, 0.894118, 1, 1)
+shader_parameter/tint = Color(0.313726, 0.294118, 0.407843, 1)
 
 [sub_resource type="Curve2D" id="1"]
 
