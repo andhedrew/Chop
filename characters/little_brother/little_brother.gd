@@ -11,7 +11,7 @@ var state := Enums.State.IDLE
 
 
 func _ready():
-	GameEvents.cutscene_started.emit()
+#	GameEvents.cutscene_started.emit() TK
 	z_index = SortLayer.PLAYER
 	var brick_stomach = SaveManager.load_item("brick_stomach")
 	if brick_stomach != null:

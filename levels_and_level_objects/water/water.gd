@@ -4,6 +4,7 @@ extends Area2D
 var player_in_area := false
 var player = null
 @onready var collision_shape: CollisionShape2D = $CollisionShape2D
+@onready var bubbles := $ColorRect/GPUParticles2D
 
 func _ready():
 	self.body_entered.connect(_on_body_entered)
@@ -12,9 +13,11 @@ func _ready():
 
 func _physics_process(delta):
 	if player_in_area:
-		pass
+		bubbles.visible = true
+		bubbles.position.x = player.position.x
+		bubbles.position.y = player.position.y - 30
 	else:
-		pass
+		bubbles.visible = false
 
 func _on_body_entered(body):
 	if body is Player:

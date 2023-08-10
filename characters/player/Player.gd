@@ -294,3 +294,11 @@ func _on_continue_day() -> void:
 	$Pivot.transform.x.x = 1
 	$Pivot.animation_player.play("walk")
 	cutscene_walk = true
+
+
+func is_in_water() -> void:
+	in_water = true
+
+
+func out_of_water() -> void:
+	in_water = false

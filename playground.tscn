@@ -1,4 +1,4 @@
-[gd_scene load_steps=47 format=3 uid="uid://bvuqbhwqfo41j"]
+[gd_scene load_steps=49 format=3 uid="uid://bvuqbhwqfo41j"]
 
 [ext_resource type="PackedScene" uid="uid://bwvi5m2prncxh" path="res://characters/player/player.tscn" id="1_371ql"]
 [ext_resource type="Script" path="res://levels_and_level_objects/level_scenes/level_manager.gd" id="1_nxsgc"]
@@ -34,6 +34,7 @@
 [ext_resource type="Texture2D" uid="uid://clg4y7ls1pfeg" path="res://levels_and_level_objects/backgrounds/unmoving_scenery_dark/foliage11.png" id="29_0tmwr"]
 [ext_resource type="PackedScene" uid="uid://bqg8q7u0o16hm" path="res://gameplay_objects/camera.tscn" id="34_ck663"]
 [ext_resource type="Script" path="res://levels_and_level_objects/water/water.gd" id="35_y388t"]
+[ext_resource type="PackedScene" uid="uid://dva55whxpft42" path="res://addons/water_shader/Scenes/Water_Body.tscn" id="36_hcpxa"]
 [ext_resource type="PackedScene" uid="uid://cf8s3hxbyvsv8" path="res://characters/little_brother/little_brother.tscn" id="39_wpx1l"]
 
 [sub_resource type="Animation" id="Animation_vp1kt"]
@@ -893,6 +894,16 @@ sources/1 = SubResource("TileSetAtlasSource_16qtn")
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_g47q1"]
 size = Vector2(191, 41.1321)
 
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_cntjr"]
+lifetime_randomness = 0.43
+emission_shape = 3
+emission_box_extents = Vector3(3, 1, 1)
+particle_flag_disable_z = true
+gravity = Vector3(0, -30, 0)
+orbit_velocity_min = 0.0
+orbit_velocity_max = 0.0
+scale_max = 2.0
+
 [node name="World" type="Node2D"]
 script = ExtResource("1_nxsgc")
 
@@ -1178,6 +1189,9 @@ camera = NodePath("../Camera")
 [node name="LittleBrother" parent="." instance=ExtResource("39_wpx1l")]
 position = Vector2(-632, -32)
 
+[node name="Water_Body" parent="." instance=ExtResource("36_hcpxa")]
+position = Vector2(-440, 13)
+
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = SubResource("TileSet_4pe8b")
 format = 2
@@ -1188,6 +1202,7 @@ layer_0/tile_data = PackedInt32Array(524297, 65537, 1, 524298, 131073, 1, 524299
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 
 [node name="Water" type="Area2D" parent="."]
+position = Vector2(366, -31)
 collision_mask = 2
 script = ExtResource("35_y388t")
 
@@ -1197,12 +1212,19 @@ scale = Vector2(1, 4.24)
 shape = SubResource("RectangleShape2D_g47q1")
 
 [node name="ColorRect" type="ColorRect" parent="Water"]
+clip_contents = true
 offset_left = -441.0
 offset_top = -32.0
 offset_right = -401.0
 offset_bottom = 42.0
 scale = Vector2(4.76, 2.36)
 color = Color(0, 0.560784, 1, 0.203922)
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="Water/ColorRect"]
+position = Vector2(14.7059, 20.339)
+scale = Vector2(0.210084, 0.423729)
+amount = 1
+process_material = SubResource("ParticleProcessMaterial_cntjr")
 
 [editable path="LittleBrother"]
 [editable path="LittleBrother/InteractZone/HungerBars"]

@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://dswxp3vcvcf6j"]
+
+[ext_resource type="Script" path="res://addons/water_shader/Scenes/Stone.gd" id="2"]
+
+[sub_resource type="RectangleShape2D" id="1"]
+size = Vector2(12, 10)
+
+[node name="Stone" type="CharacterBody2D"]
+script = ExtResource("2")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("1")
