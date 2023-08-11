@@ -173,6 +173,7 @@ func splash(index, speed):
 	pass
 
 func _on_Water_Body_Area_body_entered(body):
+		SoundPlayer.play_sound("water")
 		body.is_in_water()
 
 		#creates a instace of the particle system
@@ -189,4 +190,5 @@ func _on_Water_Body_Area_body_entered(body):
 
 func on_body_exited(body) -> void:
 	if body is Player:
+		SoundPlayer.play_sound("water_reverse")
 		body.out_of_water()

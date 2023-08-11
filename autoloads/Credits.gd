@@ -39,3 +39,5 @@ extends Node
 # Rain and Thunder https://freesound.org/people/FlatHill/sounds/237729/
 # Scary Violins https://freesound.org/people/lennyboy/sounds/244417/
 #page turn https://freesound.org/people/flag2/sounds/63318/
+# Paper Crumpled https://freesound.org/people/razrox/sounds/197179/
+# Bloop https://freesound.org/people/kstargio/sounds/611642/

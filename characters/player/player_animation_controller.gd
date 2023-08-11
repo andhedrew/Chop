@@ -10,6 +10,7 @@ extends Marker2D
 var is_landing := false
 var feeding := false
 var dust_emitted := false
+var hat_flat := false
 
 
 func _ready():
@@ -19,7 +20,6 @@ func _ready():
 	GameEvents.morning_started.connect(_on_start_of_day)
 
 func _physics_process(_delta):
-	
 	if owner.invulnerable:
 		effects_player.play("fx/invulnerable")
 	else:
@@ -88,7 +88,11 @@ func _physics_process(_delta):
 				"Attack": animation_player.play("attack")
 				"Syphon": animation_player.play("syphon")
 				"Jump":  animation_player.play("jump")
-				"Fall":  animation_player.play("fall")
+				"Fall": 
+					if hat_flat:
+						animation_player.play("fall_hat_flat") 
+					else: 
+						animation_player.play("fall")
 				"Execute":  animation_player.play("execute")
 				"Cutscene": 
 					if feeding:
@@ -98,6 +102,10 @@ func _physics_process(_delta):
 							animation_player.play("watch")
 	
 	state_last_frame = owner.state
+	if owner.is_on_ceiling():
+		hat_flat = true
+	if owner.is_on_floor():
+		hat_flat = false
 
 
 func _set_facing(player_facing_direction) -> void:

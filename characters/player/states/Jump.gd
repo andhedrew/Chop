@@ -23,6 +23,9 @@ func physics_update(delta: float) -> void:
 		owner.velocity.y += Param.GRAVITY * delta
 	owner.move_and_slide()
 	
+	if owner.is_on_ceiling():
+		SoundPlayer.play_sound("paper_crunch")
+		
 	if owner.velocity.y > 0:
 		state_machine.transition_to("Fall")
 	

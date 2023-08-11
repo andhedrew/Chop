@@ -19,10 +19,13 @@ func enter(_msg := {}) -> void:
 			rotation = 180
 		bullet.setup(transform, fire_range, speed, rotation, spread)
 		SoundPlayer.play_sound("swoosh")
+		var knockback = owner.attack_backward_force
+		if owner.in_water:
+			knockback *= 1.5
 		if owner.facing == Enums.Facing.LEFT:
-			owner.velocity.x += owner.attack_backward_force
+			owner.velocity.x += knockback
 		else:
-			owner.velocity.x -= owner.attack_backward_force
+			owner.velocity.x -= knockback
 		
 		if owner.looking != Enums.Looking.UP:
 			owner.velocity.y -= owner.attack_upward_force
@@ -35,17 +38,13 @@ func physics_update(delta: float) -> void:
 			state_machine.transition_to("Attack")
 	
 	if owner.is_on_floor():
-		if owner.in_water:
-			owner.velocity.x = lerp(owner.velocity.x, 0.0, Param.WATER_FRICTION)
-		else:
-			owner.velocity.x = lerp(owner.velocity.x, 0.0, Param.FRICTION)
-			
 		if Input.is_action_pressed("jump"):
 			state_machine.transition_to("Jump")
+#	
+	if owner.in_water:
+		owner.velocity.y += Param.WATER_GRAVITY * delta
 	else:
-		var input_direction_x: float = Input.get_axis("left", "right")
-		owner.velocity.x = move_toward(owner.velocity.x, owner.max_speed * input_direction_x, owner.acceleration_in_air)
-	owner.velocity.y += Param.GRAVITY * delta
+		owner.velocity.y += Param.GRAVITY * delta
 	owner.move_and_slide()
 	
 

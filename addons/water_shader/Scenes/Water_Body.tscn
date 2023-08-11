@@ -6,7 +6,7 @@
 
 [sub_resource type="ShaderMaterial" id="4"]
 shader = ExtResource("2_qernt")
-shader_parameter/tint = Color(0.313726, 0.294118, 0.407843, 1)
+shader_parameter/tint = Color(0.27451, 0.254902, 0.360784, 1)
 
 [sub_resource type="Curve2D" id="1"]
 
@@ -19,7 +19,7 @@ material = SubResource("4")
 [node name="Water_Border" type="Path2D" parent="."]
 curve = SubResource("1")
 script = ExtResource("3_jj8le")
-color = Color(1, 1, 1, 0.396078)
+color = Color(0.690196, 0.65098, 0.560784, 1)
 
 [node name="Water_Body_Area" type="Area2D" parent="."]
 collision_mask = 2

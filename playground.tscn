@@ -1,4 +1,4 @@
-[gd_scene load_steps=49 format=3 uid="uid://bvuqbhwqfo41j"]
+[gd_scene load_steps=50 format=3 uid="uid://bvuqbhwqfo41j"]
 
 [ext_resource type="PackedScene" uid="uid://bwvi5m2prncxh" path="res://characters/player/player.tscn" id="1_371ql"]
 [ext_resource type="Script" path="res://levels_and_level_objects/level_scenes/level_manager.gd" id="1_nxsgc"]
@@ -33,9 +33,12 @@
 [ext_resource type="Texture2D" uid="uid://b3pfxh6lpumnb" path="res://levels_and_level_objects/backgrounds/unmoving_scenery_dark/foliage10.png" id="28_ew58i"]
 [ext_resource type="Texture2D" uid="uid://clg4y7ls1pfeg" path="res://levels_and_level_objects/backgrounds/unmoving_scenery_dark/foliage11.png" id="29_0tmwr"]
 [ext_resource type="PackedScene" uid="uid://bqg8q7u0o16hm" path="res://gameplay_objects/camera.tscn" id="34_ck663"]
-[ext_resource type="Script" path="res://levels_and_level_objects/water/water.gd" id="35_y388t"]
 [ext_resource type="PackedScene" uid="uid://dva55whxpft42" path="res://addons/water_shader/Scenes/Water_Body.tscn" id="36_hcpxa"]
+[ext_resource type="PackedScene" uid="uid://be10xrb276d2j" path="res://levels_and_level_objects/destructible_plants/chop_foliage_underwater.tscn" id="37_pen5r"]
+[ext_resource type="Texture2D" uid="uid://bgscse21mygyi" path="res://levels_and_level_objects/destructible_plants/Sprites/plant_15.png" id="38_kjne5"]
+[ext_resource type="Texture2D" uid="uid://b1ob4sfbbmgfm" path="res://levels_and_level_objects/destructible_plants/Sprites/plant_16.png" id="39_d5w4e"]
 [ext_resource type="PackedScene" uid="uid://cf8s3hxbyvsv8" path="res://characters/little_brother/little_brother.tscn" id="39_wpx1l"]
+[ext_resource type="Texture2D" uid="uid://dciau4mywkcux" path="res://levels_and_level_objects/destructible_plants/Sprites/plant_10.png" id="40_sjia3"]
 
 [sub_resource type="Animation" id="Animation_vp1kt"]
 resource_name = "day"
@@ -891,19 +894,6 @@ terrain_set_0/terrain_0/name = "ground"
 terrain_set_0/terrain_0/color = Color(0.5, 0.34375, 0.25, 1)
 sources/1 = SubResource("TileSetAtlasSource_16qtn")
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_g47q1"]
-size = Vector2(191, 41.1321)
-
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_cntjr"]
-lifetime_randomness = 0.43
-emission_shape = 3
-emission_box_extents = Vector3(3, 1, 1)
-particle_flag_disable_z = true
-gravity = Vector3(0, -30, 0)
-orbit_velocity_min = 0.0
-orbit_velocity_max = 0.0
-scale_max = 2.0
-
 [node name="World" type="Node2D"]
 script = ExtResource("1_nxsgc")
 
@@ -1190,8 +1180,11 @@ camera = NodePath("../Camera")
 position = Vector2(-632, -32)
 
 [node name="Water_Body" parent="." instance=ExtResource("36_hcpxa")]
-position = Vector2(-440, 13)
-spring_number = 8
+position = Vector2(-442, -7)
+spread = 0.1
+distance_between_springs = 16
+spring_number = 16
+border_thickness = 0.5
 
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = SubResource("TileSet_4pe8b")
@@ -1202,30 +1195,29 @@ layer_0/tile_data = PackedInt32Array(524297, 65537, 1, 524298, 131073, 1, 524299
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 
-[node name="Water" type="Area2D" parent="."]
-position = Vector2(366, -31)
-collision_mask = 2
-script = ExtResource("35_y388t")
+[node name="ChopFoliage" parent="." instance=ExtResource("37_pen5r")]
+position = Vector2(-418, 114)
+texture = ExtResource("38_kjne5")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Water"]
-position = Vector2(-348, 55.8)
-scale = Vector2(1, 4.24)
-shape = SubResource("RectangleShape2D_g47q1")
+[node name="ChopFoliage2" parent="." instance=ExtResource("37_pen5r")]
+position = Vector2(-281, 110)
+texture = ExtResource("38_kjne5")
 
-[node name="ColorRect" type="ColorRect" parent="Water"]
-clip_contents = true
-offset_left = -441.0
-offset_top = -32.0
-offset_right = -401.0
-offset_bottom = 42.0
-scale = Vector2(4.76, 2.36)
-color = Color(0, 0.560784, 1, 0.203922)
+[node name="ChopFoliage3" parent="." instance=ExtResource("37_pen5r")]
+position = Vector2(-295, 114)
+texture = ExtResource("39_d5w4e")
 
-[node name="GPUParticles2D" type="GPUParticles2D" parent="Water/ColorRect"]
-position = Vector2(14.7059, 20.339)
-scale = Vector2(0.210084, 0.423729)
-amount = 1
-process_material = SubResource("ParticleProcessMaterial_cntjr")
+[node name="ChopFoliage4" parent="." instance=ExtResource("37_pen5r")]
+position = Vector2(-431, 119)
+texture = ExtResource("39_d5w4e")
+
+[node name="ChopFoliage5" parent="." instance=ExtResource("37_pen5r")]
+position = Vector2(-402, 116)
+texture = ExtResource("40_sjia3")
+
+[node name="ChopFoliage6" parent="." instance=ExtResource("37_pen5r")]
+position = Vector2(-299, 115)
+texture = ExtResource("40_sjia3")
 
 [editable path="LittleBrother"]
 [editable path="LittleBrother/InteractZone/HungerBars"]
