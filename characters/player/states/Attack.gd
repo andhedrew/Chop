@@ -21,7 +21,7 @@ func enter(_msg := {}) -> void:
 		SoundPlayer.play_sound("swoosh")
 		var knockback = owner.attack_backward_force
 		if owner.in_water:
-			knockback *= 1.5
+			knockback *= 1.2
 		if owner.facing == Enums.Facing.LEFT:
 			owner.velocity.x += knockback
 		else:

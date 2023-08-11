@@ -22,7 +22,7 @@ var target_height = 0
 var index = 0
 var counter := 0
 #how much an external object movement will affect this spring
-var motion_factor = 0.002
+var motion_factor = 0.006
 
 #the last instance this spring collided with
 #we check so it won't collide twice

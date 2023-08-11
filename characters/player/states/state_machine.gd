@@ -7,6 +7,7 @@ extends Node
 var previous_state : String
 var state_timer := 0.0
 var invulnerable_timer := 0.0
+var execute_timer := 0.0
 
 func _ready() -> void:
 	await owner.ready
@@ -25,7 +26,11 @@ func _unhandled_input(event: InputEvent) -> void:
 
 func _process(delta: float) -> void:
 	state.update(delta)
-	
+	if owner.execute_disabled == true:
+		execute_timer += 1.0
+		if execute_timer >= 60.0:
+			owner.execute_disabled = false
+			execute_timer = 0.0
 
 
 func _physics_process(delta: float) -> void:

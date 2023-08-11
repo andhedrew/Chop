@@ -3,7 +3,6 @@ extends State
 var coyote_jump: bool = false
 
 func physics_update(delta: float) -> void:
-	
 	var jump_release := Input.is_action_just_released("jump")
 	var jump := Input.is_action_pressed("jump")
 	

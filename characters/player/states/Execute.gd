@@ -19,7 +19,10 @@ func enter(_msg := {}) -> void:
 		fire()
 		owner.execute_disabled = true
 		GameEvents.player_executed.emit()
-		owner.velocity.y = -80
+		if owner.in_water:
+			owner.velocity.y = -250
+		else:
+			owner.velocity.y = -80
 		SoundPlayer.play_sound("punch")
 		SoundPlayer.play_sound("slash_flesh")
 	else:
