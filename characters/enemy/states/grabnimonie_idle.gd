@@ -1,4 +1,4 @@
-class_name WalkerIdle
+class_name GrabnimonieIdle
 extends State
 
 @onready var ledge_left := $"../../adjacent_ledge_check_left"
@@ -6,6 +6,7 @@ extends State
 @onready var wall_left := $"../../wall_check_left"
 @onready var wall_right := $"../../wall_check_right"
 @onready var player_detector := $"../../Pivot/player_detector"
+@onready var player_detector_2 := $"../../Pivot/player_detector_2"
 var transitioned := false
 var timer: Timer
 
@@ -38,9 +39,14 @@ func update(_delta: float) -> void:
 			state_machine.transition_to("Fall")
 	
 	
-	if player_detector.is_colliding():
+	if player_detector.is_colliding() or player_detector_2.is_colliding():
 		var detected_object = player_detector.get_collider()
+		var detected_object_2 = player_detector_2.get_collider()
+		
 		if detected_object is Player:
 			var msg := { "x" : detected_object.position.x}
+			state_machine.transition_to("Attack", msg)
+		elif detected_object_2 is Player:
+			var msg := { "x" : detected_object_2.position.x}
 			state_machine.transition_to("Attack", msg)
 

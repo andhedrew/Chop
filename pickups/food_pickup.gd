@@ -39,6 +39,29 @@ var nutrition_value_lookup : Dictionary = {
 	load("res://characters/enemy/paroot_boss/paroot_boss_deathpiece_5.png") : {"brick" : 0, "meat" : 20, "plant" : 10 },
 	load("res://levels_and_level_objects/question_block/question_block_pieces_1.png") : {"brick" : 1, "meat" : 0, "plant" : 0 },
 	load("res://levels_and_level_objects/question_block/question_block_pieces_2.png") : {"brick" : 1, "meat" : 0, "plant" : 0 },
+	
+	load("res://characters/enemy/fish_jumper/fish_jumper_pieces_1.png") : {"brick" : 0, "meat" : 5, "plant" : 0 },
+	load("res://characters/enemy/fish_jumper/fish_jumper_pieces_2.png") : {"brick" : 0, "meat" : 1, "plant" : 0 },
+	
+	load("res://characters/enemy/grabnimonie/grabnimonie_pieces_1.png") : {"brick" : 0, "meat" : 0, "plant" : 3 },
+	load("res://characters/enemy/grabnimonie/grabnimonie_pieces_2.png") : {"brick" : 0, "meat" : 0, "plant" : 2 },
+	load("res://characters/enemy/grabnimonie/grabnimonie_pieces_3.png") : {"brick" : 0, "meat" : 0, "plant" : 2 },
+	
+	load("res://characters/enemy/jelly/jelly_pieces.png") : {"brick" : 4, "meat" : 1, "plant" : 0 },
+	
+	load("res://characters/enemy/sea_slug/sea_slug_pieces_1.png") : {"brick" : 1, "meat" : 1, "plant" : 0 },
+	load("res://characters/enemy/sea_slug/sea_slug_pieces_2.png") : {"brick" : 1, "meat" : 1, "plant" : 0 },
+	
+	load("res://characters/enemy/starforsh/starforsh_pieces_1.png") : {"brick" : 1, "meat" : 0, "plant" : 0 },
+	load("res://characters/enemy/starforsh/starforsh_pieces_2.png") : {"brick" : 1, "meat" : 0, "plant" : 0 },
+	load("res://characters/enemy/starforsh/starforsh_pieces_3.png") : {"brick" : 1, "meat" : 0, "plant" : 0 },
+	load("res://characters/enemy/starforsh/starforsh_pieces_4.png") : {"brick" : 1, "meat" : 0, "plant" : 0 },
+	load("res://characters/enemy/starforsh/starforsh_pieces_5.png") : {"brick" : 1, "meat" : 0, "plant" : 0 },
+	
+	load("res://characters/enemy/yellow_fish/yeller_fish_pieces1.png") : {"brick" : 0, "meat" : 2, "plant" : 0 },
+	load("res://characters/enemy/yellow_fish/yeller_fish_pieces2.png") : {"brick" : 0, "meat" : 2, "plant" : 0 },
+	
+	
 }
 
 func _ready():

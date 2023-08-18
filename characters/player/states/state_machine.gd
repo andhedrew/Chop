@@ -26,11 +26,12 @@ func _unhandled_input(event: InputEvent) -> void:
 
 func _process(delta: float) -> void:
 	state.update(delta)
-	if owner.execute_disabled == true:
-		execute_timer += 1.0
-		if execute_timer >= 60.0:
-			owner.execute_disabled = false
-			execute_timer = 0.0
+	if owner == Player:
+		if owner.execute_disabled == true:
+			execute_timer += 1.0
+			if execute_timer >= 60.0:
+				owner.execute_disabled = false
+				execute_timer = 0.0
 
 
 func _physics_process(delta: float) -> void:

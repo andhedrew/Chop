@@ -3,6 +3,7 @@ extends Node
 
 var state_machine = null
 
+
 func enter(_msg := {}) -> void:
 	pass
 

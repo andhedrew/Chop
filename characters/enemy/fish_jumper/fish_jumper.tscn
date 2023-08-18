@@ -1,0 +1,49 @@
+[gd_scene load_steps=10 format=3 uid="uid://buc6l4tfwxf4d"]
+
+[ext_resource type="PackedScene" uid="uid://cde2c17kuh3gb" path="res://characters/enemy/enemy_jumper.tscn" id="1_rhwt4"]
+[ext_resource type="Texture2D" uid="uid://b8e1lwytbpqml" path="res://characters/enemy/fish_jumper/fish_jumper.png" id="2_3vx3p"]
+[ext_resource type="Texture2D" uid="uid://dto0rxbtla2ch" path="res://characters/enemy/fish_jumper/fish_jumper_pieces_1.png" id="2_k4xej"]
+[ext_resource type="Texture2D" uid="uid://d0oc5epc1sp72" path="res://characters/enemy/fish_jumper/fish_jumper_pieces_2.png" id="3_83r0h"]
+[ext_resource type="Script" path="res://characters/enemy/states/walker_idle.gd" id="3_ca742"]
+[ext_resource type="Script" path="res://characters/enemy/states/walker_walk.gd" id="4_ls3vg"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6qaak"]
+size = Vector2(39, 40)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jspwr"]
+size = Vector2(40, 39)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bb3ng"]
+size = Vector2(13, 38)
+
+[node name="FishJumper" instance=ExtResource("1_rhwt4")]
+death_pieces = Array[Resource]([ExtResource("2_k4xej"), ExtResource("3_83r0h"), ExtResource("3_83r0h"), ExtResource("3_83r0h")])
+
+[node name="Body" parent="Pivot" index="0"]
+position = Vector2(0, -25)
+texture = ExtResource("2_3vx3p")
+frame = 1
+
+[node name="Idle" parent="StateMachine" index="0"]
+script = ExtResource("3_ca742")
+
+[node name="Move" parent="StateMachine" index="1"]
+script = ExtResource("4_ls3vg")
+
+[node name="CollisionShape2D" parent="Hurtbox" index="0"]
+position = Vector2(-1.5, -19)
+shape = SubResource("RectangleShape2D_6qaak")
+
+[node name="CollisionShape2D" parent="Hitbox" index="0"]
+position = Vector2(-2, -19.5)
+shape = SubResource("RectangleShape2D_jspwr")
+
+[node name="CollisionShape2D" parent="." index="6"]
+position = Vector2(-2.5, -20)
+shape = SubResource("RectangleShape2D_bb3ng")
+
+[node name="ledge_check_right" parent="." index="7"]
+position = Vector2(4, 0)
+
+[editable path="Hurtbox"]
+[editable path="Hitbox"]

@@ -57,7 +57,7 @@ var bullet_range := 10
 var bullet_speed := 150
 var bullet_spread := 0
 var attack_upward_force := 100
-var attack_backward_force := 80
+var attack_backward_force := 30
 var attack_delay := 0.3
 
 var execute_bullet := preload("res://bullets/execute_bullet/execute_bullet.tscn")
