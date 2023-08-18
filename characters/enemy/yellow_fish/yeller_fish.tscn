@@ -1,0 +1,40 @@
+[gd_scene load_steps=9 format=3 uid="uid://di4cfvxylmdpg"]
+
+[ext_resource type="PackedScene" uid="uid://g2rn2npgnt8u" path="res://characters/enemy/enemy_flyer.tscn" id="1_ypsac"]
+[ext_resource type="Texture2D" uid="uid://c6fvq2m8ghq5q" path="res://characters/enemy/yellow_fish/yeller_fish_pieces1.png" id="2_vesin"]
+[ext_resource type="Texture2D" uid="uid://dqvwaykm6fm4x" path="res://characters/enemy/yellow_fish/yeller_fish_pieces2.png" id="3_8x0ja"]
+[ext_resource type="Texture2D" uid="uid://be8enfc6gyv84" path="res://characters/enemy/yellow_fish/yeller_fish.png" id="4_5revq"]
+[ext_resource type="Script" path="res://characters/enemy/states/yeller_fish_move.gd" id="5_ibkyn"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5vyoe"]
+size = Vector2(28, 26)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rj7j8"]
+size = Vector2(25, 22)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kydp0"]
+
+[node name="YellerFish" instance=ExtResource("1_ypsac")]
+speed = 12.0
+death_pieces = Array[Resource]([ExtResource("2_vesin"), ExtResource("3_8x0ja")])
+
+[node name="Body" parent="Pivot" index="0"]
+texture = ExtResource("4_5revq")
+
+[node name="Move" parent="StateMachine" index="0"]
+script = ExtResource("5_ibkyn")
+
+[node name="CollisionShape2D" parent="Hurtbox" index="0"]
+position = Vector2(-2, -12)
+shape = SubResource("RectangleShape2D_5vyoe")
+
+[node name="CollisionShape2D" parent="Hitbox" index="0"]
+position = Vector2(-3, -12)
+shape = SubResource("RectangleShape2D_rj7j8")
+
+[node name="CollisionShape2D" parent="." index="6"]
+position = Vector2(-3, -12)
+shape = SubResource("RectangleShape2D_kydp0")
+
+[editable path="Hurtbox"]
+[editable path="Hitbox"]

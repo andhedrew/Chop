@@ -1,4 +1,4 @@
-[gd_scene load_steps=51 format=3 uid="uid://bvuqbhwqfo41j"]
+[gd_scene load_steps=53 format=3 uid="uid://bvuqbhwqfo41j"]
 
 [ext_resource type="PackedScene" uid="uid://bwvi5m2prncxh" path="res://characters/player/player.tscn" id="1_371ql"]
 [ext_resource type="Script" path="res://levels_and_level_objects/level_scenes/level_manager.gd" id="1_nxsgc"]
@@ -33,13 +33,14 @@
 [ext_resource type="Texture2D" uid="uid://b3pfxh6lpumnb" path="res://levels_and_level_objects/backgrounds/unmoving_scenery_dark/foliage10.png" id="28_ew58i"]
 [ext_resource type="Texture2D" uid="uid://clg4y7ls1pfeg" path="res://levels_and_level_objects/backgrounds/unmoving_scenery_dark/foliage11.png" id="29_0tmwr"]
 [ext_resource type="PackedScene" uid="uid://bqg8q7u0o16hm" path="res://gameplay_objects/camera.tscn" id="34_ck663"]
-[ext_resource type="PackedScene" uid="uid://clqfj20nn10q8" path="res://characters/enemy/grabnimonie/grabnimonie.tscn" id="34_sqy4j"]
 [ext_resource type="PackedScene" uid="uid://dva55whxpft42" path="res://addons/water_shader/Scenes/Water_Body.tscn" id="36_hcpxa"]
 [ext_resource type="PackedScene" uid="uid://be10xrb276d2j" path="res://levels_and_level_objects/destructible_plants/chop_foliage_underwater.tscn" id="37_pen5r"]
 [ext_resource type="Texture2D" uid="uid://bgscse21mygyi" path="res://levels_and_level_objects/destructible_plants/Sprites/plant_15.png" id="38_kjne5"]
 [ext_resource type="Texture2D" uid="uid://b1ob4sfbbmgfm" path="res://levels_and_level_objects/destructible_plants/Sprites/plant_16.png" id="39_d5w4e"]
 [ext_resource type="PackedScene" uid="uid://cf8s3hxbyvsv8" path="res://characters/little_brother/little_brother.tscn" id="39_wpx1l"]
+[ext_resource type="PackedScene" uid="uid://c61py6hgvk4e5" path="res://levels_and_level_objects/enemy_spawn.tscn" id="40_7uvqj"]
 [ext_resource type="Texture2D" uid="uid://dciau4mywkcux" path="res://levels_and_level_objects/destructible_plants/Sprites/plant_10.png" id="40_sjia3"]
+[ext_resource type="PackedScene" uid="uid://di4cfvxylmdpg" path="res://characters/enemy/yellow_fish/yeller_fish.tscn" id="41_qkubm"]
 
 [sub_resource type="Animation" id="Animation_vp1kt"]
 resource_name = "day"
@@ -895,6 +896,12 @@ terrain_set_0/terrain_0/name = "ground"
 terrain_set_0/terrain_0/color = Color(0.5, 0.34375, 0.25, 1)
 sources/1 = SubResource("TileSetAtlasSource_16qtn")
 
+[sub_resource type="Curve2D" id="Curve2D_bjqik"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, -512, -121, 0, 0, 0, 0, -362, -122)
+}
+point_count = 2
+
 [node name="World" type="Node2D"]
 script = ExtResource("1_nxsgc")
 
@@ -1187,9 +1194,6 @@ distance_between_springs = 16
 spring_number = 16
 border_thickness = 0.5
 
-[node name="grabnimonie" parent="." instance=ExtResource("34_sqy4j")]
-position = Vector2(-296, -32)
-
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = SubResource("TileSet_4pe8b")
 format = 2
@@ -1222,6 +1226,16 @@ texture = ExtResource("40_sjia3")
 [node name="ChopFoliage6" parent="." instance=ExtResource("37_pen5r")]
 position = Vector2(-299, 115)
 texture = ExtResource("40_sjia3")
+
+[node name="Path2D" type="Path2D" parent="."]
+curve = SubResource("Curve2D_bjqik")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Path2D"]
+position = Vector2(-512, -121)
+rotation = -0.00666657
+
+[node name="EnemySpawn" parent="Path2D/PathFollow2D" instance=ExtResource("40_7uvqj")]
+spawn = ExtResource("41_qkubm")
 
 [editable path="LittleBrother"]
 [editable path="LittleBrother/InteractZone/HungerBars"]

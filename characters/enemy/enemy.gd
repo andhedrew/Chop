@@ -21,6 +21,7 @@ var max_health = health
 @onready var effects_player := $Pivot/EffectsPlayer
 @onready var state_label: Label = $state_label
 
+@onready var pivot := $Pivot
 
 var direction := -1
 var facing := Enums.Facing.LEFT
@@ -55,16 +56,32 @@ func _physics_process(_delta):
 	elif reset_effects_player:
 		effects_player.play("RESET")
 		reset_effects_player = false
+	
+
+	if pivot.scale.x != -1:
+		pivot.scale.x = lerp(pivot.scale.x, -1.0, 0.1)
+	
+	if facing == Enums.Facing.RIGHT:
+		if pivot.scale.y != -1:
+			pivot.scale.y = lerp(pivot.scale.y, -1.0, 0.1)
+	
+	if facing == Enums.Facing.LEFT:
+		if pivot.scale.y != 1:
+			pivot.scale.y = lerp(pivot.scale.y, 1.0, 0.1)
 
 
 func set_facing(facing_dir) -> void:
 	if facing_dir == Enums.Facing.LEFT:
 		direction = -1
 		$Pivot.transform.x.x = 1
+		$Pivot.scale.x = -0.8
+		$Pivot.scale.y = 1.2
 		$BloodParticles.transform.x.x = 1
 	elif facing_dir == Enums.Facing.RIGHT:
 		direction = 1
 		$Pivot.transform.x.x = -1
+		$Pivot.scale.x = -0.8
+		$Pivot.scale.y = -1.2
 		$BloodParticles.transform.x.x = -1
 	
 	facing = facing_dir
