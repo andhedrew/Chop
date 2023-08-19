@@ -40,7 +40,7 @@
 [ext_resource type="PackedScene" uid="uid://cf8s3hxbyvsv8" path="res://characters/little_brother/little_brother.tscn" id="39_wpx1l"]
 [ext_resource type="PackedScene" uid="uid://c61py6hgvk4e5" path="res://levels_and_level_objects/enemy_spawn.tscn" id="40_7uvqj"]
 [ext_resource type="Texture2D" uid="uid://dciau4mywkcux" path="res://levels_and_level_objects/destructible_plants/Sprites/plant_10.png" id="40_sjia3"]
-[ext_resource type="PackedScene" uid="uid://di4cfvxylmdpg" path="res://characters/enemy/yellow_fish/yeller_fish.tscn" id="41_qkubm"]
+[ext_resource type="PackedScene" uid="uid://wtyl1uj7hc75" path="res://characters/enemy/jelly/jelly.tscn" id="41_5q1xw"]
 
 [sub_resource type="Animation" id="Animation_vp1kt"]
 resource_name = "day"
@@ -898,9 +898,9 @@ sources/1 = SubResource("TileSetAtlasSource_16qtn")
 
 [sub_resource type="Curve2D" id="Curve2D_bjqik"]
 _data = {
-"points": PackedVector2Array(0, 0, 0, 0, -512, -121, 0, 0, 0, 0, -362, -122)
+"points": PackedVector2Array(-39.1553, -99.4456, 39.1553, 99.4456, -512, -121, 55.3959, 92.3264, -55.3959, -92.3264, -362, -122, 30.9238, -106.12, -30.9238, 106.12, -512, -121)
 }
-point_count = 2
+point_count = 3
 
 [node name="World" type="Node2D"]
 script = ExtResource("1_nxsgc")
@@ -1232,10 +1232,10 @@ curve = SubResource("Curve2D_bjqik")
 
 [node name="PathFollow2D" type="PathFollow2D" parent="Path2D"]
 position = Vector2(-512, -121)
-rotation = -0.00666657
+rotation = 1.1957
 
 [node name="EnemySpawn" parent="Path2D/PathFollow2D" instance=ExtResource("40_7uvqj")]
-spawn = ExtResource("41_qkubm")
+spawn = ExtResource("41_5q1xw")
 
 [editable path="LittleBrother"]
 [editable path="LittleBrother/InteractZone/HungerBars"]

@@ -1,0 +1,50 @@
+[gd_scene load_steps=11 format=3 uid="uid://n1wuw5pfofoc"]
+
+[ext_resource type="PackedScene" uid="uid://boakvecc6j1ta" path="res://characters/enemy/paroot/paroot.tscn" id="1_lk6lu"]
+[ext_resource type="AudioStream" uid="uid://bc3lyn72k0o3p" path="res://audio/sounds/squawk_1_small.wav" id="2_i2mfi"]
+[ext_resource type="AudioStream" uid="uid://ijk4dp6v4vdj" path="res://audio/sounds/squawk_2_small.wav" id="3_ir4b3"]
+[ext_resource type="Texture2D" uid="uid://hs4apbyahme" path="res://characters/enemy/paroot/pareet_drop.png" id="4_klc16"]
+[ext_resource type="Texture2D" uid="uid://du37oveydy7lu" path="res://characters/enemy/paroot/pareet.png" id="5_ne3p8"]
+[ext_resource type="Script" path="res://characters/enemy/paroot/slow_fall.gd" id="6_5cnj6"]
+[ext_resource type="Script" path="res://characters/enemy/states/walker_walk.gd" id="7_hh3r0"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2gj6w"]
+size = Vector2(16, 13)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_elu7l"]
+size = Vector2(16, 12.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jm6ut"]
+size = Vector2(15, 12)
+
+[node name="Pareet" instance=ExtResource("1_lk6lu")]
+health = 2
+speed = 15.0
+hurt_vocalizations = Array[AudioStreamWAV]([ExtResource("2_i2mfi"), ExtResource("3_ir4b3")])
+death_pieces = Array[Resource]([ExtResource("4_klc16")])
+bounty = 1
+
+[node name="Body" parent="Pivot" index="0"]
+position = Vector2(-1, -6)
+texture = ExtResource("5_ne3p8")
+
+[node name="Fall" parent="StateMachine" index="0"]
+script = ExtResource("6_5cnj6")
+
+[node name="Attack" parent="StateMachine" index="3"]
+script = ExtResource("7_hh3r0")
+
+[node name="CollisionShape2D" parent="Hurtbox" index="0"]
+position = Vector2(0, -6.5)
+shape = SubResource("RectangleShape2D_2gj6w")
+
+[node name="CollisionShape2D" parent="Hitbox" index="0"]
+position = Vector2(0, -5.75)
+shape = SubResource("RectangleShape2D_elu7l")
+
+[node name="CollisionShape2D" parent="." index="6"]
+position = Vector2(0.5, -6)
+shape = SubResource("RectangleShape2D_jm6ut")
+
+[editable path="Hurtbox"]
+[editable path="Hitbox"]

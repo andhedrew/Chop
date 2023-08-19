@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dho6xihx2y1wm"
-path="res://.godot/imported/paroot.png-ca2a997a3e40cee823cfe4d2df76b829.ctex"
+uid="uid://hv0loh065xfv"
+path="res://.godot/imported/paroot_drop_3.png-dcb6a749c1f2898532f47ef75b63dec5.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://characters/enemy/paroot/paroot.png"
-dest_files=["res://.godot/imported/paroot.png-ca2a997a3e40cee823cfe4d2df76b829.ctex"]
+source_file="res://characters/enemy/paroot_underwater/paroot_drop_3.png"
+dest_files=["res://.godot/imported/paroot_drop_3.png-dcb6a749c1f2898532f47ef75b63dec5.ctex"]
 
 [params]
 

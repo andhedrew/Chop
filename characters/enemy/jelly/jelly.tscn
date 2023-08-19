@@ -1,0 +1,57 @@
+[gd_scene load_steps=10 format=3 uid="uid://wtyl1uj7hc75"]
+
+[ext_resource type="PackedScene" uid="uid://g2rn2npgnt8u" path="res://characters/enemy/enemy_flyer.tscn" id="1_bwa28"]
+[ext_resource type="Texture2D" uid="uid://c2ooh2va1tr57" path="res://characters/enemy/jelly/jelly_pieces.png" id="2_5vbd0"]
+[ext_resource type="Texture2D" uid="uid://bvfq0hwb1c7lc" path="res://characters/enemy/jelly/jelly.png" id="2_bbn2i"]
+[ext_resource type="Shader" path="res://levels_and_level_objects/destructible_plants/chop_foliage_underwater.gdshader" id="3_8rave"]
+[ext_resource type="Script" path="res://characters/enemy/states/flyer_move_in_circle.gd" id="4_djjoo"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_rrw8x"]
+shader = ExtResource("3_8rave")
+shader_parameter/speed = 1.0
+shader_parameter/minStrength = 0.004
+shader_parameter/maxStrength = 0.004
+shader_parameter/strengthScale = 100.0
+shader_parameter/interval = 3.5
+shader_parameter/detail = 1.0
+shader_parameter/distortion = null
+shader_parameter/heightOffset = null
+shader_parameter/offset = 0.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fhklc"]
+size = Vector2(40, 37)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vqah4"]
+size = Vector2(43, 36)
+
+[sub_resource type="ConvexPolygonShape2D" id="ConvexPolygonShape2D_2ru2i"]
+points = PackedVector2Array(-20, -8, -10, -27, 0, -30, 10, -27, 20, -8)
+
+[node name="EnemyFlyer" instance=ExtResource("1_bwa28")]
+collision_layer = 5
+health = 12
+speed = 1.0
+death_pieces = Array[Resource]([ExtResource("2_5vbd0"), ExtResource("2_5vbd0"), ExtResource("2_5vbd0"), ExtResource("2_5vbd0"), ExtResource("2_5vbd0")])
+
+[node name="Body" parent="Pivot" index="0"]
+material = SubResource("ShaderMaterial_rrw8x")
+position = Vector2(1, -14)
+texture = ExtResource("2_bbn2i")
+
+[node name="Move" parent="StateMachine" index="0"]
+script = ExtResource("4_djjoo")
+
+[node name="CollisionShape2D" parent="Hurtbox" index="0"]
+position = Vector2(0, -1)
+shape = SubResource("RectangleShape2D_fhklc")
+
+[node name="CollisionShape2D" parent="Hitbox" index="0"]
+position = Vector2(-1, -1)
+shape = SubResource("RectangleShape2D_vqah4")
+
+[node name="CollisionShape2D" parent="." index="6"]
+position = Vector2(0, -12)
+shape = SubResource("ConvexPolygonShape2D_2ru2i")
+
+[editable path="Hurtbox"]
+[editable path="Hitbox"]
