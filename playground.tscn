@@ -1,4 +1,4 @@
-[gd_scene load_steps=53 format=3 uid="uid://bvuqbhwqfo41j"]
+[gd_scene load_steps=55 format=3 uid="uid://bvuqbhwqfo41j"]
 
 [ext_resource type="PackedScene" uid="uid://bwvi5m2prncxh" path="res://characters/player/player.tscn" id="1_371ql"]
 [ext_resource type="Script" path="res://levels_and_level_objects/level_scenes/level_manager.gd" id="1_nxsgc"]
@@ -40,7 +40,9 @@
 [ext_resource type="PackedScene" uid="uid://cf8s3hxbyvsv8" path="res://characters/little_brother/little_brother.tscn" id="39_wpx1l"]
 [ext_resource type="PackedScene" uid="uid://c61py6hgvk4e5" path="res://levels_and_level_objects/enemy_spawn.tscn" id="40_7uvqj"]
 [ext_resource type="Texture2D" uid="uid://dciau4mywkcux" path="res://levels_and_level_objects/destructible_plants/Sprites/plant_10.png" id="40_sjia3"]
-[ext_resource type="PackedScene" uid="uid://wtyl1uj7hc75" path="res://characters/enemy/jelly/jelly.tscn" id="41_5q1xw"]
+[ext_resource type="PackedScene" uid="uid://di4cfvxylmdpg" path="res://characters/enemy/yellow_fish/yeller_fish.tscn" id="41_qkubm"]
+[ext_resource type="PackedScene" uid="uid://d1xrywv7d6oqs" path="res://characters/enemy/paroot_underwater/paroot_underwater.tscn" id="42_t7ik2"]
+[ext_resource type="PackedScene" uid="uid://b01a0bv1l7jik" path="res://characters/enemy/seaweed_hopper/seaweed_hopper.tscn" id="43_i5n22"]
 
 [sub_resource type="Animation" id="Animation_vp1kt"]
 resource_name = "day"
@@ -473,6 +475,12 @@ scale_max = 2.0
 color = Color(0.698039, 1, 1, 1)
 hue_variation_max = 0.1
 
+[sub_resource type="Curve2D" id="Curve2D_15xcf"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, -519, -164, 0, 0, 0, 0, -356, -203)
+}
+point_count = 2
+
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_16qtn"]
 texture = ExtResource("12_usoy5")
 6:4/0 = 0
@@ -896,12 +904,6 @@ terrain_set_0/terrain_0/name = "ground"
 terrain_set_0/terrain_0/color = Color(0.5, 0.34375, 0.25, 1)
 sources/1 = SubResource("TileSetAtlasSource_16qtn")
 
-[sub_resource type="Curve2D" id="Curve2D_bjqik"]
-_data = {
-"points": PackedVector2Array(-39.1553, -99.4456, 39.1553, 99.4456, -512, -121, 55.3959, 92.3264, -55.3959, -92.3264, -362, -122, 30.9238, -106.12, -30.9238, 106.12, -512, -121)
-}
-point_count = 3
-
 [node name="World" type="Node2D"]
 script = ExtResource("1_nxsgc")
 
@@ -1194,6 +1196,22 @@ distance_between_springs = 16
 spring_number = 16
 border_thickness = 0.5
 
+[node name="EnemySpawn" parent="." instance=ExtResource("40_7uvqj")]
+position = Vector2(-312, -168)
+spawn = ExtResource("42_t7ik2")
+facing = "Left"
+
+[node name="Path2D" type="Path2D" parent="."]
+curve = SubResource("Curve2D_15xcf")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Path2D"]
+position = Vector2(-519, -164)
+rotation = -0.234849
+
+[node name="EnemySpawn" parent="Path2D/PathFollow2D" instance=ExtResource("40_7uvqj")]
+spawn = ExtResource("41_qkubm")
+facing = "Right"
+
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = SubResource("TileSet_4pe8b")
 format = 2
@@ -1227,15 +1245,8 @@ texture = ExtResource("40_sjia3")
 position = Vector2(-299, 115)
 texture = ExtResource("40_sjia3")
 
-[node name="Path2D" type="Path2D" parent="."]
-curve = SubResource("Curve2D_bjqik")
-
-[node name="PathFollow2D" type="PathFollow2D" parent="Path2D"]
-position = Vector2(-512, -121)
-rotation = 1.1957
-
-[node name="EnemySpawn" parent="Path2D/PathFollow2D" instance=ExtResource("40_7uvqj")]
-spawn = ExtResource("41_5q1xw")
+[node name="MossHopper" parent="." instance=ExtResource("43_i5n22")]
+position = Vector2(-408, -32)
 
 [editable path="LittleBrother"]
 [editable path="LittleBrother/InteractZone/HungerBars"]

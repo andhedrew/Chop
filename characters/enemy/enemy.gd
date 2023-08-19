@@ -58,30 +58,35 @@ func _physics_process(_delta):
 		reset_effects_player = false
 	
 
-	if pivot.scale.x != -1:
-		pivot.scale.x = lerp(pivot.scale.x, -1.0, 0.1)
+
 	
 	if facing == Enums.Facing.RIGHT:
 		if pivot.scale.y != -1:
 			pivot.scale.y = lerp(pivot.scale.y, -1.0, 0.1)
-	
+		if pivot.scale.x != 1:
+			pivot.scale.x = lerp(pivot.scale.x, 1.0, 0.1)
+#
 	if facing == Enums.Facing.LEFT:
 		if pivot.scale.y != 1:
 			pivot.scale.y = lerp(pivot.scale.y, 1.0, 0.1)
+		if pivot.scale.x != 1:
+			pivot.scale.x = lerp(pivot.scale.x, 1.0, 0.1)
 
 
-func set_facing(facing_dir) -> void:
+func set_facing(facing_dir, squash_and_stretch := false) -> void:
 	if facing_dir == Enums.Facing.LEFT:
 		direction = -1
 		$Pivot.transform.x.x = 1
-		$Pivot.scale.x = -0.8
-		$Pivot.scale.y = 1.2
+		if squash_and_stretch:
+			$Pivot.scale.x = 0.8
+			$Pivot.scale.y = 1.1
 		$BloodParticles.transform.x.x = 1
 	elif facing_dir == Enums.Facing.RIGHT:
 		direction = 1
 		$Pivot.transform.x.x = -1
-		$Pivot.scale.x = -0.8
-		$Pivot.scale.y = -1.2
+		if squash_and_stretch:
+			$Pivot.scale.x = 0.8
+			$Pivot.scale.y = -1.1
 		$BloodParticles.transform.x.x = -1
 	
 	facing = facing_dir
@@ -92,7 +97,7 @@ func switch_facing() -> void:
 		facing = Enums.Facing.RIGHT
 	elif facing == Enums.Facing.RIGHT:
 		facing = Enums.Facing.LEFT
-	set_facing(facing)
+	set_facing(facing, true)
 
 
 func _take_damage(hitbox) -> void:

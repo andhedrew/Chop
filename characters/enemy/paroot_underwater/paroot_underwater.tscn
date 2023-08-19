@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://d1xrywv7d6oqs"]
+[gd_scene load_steps=21 format=3 uid="uid://d1xrywv7d6oqs"]
 
 [ext_resource type="PackedScene" uid="uid://23cc1xm0v5jp" path="res://characters/enemy/enemy_walker.tscn" id="1_dq4xu"]
 [ext_resource type="AudioStream" uid="uid://c2b7napty0xqn" path="res://audio/sounds/squawk_1.wav" id="2_tvmrg"]
@@ -6,11 +6,25 @@
 [ext_resource type="Texture2D" uid="uid://b1ffa310elr21" path="res://characters/enemy/paroot/paroot_drop_3.png" id="4_8siu7"]
 [ext_resource type="Texture2D" uid="uid://smo0g21t470d" path="res://characters/enemy/paroot/paroot_drop_2.png" id="5_xoehj"]
 [ext_resource type="Texture2D" uid="uid://bnltgc473omjm" path="res://characters/enemy/paroot/paroot_drop_1.png" id="6_yta1i"]
-[ext_resource type="Texture2D" uid="uid://dho6xihx2y1wm" path="res://characters/enemy/paroot/paroot.png" id="7_ih8kl"]
+[ext_resource type="Shader" path="res://levels_and_level_objects/destructible_plants/chop_foliage_underwater.gdshader" id="7_2soey"]
 [ext_resource type="Script" path="res://characters/enemy/states/shoot_projectile.gd" id="8_dixk6"]
+[ext_resource type="Texture2D" uid="uid://lue0igafu3b" path="res://characters/enemy/paroot_underwater/tail.png" id="8_ojg8j"]
 [ext_resource type="AudioStream" uid="uid://dhmdyxs8ju37v" path="res://audio/sounds/spit.wav" id="9_ky35y"]
+[ext_resource type="Texture2D" uid="uid://b52ay1yps26nl" path="res://characters/enemy/paroot_underwater/paroot_underwater.png" id="9_nivp3"]
 [ext_resource type="Script" path="res://characters/enemy/states/walker_idle.gd" id="10_fbocg"]
 [ext_resource type="Script" path="res://characters/enemy/states/walker_walk.gd" id="11_h4y0m"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_o2lwl"]
+shader = ExtResource("7_2soey")
+shader_parameter/speed = 1.0
+shader_parameter/minStrength = 0.05
+shader_parameter/maxStrength = 0.01
+shader_parameter/strengthScale = 100.0
+shader_parameter/interval = 3.5
+shader_parameter/detail = 1.0
+shader_parameter/distortion = null
+shader_parameter/heightOffset = null
+shader_parameter/offset = 0.0
 
 [sub_resource type="Animation" id="Animation_qnvf2"]
 resource_name = "attack"
@@ -111,19 +125,24 @@ hurt_vocalizations = Array[AudioStreamWAV]([ExtResource("2_tvmrg"), ExtResource(
 death_pieces = Array[Resource]([ExtResource("4_8siu7"), ExtResource("5_xoehj"), ExtResource("6_yta1i")])
 bounty = 2
 
-[node name="Body" parent="Pivot" index="0"]
-position = Vector2(-2, -13)
-texture = ExtResource("7_ih8kl")
+[node name="Sprite2D" type="Sprite2D" parent="Pivot" index="0"]
+material = SubResource("ShaderMaterial_o2lwl")
+position = Vector2(10, -19)
+texture = ExtResource("8_ojg8j")
 
-[node name="AnimationPlayer" parent="Pivot" index="1"]
+[node name="Body" parent="Pivot" index="1"]
+position = Vector2(-2, -13)
+texture = ExtResource("9_nivp3")
+
+[node name="AnimationPlayer" parent="Pivot" index="2"]
 libraries = {
 "": SubResource("AnimationLibrary_i1f5f")
 }
 
-[node name="BulletSpawn" type="Marker2D" parent="Pivot" index="3"]
+[node name="BulletSpawn" type="Marker2D" parent="Pivot" index="4"]
 position = Vector2(-2, -10)
 
-[node name="player_detector" parent="Pivot" index="4"]
+[node name="player_detector" parent="Pivot" index="5"]
 target_position = Vector2(-120, 0)
 
 [node name="StateMachine" parent="." index="3"]

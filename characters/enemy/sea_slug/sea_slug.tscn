@@ -1,0 +1,51 @@
+[gd_scene load_steps=10 format=3 uid="uid://dc52nujmtlyti"]
+
+[ext_resource type="PackedScene" uid="uid://cde2c17kuh3gb" path="res://characters/enemy/enemy_jumper.tscn" id="1_08sr0"]
+[ext_resource type="Texture2D" uid="uid://ch2vxb8bj8opj" path="res://characters/enemy/sea_slug/sea_slug.png" id="2_ernpr"]
+[ext_resource type="Texture2D" uid="uid://ckh244g6rk48k" path="res://characters/enemy/sea_slug/sea_slug_pieces_1.png" id="2_tr86h"]
+[ext_resource type="Script" path="res://characters/enemy/states/walker_walk.gd" id="3_6k77n"]
+[ext_resource type="Texture2D" uid="uid://dgatsky6vilua" path="res://characters/enemy/sea_slug/sea_slug_pieces_2.png" id="3_bw5w4"]
+[ext_resource type="Script" path="res://characters/enemy/states/hurt_keep_attacking.gd" id="6_ccox4"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_g0ifh"]
+size = Vector2(32, 14)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ay2u1"]
+size = Vector2(34, 15)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_n4ywl"]
+size = Vector2(29, 11)
+
+[node name="SeaSlug" instance=ExtResource("1_08sr0")]
+position = Vector2(0, -1)
+death_pieces = Array[Resource]([ExtResource("2_tr86h"), ExtResource("3_bw5w4")])
+bounty = 1
+
+[node name="Body" parent="Pivot" index="0"]
+position = Vector2(0, -14)
+texture = ExtResource("2_ernpr")
+frame = 0
+
+[node name="Attack" parent="StateMachine" index="2"]
+script = ExtResource("3_6k77n")
+
+[node name="Hurt" parent="StateMachine" index="4"]
+script = ExtResource("6_ccox4")
+
+[node name="Hurtbox" parent="." index="4"]
+collision_mask = 8
+
+[node name="CollisionShape2D" parent="Hurtbox" index="0"]
+position = Vector2(0, -7)
+shape = SubResource("RectangleShape2D_g0ifh")
+
+[node name="CollisionShape2D" parent="Hitbox" index="0"]
+position = Vector2(0, -7.5)
+shape = SubResource("RectangleShape2D_ay2u1")
+
+[node name="CollisionShape2D" parent="." index="6"]
+position = Vector2(-0.5, -5.5)
+shape = SubResource("RectangleShape2D_n4ywl")
+
+[editable path="Hurtbox"]
+[editable path="Hitbox"]
