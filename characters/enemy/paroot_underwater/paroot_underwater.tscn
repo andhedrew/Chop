@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://d1xrywv7d6oqs"]
+[gd_scene load_steps=22 format=3 uid="uid://d1xrywv7d6oqs"]
 
 [ext_resource type="PackedScene" uid="uid://23cc1xm0v5jp" path="res://characters/enemy/enemy_walker.tscn" id="1_dq4xu"]
 [ext_resource type="AudioStream" uid="uid://c2b7napty0xqn" path="res://audio/sounds/squawk_1.wav" id="2_tvmrg"]
@@ -12,6 +12,7 @@
 [ext_resource type="AudioStream" uid="uid://dhmdyxs8ju37v" path="res://audio/sounds/spit.wav" id="9_ky35y"]
 [ext_resource type="Texture2D" uid="uid://b52ay1yps26nl" path="res://characters/enemy/paroot_underwater/paroot_underwater.png" id="9_nivp3"]
 [ext_resource type="Script" path="res://characters/enemy/states/walker_idle.gd" id="10_fbocg"]
+[ext_resource type="PackedScene" uid="uid://ddgw54bqni0v1" path="res://bullets/underwater_bullet/underwater_bullet.tscn" id="11_dgg3s"]
 [ext_resource type="Script" path="res://characters/enemy/states/walker_walk.gd" id="11_h4y0m"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_o2lwl"]
@@ -150,6 +151,7 @@ initial_state = NodePath("Idle")
 
 [node name="Attack" type="Node" parent="StateMachine" index="3"]
 script = ExtResource("8_dixk6")
+my_bullet = ExtResource("11_dgg3s")
 attack_sound = ExtResource("9_ky35y")
 
 [node name="Idle" type="Node" parent="StateMachine" index="4"]

@@ -1,0 +1,94 @@
+[gd_scene load_steps=9 format=3 uid="uid://ddgw54bqni0v1"]
+
+[ext_resource type="Script" path="res://bullets/bullet.gd" id="1_2ylu7"]
+[ext_resource type="Texture2D" uid="uid://bbul1b35xtjq0" path="res://bullets/underwater_bullet/underwater_bullet.png" id="2_rvx3s"]
+[ext_resource type="PackedScene" uid="uid://cxfiuhgots5lg" path="res://hitboxes/Hitbox.tscn" id="3_o7rfn"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_qr55v"]
+radius = 8.0
+
+[sub_resource type="Animation" id="Animation_re3lr"]
+resource_name = "animate_bullet"
+length = 0.3
+loop_mode = 1
+step = 0.08
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.08, 0.16, 0.24),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [2, 3, 4, 5]
+}
+
+[sub_resource type="Animation" id="Animation_5xbje"]
+resource_name = "bullet_enter"
+length = 0.1
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.05),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [0, 1]
+}
+
+[sub_resource type="Animation" id="Animation_km3k7"]
+resource_name = "bullet_exit"
+length = 0.2
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.1, 0.15),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [6, 7, 8, 9]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ocw25"]
+_data = {
+"animate_bullet": SubResource("Animation_re3lr"),
+"bullet_enter": SubResource("Animation_5xbje"),
+"bullet_exit": SubResource("Animation_km3k7")
+}
+
+[node name="underwater_bullet" type="Area2D"]
+collision_layer = 0
+script = ExtResource("1_2ylu7")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(9, 0)
+scale = Vector2(-1, -1)
+texture = ExtResource("2_rvx3s")
+hframes = 10
+frame = 9
+
+[node name="Hitbox" parent="." instance=ExtResource("3_o7rfn")]
+position = Vector2(19, -1)
+collision_layer = 16
+collision_mask = 2
+
+[node name="CollisionShape2D" parent="Hitbox" index="0"]
+position = Vector2(-10, 1)
+shape = SubResource("CircleShape2D_qr55v")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_ocw25")
+}
+
+[editable path="Hitbox"]

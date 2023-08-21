@@ -1,9 +1,12 @@
-[gd_scene load_steps=9 format=3 uid="uid://di4cfvxylmdpg"]
+[gd_scene load_steps=12 format=3 uid="uid://di4cfvxylmdpg"]
 
 [ext_resource type="PackedScene" uid="uid://g2rn2npgnt8u" path="res://characters/enemy/enemy_flyer.tscn" id="1_ypsac"]
+[ext_resource type="AudioStream" uid="uid://q3itmoyiurnb" path="res://audio/sounds/yeller_fish_hurt_1.wav" id="2_uqlqt"]
 [ext_resource type="Texture2D" uid="uid://c6fvq2m8ghq5q" path="res://characters/enemy/yellow_fish/yeller_fish_pieces1.png" id="2_vesin"]
+[ext_resource type="AudioStream" uid="uid://dt5s6swlast76" path="res://audio/sounds/yeller_fish_hurt_2.wav" id="3_8u11c"]
 [ext_resource type="Texture2D" uid="uid://dqvwaykm6fm4x" path="res://characters/enemy/yellow_fish/yeller_fish_pieces2.png" id="3_8x0ja"]
 [ext_resource type="Texture2D" uid="uid://be8enfc6gyv84" path="res://characters/enemy/yellow_fish/yeller_fish.png" id="4_5revq"]
+[ext_resource type="AudioStream" uid="uid://d3gx8bdie33dn" path="res://audio/sounds/yeller_fish_die.wav" id="4_wwumc"]
 [ext_resource type="Script" path="res://characters/enemy/states/yeller_fish_move.gd" id="5_ibkyn"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5vyoe"]
@@ -16,6 +19,8 @@ size = Vector2(25, 22)
 
 [node name="YellerFish" instance=ExtResource("1_ypsac")]
 speed = 12.0
+hurt_vocalizations = Array[AudioStreamWAV]([ExtResource("2_uqlqt"), ExtResource("3_8u11c")])
+death_vocalization = ExtResource("4_wwumc")
 death_pieces = Array[Resource]([ExtResource("2_vesin"), ExtResource("3_8x0ja")])
 
 [node name="Body" parent="Pivot" index="0"]

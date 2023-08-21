@@ -1,10 +1,13 @@
-[gd_scene load_steps=10 format=3 uid="uid://buc6l4tfwxf4d"]
+[gd_scene load_steps=13 format=3 uid="uid://buc6l4tfwxf4d"]
 
 [ext_resource type="PackedScene" uid="uid://cde2c17kuh3gb" path="res://characters/enemy/enemy_jumper.tscn" id="1_rhwt4"]
 [ext_resource type="Texture2D" uid="uid://b8e1lwytbpqml" path="res://characters/enemy/fish_jumper/fish_jumper.png" id="2_3vx3p"]
+[ext_resource type="AudioStream" uid="uid://dntov778riy4u" path="res://audio/sounds/jumpfish_hurt_1.wav" id="2_53jbm"]
 [ext_resource type="Texture2D" uid="uid://dto0rxbtla2ch" path="res://characters/enemy/fish_jumper/fish_jumper_pieces_1.png" id="2_k4xej"]
 [ext_resource type="Texture2D" uid="uid://d0oc5epc1sp72" path="res://characters/enemy/fish_jumper/fish_jumper_pieces_2.png" id="3_83r0h"]
 [ext_resource type="Script" path="res://characters/enemy/states/walker_idle.gd" id="3_ca742"]
+[ext_resource type="AudioStream" uid="uid://dbrgrpak3osuv" path="res://audio/sounds/jumpfish_hurt_2.wav" id="3_htloi"]
+[ext_resource type="AudioStream" uid="uid://bfw2agtun7j22" path="res://audio/sounds/jumpfish_die.wav" id="4_jqj1u"]
 [ext_resource type="Script" path="res://characters/enemy/states/walker_walk.gd" id="4_ls3vg"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6qaak"]
@@ -17,6 +20,8 @@ size = Vector2(40, 39)
 size = Vector2(13, 38)
 
 [node name="FishJumper" instance=ExtResource("1_rhwt4")]
+hurt_vocalizations = Array[AudioStreamWAV]([ExtResource("2_53jbm"), ExtResource("3_htloi")])
+death_vocalization = ExtResource("4_jqj1u")
 death_pieces = Array[Resource]([ExtResource("2_k4xej"), ExtResource("3_83r0h"), ExtResource("3_83r0h"), ExtResource("3_83r0h")])
 
 [node name="Body" parent="Pivot" index="0"]

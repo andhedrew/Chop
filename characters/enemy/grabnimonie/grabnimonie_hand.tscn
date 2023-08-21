@@ -1,9 +1,11 @@
-[gd_scene load_steps=8 format=3 uid="uid://bqq08vvut4xlt"]
+[gd_scene load_steps=10 format=3 uid="uid://bqq08vvut4xlt"]
 
 [ext_resource type="PackedScene" uid="uid://cde2c17kuh3gb" path="res://characters/enemy/enemy_jumper.tscn" id="1_u5ve6"]
+[ext_resource type="AudioStream" uid="uid://dx0rp7xldwdtu" path="res://audio/sounds/grab_hurt_1.wav" id="2_2i8l5"]
 [ext_resource type="Texture2D" uid="uid://dq5rp5irat5te" path="res://characters/enemy/grabnimonie/grabnimonie_hand.png" id="2_mtmjq"]
 [ext_resource type="Script" path="res://characters/enemy/states/grabber_attack.gd" id="3_plwaj"]
 [ext_resource type="Script" path="res://characters/enemy/states/grabber_idle.gd" id="3_st2jk"]
+[ext_resource type="AudioStream" uid="uid://ccoc5u7hf71tw" path="res://audio/sounds/grab_die.wav" id="3_wpd1g"]
 [ext_resource type="Script" path="res://characters/enemy/states/grabber_hurt.gd" id="5_rcmdc"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_lch7e"]
@@ -13,6 +15,8 @@ size = Vector2(18, 18)
 
 [node name="Hand" instance=ExtResource("1_u5ve6")]
 health = 2
+hurt_vocalizations = Array[AudioStreamWAV]([ExtResource("2_2i8l5")])
+death_vocalization = ExtResource("3_wpd1g")
 death_pieces = Array[Resource]([])
 
 [node name="Body" parent="Pivot" index="0"]

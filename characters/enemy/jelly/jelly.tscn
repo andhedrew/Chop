@@ -1,9 +1,12 @@
-[gd_scene load_steps=10 format=3 uid="uid://wtyl1uj7hc75"]
+[gd_scene load_steps=13 format=3 uid="uid://wtyl1uj7hc75"]
 
 [ext_resource type="PackedScene" uid="uid://g2rn2npgnt8u" path="res://characters/enemy/enemy_flyer.tscn" id="1_bwa28"]
 [ext_resource type="Texture2D" uid="uid://c2ooh2va1tr57" path="res://characters/enemy/jelly/jelly_pieces.png" id="2_5vbd0"]
 [ext_resource type="Texture2D" uid="uid://bvfq0hwb1c7lc" path="res://characters/enemy/jelly/jelly.png" id="2_bbn2i"]
+[ext_resource type="AudioStream" uid="uid://bg2ob48wta4kq" path="res://audio/sounds/jelly_hurt_1.wav" id="2_hl28c"]
 [ext_resource type="Shader" path="res://levels_and_level_objects/destructible_plants/chop_foliage_underwater.gdshader" id="3_8rave"]
+[ext_resource type="AudioStream" uid="uid://deoh74nm56v3c" path="res://audio/sounds/jelly_hurt_2.wav" id="3_vyxxv"]
+[ext_resource type="AudioStream" uid="uid://c3uoqpdwmdnhi" path="res://audio/sounds/jelly_die.wav" id="4_18i5i"]
 [ext_resource type="Script" path="res://characters/enemy/states/flyer_move_in_circle.gd" id="4_djjoo"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_rrw8x"]
@@ -31,6 +34,8 @@ points = PackedVector2Array(-20, -8, -10, -27, 0, -30, 10, -27, 20, -8)
 collision_layer = 5
 health = 12
 speed = 1.0
+hurt_vocalizations = Array[AudioStreamWAV]([ExtResource("2_hl28c"), ExtResource("3_vyxxv")])
+death_vocalization = ExtResource("4_18i5i")
 death_pieces = Array[Resource]([ExtResource("2_5vbd0"), ExtResource("2_5vbd0"), ExtResource("2_5vbd0"), ExtResource("2_5vbd0"), ExtResource("2_5vbd0")])
 
 [node name="Body" parent="Pivot" index="0"]

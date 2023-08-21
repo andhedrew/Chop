@@ -1,7 +1,9 @@
-[gd_scene load_steps=11 format=3 uid="uid://clqfj20nn10q8"]
+[gd_scene load_steps=13 format=3 uid="uid://clqfj20nn10q8"]
 
 [ext_resource type="PackedScene" uid="uid://drg8rxk8unocu" path="res://characters/enemy/enemy_idler.tscn" id="1_fyj6i"]
+[ext_resource type="AudioStream" uid="uid://dx0rp7xldwdtu" path="res://audio/sounds/grab_hurt_1.wav" id="2_u7kxb"]
 [ext_resource type="Texture2D" uid="uid://jd2a8en12us4" path="res://characters/enemy/grabnimonie/grabnimonie_pieces_1.png" id="2_yck18"]
+[ext_resource type="AudioStream" uid="uid://ccoc5u7hf71tw" path="res://audio/sounds/grab_die.wav" id="3_14mb0"]
 [ext_resource type="Texture2D" uid="uid://b8lnle0m2r1p7" path="res://characters/enemy/grabnimonie/grabnimonie_pieces_2.png" id="3_as2s1"]
 [ext_resource type="Texture2D" uid="uid://c5vqpa7kej748" path="res://characters/enemy/grabnimonie/grabnimonie_pieces_3.png" id="4_o8x5h"]
 [ext_resource type="Texture2D" uid="uid://dsi3hyw5qb5fw" path="res://characters/enemy/grabnimonie/grabnimonie.png" id="5_dylhl"]
@@ -19,6 +21,8 @@ size = Vector2(16, 38)
 
 [node name="grabnimonie" instance=ExtResource("1_fyj6i")]
 health = 4
+hurt_vocalizations = Array[AudioStreamWAV]([ExtResource("2_u7kxb")])
+death_vocalization = ExtResource("3_14mb0")
 death_pieces = Array[Resource]([ExtResource("2_yck18"), ExtResource("3_as2s1"), ExtResource("4_o8x5h")])
 
 [node name="Body" parent="Pivot" index="0"]

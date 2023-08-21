@@ -1,4 +1,4 @@
-[gd_scene load_steps=39 format=3 uid="uid://c8ohk2k61y8ue"]
+[gd_scene load_steps=40 format=3 uid="uid://c8ohk2k61y8ue"]
 
 [ext_resource type="PackedScene" uid="uid://dm85xjdq5mkk3" path="res://levels_and_level_objects/level_scenes/base_level.tscn" id="1_jfywk"]
 [ext_resource type="Texture2D" uid="uid://yyjt5r48b5fj" path="res://sprites/tilesets/sewer.png" id="2_fp0hn"]
@@ -33,6 +33,7 @@
 [ext_resource type="Texture2D" uid="uid://b1ob4sfbbmgfm" path="res://levels_and_level_objects/destructible_plants/Sprites/plant_16.png" id="30_mf6y0"]
 [ext_resource type="Texture2D" uid="uid://dnf5f5sx0y2xe" path="res://levels_and_level_objects/destructible_plants/Sprites/plant_5.png" id="31_7pcvb"]
 [ext_resource type="Texture2D" uid="uid://bdooe7yvbkrfa" path="res://levels_and_level_objects/destructible_plants/Sprites/plant_4.png" id="32_s7xr3"]
+[ext_resource type="PackedScene" uid="uid://cl5wmh7hq8ul0" path="res://pickups/food_pickup.tscn" id="34_43gm7"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_t7t03"]
 texture = ExtResource("2_fp0hn")
@@ -702,6 +703,9 @@ texture = ExtResource("32_s7xr3")
 [node name="ChopFoliage9" parent="." index="29" instance=ExtResource("27_blsck")]
 position = Vector2(-168, -40)
 texture = ExtResource("32_s7xr3")
+
+[node name="food_pickup" parent="." index="30" instance=ExtResource("34_43gm7")]
+position = Vector2(-112, -62)
 
 [editable path="Blower"]
 [editable path="Blower/BlowerParticles"]

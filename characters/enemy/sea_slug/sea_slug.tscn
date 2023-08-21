@@ -1,10 +1,13 @@
-[gd_scene load_steps=10 format=3 uid="uid://dc52nujmtlyti"]
+[gd_scene load_steps=13 format=3 uid="uid://dc52nujmtlyti"]
 
 [ext_resource type="PackedScene" uid="uid://cde2c17kuh3gb" path="res://characters/enemy/enemy_jumper.tscn" id="1_08sr0"]
+[ext_resource type="AudioStream" uid="uid://cjjfqpm0ynwf" path="res://audio/sounds/seaslug_hurt_1.wav" id="2_cthke"]
 [ext_resource type="Texture2D" uid="uid://ch2vxb8bj8opj" path="res://characters/enemy/sea_slug/sea_slug.png" id="2_ernpr"]
 [ext_resource type="Texture2D" uid="uid://ckh244g6rk48k" path="res://characters/enemy/sea_slug/sea_slug_pieces_1.png" id="2_tr86h"]
 [ext_resource type="Script" path="res://characters/enemy/states/walker_walk.gd" id="3_6k77n"]
 [ext_resource type="Texture2D" uid="uid://dgatsky6vilua" path="res://characters/enemy/sea_slug/sea_slug_pieces_2.png" id="3_bw5w4"]
+[ext_resource type="AudioStream" uid="uid://b3evpoero340p" path="res://audio/sounds/seaslug_hurt_2.wav" id="3_jrtkj"]
+[ext_resource type="AudioStream" uid="uid://b36ugfdj845ig" path="res://audio/sounds/seaslug_die.wav" id="4_vysx7"]
 [ext_resource type="Script" path="res://characters/enemy/states/hurt_keep_attacking.gd" id="6_ccox4"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_g0ifh"]
@@ -18,6 +21,8 @@ size = Vector2(29, 11)
 
 [node name="SeaSlug" instance=ExtResource("1_08sr0")]
 position = Vector2(0, -1)
+hurt_vocalizations = Array[AudioStreamWAV]([ExtResource("2_cthke"), ExtResource("3_jrtkj")])
+death_vocalization = ExtResource("4_vysx7")
 death_pieces = Array[Resource]([ExtResource("2_tr86h"), ExtResource("3_bw5w4")])
 bounty = 1
 
