@@ -29,7 +29,7 @@ func _physics_process(delta):
 			"RIGHT":
 				player.velocity.x += force.x
 				player.velocity.x = clamp(player.velocity.x, top_speed, 0)
-				player.velocity.y = 0
+				player.velocity.y -= force.y
 	else:
 		pass
 
