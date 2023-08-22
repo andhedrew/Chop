@@ -14,19 +14,22 @@ func _ready():
 
 func _physics_process(delta):
 	if player_in_area:
-		match blow_direction:
+		var top_speed := 800
+		match blow_direction:	
 			"UP":
 				player.velocity.y += force.y
-				player.velocity.y = clamp(player.velocity.y, -250, 0)
+				player.velocity.y = clamp(player.velocity.y, -top_speed, 0)
 			"LEFT":
 				player.velocity.x -= force.x
-				player.velocity.x = clamp(player.velocity.y, -250, 0)
+				player.velocity.x = clamp(player.velocity.x, -top_speed, 0)
+				player.velocity.y -= force.y
 			"DOWN":
 				player.velocity.y -= force.y
-				player.velocity.x = clamp(player.velocity.x, 250, 0)
+				player.velocity.x = clamp(player.velocity.x, top_speed, 0)
 			"RIGHT":
 				player.velocity.x += force.x
-				player.velocity.x = clamp(player.velocity.x, 250, 0)
+				player.velocity.x = clamp(player.velocity.x, top_speed, 0)
+				player.velocity.y = 0
 	else:
 		pass
 

@@ -28,13 +28,13 @@ func setup_json() -> void:
 		"meat_stomach" : 0.0,
 		"lb_position" : Vector2.ZERO,
 		"tutorial" : {
-			"enemy_execute_prompted": true,
-			"adding_food_prompted": true,
-			"done_feeding_prompted": true,
-			"coin_prompted": true,
-			"plant_bar_prompted": true,
-			"start_of_level_prompted": true,
-			"full_bag_prompted": true,
+			"enemy_execute_prompted": false,
+			"adding_food_prompted": false,
+			"done_feeding_prompted": false,
+			"coin_prompted": false,
+			"plant_bar_prompted": false,
+			"start_of_level_prompted": false,
+			"full_bag_prompted": false,
 		"saved_data": false
 			
 				}
