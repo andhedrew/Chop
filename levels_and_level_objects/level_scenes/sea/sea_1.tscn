@@ -55,6 +55,7 @@ scale_min = 2.0
 scale_max = 2.0
 
 [node name="World" instance=ExtResource("1_tbt3w")]
+next_level = "res://levels_and_level_objects/level_scenes/sea/sea_2.tscn"
 
 [node name="TileMap3" type="TileMap" parent="." index="0"]
 position = Vector2(-80, -16)
