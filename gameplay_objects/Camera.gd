@@ -67,42 +67,47 @@ func _process(delta):
 		target_node = get_node(target)
 	
 	if !freeze_camera:
-		if cutscene_running:
-			x_target_lead = lerp(x_target_lead, x_cutscene_lead, lerpspeed*3)
-		else:
-			x_target_lead = lerp(x_target_lead, x_lead, lerpspeed)
-		
 		if target_node is Player:
+			if cutscene_running:
+				x_target_lead = lerp(x_target_lead, x_cutscene_lead, lerpspeed*3)
+			else:
+				x_target_lead = lerp(x_target_lead, x_lead, lerpspeed)
+				
+			if !dashing:
+				var look_direction = Vector2(Input.get_axis("right", "left"), Input.get_axis("down", "up")).normalized()
+
+				if look_direction.x > 0:
+					x_lead = -x_lead_amount
+				elif look_direction.x < 0:
+					x_lead = x_lead_amount
+				y_lead = y_lead_amount
+			else:
+				var look_direction = Vector2(Input.get_axis("right", "left"), Input.get_axis("down", "up")).normalized()
+
+				if look_direction.x > 0:
+					x_lead = -x_lead_amount
+				elif look_direction.x < 0:
+					x_lead = x_lead_amount
+				y_lead = 0
+			
 			if target_node.is_on_floor():
 				y_lead = y_lead_amount
 				lerpspeed = base_lerpspeed
 			else:
 				y_lead = 0.0
 				lerpspeed = base_lerpspeed * 1.5
-
-
+		else: #if target is NOT player
+			x_lead = 0.0
+			y_lead = 0.0
+			x_target_lead = lerp(x_target_lead, x_lead, lerpspeed)
+			
 		y_target_lead = lerp(y_target_lead, y_lead, lerpspeed)
 			
 		position = lerp(position, Vector2(target_node.position.x+x_target_lead, target_node.position.y+y_target_lead), lerpspeed)
 
 		time += delta
 		
-		if !dashing:
-			var look_direction = Vector2(Input.get_axis("right", "left"), Input.get_axis("down", "up")).normalized()
-
-			if look_direction.x > 0:
-				x_lead = -x_lead_amount
-			elif look_direction.x < 0:
-				x_lead = x_lead_amount
-			y_lead = y_lead_amount
-		else:
-			var look_direction = Vector2(Input.get_axis("right", "left"), Input.get_axis("down", "up")).normalized()
-
-			if look_direction.x > 0:
-				x_lead = -x_lead_amount
-			elif look_direction.x < 0:
-				x_lead = x_lead_amount
-			y_lead = 0
+		
 
 
 		set_offset(Vector2( \
@@ -141,10 +146,10 @@ func flash_screen(flash_time: float, flash_position: Vector2) -> void:
 	await get_tree().create_timer(flash_time).timeout
 	color_rect.queue_free()
 
+
 func _on_player_changed_state(new_state: String, _previous_state: String) -> void:
 	if new_state == "Dash":
 		dashing = true
-	
 	if new_state == "Idle" or new_state == "Walk":
 		dashing = false
 
@@ -152,6 +157,7 @@ func _on_player_changed_state(new_state: String, _previous_state: String) -> voi
 func _on_player_done_syphoning(successful_syphon: bool) ->void:
 	if successful_syphon:
 		BIG_SCREENSHAKE()
+
 
 func set_camera_limits():
 	var map_limits = $"../TileMap".get_used_rect()
@@ -164,7 +170,6 @@ func set_camera_limits():
 
 func _on_cutscene_start() -> void:
 	cutscene_running = true
-
 
 
 func _on_cutscene_end() -> void:
