@@ -3,7 +3,6 @@ extends State
 
 func enter(_msg := {}) -> void:
 	GameEvents.cutscene_started.emit()
-	GameEvents.camera_change_focus.emit(owner)
 	owner.animation_player.play("die")
 	await get_tree().create_timer(2.0).timeout
 	OS.delay_msec(80)

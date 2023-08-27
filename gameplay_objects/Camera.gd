@@ -169,6 +169,7 @@ func set_camera_limits():
 
 
 func _on_cutscene_start() -> void:
+	original_target = target
 	cutscene_running = true
 
 
