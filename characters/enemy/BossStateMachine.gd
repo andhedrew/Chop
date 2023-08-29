@@ -43,6 +43,7 @@ func transition_to(target_state_name: String, msg: Dictionary = {}) -> void:
 		previous_state = state.name
 		state.exit()
 		state = get_node(target_state_name)
+		print_debug(str(owner.name)+ ": " + str(previous_state) + " -> " + str(state))
 		state.enter(msg)
 		state_timer = 0
 

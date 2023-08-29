@@ -1,4 +1,4 @@
-[gd_scene load_steps=51 format=3 uid="uid://bvuqbhwqfo41j"]
+[gd_scene load_steps=50 format=3 uid="uid://bvuqbhwqfo41j"]
 
 [ext_resource type="PackedScene" uid="uid://bwvi5m2prncxh" path="res://characters/player/player.tscn" id="1_371ql"]
 [ext_resource type="Script" path="res://levels_and_level_objects/level_scenes/level_manager.gd" id="1_nxsgc"]
@@ -38,7 +38,6 @@
 [ext_resource type="Texture2D" uid="uid://bgscse21mygyi" path="res://levels_and_level_objects/destructible_plants/Sprites/plant_15.png" id="38_kjne5"]
 [ext_resource type="Texture2D" uid="uid://b1ob4sfbbmgfm" path="res://levels_and_level_objects/destructible_plants/Sprites/plant_16.png" id="39_d5w4e"]
 [ext_resource type="PackedScene" uid="uid://cf8s3hxbyvsv8" path="res://characters/little_brother/little_brother.tscn" id="39_wpx1l"]
-[ext_resource type="PackedScene" uid="uid://cp5j3tbsikxw4" path="res://levels_and_level_objects/area_of_interest.tscn" id="40_do6fu"]
 [ext_resource type="Texture2D" uid="uid://dciau4mywkcux" path="res://levels_and_level_objects/destructible_plants/Sprites/plant_10.png" id="40_sjia3"]
 
 [sub_resource type="Animation" id="Animation_vp1kt"]
@@ -1219,12 +1218,6 @@ texture = ExtResource("40_sjia3")
 [node name="ChopFoliage6" parent="." instance=ExtResource("37_pen5r")]
 position = Vector2(-299, 115)
 texture = ExtResource("40_sjia3")
-
-[node name="AreaOfInterest" parent="." instance=ExtResource("40_do6fu")]
-position = Vector2(-208, -160)
-
-[node name="AreaOfInterest2" parent="." instance=ExtResource("40_do6fu")]
-position = Vector2(1040, 8)
 
 [editable path="LittleBrother"]
 [editable path="LittleBrother/InteractZone/HungerBars"]
