@@ -4,6 +4,7 @@ extends State
 @onready var jump_buffer_timer := $"../../JumpBufferTimer"
 
 func enter(_msg := {}) -> void:
+	owner.collider.disabled = false
 	owner.execute_disabled = false
 	$"../../BoosterPivot".visible = false
 

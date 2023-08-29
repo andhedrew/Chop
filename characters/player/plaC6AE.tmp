@@ -913,13 +913,7 @@ visible = false
 process_material = SubResource("ParticleProcessMaterial_65d5a")
 
 [node name="BlockDetector" type="RayCast2D" parent="Pivot"]
-position = Vector2(-2, -11)
-target_position = Vector2(40, 0)
-collision_mask = 128
-collide_with_areas = true
-
-[node name="BlockDetector2" type="RayCast2D" parent="Pivot"]
-position = Vector2(-2, 12)
+position = Vector2(-2, 1)
 target_position = Vector2(40, 0)
 collision_mask = 128
 collide_with_areas = true

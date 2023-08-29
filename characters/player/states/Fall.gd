@@ -5,7 +5,7 @@ extends State
 
 
 func enter(_msg := {}) -> void:
-	pass
+	owner.collider.disabled = false
 
 func physics_update(delta: float) -> void:
 	var jump := Input.is_action_just_pressed("jump")

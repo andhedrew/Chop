@@ -4,6 +4,7 @@ var reload_time := 5.0
 var reloading := false
 var reload_timer := 0
 @onready var animation_player := $"../../Pivot/AnimationPlayer"
+var slicing_a_block := false
 
 func enter(_msg := {}) -> void:
 		var bullet = owner.bullet.instantiate()
@@ -19,6 +20,7 @@ func enter(_msg := {}) -> void:
 			rotation = 180
 		bullet.setup(transform, fire_range, speed, rotation, spread)
 		SoundPlayer.play_sound("swoosh")
+		
 		var knockback = owner.attack_backward_force
 		if owner.in_water:
 			knockback *= 1.1
@@ -27,13 +29,27 @@ func enter(_msg := {}) -> void:
 		else:
 			owner.velocity.x -= knockback
 		
-		if owner.looking != Enums.Looking.UP:
-			owner.velocity.y -= owner.attack_upward_force
-		
+		if owner.block_detector.is_colliding() or owner.block_detector2.is_colliding():
+			slicing_a_block = true
+			owner.collider.disabled = true
+			owner.velocity.y = 0
+			
+			var boost_speed := 30
+			if owner.looking != Enums.Looking.UP:
+				if owner.facing == Enums.Facing.LEFT:
+					owner.velocity.x = -knockback*boost_speed
+				elif owner.facing == Enums.Facing.RIGHT:
+					owner.velocity.x = knockback*boost_speed
+			else:
+				owner.velocity.x = 0
+				owner.velocity.y = -knockback*boost_speed
+		else:
+			slicing_a_block = false
+
 
 
 func physics_update(delta: float) -> void:
-	if owner.weapon == Enums.Weapon.FAST:
+	if owner.weapon == Enums.Weapon.FAST or slicing_a_block:
 		if Input.is_action_just_pressed("attack"):
 			state_machine.transition_to("Attack")
 	
@@ -41,22 +57,20 @@ func physics_update(delta: float) -> void:
 		if Input.is_action_pressed("jump"):
 			state_machine.transition_to("Jump")
 #	
-	if owner.in_water:
-		owner.velocity.y += Param.WATER_GRAVITY * delta
-	else:
-		owner.velocity.y += Param.GRAVITY * delta
-	owner.move_and_slide()
-	
-
+	if !slicing_a_block:
+		if owner.in_water:
+			owner.velocity.y += Param.WATER_GRAVITY * delta
+		else:
+			owner.velocity.y += Param.GRAVITY * delta
 		
-	await animation_player.animation_finished
+	owner.move_and_slide()
+		
 	if state_machine.state_timer > owner.attack_delay and owner.state != "Cutscene":
 		state_machine.transition_to("Idle")
-	elif owner.state != "Cutscene": 
-		state_machine.transition_to("Fall")
+#	elif owner.state != "Cutscene": 
+#		state_machine.transition_to("Fall")
 	
 	
 	if Input.is_action_just_pressed("dash") and owner.has_booster_upgrade:
 		state_machine.transition_to("Dash")
-
 

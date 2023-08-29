@@ -41,6 +41,9 @@ var set_ui := false
 
 var cutscene_walk := false
 
+@onready var block_detector : RayCast2D = $Pivot/BlockDetector
+@onready var block_detector2 : RayCast2D = $Pivot/BlockDetector2
+
 
 @onready var hurtbox := $Hurtbox
 @onready var animation_player := $Pivot/AnimationPlayer
@@ -65,6 +68,8 @@ var execute_range := 150
 var execute_speed := 3000
 var execute_spread := 0
 
+@onready var collider := $CollisionShape2D
+
 func _ready():
 	hurtbox.area_entered.connect(_hurtbox_on_area_entered)
 	GameEvents.enemy_took_damage.connect(_on_enemy_taking_damage)
@@ -79,7 +84,6 @@ func _ready():
 		GameEvents.charge_amount_changed.emit(torch_charges, max_torch_charges)
 	z_index = SortLayer.PLAYER
 	_load_data()
-	
 
 
 func _load_data() -> void:
@@ -121,6 +125,18 @@ func _physics_process(delta):
 	
 	if Input.is_action_just_pressed("unload_bag"):
 		drop_last_item()
+	
+	if looking == Enums.Looking.UP:
+		block_detector.target_position = Vector2(0, -55)
+		block_detector.position = Vector2(-9, -11)
+		block_detector2.target_position = Vector2(0, -55)
+		block_detector2.position = Vector2(4, -11)
+	else:
+		block_detector.target_position = Vector2(55, 0)
+		block_detector.position = Vector2(-2, -11)
+		block_detector2.target_position = Vector2(55, 0)
+		block_detector2.position = Vector2(-2, 12)
+		
 
 
 func change_weapon(new_weapon) -> void:

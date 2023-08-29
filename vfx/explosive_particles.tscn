@@ -1,0 +1,42 @@
+[gd_scene load_steps=6 format=3 uid="uid://jek13ynqer3o"]
+
+[ext_resource type="Script" path="res://vfx/free_particles_when_done_emitting.gd" id="2_t4sfv"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_xyx3u"]
+particles_animation = true
+particles_anim_h_frames = 3
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="Curve" id="Curve_a8fdx"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.797557, 0.729537), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_xmey4"]
+curve = SubResource("Curve_a8fdx")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_nt04p"]
+lifetime_randomness = 0.33
+emission_shape = 3
+emission_box_extents = Vector3(16, 16, 1)
+particle_flag_disable_z = true
+direction = Vector3(0, 0, 0)
+spread = 180.0
+gravity = Vector3(0, 600, 0)
+initial_velocity_max = 172.39
+orbit_velocity_min = 0.0
+orbit_velocity_max = 0.0
+angle_min = -198.2
+angle_max = 108.6
+scale_curve = SubResource("CurveTexture_xmey4")
+anim_offset_max = 1.0
+
+[node name="explosive_particles" type="GPUParticles2D"]
+material = SubResource("CanvasItemMaterial_xyx3u")
+emitting = false
+amount = 32
+process_material = SubResource("ParticleProcessMaterial_nt04p")
+one_shot = true
+explosiveness = 1.0
+visibility_rect = Rect2(0, 0, 0, 0)
+script = ExtResource("2_t4sfv")

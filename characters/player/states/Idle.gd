@@ -4,7 +4,7 @@ extends State
 @onready var coyote_timer := $"../../CoyoteTimer"
 
 func enter(_msg := {}) -> void:
-
+	owner.collider.disabled = false
 	owner.execute_disabled = false
 	$"../../BoosterPivot".visible = false
 

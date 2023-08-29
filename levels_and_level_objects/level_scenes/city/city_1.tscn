@@ -1,4 +1,4 @@
-[gd_scene load_steps=73 format=3 uid="uid://103qye0bhxnw"]
+[gd_scene load_steps=72 format=3 uid="uid://103qye0bhxnw"]
 
 [ext_resource type="PackedScene" uid="uid://dm85xjdq5mkk3" path="res://levels_and_level_objects/level_scenes/base_level.tscn" id="1_hhmaj"]
 [ext_resource type="PackedScene" uid="uid://c61py6hgvk4e5" path="res://levels_and_level_objects/enemy_spawn.tscn" id="2_cj47y"]
@@ -66,7 +66,6 @@
 [ext_resource type="AudioStream" uid="uid://bdrhtkor6762v" path="res://audio/sounds/concrete.wav" id="64_qbijb"]
 [ext_resource type="Texture2D" uid="uid://u4bx68d45my0" path="res://levels_and_level_objects/choppable/cement_behemoth_corpse.png" id="65_eumjx"]
 [ext_resource type="PackedScene" uid="uid://dnjasyv6stmn4" path="res://levels_and_level_objects/question_block/question_mark_block.tscn" id="66_dbe8p"]
-[ext_resource type="PackedScene" uid="uid://cl5wmh7hq8ul0" path="res://pickups/food_pickup.tscn" id="67_oeicj"]
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_3y7sf"]
 load_path = "res://.godot/imported/template.png-d292e9f28b8a681a444b7e0c8329363b.ctex"
@@ -827,9 +826,6 @@ position = Vector2(3752, -264)
 
 [node name="QuestionMarkBlock5" parent="." index="19" instance=ExtResource("66_dbe8p")]
 position = Vector2(3824, -312)
-
-[node name="food_pickup" parent="." index="20" instance=ExtResource("67_oeicj")]
-position = Vector2(-77, -118)
 
 [editable path="death_zone2"]
 [editable path="ChoppableChunk"]
