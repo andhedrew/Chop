@@ -1,0 +1,147 @@
+[gd_scene load_steps=17 format=3 uid="uid://bifpljdsrips0"]
+
+[ext_resource type="Script" path="res://user_interface/out_of_lives.gd" id="1_b4g86"]
+[ext_resource type="Texture2D" uid="uid://coirdlbhd4hle" path="res://user_interface/death_screen/death_screen_head.png" id="4_6btkx"]
+[ext_resource type="Theme" uid="uid://b0dhfhdkknaj3" path="res://user_interface/chop_theme.tres" id="5_6jqr8"]
+[ext_resource type="PackedScene" uid="uid://eh11t8si04ed" path="res://user_interface/splattering_rain.tscn" id="5_dvo0m"]
+[ext_resource type="Texture2D" uid="uid://d2sfjwkrv1clw" path="res://vfx/rain_drop.png" id="6_2eywn"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_84x4k"]
+bg_color = Color(0.156863, 0.14902, 0.156863, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_eytvx"]
+bg_color = Color(0.2, 0.143267, 0.126, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vfl18"]
+bg_color = Color(0.101961, 0.0941176, 0.101961, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7cqy0"]
+bg_color = Color(0.278431, 0.266667, 0.278431, 1)
+
+[sub_resource type="InputEventKey" id="InputEventKey_ncjir"]
+device = -1
+keycode = 4194309
+
+[sub_resource type="Shortcut" id="Shortcut_44owr"]
+events = [SubResource("InputEventKey_ncjir")]
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_sy1oe"]
+emission_shape = 3
+emission_box_extents = Vector3(400, 5, 1)
+particle_flag_disable_z = true
+direction = Vector3(0, 1, 0)
+spread = 0.0
+gravity = Vector3(0, 0, 0)
+initial_velocity_min = 300.0
+initial_velocity_max = 300.0
+orbit_velocity_min = 0.0
+orbit_velocity_max = 0.0
+color = Color(1, 1, 1, 0.584314)
+
+[sub_resource type="Gradient" id="Gradient_qorv8"]
+colors = PackedColorArray(1, 1, 1, 1, 0.231518, 0.231518, 0.231518, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_ruwf1"]
+gradient = SubResource("Gradient_qorv8")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_xkn4t"]
+emission_shape = 3
+emission_box_extents = Vector3(20, 5, 1)
+particle_flag_disable_z = true
+gravity = Vector3(0, 0, 0)
+orbit_velocity_min = 0.0
+orbit_velocity_max = 0.0
+color = Color(1, 1, 1, 0.87451)
+color_ramp = SubResource("GradientTexture1D_ruwf1")
+anim_speed_min = 0.4
+anim_speed_max = 0.4
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_ejbvq"]
+emission_shape = 3
+emission_box_extents = Vector3(15, 5, 1)
+particle_flag_disable_z = true
+gravity = Vector3(0, 0, 0)
+orbit_velocity_min = 0.0
+orbit_velocity_max = 0.0
+color = Color(1, 1, 1, 0.87451)
+color_ramp = SubResource("GradientTexture1D_ruwf1")
+anim_speed_min = 0.4
+anim_speed_max = 0.4
+
+[node name="MainMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_b4g86")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.156863, 0.14902, 0.156863, 1)
+
+[node name="Button3" type="Button" parent="."]
+layout_mode = 2
+offset_left = 90.0
+offset_top = 202.0
+offset_right = 356.0
+offset_bottom = 218.0
+theme = ExtResource("5_6jqr8")
+theme_override_styles/normal = SubResource("StyleBoxFlat_84x4k")
+theme_override_styles/hover = SubResource("StyleBoxFlat_eytvx")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_vfl18")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_7cqy0")
+disabled = true
+shortcut = SubResource("Shortcut_44owr")
+text = "Continue Game"
+
+[node name="Button2" type="Button" parent="."]
+layout_mode = 2
+offset_left = 90.0
+offset_top = 227.0
+offset_right = 356.0
+offset_bottom = 243.0
+theme = ExtResource("5_6jqr8")
+theme_override_styles/normal = SubResource("StyleBoxFlat_84x4k")
+theme_override_styles/hover = SubResource("StyleBoxFlat_eytvx")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_vfl18")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_7cqy0")
+text = "Menu"
+
+[node name="rain" type="GPUParticles2D" parent="."]
+position = Vector2(304, -26)
+amount = 200
+process_material = SubResource("ParticleProcessMaterial_sy1oe")
+texture = ExtResource("6_2eywn")
+lifetime = 4.0
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 2
+offset_left = 93.0
+offset_top = 130.0
+offset_right = 359.0
+offset_bottom = 163.0
+theme = ExtResource("5_6jqr8")
+theme_override_font_sizes/font_size = 31
+text = "Outta chances."
+
+[node name="DeathScreenHead" type="Sprite2D" parent="."]
+position = Vector2(550, 172)
+texture = ExtResource("4_6btkx")
+
+[node name="SplatteringRain" parent="." instance=ExtResource("5_dvo0m")]
+position = Vector2(535, 168)
+process_material = SubResource("ParticleProcessMaterial_xkn4t")
+
+[node name="SplatteringRain2" parent="." instance=ExtResource("5_dvo0m")]
+position = Vector2(591, 180)
+process_material = SubResource("ParticleProcessMaterial_ejbvq")
+
+[editable path="SplatteringRain"]
+[editable path="SplatteringRain2"]

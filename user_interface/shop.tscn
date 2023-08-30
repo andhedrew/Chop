@@ -6,7 +6,7 @@
 [ext_resource type="Script" path="res://user_interface/money_counter.gd" id="4_xpecs"]
 [ext_resource type="PackedScene" uid="uid://de2lypqmnkj8i" path="res://user_interface/store/store_item.tscn" id="5_tfq6r"]
 [ext_resource type="Texture2D" uid="uid://xoihsb8asqow" path="res://user_interface/healthbar/full_heart.png" id="6_rxqss"]
-[ext_resource type="Texture2D" uid="uid://b7f5noq4ievao" path="res://user_interface/bag/bag3.png" id="7_l3kwy"]
+[ext_resource type="Texture2D" uid="uid://23fffbb5s8y4" path="res://user_interface/lives.png" id="7_88o5g"]
 [ext_resource type="Texture2D" uid="uid://fqlj0b6q2saa" path="res://characters/player/torch_chimney.png" id="8_atysg"]
 
 [sub_resource type="Animation" id="Animation_skycn"]
@@ -119,10 +119,10 @@ description = "Get more iron in you. Take another hit."
 [node name="StoreItem2" parent="VBoxContainer/MarginContainer2/VBoxContainer2/HBoxContainer" instance=ExtResource("5_tfq6r")]
 custom_minimum_size = Vector2(200, 90)
 layout_mode = 2
-img = ExtResource("7_l3kwy")
-header = "Bag Upgrade"
-description = "Got the muscle, just need the storage."
-buy_function = "upgrade_bag_size"
+img = ExtResource("7_88o5g")
+header = "Extra Life"
+description = "Gets me up when I been busted up."
+buy_function = "get_more_lives"
 
 [node name="StoreItem3" parent="VBoxContainer/MarginContainer2/VBoxContainer2/HBoxContainer" instance=ExtResource("5_tfq6r")]
 custom_minimum_size = Vector2(200, 90)

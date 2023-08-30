@@ -1,0 +1,35 @@
+[gd_scene load_steps=6 format=3 uid="uid://eh11t8si04ed"]
+
+[ext_resource type="Texture2D" uid="uid://bilkanq4ivsho" path="res://vfx/rain_striking.png" id="1_otnw4"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_jmwst"]
+particles_animation = true
+particles_anim_h_frames = 6
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="Gradient" id="Gradient_qorv8"]
+colors = PackedColorArray(1, 1, 1, 1, 0.231518, 0.231518, 0.231518, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_ruwf1"]
+gradient = SubResource("Gradient_qorv8")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_pv0m4"]
+emission_shape = 3
+emission_box_extents = Vector3(30, 15, 1)
+particle_flag_disable_z = true
+gravity = Vector3(0, 0, 0)
+orbit_velocity_min = 0.0
+orbit_velocity_max = 0.0
+color = Color(1, 1, 1, 0.87451)
+color_ramp = SubResource("GradientTexture1D_ruwf1")
+anim_speed_min = 0.4
+anim_speed_max = 0.4
+
+[node name="SplatteringRain" type="GPUParticles2D"]
+material = SubResource("CanvasItemMaterial_jmwst")
+position = Vector2(508, 96)
+amount = 1
+process_material = SubResource("ParticleProcessMaterial_pv0m4")
+texture = ExtResource("1_otnw4")
+lifetime = 0.2

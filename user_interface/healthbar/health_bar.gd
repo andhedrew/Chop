@@ -43,36 +43,3 @@ func _on_cutscene_ended() -> void:
 	if $VBoxContainer.modulate.a <= 0.1:
 		animation_player.play("fade_in")
 
-
-
-#
-#func _on_area_entered(area) -> void:
-#	if area is HitBox:
-#		drop_health_and_die()
-#
-#
-#func die(was_executed: bool = false) -> void:
-#	OS.delay_msec(80)
-#	var explode := preload("res://vfx/explosion.tscn").instantiate()
-#	explode.position = global_position
-#	if was_executed:
-#		explode.big = true
-#	get_node("/root/World").add_child(explode)
-#	visible = false
-#
-#func drop_health_and_die() -> void:
-#	var explode := preload("res://vfx/blood_explosion.tscn").instantiate()
-#	explode.position = global_position
-#	explode.restart()
-#	explode.emitting = true
-#	get_node("/root/World").add_child(explode)
-#
-#	var pos = 30
-#	for i in current_player_health*.5:
-#		var sprite := preload("res://user_interface/health bar/full_heart.png")
-#		var pickup := preload("res://pickups/health_pickup.tscn").instantiate()
-#		pickup.setup(sprite)
-#		pickup.position = global_position + Vector2((pos*i), 0)
-#		get_node("/root/").call_deferred("add_child", pickup)
-#
-#	die(true)

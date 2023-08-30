@@ -36,12 +36,20 @@ func _process(_delta):
 
 
 func _restart_level() -> void:
-	GameEvents.cutscene_started.emit()
-	Fade.crossfade_prepare(0.4, "ChopHorizontal")
-	SoundPlayer.play_sound("paper_rip")
-	get_tree().reload_current_scene()
-	get_tree().change_scene_to_file(get_tree().current_scene.scene_file_path)
-	Fade.crossfade_execute() 
+	var lives_amt = SaveManager.load_item("lives")
+	if lives_amt > 0:
+		GameEvents.cutscene_started.emit()
+		Fade.crossfade_prepare(0.4, "ChopHorizontal")
+		SoundPlayer.play_sound("paper_rip")
+		get_tree().reload_current_scene()
+		get_tree().change_scene_to_file(get_tree().current_scene.scene_file_path)
+		Fade.crossfade_execute() 
+	else:
+		GameEvents.cutscene_started.emit()
+		Fade.crossfade_prepare(0.4, "ChopHorizontal")
+		SoundPlayer.play_sound("paper_rip")
+		get_tree().change_scene_to_file("res://user_interface/out_of_lives.tscn")
+		Fade.crossfade_execute() 
 
 
 func _on_evening_ended() -> void:

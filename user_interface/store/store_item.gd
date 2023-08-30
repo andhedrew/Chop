@@ -4,7 +4,7 @@ var cost: int = 20
 @export var img: Texture
 @export var header: String
 @export var description: String
-@export_enum("buy_health", "upgrade_bag_size", "buy_booster", "upgrade_booster_charges") var buy_function: String
+@export_enum("buy_health", "get_more_lives", "buy_booster", "upgrade_booster_charges") var buy_function: String
 
 @export var one_time_purchase : bool = false
 
@@ -14,7 +14,6 @@ var just_bought := false
 var is_hovering := false
 
 func _ready():
-	
 	$AnimationPlayer.play("RESET")
 	$Button.pressed.connect(_on_button_pressed)
 	
@@ -24,9 +23,8 @@ func _ready():
 		"buy_health": 
 			var current_health = SaveManager.load_item("health")
 			cost = current_health * 5
-		"upgrade_bag_size": 
-			var bag_size = SaveManager.load_item("bag_size")
-			cost = bag_size
+		"get_more_lives": 
+			cost = 100
 		"buy_booster": 
 			var booster_got = SaveManager.load_item("booster_upgrade")
 			print_debug(str(booster_got))
@@ -98,12 +96,11 @@ func buy_health() -> void:
 	just_bought = false
 
 
-func upgrade_bag_size() -> void:
-	var bag_size = SaveManager.load_item("bag_size")
-	bag_size += 5
-	SaveManager.save_item("bag_size", bag_size)
+func get_more_lives() -> void:
+	var lives = SaveManager.load_item("lives")
+	lives += 1
+	SaveManager.save_item("lives", lives)
 	await get_tree().create_timer(1.5).timeout
-	cost = bag_size
 	set_button_text()
 	just_bought = false
 	

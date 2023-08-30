@@ -1,17 +1,12 @@
-[gd_scene load_steps=25 format=3 uid="uid://c61grkud6tjtu"]
+[gd_scene load_steps=22 format=3 uid="uid://c61grkud6tjtu"]
 
 [ext_resource type="Script" path="res://user_interface/healthbar/health_bar.gd" id="1_vxliw"]
 [ext_resource type="Texture2D" uid="uid://xoihsb8asqow" path="res://user_interface/healthbar/full_heart.png" id="2_juhcy"]
 [ext_resource type="Script" path="res://user_interface/food_counter.gd" id="5_an0fc"]
-[ext_resource type="Texture2D" uid="uid://chg85ipph4ctc" path="res://user_interface/bag/bag1.png" id="6_17etw"]
-[ext_resource type="Texture2D" uid="uid://bgd7tn3n8a8eb" path="res://user_interface/bag/bag2.png" id="7_4luk0"]
 [ext_resource type="Texture2D" uid="uid://c22ritmmx87f6" path="res://user_interface/hunger_bar/bar1.png" id="7_vqbo8"]
 [ext_resource type="Texture2D" uid="uid://dtqifieelo0lf" path="res://user_interface/coin.png" id="8_8656r"]
-[ext_resource type="Texture2D" uid="uid://b7f5noq4ievao" path="res://user_interface/bag/bag3.png" id="8_o3x7d"]
 [ext_resource type="Texture2D" uid="uid://cg7ie0e5i2g3i" path="res://user_interface/hunger_bar/bar2.png" id="8_ucqwe"]
-[ext_resource type="Theme" uid="uid://b0dhfhdkknaj3" path="res://user_interface/chop_theme.tres" id="9_4qqds"]
 [ext_resource type="Texture2D" uid="uid://b2yffij6lxxtq" path="res://user_interface/hunger_bar/bar3.png" id="9_gkpsc"]
-[ext_resource type="FontFile" uid="uid://bpybjwc1pwvp4" path="res://user_interface/fonts/Silver.ttf" id="10_6h1o1"]
 [ext_resource type="FontFile" uid="uid://dvt4wf1l1fx5e" path="res://user_interface/fonts/m3x6.ttf" id="10_sighv"]
 [ext_resource type="Script" path="res://user_interface/money_counter.gd" id="11_3pmc5"]
 [ext_resource type="Script" path="res://user_interface/track_amount.gd" id="11_6v8hf"]
@@ -20,7 +15,9 @@
 [ext_resource type="Texture2D" uid="uid://cnd64br7wfuxr" path="res://user_interface/hunger_bar/bar6.png" id="14_5xpm4"]
 [ext_resource type="Texture2D" uid="uid://d0cx0ia0drsm5" path="res://user_interface/hunger_bar/bar7.png" id="15_6jocp"]
 [ext_resource type="Texture2D" uid="uid://b5g0gq0jiouao" path="res://user_interface/hunger_bar/bar8.png" id="16_gxqfw"]
+[ext_resource type="Texture2D" uid="uid://23fffbb5s8y4" path="res://user_interface/lives.png" id="17_0j11a"]
 [ext_resource type="Texture2D" uid="uid://1qhpk70u2ga6" path="res://user_interface/hunger_bar/bar9.png" id="17_eas36"]
+[ext_resource type="Script" path="res://user_interface/life_counter.gd" id="18_xgkrr"]
 
 [sub_resource type="Animation" id="Animation_i45vy"]
 resource_name = "fade_in"
@@ -81,7 +78,6 @@ libraries = {
 }
 
 [node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/UI"]
-modulate = Color(1, 1, 1, 0)
 layout_mode = 1
 offset_bottom = 4.0
 scale = Vector2(1, 2.36363)
@@ -156,16 +152,9 @@ texture = ExtResource("2_juhcy")
 stretch_mode = 2
 
 [node name="Bag" type="HBoxContainer" parent="CanvasLayer/UI/VBoxContainer"]
+custom_minimum_size = Vector2(0, 17)
 layout_mode = 2
 script = ExtResource("5_an0fc")
-
-[node name="FoodBag" type="TextureProgressBar" parent="CanvasLayer/UI/VBoxContainer/Bag"]
-layout_mode = 2
-max_value = 15.0
-fill_mode = 3
-texture_under = ExtResource("6_17etw")
-texture_over = ExtResource("7_4luk0")
-texture_progress = ExtResource("8_o3x7d")
 
 [node name="HungerBars" type="Control" parent="CanvasLayer/UI/VBoxContainer/Bag"]
 layout_mode = 2
@@ -183,9 +172,9 @@ texture_progress = ExtResource("9_gkpsc")
 
 [node name="BrickLabel" type="Label" parent="CanvasLayer/UI/VBoxContainer/Bag/HungerBars/BrickHungerBar" node_paths=PackedStringArray("bar_to_track")]
 layout_mode = 0
-offset_top = 6.53849
+offset_top = 9.42312
 offset_right = 16.0
-offset_bottom = 29.5385
+offset_bottom = 32.4231
 theme_override_fonts/font = ExtResource("10_sighv")
 text = "100%"
 horizontal_alignment = 1
@@ -204,9 +193,9 @@ texture_progress = ExtResource("14_5xpm4")
 
 [node name="PlantLabel" type="Label" parent="CanvasLayer/UI/VBoxContainer/Bag/HungerBars/PlantHungerBar" node_paths=PackedStringArray("bar_to_track")]
 layout_mode = 0
-offset_top = 7.53849
+offset_top = 10.4231
 offset_right = 16.0
-offset_bottom = 30.5385
+offset_bottom = 33.4231
 theme_override_fonts/font = ExtResource("10_sighv")
 text = "100%"
 horizontal_alignment = 1
@@ -226,9 +215,9 @@ texture_progress = ExtResource("17_eas36")
 [node name="MeatLabel" type="Label" parent="CanvasLayer/UI/VBoxContainer/Bag/HungerBars/MeatHungerBar" node_paths=PackedStringArray("bar_to_track")]
 layout_mode = 0
 offset_left = -1.0
-offset_top = 7.53849
+offset_top = 10.4231
 offset_right = 15.0
-offset_bottom = 30.5385
+offset_bottom = 33.4231
 theme_override_fonts/font = ExtResource("10_sighv")
 text = "100%"
 horizontal_alignment = 1
@@ -247,9 +236,26 @@ stretch_mode = 3
 [node name="Label" type="Label" parent="CanvasLayer/UI/VBoxContainer/MoneyCounter"]
 layout_mode = 2
 size_flags_horizontal = 0
-theme = ExtResource("9_4qqds")
-theme_override_fonts/font = ExtResource("10_6h1o1")
+theme_override_fonts/font = ExtResource("10_sighv")
 theme_override_font_sizes/font_size = 16
 text = "524"
 vertical_alignment = 1
 script = ExtResource("11_3pmc5")
+
+[node name="LifeCounter" type="HBoxContainer" parent="CanvasLayer/UI/VBoxContainer"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/UI/VBoxContainer/LifeCounter"]
+layout_mode = 2
+size_flags_vertical = 0
+texture = ExtResource("17_0j11a")
+stretch_mode = 3
+
+[node name="Label" type="Label" parent="CanvasLayer/UI/VBoxContainer/LifeCounter"]
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_fonts/font = ExtResource("10_sighv")
+theme_override_font_sizes/font_size = 16
+text = "524"
+vertical_alignment = 1
+script = ExtResource("18_xgkrr")
