@@ -1,4 +1,4 @@
-[gd_scene load_steps=47 format=3 uid="uid://bvuqbhwqfo41j"]
+[gd_scene load_steps=50 format=3 uid="uid://bvuqbhwqfo41j"]
 
 [ext_resource type="PackedScene" uid="uid://bwvi5m2prncxh" path="res://characters/player/player.tscn" id="1_371ql"]
 [ext_resource type="Script" path="res://levels_and_level_objects/level_scenes/level_manager.gd" id="1_nxsgc"]
@@ -21,7 +21,6 @@
 [ext_resource type="Texture2D" uid="uid://b0gjdftdhp0x7" path="res://levels_and_level_objects/backgrounds/layer_2_dark/bg_layer_6.png" id="16_oxt8p"]
 [ext_resource type="Texture2D" uid="uid://ba862idsfruq5" path="res://levels_and_level_objects/backgrounds/layer_2_dark/bg_layer_7.png" id="17_jd3x7"]
 [ext_resource type="Texture2D" uid="uid://cprhc42al153a" path="res://levels_and_level_objects/backgrounds/layer_2_dark/bg_layer_8.png" id="18_4fvuq"]
-[ext_resource type="Texture2D" uid="uid://cs3blbrbhhoh5" path="res://levels_and_level_objects/backgrounds/unmoving_scenery_dark/foliage1.png" id="19_vbpia"]
 [ext_resource type="Texture2D" uid="uid://ctf1o2bhr388i" path="res://levels_and_level_objects/backgrounds/unmoving_scenery_dark/foliage2.png" id="20_4w867"]
 [ext_resource type="Texture2D" uid="uid://cf178qwj6w32o" path="res://levels_and_level_objects/backgrounds/unmoving_scenery_dark/foliage3.png" id="21_7o14j"]
 [ext_resource type="Texture2D" uid="uid://ccg8fotkhf823" path="res://levels_and_level_objects/backgrounds/unmoving_scenery_dark/foliage4.png" id="22_ptq7j"]
@@ -36,6 +35,8 @@
 [ext_resource type="PackedScene" uid="uid://dnjasyv6stmn4" path="res://levels_and_level_objects/question_block/question_mark_block.tscn" id="35_sr046"]
 [ext_resource type="PackedScene" uid="uid://dva55whxpft42" path="res://addons/water_shader/Scenes/Water_Body.tscn" id="36_hcpxa"]
 [ext_resource type="PackedScene" uid="uid://bnt6xxew5jdel" path="res://levels_and_level_objects/question_block/brick_block.tscn" id="36_md74n"]
+[ext_resource type="Texture2D" uid="uid://2a76dnkd5do2" path="res://levels_and_level_objects/question_block/brick_block_particles.png" id="37_cnp82"]
+[ext_resource type="Texture2D" uid="uid://cviiklo6ku18y" path="res://levels_and_level_objects/backgrounds/unmoving_scenery_dark/foliage2_15.png" id="37_xskn5"]
 
 [sub_resource type="Animation" id="Animation_vp1kt"]
 resource_name = "day"
@@ -891,6 +892,12 @@ terrain_set_0/terrain_0/name = "ground"
 terrain_set_0/terrain_0/color = Color(0.5, 0.34375, 0.25, 1)
 sources/1 = SubResource("TileSetAtlasSource_16qtn")
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_h1r86"]
+size = Vector2(16, 239)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_buh1m"]
+size = Vector2(16, 240)
+
 [node name="World" type="Node2D"]
 script = ExtResource("1_nxsgc")
 
@@ -1072,10 +1079,6 @@ texture = ExtResource("17_jd3x7")
 
 [node name="ParallaxLayer4" type="ParallaxLayer" parent="Background2"]
 
-[node name="Foliage1" type="Sprite2D" parent="Background2/ParallaxLayer4"]
-position = Vector2(-704, -136)
-texture = ExtResource("19_vbpia")
-
 [node name="Foliage2" type="Sprite2D" parent="Background2/ParallaxLayer4"]
 position = Vector2(-96, 56)
 texture = ExtResource("20_4w867")
@@ -1191,31 +1194,86 @@ layer_0/tile_data = PackedInt32Array(524297, 131073, 2, 524298, 131073, 3, 52429
 position = Vector2(-448, -104)
 
 [node name="BrickBlock" parent="." instance=ExtResource("36_md74n")]
-position = Vector2(-512, -136)
+position = Vector2(-768, -48)
+particle_texture = ExtResource("37_cnp82")
+
+[node name="Sprite2D" parent="BrickBlock" index="0"]
+position = Vector2(0, -104)
+texture = ExtResource("37_xskn5")
+
+[node name="CollisionShape2D" parent="BrickBlock/Hurtbox" index="0"]
+position = Vector2(0, -104.5)
+shape = SubResource("RectangleShape2D_h1r86")
+
+[node name="CollisionShape2D" parent="BrickBlock" index="2"]
+position = Vector2(0, -104)
+shape = SubResource("RectangleShape2D_buh1m")
 
 [node name="BrickBlock2" parent="." instance=ExtResource("36_md74n")]
 position = Vector2(-512, -104)
+particle_texture = ExtResource("37_cnp82")
 
 [node name="BrickBlock3" parent="." instance=ExtResource("36_md74n")]
 position = Vector2(-512, -168)
+particle_texture = ExtResource("37_cnp82")
 
 [node name="BrickBlock4" parent="." instance=ExtResource("36_md74n")]
 position = Vector2(-512, -200)
+particle_texture = ExtResource("37_cnp82")
+
+[node name="BrickBlock10" parent="." instance=ExtResource("36_md74n")]
+position = Vector2(-512, -264)
+particle_texture = ExtResource("37_cnp82")
+
+[node name="BrickBlock11" parent="." instance=ExtResource("36_md74n")]
+position = Vector2(-512, -232)
+particle_texture = ExtResource("37_cnp82")
+
+[node name="BrickBlock12" parent="." instance=ExtResource("36_md74n")]
+position = Vector2(-512, -296)
+particle_texture = ExtResource("37_cnp82")
+
+[node name="BrickBlock13" parent="." instance=ExtResource("36_md74n")]
+position = Vector2(-512, -328)
+particle_texture = ExtResource("37_cnp82")
+
+[node name="BrickBlock14" parent="." instance=ExtResource("36_md74n")]
+position = Vector2(-136, -176)
+particle_texture = ExtResource("37_cnp82")
+
+[node name="BrickBlock15" parent="." instance=ExtResource("36_md74n")]
+position = Vector2(-136, -144)
+particle_texture = ExtResource("37_cnp82")
+
+[node name="BrickBlock16" parent="." instance=ExtResource("36_md74n")]
+position = Vector2(-136, -208)
+particle_texture = ExtResource("37_cnp82")
+
+[node name="BrickBlock17" parent="." instance=ExtResource("36_md74n")]
+position = Vector2(-136, -240)
+particle_texture = ExtResource("37_cnp82")
 
 [node name="BrickBlock5" parent="." instance=ExtResource("36_md74n")]
 position = Vector2(-328, -104)
+particle_texture = ExtResource("37_cnp82")
 
 [node name="BrickBlock6" parent="." instance=ExtResource("36_md74n")]
 position = Vector2(-296, -104)
+particle_texture = ExtResource("37_cnp82")
 
 [node name="BrickBlock7" parent="." instance=ExtResource("36_md74n")]
 position = Vector2(-264, -104)
+particle_texture = ExtResource("37_cnp82")
 
 [node name="BrickBlock8" parent="." instance=ExtResource("36_md74n")]
 position = Vector2(-232, -104)
+particle_texture = ExtResource("37_cnp82")
 
 [node name="BrickBlock9" parent="." instance=ExtResource("36_md74n")]
 position = Vector2(-200, -104)
+particle_texture = ExtResource("37_cnp82")
 
 [editable path="QuestionMarkBlock"]
 [editable path="QuestionMarkBlock/Hurtbox"]
+[editable path="BrickBlock"]
+[editable path="BrickBlock/Hurtbox"]

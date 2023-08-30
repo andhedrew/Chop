@@ -126,15 +126,16 @@ func _physics_process(delta):
 	if Input.is_action_just_pressed("unload_bag"):
 		drop_last_item()
 	
+	var range := 75
 	if looking == Enums.Looking.UP:
-		block_detector.target_position = Vector2(0, -55)
+		block_detector.target_position = Vector2(0, -range)
 		block_detector.position = Vector2(-9, -11)
-		block_detector2.target_position = Vector2(0, -55)
+		block_detector2.target_position = Vector2(0, -range)
 		block_detector2.position = Vector2(4, -11)
 	else:
-		block_detector.target_position = Vector2(55, 0)
+		block_detector.target_position = Vector2(range, 0)
 		block_detector.position = Vector2(-2, -11)
-		block_detector2.target_position = Vector2(55, 0)
+		block_detector2.target_position = Vector2(range, 0)
 		block_detector2.position = Vector2(-2, 12)
 		
 
