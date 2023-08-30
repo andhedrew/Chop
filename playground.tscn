@@ -1,4 +1,4 @@
-[gd_scene load_steps=56 format=3 uid="uid://bvuqbhwqfo41j"]
+[gd_scene load_steps=57 format=3 uid="uid://bvuqbhwqfo41j"]
 
 [ext_resource type="PackedScene" uid="uid://bwvi5m2prncxh" path="res://characters/player/player.tscn" id="1_371ql"]
 [ext_resource type="Script" path="res://levels_and_level_objects/level_scenes/level_manager.gd" id="1_nxsgc"]
@@ -39,6 +39,7 @@
 [ext_resource type="Script" path="res://levels_and_level_objects/end_level_on_collision.gd" id="37_1nb07"]
 [ext_resource type="PackedScene" uid="uid://m4thc3uygref" path="res://levels_and_level_objects/level_interactive_objects/death_zone.tscn" id="38_5nh0a"]
 [ext_resource type="PackedScene" uid="uid://duq3hbv7istwg" path="res://pickups/coin_pickup.tscn" id="39_bgl1t"]
+[ext_resource type="PackedScene" uid="uid://b0c888aj8ndqi" path="res://user_interface/score_number.tscn" id="40_d554s"]
 
 [sub_resource type="Animation" id="Animation_vp1kt"]
 resource_name = "day"
@@ -1271,6 +1272,8 @@ position = Vector2(-772, -65)
 
 [node name="CoinPickup3" parent="." instance=ExtResource("39_bgl1t")]
 position = Vector2(-751, -92)
+
+[node name="ScoreNumber" parent="." instance=ExtResource("40_d554s")]
 
 [editable path="Flagpole/ExplodingBlock2"]
 [editable path="Flagpole/ExplodingBlock2/Hurtbox"]

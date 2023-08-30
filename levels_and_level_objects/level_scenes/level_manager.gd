@@ -25,6 +25,7 @@ func _ready():
 	GameEvents.drop_health.connect(drop_health)
 	GameEvents.drop_coins.connect(drop_coins)
 	GameEvents.new_vfx.connect(vfx)
+	GameEvents.new_score_label.connect(_new_score_label)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -141,3 +142,10 @@ func vfx(effect : String, vfx_position : Vector2) -> void:
 	var new_vfx = load(effect).instantiate()
 	new_vfx.position = vfx_position
 	call_deferred("add_child", new_vfx)
+
+
+func _new_score_label(amount: int, new_position: Vector2) -> void:
+	var label := preload("res://user_interface/score_number.tscn").instantiate()
+	label.score = amount
+	label.position = new_position
+	add_child(label)

@@ -56,6 +56,7 @@ signal drop_food # Arg 1: array of sprites # Arg 2: Position
 signal drop_health # Arg 1: Position
 signal drop_coins # Arg 1: amount to drop (bounty) # Arg 2: Position
 signal new_vfx  #arg 1: String reference to VX # Arg 2: Position
+signal new_score_label #Arg 1:amount, arg 2: Position
 # tutorial
 signal plant_hunger_bar_filled # no parameters
 

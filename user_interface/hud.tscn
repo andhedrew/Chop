@@ -89,16 +89,19 @@ size_flags_horizontal = 4
 size_flags_vertical = 4
 
 [node name="heart_0" type="TextureRect" parent="CanvasLayer/UI/VBoxContainer/HBoxContainer"]
+visible = false
 layout_mode = 2
 texture = ExtResource("2_juhcy")
 stretch_mode = 2
 
 [node name="heart_1" type="TextureRect" parent="CanvasLayer/UI/VBoxContainer/HBoxContainer"]
+visible = false
 layout_mode = 2
 texture = ExtResource("2_juhcy")
 stretch_mode = 2
 
 [node name="heart_2" type="TextureRect" parent="CanvasLayer/UI/VBoxContainer/HBoxContainer"]
+visible = false
 layout_mode = 2
 texture = ExtResource("2_juhcy")
 stretch_mode = 2

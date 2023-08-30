@@ -16,13 +16,16 @@ func _ready():
 
 func _add_pickup_to_inventory(player) -> void:
 	player.money += value
+	var score_value := (value * 10)
 	var score = SaveManager.load_item("score")
 	if score != null:
-		score += (value * 10)
+		score += score_value
 	else:
-		score = (value * 10)
+		score = score_value
 		
-	GameEvents.player_score_changed.emit(score, false)
+	GameEvents.player_score_changed.emit(score_value, false)
+	GameEvents.new_score_label.emit(score_value, global_position)
+
 	
 	SaveManager.save_item("money", player.money)
 	GameEvents.player_money_changed.emit(player.money)
