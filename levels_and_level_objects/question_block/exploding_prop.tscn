@@ -1,14 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://bnt6xxew5jdel"]
+[gd_scene load_steps=4 format=3 uid="uid://bnt6xxew5jdel"]
 
 [ext_resource type="Script" path="res://levels_and_level_objects/question_block/brick_block.gd" id="1_kqjko"]
 [ext_resource type="Texture2D" uid="uid://bnw1ibkt05vwc" path="res://levels_and_level_objects/question_block/brick_block.png" id="3_hge7v"]
 [ext_resource type="PackedScene" uid="uid://bb1h85dym7l4i" path="res://hitboxes/Hurtbox.tscn" id="4_46soi"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_7f0tm"]
-size = Vector2(29, 31)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_ssmmk"]
-size = Vector2(32, 32)
 
 [node name="ExplodingBlock" type="StaticBody2D" groups=["slice_in_sequence"]]
 collision_layer = 129
@@ -22,10 +16,6 @@ texture = ExtResource("3_hge7v")
 collision_layer = 0
 collision_mask = 8
 
-[node name="CollisionShape2D" parent="Hurtbox" index="0"]
-shape = SubResource("RectangleShape2D_7f0tm")
-
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("RectangleShape2D_ssmmk")
 
 [editable path="Hurtbox"]

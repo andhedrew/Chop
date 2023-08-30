@@ -41,6 +41,8 @@ var set_ui := false
 
 var cutscene_walk := false
 
+var lives := 5
+
 @onready var block_detector : RayCast2D = $Pivot/BlockDetector
 @onready var block_detector2 : RayCast2D = $Pivot/BlockDetector2
 
@@ -99,6 +101,10 @@ func _load_data() -> void:
 	if money_amt != null:
 		money = money_amt
 	
+	var current_lives = SaveManager.load_item("lives")
+	if current_lives != null:
+		lives = current_lives
+	
 
 func _physics_process(delta):
 	if !set_ui:
@@ -126,17 +132,17 @@ func _physics_process(delta):
 	if Input.is_action_just_pressed("unload_bag"):
 		drop_last_item()
 	
-	var range := 75
+	var range := 65
 	if looking == Enums.Looking.UP:
 		block_detector.target_position = Vector2(0, -range)
-		block_detector.position = Vector2(-9, -11)
+		block_detector.position = Vector2(-5, -11)
 		block_detector2.target_position = Vector2(0, -range)
-		block_detector2.position = Vector2(4, -11)
+		block_detector2.position = Vector2(30, -11)
 	else:
 		block_detector.target_position = Vector2(range, 0)
-		block_detector.position = Vector2(-2, -11)
+		block_detector.position = Vector2(-2, -19)
 		block_detector2.target_position = Vector2(range, 0)
-		block_detector2.position = Vector2(-2, 12)
+		block_detector2.position = Vector2(-2, 19)
 		
 
 

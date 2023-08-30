@@ -35,7 +35,9 @@ func setup_json() -> void:
 			"plant_bar_prompted": false,
 			"start_of_level_prompted": false,
 			"full_bag_prompted": false,
-		"saved_data": false
+		"saved_data": false,
+		"lives": 5,
+		"score": 0,
 			
 				}
 	}
