@@ -6,6 +6,7 @@ signal player_executed
 signal big_explosion
 signal player_changed_state
 signal player_health_changed # Arg 1: health Arg 2: Max health
+signal player_score_changed # Arg 1: score to add to total Arg 2: "true" to reset
 signal player_started_syphoning #Arg 1: player.global_position
 signal player_done_syphoning
 signal player_died

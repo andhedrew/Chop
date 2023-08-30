@@ -1,7 +1,8 @@
-[gd_scene load_steps=22 format=3 uid="uid://c61grkud6tjtu"]
+[gd_scene load_steps=23 format=3 uid="uid://c61grkud6tjtu"]
 
 [ext_resource type="Script" path="res://user_interface/healthbar/health_bar.gd" id="1_vxliw"]
 [ext_resource type="Texture2D" uid="uid://xoihsb8asqow" path="res://user_interface/healthbar/full_heart.png" id="2_juhcy"]
+[ext_resource type="Script" path="res://user_interface/score_counter.gd" id="4_wde27"]
 [ext_resource type="Script" path="res://user_interface/food_counter.gd" id="5_an0fc"]
 [ext_resource type="Texture2D" uid="uid://c22ritmmx87f6" path="res://user_interface/hunger_bar/bar1.png" id="7_vqbo8"]
 [ext_resource type="Texture2D" uid="uid://dtqifieelo0lf" path="res://user_interface/coin.png" id="8_8656r"]
@@ -64,10 +65,6 @@ _data = {
 [node name="UI" type="Control" parent="CanvasLayer"]
 layout_mode = 3
 anchors_preset = 0
-offset_left = 7.0
-offset_top = 5.0
-offset_right = 47.0
-offset_bottom = 16.0
 scale = Vector2(1, 0.44)
 script = ExtResource("1_vxliw")
 
@@ -79,26 +76,29 @@ libraries = {
 
 [node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/UI"]
 layout_mode = 1
-offset_bottom = 4.0
+offset_left = 6.0
+offset_top = 18.1818
+offset_right = 71.0
+offset_bottom = 125.182
 scale = Vector2(1, 2.36363)
 
 [node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/UI/VBoxContainer"]
+custom_minimum_size = Vector2(0, 25)
 layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
 
 [node name="heart_0" type="TextureRect" parent="CanvasLayer/UI/VBoxContainer/HBoxContainer"]
-visible = false
 layout_mode = 2
 texture = ExtResource("2_juhcy")
 stretch_mode = 2
 
 [node name="heart_1" type="TextureRect" parent="CanvasLayer/UI/VBoxContainer/HBoxContainer"]
-visible = false
 layout_mode = 2
 texture = ExtResource("2_juhcy")
 stretch_mode = 2
 
 [node name="heart_2" type="TextureRect" parent="CanvasLayer/UI/VBoxContainer/HBoxContainer"]
-visible = false
 layout_mode = 2
 texture = ExtResource("2_juhcy")
 stretch_mode = 2
@@ -150,6 +150,62 @@ visible = false
 layout_mode = 2
 texture = ExtResource("2_juhcy")
 stretch_mode = 2
+
+[node name="Protien" type="HBoxContainer" parent="CanvasLayer/UI/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="CanvasLayer/UI/VBoxContainer/Protien"]
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_fonts/font = ExtResource("10_sighv")
+theme_override_font_sizes/font_size = 16
+text = " Protien:"
+vertical_alignment = 1
+
+[node name="Label2" type="Label" parent="CanvasLayer/UI/VBoxContainer/Protien"]
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_fonts/font = ExtResource("10_sighv")
+theme_override_font_sizes/font_size = 16
+text = "0000000"
+vertical_alignment = 1
+script = ExtResource("4_wde27")
+
+[node name="LifeCounter" type="HBoxContainer" parent="CanvasLayer/UI/VBoxContainer"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/UI/VBoxContainer/LifeCounter"]
+layout_mode = 2
+size_flags_vertical = 0
+texture = ExtResource("17_0j11a")
+stretch_mode = 3
+
+[node name="Label" type="Label" parent="CanvasLayer/UI/VBoxContainer/LifeCounter"]
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_fonts/font = ExtResource("10_sighv")
+theme_override_font_sizes/font_size = 16
+text = "524"
+vertical_alignment = 1
+script = ExtResource("18_xgkrr")
+
+[node name="MoneyCounter" type="HBoxContainer" parent="CanvasLayer/UI/VBoxContainer"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/UI/VBoxContainer/MoneyCounter"]
+layout_mode = 2
+size_flags_vertical = 0
+texture = ExtResource("8_8656r")
+stretch_mode = 3
+
+[node name="Label" type="Label" parent="CanvasLayer/UI/VBoxContainer/MoneyCounter"]
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_fonts/font = ExtResource("10_sighv")
+theme_override_font_sizes/font_size = 16
+text = "524"
+vertical_alignment = 1
+script = ExtResource("11_3pmc5")
 
 [node name="Bag" type="HBoxContainer" parent="CanvasLayer/UI/VBoxContainer"]
 custom_minimum_size = Vector2(0, 17)
@@ -223,39 +279,3 @@ text = "100%"
 horizontal_alignment = 1
 script = ExtResource("11_6v8hf")
 bar_to_track = NodePath("..")
-
-[node name="MoneyCounter" type="HBoxContainer" parent="CanvasLayer/UI/VBoxContainer"]
-layout_mode = 2
-
-[node name="TextureRect" type="TextureRect" parent="CanvasLayer/UI/VBoxContainer/MoneyCounter"]
-layout_mode = 2
-size_flags_vertical = 0
-texture = ExtResource("8_8656r")
-stretch_mode = 3
-
-[node name="Label" type="Label" parent="CanvasLayer/UI/VBoxContainer/MoneyCounter"]
-layout_mode = 2
-size_flags_horizontal = 0
-theme_override_fonts/font = ExtResource("10_sighv")
-theme_override_font_sizes/font_size = 16
-text = "524"
-vertical_alignment = 1
-script = ExtResource("11_3pmc5")
-
-[node name="LifeCounter" type="HBoxContainer" parent="CanvasLayer/UI/VBoxContainer"]
-layout_mode = 2
-
-[node name="TextureRect" type="TextureRect" parent="CanvasLayer/UI/VBoxContainer/LifeCounter"]
-layout_mode = 2
-size_flags_vertical = 0
-texture = ExtResource("17_0j11a")
-stretch_mode = 3
-
-[node name="Label" type="Label" parent="CanvasLayer/UI/VBoxContainer/LifeCounter"]
-layout_mode = 2
-size_flags_horizontal = 0
-theme_override_fonts/font = ExtResource("10_sighv")
-theme_override_font_sizes/font_size = 16
-text = "524"
-vertical_alignment = 1
-script = ExtResource("18_xgkrr")
