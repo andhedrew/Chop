@@ -70,6 +70,14 @@ func _on_transitioning_to_map() -> void:
 	GameEvents.map_started.emit(map_position, next_level)
 
 
+
+func transition_to_level(level:String) -> void:
+	print_debug("tried to transition")
+	Fade.crossfade_prepare(0.4, "ChopHorizontal")
+	SoundPlayer.play_sound("paper_rip")
+	get_tree().change_scene_to_file(level)
+	Fade.crossfade_execute() 
+
 func _on_morning_started() -> void:
 	var start_day_ui := preload("res://user_interface/shop.tscn").instantiate()
 	await get_tree().create_timer(3.0).timeout

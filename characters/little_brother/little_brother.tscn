@@ -986,6 +986,7 @@ sprite_frames = SubResource("SpriteFrames_4y64g")
 frame_progress = 0.698425
 
 [node name="HungerBars" parent="InteractZone" instance=ExtResource("6_vtvk7")]
+visible = false
 offset_left = -27.0
 offset_top = -99.0
 offset_right = 13.0

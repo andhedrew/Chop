@@ -11,7 +11,7 @@ var state := Enums.State.IDLE
 
 
 func _ready():
-#	GameEvents.cutscene_started.emit() TK
+
 	z_index = SortLayer.PLAYER
 	var brick_stomach = SaveManager.load_item("brick_stomach")
 	if brick_stomach != null:
@@ -24,8 +24,6 @@ func _ready():
 		meat_hunger_bar.value = meat_stomach
 	
 	if brick_hunger_bar.value + plant_hunger_bar.value + meat_hunger_bar.value == 0:
-		state = Enums.State.MOVE
-		await get_tree().create_timer(2).timeout
 		state = Enums.State.HUNGRY
 		await get_tree().create_timer(3).timeout
 		SaveManager.save_item("lb_position", position.x)
@@ -39,7 +37,6 @@ func _ready():
 	GameEvents.done_feeding_little_brother.connect(save_stomachs)
 	
 	await get_tree().create_timer(0.1).timeout
-	GameEvents.cutscene_ended.emit()
 	GameEvents.hunt_started.emit()
 
 
@@ -64,6 +61,7 @@ func _on_is_full() -> void:
 
 func _on_start_of_evening() -> void:
 	$FullMessage.visible = false
+	pass
 
 
 func clear_stomachs() -> void:

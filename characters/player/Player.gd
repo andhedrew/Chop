@@ -78,6 +78,7 @@ func _ready():
 	GameEvents.morning_started.connect(_on_morning_start)
 	GameEvents.continue_day.connect(_on_continue_day)
 	GameEvents.SaveDataReady.connect(_load_data)
+	GameEvents.feeding_level_start.connect(_feeding_level_start)
 	has_booster_upgrade = SaveManager.load_item("booster_upgrade")
 	var charges = SaveManager.load_item("booster_charges")
 	if charges != null:
@@ -86,6 +87,7 @@ func _ready():
 		GameEvents.charge_amount_changed.emit(torch_charges, max_torch_charges)
 	z_index = SortLayer.PLAYER
 	_load_data()
+
 
 
 func _load_data() -> void:
@@ -127,7 +129,11 @@ func _physics_process(delta):
 				GameEvents.charge_amount_changed.emit(torch_charges, max_torch_charges)
 	
 	if cutscene_walk:
-		position.x += 1
+		if facing == Enums.Facing.RIGHT:
+			position.x += 1
+		else:
+			position.x -= 1
+			
 	
 	if Input.is_action_just_pressed("unload_bag"):
 		drop_last_item()
@@ -199,13 +205,12 @@ func drop_last_item() -> void:
 		pickup.velocity = Vector2.ZERO
 		GameEvents.removed_food_from_bag.emit(pickup)
 
+
 func _set_debug_labels() -> void:
 	match facing:
 		Enums.Facing.LEFT: $Facing.text = "Facing: left"
 		Enums.Facing.RIGHT: $Facing.text = "Facing: right"
-	
 	$State.text = state
-	
 	match looking:
 		Enums.Looking.UP: $Looking.text = "Looking: up"
 		Enums.Looking.DOWN: $Looking.text = "Looking: down"
@@ -251,6 +256,7 @@ func handle_facing() -> void:
 	else: 
 		$Pivot/BulletSpawn.position = Vector2(10, 0)
 
+
 func _hurtbox_on_area_entered(hitbox) -> void:
 	if !invulnerable and hitbox is HitBox:
 		knockback_direction = (global_position - hitbox.global_position).normalized()
@@ -264,6 +270,7 @@ func take_damage(damage) -> void:
 	GameEvents.player_health_changed.emit(health, max_health)
 	if health <= 0:
 		_die()
+
 
 func _die() -> void:
 	GameEvents.player_died.emit()
@@ -293,7 +300,6 @@ func _die() -> void:
 	queue_free()
 
 
-
 func _on_enemy_taking_damage() -> void:
 	if torch_charges < max_torch_charges:
 		SoundPlayer.play_sound("pickup_2")
@@ -318,6 +324,17 @@ func _on_continue_day() -> void:
 	$Pivot.animation_player.play("walk")
 	cutscene_walk = true
 
+
+func _feeding_level_start() -> void:
+	await get_tree().create_timer(1.0).timeout
+	$StateMachine.transition_to("Cutscene")
+	facing = Enums.Facing.LEFT
+	$Pivot.transform.x.x = -1
+	$Pivot.animation_player.play("walk")
+	cutscene_walk = true
+	await get_tree().create_timer(3.0).timeout
+	cutscene_walk = false
+	GameEvents.cutscene_ended.emit()
 
 func is_in_water() -> void:
 	in_water = true
