@@ -20,10 +20,9 @@ func _ready():
 	GameEvents.hunt_started.emit()
 
 
-func _process(_delta):
+func _process(delta):
 	if state == Enums.State.MOVE:
-		position.x += 0.75
-	
+		position.x += 45 * delta
 
 
 
