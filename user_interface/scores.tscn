@@ -1,0 +1,164 @@
+[gd_scene load_steps=6 format=3 uid="uid://bc4aou7sehw4n"]
+
+[ext_resource type="Script" path="res://user_interface/shop.gd" id="1_dilof"]
+[ext_resource type="Theme" uid="uid://b0dhfhdkknaj3" path="res://user_interface/chop_theme.tres" id="2_sikoc"]
+[ext_resource type="Script" path="res://user_interface/food_score_tracker.gd" id="3_pqwjq"]
+
+[sub_resource type="Animation" id="Animation_skycn"]
+resource_name = "fade_in"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("VBoxContainer:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.6),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_snh35"]
+_data = {
+"fade_in": SubResource("Animation_skycn")
+}
+
+[node name="scores" type="CanvasLayer"]
+script = ExtResource("1_dilof")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+theme = ExtResource("2_sikoc")
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_constants/margin_left = 50
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 50
+theme_override_constants/margin_bottom = 5
+
+[node name="ColorRect" type="ColorRect" parent="VBoxContainer/MarginContainer"]
+custom_minimum_size = Vector2(500, 65)
+layout_mode = 2
+color = Color(0.0862745, 0.0862745, 0.0862745, 1)
+
+[node name="Label" type="Label" parent="VBoxContainer/MarginContainer/ColorRect"]
+custom_minimum_size = Vector2(400, 0)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("2_sikoc")
+theme_override_font_sizes/font_size = 42
+text = "Score"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/MarginContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 400
+theme_override_constants/margin_top = 15
+theme_override_constants/margin_right = 15
+theme_override_constants/margin_bottom = 15
+
+[node name="MarginContainer2" type="MarginContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="VBoxContainer/MarginContainer2"]
+custom_minimum_size = Vector2(600, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/MarginContainer2/VBoxContainer2"]
+layout_mode = 2
+alignment = 1
+
+[node name="ScoreTracker" type="HBoxContainer" parent="VBoxContainer/MarginContainer2/VBoxContainer2/HBoxContainer"]
+custom_minimum_size = Vector2(128, 64)
+layout_mode = 2
+script = ExtResource("3_pqwjq")
+score_to_track = "meat_score"
+
+[node name="Label" type="Label" parent="VBoxContainer/MarginContainer2/VBoxContainer2/HBoxContainer/ScoreTracker"]
+layout_mode = 2
+text = "Meat"
+
+[node name="Label2" type="Label" parent="VBoxContainer/MarginContainer2/VBoxContainer2/HBoxContainer/ScoreTracker"]
+layout_mode = 2
+text = " x "
+
+[node name="Label3" type="Label" parent="VBoxContainer/MarginContainer2/VBoxContainer2/HBoxContainer/ScoreTracker"]
+layout_mode = 2
+text = "0"
+
+[node name="ScoreTracker2" type="HBoxContainer" parent="VBoxContainer/MarginContainer2/VBoxContainer2/HBoxContainer"]
+custom_minimum_size = Vector2(128, 64)
+layout_mode = 2
+script = ExtResource("3_pqwjq")
+score_to_track = "plant_score"
+
+[node name="Label" type="Label" parent="VBoxContainer/MarginContainer2/VBoxContainer2/HBoxContainer/ScoreTracker2"]
+layout_mode = 2
+text = "Veg"
+
+[node name="Label2" type="Label" parent="VBoxContainer/MarginContainer2/VBoxContainer2/HBoxContainer/ScoreTracker2"]
+layout_mode = 2
+text = " x "
+
+[node name="Label3" type="Label" parent="VBoxContainer/MarginContainer2/VBoxContainer2/HBoxContainer/ScoreTracker2"]
+layout_mode = 2
+text = "0"
+
+[node name="ScoreTracker3" type="HBoxContainer" parent="VBoxContainer/MarginContainer2/VBoxContainer2/HBoxContainer"]
+custom_minimum_size = Vector2(128, 64)
+layout_mode = 2
+script = ExtResource("3_pqwjq")
+score_to_track = "brick_score"
+
+[node name="Label" type="Label" parent="VBoxContainer/MarginContainer2/VBoxContainer2/HBoxContainer/ScoreTracker3"]
+layout_mode = 2
+text = "Non-food"
+
+[node name="Label2" type="Label" parent="VBoxContainer/MarginContainer2/VBoxContainer2/HBoxContainer/ScoreTracker3"]
+layout_mode = 2
+text = " x "
+
+[node name="Label3" type="Label" parent="VBoxContainer/MarginContainer2/VBoxContainer2/HBoxContainer/ScoreTracker3"]
+layout_mode = 2
+text = "0"
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="VBoxContainer/MarginContainer2/VBoxContainer2"]
+layout_mode = 2
+
+[node name="Container" type="Container" parent="VBoxContainer"]
+custom_minimum_size = Vector2(0, 15)
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="Container2" type="Container" parent="VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(540, 0)
+layout_mode = 2
+
+[node name="Button" type="Button" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme = ExtResource("2_sikoc")
+text = "Proceed"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_snh35")
+}

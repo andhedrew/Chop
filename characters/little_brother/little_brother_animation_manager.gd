@@ -34,8 +34,10 @@ func _process(_delta):
 func _on_feeding() -> void:
 	animation_player.play("eat")
 
+
 func _chewing_animation_sound() -> void:
 	SoundPlayer.play_sound("chew")
+
 
 func _on_done_feeding() -> void:
 	animation_player.play("chew")
@@ -59,10 +61,10 @@ func _on_start_of_day() -> void:
 	owner.state = Enums.State.MOVE
 
 func _on_continue_day() -> void:
-	$"../FullMessage".visible = false
+
 	await get_tree().create_timer(3.0).timeout
 	owner.state = Enums.State.MOVE
-	owner.clear_stomachs()
+
 
 func _on_cutscene_start() -> void:
 	owner.state = Enums.State.CUTSCENE

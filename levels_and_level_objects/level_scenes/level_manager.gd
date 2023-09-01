@@ -3,6 +3,7 @@ extends Node2D
 
 @export var dream_images: Array[Texture]
 @export var map_position: float
+@export var next_map: PackedScene
 @export_file("*.tscn") var next_level
 @export var camera: Camera2D
 
@@ -38,6 +39,9 @@ func _process(_delta):
 
 func _restart_level() -> void:
 	var lives_amt = SaveManager.load_item("lives")
+	if lives_amt == null:
+		lives_amt = 5
+		
 	if lives_amt > 0:
 		GameEvents.cutscene_started.emit()
 		Fade.crossfade_prepare(0.4, "ChopHorizontal")
@@ -63,7 +67,7 @@ func _on_evening_ended() -> void:
 func _on_transitioning_to_map() -> void:
 	Fade.crossfade_prepare(0.4, "ChopHorizontal")
 	SoundPlayer.play_sound("paper_rip")
-	var map_scene := preload("res://levels_and_level_objects/map/map.tscn").instantiate()
+	var map_scene = load(next_map.get_path()).instantiate()
 	map_scene.new_scene = next_level
 	add_child(map_scene)
 	Fade.crossfade_execute() 

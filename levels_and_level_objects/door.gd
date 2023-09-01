@@ -10,9 +10,7 @@ func _ready():
 
 func _on_body_entered(body):
 	if !cutscene_running:
-		print_debug("cutscene nots detect")
 		if body is Player:
-			print_debug("player detect")
 			owner.transition_to_level("res://playground.tscn")
 		
 

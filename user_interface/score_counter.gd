@@ -18,8 +18,12 @@ func _on_player_score_changed(addition: int, reset: bool) -> void:
 		reset_score()
 	else:
 		var score_amt = SaveManager.load_item("score")
-		score_amt += addition
-		SaveManager.save_item("score", score_amt)
+		if score_amt != null:
+			score_amt += addition
+			SaveManager.save_item("score", score_amt)
+		else: 
+			score_amt = addition
+			SaveManager.save_item("score", score_amt)
 		text = str(score_amt)
 
 

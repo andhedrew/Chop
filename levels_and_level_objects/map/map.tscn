@@ -1,8 +1,7 @@
-[gd_scene load_steps=9 format=3 uid="uid://b06gyuhub517b"]
+[gd_scene load_steps=7 format=3 uid="uid://b06gyuhub517b"]
 
 [ext_resource type="Script" path="res://map_manager.gd" id="1_pdu78"]
 [ext_resource type="Texture2D" uid="uid://no1np22mqjey" path="res://user_interface/map/map4.png" id="2_t55li"]
-[ext_resource type="Texture2D" uid="uid://uh54wtad4ivm" path="res://user_interface/map/map3.png" id="3_1qywo"]
 [ext_resource type="Texture2D" uid="uid://cax14ylt5wqg4" path="res://user_interface/map/map2.png" id="4_nv3b8"]
 [ext_resource type="Texture2D" uid="uid://sfqkcyk72bao" path="res://user_interface/map/map.png" id="5_lyjky"]
 
@@ -28,12 +27,6 @@ _data = {
 "roll": SubResource("Animation_v6rjy")
 }
 
-[sub_resource type="Curve2D" id="Curve2D_8hath"]
-_data = {
-"points": PackedVector2Array(0, 0, 0, 0, 111, 261, 0, 0, 0, 0, 120, 270, 0, 0, 0, 0, 138, 278, 0, 0, 0, 0, 158, 281, 0, 0, 0, 0, 185, 278, 0, 0, 0, 0, 209, 264, 0, 0, 0, 0, 212, 212, 0, 0, 0, 0, 224, 202, 0, 0, 0, 0, 246, 208, 0, 0, 0, 0, 285, 235, 0, 0, 0, 0, 317, 261, 0, 0, 0, 0, 332, 263, 0, 0, 0, 0, 346, 260, 0, 0, 0, 0, 360, 248, 0, 0, 0, 0, 385, 237, 0, 0, 0, 0, 396, 220, 0, 0, 0, 0, 424, 207, 0, 0, 0, 0, 442, 205, 0, 0, 0, 0, 460, 213, 0, 0, 0, 0, 484, 211, 0, 0, 0, 0, 516, 186, 0, 0, 0, 0, 520, 162, 0, 0, 0, 0, 546, 126, 0, 0, 0, 0, 571, 98)
-}
-point_count = 24
-
 [node name="Map" type="CanvasLayer"]
 script = ExtResource("1_pdu78")
 
@@ -58,10 +51,8 @@ texture = ExtResource("2_t55li")
 layout_mode = 0
 offset_right = 639.0
 offset_bottom = 358.0
-texture = ExtResource("3_1qywo")
 
 [node name="Path2D" type="Path2D" parent="Control"]
-curve = SubResource("Curve2D_8hath")
 
 [node name="PathFollow2D" type="PathFollow2D" parent="Control/Path2D"]
 position = Vector2(111, 261)

@@ -2,11 +2,13 @@ extends CanvasLayer
 
 
 @onready var animation_player := $AnimationPlayer
-var number_of_levels := 20.0
+var number_of_levels := 4.0
 var pos := 0.0
 var target_position := 0.0
 var new_scene : String
 var move_pin := false
+
+@onready var path_follow := $Control/Path2D/PathFollow2D
 
 
 func _ready():
@@ -17,8 +19,8 @@ func _ready():
 
 func _process(_delta):
 	if move_pin:
-		$Control/Path2D/PathFollow2D.progress_ratio = lerp($Control/Path2D/PathFollow2D.progress_ratio, pos, 0.05)
-		if $Control/Path2D/PathFollow2D.progress_ratio+0.01 >= pos:
+		path_follow.progress_ratio = lerp(path_follow.progress_ratio, pos, 0.05)
+		if path_follow.progress_ratio+0.01 >= pos:
 			await get_tree().create_timer(2.0).timeout
 			_end_scene()
 			move_pin = false
@@ -30,7 +32,7 @@ func _setup(new_position: float, next_scene: String) -> void:
 	var end_pos = new_position/number_of_levels
 	var start_pos_adj = start_pos/number_of_levels
 	new_scene = next_scene
-	$Control/Path2D/PathFollow2D.progress_ratio = start_pos_adj
+	path_follow.progress_ratio = start_pos_adj
 	pos = end_pos
 	if pos > 1:
 		pos = 1

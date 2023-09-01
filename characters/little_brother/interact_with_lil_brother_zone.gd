@@ -124,20 +124,13 @@ func _generate_food(player) -> void:
 			GameEvents.plant_hunger_bar_filled.emit()
 		GameEvents.done_feeding_little_brother.emit()
 		if owner.is_full:
-			var level_number = int(owner.get_parent().map_position)
-			if level_number % 4 == 0:
-				label_text = "LULL"
-			else:
-				label_text = "GO"
+			label_text = "LULL"
+
 
 
 func _end_level():
 	GameEvents.cutscene_started.emit()
-	var level_number = int(owner.get_parent().map_position)
-	if level_number % 4 == 0:
-		GameEvents.evening_started.emit()
-	else:
-		GameEvents.continue_day.emit()
+	GameEvents.evening_started.emit()
 
 
 func _on_cutscene_started() -> void:

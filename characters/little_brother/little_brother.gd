@@ -25,7 +25,6 @@ func _process(delta):
 		position.x += 45 * delta
 
 
-
 func done_feeding() -> void:
 	is_full = true
 
