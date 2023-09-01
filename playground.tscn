@@ -930,7 +930,7 @@ size = Vector2(270, 214)
 
 [node name="World" type="Node2D" node_paths=PackedStringArray("camera")]
 script = ExtResource("1_nxsgc")
-next_level = "res://levels_and_level_objects/level_scenes/city/city_1.tscn"
+next_level = "res://levels_and_level_objects/level_scenes/base_dream_level.tscn"
 camera = NodePath("Camera")
 
 [node name="CutscenePlayer" type="AnimationPlayer" parent="."]

@@ -29,7 +29,7 @@ var state:= "Idle"
 var state_last_frame := state
 
 var bag := []
-var bag_capacity := 8
+var bag_capacity := 1000
 var has_booster_upgrade := false
 var torch_charges := 1
 var max_torch_charges := torch_charges

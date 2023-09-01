@@ -78,6 +78,13 @@ func transition_to_level(level:String) -> void:
 	get_tree().change_scene_to_file(level)
 	Fade.crossfade_execute() 
 
+
+func transition_to_next_level() -> void:
+	Fade.crossfade_prepare(0.4, "ChopHorizontal")
+	SoundPlayer.play_sound("paper_rip")
+	get_tree().change_scene_to_file(next_level)
+	Fade.crossfade_execute() 
+
 func _on_morning_started() -> void:
 	var start_day_ui := preload("res://user_interface/shop.tscn").instantiate()
 	await get_tree().create_timer(3.0).timeout
