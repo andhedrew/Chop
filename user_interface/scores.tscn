@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://bc4aou7sehw4n"]
+[gd_scene load_steps=7 format=3 uid="uid://bc4aou7sehw4n"]
 
 [ext_resource type="Script" path="res://user_interface/shop.gd" id="1_dilof"]
 [ext_resource type="Theme" uid="uid://b0dhfhdkknaj3" path="res://user_interface/chop_theme.tres" id="2_sikoc"]
 [ext_resource type="Script" path="res://user_interface/food_score_tracker.gd" id="3_pqwjq"]
+[ext_resource type="FontFile" uid="uid://baykuh7pqbali" path="res://user_interface/fonts/Giza.otf" id="3_yn37f"]
 
 [sub_resource type="Animation" id="Animation_skycn"]
 resource_name = "fade_in"
@@ -55,9 +56,11 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_top = 2.0
 grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("2_sikoc")
+theme_override_fonts/font = ExtResource("3_yn37f")
 theme_override_font_sizes/font_size = 42
 text = "Score"
 horizontal_alignment = 1
@@ -91,14 +94,17 @@ score_to_track = "meat_score"
 
 [node name="Label" type="Label" parent="VBoxContainer/MarginContainer2/VBoxContainer2/HBoxContainer/ScoreTracker"]
 layout_mode = 2
+theme = ExtResource("2_sikoc")
 text = "Meat"
 
 [node name="Label2" type="Label" parent="VBoxContainer/MarginContainer2/VBoxContainer2/HBoxContainer/ScoreTracker"]
 layout_mode = 2
+theme = ExtResource("2_sikoc")
 text = " x "
 
 [node name="Label3" type="Label" parent="VBoxContainer/MarginContainer2/VBoxContainer2/HBoxContainer/ScoreTracker"]
 layout_mode = 2
+theme = ExtResource("2_sikoc")
 text = "0"
 
 [node name="ScoreTracker2" type="HBoxContainer" parent="VBoxContainer/MarginContainer2/VBoxContainer2/HBoxContainer"]
@@ -109,14 +115,17 @@ score_to_track = "plant_score"
 
 [node name="Label" type="Label" parent="VBoxContainer/MarginContainer2/VBoxContainer2/HBoxContainer/ScoreTracker2"]
 layout_mode = 2
+theme = ExtResource("2_sikoc")
 text = "Veg"
 
 [node name="Label2" type="Label" parent="VBoxContainer/MarginContainer2/VBoxContainer2/HBoxContainer/ScoreTracker2"]
 layout_mode = 2
+theme = ExtResource("2_sikoc")
 text = " x "
 
 [node name="Label3" type="Label" parent="VBoxContainer/MarginContainer2/VBoxContainer2/HBoxContainer/ScoreTracker2"]
 layout_mode = 2
+theme = ExtResource("2_sikoc")
 text = "0"
 
 [node name="ScoreTracker3" type="HBoxContainer" parent="VBoxContainer/MarginContainer2/VBoxContainer2/HBoxContainer"]
@@ -127,14 +136,17 @@ score_to_track = "brick_score"
 
 [node name="Label" type="Label" parent="VBoxContainer/MarginContainer2/VBoxContainer2/HBoxContainer/ScoreTracker3"]
 layout_mode = 2
+theme = ExtResource("2_sikoc")
 text = "Non-food"
 
 [node name="Label2" type="Label" parent="VBoxContainer/MarginContainer2/VBoxContainer2/HBoxContainer/ScoreTracker3"]
 layout_mode = 2
+theme = ExtResource("2_sikoc")
 text = " x "
 
 [node name="Label3" type="Label" parent="VBoxContainer/MarginContainer2/VBoxContainer2/HBoxContainer/ScoreTracker3"]
 layout_mode = 2
+theme = ExtResource("2_sikoc")
 text = "0"
 
 [node name="HBoxContainer2" type="HBoxContainer" parent="VBoxContainer/MarginContainer2/VBoxContainer2"]

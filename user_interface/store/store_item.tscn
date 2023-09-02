@@ -1,10 +1,9 @@
-[gd_scene load_steps=12 format=3 uid="uid://de2lypqmnkj8i"]
+[gd_scene load_steps=11 format=3 uid="uid://de2lypqmnkj8i"]
 
 [ext_resource type="Script" path="res://user_interface/store/store_item.gd" id="1_08tn4"]
 [ext_resource type="Theme" uid="uid://b0dhfhdkknaj3" path="res://user_interface/chop_theme.tres" id="1_o8m06"]
 [ext_resource type="Texture2D" uid="uid://ckvra50equ7fg" path="res://characters/enemy/dandicrow/dandicrow_piece1.png" id="2_ebsu7"]
 [ext_resource type="Texture2D" uid="uid://dhjeqkevka6vf" path="res://user_interface/booster_ui1.png" id="2_yykd0"]
-[ext_resource type="FontFile" uid="uid://bpybjwc1pwvp4" path="res://user_interface/fonts/Silver.ttf" id="4_avp5i"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_oewnl"]
 bg_color = Color(0.0941176, 0.105882, 0.12549, 1)
@@ -194,6 +193,7 @@ size_flags_horizontal = 0
 theme = ExtResource("1_o8m06")
 theme_override_colors/default_color = Color(1, 1, 1, 1)
 theme_override_constants/line_separation = -9
+theme_override_font_sizes/normal_font_size = 18
 text = "Heading"
 fit_content = true
 scroll_active = false
@@ -206,17 +206,16 @@ anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_left = 45.0
-offset_top = 21.0
+offset_top = 26.0
 offset_right = -8.0
-offset_bottom = -7.0
+offset_bottom = -2.0
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 0
 theme = ExtResource("1_o8m06")
-theme_override_colors/default_color = Color(0.87451, 0.87451, 0.87451, 1)
-theme_override_constants/line_separation = -9
-theme_override_fonts/normal_font = ExtResource("4_avp5i")
-theme_override_font_sizes/normal_font_size = 18
+theme_override_colors/default_color = Color(0.678431, 0.580392, 0.392157, 1)
+theme_override_constants/line_separation = -1
+theme_override_font_sizes/normal_font_size = 13
 text = "This is a test. This is a test. This is a test. This is a test. "
 fit_content = true
 scroll_active = false
