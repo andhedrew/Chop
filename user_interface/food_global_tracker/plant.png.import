@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dho6xihx2y1wm"
-path="res://.godot/imported/Paroot.png-ce11a0ce96d54250125c611d51ff8161.ctex"
+uid="uid://bx4i1dc7g47hi"
+path="res://.godot/imported/plant.png-b13c0c5b3502a0a78fea6d9cc4b49c6d.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://characters/enemy/paroot/Paroot.png"
-dest_files=["res://.godot/imported/Paroot.png-ce11a0ce96d54250125c611d51ff8161.ctex"]
+source_file="res://user_interface/food_global_tracker/plant.png"
+dest_files=["res://.godot/imported/plant.png-b13c0c5b3502a0a78fea6d9cc4b49c6d.ctex"]
 
 [params]
 

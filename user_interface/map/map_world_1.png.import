@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dho6xihx2y1wm"
-path="res://.godot/imported/Paroot.png-ce11a0ce96d54250125c611d51ff8161.ctex"
+uid="uid://f24htvqewmf4"
+path="res://.godot/imported/map_world_1.png-f2c12d319776b2033b0f5fbe60102937.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://characters/enemy/paroot/Paroot.png"
-dest_files=["res://.godot/imported/Paroot.png-ce11a0ce96d54250125c611d51ff8161.ctex"]
+source_file="res://user_interface/map/map_world_1.png"
+dest_files=["res://.godot/imported/map_world_1.png-f2c12d319776b2033b0f5fbe60102937.ctex"]
 
 [params]
 

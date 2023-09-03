@@ -38,6 +38,9 @@ func setup_json() -> void:
 		"saved_data": false,
 		"lives": 5,
 		"score": 0,
+		"food_score": 0,
+		"meat_score": 0,
+		"brick_score": 0,
 			
 				}
 	}

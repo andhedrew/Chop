@@ -2,10 +2,14 @@ extends State
 
 var end_of_level := false
 
-func enter(_msg := {}) -> void:
-	$"../../Pivot/AnimationPlayer".pause()
+
+func _ready():
 	GameEvents.continue_day.connect(_on_end_of_day)
 	GameEvents.hunt_started.connect(_on_start_of_level)
+
+
+func enter(_msg := {}) -> void:
+	$"../../Pivot/AnimationPlayer".pause()
 
 
 func update(delta: float) -> void:

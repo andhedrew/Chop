@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dho6xihx2y1wm"
-path="res://.godot/imported/Paroot.png-ce11a0ce96d54250125c611d51ff8161.ctex"
+uid="uid://bsf6cm2ps0cof"
+path="res://.godot/imported/brick.png-4865da5c27372599f49ead854fdba4e6.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://characters/enemy/paroot/Paroot.png"
-dest_files=["res://.godot/imported/Paroot.png-ce11a0ce96d54250125c611d51ff8161.ctex"]
+source_file="res://user_interface/food_global_tracker/brick.png"
+dest_files=["res://.godot/imported/brick.png-4865da5c27372599f49ead854fdba4e6.ctex"]
 
 [params]
 

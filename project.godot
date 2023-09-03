@@ -39,6 +39,10 @@ window/stretch/aspect="keep_height"
 movie_writer/mjpeg_quality=0.9
 movie_writer/movie_file="C:/Files/HermitGames/Chop Working Files/movies/chop.avi"
 
+[gui]
+
+theme/default_font_antialiasing=0
+
 [importer_defaults]
 
 texture={
@@ -59,6 +63,27 @@ texture={
 "process/size_limit": 0,
 "roughness/mode": 0,
 "roughness/src_normal": ""
+}
+font_data_dynamic={
+"Compress": null,
+"Fallbacks": null,
+"Rendering": null,
+"allow_system_fallback": true,
+"antialiasing": 0,
+"compress": true,
+"fallbacks": [],
+"force_autohinter": false,
+"generate_mipmaps": false,
+"hinting": 1,
+"language_support": {},
+"msdf_pixel_range": 8,
+"msdf_size": 48,
+"multichannel_signed_distance_field": false,
+"opentype_features": {},
+"oversampling": 0.0,
+"preload": [],
+"script_support": {},
+"subpixel_positioning": 1
 }
 
 [input]
