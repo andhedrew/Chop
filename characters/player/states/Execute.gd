@@ -9,7 +9,7 @@ var reload_timer := 0
 var gravity_multiplier := 0.35
 
 func enter(_msg := {}) -> void:
-	owner.collider.disabled = false
+	owner.collision_mask |= (1 << 7)
 	if !owner.execute_disabled:
 		camera = owner.camera
 		owner.velocity.y = 0

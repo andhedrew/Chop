@@ -1,0 +1,66 @@
+[gd_scene load_steps=12 format=3 uid="uid://lgs5rnjrykeu"]
+
+[ext_resource type="Script" path="res://levels_and_level_objects/hazards/mush.gd" id="1_f6ip5"]
+[ext_resource type="Texture2D" uid="uid://4p0pljlkt6qx" path="res://levels_and_level_objects/hazards/mush_pieces1.png" id="2_av4ve"]
+[ext_resource type="Texture2D" uid="uid://ybyrpqfurk63" path="res://levels_and_level_objects/hazards/mush_pieces2.png" id="3_d5eoy"]
+[ext_resource type="Texture2D" uid="uid://bwtvku05atmjx" path="res://levels_and_level_objects/hazards/mush_particles.png" id="4_udgud"]
+[ext_resource type="Texture2D" uid="uid://busmyuwnvhmpv" path="res://levels_and_level_objects/hazards/mush.png" id="5_qfpvk"]
+[ext_resource type="PackedScene" uid="uid://ihb6ryi2422m" path="res://hitboxes/bumpbox.tscn" id="6_k2s6e"]
+[ext_resource type="PackedScene" uid="uid://bb1h85dym7l4i" path="res://hitboxes/Hurtbox.tscn" id="7_tl5k4"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_csu5v"]
+radius = 11.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_nykb0"]
+size = Vector2(12, 8)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_5lmml"]
+radius = 13.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_o1igc"]
+radius = 15.0
+
+[node name="Mush" type="CharacterBody2D"]
+collision_layer = 128
+collision_mask = 3
+script = ExtResource("1_f6ip5")
+death_pieces = Array[Resource]([ExtResource("2_av4ve"), ExtResource("3_d5eoy")])
+particle_texture = ExtResource("4_udgud")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(-1, -15)
+texture = ExtResource("5_qfpvk")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -16)
+shape = SubResource("CircleShape2D_csu5v")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="."]
+position = Vector2(0, -4)
+shape = SubResource("RectangleShape2D_nykb0")
+
+[node name="RayCast2D" type="RayCast2D" parent="."]
+position = Vector2(0, -1)
+target_position = Vector2(15, 0)
+
+[node name="RayCast2D2" type="RayCast2D" parent="."]
+position = Vector2(0, -1)
+target_position = Vector2(-15, 0)
+
+[node name="Bumper" parent="." instance=ExtResource("6_k2s6e")]
+position = Vector2(87, 36)
+collision_mask = 2
+
+[node name="CollisionShape2D" parent="Bumper" index="0"]
+position = Vector2(-87, -52)
+shape = SubResource("CircleShape2D_5lmml")
+
+[node name="Hurtbox" parent="." instance=ExtResource("7_tl5k4")]
+collision_mask = 8
+
+[node name="CollisionShape2D" parent="Hurtbox" index="0"]
+position = Vector2(0, -13)
+shape = SubResource("CircleShape2D_o1igc")
+
+[editable path="Bumper"]
+[editable path="Hurtbox"]

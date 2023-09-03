@@ -31,7 +31,7 @@ func enter(_msg := {}) -> void:
 		
 		if owner.block_detector.is_colliding() or owner.block_detector2.is_colliding():
 			slicing_a_block = true
-			owner.collider.disabled = true
+			owner.collision_mask |= (1 << 7)
 			owner.velocity.y = 0
 			
 			var boost_speed := 30

@@ -3,7 +3,7 @@ extends State
 var hitbox_position : Vector2
 var hurt_timer: SceneTreeTimer
 func enter(_msg := {}) -> void:
-	owner.collider.disabled = false
+	owner.collision_mask |= (1 << 7)
 	owner.animation_player.play("hurt")
 	owner.effects_player.play("fx/take_damage")
 	SoundPlayer.play_sound("player_voice_oof")

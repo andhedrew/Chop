@@ -59,7 +59,6 @@ func _physics_process(_delta):
 	
 
 
-	
 	if facing == Enums.Facing.RIGHT:
 		if pivot.scale.y != -1:
 			pivot.scale.y = lerp(pivot.scale.y, -1.0, 0.1)
@@ -114,7 +113,6 @@ func _take_damage(hitbox) -> void:
 			var slice = preload("res://vfx/slice.tscn").instantiate()
 			slice.position = global_position
 			get_node("/root/World").add_child(slice)
-			
 
 
 func execute():

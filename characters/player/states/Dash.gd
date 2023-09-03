@@ -6,7 +6,7 @@ var state_timer := 0
 
 
 func enter(_msg := {}) -> void:
-	owner.collider.disabled = false
+	owner.collision_mask |= (1 << 7)
 	owner.execute_disabled = false
 
 
