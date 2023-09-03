@@ -146,9 +146,9 @@ func _physics_process(delta):
 		block_detector2.position = Vector2(30, -11)
 	else:
 		block_detector.target_position = Vector2(detect_range, 0)
-		block_detector.position = Vector2(-2, -19)
+		block_detector.position = Vector2(-2, -17)
 		block_detector2.target_position = Vector2(detect_range, 0)
-		block_detector2.position = Vector2(-2, 19)
+		block_detector2.position = Vector2(-2, 17)
 		
 
 

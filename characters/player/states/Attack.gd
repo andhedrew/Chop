@@ -33,8 +33,9 @@ func enter(_msg := {}) -> void:
 			slicing_a_block = true
 			owner.collision_mask |= (1 << 7)
 			owner.velocity.y = 0
-			
+			await get_tree().create_timer(0.05).timeout
 			var boost_speed := 30
+			
 			if owner.looking != Enums.Looking.UP:
 				if owner.facing == Enums.Facing.LEFT:
 					owner.velocity.x = -knockback*boost_speed
@@ -45,6 +46,12 @@ func enter(_msg := {}) -> void:
 				owner.velocity.y = -knockback*boost_speed
 		else:
 			slicing_a_block = false
+		if slicing_a_block:
+			var grid_size = 16
+			var player_pos = owner.position
+			player_pos.x = round(player_pos.x / grid_size) * grid_size
+			player_pos.y = round(player_pos.y / grid_size) * grid_size
+			owner.position = player_pos
 
 
 
@@ -62,7 +69,7 @@ func physics_update(delta: float) -> void:
 			owner.velocity.y += Param.WATER_GRAVITY * delta
 		else:
 			owner.velocity.y += Param.GRAVITY * delta
-		
+
 	owner.move_and_slide()
 		
 	if state_machine.state_timer > owner.attack_delay and owner.state != "Cutscene":

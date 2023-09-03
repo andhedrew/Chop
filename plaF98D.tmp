@@ -1174,10 +1174,10 @@ texture = ExtResource("22_ptq7j")
 position = Vector2(1384, -72)
 texture = ExtResource("22_ptq7j")
 
-[node name="Player" parent="." node_paths=PackedStringArray("camera") instance=ExtResource("1_371ql")]
+[node name="Player" parent="." instance=ExtResource("1_371ql")]
 position = Vector2(-632, -152)
 collision_mask = 3
-camera = NodePath("../Camera")
+camera = null
 
 [node name="Water_Body" parent="." instance=ExtResource("36_hcpxa")]
 position = Vector2(-442, -7)
@@ -1208,7 +1208,7 @@ position = Vector2(-751, -92)
 position = Vector2(-415, -124)
 
 [node name="ExplodingBlock" parent="." instance=ExtResource("36_md74n")]
-position = Vector2(-704, -82)
+position = Vector2(-704, -104)
 particle_texture = ExtResource("44_lhsqg")
 
 [node name="CollisionShape2D" parent="ExplodingBlock/Hurtbox" index="0"]
