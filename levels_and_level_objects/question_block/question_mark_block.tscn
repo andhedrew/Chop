@@ -15,6 +15,7 @@ size = Vector2(29, 30)
 size = Vector2(32, 32)
 
 [node name="QuestionMarkBlock" type="StaticBody2D"]
+collision_layer = 128
 script = ExtResource("1_waprg")
 death_pieces = Array[Resource]([ExtResource("2_da72q"), ExtResource("3_ugfaj")])
 death_pieces2 = Array[Resource]([ExtResource("4_tjrmi"), ExtResource("5_etm41")])

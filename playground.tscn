@@ -1,4 +1,4 @@
-[gd_scene load_steps=51 format=3 uid="uid://bvuqbhwqfo41j"]
+[gd_scene load_steps=52 format=3 uid="uid://bvuqbhwqfo41j"]
 
 [ext_resource type="PackedScene" uid="uid://bwvi5m2prncxh" path="res://characters/player/player.tscn" id="1_371ql"]
 [ext_resource type="Script" path="res://levels_and_level_objects/level_scenes/level_manager.gd" id="1_nxsgc"]
@@ -35,6 +35,7 @@
 [ext_resource type="PackedScene" uid="uid://lgs5rnjrykeu" path="res://levels_and_level_objects/hazards/mush.tscn" id="36_63nmq"]
 [ext_resource type="PackedScene" uid="uid://dva55whxpft42" path="res://addons/water_shader/Scenes/Water_Body.tscn" id="36_hcpxa"]
 [ext_resource type="PackedScene" uid="uid://bnt6xxew5jdel" path="res://levels_and_level_objects/question_block/exploding_prop.tscn" id="36_md74n"]
+[ext_resource type="PackedScene" uid="uid://dnjasyv6stmn4" path="res://levels_and_level_objects/question_block/question_mark_block.tscn" id="39_6csn0"]
 [ext_resource type="PackedScene" uid="uid://duq3hbv7istwg" path="res://pickups/coin_pickup.tscn" id="39_bgl1t"]
 [ext_resource type="PackedScene" uid="uid://b0c888aj8ndqi" path="res://user_interface/score_number.tscn" id="40_d554s"]
 [ext_resource type="Texture2D" uid="uid://2a76dnkd5do2" path="res://levels_and_level_objects/question_block/brick_block_particles.png" id="44_lhsqg"]
@@ -1208,7 +1209,7 @@ position = Vector2(-751, -92)
 position = Vector2(-415, -124)
 
 [node name="ExplodingBlock" parent="." instance=ExtResource("36_md74n")]
-position = Vector2(-704, -82)
+position = Vector2(-712, -104)
 particle_texture = ExtResource("44_lhsqg")
 
 [node name="CollisionShape2D" parent="ExplodingBlock/Hurtbox" index="0"]
@@ -1227,6 +1228,36 @@ shape = SubResource("RectangleShape2D_evl66")
 [node name="CollisionShape2D" parent="ExplodingBlock2" index="2"]
 shape = SubResource("RectangleShape2D_se56r")
 
+[node name="ExplodingBlock4" parent="." instance=ExtResource("36_md74n")]
+position = Vector2(-848, -136)
+particle_texture = ExtResource("44_lhsqg")
+
+[node name="CollisionShape2D" parent="ExplodingBlock4/Hurtbox" index="0"]
+shape = SubResource("RectangleShape2D_evl66")
+
+[node name="CollisionShape2D" parent="ExplodingBlock4" index="2"]
+shape = SubResource("RectangleShape2D_se56r")
+
+[node name="ExplodingBlock7" parent="." instance=ExtResource("36_md74n")]
+position = Vector2(-848, -168)
+particle_texture = ExtResource("44_lhsqg")
+
+[node name="CollisionShape2D" parent="ExplodingBlock7/Hurtbox" index="0"]
+shape = SubResource("RectangleShape2D_evl66")
+
+[node name="CollisionShape2D" parent="ExplodingBlock7" index="2"]
+shape = SubResource("RectangleShape2D_se56r")
+
+[node name="ExplodingBlock8" parent="." instance=ExtResource("36_md74n")]
+position = Vector2(-848, -200)
+particle_texture = ExtResource("44_lhsqg")
+
+[node name="CollisionShape2D" parent="ExplodingBlock8/Hurtbox" index="0"]
+shape = SubResource("RectangleShape2D_evl66")
+
+[node name="CollisionShape2D" parent="ExplodingBlock8" index="2"]
+shape = SubResource("RectangleShape2D_se56r")
+
 [node name="ExplodingBlock3" parent="." instance=ExtResource("36_md74n")]
 position = Vector2(-768, -104)
 particle_texture = ExtResource("44_lhsqg")
@@ -1235,16 +1266,6 @@ particle_texture = ExtResource("44_lhsqg")
 shape = SubResource("RectangleShape2D_evl66")
 
 [node name="CollisionShape2D" parent="ExplodingBlock3" index="2"]
-shape = SubResource("RectangleShape2D_se56r")
-
-[node name="ExplodingBlock4" parent="." instance=ExtResource("36_md74n")]
-position = Vector2(-800, -104)
-particle_texture = ExtResource("44_lhsqg")
-
-[node name="CollisionShape2D" parent="ExplodingBlock4/Hurtbox" index="0"]
-shape = SubResource("RectangleShape2D_evl66")
-
-[node name="CollisionShape2D" parent="ExplodingBlock4" index="2"]
 shape = SubResource("RectangleShape2D_se56r")
 
 [node name="ExplodingBlock5" parent="." instance=ExtResource("36_md74n")]
@@ -1267,14 +1288,21 @@ shape = SubResource("RectangleShape2D_evl66")
 [node name="CollisionShape2D" parent="ExplodingBlock6" index="2"]
 shape = SubResource("RectangleShape2D_se56r")
 
+[node name="QuestionMarkBlock" parent="." instance=ExtResource("39_6csn0")]
+position = Vector2(-800, -104)
+
 [editable path="ExplodingBlock"]
 [editable path="ExplodingBlock/Hurtbox"]
 [editable path="ExplodingBlock2"]
 [editable path="ExplodingBlock2/Hurtbox"]
-[editable path="ExplodingBlock3"]
-[editable path="ExplodingBlock3/Hurtbox"]
 [editable path="ExplodingBlock4"]
 [editable path="ExplodingBlock4/Hurtbox"]
+[editable path="ExplodingBlock7"]
+[editable path="ExplodingBlock7/Hurtbox"]
+[editable path="ExplodingBlock8"]
+[editable path="ExplodingBlock8/Hurtbox"]
+[editable path="ExplodingBlock3"]
+[editable path="ExplodingBlock3/Hurtbox"]
 [editable path="ExplodingBlock5"]
 [editable path="ExplodingBlock5/Hurtbox"]
 [editable path="ExplodingBlock6"]

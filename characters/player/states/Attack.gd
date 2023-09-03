@@ -63,6 +63,7 @@ func physics_update(delta: float) -> void:
 	if owner.is_on_floor():
 		if Input.is_action_pressed("jump"):
 			state_machine.transition_to("Jump")
+		
 #	
 	if !slicing_a_block:
 		if owner.in_water:
