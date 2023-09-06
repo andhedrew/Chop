@@ -9,6 +9,7 @@ func _destroy_tile(global_pos: Vector2) -> void:
 	var tile_coords = global_pos
 	if get_cell_tile_data(0, tile_coords):
 		set_cell(0, Vector2i(tile_coords.x, tile_coords.y), -1)
+		
 		var slice = slice_scene.instantiate()
 		get_parent().add_child(slice)
 		slice.position = to_global(map_to_local(tile_coords))
