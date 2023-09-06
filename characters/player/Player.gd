@@ -43,10 +43,8 @@ var cutscene_walk := false
 
 var lives := 5
 
-@onready var block_detector : RayCast2D = $Pivot/BlockDetector
-@onready var block_detector2 : RayCast2D = $Pivot/BlockDetector2
-
-
+@onready var block_detector := $Pivot/BlockCollider
+var block_detector_colliding := false
 @onready var hurtbox := $Hurtbox
 @onready var animation_player := $Pivot/AnimationPlayer
 @onready var effects_player := $Pivot/EffectsPlayer
@@ -74,6 +72,8 @@ var execute_spread := 0
 
 func _ready():
 	hurtbox.area_entered.connect(_hurtbox_on_area_entered)
+	block_detector.body_entered.connect(on_block_detected)
+	block_detector.body_exited.connect(on_block_undetected)
 	GameEvents.enemy_took_damage.connect(_on_enemy_taking_damage)
 	GameEvents.morning_started.connect(_on_morning_start)
 	GameEvents.continue_day.connect(_on_continue_day)
@@ -138,18 +138,10 @@ func _physics_process(delta):
 	if Input.is_action_just_pressed("unload_bag"):
 		drop_last_item()
 	
-	var detect_range := 65
 	if looking == Enums.Looking.UP:
-		block_detector.target_position = Vector2(0, -detect_range)
-		block_detector.position = Vector2(-5, -11)
-		block_detector2.target_position = Vector2(0, -detect_range)
-		block_detector2.position = Vector2(30, -11)
+		block_detector.rotation_degrees = -90
 	else:
-		block_detector.target_position = Vector2(detect_range, 0)
-		block_detector.position = Vector2(-2, -17)
-		block_detector2.target_position = Vector2(detect_range, 0)
-		block_detector2.position = Vector2(-2, 17)
-		
+		block_detector.rotation_degrees = 0
 
 
 func change_weapon(new_weapon) -> void:
@@ -342,3 +334,13 @@ func is_in_water() -> void:
 
 func out_of_water() -> void:
 	in_water = false
+
+
+func on_block_detected(body) -> void:
+	print("detecting")
+	block_detector_colliding = true
+
+
+func on_block_undetected(body) -> void:
+	print("undetecting")
+	block_detector_colliding = false

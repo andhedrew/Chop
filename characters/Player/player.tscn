@@ -1,4 +1,4 @@
-[gd_scene load_steps=60 format=3 uid="uid://bwvi5m2prncxh"]
+[gd_scene load_steps=61 format=3 uid="uid://bwvi5m2prncxh"]
 
 [ext_resource type="Script" path="res://characters/player/player.gd" id="1_70au1"]
 [ext_resource type="Texture2D" uid="uid://qidnhxm7dgua" path="res://characters/player/death_pieces/player_death_pieces_1.png" id="2_76euu"]
@@ -819,6 +819,9 @@ gravity = Vector3(0, 98, 0)
 orbit_velocity_min = 0.0
 orbit_velocity_max = 0.0
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lkn68"]
+size = Vector2(31, 22)
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_v5543"]
 size = Vector2(10, 25.5)
 
@@ -913,17 +916,14 @@ position = Vector2(10, 1)
 visible = false
 process_material = SubResource("ParticleProcessMaterial_65d5a")
 
-[node name="BlockDetector" type="RayCast2D" parent="Pivot"]
-position = Vector2(-2, -11)
-target_position = Vector2(40, 0)
+[node name="BlockCollider" type="Area2D" parent="Pivot"]
+position = Vector2(-2, 1)
+collision_layer = 0
 collision_mask = 128
-collide_with_areas = true
 
-[node name="BlockDetector2" type="RayCast2D" parent="Pivot"]
-position = Vector2(-2, 12)
-target_position = Vector2(40, 0)
-collision_mask = 128
-collide_with_areas = true
+[node name="BlockCollider" type="CollisionShape2D" parent="Pivot/BlockCollider"]
+position = Vector2(24.5, 1)
+shape = SubResource("RectangleShape2D_lkn68")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -12.75)
