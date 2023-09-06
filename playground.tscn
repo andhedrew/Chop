@@ -1,4 +1,4 @@
-[gd_scene load_steps=52 format=3 uid="uid://bvuqbhwqfo41j"]
+[gd_scene load_steps=53 format=3 uid="uid://bvuqbhwqfo41j"]
 
 [ext_resource type="PackedScene" uid="uid://bwvi5m2prncxh" path="res://characters/player/player.tscn" id="1_371ql"]
 [ext_resource type="Script" path="res://levels_and_level_objects/level_scenes/level_manager.gd" id="1_nxsgc"]
@@ -37,6 +37,7 @@
 [ext_resource type="PackedScene" uid="uid://bnt6xxew5jdel" path="res://levels_and_level_objects/question_block/exploding_prop.tscn" id="36_md74n"]
 [ext_resource type="PackedScene" uid="uid://dnjasyv6stmn4" path="res://levels_and_level_objects/question_block/question_mark_block.tscn" id="39_6csn0"]
 [ext_resource type="PackedScene" uid="uid://duq3hbv7istwg" path="res://pickups/coin_pickup.tscn" id="39_bgl1t"]
+[ext_resource type="PackedScene" uid="uid://c45dv8km6cdm" path="res://vfx/color_shift_layer.tscn" id="40_0tu46"]
 [ext_resource type="PackedScene" uid="uid://b0c888aj8ndqi" path="res://user_interface/score_number.tscn" id="40_d554s"]
 [ext_resource type="Texture2D" uid="uid://2a76dnkd5do2" path="res://levels_and_level_objects/question_block/brick_block_particles.png" id="44_lhsqg"]
 
@@ -966,7 +967,7 @@ position = Vector2(48, 56)
 texture = ExtResource("4_i41wp")
 
 [node name="BgLayerMed3" type="Sprite2D" parent="Background2/ParallaxLayer2"]
-position = Vector2(216, 96)
+position = Vector2(-424, -32)
 texture = ExtResource("5_vdx38")
 
 [node name="BgLayerMed4" type="Sprite2D" parent="Background2/ParallaxLayer2"]
@@ -1034,7 +1035,7 @@ position = Vector2(-64, 72)
 texture = ExtResource("11_w7irf")
 
 [node name="BgLayer3" type="Sprite2D" parent="Background2/ParallaxLayer3"]
-position = Vector2(112, 64)
+position = Vector2(-344, -72)
 texture = ExtResource("12_jfche")
 
 [node name="BgLayer2" type="Sprite2D" parent="Background2/ParallaxLayer3"]
@@ -1291,6 +1292,8 @@ shape = SubResource("RectangleShape2D_se56r")
 [node name="QuestionMarkBlock" parent="." instance=ExtResource("39_6csn0")]
 position = Vector2(-800, -104)
 
+[node name="ColorShiftLayer" parent="." instance=ExtResource("40_0tu46")]
+
 [editable path="ExplodingBlock"]
 [editable path="ExplodingBlock/Hurtbox"]
 [editable path="ExplodingBlock2"]
@@ -1307,3 +1310,4 @@ position = Vector2(-800, -104)
 [editable path="ExplodingBlock5/Hurtbox"]
 [editable path="ExplodingBlock6"]
 [editable path="ExplodingBlock6/Hurtbox"]
+[editable path="ColorShiftLayer"]

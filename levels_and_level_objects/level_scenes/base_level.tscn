@@ -1,9 +1,10 @@
-[gd_scene load_steps=19 format=3 uid="uid://dm85xjdq5mkk3"]
+[gd_scene load_steps=20 format=3 uid="uid://dm85xjdq5mkk3"]
 
 [ext_resource type="Script" path="res://levels_and_level_objects/level_scenes/level_manager.gd" id="1_ity0y"]
 [ext_resource type="Script" path="res://day_night_cycle.gd" id="2_h45bf"]
 [ext_resource type="Texture2D" uid="uid://bhfspiv72jv8u" path="res://sprites/tilesets/fan.png" id="5_7cpu6"]
 [ext_resource type="PackedScene" uid="uid://bqg8q7u0o16hm" path="res://gameplay_objects/camera.tscn" id="6_818il"]
+[ext_resource type="PackedScene" uid="uid://c45dv8km6cdm" path="res://vfx/color_shift_layer.tscn" id="7_m4wl6"]
 [ext_resource type="Script" path="res://levels_and_level_objects/level_scenes/debug.gd" id="7_wmhq8"]
 [ext_resource type="PackedScene" uid="uid://bwvi5m2prncxh" path="res://characters/player/player.tscn" id="31_fx83i"]
 [ext_resource type="Texture2D" uid="uid://bivxdxcjdr3u2" path="res://sprites/tilesets/dark_tileset.png" id="33_x28vh"]
@@ -1067,6 +1068,8 @@ z_as_relative = false
 motion_scale = Vector2(1.1, 1.1)
 
 [node name="Camera" parent="." instance=ExtResource("6_818il")]
+
+[node name="ColorShiftLayer" parent="." instance=ExtResource("7_m4wl6")]
 
 [node name="Debug" type="CanvasLayer" parent="."]
 script = ExtResource("7_wmhq8")
