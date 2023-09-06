@@ -17,7 +17,7 @@ func _ready():
 	$AnimationPlayer.play("bullet_enter")
 	await $AnimationPlayer.animation_finished
 	$AnimationPlayer.play("animate_bullet")
-
+	
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta):

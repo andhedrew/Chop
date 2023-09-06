@@ -18,14 +18,6 @@ func _destroy() -> void:
 	var slice = slice_scene.instantiate()
 	get_parent().add_child(slice)
 	slice.position = position
-	
-#	var explode = particle_scene.instantiate()
-#	explode.restart()
-#	explode.texture = particle_texture
-#	var width : int = particle_texture.get_width() / 16
-#	explode.material.set_particles_anim_h_frames(width)
-#	get_parent().add_child(explode)
-#	explode.position = position
 
 	var explode = particle_scene.instantiate()
 	explode.restart()

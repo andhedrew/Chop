@@ -1293,6 +1293,7 @@ shape = SubResource("RectangleShape2D_se56r")
 position = Vector2(-800, -104)
 
 [node name="ColorShiftLayer" parent="." instance=ExtResource("40_0tu46")]
+visible = false
 
 [editable path="ExplodingBlock"]
 [editable path="ExplodingBlock/Hurtbox"]

@@ -1,19 +1,13 @@
-[gd_scene load_steps=6 format=3 uid="uid://c45dv8km6cdm"]
+[gd_scene load_steps=5 format=3 uid="uid://c45dv8km6cdm"]
 
 [ext_resource type="Shader" path="res://addons/extensible_color_palette/color_filter.gdshader" id="1_rly74"]
 [ext_resource type="Texture2D" uid="uid://c1nex6wxbe8hf" path="res://addons/UniversalFade/Patterns/Diagonal.png" id="2_aw4md"]
-
-[sub_resource type="Gradient" id="Gradient_j0qda"]
-offsets = PackedFloat32Array(0.073903, 0.353349, 0.431871, 0.48037, 0.510393, 0.660508, 0.727483, 1)
-colors = PackedColorArray(0.08, 0.0306667, 0, 1, 0.65637, 0.426796, 0.380266, 1, 0.471604, 0.569878, 0.401923, 1, 0.898039, 0.498039, 0.27451, 1, 0.69925, 0.75, 0.645, 1, 0.576471, 0.764706, 0.858824, 1, 0.899851, 0.869387, 0.852363, 1, 0.9, 0.9, 0.9, 1)
-
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_123f7"]
-gradient = SubResource("Gradient_j0qda")
+[ext_resource type="Texture2D" uid="uid://w1waixl86fbt" path="res://vfx/palette_shifts/pink_and_light.tres" id="2_cqtl3"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_5i81i"]
 shader = ExtResource("1_rly74")
 shader_parameter/flip = null
-shader_parameter/gradient = SubResource("GradientTexture1D_123f7")
+shader_parameter/gradient = ExtResource("2_cqtl3")
 
 [node name="ColorShiftLayer" type="CanvasLayer"]
 
