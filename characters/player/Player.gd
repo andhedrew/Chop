@@ -70,6 +70,8 @@ var execute_spread := 0
 
 @onready var collider := $CollisionShape2D
 
+var attack_animation_index := 0
+
 func _ready():
 	hurtbox.area_entered.connect(_hurtbox_on_area_entered)
 	block_detector.body_entered.connect(on_block_detected)

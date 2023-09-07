@@ -12,7 +12,6 @@ var feeding := false
 var dust_emitted := false
 var hat_flat := false
 
-
 func _ready():
 	GameEvents.started_feeding_little_brother.connect(_on_feeding_brother)
 	GameEvents.done_feeding_little_brother.connect(_on_cutscene_end)
@@ -61,7 +60,12 @@ func _physics_process(_delta):
 						await animation_player.animation_finished
 						is_landing = false
 					else: animation_player.play("walk_looking_up")
-				"Attack": animation_player.play("attack_looking_up")
+				"Attack": 
+					if owner.attack_animation_index == 0:
+						animation_player.play("attack_looking_up")
+					else:
+						animation_player.play("attack_looking_up_2")
+					
 				"Jump":  animation_player.play("jump_looking_up")
 				"Fall":  animation_player.play("fall_looking_up")
 				"Execute":  animation_player.play("execute")
@@ -86,7 +90,11 @@ func _physics_process(_delta):
 						await animation_player.animation_finished
 						is_landing = false
 					else: animation_player.play("walk")
-				"Attack": animation_player.play("attack")
+				"Attack":
+					if owner.attack_animation_index == 0:
+						animation_player.play("attack")
+					else:
+						animation_player.play("attack_2")
 				"Syphon": animation_player.play("syphon")
 				"Jump":  animation_player.play("jump")
 				"Fall": 

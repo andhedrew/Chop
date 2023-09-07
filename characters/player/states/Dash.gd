@@ -22,6 +22,12 @@ func physics_update(delta: float) -> void:
 		else:
 			state_machine.transition_to("Fall")
 		owner.position.y += 3*delta
+	
+	if Input.is_action_just_pressed("execute"):
+		state_machine.transition_to("Execute")
+	
+	if Input.is_action_just_pressed("attack"):
+		state_machine.transition_to("Attack")
 
 func exit():
 	

@@ -33,10 +33,11 @@ func physics_update(delta: float) -> void:
 	elif owner.is_on_floor():
 		state_machine.transition_to("Move")
 	
-	if Input.is_action_pressed("down") and Input.is_action_pressed("jump"):
-		state_machine.transition_to("Execute")
-	elif Input.is_action_just_pressed("attack"):
+	if Input.is_action_just_pressed("attack"):
 		state_machine.transition_to("Attack")
+	
+	if Input.is_action_just_pressed("execute"):
+		state_machine.transition_to("Execute")
 	
 	if Input.is_action_just_pressed("syphon"):
 		state_machine.transition_to("Syphon")
