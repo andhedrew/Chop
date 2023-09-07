@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://cm208i2oyjrct"]
+[gd_scene load_steps=19 format=3 uid="uid://cm208i2oyjrct"]
 
 [ext_resource type="PackedScene" uid="uid://23cc1xm0v5jp" path="res://characters/enemy/enemy_walker.tscn" id="1_47dgo"]
 [ext_resource type="Texture2D" uid="uid://dhlkp2vwhtqpp" path="res://characters/enemy/hotdog/HotDog1.png" id="2_bgvra"]
@@ -8,7 +8,6 @@
 [ext_resource type="AudioStream" uid="uid://cjwahiy2j2af3" path="res://audio/sounds/sad_dog_die.wav" id="4_6x326"]
 [ext_resource type="Texture2D" uid="uid://b12wq84i42c4i" path="res://characters/enemy/hotdog/HotDog.png" id="4_tgoi2"]
 [ext_resource type="AudioStream" uid="uid://bekxwncrgx2nr" path="res://audio/sounds/impact_celery.wav" id="5_vh1cq"]
-[ext_resource type="Script" path="res://characters/enemy/states/walker_idle.gd" id="9_8fhdv"]
 [ext_resource type="Script" path="res://characters/enemy/states/walker_walk.gd" id="10_2o6vf"]
 
 [sub_resource type="Animation" id="Animation_c6llb"]
@@ -139,12 +138,9 @@ libraries = {
 }
 
 [node name="StateMachine" parent="." index="3"]
-initial_state = NodePath("Idle")
+initial_state = NodePath("Move")
 
-[node name="Idle" type="Node" parent="StateMachine" index="3"]
-script = ExtResource("9_8fhdv")
-
-[node name="Move" type="Node" parent="StateMachine" index="4"]
+[node name="Move" type="Node" parent="StateMachine" index="3"]
 script = ExtResource("10_2o6vf")
 
 [node name="Hurtbox" parent="." index="4"]

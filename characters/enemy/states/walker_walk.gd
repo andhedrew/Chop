@@ -20,20 +20,12 @@ var timer: Timer
 # Called when the node enters the scene tree for the first time.
 func enter(_msg := {}) -> void:
 	owner.animation_player.play("walk")
-	timer = Timer.new()
-	add_child(timer)
-	timer.wait_time = 5.0 + randf_range(-owner.erratic_walking_amount, owner.erratic_walking_amount)
-	timer.one_shot = true
-	timer.start()
+
 
 
 func physics_update(_delta: float) -> void:
 	var left_blocked = !ledge_left.is_colliding() or wall_left.is_colliding()
 	var right_blocked = !ledge_right.is_colliding() or wall_right.is_colliding()
-	
-	if timer.is_stopped() or (left_blocked and right_blocked):
-			timer.queue_free()
-			state_machine.transition_to("Idle")
 	
 	owner.velocity.x = owner.speed * owner.direction
 	owner.move_and_slide()

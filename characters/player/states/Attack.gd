@@ -6,6 +6,12 @@ var reload_timer := 0
 @onready var animation_player := $"../../Pivot/AnimationPlayer"
 var slicing_a_block := false
 
+
+func _ready() -> void:
+	GameEvents.player_hit_enemy.connect(_on_hitting_enemy)
+
+
+
 func enter(_msg := {}) -> void:
 	if owner.attack_animation_index == 0:
 		owner.attack_animation_index = 1
@@ -94,3 +100,11 @@ func physics_update(delta: float) -> void:
 	if Input.is_action_just_pressed("execute"):
 		state_machine.transition_to("Execute")
 
+func _on_hitting_enemy(enemy) -> void:
+	if owner.looking == Enums.Looking.DOWN:
+		var knockback = owner.attack_backward_force
+		if owner.in_water:
+			knockback *= 1.1
+		owner.velocity.y = -knockback*15
+
+		

@@ -72,6 +72,7 @@ var execute_spread := 0
 
 var attack_animation_index := 0
 
+
 func _ready():
 	hurtbox.area_entered.connect(_hurtbox_on_area_entered)
 	block_detector.body_entered.connect(on_block_detected)
@@ -97,9 +98,6 @@ func _load_data() -> void:
 	health = max_health
 	GameEvents.player_health_changed.emit(health, max_health)
 	
-	var bag_size = SaveManager.load_item("bag_size")
-	if bag_size != null:
-		bag_capacity = bag_size
 	
 	var money_amt = SaveManager.load_item("money")
 	if money_amt != null:
@@ -236,6 +234,7 @@ func handle_facing() -> void:
 		$Pivot/BulletSpawn.position = Vector2(0, -20)
 	elif input.y > 0:
 		looking = Enums.Looking.DOWN
+		$Pivot/BulletSpawn.position = Vector2(0, 20)
 	if facing_last_frame != facing:
 		GameEvents.player_changed_facing.emit(facing)
 	facing_last_frame = facing
@@ -246,7 +245,7 @@ func handle_facing() -> void:
 		$Pivot.transform.x.x = -1
 	
 	if Input.is_action_pressed("down") and !is_on_floor():
-		$Pivot/BulletSpawn.position = Vector2(30, 20)
+		$Pivot/BulletSpawn.position = Vector2(0, 20)
 	else: 
 		$Pivot/BulletSpawn.position = Vector2(10, 0)
 

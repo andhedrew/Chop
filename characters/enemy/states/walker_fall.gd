@@ -13,7 +13,10 @@ func physics_update(delta: float) -> void:
 	owner.move_and_slide()
 	
 	if owner.is_on_floor():
-		state_machine.transition_to("Idle")
+		if state_machine.has_node("Idle"):
+			state_machine.transition_to("Idle")
+		else:
+			state_machine.transition_to("Move")
 
 func exit() -> void:
 	pass
