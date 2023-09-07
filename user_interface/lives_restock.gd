@@ -5,6 +5,14 @@ var lives = 0
 var score = 0
 var score_divider: float = 0.0
 
+
+
+var map_position: float
+var next_map: String
+var next_level: String
+
+
+
 func _ready():
 	lives_label.text = str(lives)
 	score = SaveManager.load_item("score")
@@ -22,11 +30,9 @@ func increment_lives():
 	else:
 		await get_tree().create_timer(1.0).timeout
 		SaveManager.save_item("lives", 5)
-		var current_level = SaveManager.load_item("level")
-		Fade.crossfade_prepare(0.4, "ChopHorizontal")
-		SoundPlayer.play_sound("paper_rip")
-		get_tree().change_scene_to_file(current_level)
-		Fade.crossfade_execute()
+		_on_transitioning_to_map()
+
+
 
 
 
@@ -40,3 +46,24 @@ func reset_score():
 	else:
 		SaveManager.save_item("score", 0)
 		$ColorRect/Control/HBoxContainer2/Label2.text = str(0)
+
+
+
+func _on_transitioning_to_map() -> void:
+	var checkpoint_level = SaveManager.load_item("checkpoint")
+	if checkpoint_level != null:
+		next_map = Param.LEVEL_MAP[checkpoint_level]
+		next_level = checkpoint_level
+	else:
+		var baselevel:= "res://levels_and_level_objects/level_scenes/world_1_levels/1-1.tscn"
+		next_map = Param.LEVEL_MAP[baselevel]
+		next_level = baselevel
+	
+	
+	Fade.crossfade_prepare(0.4, "ChopHorizontal")
+	SoundPlayer.play_sound("paper_rip")
+	var map_scene = load(next_map).instantiate()
+	map_scene.new_scene = next_level
+	add_child(map_scene)
+	Fade.crossfade_execute() 
+	GameEvents.map_started.emit(0, next_level)

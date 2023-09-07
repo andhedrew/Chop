@@ -186,7 +186,7 @@ size = Vector2(18, 18)
 
 [node name="Enemy" type="CharacterBody2D"]
 collision_layer = 4
-collision_mask = 9
+collision_mask = 137
 script = ExtResource("1_px2j0")
 death_pieces = Array[Resource]([ExtResource("2_hsn2i"), ExtResource("3_mc02d")])
 
@@ -269,30 +269,34 @@ shape = SubResource("RectangleShape2D_tk5ps")
 [node name="ledge_check_right" type="RayCast2D" parent="."]
 position = Vector2(9, 0)
 target_position = Vector2(0, 4)
+collision_mask = 129
 collide_with_areas = true
 
 [node name="ledge_check_left" type="RayCast2D" parent="."]
 position = Vector2(-10, 0)
 target_position = Vector2(0, 4)
+collision_mask = 129
 collide_with_areas = true
 
 [node name="wall_check_left" type="RayCast2D" parent="."]
 position = Vector2(0, -10)
 target_position = Vector2(-20, 0)
-collision_mask = 69
+collision_mask = 197
 
 [node name="adjacent_ledge_check_left" type="RayCast2D" parent="."]
 position = Vector2(0, -10)
 target_position = Vector2(-15, 15)
+collision_mask = 129
 
 [node name="adjacent_ledge_check_right" type="RayCast2D" parent="."]
 position = Vector2(0, -10)
 target_position = Vector2(15, 15)
+collision_mask = 129
 
 [node name="wall_check_right" type="RayCast2D" parent="."]
 position = Vector2(0, -10)
 target_position = Vector2(20, 0)
-collision_mask = 69
+collision_mask = 197
 
 [editable path="Hurtbox"]
 [editable path="Hitbox"]

@@ -6,7 +6,7 @@ extends Node2D
 @export var next_map: PackedScene
 @export_file("*.tscn") var next_level
 @export var camera: Camera2D
-
+@export var checkpoint: bool = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready():

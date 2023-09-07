@@ -8,4 +8,4 @@ func _on_body_entered(body) -> void:
 		GameEvents.cutscene_started.emit()
 		GameEvents.continue_day.emit()
 		await get_tree().create_timer(3).timeout
-		owner.transition_to_next_level()
+		GameEvents.transition_to_map.emit()

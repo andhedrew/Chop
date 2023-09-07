@@ -14,7 +14,8 @@ func _ready() -> void:
 
 func setup_json() -> void:
 	var save_data := {
-		"level" : "res://levels_and_level_objects/level_scenes/city_level_1.tscn",
+		"level" : "res://levels_and_level_objects/level_scenes/world_1_levels/1-1.tscn",
+		"checkpoint" : "res://levels_and_level_objects/level_scenes/world_1_levels/1-1.tscn",
 		"map_pos" : 0.0,
 		"health" : 4,
 		"money" : 0,
@@ -41,6 +42,7 @@ func setup_json() -> void:
 		"food_score": 0,
 		"meat_score": 0,
 		"brick_score": 0,
+		
 			
 				}
 	}

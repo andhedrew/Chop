@@ -42,6 +42,7 @@ func _ready() -> void:
 	GameEvents.player_health_changed.connect(_on_player_health_change)
 	GameEvents.cutscene_started.connect(_on_start_cutscene)
 	GameEvents.cutscene_ended.connect(_on_end_cutscene)
+	set_facing(Enums.Facing.LEFT, false)
 
 
 func _physics_process(_delta):

@@ -138,7 +138,7 @@ libraries = {
 }
 
 [node name="StateMachine" parent="." index="3"]
-initial_state = NodePath("Move")
+initial_state = NodePath("Fall")
 
 [node name="Move" type="Node" parent="StateMachine" index="3"]
 script = ExtResource("10_2o6vf")
