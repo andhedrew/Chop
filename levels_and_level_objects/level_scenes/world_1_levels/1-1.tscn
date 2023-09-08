@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://byvdpljfbgpdj"]
 
 [ext_resource type="PackedScene" uid="uid://dm85xjdq5mkk3" path="res://levels_and_level_objects/level_scenes/base_level.tscn" id="1_hlveg"]
-[ext_resource type="PackedScene" path="res://levels_and_level_objects/map/map_world_1.tscn" id="2_3tvvh"]
+[ext_resource type="PackedScene" uid="uid://d1k7hc05eutat" path="res://levels_and_level_objects/map/map_world_1.tscn" id="2_3tvvh"]
 [ext_resource type="PackedScene" uid="uid://eow2ybkt3135" path="res://levels_and_level_objects/flagpole.tscn" id="2_gju63"]
 [ext_resource type="PackedScene" uid="uid://dnjasyv6stmn4" path="res://levels_and_level_objects/question_block/question_mark_block.tscn" id="3_ffakt"]
 [ext_resource type="PackedScene" uid="uid://cm208i2oyjrct" path="res://characters/enemy/hotdog/hotdog.tscn" id="5_dlvui"]
@@ -34,3 +34,9 @@ position = Vector2(272, -144)
 
 [node name="HotDog" parent="." index="17" instance=ExtResource("5_dlvui")]
 position = Vector2(232, -96)
+
+[node name="Label" parent="WorldName/Control" index="0"]
+text = "TEST"
+
+[node name="Label2" parent="WorldName/Control" index="1"]
+text = "TEST"

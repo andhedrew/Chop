@@ -52,11 +52,11 @@ func reset_score():
 func _on_transitioning_to_map() -> void:
 	var checkpoint_level = SaveManager.load_item("checkpoint")
 	if checkpoint_level != null:
-		next_map = Param.LEVEL_MAP[checkpoint_level]
+		next_map = LevelInfo.LEVEL_MAP[checkpoint_level]
 		next_level = checkpoint_level
 	else:
 		var baselevel:= "res://levels_and_level_objects/level_scenes/world_1_levels/1-1.tscn"
-		next_map = Param.LEVEL_MAP[baselevel]
+		next_map = LevelInfo.LEVEL_MAP[baselevel]
 		next_level = baselevel
 	
 	

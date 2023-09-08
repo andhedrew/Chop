@@ -1,13 +1,10 @@
-[gd_scene load_steps=63 format=3 uid="uid://bwvi5m2prncxh"]
+[gd_scene load_steps=60 format=3 uid="uid://bwvi5m2prncxh"]
 
-[ext_resource type="Script" path="res://characters/player/player.gd" id="1_70au1"]
-[ext_resource type="Texture2D" uid="uid://qidnhxm7dgua" path="res://characters/player/death_pieces/player_death_pieces_1.png" id="2_76euu"]
-[ext_resource type="Texture2D" uid="uid://l0icomsqfnav" path="res://characters/player/death_pieces/player_death_pieces_2.png" id="3_2pmyc"]
+[ext_resource type="Script" path="res://characters/player/Player.gd" id="1_3rc2v"]
 [ext_resource type="Texture2D" uid="uid://d1go5siomhupw" path="res://user_interface/booster_ui2.png" id="3_56qk1"]
 [ext_resource type="Texture2D" uid="uid://c0gkkcwur73fa" path="res://weapons/cleaver.png" id="3_fpyci"]
 [ext_resource type="Texture2D" uid="uid://51e4hodl1jf4" path="res://characters/player/blowtorch.png" id="3_vjd00"]
 [ext_resource type="Texture2D" uid="uid://tgfvqiycekrm" path="res://characters/player/player.png" id="4_xrcf8"]
-[ext_resource type="Texture2D" uid="uid://cj8fq2xj3qeea" path="res://characters/player/death_pieces/player_death_pieces_3.png" id="4_yklkn"]
 [ext_resource type="Script" path="res://characters/player/player_animation_controller.gd" id="5_g27gf"]
 [ext_resource type="Animation" uid="uid://dep0l7ft0tpjo" path="res://animations/take_damage.res" id="5_i7udj"]
 [ext_resource type="PackedScene" uid="uid://bb1h85dym7l4i" path="res://hitboxes/Hurtbox.tscn" id="5_qkadd"]
@@ -890,8 +887,7 @@ size = Vector2(15, 26)
 [node name="Player" type="CharacterBody2D"]
 collision_layer = 2
 collision_mask = 129
-script = ExtResource("1_70au1")
-death_pieces = Array[Resource]([ExtResource("2_76euu"), ExtResource("3_2pmyc"), ExtResource("4_yklkn")])
+script = ExtResource("1_3rc2v")
 
 [node name="State" type="Label" parent="."]
 visible = false

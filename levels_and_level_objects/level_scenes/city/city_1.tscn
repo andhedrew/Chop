@@ -769,7 +769,7 @@ position = Vector2(4312, -56)
 [node name="Spikes32" parent="Level" index="74" instance=ExtResource("19_dp02i")]
 position = Vector2(4344, -56)
 
-[node name="Player" parent="." index="8"]
+[node name="Player" parent="." index="10"]
 position = Vector2(16, -112)
 
 [node name="TileMap" parent="." index="11"]

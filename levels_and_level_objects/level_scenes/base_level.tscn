@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://dm85xjdq5mkk3"]
+[gd_scene load_steps=24 format=3 uid="uid://dm85xjdq5mkk3"]
 
 [ext_resource type="Script" path="res://levels_and_level_objects/level_scenes/level_manager.gd" id="1_ity0y"]
 [ext_resource type="Script" path="res://day_night_cycle.gd" id="2_h45bf"]
@@ -11,6 +11,9 @@
 [ext_resource type="TileSet" uid="uid://dncfauqbtucau" path="res://sprites/tilesets/grass_fg.tres" id="7_pgalx"]
 [ext_resource type="Script" path="res://levels_and_level_objects/level_scenes/debug.gd" id="7_wmhq8"]
 [ext_resource type="Script" path="res://sprites/tilesets/base_tilemap.gd" id="9_83p45"]
+[ext_resource type="Script" path="res://user_interface/world_name.gd" id="13_agt4c"]
+[ext_resource type="Theme" uid="uid://b0dhfhdkknaj3" path="res://user_interface/chop_theme.tres" id="13_hi45l"]
+[ext_resource type="FontFile" uid="uid://baykuh7pqbali" path="res://user_interface/fonts/Giza.otf" id="14_hjp1d"]
 [ext_resource type="PackedScene" uid="uid://bwvi5m2prncxh" path="res://characters/player/player.tscn" id="31_fx83i"]
 
 [sub_resource type="Animation" id="Animation_vp1kt"]
@@ -526,3 +529,49 @@ script = ExtResource("7_wmhq8")
 offset_right = 40.0
 offset_bottom = 23.0
 text = "DebugMode"
+
+[node name="WorldName" type="CanvasLayer" parent="."]
+script = ExtResource("13_agt4c")
+
+[node name="Control" type="Control" parent="WorldName"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -351.0
+offset_right = -351.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="WorldName/Control"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 15.0
+offset_top = -61.0
+offset_right = 343.0
+offset_bottom = -14.0
+grow_vertical = 0
+size_flags_horizontal = 4
+theme = ExtResource("13_hi45l")
+theme_override_colors/font_color = Color(0.835294, 0.423529, 0.2, 1)
+theme_override_fonts/font = ExtResource("14_hjp1d")
+theme_override_font_sizes/font_size = 40
+text = "Pork Belly Valley"
+
+[node name="Label2" type="Label" parent="WorldName/Control"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 16.0
+offset_top = -53.0
+offset_right = 110.0
+offset_bottom = -13.0
+grow_vertical = 0
+size_flags_horizontal = 4
+theme = ExtResource("13_hi45l")
+theme_override_fonts/font = ExtResource("14_hjp1d")
+theme_override_font_sizes/font_size = 40
+text = "Pork Belly Valley"

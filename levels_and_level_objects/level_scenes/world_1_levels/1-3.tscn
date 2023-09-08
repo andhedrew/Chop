@@ -1,13 +1,13 @@
-[gd_scene load_steps=3 format=3 uid="uid://bj1lmcqabp7ck"]
+[gd_scene load_steps=3 format=3 uid="uid://na5sxed2w2fc"]
 
-[ext_resource type="PackedScene" uid="uid://dm85xjdq5mkk3" path="res://levels_and_level_objects/level_scenes/base_level.tscn" id="1_o34es"]
-[ext_resource type="PackedScene" uid="uid://eow2ybkt3135" path="res://levels_and_level_objects/flagpole.tscn" id="2_w14s7"]
+[ext_resource type="PackedScene" uid="uid://dm85xjdq5mkk3" path="res://levels_and_level_objects/level_scenes/base_level.tscn" id="1_68esq"]
+[ext_resource type="PackedScene" uid="uid://eow2ybkt3135" path="res://levels_and_level_objects/flagpole.tscn" id="2_ixyc5"]
 
-[node name="World" instance=ExtResource("1_o34es")]
-next_level = "res://levels_and_level_objects/level_scenes/world_1_levels/1-3.tscn"
+[node name="World" instance=ExtResource("1_68esq")]
+next_level = "res://levels_and_level_objects/level_scenes/world_1_levels/1-4.tscn"
 
 [node name="TileMap" parent="." index="9"]
 layer_0/tile_data = PackedInt32Array(131065, 327680, 0, 131066, 393216, 0, 131067, 131072, 2, 131068, 262144, 6, 65531, 196608, 5, 65532, 131072, 5, 65533, 393216, 0, 65534, 393216, 0, 65535, 393216, 0, 0, 393216, 0, 1, 393216, 0, 2, 393216, 0, 3, 393216, 0, 4, 393216, 0, 5, 393216, 0, 6, 393216, 0, 7, 393216, 0, 8, 393216, 0, 9, 393216, 0, 10, 393216, 0, 11, 393216, 0, 12, 393216, 0, 13, 393216, 0, 14, 393216, 0, 15, 393216, 0, 16, 393216, 0, 17, 393216, 0, 18, 393216, 0, 19, 393216, 0, 20, 393216, 0, 21, 458752, 0)
 
-[node name="Flagpole" parent="." index="11" instance=ExtResource("2_w14s7")]
-position = Vector2(258, 13)
+[node name="Flagpole" parent="." index="11" instance=ExtResource("2_ixyc5")]
+position = Vector2(150, -16)
