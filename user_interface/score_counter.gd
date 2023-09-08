@@ -6,11 +6,10 @@ func _ready():
 	
 	var score_amt = SaveManager.load_item("score")
 	if score_amt != null:
-		text = str(score_amt)
+		text = "%06d" % score_amt
 	else:
 		score = 0
-		text = str(score)
-	
+		text = "%06d" % score
 	
 	
 func _on_player_score_changed(addition: int, reset: bool) -> void:
@@ -24,7 +23,7 @@ func _on_player_score_changed(addition: int, reset: bool) -> void:
 		else: 
 			score_amt = addition
 			SaveManager.save_item("score", score_amt)
-		text = str(score_amt)
+		text = "%06d" % score_amt
 
 
 
@@ -37,4 +36,5 @@ func reset_score():
 		reset_score()
 	else:
 		SaveManager.save_item("score", 0)
-		text = str(0)
+		score = 0
+		text = "%06d" % score

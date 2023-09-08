@@ -26,11 +26,13 @@ func _on_player_health_changed(health, maximum_health):
 		else:
 			hearts.append(empty_heart)
 	for i in range(0, 10):
-		var texture_rect = get_node("VBoxContainer/HBoxContainer/heart_" + str(i))
+		var texture_rect = get_node(
+			"VBoxContainer/HBoxContainer2/VBoxContainer2/HBoxContainer/heart_" + str(i))
 		texture_rect.visible = false
 		
 	for i in range(0, maximum_health/2):
-		var texture_rect = get_node("VBoxContainer/HBoxContainer/heart_" + str(i))
+		var texture_rect = get_node(
+			"VBoxContainer/HBoxContainer2/VBoxContainer2/HBoxContainer/heart_" + str(i))
 		texture_rect.texture = hearts[i]
 		texture_rect.visible = true
 
