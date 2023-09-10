@@ -1,6 +1,6 @@
 [gd_scene load_steps=60 format=3 uid="uid://bwvi5m2prncxh"]
 
-[ext_resource type="Script" path="res://characters/player/player.gd" id="1_xr41x"]
+[ext_resource type="Script" path="res://characters/player/player.gd" id="1_nroyc"]
 [ext_resource type="Texture2D" uid="uid://d1go5siomhupw" path="res://user_interface/booster_ui2.png" id="3_56qk1"]
 [ext_resource type="Texture2D" uid="uid://c0gkkcwur73fa" path="res://weapons/cleaver.png" id="3_fpyci"]
 [ext_resource type="Texture2D" uid="uid://51e4hodl1jf4" path="res://characters/player/blowtorch.png" id="3_vjd00"]
@@ -887,8 +887,7 @@ size = Vector2(15, 26)
 [node name="Player" type="CharacterBody2D"]
 collision_layer = 2
 collision_mask = 129
-script = ExtResource("1_xr41x")
-death_pieces = null
+script = ExtResource("1_nroyc")
 
 [node name="State" type="Label" parent="."]
 visible = false
