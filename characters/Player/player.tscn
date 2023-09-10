@@ -888,7 +888,6 @@ size = Vector2(15, 26)
 collision_layer = 2
 collision_mask = 129
 script = ExtResource("1_xr41x")
-death_pieces = null
 
 [node name="State" type="Label" parent="."]
 visible = false

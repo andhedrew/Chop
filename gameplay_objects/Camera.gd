@@ -160,12 +160,12 @@ func _on_player_done_syphoning(successful_syphon: bool) ->void:
 
 
 func set_camera_limits():
-	var map_limits = $"../TileMap".get_used_rect()
-	var map_cellsize = $"../TileMap".tile_set.tile_size
-	limit_left = map_limits.position.x * map_cellsize.x
-	limit_right = map_limits.end.x * map_cellsize.x
-	limit_top = map_limits.position.y * map_cellsize.y
-	limit_bottom = map_limits.end.y * map_cellsize.y
+	var map_limits = $"../LevelEdges".get_used_rect()
+	var map_cellsize = $"../LevelEdges".tile_set.tile_size
+	limit_left = map_limits.position.x * map_cellsize.x + map_cellsize.x
+	limit_right = map_limits.end.x * map_cellsize.x - map_cellsize.x
+	limit_top = map_limits.position.y * map_cellsize.y - map_cellsize.x
+	limit_bottom = map_limits.end.y * map_cellsize.y + map_cellsize.x
 
 
 func _on_cutscene_start() -> void:

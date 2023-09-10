@@ -54,7 +54,6 @@ _data = {
 [node name="UI" type="Control" parent="CanvasLayer"]
 layout_mode = 3
 anchors_preset = 0
-scale = Vector2(1, 0.44)
 script = ExtResource("1_vxliw")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="CanvasLayer/UI"]
@@ -69,7 +68,6 @@ offset_left = 11.0
 offset_top = 20.4545
 offset_right = 183.0
 offset_bottom = 70.4545
-scale = Vector2(1, 2.36363)
 
 [node name="HBoxContainer2" type="HBoxContainer" parent="CanvasLayer/UI/VBoxContainer"]
 layout_mode = 2
@@ -218,10 +216,6 @@ layout_mode = 3
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = -183.0
-offset_top = 14.0
-offset_right = -183.0
-offset_bottom = 14.0
 grow_horizontal = 0
 size_flags_horizontal = 8
 size_flags_vertical = 0
@@ -237,10 +231,10 @@ layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = 74.0
-offset_top = -8.0
-offset_right = 174.0
-offset_bottom = 63.0
+offset_left = -97.5
+offset_top = 22.5
+offset_right = -28.5
+offset_bottom = 93.5
 grow_horizontal = 0
 alignment = 1
 
