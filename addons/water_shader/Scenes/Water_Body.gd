@@ -43,7 +43,10 @@ var bottom = target_height + depth
 
 #reference to the particle we just created
 @onready var splash_particle = preload("res://addons/water_shader/Scenes/splash_particles.tscn")
+@onready var bubble_particles = $Water_Mask/Bubbles
 
+var player_in_water := false
+var player = null
 #initializes the spring array and all the springs
 func _ready():
 	water_border.width = border_thickness
@@ -81,6 +84,10 @@ func _ready():
 	rectangle.extents = rect_extents
 	collisionShape.set_shape(rectangle)
 	
+	var shape_size : Vector2 = collisionShape.shape.size
+#	$Water_Mask.position = position
+	$Water_Mask.size = shape_size
+	
 	water_body_area.body_exited.connect(on_body_exited)
 	
 
@@ -114,6 +121,11 @@ func _physics_process(delta):
 				springs[i+1].velocity += right_deltas[i]
 	new_border()
 	draw_water_body()
+	
+	if player_in_water:
+		var pos = player.global_position
+		bubble_particles.global_position = Vector2(pos.x+2, pos.y-20)
+		
 	
 
 func draw_water_body():
@@ -185,10 +197,13 @@ func _on_Water_Body_Area_body_entered(body):
 		#sets the position of the particle to the same of the body
 		s.global_position = body.global_position
 		s.z_index = SortLayer.BACKGROUND
-
-		pass # Replace with function body.
+		
+		if body is Player:
+			player_in_water = true
+			player = body
 
 func on_body_exited(body) -> void:
 	if body is Player:
 		SoundPlayer.play_sound("water_reverse")
 		body.out_of_water()
+		player_in_water = false
