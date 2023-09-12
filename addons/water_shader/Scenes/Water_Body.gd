@@ -45,6 +45,8 @@ var bottom = target_height + depth
 @onready var splash_particle = preload("res://addons/water_shader/Scenes/splash_particles.tscn")
 @onready var bubble_particles = $Water_Mask/Bubbles
 
+@onready var global_bubble_particles = $Water_Mask/water_bubbles
+
 var player_in_water := false
 var player = null
 #initializes the spring array and all the springs
@@ -88,6 +90,9 @@ func _ready():
 #	$Water_Mask.position = position
 	$Water_Mask.size = shape_size
 	
+	
+	$Water_Mask/water_bubbles.process_material.emission_box_extents = Vector3(shape_size.x, shape_size.y, 1)
+	
 	water_body_area.body_exited.connect(on_body_exited)
 	
 
@@ -125,6 +130,7 @@ func _physics_process(delta):
 	if player_in_water:
 		var pos = player.global_position
 		bubble_particles.global_position = Vector2(pos.x+2, pos.y-20)
+		global_bubble_particles.global_position = Vector2(pos.x+2, pos.y-20)
 		
 	
 

@@ -1,8 +1,9 @@
-[gd_scene load_steps=9 format=3 uid="uid://dva55whxpft42"]
+[gd_scene load_steps=13 format=3 uid="uid://dva55whxpft42"]
 
 [ext_resource type="Script" path="res://addons/water_shader/Scenes/Water_Body.gd" id="1_wgyix"]
 [ext_resource type="Shader" path="res://addons/water_shader/water_shader.gdshader" id="2_qernt"]
 [ext_resource type="Script" path="res://addons/water_shader/smooth_path_modified.gd" id="3_jj8le"]
+[ext_resource type="Texture2D" uid="uid://cbcuqk4ed0b5k" path="res://addons/water_shader/Sprites/Water_particle_1.png" id="4_m112o"]
 
 [sub_resource type="ShaderMaterial" id="4"]
 shader = ExtResource("2_qernt")
@@ -26,6 +27,25 @@ tangential_accel_max = 10.0
 scale_max = 2.0
 color = Color(1, 1, 1, 0.647059)
 color_ramp = SubResource("GradientTexture1D_55rph")
+
+[sub_resource type="Gradient" id="Gradient_unu3c"]
+colors = PackedColorArray(0.156863, 0.14902, 0.156863, 0.686275, 0.156863, 0.14902, 0.156863, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_jwdeb"]
+gradient = SubResource("Gradient_unu3c")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_q1lwm"]
+emission_shape = 3
+emission_box_extents = Vector3(1, 1, 1)
+particle_flag_disable_z = true
+gravity = Vector3(0, -98, 0)
+orbit_velocity_min = 0.0
+orbit_velocity_max = 0.0
+tangential_accel_min = -10.0
+tangential_accel_max = 10.0
+scale_min = 0.2
+scale_max = 0.5
+color_ramp = SubResource("GradientTexture1D_jwdeb")
 
 [node name="Water_Body" type="Node2D"]
 script = ExtResource("1_wgyix")
@@ -55,6 +75,16 @@ offset_bottom = 40.0
 position = Vector2(31, 51)
 amount = 1
 process_material = SubResource("ParticleProcessMaterial_302xy")
+lifetime = 0.8
+randomness = 0.26
+
+[node name="water_bubbles" type="GPUParticles2D" parent="Water_Mask"]
+visible = false
+position = Vector2(67, 64)
+amount = 1000
+sub_emitter = NodePath("../Bubbles")
+process_material = SubResource("ParticleProcessMaterial_q1lwm")
+texture = ExtResource("4_m112o")
 lifetime = 0.8
 randomness = 0.26
 

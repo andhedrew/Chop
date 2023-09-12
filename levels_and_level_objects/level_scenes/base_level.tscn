@@ -501,8 +501,6 @@ motion_scale = Vector2(0.8, 1)
 
 [node name="InteractiveProps" type="Node2D" parent="."]
 
-[node name="Level" type="Node2D" parent="."]
-
 [node name="TileMapBG" type="TileMap" parent="."]
 tile_set = ExtResource("7_3utfy")
 format = 2
@@ -513,6 +511,8 @@ tile_set = ExtResource("4_qopms")
 format = 2
 script = ExtResource("5_pq8vy")
 particle_texture = ExtResource("6_7vroi")
+
+[node name="Level" type="Node2D" parent="."]
 
 [node name="Player" parent="." node_paths=PackedStringArray("camera") instance=ExtResource("31_fx83i")]
 position = Vector2(-8, -8)

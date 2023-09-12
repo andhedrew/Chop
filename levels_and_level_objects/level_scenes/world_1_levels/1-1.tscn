@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://byvdpljfbgpdj"]
 
 [ext_resource type="PackedScene" uid="uid://dm85xjdq5mkk3" path="res://levels_and_level_objects/level_scenes/base_level.tscn" id="1_hlveg"]
-[ext_resource type="PackedScene" uid="uid://d1k7hc05eutat" path="res://levels_and_level_objects/map/map_world_1.tscn" id="2_3tvvh"]
+[ext_resource type="PackedScene" path="res://levels_and_level_objects/map/map_world_1.tscn" id="2_3tvvh"]
 [ext_resource type="PackedScene" uid="uid://eow2ybkt3135" path="res://levels_and_level_objects/flagpole.tscn" id="2_gju63"]
 [ext_resource type="PackedScene" uid="uid://dnjasyv6stmn4" path="res://levels_and_level_objects/question_block/question_mark_block.tscn" id="3_ffakt"]
 [ext_resource type="PackedScene" uid="uid://cm208i2oyjrct" path="res://characters/enemy/hotdog/hotdog.tscn" id="5_dlvui"]
@@ -11,10 +11,10 @@ next_map = ExtResource("2_3tvvh")
 next_level = "res://levels_and_level_objects/level_scenes/world_1_levels/1-2.tscn"
 checkpoint = true
 
-[node name="TileMapBG" parent="." index="6"]
+[node name="TileMapBG" parent="." index="5"]
 layer_0/tile_data = PackedInt32Array(-196605, 196608, 5, -196604, 393216, 3, -196603, 131072, 0, -196602, 393216, 3, -196601, 196608, 0, -131069, 65536, 1, -131068, 131072, 1, -131067, 131072, 1, -131066, 131072, 1, -131065, 196608, 1, -65533, 458752, 2, -65532, 131072, 1, -65531, 131072, 1, -65530, 131072, 1, -65529, 327680, 2, 3, 196608, 6, 4, 131072, 2, 5, 131072, 2, 6, 131072, 2, 7, 196608, 2)
 
-[node name="Breakable" parent="." index="7"]
+[node name="Breakable" parent="." index="6"]
 layer_0/tile_data = PackedInt32Array(-327665, 131072, 0, -327666, 65536, 0, -327667, 65536, 0, -327668, 0, 0, -262132, 0, 2, -262131, 65536, 2, -262130, 65536, 2, -262129, 131072, 2, -262126, 0, 0, -327662, 0, 0, -262125, 0, 0, -327661, 0, 0, -327660, 0, 0, -327659, 0, 0, -262123, 0, 0, -262124, 0, 0)
 
 [node name="TileMap" parent="." index="9"]
