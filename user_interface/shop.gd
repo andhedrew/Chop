@@ -10,5 +10,6 @@ func _process(_delta):
 
 
 func _on_button_pressed() -> void:
-	GameEvents.transition_to_map.emit()
+	owner.transition_to_next_level()
+	
 

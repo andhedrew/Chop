@@ -8,6 +8,7 @@ var target_position := 0.0
 var new_scene : String
 var move_pin := false
 
+
 @onready var path_follow := $Control/Path2D/PathFollow2D
 
 
@@ -28,10 +29,12 @@ func _process(_delta):
 
 
 func _setup(new_position: float, next_scene: String) -> void:
+	
 	var start_pos = new_position - 1.0
 	var end_pos = new_position/number_of_levels
 	var start_pos_adj = start_pos/number_of_levels
 	new_scene = next_scene
+
 	path_follow.progress_ratio = start_pos_adj
 	pos = end_pos
 	if pos > 1:

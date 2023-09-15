@@ -120,3 +120,5 @@ position = Vector2(768, -24)
 
 [node name="ParallaxLayer" parent="ForegroundScenery" index="0"]
 modulate = Color(0.529412, 0.529412, 0.529412, 1)
+
+[editable path="ColorShiftLayer"]

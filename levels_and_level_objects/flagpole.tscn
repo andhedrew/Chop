@@ -3,7 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://bnt6xxew5jdel" path="res://levels_and_level_objects/question_block/exploding_prop.tscn" id="1_er2iq"]
 [ext_resource type="Texture2D" uid="uid://b56hdb7x3s6vo" path="res://levels_and_level_objects/choppable/flagpole_particles.png" id="2_ua2kb"]
 [ext_resource type="Texture2D" uid="uid://dwu606q6xarue" path="res://levels_and_level_objects/choppable/flagpole.png" id="3_l6wiq"]
-[ext_resource type="Script" path="res://levels_and_level_objects/end_level_on_collision.gd" id="4_datgs"]
+[ext_resource type="PackedScene" uid="uid://didtswvpjoh7u" path="res://levels_and_level_objects/level_interactive_objects/end_of_level.tscn" id="4_r4gp1"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_omg51"]
 size = Vector2(8, 207)
@@ -33,8 +33,8 @@ _data = {
 "wave": SubResource("Animation_4n7ry")
 }
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_neu5x"]
-size = Vector2(270, 214)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2l75k"]
+size = Vector2(262, 219)
 
 [node name="Flagpole" type="Node2D"]
 position = Vector2(-416, -48)
@@ -63,13 +63,12 @@ libraries = {
 "": SubResource("AnimationLibrary_24sdj")
 }
 
-[node name="EndOfLevel" type="Area2D" parent="."]
-collision_mask = 2
-script = ExtResource("4_datgs")
+[node name="EndOfLevel" parent="." instance=ExtResource("4_r4gp1")]
 
-[node name="EndOfLevel" type="CollisionShape2D" parent="EndOfLevel"]
-position = Vector2(137, -91)
-shape = SubResource("RectangleShape2D_neu5x")
+[node name="EndOfLevel" parent="EndOfLevel" index="0"]
+position = Vector2(131, -108.5)
+shape = SubResource("RectangleShape2D_2l75k")
 
 [editable path="ExplodingBlock2"]
 [editable path="ExplodingBlock2/Hurtbox"]
+[editable path="EndOfLevel"]

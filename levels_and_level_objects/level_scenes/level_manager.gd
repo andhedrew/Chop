@@ -7,6 +7,9 @@ extends Node2D
 @export_file("*.tscn") var next_level
 @export var camera: Camera2D
 @export var checkpoint: bool = false
+@export var skip_map_after_this_level: bool = false
+
+var skip_map := false
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -74,12 +77,11 @@ func _on_transitioning_to_map() -> void:
 	map_scene.new_scene = next_level
 	add_child(map_scene)
 	Fade.crossfade_execute() 
+	
 	GameEvents.map_started.emit(map_position, next_level)
 
 
-
 func transition_to_level(level:String) -> void:
-	print_debug("tried to transition")
 	Fade.crossfade_prepare(0.4, "ChopHorizontal")
 	SoundPlayer.play_sound("paper_rip")
 	get_tree().change_scene_to_file(level)

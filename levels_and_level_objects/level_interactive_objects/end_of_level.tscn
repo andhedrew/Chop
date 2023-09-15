@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://didtswvpjoh7u"]
+
+[ext_resource type="Script" path="res://levels_and_level_objects/end_level_on_collision.gd" id="1_nmif4"]
+
+[node name="EndOfLevel" type="Area2D"]
+collision_mask = 2
+script = ExtResource("1_nmif4")
+
+[node name="EndOfLevel" type="CollisionShape2D" parent="."]
+position = Vector2(137, -91)
