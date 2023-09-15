@@ -5,9 +5,14 @@ extends Enemy
 signal stomped
 var count := 0
 var reset_animation = false
+@export var difficulty := 3 # out of three
+@export var difficulty_1_death_pieces: Array[Resource]
+
 func _ready():
 	super._ready()
 	$Pivot/Hurtbox.area_entered.connect(_take_damage)
+	if difficulty == 1:
+		$"Pivot/Hurtbox".monitoring = true
 
 
 func _process(_delta):

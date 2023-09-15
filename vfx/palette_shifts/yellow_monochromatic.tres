@@ -1,0 +1,15 @@
+[gd_resource type="ShaderMaterial" load_steps=4 format=3 uid="uid://cm0t71p0w4a5u"]
+
+[ext_resource type="Shader" path="res://addons/extensible_color_palette/color_filter.gdshader" id="1_uvt30"]
+
+[sub_resource type="Gradient" id="Gradient_dfvkr"]
+offsets = PackedFloat32Array(0, 0.225466, 0.46646, 0.473292, 0.496894, 0.760268)
+colors = PackedColorArray(0.0283333, 0, 0.17, 1, 0.2118, 0.153, 0.3, 1, 0.58, 0.45936, 0.3016, 1, 1, 0.470588, 0, 1, 0.7, 0.597333, 0.14, 1, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_d4eeu"]
+gradient = SubResource("Gradient_dfvkr")
+
+[resource]
+shader = ExtResource("1_uvt30")
+shader_parameter/flip = false
+shader_parameter/gradient = SubResource("GradientTexture1D_d4eeu")

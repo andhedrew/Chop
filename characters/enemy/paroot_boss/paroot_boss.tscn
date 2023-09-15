@@ -392,6 +392,8 @@ size = Vector2(39, 42)
 collision_layer = 4
 collision_mask = 9
 script = ExtResource("2_y2kgg")
+difficulty = 1
+difficulty_1_death_pieces = Array[Resource]([ExtResource("6_litvv")])
 health = 11
 speed = 50.0
 death_pieces = Array[Resource]([ExtResource("4_omtka"), ExtResource("4_omtka"), ExtResource("3_tncna"), ExtResource("3_tncna"), ExtResource("2_bl0q7"), ExtResource("4_omtka"), ExtResource("4_omtka"), ExtResource("6_litvv")])
@@ -429,7 +431,7 @@ script = ExtResource("3_67ebo")
 position = Vector2(5, -27)
 texture = ExtResource("2_koeju")
 hframes = 19
-frame = 17
+frame = 8
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Pivot"]
 root_node = NodePath("../..")

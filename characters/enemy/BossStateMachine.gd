@@ -10,6 +10,8 @@ var invulnerable_timer := 0.0
 var phase := 1
 
 func _ready() -> void:
+	print_debug("state:" + str(initial_state_name))
+
 	await owner.ready
 	GameEvents.cutscene_started.connect(_on_cutscene_start)
 	for child in get_children():

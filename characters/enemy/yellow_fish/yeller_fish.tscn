@@ -18,10 +18,10 @@ size = Vector2(25, 22)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_kydp0"]
 
 [node name="YellerFish" instance=ExtResource("1_ypsac")]
+death_pieces = Array[Resource]([ExtResource("2_vesin"), ExtResource("3_8x0ja")])
 speed = 12.0
 hurt_vocalizations = Array[AudioStreamWAV]([ExtResource("2_uqlqt"), ExtResource("3_8u11c")])
 death_vocalization = ExtResource("4_wwumc")
-death_pieces = Array[Resource]([ExtResource("2_vesin"), ExtResource("3_8x0ja")])
 bounty = 1
 
 [node name="Body" parent="Pivot" index="0"]

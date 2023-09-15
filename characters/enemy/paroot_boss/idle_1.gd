@@ -7,4 +7,4 @@ func enter(_msg := {}) -> void:
 
 func update(_delta) -> void:
 	if player_detector.is_colliding():
-		state_machine.transition_to("Move")
+		state_machine.transition_to("Attack")

@@ -51,6 +51,7 @@ var player_in_water := false
 var player = null
 #initializes the spring array and all the springs
 func _ready():
+	bottom = target_height + depth
 	water_border.width = border_thickness
 	
 	spread = spread / 1000

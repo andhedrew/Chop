@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://bj1lmcqabp7ck"]
+[gd_scene load_steps=21 format=3 uid="uid://bj1lmcqabp7ck"]
 
 [ext_resource type="PackedScene" uid="uid://dm85xjdq5mkk3" path="res://levels_and_level_objects/level_scenes/base_level.tscn" id="1_o34es"]
 [ext_resource type="PackedScene" path="res://levels_and_level_objects/map/map_world_1.tscn" id="2_lmgrh"]
@@ -12,6 +12,8 @@
 [ext_resource type="PackedScene" uid="uid://b0sq1f61b07wm" path="res://levels_and_level_objects/hazards/spikes.tscn" id="6_jav8v"]
 [ext_resource type="PackedScene" uid="uid://boakvecc6j1ta" path="res://characters/enemy/paroot/paroot.tscn" id="7_n1bjf"]
 [ext_resource type="PackedScene" uid="uid://wtyl1uj7hc75" path="res://characters/enemy/jelly/jelly.tscn" id="9_sjy5s"]
+[ext_resource type="PackedScene" uid="uid://be10xrb276d2j" path="res://levels_and_level_objects/destructible_plants/chop_foliage_underwater.tscn" id="13_usccy"]
+[ext_resource type="Material" uid="uid://cm0t71p0w4a5u" path="res://vfx/palette_shifts/yellow_monochromatic.tres" id="14_vp1yc"]
 
 [sub_resource type="Curve2D" id="Curve2D_ehtmv"]
 _data = {
@@ -208,4 +210,11 @@ offset_top = 16.0
 offset_right = -352.0
 offset_bottom = 16.0
 
+[node name="ChopFoliage" parent="." index="19" instance=ExtResource("13_usccy")]
+position = Vector2(168, -127)
+
+[node name="Sprite2D" parent="ColorShiftLayer" index="0"]
+material = ExtResource("14_vp1yc")
+
 [editable path="Water_Body"]
+[editable path="ColorShiftLayer"]

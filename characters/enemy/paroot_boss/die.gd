@@ -3,6 +3,7 @@ extends State
 
 func enter(_msg := {}) -> void:
 	$"../../Hitbox".monitoring = false
+	await get_tree().create_timer(0.3).timeout
 	GameEvents.cutscene_started.emit()
 	GameEvents.camera_change_focus.emit(owner)
 	owner.animation_player.play("die")
@@ -23,6 +24,9 @@ func enter(_msg := {}) -> void:
 	# create drops
 	var bounty = 32
 	GameEvents.drop_coins.emit(bounty, owner.global_position)
+	if owner.difficulty == 1:
+		var pos := Vector2(owner.global_position.x, owner.global_position.y - 5)
+		GameEvents.drop_food.emit(owner.difficulty_1_death_pieces, pos)
 	# fanfare
 	# camera zoom?
 	# player animate victory (wipe brow, undersell it)

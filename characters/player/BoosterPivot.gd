@@ -9,6 +9,8 @@ func _ready():
 	
 
 func _process(_delta):
+	if owner.has_booster_upgrade:
+		visible = true
 	if $"../StateMachine".state.name == "Dash":
 		if $"../Charges".visible == false:
 			$AnimationPlayer.play("fade_in")
@@ -23,7 +25,7 @@ func _process(_delta):
 				sound_player = null
 			SoundPlayer.play_sound("engine_die")
 			
-		visible = true
+		
 		$arrow.visible = true
 		if owner.torch_charges <= 0:
 			
@@ -37,7 +39,7 @@ func _process(_delta):
 	elif $"../StateMachine".state.name == "Idle" or $"../StateMachine".state.name == "Move" or $"../StateMachine".state.name == "Cutscene":
 		if $"../Charges".visible == true:
 			$AnimationPlayer.play("fade_out")
-		$arrow.visible = false
+#		$arrow.visible = false
 		started_engine_sound = false
 		started_stalling_sound = false
 		if sound_player:

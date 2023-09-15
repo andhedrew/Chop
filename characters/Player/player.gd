@@ -31,7 +31,7 @@ var state_last_frame := state
 var bag := []
 var bag_capacity := 1000
 var has_booster_upgrade := false
-var torch_charges := 1
+var torch_charges := 3
 var max_torch_charges := torch_charges
 var charge_time := 2.0
 var charge_timer := charge_time
@@ -82,12 +82,8 @@ func _ready():
 	GameEvents.continue_day.connect(_on_continue_day)
 	GameEvents.SaveDataReady.connect(_load_data)
 	GameEvents.feeding_level_start.connect(_feeding_level_start)
-	has_booster_upgrade = SaveManager.load_item("booster_upgrade")
-	var charges = SaveManager.load_item("booster_charges")
-	if charges != null:
-		torch_charges = charges
-		max_torch_charges = torch_charges
-		GameEvents.charge_amount_changed.emit(torch_charges, max_torch_charges)
+	GameEvents.charge_amount_changed.emit(torch_charges, max_torch_charges)
+	hurtbox.body_shape_entered.connect(_on_body_shape_entered)
 	z_index = SortLayer.PLAYER
 	_load_data()
 
@@ -301,6 +297,7 @@ func _on_enemy_taking_damage() -> void:
 
 
 func _on_morning_start() -> void:
+	has_booster_upgrade = false
 	await get_tree().create_timer(3.0).timeout
 	$StateMachine.transition_to("Cutscene")
 	facing = Enums.Facing.RIGHT
@@ -345,3 +342,21 @@ func on_block_detected(body) -> void:
 func on_block_undetected(body) -> void:
 	print("undetecting")
 	block_detector_colliding = false
+
+
+func _on_body_shape_entered(_body_rid, body, _body_shape_index, _local_shape_index) -> void:
+	if body is HitBoxTilemap:
+		
+		# Get the cell position of the tile that the player has collided with
+		var cell_position = body.local_to_map(global_position)
+		
+		# Convert the cell position back to world coordinates, but at the center of the tile
+		var tile_center_position = body.map_to_local(cell_position) + Vector2(8.0, 8.0)
+		
+		# Calculate the knockback direction based on the tile center position instead of the tilemap origin
+		knockback_direction = (global_position - tile_center_position).normalized()
+		
+		knockback = knockback_direction * knockback_strength
+		$StateMachine.transition_to("Hurt")
+		take_damage(1)
+
