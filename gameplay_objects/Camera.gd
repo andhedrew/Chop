@@ -27,6 +27,8 @@ var y_target_lead := y_lead
 var airtime_index := 0.0
 var airspeed := 0.0
 
+var y_moving := false
+
 var noise := FastNoiseLite.new()
 
 var time := 0
@@ -60,6 +62,10 @@ func _ready():
 	
 	set_camera_limits()
 	original_target = target
+	await get_tree().create_timer(0.001).timeout
+	if target_node != null:
+		position.y = target_node.position.y + y_target_lead
+		position.x = target_node.position.x + x_target_lead
 
 
 func _process(delta):
@@ -103,12 +109,28 @@ func _process(delta):
 			
 		y_target_lead = lerp(y_target_lead, y_lead, lerpspeed)
 			
-		position = lerp(position, Vector2(target_node.position.x+x_target_lead, target_node.position.y+y_target_lead), lerpspeed)
+#		position = lerp(position, Vector2(target_node.position.x+x_target_lead, target_node.position.y+y_target_lead), lerpspeed)
+		var margin_inside = 60 # define the margin
+		var margin_outside = 100 # define the margin
+		var margin_limit = 180
+		var _screen_size = get_viewport_rect().size # get the size of the viewport
+		
 
+		if abs(target_node.position.y - position.y) > margin_outside:
+			y_moving = true
+		elif abs(target_node.position.y - position.y) < margin_inside:
+			y_moving = false
+		
+		var lerp_speed_adj = lerpspeed*0.2
+		if abs(target_node.position.y - position.y) > margin_limit:
+			lerp_speed_adj = lerpspeed
+		
+			
+		if y_moving:
+			position.y = lerp(position.y, target_node.position.y + y_target_lead, lerp_speed_adj)
+		position.x = lerp(position.x, target_node.position.x + x_target_lead, lerp_speed_adj)
+			
 		time += delta
-		
-		
-
 
 		set_offset(Vector2( \
 			randf_range(-1, 1) * trauma, \

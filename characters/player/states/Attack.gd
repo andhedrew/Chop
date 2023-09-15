@@ -97,7 +97,7 @@ func physics_update(delta: float) -> void:
 	if Input.is_action_just_pressed("execute"):
 		state_machine.transition_to("Execute")
 
-func _on_hitting_enemy(enemy) -> void:
+func _on_hitting_enemy(_enemy) -> void:
 	if owner.looking == Enums.Looking.DOWN:
 		var knockback = owner.attack_backward_force
 		if owner.in_water:

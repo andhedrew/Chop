@@ -24,8 +24,8 @@ func enter(_msg := {}) -> void:
 
 
 func physics_update(_delta: float) -> void:
-	var left_blocked = !ledge_left.is_colliding() or wall_left.is_colliding()
-	var right_blocked = !ledge_right.is_colliding() or wall_right.is_colliding()
+	var _left_blocked = !ledge_left.is_colliding() or wall_left.is_colliding()
+	var _right_blocked = !ledge_right.is_colliding() or wall_right.is_colliding()
 	
 	owner.velocity.x = owner.speed * owner.direction
 	owner.move_and_slide()

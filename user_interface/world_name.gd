@@ -13,7 +13,7 @@ func _ready():
 		name_1.text = ""
 		name_2.text = ""
 
-func _process(delta):
+func _process(_delta):
 	if $Control.position.x < 0:
 		$Control.position.x = lerpf($Control.position.x, 0, 0.2)
 	

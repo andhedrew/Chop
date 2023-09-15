@@ -1,4 +1,4 @@
 extends TileMap
 
-func _deflect(position) -> void:
+func _deflect(_position) -> void:
 	pass

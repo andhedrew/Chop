@@ -193,17 +193,18 @@ func splash(index, speed):
 
 func _on_Water_Body_Area_body_entered(body):
 		SoundPlayer.play_sound("water")
-		body.is_in_water()
-
+		
+		#splash freezes up the game for some reason
+		
 		#creates a instace of the particle system
-		var s = splash_particle.instantiate()
-
-		#adds the particle to the scene
-		get_tree().current_scene.add_child(s)
-
-		#sets the position of the particle to the same of the body
-		s.global_position = body.global_position
-		s.z_index = SortLayer.BACKGROUND
+#		var s = splash_particle.instantiate()
+#
+#		#adds the particle to the scene
+#		get_tree().current_scene.add_child(s)
+#
+#		#sets the position of the particle to the same of the body
+#		s.global_position = body.global_position
+#		s.z_index = SortLayer.BACKGROUND
 		
 		if body is Player:
 			player_in_water = true

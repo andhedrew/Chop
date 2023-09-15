@@ -334,28 +334,28 @@ func out_of_water() -> void:
 	in_water = false
 
 
-func on_block_detected(body) -> void:
+func on_block_detected(_body) -> void:
 	print("detecting")
 	block_detector_colliding = true
 
 
-func on_block_undetected(body) -> void:
+func on_block_undetected(_body) -> void:
 	print("undetecting")
 	block_detector_colliding = false
 
 
 func _on_body_shape_entered(_body_rid, body, _body_shape_index, _local_shape_index) -> void:
-	if body is HitBoxTilemap:
-		
+	if body is Tilemap:
+			
 		# Get the cell position of the tile that the player has collided with
 		var cell_position = body.local_to_map(global_position)
-		
+
 		# Convert the cell position back to world coordinates, but at the center of the tile
 		var tile_center_position = body.map_to_local(cell_position) + Vector2(8.0, 8.0)
-		
+
 		# Calculate the knockback direction based on the tile center position instead of the tilemap origin
 		knockback_direction = (global_position - tile_center_position).normalized()
-		
+
 		knockback = knockback_direction * knockback_strength
 		$StateMachine.transition_to("Hurt")
 		take_damage(1)
