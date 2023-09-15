@@ -7,10 +7,12 @@ func _ready():
 func _on_body_entered(body) -> void:
 	if body is Player:
 		GameEvents.cutscene_started.emit()
-		if !owner.skip_map_after_this_level:
-			GameEvents.continue_day.emit()
+		GameEvents.continue_day.emit()
+		if !get_parent().get_parent().skip_map_after_this_level:
 			await get_tree().create_timer(3).timeout
 			GameEvents.transition_to_map.emit()
+		else:
+			get_parent().get_parent().transition_to_next_level()
 
 
 func _on_boss_defeated() -> void:

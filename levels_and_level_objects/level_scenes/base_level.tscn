@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=3 uid="uid://dm85xjdq5mkk3"]
+[gd_scene load_steps=27 format=3 uid="uid://dm85xjdq5mkk3"]
 
 [ext_resource type="Script" path="res://levels_and_level_objects/level_scenes/level_manager.gd" id="1_ity0y"]
 [ext_resource type="Script" path="res://day_night_cycle.gd" id="2_h45bf"]
@@ -11,7 +11,6 @@
 [ext_resource type="Script" path="res://levels_and_level_objects/level_scenes/debug.gd" id="7_wmhq8"]
 [ext_resource type="Texture2D" uid="uid://b4ncxbmrsuf4t" path="res://vfx/particles/bricks/brick_particles.png" id="7_x6v1e"]
 [ext_resource type="Script" path="res://sprites/tilesets/base_tilemap.gd" id="9_83p45"]
-[ext_resource type="Texture2D" uid="uid://bmbwxoswu1pt8" path="res://sprites/tilesets/level_edges.png" id="11_p138e"]
 [ext_resource type="Script" path="res://sprites/tilesets/level_edges.gd" id="12_p5ngp"]
 [ext_resource type="Script" path="res://user_interface/world_name.gd" id="13_agt4c"]
 [ext_resource type="Theme" uid="uid://b0dhfhdkknaj3" path="res://user_interface/chop_theme.tres" id="13_hi45l"]
@@ -438,15 +437,7 @@ scale_max = 2.0
 color = Color(0.698039, 1, 1, 1)
 hue_variation_max = 0.1
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_m2qm3"]
-texture = ExtResource("11_p138e")
-0:0/0 = 0
-1:0/0 = 0
-0:1/0 = 0
-1:1/0 = 0
-
 [sub_resource type="TileSet" id="TileSet_dl4ds"]
-sources/0 = SubResource("TileSetAtlasSource_m2qm3")
 
 [node name="World2" type="Node2D" node_paths=PackedStringArray("camera")]
 script = ExtResource("1_ity0y")

@@ -13,10 +13,18 @@ func on_boss_defeated() -> void:
 	smoke.position = map_to_local(cell_position)
 	smoke.z_index = z_index + 1
 	get_node("/root/World").add_child(smoke)
-	set_cell(0, cell_position,1, Vector2i(6, 8))
+	set_cell(0, cell_position,8, Vector2i(0, 3))
+	
 	smoke = preload("res://vfx/magic_dust.tscn").instantiate()
-	cell_position = Vector2i(203, 0)
+	cell_position = Vector2i(203, 2)
 	smoke.position = map_to_local(cell_position)
 	smoke.z_index = z_index - 1
 	get_node("/root/World").add_child(smoke)
-	set_cell(0, cell_position,1, Vector2i(6, 8))
+	set_cell(0, cell_position,8, Vector2i(0, 3))
+	
+	smoke = preload("res://vfx/magic_dust.tscn").instantiate()
+	cell_position = Vector2i(203, -1)
+	smoke.position = map_to_local(cell_position)
+	smoke.z_index = z_index - 1
+	get_node("/root/World").add_child(smoke)
+	set_cell(0, cell_position,8, Vector2i(0, 3))
