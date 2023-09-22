@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://dm85xjdq5mkk3"]
+[gd_scene load_steps=28 format=3 uid="uid://dm85xjdq5mkk3"]
 
 [ext_resource type="Script" path="res://levels_and_level_objects/level_scenes/level_manager.gd" id="1_ity0y"]
 [ext_resource type="Script" path="res://day_night_cycle.gd" id="2_h45bf"]
@@ -10,6 +10,7 @@
 [ext_resource type="TileSet" uid="uid://dncfauqbtucau" path="res://sprites/tilesets/grass_fg.tres" id="7_pgalx"]
 [ext_resource type="Script" path="res://levels_and_level_objects/level_scenes/debug.gd" id="7_wmhq8"]
 [ext_resource type="Texture2D" uid="uid://b4ncxbmrsuf4t" path="res://vfx/particles/bricks/brick_particles.png" id="7_x6v1e"]
+[ext_resource type="PackedScene" uid="uid://brvg3yuiootrc" path="res://sprites/tilesets/replace_tile_here.tscn" id="8_13uic"]
 [ext_resource type="Script" path="res://sprites/tilesets/base_tilemap.gd" id="9_83p45"]
 [ext_resource type="Script" path="res://sprites/tilesets/level_edges.gd" id="12_p5ngp"]
 [ext_resource type="Script" path="res://user_interface/world_name.gd" id="13_agt4c"]
@@ -509,11 +510,11 @@ autostart = true
 
 [node name="Level" type="Node2D" parent="."]
 
+[node name="ReplaceTileHere" parent="." instance=ExtResource("8_13uic")]
+
 [node name="Player" parent="." instance=ExtResource("31_fx83i")]
 position = Vector2(-8, -8)
 collision_mask = 3
-camera = Object(Camera2D,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"editor_description":"","visible":true,"modulate":Color(1, 1, 1, 1),"self_modulate":Color(1, 1, 1, 1),"show_behind_parent":false,"top_level":false,"light_mask":1,"visibility_layer":1,"z_index":0,"z_as_relative":true,"y_sort_enabled":false,"texture_filter":0,"texture_repeat":0,"material":null,"use_parent_material":false,"position":Vector2(0, 0),"rotation":0.0,"scale":Vector2(1, 1),"skew":0.0,"offset":Vector2(0, 0),"anchor_mode":1,"ignore_rotation":true,"enabled":true,"zoom":Vector2(1, 1),"process_callback":1,"limit_left":-10000000,"limit_top":-10000000,"limit_right":10000000,"limit_bottom":10000000,"limit_smoothed":false,"position_smoothing_enabled":false,"position_smoothing_speed":5.0,"rotation_smoothing_enabled":false,"rotation_smoothing_speed":5.0,"drag_horizontal_enabled":false,"drag_vertical_enabled":false,"drag_horizontal_offset":0.0,"drag_vertical_offset":0.0,"drag_left_margin":0.2,"drag_top_margin":0.2,"drag_right_margin":0.2,"drag_bottom_margin":0.2,"editor_draw_screen":true,"editor_draw_limits":false,"editor_draw_drag_margin":false,"script":Resource("res://gameplay_objects/Camera.gd"),"target":NodePath("../Player"),"lerpspeed":0.05,"trauma":0.0,"max_x":150,"max_y":150,"max_r":25,"time_scale":150.0,"decay":0.6)
-
 
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = ExtResource("7_pgalx")

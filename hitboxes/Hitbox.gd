@@ -27,3 +27,4 @@ func _on_body_entered(body):
 				var tilePos = Vector2i(x, y)
 				if body.get_used_cells(0).has(tilePos):
 					body._destroy_tile(tilePos)
+				

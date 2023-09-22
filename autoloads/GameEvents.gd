@@ -52,6 +52,7 @@ signal boss_defeated
 #utility
 signal camera_change_focus #Param 1: new node target
 signal camera_reset_focus
+signal replace_tile #replace a ghost tile. Param 1: Global position
 
 # Drops
 signal drop_food # Arg 1: array of sprites # Arg 2: Position
