@@ -45,22 +45,22 @@ func enter(_msg := {}) -> void:
 	
 	if owner.block_detector_colliding:
 		slicing_a_block = true
-		owner.collision_mask |= (1 << 7)
-		owner.velocity.y = 0
+		owner.collision_mask |= (1 << 7) # turns off the collider
+		owner.velocity.y = lerp(owner.velocity.y,0.0, 0.2)
 		await get_tree().create_timer(0.05).timeout
-		var boost_speed := 23
 		
+		var boost_speed := 23
 		if owner.looking != Enums.Looking.UP:
 			if owner.facing == Enums.Facing.LEFT:
 				owner.velocity.x = -knockback*boost_speed
 			elif owner.facing == Enums.Facing.RIGHT:
 				owner.velocity.x = knockback*boost_speed
 		else:
-			owner.velocity.x = 0
+			owner.velocity.x = lerp(owner.velocity.x,0.0, 0.2)
 			owner.velocity.y = -knockback*boost_speed
 	else:
 		slicing_a_block = false
-		
+
 	if slicing_a_block:
 		var grid_size = 16
 		var player_pos = owner.position

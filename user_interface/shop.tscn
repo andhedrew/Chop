@@ -64,7 +64,7 @@ layout_mode = 2
 theme = ExtResource("2_syqwu")
 theme_override_fonts/font = ExtResource("3_gwwro")
 theme_override_font_sizes/font_size = 42
-text = "Upgrades "
+text = "Blessings"
 
 [node name="Container" type="Container" parent="VBoxContainer/MarginContainer"]
 custom_minimum_size = Vector2(200, 0)

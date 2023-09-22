@@ -1,8 +1,8 @@
-[gd_scene load_steps=9 format=3 uid="uid://bc0b7rkqr2vcq"]
+[gd_scene load_steps=9 format=3 uid="uid://kjpvl6s78ysq"]
 
-[ext_resource type="Script" path="res://bullets/bullet.gd" id="1_kec4k"]
-[ext_resource type="Texture2D" uid="uid://tbobrslot2us" path="res://bullets/slash_bullet/slash_bullet.png" id="2_6yh81"]
-[ext_resource type="PackedScene" uid="uid://cxfiuhgots5lg" path="res://hitboxes/Hitbox.tscn" id="3_n5uxa"]
+[ext_resource type="Script" path="res://bullets/bullet.gd" id="1_72puw"]
+[ext_resource type="Texture2D" uid="uid://tbobrslot2us" path="res://bullets/slash_bullet/slash_bullet.png" id="2_ndwrq"]
+[ext_resource type="PackedScene" uid="uid://cxfiuhgots5lg" path="res://hitboxes/Hitbox.tscn" id="3_cm6tp"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mw08u"]
 size = Vector2(42.0002, 56.9998)
@@ -66,18 +66,19 @@ _data = {
 
 [node name="slash_bullet" type="Area2D"]
 collision_layer = 8
-collision_mask = 388
-script = ExtResource("1_kec4k")
+collision_mask = 132
+script = ExtResource("1_72puw")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(19, -1)
-texture = ExtResource("2_6yh81")
+texture = ExtResource("2_ndwrq")
 hframes = 3
 frame = 1
 
-[node name="Hitbox" parent="." instance=ExtResource("3_n5uxa")]
+[node name="Hitbox" parent="." instance=ExtResource("3_cm6tp")]
 position = Vector2(20, 1)
 collision_layer = 8
+collision_mask = 133
 
 [node name="CollisionShape2D" parent="Hitbox" index="0"]
 rotation = 1.5708

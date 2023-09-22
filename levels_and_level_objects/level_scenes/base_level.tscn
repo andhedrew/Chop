@@ -439,7 +439,7 @@ hue_variation_max = 0.1
 
 [sub_resource type="TileSet" id="TileSet_dl4ds"]
 
-[node name="World2" type="Node2D" node_paths=PackedStringArray("camera")]
+[node name="World" type="Node2D" node_paths=PackedStringArray("camera")]
 script = ExtResource("1_ity0y")
 camera = NodePath("Camera")
 

@@ -335,12 +335,10 @@ func out_of_water() -> void:
 
 
 func on_block_detected(_body) -> void:
-	print("detecting")
 	block_detector_colliding = true
 
 
 func on_block_undetected(_body) -> void:
-	print("undetecting")
 	block_detector_colliding = false
 
 
