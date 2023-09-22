@@ -1,9 +1,10 @@
 extends Node2D
 
 @onready var animation_player = get_node("AnimationPlayer")
+@export var sound: String = "slash_cut"
 
 func _ready():
-	SoundPlayer.play_sound("slash_cut")
+	SoundPlayer.play_sound(sound)
 	
 	var angle_amount := 180
 	var random_angle = randf_range(-angle_amount, angle_amount)

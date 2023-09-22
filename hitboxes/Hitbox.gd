@@ -14,7 +14,6 @@ func _ready():
 func _on_body_entered(body):
 	if body is Enemy:
 		GameEvents.player_hit_enemy.emit(body)
-	print_debug(str(body.name))
 	if body.name == "Breakable":
 		var collisionShape = $CollisionShape2D.shape
 		var extents = collisionShape.extents

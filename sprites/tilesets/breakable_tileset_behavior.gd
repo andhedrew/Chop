@@ -45,13 +45,35 @@ func _replace_tile(global_pos: Vector2) -> void:
 	var cell_pos = local_to_map(global_pos)
 	var atlas_coords = get_cell_atlas_coords(0, global_pos)
 	set_cell(0, global_pos, 3, atlas_coords)
+	BetterTerrain.update_terrain_cell(self, 0, Vector2i(global_pos.x, global_pos.y), true)
+	
+	var soft_slice_scene = preload("res://vfx/slice_soft.tscn")
+	var slice = soft_slice_scene.instantiate()
+	get_parent().add_child(slice)
+	slice.position = to_global(map_to_local(global_pos))
+	var explode = particle_scene.instantiate()
+	explode.restart()
+	explode.texture = particle_texture_2
+	var width : int = particle_texture_2.get_width() / 16
+	explode.material.set_particles_anim_h_frames(width)
+	get_parent().add_child(explode)
+	explode.position = to_global(map_to_local(global_pos))
+	
+	
+	var cell_size := 16
+	var num_particles = 12
+	explode.amount = num_particles
+	
+	explode.process_material.emission_shape = ParticleProcessMaterial.EMISSION_SHAPE_BOX
+	explode.process_material.emission_box_extents = Vector3(cell_size, cell_size, 0)
 	
 	var replace_tile = replace_tile_scene.instantiate()
 	replace_tile.position = global_pos*16
-	get_node("/root/World").add_child(replace_tile)
+	get_node("/root/World").call_deferred("add_child", replace_tile)
 
 
 func _return_tile(global_pos: Vector2) -> void:
 	var cell_pos = local_to_map(global_pos)
 	var atlas_coords = get_cell_atlas_coords(0, global_pos)
 	set_cell(0, global_pos, 2, atlas_coords)
+	BetterTerrain.update_terrain_cell(self, 0, Vector2i(global_pos.x, global_pos.y), true)

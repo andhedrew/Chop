@@ -10,7 +10,7 @@
 [ext_resource type="TileSet" uid="uid://dncfauqbtucau" path="res://sprites/tilesets/grass_fg.tres" id="7_pgalx"]
 [ext_resource type="Script" path="res://levels_and_level_objects/level_scenes/debug.gd" id="7_wmhq8"]
 [ext_resource type="Texture2D" uid="uid://b4ncxbmrsuf4t" path="res://vfx/particles/bricks/brick_particles.png" id="7_x6v1e"]
-[ext_resource type="PackedScene" uid="uid://brvg3yuiootrc" path="res://sprites/tilesets/replace_tile_here.tscn" id="8_13uic"]
+[ext_resource type="Texture2D" uid="uid://cjtlxhuno68vd" path="res://vfx/particles/slime_mold_particles.png" id="8_68jo1"]
 [ext_resource type="Script" path="res://sprites/tilesets/base_tilemap.gd" id="9_83p45"]
 [ext_resource type="Script" path="res://sprites/tilesets/level_edges.gd" id="12_p5ngp"]
 [ext_resource type="Script" path="res://user_interface/world_name.gd" id="13_agt4c"]
@@ -504,17 +504,14 @@ tile_set = ExtResource("4_qopms")
 format = 2
 script = ExtResource("5_pq8vy")
 particle_texture = ExtResource("7_x6v1e")
-
-[node name="Timer" type="Timer" parent="Breakable"]
-autostart = true
+particle_texture_2 = ExtResource("8_68jo1")
 
 [node name="Level" type="Node2D" parent="."]
 
-[node name="ReplaceTileHere" parent="." instance=ExtResource("8_13uic")]
-
-[node name="Player" parent="." instance=ExtResource("31_fx83i")]
+[node name="Player" parent="." node_paths=PackedStringArray("camera") instance=ExtResource("31_fx83i")]
 position = Vector2(-8, -8)
 collision_mask = 3
+camera = NodePath("../Camera")
 
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = ExtResource("7_pgalx")

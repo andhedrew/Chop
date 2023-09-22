@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dho6xihx2y1wm"
-path="res://.godot/imported/paroot.png-ca2a997a3e40cee823cfe4d2df76b829.ctex"
+uid="uid://v26orgit27bh"
+path="res://.godot/imported/slime_mold_decor.png-9d3b284adaa5a83e2caf030b1983163e.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://characters/enemy/paroot/paroot.png"
-dest_files=["res://.godot/imported/paroot.png-ca2a997a3e40cee823cfe4d2df76b829.ctex"]
+source_file="res://sprites/tilesets/slime_mold_decor.png"
+dest_files=["res://.godot/imported/slime_mold_decor.png-9d3b284adaa5a83e2caf030b1983163e.ctex"]
 
 [params]
 
