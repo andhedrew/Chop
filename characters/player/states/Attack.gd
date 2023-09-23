@@ -46,7 +46,7 @@ func enter(_msg := {}) -> void:
 	if owner.block_detector_colliding:
 		slicing_a_block = true
 		owner.collision_mask |= (1 << 7) # turns off the collider
-		owner.velocity.y = lerp(owner.velocity.y,0.0, 0.2)
+		owner.velocity.y = lerp(owner.velocity.y,0.0, 0.4)
 		await get_tree().create_timer(0.05).timeout
 		
 		var boost_speed := 23

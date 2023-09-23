@@ -1,4 +1,4 @@
-[gd_scene load_steps=59 format=3 uid="uid://bwvi5m2prncxh"]
+[gd_scene load_steps=61 format=3 uid="uid://bwvi5m2prncxh"]
 
 [ext_resource type="Script" path="res://characters/player/player.gd" id="1_xr41x"]
 [ext_resource type="Texture2D" uid="uid://d1go5siomhupw" path="res://user_interface/booster_ui2.png" id="3_56qk1"]
@@ -11,6 +11,7 @@
 [ext_resource type="Script" path="res://characters/player/states/state_machine.gd" id="6_ordad"]
 [ext_resource type="Script" path="res://characters/player/states/Idle.gd" id="7_wjwjl"]
 [ext_resource type="Script" path="res://characters/player/states/Walk.gd" id="8_emxp3"]
+[ext_resource type="PackedScene" uid="uid://cxfiuhgots5lg" path="res://hitboxes/Hitbox.tscn" id="9_3tbl5"]
 [ext_resource type="Script" path="res://characters/player/states/Attack.gd" id="9_46kpd"]
 [ext_resource type="Script" path="res://characters/player/states/Jump.gd" id="10_sp1oq"]
 [ext_resource type="Script" path="res://characters/player/states/Fall.gd" id="11_2nxde"]
@@ -872,6 +873,9 @@ _data = {
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_lkn68"]
 size = Vector2(44, 32)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_y680r"]
+size = Vector2(15, 1)
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_v5543"]
 size = Vector2(10, 25.5)
 
@@ -969,6 +973,16 @@ collision_mask = 384
 position = Vector2(31, -2)
 shape = SubResource("RectangleShape2D_lkn68")
 
+[node name="CrumbleHitbox" parent="Pivot" instance=ExtResource("9_3tbl5")]
+position = Vector2(-2, 15)
+collision_layer = 0
+collision_mask = 384
+causes_brick_to_crumble = true
+
+[node name="CollisionShape2D" parent="Pivot/CrumbleHitbox" index="0"]
+position = Vector2(0, -1)
+shape = SubResource("RectangleShape2D_y680r")
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -12.75)
 shape = SubResource("RectangleShape2D_v5543")
@@ -1032,4 +1046,5 @@ script = ExtResource("20_xbxmu")
 wait_time = 0.3
 one_shot = true
 
+[editable path="Pivot/CrumbleHitbox"]
 [editable path="Hurtbox"]

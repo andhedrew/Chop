@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://cxfiuhgots5lg" path="res://hitboxes/Hitbox.tscn" id="3_4xqb0"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_eas3t"]
-size = Vector2(286, 33)
+size = Vector2(826, 38.75)
 
 [sub_resource type="Animation" id="Animation_re3lr"]
 resource_name = "animate_bullet"
@@ -71,7 +71,7 @@ collision_mask = 4
 execute = true
 
 [node name="CollisionShape2D" parent="Hitbox" index="0"]
-position = Vector2(10, 1)
+position = Vector2(-20, -1.375)
 shape = SubResource("RectangleShape2D_eas3t")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]

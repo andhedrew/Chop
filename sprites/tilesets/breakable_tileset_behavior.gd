@@ -12,19 +12,24 @@ func _ready():
 	GameEvents.replace_tile.connect(_return_tile)
 
 
-func _destroy_tile(global_pos: Vector2) -> void:
+func _destroy_tile(global_pos: Vector2, crumble_brick: bool = false) -> void:
 	var cell_id = get_cell_source_id(0, global_pos)
 	if cell_id == 2:
-		_replace_tile(global_pos)
+		_replace_tile(global_pos, crumble_brick)
 	elif cell_id == 1:
 		var tile_coords = global_pos
 		if get_cell_tile_data(0, tile_coords):
 			set_cell(0, Vector2i(tile_coords.x, tile_coords.y), -1)
 			BetterTerrain.update_terrain_cell(self, 0, Vector2i(tile_coords.x, tile_coords.y), true)
 			
-			var slice = slice_scene.instantiate()
-			get_parent().add_child(slice)
-			slice.position = to_global(map_to_local(tile_coords))
+			if !crumble_brick:
+				var slice = slice_scene.instantiate()
+				get_parent().add_child(slice)
+				slice.position = to_global(map_to_local(tile_coords))
+			else:
+				SoundPlayer.play_sound("impact_with_dirt")
+				await get_tree().create_timer(0.1).timeout
+			
 			var explode = particle_scene.instantiate()
 			explode.restart()
 			explode.texture = particle_texture
@@ -39,18 +44,25 @@ func _destroy_tile(global_pos: Vector2) -> void:
 			
 			explode.process_material.emission_shape = ParticleProcessMaterial.EMISSION_SHAPE_BOX
 			explode.process_material.emission_box_extents = Vector3(cell_size, cell_size, 0)
+		else:
+			print_debug("Didn't find a tile on the right layer")
 
 
-func _replace_tile(global_pos: Vector2) -> void:
+func _replace_tile(global_pos: Vector2, crumble_brick) -> void:
 	var cell_pos = local_to_map(global_pos)
 	var atlas_coords = get_cell_atlas_coords(0, global_pos)
 	set_cell(0, global_pos, 3, atlas_coords)
 	BetterTerrain.update_terrain_cell(self, 0, Vector2i(global_pos.x, global_pos.y), true)
 	
-	var soft_slice_scene = preload("res://vfx/slice_soft.tscn")
-	var slice = soft_slice_scene.instantiate()
-	get_parent().add_child(slice)
-	slice.position = to_global(map_to_local(global_pos))
+	if !crumble_brick:
+		SoundPlayer.play_sound("slice_squish_medium")
+		var soft_slice_scene = preload("res://vfx/slice_soft.tscn")
+		var slice = soft_slice_scene.instantiate()
+		get_parent().add_child(slice)
+		slice.position = to_global(map_to_local(global_pos))
+	else:
+		SoundPlayer.play_sound("squish")
+		
 	var explode = particle_scene.instantiate()
 	explode.restart()
 	explode.texture = particle_texture_2

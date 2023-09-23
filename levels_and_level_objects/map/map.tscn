@@ -63,6 +63,7 @@ position = Vector2(-4, -2)
 texture = ExtResource("4_nv3b8")
 
 [node name="roll" type="TextureRect" parent="Control"]
+visible = false
 layout_mode = 0
 offset_right = 639.006
 offset_bottom = 358.0

@@ -42,7 +42,7 @@ const WORLD_NAME: Dictionary = {
 	"res://levels_and_level_objects/level_scenes/world_1_levels/1-2.tscn": "Pork Belly Valley!",
 	"res://levels_and_level_objects/level_scenes/world_1_levels/1-3.tscn": "Pork Belly Valley!",
 	"res://levels_and_level_objects/level_scenes/world_1_levels/1-4.tscn": "Pork Belly Valley!",
-	"res://levels_and_level_objects/level_scenes/world_2_levels/2-1.tscn": "res://levels_and_level_objects/map/map_world_2.tscn",
+	"res://levels_and_level_objects/level_scenes/world_2_levels/2-1.tscn": "Brickton",
 	"res://levels_and_level_objects/level_scenes/world_2_levels/2-2.tscn": "res://levels_and_level_objects/map/map_world_2.tscn",
 	"res://levels_and_level_objects/level_scenes/world_2_levels/2-3.tscn": "res://levels_and_level_objects/map/map_world_2.tscn",
 	"res://levels_and_level_objects/level_scenes/world_2_levels/2-4.tscn": "res://levels_and_level_objects/map/map_world_2.tscn",

@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://h2h05xcnsnk1"]
+[gd_scene load_steps=10 format=3 uid="uid://h2h05xcnsnk1"]
 
 [ext_resource type="Script" path="res://bullets/bullet.gd" id="1_uqcyb"]
 [ext_resource type="Texture2D" uid="uid://cl04ekgg2wqmx" path="res://bullets/nut_bullet/nut_bullet.png" id="2_w6vi1"]
@@ -66,8 +66,11 @@ _data = {
 "bullet_exit": SubResource("Animation_km3k7")
 }
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fw7ux"]
+
 [node name="nut_bullet" type="Area2D"]
-collision_layer = 0
+collision_layer = 128
+collision_mask = 9
 script = ExtResource("1_uqcyb")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
@@ -90,5 +93,9 @@ shape = SubResource("CircleShape2D_qr55v")
 libraries = {
 "": SubResource("AnimationLibrary_ocw25")
 }
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(6, 0)
+shape = SubResource("RectangleShape2D_fw7ux")
 
 [editable path="Hitbox"]
