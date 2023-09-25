@@ -74,6 +74,7 @@ func _ready():
 		brick_value = 1
 		meat_value = 0
 		plant_value = 0
+	z_index = SortLayer.FOREGROUND
 	
 
 func _add_pickup_to_inventory(player) -> void:

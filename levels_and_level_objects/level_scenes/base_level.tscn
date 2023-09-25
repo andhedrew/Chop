@@ -530,6 +530,7 @@ script = ExtResource("9_83p45")
 [node name="LevelEdges" type="TileMap" parent="."]
 tile_set = SubResource("TileSet_dl4ds")
 format = 2
+layer_0/tile_data = PackedInt32Array(393206, 0, 0, -1245160, 0, 0)
 script = ExtResource("12_p5ngp")
 
 [node name="ForegroundScenery" type="ParallaxBackground" parent="."]

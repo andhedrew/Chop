@@ -121,11 +121,14 @@ func drop_food(food : Array, drop_position : Vector2) -> void:
 	for sprite in food:
 		var pickup = preload("res://pickups/food_pickup.tscn").instantiate()
 		pickup.setup(sprite)
+		pickup.z_index = SortLayer.FOREGROUND
 		var angle = (PI/2) + (i * PI / food_size) + 180
 		i += 1
 		pickup.position = drop_position + Vector2(cos(angle), sin(angle)) * spread
 		pickup.velocity = new_velocity.rotated(angle)
+		
 		call_deferred("add_child", pickup)
+		
 
 
 func drop_health(drop_position : Vector2) -> void:

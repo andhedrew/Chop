@@ -29,6 +29,9 @@ position = Vector2(0, -25)
 texture = ExtResource("2_3vx3p")
 frame = 1
 
+[node name="player_detector" parent="Pivot" index="3"]
+collision_mask = 2
+
 [node name="Idle" parent="StateMachine" index="0"]
 script = ExtResource("3_ca742")
 

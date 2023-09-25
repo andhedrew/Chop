@@ -9,6 +9,8 @@ var target_speed := speed
 
 func _ready() -> void:
 	path = owner.get_parent().get_parent()
+	speed = owner.speed / 2000
+	target_speed = speed
 
 # Called when the node enters the scene tree for the first time.
 func enter(_msg := {}) -> void:

@@ -2,6 +2,7 @@
 ##it contains all the springs of our water
 extends Node2D
 
+@export var stormy := false
 #spring factor, dampening factor and spread factor
 #spread factor dictates how much the waves will spread to their neighboors
 @export var k = 0.015
@@ -49,8 +50,10 @@ var bottom = target_height + depth
 
 var player_in_water := false
 var player = null
+var time := 0.0
 #initializes the spring array and all the springs
 func _ready():
+	
 	bottom = target_height + depth
 	water_border.width = border_thickness
 	
@@ -98,10 +101,15 @@ func _ready():
 	
 
 func _physics_process(delta):
-	
+
 	#moves all the springs accordingly
 	for i in springs:
 		i.water_update(k,d)
+	
+	if stormy:
+		time += delta
+		for i in range(len(springs)):
+			springs[i].position.y = 5 * sin(time + i)
 	
 	#represents the movement of the left and right neighbor of the springs
 	
