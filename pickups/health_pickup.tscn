@@ -4,4 +4,5 @@
 [ext_resource type="Script" path="res://pickups/health_pickup.gd" id="2_2yf6d"]
 
 [node name="HealthPickup" instance=ExtResource("1_ixulq")]
+collision_mask = 385
 script = ExtResource("2_2yf6d")

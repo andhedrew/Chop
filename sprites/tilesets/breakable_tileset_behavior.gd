@@ -41,7 +41,7 @@ func _destroy_tile(global_pos: Vector2, crumble_brick: bool = false) -> void:
 			explode.position = to_global(map_to_local(tile_coords))
 			
 			var cell_size := 16
-			var num_particles = 12
+			var num_particles = 7
 			explode.amount = num_particles
 			
 			explode.process_material.emission_shape = ParticleProcessMaterial.EMISSION_SHAPE_BOX

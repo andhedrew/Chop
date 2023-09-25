@@ -399,7 +399,6 @@ speed = 50.0
 death_pieces = Array[Resource]([ExtResource("4_omtka"), ExtResource("4_omtka"), ExtResource("3_tncna"), ExtResource("3_tncna"), ExtResource("2_bl0q7"), ExtResource("4_omtka"), ExtResource("4_omtka"), ExtResource("6_litvv")])
 
 [node name="state_label" type="Label" parent="."]
-visible = false
 offset_left = -22.0
 offset_top = -79.0
 offset_right = 18.0
@@ -407,7 +406,6 @@ offset_bottom = -53.0
 text = "state"
 
 [node name="state_label2" type="Label" parent="."]
-visible = false
 offset_left = -22.0
 offset_top = -94.0
 offset_right = 18.0

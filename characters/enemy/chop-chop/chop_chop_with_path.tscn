@@ -1,0 +1,16 @@
+[gd_scene load_steps=2 format=3 uid="uid://kmrlgcnwdtgh"]
+
+[ext_resource type="PackedScene" uid="uid://bc3gfp2esw84p" path="res://characters/enemy/chop-chop/chop-chop.tscn" id="1_7synk"]
+
+[node name="chop-chop" type="Path2D"]
+
+[node name="PathFollow2D" type="PathFollow2D" parent="."]
+rotation = 1.5708
+
+[node name="Node2D" type="Node2D" parent="PathFollow2D"]
+
+[node name="ChopChop" parent="PathFollow2D/Node2D" instance=ExtResource("1_7synk")]
+
+[node name="_Timer_102414" type="Timer" parent="PathFollow2D"]
+wait_time = 0.2
+one_shot = true

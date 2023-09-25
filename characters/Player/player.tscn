@@ -871,7 +871,7 @@ _data = {
 }
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_lkn68"]
-size = Vector2(44, 32)
+size = Vector2(34, 20)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_y680r"]
 size = Vector2(12.5, 1)
@@ -970,7 +970,7 @@ collision_layer = 0
 collision_mask = 384
 
 [node name="BlockCollider" type="CollisionShape2D" parent="Pivot/BlockCollider"]
-position = Vector2(31, -2)
+position = Vector2(25, 0)
 shape = SubResource("RectangleShape2D_lkn68")
 
 [node name="CrumbleHitbox" parent="Pivot" instance=ExtResource("9_3tbl5")]
