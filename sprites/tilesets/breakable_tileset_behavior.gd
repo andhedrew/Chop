@@ -13,6 +13,8 @@ func _ready():
 
 
 func _destroy_tile(global_pos: Vector2, crumble_brick: bool = false) -> void:
+	if crumble_brick:
+		await get_tree().create_timer(0.1).timeout
 	var cell_id = get_cell_source_id(0, global_pos)
 	if cell_id == 2:
 		_replace_tile(global_pos, crumble_brick)
@@ -28,7 +30,7 @@ func _destroy_tile(global_pos: Vector2, crumble_brick: bool = false) -> void:
 				slice.position = to_global(map_to_local(tile_coords))
 			else:
 				SoundPlayer.play_sound("impact_with_dirt")
-				await get_tree().create_timer(0.1).timeout
+				
 			
 			var explode = particle_scene.instantiate()
 			explode.restart()
