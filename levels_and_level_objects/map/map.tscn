@@ -1,9 +1,11 @@
-[gd_scene load_steps=7 format=3 uid="uid://b06gyuhub517b"]
+[gd_scene load_steps=9 format=3 uid="uid://b06gyuhub517b"]
 
 [ext_resource type="Script" path="res://map_manager.gd" id="1_pdu78"]
-[ext_resource type="Texture2D" uid="uid://no1np22mqjey" path="res://user_interface/map/map4.png" id="2_t55li"]
+[ext_resource type="Texture2D" uid="uid://cdcb06dc47r31" path="res://user_interface/map/new_map/table.png" id="2_3fvrw"]
+[ext_resource type="Texture2D" uid="uid://c612f3j35hm4u" path="res://user_interface/map/new_map/paper.png" id="3_4scty"]
 [ext_resource type="Texture2D" uid="uid://cax14ylt5wqg4" path="res://user_interface/map/map2.png" id="4_nv3b8"]
-[ext_resource type="Texture2D" uid="uid://sfqkcyk72bao" path="res://user_interface/map/map.png" id="5_lyjky"]
+[ext_resource type="Texture2D" uid="uid://bmkhpxmd5o880" path="res://user_interface/map/new_map/lines.png" id="4_pwi42"]
+[ext_resource type="Texture2D" uid="uid://3ckbb8g3s5j4" path="res://user_interface/map/new_map/roll.png" id="6_3ghtf"]
 
 [sub_resource type="Animation" id="Animation_v6rjy"]
 resource_name = "roll"
@@ -19,7 +21,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 1.9),
 "transitions": PackedFloat32Array(0.208823, 1),
 "update": 0,
-"values": [Vector2(0, 0), Vector2(629, 0)]
+"values": [Vector2(-5080, -320), Vector2(-4480, -320)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_3oms0"]
@@ -37,20 +39,48 @@ libraries = {
 
 [node name="Control" type="Control" parent="."]
 layout_mode = 3
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -40.0
+offset_top = -40.0
+grow_horizontal = 0
+grow_vertical = 0
+
+[node name="table" type="TextureRect" parent="Control"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -5120.0
+offset_top = -360.0
+grow_horizontal = 0
+grow_vertical = 0
+texture = ExtResource("2_3fvrw")
 
 [node name="paper" type="TextureRect" parent="Control"]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
-texture = ExtResource("2_t55li")
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 600.0
+offset_top = -360.0
+offset_right = 5720.0
+grow_horizontal = 0
+grow_vertical = 0
+texture = ExtResource("3_4scty")
 
 [node name="map" type="TextureRect" parent="Control/paper"]
 layout_mode = 0
 offset_right = 639.0
 offset_bottom = 358.0
+texture = ExtResource("4_pwi42")
 
 [node name="Path2D" type="Path2D" parent="Control"]
 
@@ -63,8 +93,15 @@ position = Vector2(-4, -2)
 texture = ExtResource("4_nv3b8")
 
 [node name="roll" type="TextureRect" parent="Control"]
-visible = false
-layout_mode = 0
-offset_right = 639.006
-offset_bottom = 358.0
-texture = ExtResource("5_lyjky")
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -5120.0
+offset_top = -360.0
+offset_right = 0.00195313
+grow_horizontal = 0
+grow_vertical = 0
+texture = ExtResource("6_3ghtf")

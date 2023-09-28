@@ -77,7 +77,6 @@ func _on_transitioning_to_map() -> void:
 	map_scene.new_scene = next_level
 	add_child(map_scene)
 	Fade.crossfade_execute() 
-	
 	GameEvents.map_started.emit(map_position, next_level)
 
 

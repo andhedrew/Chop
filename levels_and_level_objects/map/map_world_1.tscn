@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://d1k7hc05eutat"]
+[gd_scene load_steps=4 format=3 uid="uid://b16yv3a37ejta"]
 
 [ext_resource type="PackedScene" uid="uid://b06gyuhub517b" path="res://levels_and_level_objects/map/map.tscn" id="1_jem1x"]
 [ext_resource type="Texture2D" uid="uid://f24htvqewmf4" path="res://user_interface/map/map_world_1.png" id="2_bdf4a"]
@@ -14,7 +14,7 @@ point_count = 4
 [node name="map" parent="Control/paper" index="0"]
 texture = ExtResource("2_bdf4a")
 
-[node name="Path2D" parent="Control" index="1"]
+[node name="Path2D" parent="Control" index="2"]
 curve = SubResource("Curve2D_rubcq")
 
 [node name="PathFollow2D" parent="Control/Path2D" index="0"]
