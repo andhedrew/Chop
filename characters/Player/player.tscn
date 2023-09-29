@@ -874,7 +874,7 @@ _data = {
 size = Vector2(34, 20)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_y680r"]
-size = Vector2(12.5, 1)
+size = Vector2(9, 1)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_v5543"]
 size = Vector2(10, 25.5)
@@ -980,7 +980,7 @@ collision_mask = 384
 causes_brick_to_crumble = true
 
 [node name="CollisionShape2D" parent="Pivot/CrumbleHitbox" index="0"]
-position = Vector2(0, -1)
+position = Vector2(-0.5, -1)
 shape = SubResource("RectangleShape2D_y680r")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
