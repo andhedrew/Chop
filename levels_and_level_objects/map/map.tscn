@@ -1,10 +1,10 @@
-[gd_scene load_steps=9 format=3 uid="uid://b06gyuhub517b"]
+[gd_scene load_steps=13 format=3 uid="uid://b06gyuhub517b"]
 
 [ext_resource type="Script" path="res://map_manager.gd" id="1_pdu78"]
 [ext_resource type="Texture2D" uid="uid://cdcb06dc47r31" path="res://user_interface/map/new_map/table.png" id="2_3fvrw"]
 [ext_resource type="Texture2D" uid="uid://c612f3j35hm4u" path="res://user_interface/map/new_map/paper.png" id="3_4scty"]
-[ext_resource type="Texture2D" uid="uid://cax14ylt5wqg4" path="res://user_interface/map/map2.png" id="4_nv3b8"]
 [ext_resource type="Texture2D" uid="uid://bmkhpxmd5o880" path="res://user_interface/map/new_map/lines.png" id="4_pwi42"]
+[ext_resource type="Texture2D" uid="uid://d2wyx7xy4kgen" path="res://user_interface/map/new_map/pin.png" id="5_v75ab"]
 [ext_resource type="Texture2D" uid="uid://3ckbb8g3s5j4" path="res://user_interface/map/new_map/roll.png" id="6_3ghtf"]
 
 [sub_resource type="Animation" id="Animation_v6rjy"]
@@ -28,6 +28,34 @@ tracks/0/keys = {
 _data = {
 "roll": SubResource("Animation_v6rjy")
 }
+
+[sub_resource type="Curve2D" id="Curve2D_ora0w"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, -540, -123, 0, 0, 0, 0, -504, -82, 0, 0, 0, 0, -465, -69, 0, 0, 0, 0, -409, -79, 0, 0, 0, 0, -345, -117, 0, 0, 0, 0, -310, -123, 0, 0, 0, 0, -242, -99, 0, 0, 0, 0, -197, -138, 0, 0, 0, 0, -139, -153, 0, 0, 0, 0, -99, -140, 0, 0, 0, 0, -69, -135)
+}
+point_count = 11
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vvm7v"]
+atlas = ExtResource("5_v75ab")
+region = Rect2(0, 0, 45, 45)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_eiiro"]
+atlas = ExtResource("5_v75ab")
+region = Rect2(45, 0, 45, 45)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ipey1"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vvm7v")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_eiiro")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
 
 [node name="Map" type="CanvasLayer"]
 script = ExtResource("1_pdu78")
@@ -69,9 +97,9 @@ anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 600.0
+offset_left = -639.0
 offset_top = -360.0
-offset_right = 5720.0
+offset_right = 4481.0
 grow_horizontal = 0
 grow_vertical = 0
 texture = ExtResource("3_4scty")
@@ -83,14 +111,15 @@ offset_bottom = 358.0
 texture = ExtResource("4_pwi42")
 
 [node name="Path2D" type="Path2D" parent="Control"]
+curve = SubResource("Curve2D_ora0w")
 
 [node name="PathFollow2D" type="PathFollow2D" parent="Control/Path2D"]
-position = Vector2(111, 261)
+position = Vector2(-540, -123)
 rotates = false
 
-[node name="Sprite2D" type="Sprite2D" parent="Control/Path2D/PathFollow2D"]
-position = Vector2(-4, -2)
-texture = ExtResource("4_nv3b8")
+[node name="Sprite2D" type="AnimatedSprite2D" parent="Control/Path2D/PathFollow2D"]
+sprite_frames = SubResource("SpriteFrames_ipey1")
+autoplay = "default"
 
 [node name="roll" type="TextureRect" parent="Control"]
 layout_mode = 1
