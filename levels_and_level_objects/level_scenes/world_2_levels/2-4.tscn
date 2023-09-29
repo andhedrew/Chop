@@ -65,14 +65,14 @@ position = Vector2(1160, 24)
 curve = SubResource("Curve2D_7hr6e")
 
 [node name="Player" parent="." index="8"]
-position = Vector2(1840, -72)
+position = Vector2(-1570, -32)
 
 [node name="Flagpole" parent="." index="9" instance=ExtResource("5_pp58w")]
 position = Vector2(2304, -24)
 
 [node name="ParootBoss" parent="." index="10" instance=ExtResource("6_6vmf0")]
 position = Vector2(2152, 112)
-health = 8
+health = 13
 
 [node name="Water_Body" parent="." index="11" instance=ExtResource("5_ejo78")]
 position = Vector2(-1344, 24)

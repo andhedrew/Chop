@@ -66,7 +66,7 @@ _data = {
 
 [node name="slice_bullet" type="Area2D"]
 collision_layer = 8
-collision_mask = 4
+collision_mask = 260
 script = ExtResource("1_u8dtr")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
@@ -78,7 +78,7 @@ frame = 1
 [node name="Hitbox" parent="." instance=ExtResource("3_mv307")]
 position = Vector2(19, -1)
 collision_layer = 8
-collision_mask = 4
+collision_mask = 260
 
 [node name="CollisionShape2D" parent="Hitbox" index="0"]
 position = Vector2(29, 2)

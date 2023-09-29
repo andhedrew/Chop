@@ -13,6 +13,11 @@ var paper_pos := 0.0
 var drop_pin := false
 var starting_path_pos := Vector2.ZERO
 
+
+@export_group("Map Testing")
+@export var debug_test := false
+@export var debug_setup := [2.0, "res://levels_and_level_objects/level_scenes/world_1_levels/1-2.tscn"]
+
 @onready var paper := $Control/paper
 @onready var roll := $Control/roll
 @onready var path_follow := $Control/Path2D/PathFollow2D
@@ -20,11 +25,13 @@ var starting_path_pos := Vector2.ZERO
 
 
 func _ready():
+	roll.visible = true
 	starting_path_pos = path.position
 	paper_pos = - ((paper.texture.get_width()/8) * world_number)
 	paper.position.x = paper_pos
 	roll.position = Vector2(-5080, -320)
-	_setup(5.0, "res://levels_and_level_objects/level_scenes/world_1_levels/1-2.tscn")
+	if debug_test:
+		_setup(debug_setup[0], debug_setup[1])
 
 	GameEvents.map_started.connect(_setup) #pass position, next scene
 	await get_tree().create_timer(2.0).timeout
@@ -41,10 +48,9 @@ func _process(_delta):
 	if drop_pin:
 		var tween = create_tween()
 		tween.tween_property(path, "position", starting_path_pos, 0.2).set_trans(Tween.TRANS_LINEAR)
-		
 		#move_pin = true
 	if move_pin:
-		path_follow.progress_ratio = lerp(path_follow.progress_ratio, pos, 0.05)
+		path_follow.progress_ratio = lerp(path_follow.progress_ratio, pos, 0.01)
 		if path_follow.progress_ratio+0.01 >= pos:
 			await get_tree().create_timer(2.0).timeout
 			_end_scene()
@@ -65,7 +71,6 @@ func _setup(new_position: float, next_scene: String) -> void:
 		move_pin = false
 	else:
 		
-		
 		var start_pos = new_position - 1.0
 		var end_pos = new_position/number_of_levels
 		var start_pos_adj = start_pos/number_of_levels
@@ -74,8 +79,8 @@ func _setup(new_position: float, next_scene: String) -> void:
 		pos = end_pos
 		if pos > 1:
 			pos = 1
-		await get_tree().create_timer(3.0).timeout
-#		move_pin = true
+		await get_tree().create_timer(4.0).timeout
+		move_pin = true
 	
 	new_scene = next_scene
 	

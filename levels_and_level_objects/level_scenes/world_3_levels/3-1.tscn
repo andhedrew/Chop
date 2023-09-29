@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://0cxn7d7inkn1"]
+
+[ext_resource type="PackedScene" uid="uid://dm85xjdq5mkk3" path="res://levels_and_level_objects/level_scenes/base_level.tscn" id="1_1peg4"]
+
+[node name="World" instance=ExtResource("1_1peg4")]
+
+[editable path="ColorShiftLayer"]

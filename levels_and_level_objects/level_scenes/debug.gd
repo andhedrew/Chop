@@ -1,6 +1,6 @@
 extends CanvasLayer
 
-var debug := false
+@export var debug := false
 
 func _process(_delta):
 	if debug:

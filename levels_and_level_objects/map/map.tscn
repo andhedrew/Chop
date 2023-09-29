@@ -122,6 +122,7 @@ sprite_frames = SubResource("SpriteFrames_ipey1")
 autoplay = "default"
 
 [node name="roll" type="TextureRect" parent="Control"]
+visible = false
 layout_mode = 1
 anchors_preset = 3
 anchor_left = 1.0
@@ -130,7 +131,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 offset_left = -5120.0
 offset_top = -360.0
-offset_right = 0.00195313
+offset_right = 0.00195312
 grow_horizontal = 0
 grow_vertical = 0
 texture = ExtResource("6_3ghtf")
