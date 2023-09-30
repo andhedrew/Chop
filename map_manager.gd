@@ -1,8 +1,5 @@
 extends CanvasLayer
 
-
-@onready var animation_player := $AnimationPlayer
-@export_range(1, 8) var world_number: int = 1
 var number_of_levels := 4.0
 var pos := 0.0
 var target_position := 0.0
@@ -13,7 +10,7 @@ var paper_pos := 0.0
 var drop_pin := false
 var starting_path_pos := Vector2.ZERO
 
-
+@export_range(1, 8) var world_number: int = 1
 @export_group("Map Testing")
 @export var debug_test := false
 @export var debug_setup := [2.0, "res://levels_and_level_objects/level_scenes/world_1_levels/1-2.tscn"]
@@ -22,6 +19,7 @@ var starting_path_pos := Vector2.ZERO
 @onready var roll := $Control/roll
 @onready var path_follow := $Control/Path2D/PathFollow2D
 @onready var path := $Control/Path2D
+@onready var animation_player := $AnimationPlayer
 
 
 func _ready():
@@ -55,7 +53,6 @@ func _process(_delta):
 			await get_tree().create_timer(2.0).timeout
 			_end_scene()
 			move_pin = false
-			
 
 
 func _setup(new_position: float, next_scene: String) -> void:

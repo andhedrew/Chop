@@ -2,13 +2,13 @@
 
 importer="wav"
 type="AudioStreamWAV"
-uid="uid://b485vj18gy3xi"
-path="res://.godot/imported/fan.wav-f2b56f646c3348ca028f7138f3d73a23.sample"
+uid="uid://bx2srbwncerp"
+path="res://.godot/imported/fan_blow.wav-b125eb287de01576ad808f3cd2ace91b.sample"
 
 [deps]
 
-source_file="res://audio/sounds/fan.wav"
-dest_files=["res://.godot/imported/fan.wav-f2b56f646c3348ca028f7138f3d73a23.sample"]
+source_file="res://audio/sounds/fan_blow.wav"
+dest_files=["res://.godot/imported/fan_blow.wav-b125eb287de01576ad808f3cd2ace91b.sample"]
 
 [params]
 
