@@ -1210,6 +1210,7 @@ position = Vector2(-415, -124)
 visible = false
 
 [node name="Fan" parent="." instance=ExtResource("38_rreqv")]
-position = Vector2(-528, -56)
+position = Vector2(-488, -80)
+rotation = -1.309
 
 [editable path="ColorShiftLayer"]
