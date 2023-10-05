@@ -43,6 +43,8 @@ signal map_started
 
 signal SaveDataReady
 
+signal restarted_level
+
 
 #boss
 signal boss_stomped

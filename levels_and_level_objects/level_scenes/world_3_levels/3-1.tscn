@@ -8,18 +8,10 @@
 
 [node name="Fan" parent="Level" index="0" instance=ExtResource("2_41psd")]
 position = Vector2(-88, 8)
+rusty = true
 
 [node name="HotDog" parent="Level" index="1" instance=ExtResource("3_sa8b1")]
 position = Vector2(24, -16)
-
-[node name="Fan2" parent="Level" index="2" instance=ExtResource("2_41psd")]
-position = Vector2(16, -432)
-
-[node name="Fan3" parent="Level" index="3" instance=ExtResource("2_41psd")]
-position = Vector2(152, -464)
-
-[node name="Fan4" parent="Level" index="4" instance=ExtResource("2_41psd")]
-position = Vector2(240, -480)
 
 [node name="Player" parent="." index="8"]
 position = Vector2(-328, -8)

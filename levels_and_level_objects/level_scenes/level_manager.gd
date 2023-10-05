@@ -45,6 +45,7 @@ func _process(_delta):
 
 func _restart_level() -> void:
 	var lives_amt = SaveManager.load_item("lives")
+	GameEvents.restarted_level.emit()
 	if lives_amt == null:
 		lives_amt = 5
 		
