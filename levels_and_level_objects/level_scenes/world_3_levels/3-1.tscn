@@ -10,7 +10,10 @@
 position = Vector2(-88, 8)
 rusty = true
 
-[node name="HotDog" parent="Level" index="1" instance=ExtResource("3_sa8b1")]
+[node name="Fan2" parent="Level" index="1" instance=ExtResource("2_41psd")]
+position = Vector2(80, -80)
+
+[node name="HotDog" parent="Level" index="2" instance=ExtResource("3_sa8b1")]
 position = Vector2(24, -16)
 
 [node name="Player" parent="." index="8"]

@@ -9,6 +9,7 @@ var state_timer := 0.0
 
 func _ready() -> void:
 	await owner.ready
+	
 	GameEvents.cutscene_started.connect(_on_cutscene_start)
 	GameEvents.cutscene_ended.connect(_on_cutscene_end)
 	for child in get_children():
@@ -18,11 +19,15 @@ func _ready() -> void:
 
 
 func _process(delta: float) -> void:
+	if not owner.active:
+		return
 	if !owner.cutscene_running:
 		state.update(delta)
 
 
 func _physics_process(delta: float) -> void:
+	if not owner.active:
+		return
 	if !owner.cutscene_running:
 		state.physics_update(delta)
 		state_timer += delta

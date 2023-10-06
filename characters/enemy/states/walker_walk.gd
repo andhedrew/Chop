@@ -27,7 +27,15 @@ func physics_update(_delta: float) -> void:
 	var _left_blocked = !ledge_left.is_colliding() or wall_left.is_colliding()
 	var _right_blocked = !ledge_right.is_colliding() or wall_right.is_colliding()
 	
-	owner.velocity.x = owner.speed * owner.direction
+	if abs(owner.velocity.x + owner.speed * owner.direction) <= owner.max_x_speed:
+		owner.velocity.x += owner.speed * owner.direction
+	else:
+		if owner.velocity.x < 0:
+			owner.velocity.x = -owner.max_x_speed
+		else:
+			owner.velocity.x = owner.max_x_speed
+#	owner.velocity.x += owner.speed * owner.direction
+	
 	owner.move_and_slide()
 	
 	var found_hazard = wall_left.is_colliding() or wall_right.is_colliding()

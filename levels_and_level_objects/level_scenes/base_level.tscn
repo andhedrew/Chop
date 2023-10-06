@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=3 uid="uid://dm85xjdq5mkk3"]
+[gd_scene load_steps=32 format=3 uid="uid://dm85xjdq5mkk3"]
 
 [ext_resource type="Script" path="res://levels_and_level_objects/level_scenes/level_manager.gd" id="1_ity0y"]
 [ext_resource type="Script" path="res://day_night_cycle.gd" id="2_h45bf"]
@@ -17,6 +17,7 @@
 [ext_resource type="Script" path="res://user_interface/world_name.gd" id="13_agt4c"]
 [ext_resource type="Theme" uid="uid://b0dhfhdkknaj3" path="res://user_interface/chop_theme.tres" id="13_hi45l"]
 [ext_resource type="FontFile" uid="uid://baykuh7pqbali" path="res://user_interface/fonts/Giza.otf" id="14_hjp1d"]
+[ext_resource type="Script" path="res://levels_and_level_objects/level_interactive_objects/enemy_activation_area.gd" id="15_swnbw"]
 [ext_resource type="PackedScene" uid="uid://c45dv8km6cdm" path="res://vfx/color_shift_layer.tscn" id="18_5x8xk"]
 [ext_resource type="PackedScene" uid="uid://bwvi5m2prncxh" path="res://characters/player/player.tscn" id="31_fx83i"]
 
@@ -449,6 +450,9 @@ texture = ExtResource("12_cgc0d")
 [sub_resource type="TileSet" id="TileSet_dl4ds"]
 sources/0 = SubResource("TileSetAtlasSource_r66b7")
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0a5r0"]
+size = Vector2(200, 390)
+
 [node name="World" type="Node2D" node_paths=PackedStringArray("camera")]
 script = ExtResource("1_ity0y")
 camera = NodePath("Camera")
@@ -542,6 +546,16 @@ z_as_relative = false
 motion_scale = Vector2(1.1, 1.1)
 
 [node name="Camera" parent="." instance=ExtResource("6_818il")]
+
+[node name="EnemyActivationArea" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 4
+monitorable = false
+script = ExtResource("15_swnbw")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="EnemyActivationArea"]
+shape = SubResource("RectangleShape2D_0a5r0")
+debug_color = Color(0.941176, 0, 0.603922, 0)
 
 [node name="Debug" type="CanvasLayer" parent="."]
 script = ExtResource("7_wmhq8")

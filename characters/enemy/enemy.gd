@@ -4,7 +4,8 @@ extends CharacterBody2D
 @export_category("Properties")
 @export var health := 3
 var max_health = health
-@export var speed := 20.0
+@export var speed := 2.0
+var max_x_speed := 30
 @export var invulnerable : bool = false
 @export var immovable : bool = false
 
@@ -31,6 +32,7 @@ var has_respawned := false
 var player_health_full := true
 var reset_effects_player := false
 var cutscene_running := false
+var active := false
 
 func _ready() -> void:
 	max_health = health
@@ -46,6 +48,8 @@ func _ready() -> void:
 
 
 func _physics_process(_delta):
+	if not active:
+		return
 	state_label.text = $StateMachine.state.name
 	
 	if health <= 1:
@@ -195,3 +199,7 @@ func _on_start_cutscene() -> void:
 
 func _on_end_cutscene() -> void:
 	cutscene_running =  false
+
+
+func activate() -> void:
+	active = true

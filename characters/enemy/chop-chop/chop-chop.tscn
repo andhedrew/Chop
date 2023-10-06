@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://bc3gfp2esw84p"]
+[gd_scene load_steps=10 format=3 uid="uid://bc3gfp2esw84p"]
 
 [ext_resource type="PackedScene" uid="uid://g2rn2npgnt8u" path="res://characters/enemy/enemy_flyer.tscn" id="1_jibat"]
 [ext_resource type="Script" path="res://characters/enemy/jumper_jump_attack.gd" id="2_7o8sf"]
@@ -13,7 +13,10 @@ size = Vector2(27, 27)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_u0i4s"]
 size = Vector2(30, 24)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ct8ym"]
+
 [node name="ChopChop" instance=ExtResource("1_jibat")]
+collision_mask = 0
 script = ExtResource("2_kqq86")
 health = 5
 speed = 15.0
@@ -41,7 +44,7 @@ shape = SubResource("RectangleShape2D_u0i4s")
 
 [node name="CollisionShape2D" parent="." index="6"]
 position = Vector2(-2, -13)
-shape = null
+shape = SubResource("RectangleShape2D_ct8ym")
 
 [editable path="Hurtbox"]
 [editable path="Hitbox"]

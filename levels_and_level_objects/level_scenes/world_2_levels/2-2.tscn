@@ -91,5 +91,5 @@ position = Vector2(0, 0)
 shape = SubResource("RectangleShape2D_fc6pw")
 
 [editable path="Level/Path2D2"]
-[editable path="ColorShiftLayer"]
 [editable path="death_zone"]
+[editable path="ColorShiftLayer"]

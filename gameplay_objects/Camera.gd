@@ -31,7 +31,6 @@ var y_moving := false
 
 var noise := FastNoiseLite.new()
 
-var time := 0
 var target_node: Node
 var dashing := false
 
@@ -60,6 +59,9 @@ func _ready():
 	
 	GameEvents.camera_change_focus.connect(on_change_focus)
 	
+#	$Area2D.body_entered.connect(_on_body_entered)
+	
+	
 	set_camera_limits()
 	original_target = target
 	await get_tree().create_timer(0.001).timeout
@@ -73,49 +75,57 @@ func _process(delta):
 		target_node = get_node(target)
 	
 	if !freeze_camera:
+		
 		if target_node is Player:
-			if cutscene_running:
-				x_target_lead = lerp(x_target_lead, x_cutscene_lead, lerpspeed*3)
-			else:
-				x_target_lead = lerp(x_target_lead, x_lead, lerpspeed)
-				
-			if !dashing:
-				var look_direction = Vector2(Input.get_axis("right", "left"), Input.get_axis("down", "up")).normalized()
+			_following_player_adjustments()
+		else:
+			_following_default_adjustments()
+		
+		_adjust_positions_taking_margins_into_account()
+		_handle_trauma_and_offset()
 
-				if look_direction.x > 0:
-					x_lead = -x_lead_amount
-				elif look_direction.x < 0:
-					x_lead = x_lead_amount
-				y_lead = y_lead_amount
-			else:
-				var look_direction = Vector2(Input.get_axis("right", "left"), Input.get_axis("down", "up")).normalized()
 
-				if look_direction.x > 0:
-					x_lead = -x_lead_amount
-				elif look_direction.x < 0:
-					x_lead = x_lead_amount
-				y_lead = 0
-			
-			if target_node.is_on_floor():
-				y_lead = y_lead_amount
-				lerpspeed = base_lerpspeed
-			else:
-				y_lead = 0.0
-				lerpspeed = base_lerpspeed * 1.5
-		else: #if target is NOT player
-			x_lead = 0.0
-			y_lead = 0.0
-			x_target_lead = lerp(x_target_lead, x_lead, lerpspeed)
-			
-		y_target_lead = lerp(y_target_lead, y_lead, lerpspeed)
-			
-#		position = lerp(position, Vector2(target_node.position.x+x_target_lead, target_node.position.y+y_target_lead), lerpspeed)
+
+func _handle_trauma_and_offset() -> void:
+	set_offset(Vector2( \
+		randf_range(-1, 1) * trauma, \
+		randf_range(-1, 1) * trauma \
+	))
+	
+	position.x = position.x + randf_range(-max_r, max_r) * trauma
+	position.y = position.y + randf_range(-max_r, max_r) * trauma
+	trauma = lerp(trauma, 0.0, 0.1)
+	
+
+func _following_player_adjustments() -> void:
+	_cutscene_running_adjustments()
+	
+	if !dashing:
+		_is_not_dashing()
+	else:
+		_is_dashing()
+	
+	if target_node.is_on_floor():
+		y_lead = y_lead_amount
+		lerpspeed = base_lerpspeed
+	else:
+		y_lead = 0.0
+		lerpspeed = base_lerpspeed * 1.5
+
+
+func _following_default_adjustments() -> void:
+	x_lead = 0.0
+	y_lead = 0.0
+	x_target_lead = lerp(x_target_lead, x_lead, lerpspeed)
+	y_target_lead = lerp(y_target_lead, y_lead, lerpspeed)
+
+
+func _adjust_positions_taking_margins_into_account() -> void:
 		var margin_inside = 60 # define the margin
 		var margin_outside = 100 # define the margin
 		var margin_limit = 180
 		var _screen_size = get_viewport_rect().size # get the size of the viewport
 		
-
 		if abs(target_node.position.y - position.y) > margin_outside:
 			y_moving = true
 		elif abs(target_node.position.y - position.y) < margin_inside:
@@ -124,21 +134,41 @@ func _process(delta):
 		var lerp_speed_adj = lerpspeed*0.2
 		if abs(target_node.position.y - position.y) > margin_limit:
 			lerp_speed_adj = lerpspeed
-		
 			
 		if y_moving:
 			position.y = lerp(position.y, target_node.position.y + y_target_lead, lerp_speed_adj)
 		position.x = lerp(position.x, target_node.position.x + x_target_lead, lerp_speed_adj)
-			
-		time += delta
 
-		set_offset(Vector2( \
-			randf_range(-1, 1) * trauma, \
-			randf_range(-1, 1) * trauma \
-		))
-		position.x = position.x + randf_range(-max_r, max_r) * trauma
-		position.y = position.y + randf_range(-max_r, max_r) * trauma
-		trauma = lerp(trauma, 0.0, 0.1)
+
+func _is_dashing() -> void:
+	var look_direction = \
+	Vector2(Input.get_axis("right", "left"), 
+	Input.get_axis("down", "up")).normalized()
+
+	if look_direction.x > 0:
+		x_lead = -x_lead_amount
+	elif look_direction.x < 0:
+		x_lead = x_lead_amount
+	y_lead = 0
+
+
+func _is_not_dashing() -> void:
+	var look_direction = \
+	Vector2(Input.get_axis("right", "left"), 
+	Input.get_axis("down", "up")).normalized()
+
+	if look_direction.x > 0:
+		x_lead = -x_lead_amount
+	elif look_direction.x < 0:
+		x_lead = x_lead_amount
+	y_lead = y_lead_amount
+
+
+func _cutscene_running_adjustments() -> void:
+	if cutscene_running:
+		x_target_lead = lerp(x_target_lead, x_cutscene_lead, lerpspeed*3)
+	else:
+		x_target_lead = lerp(x_target_lead, x_lead, lerpspeed)
 
 
 func add_trauma(trauma_in):
@@ -210,3 +240,10 @@ func _on_player_die() -> void:
 
 func on_change_focus(new_target: Node) -> void:
 	target = new_target.get_path()
+
+
+func _on_body_entered(body) -> void:
+	if not body is Enemy:
+		return
+	body.activate()
+

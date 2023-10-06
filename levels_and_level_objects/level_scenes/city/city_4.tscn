@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://cs7mg84qb48r"]
+[gd_scene load_steps=23 format=3 uid="uid://cs7mg84qb48r"]
 
 [ext_resource type="PackedScene" uid="uid://dm85xjdq5mkk3" path="res://levels_and_level_objects/level_scenes/base_level.tscn" id="1_bldwn"]
 [ext_resource type="Texture2D" uid="uid://cu5agq4euw4xs" path="res://levels_and_level_objects/dream/dream_1.png" id="2_7heej"]
@@ -20,6 +20,7 @@
 [ext_resource type="Texture2D" uid="uid://dn58fghfdqopw" path="res://levels_and_level_objects/backgrounds/big_props/paroot_tree_top.png" id="12_xpcp0"]
 [ext_resource type="Texture2D" uid="uid://ccg8fotkhf823" path="res://levels_and_level_objects/backgrounds/unmoving_scenery_dark/foliage4.png" id="13_ukn01"]
 [ext_resource type="PackedScene" uid="uid://cp5j3tbsikxw4" path="res://levels_and_level_objects/area_of_interest.tscn" id="20_ri1oa"]
+[ext_resource type="PackedScene" uid="uid://bhy0tp4niaiv1" path="res://levels_and_level_objects/fan/fan.tscn" id="21_1wf8o"]
 
 [sub_resource type="Curve2D" id="Curve2D_w5pjn"]
 _data = {
@@ -117,9 +118,14 @@ position = Vector2(744, -280)
 texture = ExtResource("12_xpcp0")
 
 [node name="AreaOfInterest" parent="." index="16" instance=ExtResource("20_ri1oa")]
-position = Vector2(768, -24)
+position = Vector2(760, 56)
 
 [node name="ParallaxLayer" parent="ForegroundScenery" index="0"]
 modulate = Color(0.529412, 0.529412, 0.529412, 1)
+
+[node name="Fan" parent="." index="22" instance=ExtResource("21_1wf8o")]
+position = Vector2(552, 80)
+rotation = 1.5708
+rusty = true
 
 [editable path="ColorShiftLayer"]
