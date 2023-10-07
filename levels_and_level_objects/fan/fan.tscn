@@ -1,7 +1,8 @@
-[gd_scene load_steps=21 format=3 uid="uid://bhy0tp4niaiv1"]
+[gd_scene load_steps=24 format=3 uid="uid://bhy0tp4niaiv1"]
 
 [ext_resource type="Script" path="res://levels_and_level_objects/fan/fan.gd" id="1_tspv5"]
 [ext_resource type="Texture2D" uid="uid://b7275wi8jvf21" path="res://levels_and_level_objects/fan/fan.png" id="2_owoxy"]
+[ext_resource type="Texture2D" uid="uid://b2ip2xb32ryvt" path="res://levels_and_level_objects/fan/rusty_fan_running.png" id="3_d2ey3"]
 [ext_resource type="Texture2D" uid="uid://ba6ghkounoaon" path="res://levels_and_level_objects/fan/rusty_fan.png" id="3_fnjhs"]
 [ext_resource type="PackedScene" uid="uid://bb1h85dym7l4i" path="res://hitboxes/Hurtbox.tscn" id="4_p6e5f"]
 
@@ -44,6 +45,14 @@ region = Rect2(0, 0, 64, 32)
 atlas = ExtResource("2_owoxy")
 region = Rect2(64, 0, 64, 32)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_1d2jd"]
+atlas = ExtResource("3_d2ey3")
+region = Rect2(0, 0, 64, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sqxjq"]
+atlas = ExtResource("3_d2ey3")
+region = Rect2(64, 0, 64, 32)
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_g7yxe"]
 atlas = ExtResource("3_fnjhs")
 region = Rect2(0, 0, 64, 32)
@@ -63,6 +72,17 @@ animations = [{
 }],
 "loop": true,
 "name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1d2jd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sqxjq")
+}],
+"loop": true,
+"name": &"new_animation",
 "speed": 5.0
 }, {
 "frames": [{
@@ -111,6 +131,7 @@ size = Vector2(48, 16)
 
 [node name="Fan" type="Node2D"]
 script = ExtResource("1_tspv5")
+stays_rusty = null
 
 [node name="BlowParticles" type="GPUParticles2D" parent="."]
 amount = 32

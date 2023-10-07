@@ -31,4 +31,3 @@ func _destroy() -> void:
 	var new_height = collision_shape.shape.size.y
 	explode.process_material.emission_box_extents = Vector3(new_width, new_height, 0)
 	$Sprite2D.texture = chopped_sprite
-	

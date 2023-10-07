@@ -28,7 +28,7 @@ var y_target_lead := y_lead
 var airtime_index := 0.0
 var airspeed := 0.0
 
-var look_distance := 160.0
+var look_distance := 130.0
 
 var y_moving := false
 

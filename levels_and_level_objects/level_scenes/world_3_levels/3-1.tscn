@@ -28,7 +28,7 @@ position = Vector2(24, -16)
 position = Vector2(-344, 624)
 
 [node name="DamageableProp" parent="." index="9" instance=ExtResource("2_x8gey")]
-position = Vector2(-233, 631)
+position = Vector2(-391, 627)
 
 [node name="CollisionShape2D" parent="DamageableProp/Hurtbox" index="0"]
 position = Vector2(0, -33.5)
@@ -75,6 +75,11 @@ position = Vector2(904, 736)
 
 [node name="Paroot" parent="." index="27" instance=ExtResource("4_lg14o")]
 position = Vector2(184, 544)
+
+[node name="Fan4" parent="." index="28" instance=ExtResource("2_41psd")]
+position = Vector2(-191, 614)
+rusty = true
+stays_rusty = true
 
 [editable path="DamageableProp"]
 [editable path="DamageableProp/Hurtbox"]
