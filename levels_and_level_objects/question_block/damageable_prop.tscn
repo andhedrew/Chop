@@ -1,0 +1,26 @@
+[gd_scene load_steps=6 format=3 uid="uid://c3bul3qii0ybu"]
+
+[ext_resource type="Script" path="res://levels_and_level_objects/question_block/DamageableProp.gd" id="1_qnvcd"]
+[ext_resource type="Texture2D" uid="uid://opn8ecyin2ub" path="res://levels_and_level_objects/choppable/pipe2.png" id="2_nqbmu"]
+[ext_resource type="PackedScene" uid="uid://bb1h85dym7l4i" path="res://hitboxes/Hurtbox.tscn" id="3_04t7v"]
+[ext_resource type="Texture2D" uid="uid://bpifpn3g0guv5" path="res://levels_and_level_objects/choppable/pipe_pieces.png" id="3_aye4e"]
+[ext_resource type="Texture2D" uid="uid://d0y0qtblau68j" path="res://levels_and_level_objects/choppable/pipe1.png" id="4_agtfc"]
+
+[node name="DamageableProp" type="StaticBody2D" groups=["slice_in_sequence"]]
+collision_layer = 129
+collision_mask = 6
+script = ExtResource("1_qnvcd")
+chopped_sprite = ExtResource("2_nqbmu")
+particle_texture = ExtResource("3_aye4e")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, -32)
+texture = ExtResource("4_agtfc")
+
+[node name="Hurtbox" parent="." instance=ExtResource("3_04t7v")]
+collision_layer = 0
+collision_mask = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+
+[editable path="Hurtbox"]
