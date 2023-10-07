@@ -451,7 +451,7 @@ texture = ExtResource("12_cgc0d")
 sources/0 = SubResource("TileSetAtlasSource_r66b7")
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0a5r0"]
-size = Vector2(200, 390)
+size = Vector2(670, 390)
 
 [node name="World" type="Node2D" node_paths=PackedStringArray("camera")]
 script = ExtResource("1_ity0y")

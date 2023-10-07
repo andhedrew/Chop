@@ -19,6 +19,7 @@ var x_target_lead := x_lead
 var x_cutscene_lead := -30.0
 var cutscene_running := false
 
+var lerp_speed_adj = lerpspeed*0.2
 var y_lead_amount := -70.0
 var y_air_lead_amount := y_lead_amount + 160.0
 var y_peek_amount := -70.0
@@ -26,6 +27,8 @@ var y_lead := y_lead_amount
 var y_target_lead := y_lead
 var airtime_index := 0.0
 var airspeed := 0.0
+
+var look_distance := 160.0
 
 var y_moving := false
 
@@ -39,7 +42,9 @@ var letterbox_bar_1
 var letterbox_bar_2
 
 var freeze_camera := false
- 
+var looking := false 
+
+
 func _ready():
 	noise.noise_type =  FastNoiseLite.TYPE_SIMPLEX
 	GameEvents.player_attacked.connect(SCREENSHAKE)
@@ -75,15 +80,24 @@ func _process(delta):
 		target_node = get_node(target)
 	
 	if !freeze_camera:
-		
 		if target_node is Player:
 			_following_player_adjustments()
+			if Input.get_axis("down", "up") != 0:
+				_is_looking_up_or_down()
+			else:
+				_stopped_looking_up_or_down()
 		else:
 			_following_default_adjustments()
 		
 		_adjust_positions_taking_margins_into_account()
+		_set_position()
 		_handle_trauma_and_offset()
 
+
+func _set_position() -> void:
+		if y_moving or looking:
+			position.y = lerp(position.y, target_node.position.y + y_target_lead, lerp_speed_adj)
+		position.x = lerp(position.x, target_node.position.x + x_target_lead, lerp_speed_adj)
 
 
 func _handle_trauma_and_offset() -> void:
@@ -131,13 +145,26 @@ func _adjust_positions_taking_margins_into_account() -> void:
 		elif abs(target_node.position.y - position.y) < margin_inside:
 			y_moving = false
 		
-		var lerp_speed_adj = lerpspeed*0.2
+		lerp_speed_adj = lerpspeed*0.2
 		if abs(target_node.position.y - position.y) > margin_limit:
 			lerp_speed_adj = lerpspeed
-			
-		if y_moving:
-			position.y = lerp(position.y, target_node.position.y + y_target_lead, lerp_speed_adj)
-		position.x = lerp(position.x, target_node.position.x + x_target_lead, lerp_speed_adj)
+
+
+func _is_looking_up_or_down() -> void:
+	looking = true
+	
+	var look_direction = \
+	Vector2(Input.get_axis("right", "left"), 
+	Input.get_axis("down", "up")).normalized()
+	
+	if look_direction.y > 0:
+		y_target_lead = -look_distance
+	elif look_direction.y < 0:
+		y_target_lead = look_distance
+
+func _stopped_looking_up_or_down() -> void:
+	looking = false
+	y_target_lead = y_lead
 
 
 func _is_dashing() -> void:

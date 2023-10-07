@@ -7,6 +7,7 @@ var tileSize = Vector2(16, 16)
 @export var syphon : bool = false
 @export var fire : bool = false
 @export var causes_brick_to_crumble : bool = false
+var up_facing : bool = false
 
 func _ready():
 	self.body_entered.connect(_on_body_entered)
