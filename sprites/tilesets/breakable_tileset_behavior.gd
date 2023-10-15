@@ -51,7 +51,6 @@ func _destroy_tile(global_pos: Vector2, crumble_brick: bool = false) -> void:
 
 
 func _replace_tile(global_pos: Vector2, crumble_brick) -> void:
-	var cell_pos = local_to_map(global_pos)
 	var atlas_coords = get_cell_atlas_coords(0, global_pos)
 	set_cell(0, global_pos, 3, atlas_coords)
 	BetterTerrain.update_terrain_cell(self, 0, Vector2i(global_pos.x, global_pos.y), true)
@@ -87,7 +86,6 @@ func _replace_tile(global_pos: Vector2, crumble_brick) -> void:
 
 
 func _return_tile(global_pos: Vector2) -> void:
-	var cell_pos = local_to_map(global_pos)
 	var atlas_coords = get_cell_atlas_coords(0, global_pos)
 	set_cell(0, global_pos, 2, atlas_coords)
 	BetterTerrain.update_terrain_cell(self, 0, Vector2i(global_pos.x, global_pos.y), true)

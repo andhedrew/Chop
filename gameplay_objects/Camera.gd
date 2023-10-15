@@ -75,7 +75,7 @@ func _ready():
 		position.x = target_node.position.x + x_target_lead
 
 
-func _process(delta):
+func _process(_delta):
 	if has_node(target):
 		target_node = get_node(target)
 	

@@ -10,8 +10,8 @@ var timer_maximum := 80.0
 
 func _ready():
 		var new_spawn = spawn.instantiate()
-		
 		add_child(new_spawn)
+		await get_tree().create_timer(0.1).timeout
 		if facing == "Left":
 			new_spawn.facing = Enums.Facing.LEFT
 		elif facing == "Right":

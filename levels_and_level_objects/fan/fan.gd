@@ -4,12 +4,19 @@ extends Node2D
 
 var push_strength = 60.0  # Adjust this value to change the strength of the push
 var bodies_in_fan = []  # Array to store bodies in the fan
+@export var max_speed = 200  # replace with your maximum speed
+@export_category("Rust")
 @export var rusty := false
 @export var stays_rusty := false
 @export var run_time_before_stopping := 4.0
+
+@export_category("Interval")
+@export var blows_on_interval := false
+@export var interval_time := 0.0
+
 var activating := false
 var fan_running := false
-@export var max_speed = 200  # replace with your maximum speed
+
 
 
 func _ready():
@@ -30,7 +37,7 @@ func _ready():
 		
 
 
-func _physics_process(delta):
+func _physics_process(_delta):
 	if Engine.is_editor_hint():
 		if stays_rusty and !rusty:
 			rusty = true
