@@ -11,6 +11,8 @@ extends Node2D
 
 var skip_map := false
 
+
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 #	SoundPlayer.play_music("blues")
@@ -30,12 +32,20 @@ func _ready():
 	GameEvents.drop_coins.connect(drop_coins)
 	GameEvents.new_vfx.connect(vfx)
 	GameEvents.new_score_label.connect(_new_score_label)
+	GameEvents.player_died.connect(_on_player_lives_changed)
+
 	
-	if checkpoint:
+	if checkpoint: #THIS IS THE WORLD CHECKPOINT
 		SaveManager.save_item("checkpoint", get_tree().current_scene.scene_file_path)
+	
+	
+	var start_at_checkpoint = SaveManager.load_item("checkpoint_reached_this_level")
+	var checkpoint_pos = SaveManager.load_item("checkpoint_position")
+	
+	if start_at_checkpoint:
+		$Player.position = checkpoint_pos
 
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
 	if Input.is_action_just_pressed("quit"):
 		_restart_level()
@@ -45,7 +55,9 @@ func _process(_delta):
 
 func _restart_level() -> void:
 	var lives_amt = SaveManager.load_item("lives")
+
 	GameEvents.restarted_level.emit()
+	
 	if lives_amt == null:
 		lives_amt = 5
 		
@@ -56,7 +68,10 @@ func _restart_level() -> void:
 		get_tree().reload_current_scene()
 		get_tree().change_scene_to_file(get_tree().current_scene.scene_file_path)
 		Fade.crossfade_execute() 
+
 	else:
+		SaveManager.save_item("checkpoint_reached_this_level", false)
+		SaveManager.save_item("checkpoint_position", Vector2.ZERO)
 		GameEvents.cutscene_started.emit()
 		Fade.crossfade_prepare(0.4, "ChopHorizontal")
 		SoundPlayer.play_sound("paper_rip")
@@ -176,3 +191,11 @@ func _new_score_label(amount: int, new_position: Vector2) -> void:
 	label.score = amount
 	label.position = new_position
 	add_child(label)
+
+
+func _on_player_lives_changed() -> void:
+	var lives_amt = SaveManager.load_item("lives")
+	if lives_amt == null:
+		lives_amt = 5
+	lives_amt -= 1
+	SaveManager.save_item("lives", lives_amt)

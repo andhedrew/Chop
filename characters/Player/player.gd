@@ -357,4 +357,3 @@ func _on_body_shape_entered(_body_rid, body, _body_shape_index, _local_shape_ind
 		knockback = knockback_direction * knockback_strength
 		$StateMachine.transition_to("Hurt")
 		take_damage(1)
-

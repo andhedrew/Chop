@@ -38,10 +38,12 @@ func setup_json() -> void:
 			"full_bag_prompted": false,
 		"saved_data": false,
 		"lives": 5,
-		"score": 0,
+		"score": 0.0,
 		"food_score": 0,
 		"meat_score": 0,
 		"brick_score": 0,
+		"checkpoint_reached_this_level" : false,
+		"checkpoint_position" : Vector2.ZERO
 		
 			
 				}

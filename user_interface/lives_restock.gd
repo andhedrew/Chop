@@ -16,11 +16,13 @@ var next_level: String
 func _ready():
 	lives_label.text = str(lives)
 	score = SaveManager.load_item("score")
-	score_divider = score/5
+	if score != null:
+		score_divider = score/5.0
 	increment_lives()
 	reset_score()
 
 func increment_lives():
+	score = SaveManager.load_item("score")
 	if lives < 5:
 		lives += 1
 		SoundPlayer.play_sound("pickup_2")
@@ -33,10 +35,8 @@ func increment_lives():
 		_on_transitioning_to_map()
 
 
-
-
-
 func reset_score():
+	score = SaveManager.load_item("score")
 	if score > 0:
 		score -= score_divider
 		SoundPlayer.play_sound("click")
@@ -46,7 +46,6 @@ func reset_score():
 	else:
 		SaveManager.save_item("score", 0)
 		$ColorRect/Control/HBoxContainer2/Label2.text = str(0)
-
 
 
 func _on_transitioning_to_map() -> void:
