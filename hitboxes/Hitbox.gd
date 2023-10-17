@@ -20,12 +20,12 @@ func _on_body_entered(body):
 		GameEvents.player_hit_enemy.emit(body)
 		get_parent().set_deferred("monitorable", false)
 	elif body.name == "Breakable":
+		GameEvents.bullet_hit_breakable.emit(global_position)
 		var collisionShape = $CollisionShape2D.shape
 		var extents = collisionShape.extents
 		var topLeft = (global_position - extents) / tileSize
 		var bottomRight = (global_position + extents) / tileSize
-
-
+		
 		for x in range(floor(topLeft.x), ceil(bottomRight.x)):
 			for y in range(floor(topLeft.y), ceil(bottomRight.y)):
 				var tilePos = Vector2i(x, y)

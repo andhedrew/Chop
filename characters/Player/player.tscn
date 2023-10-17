@@ -1,4 +1,4 @@
-[gd_scene load_steps=61 format=3 uid="uid://bwvi5m2prncxh"]
+[gd_scene load_steps=60 format=3 uid="uid://bwvi5m2prncxh"]
 
 [ext_resource type="Script" path="res://characters/player/player.gd" id="1_xr41x"]
 [ext_resource type="Texture2D" uid="uid://d1go5siomhupw" path="res://user_interface/booster_ui2.png" id="3_56qk1"]
@@ -870,9 +870,6 @@ _data = {
 "take_damage": ExtResource("5_i7udj")
 }
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_lkn68"]
-size = Vector2(34, 20)
-
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_y680r"]
 size = Vector2(9, 1)
 
@@ -886,7 +883,6 @@ size = Vector2(15, 26)
 collision_layer = 2
 collision_mask = 129
 script = ExtResource("1_xr41x")
-death_pieces = null
 
 [node name="State" type="Label" parent="."]
 visible = false
@@ -916,6 +912,7 @@ theme = SubResource("Theme_e62t7")
 text = "Looking"
 
 [node name="BoosterPivot" type="Marker2D" parent="."]
+visible = false
 position = Vector2(0, -12)
 script = ExtResource("17_majmj")
 
@@ -963,15 +960,6 @@ libraries = {
 
 [node name="BulletSpawn" type="Marker2D" parent="Pivot"]
 position = Vector2(19, -14)
-
-[node name="BlockCollider" type="Area2D" parent="Pivot"]
-position = Vector2(-2, 1)
-collision_layer = 0
-collision_mask = 384
-
-[node name="BlockCollider" type="CollisionShape2D" parent="Pivot/BlockCollider"]
-position = Vector2(25, 0)
-shape = SubResource("RectangleShape2D_lkn68")
 
 [node name="CrumbleHitbox" parent="Pivot" instance=ExtResource("9_3tbl5")]
 position = Vector2(-2, 15)

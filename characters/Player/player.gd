@@ -9,6 +9,9 @@ const acceleration := 9
 const acceleration_in_air := 5
 const jump_height = -200.0
 
+
+var bullet_hit_breakable := false
+var bullet_hit_breakable_position := Vector2.ZERO
 var invulnerable := false
 var max_health := 6
 var health := max_health
@@ -43,8 +46,6 @@ var cutscene_walk := false
 
 var lives := 5
 
-@onready var block_detector := $Pivot/BlockCollider
-var block_detector_colliding := false
 @onready var hurtbox := $Hurtbox
 @onready var animation_player := $Pivot/AnimationPlayer
 @onready var effects_player := $Pivot/EffectsPlayer
@@ -75,8 +76,6 @@ var attack_animation_index := 0
 
 func _ready():
 	hurtbox.area_entered.connect(_hurtbox_on_area_entered)
-	block_detector.body_entered.connect(on_block_detected)
-	block_detector.body_exited.connect(on_block_undetected)
 	GameEvents.enemy_took_damage.connect(_on_enemy_taking_damage)
 	GameEvents.morning_started.connect(_on_morning_start)
 	GameEvents.continue_day.connect(_on_continue_day)
@@ -84,6 +83,7 @@ func _ready():
 	GameEvents.feeding_level_start.connect(_feeding_level_start)
 	GameEvents.charge_amount_changed.emit(torch_charges, max_torch_charges)
 	hurtbox.body_shape_entered.connect(_on_body_shape_entered)
+	GameEvents.bullet_hit_breakable.connect(_on_bullet_hit_breakable)
 	z_index = SortLayer.PLAYER
 	_load_data()
 
@@ -133,12 +133,6 @@ func _physics_process(delta):
 	
 	if Input.is_action_just_pressed("unload_bag"):
 		drop_last_item()
-	
-	if looking == Enums.Looking.UP:
-		block_detector.rotation_degrees = -90
-	else:
-		block_detector.rotation_degrees = 0
-
 
 func change_weapon(new_weapon) -> void:
 	weapon = new_weapon
@@ -334,14 +328,6 @@ func out_of_water() -> void:
 	in_water = false
 
 
-func on_block_detected(_body) -> void:
-	block_detector_colliding = true
-
-
-func on_block_undetected(_body) -> void:
-	block_detector_colliding = false
-
-
 func _on_body_shape_entered(_body_rid, body, _body_shape_index, _local_shape_index) -> void:
 	if body is TileMap:
 			
@@ -357,3 +343,7 @@ func _on_body_shape_entered(_body_rid, body, _body_shape_index, _local_shape_ind
 		knockback = knockback_direction * knockback_strength
 		$StateMachine.transition_to("Hurt")
 		take_damage(1)
+
+func _on_bullet_hit_breakable(bullet_pos: Vector2) -> void:
+	bullet_hit_breakable = true
+	bullet_hit_breakable_position = bullet_pos

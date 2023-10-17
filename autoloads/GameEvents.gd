@@ -44,7 +44,7 @@ signal map_started
 signal SaveDataReady
 
 signal restarted_level
-
+signal bullet_hit_breakable #Arg 1: global_position of bullet
 
 
 #boss
