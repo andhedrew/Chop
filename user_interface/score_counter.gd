@@ -1,6 +1,7 @@
 extends Label
 
 var score := 0
+var font_size := 60
 func _ready():
 	GameEvents.player_score_changed.connect(_on_player_score_changed)
 	
@@ -10,8 +11,8 @@ func _ready():
 	else:
 		score = 0
 		text = "%06d" % score
-	
-	
+
+
 func _on_player_score_changed(addition: int, reset: bool) -> void:
 	if reset:
 		reset_score()
@@ -24,7 +25,7 @@ func _on_player_score_changed(addition: int, reset: bool) -> void:
 			score_amt = addition
 			SaveManager.save_item("score", score_amt)
 		text = "%06d" % score_amt
-
+		
 
 
 func reset_score():

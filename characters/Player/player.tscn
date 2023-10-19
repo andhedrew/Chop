@@ -11,8 +11,8 @@
 [ext_resource type="Script" path="res://characters/player/states/state_machine.gd" id="6_ordad"]
 [ext_resource type="Script" path="res://characters/player/states/Idle.gd" id="7_wjwjl"]
 [ext_resource type="Script" path="res://characters/player/states/Walk.gd" id="8_emxp3"]
-[ext_resource type="PackedScene" uid="uid://cxfiuhgots5lg" path="res://hitboxes/Hitbox.tscn" id="9_3tbl5"]
 [ext_resource type="Script" path="res://characters/player/states/Attack.gd" id="9_46kpd"]
+[ext_resource type="Script" path="res://characters/player/CrumbleHitbox.gd" id="9_pa3o2"]
 [ext_resource type="Script" path="res://characters/player/states/Jump.gd" id="10_sp1oq"]
 [ext_resource type="Script" path="res://characters/player/states/Fall.gd" id="11_2nxde"]
 [ext_resource type="Script" path="res://characters/player/states/Execute.gd" id="12_h1f83"]
@@ -961,15 +961,16 @@ libraries = {
 [node name="BulletSpawn" type="Marker2D" parent="Pivot"]
 position = Vector2(19, -14)
 
-[node name="CrumbleHitbox" parent="Pivot" instance=ExtResource("9_3tbl5")]
+[node name="CrumbleHitbox" type="Area2D" parent="Pivot"]
 position = Vector2(-2, 15)
 collision_layer = 0
 collision_mask = 384
-causes_brick_to_crumble = true
+script = ExtResource("9_pa3o2")
 
-[node name="CollisionShape2D" parent="Pivot/CrumbleHitbox" index="0"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Pivot/CrumbleHitbox"]
 position = Vector2(-0.5, -1)
 shape = SubResource("RectangleShape2D_y680r")
+debug_color = Color(0.956863, 0, 0.0117647, 0.419608)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -12.75)
@@ -1034,5 +1035,4 @@ script = ExtResource("20_xbxmu")
 wait_time = 0.3
 one_shot = true
 
-[editable path="Pivot/CrumbleHitbox"]
 [editable path="Hurtbox"]

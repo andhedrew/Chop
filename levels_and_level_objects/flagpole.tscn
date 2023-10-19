@@ -1,16 +1,20 @@
-[gd_scene load_steps=11 format=3 uid="uid://eow2ybkt3135"]
+[gd_scene load_steps=20 format=3 uid="uid://eow2ybkt3135"]
 
+[ext_resource type="Script" path="res://levels_and_level_objects/flagpole.gd" id="1_3hp42"]
 [ext_resource type="PackedScene" uid="uid://bnt6xxew5jdel" path="res://levels_and_level_objects/question_block/exploding_prop.tscn" id="1_er2iq"]
 [ext_resource type="Texture2D" uid="uid://b56hdb7x3s6vo" path="res://levels_and_level_objects/choppable/flagpole_particles.png" id="2_ua2kb"]
 [ext_resource type="Texture2D" uid="uid://dwu606q6xarue" path="res://levels_and_level_objects/choppable/flagpole.png" id="3_l6wiq"]
 [ext_resource type="PackedScene" uid="uid://didtswvpjoh7u" path="res://levels_and_level_objects/level_interactive_objects/end_of_level.tscn" id="4_r4gp1"]
 [ext_resource type="PackedScene" uid="uid://cp5j3tbsikxw4" path="res://levels_and_level_objects/area_of_interest.tscn" id="5_ak60v"]
+[ext_resource type="Texture2D" uid="uid://d1kthnyvq8wav" path="res://user_interface/flagpole_slice_ui.png" id="7_k6nrj"]
+[ext_resource type="Theme" uid="uid://b0dhfhdkknaj3" path="res://user_interface/chop_theme.tres" id="8_3ih4v"]
+[ext_resource type="Texture2D" uid="uid://c2nen2odk526m" path="res://user_interface/angry_player_face.png" id="9_bwrt4"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_omg51"]
-size = Vector2(8, 207)
+size = Vector2(8, 223)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_koa5o"]
-size = Vector2(4, 207)
+size = Vector2(4, 223)
 
 [sub_resource type="Animation" id="Animation_4n7ry"]
 resource_name = "wave"
@@ -37,8 +41,40 @@ _data = {
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2l75k"]
 size = Vector2(262, 219)
 
-[node name="Flagpole" type="Node2D"]
-position = Vector2(-416, -48)
+[sub_resource type="GDScript" id="GDScript_0tbmf"]
+script/source = "extends Label
+
+"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_n5qs8"]
+atlas = ExtResource("9_bwrt4")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2j00q"]
+atlas = ExtResource("9_bwrt4")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_g7b8q"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_n5qs8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2j00q")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8m23y"]
+size = Vector2(7, 225)
+
+[node name="Flagpole" type="Area2D"]
+collision_layer = 0
+collision_mask = 8
+script = ExtResource("1_3hp42")
 
 [node name="ExplodingBlock2" parent="." instance=ExtResource("1_er2iq")]
 position = Vector2(0, -32)
@@ -50,11 +86,11 @@ texture = ExtResource("3_l6wiq")
 hframes = 4
 
 [node name="CollisionShape2D" parent="ExplodingBlock2/Hurtbox" index="0"]
-position = Vector2(0, -71.5)
+position = Vector2(0, -79.5)
 shape = SubResource("RectangleShape2D_omg51")
 
 [node name="CollisionShape2D" parent="ExplodingBlock2" index="2"]
-position = Vector2(0, -71.5)
+position = Vector2(0, -79.5)
 shape = SubResource("RectangleShape2D_koa5o")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="ExplodingBlock2"]
@@ -71,7 +107,34 @@ position = Vector2(131, -108.5)
 shape = SubResource("RectangleShape2D_2l75k")
 
 [node name="AreaOfInterest" parent="." instance=ExtResource("5_ak60v")]
+visible = false
 position = Vector2(-102, -116)
+
+[node name="ScoreMarker" type="Sprite2D" parent="."]
+visible = false
+texture = ExtResource("7_k6nrj")
+
+[node name="Label" type="Label" parent="ScoreMarker"]
+offset_left = 18.0
+offset_top = -7.0
+offset_right = 58.0
+offset_bottom = 19.0
+theme = ExtResource("8_3ih4v")
+theme_override_colors/font_color = Color(0.156863, 0.14902, 0.156863, 1)
+text = "128"
+script = SubResource("GDScript_0tbmf")
+
+[node name="Head" type="AnimatedSprite2D" parent="ScoreMarker"]
+visible = false
+position = Vector2(46, 0)
+sprite_frames = SubResource("SpriteFrames_g7b8q")
+autoplay = "default"
+frame_progress = 0.419568
+
+[node name="ScoreCollision" type="CollisionShape2D" parent="."]
+position = Vector2(-0.5, -111.5)
+shape = SubResource("RectangleShape2D_8m23y")
+debug_color = Color(0.905882, 0.14902, 0.65098, 0.419608)
 
 [editable path="ExplodingBlock2"]
 [editable path="ExplodingBlock2/Hurtbox"]

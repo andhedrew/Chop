@@ -1,9 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://bxp5c4tgw3tiw"]
+[gd_scene load_steps=4 format=3 uid="uid://bxp5c4tgw3tiw"]
 
 [ext_resource type="Script" path="res://user_interface/lives_restock.gd" id="1_aspbe"]
 [ext_resource type="Texture2D" uid="uid://23fffbb5s8y4" path="res://user_interface/lives.png" id="2_n5x5w"]
 [ext_resource type="Theme" uid="uid://b0dhfhdkknaj3" path="res://user_interface/chop_theme.tres" id="2_ovr5p"]
-[ext_resource type="Script" path="res://user_interface/score_counter.gd" id="4_sildr"]
 
 [node name="MainMenu" type="Control"]
 layout_mode = 3
@@ -79,10 +78,9 @@ grow_vertical = 2
 [node name="Label" type="Label" parent="ColorRect/Control/HBoxContainer2"]
 layout_mode = 2
 theme = ExtResource("2_ovr5p")
-text = "Protien:"
+text = "Value:"
 
 [node name="Label2" type="Label" parent="ColorRect/Control/HBoxContainer2"]
 layout_mode = 2
 theme = ExtResource("2_ovr5p")
 text = "00000"
-script = ExtResource("4_sildr")

@@ -60,7 +60,7 @@ signal replace_tile #replace a ghost tile. Param 1: Global position
 signal drop_food # Arg 1: array of sprites # Arg 2: Position
 signal drop_health # Arg 1: Position
 signal drop_coins # Arg 1: amount to drop (bounty) # Arg 2: Position
-signal new_vfx  #arg 1: String reference to VX (PATH!!) # Arg 2: Position
+signal new_vfx  #arg 1: String reference to VX (PATH!! - drag theVFX scene from the FileSystem) # Arg 2: global_position
 signal new_score_label #Arg 1:amount, arg 2: Position
 # tutorial
 signal plant_hunger_bar_filled # no parameters

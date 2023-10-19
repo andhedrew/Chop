@@ -16,6 +16,7 @@ func _destroy_tile(global_pos: Vector2, crumble_brick: bool = false) -> void:
 	if crumble_brick:
 		await get_tree().create_timer(0.08).timeout
 	var cell_id = get_cell_source_id(0, global_pos)
+	
 	if cell_id == 2:
 		_replace_tile(global_pos, crumble_brick)
 	elif cell_id == 1:

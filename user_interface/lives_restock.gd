@@ -16,31 +16,33 @@ var next_level: String
 func _ready():
 	lives_label.text = str(lives)
 	score = SaveManager.load_item("score")
-	if score != null:
-		score_divider = score/5.0
+	score_divider = score/5.0
 	increment_lives()
-	reset_score()
+	
 
 func increment_lives():
-	score = SaveManager.load_item("score")
+	reset_score()
 	if lives < 5:
 		lives += 1
 		SoundPlayer.play_sound("pickup_2")
+		
+		score = SaveManager.load_item("score")
 		lives_label.text = str(lives)
 		await get_tree().create_timer(0.5).timeout
 		increment_lives()
 	else:
 		await get_tree().create_timer(1.0).timeout
 		SaveManager.save_item("lives", 5)
+		SaveManager.save_item("score", 0)
 		_on_transitioning_to_map()
 
 
 func reset_score():
-	score = SaveManager.load_item("score")
+	
 	if score > 0:
 		score -= score_divider
 		SoundPlayer.play_sound("click")
-		$ColorRect/Control/HBoxContainer2/Label2.text = str(score)
+		$ColorRect/Control/HBoxContainer2/Label2.text = str(round(abs(score)))
 		await get_tree().create_timer(0.5).timeout
 		reset_score()
 	else:
