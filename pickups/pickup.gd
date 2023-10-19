@@ -1,6 +1,7 @@
 class_name Pickup
 extends CharacterBody2D
 
+@export var floating_pickup : bool = false
 @onready var animation_player := $AnimationPlayer as AnimationPlayer
 var max_fall_speed := 3.0
 var sort_layer = SortLayer.IN_FRONT
@@ -17,6 +18,8 @@ func _physics_process(_delta):
 		velocity.y = lerp(velocity.y, max_fall_speed, 0.1)
 	else:
 		velocity.y = 1.0
+	if floating_pickup:
+		velocity = Vector2.ZERO
 	apply_friction()
 	move_and_collide(velocity)
 

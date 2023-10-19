@@ -96,8 +96,8 @@ func _process(_delta):
 
 func _set_position() -> void:
 		if y_moving or looking or target_node != Player:
-			position.y = lerp(position.y, target_node.position.y + y_target_lead, lerp_speed_adj)
-		position.x = lerp(position.x, target_node.position.x + x_target_lead, lerp_speed_adj)
+			position.y = lerp(position.y, target_node.global_position.y + y_target_lead, lerp_speed_adj)
+		position.x = lerp(position.x, target_node.global_position.x + x_target_lead, lerp_speed_adj)
 
 
 func _handle_trauma_and_offset() -> void:
