@@ -1,10 +1,10 @@
 extends Area2D
 
 var replacing_tile := false
-
+var wait_time := 0.4
 func _ready():
 	$Timer.timeout.connect(_on_timeout)
-	$Timer.wait_time += randf_range(-0.2, 0.2)
+	$Timer.wait_time += randf_range(-wait_time, wait_time)
 	$Timer.start()
 
 func _process(_delta):

@@ -50,7 +50,7 @@ func enter(_msg := {}) -> void:
 		slicing_a_block = true
 		
 		owner.collision_mask |= (1 << 7) # turns off the collider
-		owner.velocity.y = lerp(owner.velocity.y,0.0, 0.4)
+		owner.velocity.y = lerp(owner.velocity.y,0.0, 0.8)
 		
 		if owner.looking != Enums.Looking.UP and owner.looking != Enums.Looking.DOWN:
 			if owner.facing == Enums.Facing.LEFT:

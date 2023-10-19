@@ -14,7 +14,7 @@ func _ready():
 
 func _destroy_tile(global_pos: Vector2, crumble_brick: bool = false) -> void:
 	if crumble_brick:
-		await get_tree().create_timer(0.1).timeout
+		await get_tree().create_timer(0.08).timeout
 	var cell_id = get_cell_source_id(0, global_pos)
 	if cell_id == 2:
 		_replace_tile(global_pos, crumble_brick)
@@ -86,6 +86,7 @@ func _replace_tile(global_pos: Vector2, crumble_brick) -> void:
 
 
 func _return_tile(global_pos: Vector2) -> void:
+	
 	var atlas_coords = get_cell_atlas_coords(0, global_pos)
 	set_cell(0, global_pos, 2, atlas_coords)
 	BetterTerrain.update_terrain_cell(self, 0, Vector2i(global_pos.x, global_pos.y), true)

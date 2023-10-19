@@ -95,7 +95,7 @@ func _process(_delta):
 
 
 func _set_position() -> void:
-		if y_moving or looking:
+		if y_moving or looking or target_node != Player:
 			position.y = lerp(position.y, target_node.position.y + y_target_lead, lerp_speed_adj)
 		position.x = lerp(position.x, target_node.position.x + x_target_lead, lerp_speed_adj)
 
@@ -132,6 +132,7 @@ func _following_default_adjustments() -> void:
 	y_lead = 0.0
 	x_target_lead = lerp(x_target_lead, x_lead, lerpspeed)
 	y_target_lead = lerp(y_target_lead, y_lead, lerpspeed)
+
 
 
 func _adjust_positions_taking_margins_into_account() -> void:
