@@ -5,6 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://dtqifieelo0lf" path="res://user_interface/coin.png" id="3_slc2x"]
 
 [node name="CoinPickup" instance=ExtResource("1_4smdq")]
+collision_mask = 449
 script = ExtResource("2_6cwrx")
 value = 1
 

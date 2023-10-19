@@ -11,7 +11,6 @@ signal player_started_syphoning #Arg 1: player.global_position
 signal player_done_syphoning
 signal player_died
 signal player_hit_enemy #arg 1: the enemy
-signal double_jump_refreshed
 signal added_food_to_bag # Arg 1: the food_pickup
 signal removed_food_from_bag
 signal bag_full

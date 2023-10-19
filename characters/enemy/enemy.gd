@@ -37,6 +37,11 @@ var active := false
 func _ready() -> void:
 	max_health = health
 	$Hurtbox.area_entered.connect(_take_damage)
+	$Hurtbox.body_entered.connect(_on_body_entered)
+
+
+
+
 	GameEvents.player_started_syphoning.connect(_on_player_syphoning)
 	GameEvents.player_done_syphoning.connect(_on_player_done_syphoning)
 	GameEvents.evening_started.connect(_on_end_of_day)
@@ -118,6 +123,13 @@ func _take_damage(hitbox) -> void:
 			var slice = preload("res://vfx/slice.tscn").instantiate()
 			slice.position = global_position
 			get_node("/root/World").add_child(slice)
+
+
+
+func _on_body_entered(body):
+	if body.name == "TileMap":
+		GameEvents.enemy_took_damage.emit()
+		die(false)
 
 
 func execute():

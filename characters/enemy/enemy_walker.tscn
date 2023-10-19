@@ -286,12 +286,12 @@ collision_mask = 197
 [node name="adjacent_ledge_check_left" type="RayCast2D" parent="."]
 position = Vector2(0, -10)
 target_position = Vector2(-15, 15)
-collision_mask = 129
+collision_mask = 193
 
 [node name="adjacent_ledge_check_right" type="RayCast2D" parent="."]
 position = Vector2(0, -10)
 target_position = Vector2(15, 15)
-collision_mask = 129
+collision_mask = 193
 
 [node name="wall_check_right" type="RayCast2D" parent="."]
 position = Vector2(0, -10)
