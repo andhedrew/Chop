@@ -1,0 +1,58 @@
+[gd_scene load_steps=6 format=3 uid="uid://caoh8cnnhggrp"]
+
+[ext_resource type="Script" path="res://levels_and_level_objects/belt/belt.gd" id="1_jknrj"]
+[ext_resource type="Texture2D" uid="uid://rflc4i6yrj8d" path="res://levels_and_level_objects/belt/belt.png" id="2_dxb24"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_7ocix"]
+texture = ExtResource("2_dxb24")
+0:0/next_alternative_id = 3
+0:0/animation_columns = 3
+0:0/animation_separation = Vector2i(2, 0)
+0:0/animation_frame_0/duration = 0.2
+0:0/animation_frame_1/duration = 0.2
+0:0/animation_frame_2/duration = 0.2
+0:0/0 = 0
+0:0/2 = 2
+0:0/2/flip_h = true
+1:0/next_alternative_id = 2
+1:0/animation_columns = 3
+1:0/animation_separation = Vector2i(2, 0)
+1:0/animation_frame_0/duration = 0.2
+1:0/animation_frame_1/duration = 0.2
+1:0/animation_frame_2/duration = 0.2
+1:0/0 = 0
+1:0/1 = 1
+1:0/1/flip_h = true
+2:0/next_alternative_id = 2
+2:0/animation_columns = 3
+2:0/animation_separation = Vector2i(2, 0)
+2:0/animation_frame_0/duration = 0.2
+2:0/animation_frame_1/duration = 0.2
+2:0/animation_frame_2/duration = 0.2
+2:0/0 = 0
+2:0/1 = 1
+2:0/1/flip_h = true
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_rjflo"]
+texture = ExtResource("2_dxb24")
+6:0/animation_columns = 3
+6:0/animation_separation = Vector2i(2, 0)
+6:0/0 = 0
+7:0/0 = 0
+8:0/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_jvg6g"]
+sources/0 = SubResource("TileSetAtlasSource_7ocix")
+sources/1 = SubResource("TileSetAtlasSource_rjflo")
+
+[node name="Belts" type="StaticBody2D"]
+collision_mask = 38
+script = ExtResource("1_jknrj")
+speed = -100
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+
+[node name="BeltTiles" type="TileMap" parent="."]
+tile_set = SubResource("TileSet_jvg6g")
+format = 2
+layer_0/tile_data = PackedInt32Array(-131060, 131073, 0)

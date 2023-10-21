@@ -1,7 +1,12 @@
-[gd_scene load_steps=3 format=3 uid="uid://b02bwhhjwen2v"]
+[gd_scene load_steps=5 format=3 uid="uid://b02bwhhjwen2v"]
 
 [ext_resource type="PackedScene" uid="uid://dm85xjdq5mkk3" path="res://levels_and_level_objects/level_scenes/base_level.tscn" id="1_fb7pd"]
 [ext_resource type="PackedScene" uid="uid://d2mwmw4wcsxo0" path="res://levels_and_level_objects/bouncy_face/bouncy_face.tscn" id="2_s5iq7"]
+[ext_resource type="PackedScene" uid="uid://caoh8cnnhggrp" path="res://levels_and_level_objects/belt/belts.tscn" id="3_sjnuu"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_qt6we"]
+radius = 5.95026
+height = 80.0
 
 [node name="World" instance=ExtResource("1_fb7pd")]
 
@@ -26,4 +31,19 @@ position = Vector2(800, 64)
 [node name="BouncyFace5" parent="." index="21" instance=ExtResource("2_s5iq7")]
 position = Vector2(912, 48)
 
+[node name="Belts" parent="." index="22" instance=ExtResource("3_sjnuu")]
+position = Vector2(-8, -48)
+rotation = 0.528385
+speed = 100
+
+[node name="CollisionShape2D" parent="Belts" index="0"]
+position = Vector2(40, -48)
+rotation = 1.57079
+shape = SubResource("CapsuleShape2D_qt6we")
+
+[node name="BeltTiles" parent="Belts" index="1"]
+position = Vector2(0, 8)
+layer_0/tile_data = PackedInt32Array(-131060, 131073, 0, -262144, 0, 0, -262143, 65536, 0, -262142, 65536, 0, -262141, 65536, 0, -262140, 131072, 0)
+
 [editable path="ColorShiftLayer"]
+[editable path="Belts"]

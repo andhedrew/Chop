@@ -47,6 +47,7 @@ var cutscene_walk := false
 var lives := 5
 
 @onready var hurtbox := $Hurtbox
+@onready var foot_detector := $Pivot/FootDetector
 @onready var animation_player := $Pivot/AnimationPlayer
 @onready var effects_player := $Pivot/EffectsPlayer
 
@@ -72,6 +73,9 @@ var execute_spread := 0
 @onready var collider := $CollisionShape2D
 
 var attack_animation_index := 0
+var standing_on_belt := false
+var belt_max_speed := 20
+var belt_move_speed := belt_max_speed
 
 
 func _ready():
@@ -82,7 +86,10 @@ func _ready():
 	GameEvents.SaveDataReady.connect(_load_data)
 	GameEvents.feeding_level_start.connect(_feeding_level_start)
 	GameEvents.charge_amount_changed.emit(torch_charges, max_torch_charges)
-	hurtbox.body_shape_entered.connect(_on_body_shape_entered)
+	hurtbox.body_shape_entered.connect(_on_hitbox_body_shape_entered)
+	hurtbox.body_shape_exited.connect(_on_hitbox_body_shape_exited)
+	foot_detector.body_shape_entered.connect(_on_hitbox_body_shape_entered)
+	foot_detector.body_shape_exited.connect(_on_hitbox_body_shape_exited)
 	GameEvents.bullet_hit_breakable.connect(_on_bullet_hit_breakable)
 	z_index = SortLayer.PLAYER
 	_load_data()
@@ -105,6 +112,8 @@ func _load_data() -> void:
 	
 
 func _physics_process(delta):
+	
+
 	if !set_ui:
 		set_ui = true
 		GameEvents.player_health_changed.emit(health, max_health)
@@ -129,10 +138,11 @@ func _physics_process(delta):
 			position.x += 1
 		else:
 			position.x -= 1
-			
 	
 	if Input.is_action_just_pressed("unload_bag"):
 		drop_last_item()
+	
+
 
 func change_weapon(new_weapon) -> void:
 	weapon = new_weapon
@@ -328,8 +338,19 @@ func out_of_water() -> void:
 	in_water = false
 
 
-func _on_body_shape_entered(_body_rid, body, _body_shape_index, _local_shape_index) -> void:
-	if body is TileMap:
+func _on_hitbox_body_shape_entered(body_rid, body, _body_shape_index, _local_shape_index) -> void:
+	if body.name == "Belts":
+		var current_tilemap = body
+		var collided_tile_coords = current_tilemap.get_coords_for_body_rid(body_rid) ##coords of tiel collided with
+		for i in current_tilemap.get_layers_count():
+			var tile_data = current_tilemap.get_cell_tile_data(i, collided_tile_coords)
+			var move_right = tile_data.get_custom_data_by_layer_id(0)
+			standing_on_belt = true
+			if move_right == true:
+				belt_move_speed = belt_max_speed
+			else: 
+				belt_move_speed = -belt_max_speed
+	elif body is TileMap:
 			
 		# Get the cell position of the tile that the player has collided with
 		var cell_position = body.local_to_map(global_position)
@@ -343,6 +364,13 @@ func _on_body_shape_entered(_body_rid, body, _body_shape_index, _local_shape_ind
 		knockback = knockback_direction * knockback_strength
 		$StateMachine.transition_to("Hurt")
 		take_damage(1)
+
+
+func _on_hitbox_body_shape_exited(_body_rid, body, _body_shape_index, _local_shape_index) -> void:
+	if body.name == "Belts":
+		var bodies = foot_detector.get_overlapping_bodies()
+		if bodies == []:
+			standing_on_belt = false
 
 func _on_bullet_hit_breakable(bullet_pos: Vector2) -> void:
 	bullet_hit_breakable = true

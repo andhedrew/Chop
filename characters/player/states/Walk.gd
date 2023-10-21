@@ -19,6 +19,9 @@ func physics_update(delta: float) -> void:
 		owner.velocity.y += Param.WATER_GRAVITY * delta
 	else:
 		owner.velocity.y += Param.GRAVITY * delta
+	
+
+		
 	owner.move_and_slide()
 
 	if Input.is_action_just_pressed("jump") or !jump_buffer_timer.is_stopped():

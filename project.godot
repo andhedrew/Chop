@@ -221,6 +221,7 @@ execute={
 2d_physics/layer_7="hazards"
 2d_physics/layer_8="blocks"
 2d_physics/layer_9="ghost_blocks"
+2d_physics/layer_10="belts"
 
 [rendering]
 
