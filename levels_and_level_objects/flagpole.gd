@@ -2,6 +2,7 @@ extends Area2D
 
 
 var score := 0.0
+var score_chosen := false
 
 func _ready():
 	self.area_entered.connect(_on_area_entered)
@@ -12,7 +13,8 @@ func _physics_process(delta):
 
 func _on_area_entered(area):
 
-	if area is HitBox:
+	if area is HitBox and not score_chosen:
+		score_chosen = true
 		$ScoreMarker.global_position.y = area.global_position.y
 		$ScoreMarker.global_position.y = max(area.global_position.y, -225)
 		score = abs(($ScoreMarker.global_position.y/225)*100)

@@ -10,7 +10,7 @@ func _ready():
 
 func _physics_process(delta):
 	for body in bodies_on_trampoline:
-		var direction = Vector2.UP
+		var direction = Vector2.UP.rotated(rotation)
 		body.velocity += direction * push_strength
 		var speed = body.velocity.length()
 		if speed > max_speed:
@@ -18,7 +18,6 @@ func _physics_process(delta):
 
 
 func _on_body_entered(body) -> void:
-	
 	if body is Player or body is Enemy:
 		$AnimationPlayer.play("bounce")
 		bodies_on_trampoline.append(body)
