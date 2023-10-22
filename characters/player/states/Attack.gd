@@ -18,6 +18,8 @@ func enter(_msg := {}) -> void:
 	else:
 		owner.attack_animation_index = 0
 	
+	GameEvents.new_vfx.emit("res://vfx/bubbles.tscn", owner.global_position)
+	
 	var bullet = owner.bullet.instantiate()
 	owner.add_child(bullet)
 	var transform = $"../../Pivot/BulletSpawn".global_transform
@@ -87,7 +89,6 @@ func physics_update(delta: float) -> void:
 	if owner.is_on_floor():
 		if Input.is_action_pressed("jump"):
 			state_machine.transition_to("Jump")
-		
 #	
 	if !slicing_a_block:
 		if owner.in_water:

@@ -216,6 +216,7 @@ func _on_Water_Body_Area_body_entered(body):
 		
 		if body is Player:
 			player_in_water = true
+			body.in_water = true
 			player = body
 
 func on_body_exited(body) -> void:

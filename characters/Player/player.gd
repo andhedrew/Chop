@@ -112,7 +112,6 @@ func _load_data() -> void:
 	
 
 func _physics_process(delta):
-	
 
 	if !set_ui:
 		set_ui = true

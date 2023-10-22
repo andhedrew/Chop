@@ -182,6 +182,7 @@ func drop_coins(bounty: int, drop_position : Vector2) -> void:
 
 func vfx(effect : String, vfx_position : Vector2) -> void:
 	var new_vfx = load(effect).instantiate()
+	
 	new_vfx.position = vfx_position
 	call_deferred("add_child", new_vfx)
 

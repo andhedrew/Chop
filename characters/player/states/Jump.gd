@@ -5,10 +5,14 @@ var coyote_jump: bool = false
 func physics_update(delta: float) -> void:
 	var jump_release := Input.is_action_just_released("jump")
 	var jump := Input.is_action_pressed("jump")
+	var jump_pressed := Input.is_action_just_pressed("jump")
 	
 	if jump_release and owner.velocity.y < (owner.jump_height/2):
 		owner.velocity.y = owner.jump_height/2
 	elif jump and owner.is_on_floor():
+		owner.velocity.y = owner.jump_height
+	elif jump_pressed and owner.in_water:
+		GameEvents.new_vfx.emit("res://vfx/bubble_burst.tscn", owner.global_position)
 		owner.velocity.y = owner.jump_height
 	elif coyote_jump:
 		owner.velocity.y = owner.jump_height
@@ -44,3 +48,7 @@ func physics_update(delta: float) -> void:
 		
 	if Input.is_action_just_pressed("dash") and owner.has_booster_upgrade:
 		state_machine.transition_to("Dash")
+	
+	if jump and owner.in_water:
+		print_debug("TRANSITINSAON AGAIN IN WATWERa")
+		state_machine.transition_to("Jump")

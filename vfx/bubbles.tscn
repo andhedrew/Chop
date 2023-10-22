@@ -1,0 +1,41 @@
+[gd_scene load_steps=6 format=3 uid="uid://6njilmbvchdw"]
+
+[ext_resource type="Texture2D" uid="uid://d4ilcxpnu078a" path="res://addons/water_shader/Sprites/bubble_particles.png" id="1_xp45o"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_d20x5"]
+particles_animation = true
+particles_anim_h_frames = 8
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="Gradient" id="Gradient_5bpc5"]
+offsets = PackedFloat32Array(0.739946, 1)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_pgw06"]
+gradient = SubResource("Gradient_5bpc5")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_lrppe"]
+emission_shape = 3
+emission_box_extents = Vector3(2, 6, 1)
+particle_flag_disable_z = true
+direction = Vector3(0, -1, 0)
+spread = 30.0
+gravity = Vector3(0, -30, 0)
+initial_velocity_min = 20.0
+initial_velocity_max = 30.0
+orbit_velocity_min = 0.0
+orbit_velocity_max = 0.0
+color_ramp = SubResource("GradientTexture1D_pgw06")
+anim_speed_min = 0.8
+anim_speed_max = 1.2
+
+[node name="bubble" type="Node2D"]
+
+[node name="Bubble" type="GPUParticles2D" parent="."]
+material = SubResource("CanvasItemMaterial_d20x5")
+amount = 1
+process_material = SubResource("ParticleProcessMaterial_lrppe")
+texture = ExtResource("1_xp45o")
+one_shot = true
+explosiveness = 1.0
