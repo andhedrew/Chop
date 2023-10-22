@@ -1,0 +1,96 @@
+[gd_scene load_steps=9 format=3 uid="uid://c257a013dc1s"]
+
+[ext_resource type="Script" path="res://bullets/bullet.gd" id="1_p0bdq"]
+[ext_resource type="Texture2D" uid="uid://2jpcri1mnjq2" path="res://levels_and_level_objects/Stalctite/stalactite.png" id="2_mty4o"]
+[ext_resource type="PackedScene" uid="uid://cxfiuhgots5lg" path="res://hitboxes/Hitbox.tscn" id="3_4m261"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_n585r"]
+size = Vector2(25, 14)
+
+[sub_resource type="Animation" id="Animation_re3lr"]
+resource_name = "animate_bullet"
+length = 0.4
+loop_mode = 1
+step = 0.08
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_5xbje"]
+resource_name = "bullet_enter"
+length = 0.1
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_km3k7"]
+resource_name = "bullet_exit"
+length = 0.2
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ocw25"]
+_data = {
+"animate_bullet": SubResource("Animation_re3lr"),
+"bullet_enter": SubResource("Animation_5xbje"),
+"bullet_exit": SubResource("Animation_km3k7")
+}
+
+[node name="nut_bullet" type="Area2D"]
+collision_layer = 128
+collision_mask = 9
+script = ExtResource("1_p0bdq")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(9, 0)
+rotation = 1.5708
+scale = Vector2(-1, -1)
+texture = ExtResource("2_mty4o")
+hframes = 2
+
+[node name="Hitbox" parent="." instance=ExtResource("3_4m261")]
+position = Vector2(19, -1)
+collision_layer = 24
+collision_mask = 6
+damage = 4
+
+[node name="CollisionShape2D" parent="Hitbox" index="0"]
+position = Vector2(-13.5, 1)
+shape = SubResource("RectangleShape2D_n585r")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_ocw25")
+}
+
+[editable path="Hitbox"]

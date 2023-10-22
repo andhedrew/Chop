@@ -91,6 +91,7 @@ func _ready():
 	foot_detector.body_shape_entered.connect(_on_hitbox_body_shape_entered)
 	foot_detector.body_shape_exited.connect(_on_hitbox_body_shape_exited)
 	GameEvents.bullet_hit_breakable.connect(_on_bullet_hit_breakable)
+	GameEvents.add_a_charge.connect(_on_adding_a_charge)
 	z_index = SortLayer.PLAYER
 	_load_data()
 
@@ -374,3 +375,9 @@ func _on_hitbox_body_shape_exited(_body_rid, body, _body_shape_index, _local_sha
 func _on_bullet_hit_breakable(bullet_pos: Vector2) -> void:
 	bullet_hit_breakable = true
 	bullet_hit_breakable_position = bullet_pos
+
+
+func _on_adding_a_charge() -> void:
+	if torch_charges < max_torch_charges:
+		torch_charges += 1
+		GameEvents.charge_amount_changed.emit(torch_charges, max_torch_charges )

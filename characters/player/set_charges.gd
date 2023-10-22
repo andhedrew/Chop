@@ -12,7 +12,6 @@ func _ready() -> void:
 	GameEvents.cutscene_ended.connect(_on_cutscene_end)
 
 func _on_charge_amount_changed(torch_charges, max_torch_charges):
-	
 	if not cutscene_running:
 		if torch_charges_last_frame < torch_charges:
 			SoundPlayer.play_sound("pickup_2")
@@ -66,3 +65,4 @@ func _on_cutscene_start() -> void:
 
 func _on_cutscene_end() -> void:
 	cutscene_running = false
+

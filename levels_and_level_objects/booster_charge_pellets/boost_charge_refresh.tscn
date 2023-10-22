@@ -1,0 +1,88 @@
+[gd_scene load_steps=14 format=3 uid="uid://dx76g84hlp7bj"]
+
+[ext_resource type="Script" path="res://levels_and_level_objects/booster_charge_pellets/BoostChargeRefresh.gd" id="1_5uqup"]
+[ext_resource type="Texture2D" uid="uid://bnse3obo422ga" path="res://levels_and_level_objects/booster_charge_pellets/charcoal.png" id="2_hpa3n"]
+[ext_resource type="Texture2D" uid="uid://dnqbqr605hdcs" path="res://levels_and_level_objects/booster_charge_pellets/charcoal_death.png" id="3_5f6yo"]
+[ext_resource type="PackedScene" uid="uid://bb1h85dym7l4i" path="res://hitboxes/Hurtbox.tscn" id="4_8f75m"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_n0h23"]
+atlas = ExtResource("2_hpa3n")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_am5gf"]
+atlas = ExtResource("2_hpa3n")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_quokg"]
+atlas = ExtResource("2_hpa3n")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0iyqu"]
+atlas = ExtResource("3_5f6yo")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_aevlb"]
+atlas = ExtResource("3_5f6yo")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_e58d3"]
+atlas = ExtResource("3_5f6yo")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g8vh3"]
+atlas = ExtResource("3_5f6yo")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_dhebh"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_n0h23")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_am5gf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_quokg")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0iyqu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_aevlb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_e58d3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_g8vh3")
+}],
+"loop": false,
+"name": &"die",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_o1cav"]
+size = Vector2(16, 15)
+
+[node name="BoostChargeRefresh" type="Node2D"]
+script = ExtResource("1_5uqup")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -6)
+sprite_frames = SubResource("SpriteFrames_dhebh")
+autoplay = "default"
+
+[node name="Hurtbox" parent="." instance=ExtResource("4_8f75m")]
+collision_mask = 8
+
+[node name="CollisionShape2D" parent="Hurtbox" index="0"]
+position = Vector2(0, -0.5)
+shape = SubResource("RectangleShape2D_o1cav")
+
+[editable path="Hurtbox"]
