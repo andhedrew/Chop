@@ -18,7 +18,8 @@ func enter(_msg := {}) -> void:
 	else:
 		owner.attack_animation_index = 0
 	
-	GameEvents.new_vfx.emit("res://vfx/bubbles.tscn", owner.global_position)
+	if owner.in_water:
+		GameEvents.new_vfx.emit("res://vfx/bubbles.tscn", owner.global_position)
 	
 	var bullet = owner.bullet.instantiate()
 	owner.add_child(bullet)

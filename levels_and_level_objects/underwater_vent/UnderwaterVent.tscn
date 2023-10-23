@@ -1,0 +1,43 @@
+[gd_scene load_steps=5 format=3 uid="uid://blyarjamlqtaa"]
+
+[ext_resource type="Script" path="res://levels_and_level_objects/underwater_vent/UnderwaterVent.gd" id="1_msfd3"]
+[ext_resource type="Texture2D" uid="uid://d4ilcxpnu078a" path="res://addons/water_shader/Sprites/bubble_particles.png" id="2_qhcp1"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_iy4l8"]
+particles_animation = true
+particles_anim_h_frames = 8
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_uolpl"]
+lifetime_randomness = 0.3
+emission_shape = 3
+emission_box_extents = Vector3(28, 1, 1)
+particle_flag_disable_z = true
+direction = Vector3(0, -1, 0)
+spread = 24.58
+gravity = Vector3(0, 0, 0)
+initial_velocity_min = 60.0
+initial_velocity_max = 120.0
+orbit_velocity_min = 0.0
+orbit_velocity_max = 0.0
+
+[node name="UnderwaterVent" type="Node2D"]
+position = Vector2(112, -8)
+script = ExtResource("1_msfd3")
+
+[node name="BlowParticles" type="GPUParticles2D" parent="."]
+material = SubResource("CanvasItemMaterial_iy4l8")
+position = Vector2(0, 8)
+amount = 32
+process_material = SubResource("ParticleProcessMaterial_uolpl")
+texture = ExtResource("2_qhcp1")
+lifetime = 1.7
+visibility_rect = Rect2(-100, -600, 200, 800)
+
+[node name="Area2D" type="Area2D" parent="."]
+position = Vector2(0, 16)
+collision_mask = 6
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Area2D"]
+polygon = PackedVector2Array(-32, -8, -72, -136, -32, -160, 24, -160, 64, -144, 24, -8)

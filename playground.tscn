@@ -1,13 +1,16 @@
 [gd_scene load_steps=7 format=3 uid="uid://b02bwhhjwen2v"]
 
 [ext_resource type="PackedScene" uid="uid://dm85xjdq5mkk3" path="res://levels_and_level_objects/level_scenes/base_level.tscn" id="1_fb7pd"]
-[ext_resource type="Script" path="res://levels_and_level_objects/Stalactite/Stalactite.gd" id="2_4c832"]
-[ext_resource type="Texture2D" uid="uid://2jpcri1mnjq2" path="res://levels_and_level_objects/Stalctite/stalactite.png" id="2_da7kj"]
+[ext_resource type="Texture2D" uid="uid://cnm8hx133dgit" path="res://levels_and_level_objects/water_stream/water_stream.png" id="3_xikjf"]
+[ext_resource type="Script" path="res://levels_and_level_objects/water_stream/water_stream.gd" id="4_262ey"]
 [ext_resource type="PackedScene" uid="uid://boakvecc6j1ta" path="res://characters/enemy/paroot/paroot.tscn" id="5_qy7gp"]
-[ext_resource type="PackedScene" uid="uid://bb1h85dym7l4i" path="res://hitboxes/Hurtbox.tscn" id="8_1yf0h"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_dl0yw"]
-size = Vector2(12, 17)
+[sub_resource type="AtlasTexture" id="AtlasTexture_81afv"]
+atlas = ExtResource("3_xikjf")
+region = Rect2(0, 0, 300, 32)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_khpkc"]
+size = Vector2(30, 256)
 
 [node name="World" instance=ExtResource("1_fb7pd")]
 
@@ -17,24 +20,28 @@ layer_0/tile_data = PackedInt32Array(65527, 524293, 0, 65528, 655365, 0, 65529, 
 [node name="LevelEdges" parent="." index="10"]
 layer_0/tile_data = PackedInt32Array(393206, 0, 0, -1245160, 0, 0, 1310766, 0, 0, -1638430, 0, 0, -196596, 0, 0, -196595, 0, 0, -196594, 0, 0, -196593, 0, 0, -196591, 0, 0, -196592, 0, 0, -3342375, 0, 0, 2752614, 0, 0)
 
-[node name="Stalactite" type="Node2D" parent="." index="17"]
-position = Vector2(-160, -16)
-script = ExtResource("2_4c832")
-
-[node name="Sprite2D" type="Sprite2D" parent="Stalactite" index="0"]
-position = Vector2(0, -3)
-texture = ExtResource("2_da7kj")
-hframes = 2
-
-[node name="Hurtbox" parent="Stalactite" index="1" instance=ExtResource("8_1yf0h")]
-collision_mask = 8
-
-[node name="CollisionShape2D" parent="Stalactite/Hurtbox" index="0"]
-position = Vector2(0, -7.5)
-shape = SubResource("RectangleShape2D_dl0yw")
-
-[node name="Paroot" parent="." index="18" instance=ExtResource("5_qy7gp")]
+[node name="Paroot" parent="." index="17" instance=ExtResource("5_qy7gp")]
 position = Vector2(-160, 52)
 
+[node name="Node2D" type="Node2D" parent="." index="18"]
+position = Vector2(-24, -64)
+rotation = 0.754613
+script = ExtResource("4_262ey")
+speed = 200
+
+[node name="Sprite2D" type="Sprite2D" parent="Node2D" index="0"]
+texture_repeat = 2
+position = Vector2(104, -80)
+rotation = 4.71239
+texture = SubResource("AtlasTexture_81afv")
+region_enabled = true
+region_rect = Rect2(0, 0, 256, 32)
+
+[node name="Area2D" type="Area2D" parent="Node2D" index="1"]
+collision_mask = 6
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Node2D/Area2D" index="0"]
+position = Vector2(103, -80)
+shape = SubResource("RectangleShape2D_khpkc")
+
 [editable path="ColorShiftLayer"]
-[editable path="Stalactite/Hurtbox"]
