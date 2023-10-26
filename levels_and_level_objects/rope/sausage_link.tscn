@@ -1,0 +1,36 @@
+[gd_scene load_steps=6 format=3 uid="uid://lahjsvf02wip"]
+
+[ext_resource type="Script" path="res://levels_and_level_objects/rope/chain_segment.gd" id="1_plhtn"]
+[ext_resource type="Texture2D" uid="uid://c47y683dun6aj" path="res://levels_and_level_objects/rope/sausage_link.png" id="2_xol5x"]
+[ext_resource type="PackedScene" uid="uid://bb1h85dym7l4i" path="res://hitboxes/Hurtbox.tscn" id="3_kwwxo"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_nfwib"]
+radius = 4.0
+height = 12.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_4aaij"]
+radius = 4.0
+height = 8.0
+
+[node name="Sausage" type="RigidBody2D"]
+position = Vector2(1, 0)
+collision_layer = 1024
+collision_mask = 15
+mass = 0.1
+gravity_scale = 0.1
+can_sleep = false
+script = ExtResource("1_plhtn")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_xol5x")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_nfwib")
+
+[node name="Hurtbox" parent="." instance=ExtResource("3_kwwxo")]
+collision_mask = 8
+
+[node name="CollisionShape2D" parent="Hurtbox" index="0"]
+shape = SubResource("CapsuleShape2D_4aaij")
+
+[editable path="Hurtbox"]

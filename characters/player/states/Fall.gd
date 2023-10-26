@@ -5,6 +5,7 @@ extends State
 
 
 func enter(_msg := {}) -> void:
+	GameEvents.player_falling.emit(true)
 	owner.collision_mask |= (1 << 7)
 
 func physics_update(delta: float) -> void:
@@ -46,5 +47,8 @@ func physics_update(delta: float) -> void:
 	
 	if Input.is_action_just_pressed("dash") and owner.has_booster_upgrade:
 		state_machine.transition_to("Dash")
-	
+
+
+func exit() -> void:
+	GameEvents.player_falling.emit(false)
 

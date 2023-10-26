@@ -86,10 +86,10 @@ func _ready():
 	GameEvents.SaveDataReady.connect(_load_data)
 	GameEvents.feeding_level_start.connect(_feeding_level_start)
 	GameEvents.charge_amount_changed.emit(torch_charges, max_torch_charges)
+	
 	hurtbox.body_shape_entered.connect(_on_hitbox_body_shape_entered)
 	hurtbox.body_shape_exited.connect(_on_hitbox_body_shape_exited)
-	foot_detector.body_shape_entered.connect(_on_hitbox_body_shape_entered)
-	foot_detector.body_shape_exited.connect(_on_hitbox_body_shape_exited)
+	
 	GameEvents.bullet_hit_breakable.connect(_on_bullet_hit_breakable)
 	GameEvents.add_a_charge.connect(_on_adding_a_charge)
 	z_index = SortLayer.PLAYER
@@ -339,18 +339,7 @@ func out_of_water() -> void:
 
 
 func _on_hitbox_body_shape_entered(body_rid, body, _body_shape_index, _local_shape_index) -> void:
-	if body.name == "Belts":
-		var current_tilemap = body
-		var collided_tile_coords = current_tilemap.get_coords_for_body_rid(body_rid) ##coords of tiel collided with
-		for i in current_tilemap.get_layers_count():
-			var tile_data = current_tilemap.get_cell_tile_data(i, collided_tile_coords)
-			var move_right = tile_data.get_custom_data_by_layer_id(0)
-			standing_on_belt = true
-			if move_right == true:
-				belt_move_speed = belt_max_speed
-			else: 
-				belt_move_speed = -belt_max_speed
-	elif body is TileMap:
+	if body is TileMap:
 			
 		# Get the cell position of the tile that the player has collided with
 		var cell_position = body.local_to_map(global_position)
@@ -364,6 +353,9 @@ func _on_hitbox_body_shape_entered(body_rid, body, _body_shape_index, _local_sha
 		knockback = knockback_direction * knockback_strength
 		$StateMachine.transition_to("Hurt")
 		take_damage(1)
+
+
+
 
 
 func _on_hitbox_body_shape_exited(_body_rid, body, _body_shape_index, _local_shape_index) -> void:

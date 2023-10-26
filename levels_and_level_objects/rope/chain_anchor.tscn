@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://2mhr82ib42ek"]
+
+[ext_resource type="Texture2D" uid="uid://pugxk5hv4rtf" path="res://levels_and_level_objects/rope/rope_anchor.png" id="1_n8ytc"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_oig4y"]
+size = Vector2(32, 16)
+
+[node name="ChainAnchor" type="StaticBody2D"]
+collision_layer = 1024
+collision_mask = 15
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, 8)
+texture = ExtResource("1_n8ytc")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_oig4y")

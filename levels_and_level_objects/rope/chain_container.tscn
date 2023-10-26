@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://cxmg70ux0i1lv"]
+
+[ext_resource type="Script" path="res://levels_and_level_objects/rope/ChainContainer.gd" id="1_v5su5"]
+
+[node name="ChainContainer" type="Node2D"]
+script = ExtResource("1_v5su5")

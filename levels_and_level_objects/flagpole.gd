@@ -16,8 +16,9 @@ func _on_area_entered(area):
 	if area is HitBox and not score_chosen:
 		score_chosen = true
 		$ScoreMarker.global_position.y = area.global_position.y
-		$ScoreMarker.global_position.y = max(area.global_position.y, -225)
-		score = abs(($ScoreMarker.global_position.y/225)*100)
+		$ScoreMarker.global_position.y = max(area.global_position.y, position.y-225)
+		
+		score = abs(($ScoreMarker.position.y/225)*100)
 		score = round(score)
 		if score == 99:
 			$ScoreMarker/Head.visible = true

@@ -1,0 +1,32 @@
+[gd_scene load_steps=5 format=3 uid="uid://detcikgpt6veq"]
+
+[ext_resource type="Script" path="res://levels_and_level_objects/water_stream/water_stream.gd" id="1_8weuo"]
+[ext_resource type="Texture2D" uid="uid://cnm8hx133dgit" path="res://levels_and_level_objects/water_stream/water_stream.png" id="2_t4iuo"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_81afv"]
+atlas = ExtResource("2_t4iuo")
+region = Rect2(0, 0, 300, 32)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_khpkc"]
+size = Vector2(30, 256)
+
+[node name="Current" type="Node2D"]
+position = Vector2(-24, -64)
+rotation = 0.754613
+script = ExtResource("1_8weuo")
+speed = 200
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_repeat = 2
+position = Vector2(104, -80)
+rotation = 4.71239
+texture = SubResource("AtlasTexture_81afv")
+region_enabled = true
+region_rect = Rect2(0, 0, 256, 32)
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_mask = 6
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(103, -80)
+shape = SubResource("RectangleShape2D_khpkc")

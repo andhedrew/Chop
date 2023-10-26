@@ -21,7 +21,7 @@ var cutscene_running := false
 
 var lerp_speed_adj = lerpspeed*0.2
 var y_lead_amount := -70.0
-var y_air_lead_amount := y_lead_amount + 160.0
+var y_air_lead_amount := y_lead_amount + 160
 var y_peek_amount := -70.0
 var y_lead := y_lead_amount
 var y_target_lead := y_lead
@@ -63,6 +63,8 @@ func _ready():
 	GameEvents.big_explosion.connect(BIG_SCREENSHAKE)
 	
 	GameEvents.camera_change_focus.connect(on_change_focus)
+	
+	GameEvents.player_falling.connect(_on_player_changed_falling_state)
 	
 #	$Area2D.body_entered.connect(_on_body_entered)
 	
@@ -123,7 +125,7 @@ func _following_player_adjustments() -> void:
 		y_lead = y_lead_amount
 		lerpspeed = base_lerpspeed
 	else:
-		y_lead = 0.0
+		y_lead = y_air_lead_amount
 		lerpspeed = base_lerpspeed * 1.5
 
 
@@ -275,3 +277,8 @@ func _on_body_entered(body) -> void:
 		return
 	body.activate()
 
+func _on_player_changed_falling_state(player_is_falling: bool) -> void:
+	if player_is_falling:
+		pass
+	else:
+		pass

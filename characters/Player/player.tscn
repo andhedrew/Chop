@@ -881,7 +881,7 @@ size = Vector2(15, 26)
 
 [node name="Player" type="CharacterBody2D"]
 collision_layer = 2
-collision_mask = 641
+collision_mask = 1921
 script = ExtResource("1_xr41x")
 
 [node name="State" type="Label" parent="."]
