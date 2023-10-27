@@ -1,0 +1,96 @@
+[gd_scene load_steps=11 format=3 uid="uid://bg5fv3j7uct3o"]
+
+[ext_resource type="Script" path="res://levels_and_level_objects/enemy_dropper/EnemyDropper.gd" id="1_jtgr7"]
+[ext_resource type="PackedScene" uid="uid://cm208i2oyjrct" path="res://characters/enemy/hotdog/hotdog.tscn" id="2_m0lyy"]
+[ext_resource type="Texture2D" uid="uid://d07iqpfogf0ax" path="res://levels_and_level_objects/enemy_dropper/enemy_dropper.png" id="3_w0i14"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6oigw"]
+atlas = ExtResource("3_w0i14")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u2xyf"]
+atlas = ExtResource("3_w0i14")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1fika"]
+atlas = ExtResource("3_w0i14")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vah1o"]
+atlas = ExtResource("3_w0i14")
+region = Rect2(192, 0, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_11ge6"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6oigw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_u2xyf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1fika")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vah1o")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="Animation" id="Animation_ok51r"]
+resource_name = "rattle"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [Vector2(0, 0), Vector2(0, -2), Vector2(0, 2), Vector2(0, -1), Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AnimatedSprite2D:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1.05, 0.95), Vector2(0.95, 1.05)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_0uhis"]
+_data = {
+"rattle": SubResource("Animation_ok51r")
+}
+
+[node name="EnemyDropper" type="Node2D"]
+process_mode = 3
+script = ExtResource("1_jtgr7")
+enemy = ExtResource("2_m0lyy")
+wait_time = 2.0
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 5.0
+one_shot = true
+autostart = true
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(0.95, 1.05)
+sprite_frames = SubResource("SpriteFrames_11ge6")
+autoplay = "default"
+frame_progress = 0.86496
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_0uhis")
+}
