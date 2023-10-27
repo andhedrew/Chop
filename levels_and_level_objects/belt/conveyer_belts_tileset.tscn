@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://t73iskru6pf8"]
+
+[ext_resource type="TileSet" uid="uid://blkkka51tstq8" path="res://levels_and_level_objects/belt/belt_tileset.tres" id="1_drh87"]
+[ext_resource type="Script" path="res://levels_and_level_objects/belt/conveyer_belts_automated.gd" id="2_s8gr8"]
+
+[node name="ConveyerBelts" type="TileMap"]
+tile_set = ExtResource("1_drh87")
+format = 2
+script = ExtResource("2_s8gr8")

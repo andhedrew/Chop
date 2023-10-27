@@ -6,7 +6,8 @@
 
 [node name="CoinPickup" instance=ExtResource("1_wk83s")]
 script = ExtResource("2_uxk8k")
-value = 1
+value = 8
+floating_pickup = true
 
 [node name="CollisionShape2D" parent="." index="0"]
 position = Vector2(0, 0)

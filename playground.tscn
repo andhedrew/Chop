@@ -1,8 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://b02bwhhjwen2v"]
+[gd_scene load_steps=3 format=3 uid="uid://b02bwhhjwen2v"]
 
 [ext_resource type="PackedScene" uid="uid://dm85xjdq5mkk3" path="res://levels_and_level_objects/level_scenes/base_level.tscn" id="1_fb7pd"]
-[ext_resource type="TileSet" uid="uid://blkkka51tstq8" path="res://levels_and_level_objects/belt/belt_tileset.tres" id="2_hhnrn"]
-[ext_resource type="Script" path="res://levels_and_level_objects/belt/conveyer_belts_automated.gd" id="3_ykr6x"]
+[ext_resource type="PackedScene" uid="uid://t73iskru6pf8" path="res://levels_and_level_objects/belt/conveyer_belts_tileset.tscn" id="2_vc2s8"]
 
 [node name="World" instance=ExtResource("1_fb7pd")]
 
@@ -12,10 +11,8 @@ layer_0/tile_data = PackedInt32Array(65527, 524293, 0, 65528, 655365, 0, 65529, 
 [node name="LevelEdges" parent="." index="10"]
 layer_0/tile_data = PackedInt32Array(393206, 0, 0, -1245160, 0, 0, 1310766, 0, 0, -1638430, 0, 0, -3342375, 0, 0, 2752614, 0, 0, 917536, 0, 0, 852000, 0, 0, 786464, 0, 0, 720928, 0, 0, 655393, 0, 0, 589857, 0, 0, 524321, 0, 0, 458786, 0, 0, 393250, 0, 0, 327715, 0, 0, 262180, 0, 0, 196644, 0, 0, 131109, 0, 0, 65573, 0, 0, -65498, 0, 0, -131034, 0, 0, -196570, 0, 0, -262106, 0, 0, -327642, 0, 0, -393178, 0, 0, -458714, 0, 0, -524250, 0, 0, -589786, 0, 0, -655322, 0, 0, -720858, 0, 0, -786394, 0, 0, -851930, 0, 0, -917466, 0, 0, -983002, 0, 0, -1048538, 0, 0, -1114074, 0, 0, -1179610, 0, 0)
 
-[node name="ConveyerBelts" type="TileMap" parent="." index="16"]
-tile_set = ExtResource("2_hhnrn")
-format = 2
-layer_0/tile_data = PackedInt32Array(-196603, 0, 0, -196602, 65536, 0, -196601, 65536, 0, -196600, 65536, 0, -196599, 65536, 0, -196598, 65536, 0, -196597, 65536, 0, -196596, 65536, 0, -196595, 65536, 0, -196594, 65536, 0, -196593, 65536, 0, -196592, 131072, 0, -327681, 0, 0, -393216, 65536, 0, -393215, 131072, 0, -65540, 0, 131072, -65541, 65536, 65536, -65542, 131072, 65536)
-script = ExtResource("3_ykr6x")
+[node name="ConveyerBelts" parent="." index="16" instance=ExtResource("2_vc2s8")]
+position = Vector2(2, 44)
+layer_0/tile_data = PackedInt32Array(-327675, 0, 0, -327674, 65536, 0, -327673, 65536, 0, -327672, 65536, 0, -327671, 65536, 0, -327670, 65536, 0, -327669, 65536, 0, -327668, 65536, 0, -327667, 65536, 0, -327666, 65536, 0, -327665, 65536, 0, -327664, 65536, 0, -327663, 65536, 0, -327662, 131072, 0)
 
 [editable path="ColorShiftLayer"]
