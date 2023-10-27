@@ -117,11 +117,11 @@ func _take_damage(hitbox) -> void:
 		$StateMachine.transition_to("Hurt", colliding_hitbox_position)
 		health -= hitbox.damage
 		if hitbox.lethal:
-			die(true)
+			die(true, true)
 		elif wounded and health <= 0 and hitbox.execute:
 			execute()
 		elif health <= 0:
-			die(false)
+			die(false, true)
 		else:
 			var slice = preload("res://vfx/slice.tscn").instantiate()
 			slice.position = global_position
@@ -132,7 +132,7 @@ func _take_damage(hitbox) -> void:
 func _on_body_entered(body):
 	if body.name == "TileMap":
 		GameEvents.enemy_took_damage.emit()
-		die(false)
+		die(false, false)
 
 
 func execute():
@@ -143,17 +143,17 @@ func execute():
 		SoundPlayer.play_sound_positional(death_vocalization, position)
 	await get_tree().create_timer(0.2).timeout
 	GameEvents.drop_food.emit(death_pieces, Vector2(global_position.x, global_position.y - 5))
-	die(true)
+	die(true, true)
 
 
-func die(was_executed: bool = false) -> void:
+func die(was_executed: bool = false, drop_stuff: bool = true) -> void:
 	SoundPlayer.play_sound_positional(death_vocalization, global_position)
 	OS.delay_msec(80)
 	var explode := preload("res://vfx/explosion.tscn").instantiate()
 	explode.position = global_position
 	if was_executed:
 		explode.big = true
-	else: # drop stuff
+	elif drop_stuff: # drop stuff
 		randomize()
 		var options = [1, 2, 3]
 		var rand_index: int = randi() % options.size()
