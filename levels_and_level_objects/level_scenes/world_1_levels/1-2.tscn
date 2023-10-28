@@ -20,7 +20,6 @@ size = Vector2(26, 13)
 [node name="World" instance=ExtResource("1_o34es")]
 map_position = 1.0
 next_map = ExtResource("2_lmgrh")
-next_level = "res://levels_and_level_objects/level_scenes/world_1_levels/1-2.tscn"
 checkpoint = true
 
 [node name="TileMapBG" parent="." index="5"]
@@ -30,7 +29,7 @@ layer_0/tile_data = PackedInt32Array(-196605, 196608, 5, -196604, 393216, 3, -19
 layer_0/tile_data = PackedInt32Array(-327665, 131072, 0, -327666, 65536, 0, -327667, 65536, 0, -327668, 0, 0, -262132, 0, 2, -262131, 65536, 2, -262130, 65536, 2, -262129, 131072, 2, -262126, 0, 0, -327662, 0, 0, -262125, 0, 0, -327661, 0, 0, -327660, 0, 0, -327659, 0, 0, -262123, 0, 0, -262124, 0, 0)
 
 [node name="Player" parent="." index="8"]
-position = Vector2(5328, 912)
+position = Vector2(48, 800)
 
 [node name="Water_Body" parent="." index="9" instance=ExtResource("3_57rry")]
 position = Vector2(5376, 928)
