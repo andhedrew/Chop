@@ -14,7 +14,7 @@
 size = Vector2(8, 223)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_koa5o"]
-size = Vector2(4, 223)
+size = Vector2(4, 308)
 
 [sub_resource type="Animation" id="Animation_4n7ry"]
 resource_name = "wave"
@@ -90,7 +90,7 @@ position = Vector2(0, -79.5)
 shape = SubResource("RectangleShape2D_omg51")
 
 [node name="CollisionShape2D" parent="ExplodingBlock2" index="2"]
-position = Vector2(0, -79.5)
+position = Vector2(0, -122)
 shape = SubResource("RectangleShape2D_koa5o")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="ExplodingBlock2"]

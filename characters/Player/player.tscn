@@ -972,6 +972,11 @@ position = Vector2(-0.5, -1)
 shape = SubResource("RectangleShape2D_y680r")
 debug_color = Color(0.956863, 0, 0.0117647, 0.419608)
 
+[node name="BeltDetector" type="RayCast2D" parent="Pivot"]
+position = Vector2(-2, 14)
+target_position = Vector2(0, 3)
+collision_mask = 512
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -12.75)
 shape = SubResource("RectangleShape2D_v5543")

@@ -1,21 +1,29 @@
 extends State
 
 var coyote_jump: bool = false
+var jump_multiplier := 1.0
+
+func enter(_msg := {}) -> void:
+	if owner.belt_detector.is_colliding():
+		jump_multiplier = 1.1
+	else:
+		jump_multiplier = 1.0
 
 func physics_update(delta: float) -> void:
 	var jump_release := Input.is_action_just_released("jump")
 	var jump := Input.is_action_pressed("jump")
 	var jump_pressed := Input.is_action_just_pressed("jump")
+	var jump_height = owner.jump_height * jump_multiplier
 	
 	if jump_release and owner.velocity.y < (owner.jump_height/2):
-		owner.velocity.y = owner.jump_height/2
+		owner.velocity.y = jump_height/2
 	elif jump and owner.is_on_floor():
-		owner.velocity.y = owner.jump_height
+		owner.velocity.y = jump_height
 	elif jump_pressed and owner.in_water:
 		GameEvents.new_vfx.emit("res://vfx/bubble_burst.tscn", owner.global_position)
-		owner.velocity.y = owner.jump_height
+		owner.velocity.y = jump_height
 	elif coyote_jump:
-		owner.velocity.y = owner.jump_height
+		owner.velocity.y = jump_height
 		coyote_jump = false
 		
 	var input_direction_x: float = Input.get_axis("left", "right")

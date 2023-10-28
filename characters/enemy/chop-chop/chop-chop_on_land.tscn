@@ -1,0 +1,61 @@
+[gd_scene load_steps=13 format=3 uid="uid://c8hbwwnbcoese"]
+
+[ext_resource type="PackedScene" uid="uid://g2rn2npgnt8u" path="res://characters/enemy/enemy_flyer.tscn" id="1_2crlq"]
+[ext_resource type="Script" path="res://characters/enemy/chop-chop/chopchop.gd" id="2_4o4fo"]
+[ext_resource type="Texture2D" uid="uid://c8cl8ct0xp87x" path="res://characters/enemy/chop-chop/chopchop1.png" id="3_jmooc"]
+[ext_resource type="Texture2D" uid="uid://b5m6t0k65pt21" path="res://characters/enemy/chop-chop/chopchop2.png" id="4_yei50"]
+[ext_resource type="Texture2D" uid="uid://pyw7sdmfjljq" path="res://characters/enemy/chop-chop/chopchop.png" id="5_p88ig"]
+[ext_resource type="Script" path="res://characters/enemy/states/idler_idle.gd" id="6_tfm3a"]
+[ext_resource type="Script" path="res://characters/enemy/states/idler_hurt.gd" id="7_jx601"]
+[ext_resource type="Script" path="res://characters/enemy/states/eggplant_atack.gd" id="8_gtvhl"]
+[ext_resource type="Script" path="res://characters/enemy/states/walker_fall.gd" id="9_sy5wt"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_n2bgs"]
+size = Vector2(27, 27)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_u0i4s"]
+size = Vector2(30, 24)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ct8ym"]
+
+[node name="ChopChop" instance=ExtResource("1_2crlq")]
+collision_mask = 137
+script = ExtResource("2_4o4fo")
+health = 5
+speed = 15.0
+death_pieces = Array[Resource]([ExtResource("3_jmooc"), ExtResource("4_yei50")])
+bounty = 1
+
+[node name="Body" parent="Pivot" index="0"]
+texture = ExtResource("5_p88ig")
+
+[node name="player_detector" parent="Pivot" index="3"]
+target_position = Vector2(-100, -120)
+collision_mask = 2
+
+[node name="Move" parent="StateMachine" index="0"]
+script = ExtResource("6_tfm3a")
+
+[node name="Hurt" parent="StateMachine" index="1"]
+script = ExtResource("7_jx601")
+
+[node name="Attack" type="Node" parent="StateMachine" index="3"]
+script = ExtResource("8_gtvhl")
+
+[node name="Fall" type="Node" parent="StateMachine" index="4"]
+script = ExtResource("9_sy5wt")
+
+[node name="CollisionShape2D" parent="Hurtbox" index="0"]
+position = Vector2(-1.5, -12.5)
+shape = SubResource("RectangleShape2D_n2bgs")
+
+[node name="CollisionShape2D" parent="Hitbox" index="0"]
+position = Vector2(-1, -13)
+shape = SubResource("RectangleShape2D_u0i4s")
+
+[node name="CollisionShape2D" parent="." index="6"]
+position = Vector2(-2, -13)
+shape = SubResource("RectangleShape2D_ct8ym")
+
+[editable path="Hurtbox"]
+[editable path="Hitbox"]

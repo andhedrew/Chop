@@ -50,7 +50,7 @@ var lives := 5
 @onready var foot_detector := $Pivot/FootDetector
 @onready var animation_player := $Pivot/AnimationPlayer
 @onready var effects_player := $Pivot/EffectsPlayer
-
+@onready var belt_detector := $Pivot/BeltDetector
 
 var knockback_direction : Vector2
 var knockback_strength: float = 180.0
@@ -88,7 +88,6 @@ func _ready():
 	GameEvents.charge_amount_changed.emit(torch_charges, max_torch_charges)
 	
 	hurtbox.body_shape_entered.connect(_on_hitbox_body_shape_entered)
-	hurtbox.body_shape_exited.connect(_on_hitbox_body_shape_exited)
 	
 	GameEvents.bullet_hit_breakable.connect(_on_bullet_hit_breakable)
 	GameEvents.add_a_charge.connect(_on_adding_a_charge)
@@ -355,14 +354,6 @@ func _on_hitbox_body_shape_entered(body_rid, body, _body_shape_index, _local_sha
 		take_damage(1)
 
 
-
-
-
-func _on_hitbox_body_shape_exited(_body_rid, body, _body_shape_index, _local_shape_index) -> void:
-	if body.name == "Belts":
-		var bodies = foot_detector.get_overlapping_bodies()
-		if bodies == []:
-			standing_on_belt = false
 
 func _on_bullet_hit_breakable(bullet_pos: Vector2) -> void:
 	bullet_hit_breakable = true

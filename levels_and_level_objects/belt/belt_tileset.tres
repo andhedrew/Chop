@@ -11,12 +11,18 @@ texture = ExtResource("1_7b8tw")
 0:0/animation_frame_1/duration = 0.2
 0:0/animation_frame_2/duration = 0.2
 0:0/0 = 0
+0:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+0:0/0/physics_layer_0/angular_velocity = 0.0
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 0:0/0/metadata/_better_terrain = {
 0: [0],
 "type": 0
 }
 0:0/2 = 2
 0:0/2/flip_h = true
+0:0/2/physics_layer_0/linear_velocity = Vector2(0, 0)
+0:0/2/physics_layer_0/angular_velocity = 0.0
+0:0/2/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 0:0/2/metadata/_better_terrain = {
 8: [1],
 "type": 1
@@ -28,6 +34,9 @@ texture = ExtResource("1_7b8tw")
 1:0/animation_frame_1/duration = 0.2
 1:0/animation_frame_2/duration = 0.2
 1:0/0 = 0
+1:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+1:0/0/physics_layer_0/angular_velocity = 0.0
+1:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 1:0/0/metadata/_better_terrain = {
 0: [0],
 8: [0],
@@ -35,6 +44,9 @@ texture = ExtResource("1_7b8tw")
 }
 1:0/1 = 1
 1:0/1/flip_h = true
+1:0/1/physics_layer_0/linear_velocity = Vector2(0, 0)
+1:0/1/physics_layer_0/angular_velocity = 0.0
+1:0/1/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 1:0/1/metadata/_better_terrain = {
 0: [1],
 8: [1],
@@ -47,18 +59,26 @@ texture = ExtResource("1_7b8tw")
 2:0/animation_frame_1/duration = 0.2
 2:0/animation_frame_2/duration = 0.2
 2:0/0 = 0
+2:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+2:0/0/physics_layer_0/angular_velocity = 0.0
+2:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 2:0/0/metadata/_better_terrain = {
 8: [0],
 "type": 0
 }
 2:0/1 = 1
 2:0/1/flip_h = true
+2:0/1/physics_layer_0/linear_velocity = Vector2(0, 0)
+2:0/1/physics_layer_0/angular_velocity = 0.0
+2:0/1/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 2:0/1/metadata/_better_terrain = {
 0: [1],
 "type": 1
 }
 
 [resource]
+physics_layer_0/collision_layer = 512
+physics_layer_0/collision_mask = 0
 sources/0 = SubResource("TileSetAtlasSource_7ocix")
 metadata/_better_terrain = {
 "decoration": ["Decoration", Color(0.411765, 0.411765, 0.411765, 1), 3, [], {
