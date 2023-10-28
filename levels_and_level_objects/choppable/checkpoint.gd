@@ -7,7 +7,6 @@ var flag_in_place = false
 
 
 func _ready():
-	
 	z_index = SortLayer.FOREGROUND
 	flag_y_pos = $ExplodingProp.position.y
 	
@@ -19,7 +18,7 @@ func _ready():
 func _process(_delta):
 	if not has_node("ExplodingProp") and not flag_in_place and not animate_flag:
 		SaveManager.save_item("checkpoint_reached_this_level", true)
-		SaveManager.save_item("checkpoint_position", global_position)
+		SaveManager.save_item("checkpoint_position", global_position as Vector2)
 		await get_tree().create_timer(1.0).timeout
 		animate_flag = true
 

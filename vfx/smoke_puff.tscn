@@ -34,7 +34,7 @@ anim_speed_max = 2.43
 
 [node name="smoke" type="GPUParticles2D"]
 material = SubResource("CanvasItemMaterial_whx8a")
-amount = 30
+amount = 5
 process_material = SubResource("ParticleProcessMaterial_3kikx")
 texture = ExtResource("1_vg05k")
 lifetime = 2.0

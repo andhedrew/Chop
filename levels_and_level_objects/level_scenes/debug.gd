@@ -1,17 +1,24 @@
+
 extends CanvasLayer
 
 @export var debug := false
 
+
 func _process(_delta):
 	if debug:
-		$DebugMode.visible = true
+		visible = true
 	else:
-		$DebugMode.visible = false
+		visible = false
 	
 	if Input.is_action_just_pressed("debug"):
 		debug = !debug
 	
+	if debug:
+		$FPS.text = "FPS " + str(Engine.get_frames_per_second())
+		
 	match debug:
 		true:
-			$"../Player".has_booster_upgrade = true
-			$"../Player".torch_charges = 100
+			var player := $"../Player" as Node2D
+			if player:
+				$"../Player".has_booster_upgrade = true
+				$"../Player".torch_charges = 100

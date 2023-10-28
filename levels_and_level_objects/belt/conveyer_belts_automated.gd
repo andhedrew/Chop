@@ -23,6 +23,7 @@ func _physics_process(delta):
 			position = Vector2.ZERO
 
 func create_static_body(cell_pos):
+	pass
 	var static_body = StaticBody2D.new()
 	self.add_child(static_body)
 	static_body.global_position = self.map_to_local(cell_pos)

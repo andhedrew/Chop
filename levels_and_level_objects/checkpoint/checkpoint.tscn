@@ -1,0 +1,43 @@
+[gd_scene load_steps=9 format=3 uid="uid://i5hx0ruiv4wk"]
+
+[ext_resource type="Script" path="res://levels_and_level_objects/choppable/checkpoint.gd" id="1_4u8ir"]
+[ext_resource type="PackedScene" uid="uid://bnt6xxew5jdel" path="res://levels_and_level_objects/question_block/exploding_prop.tscn" id="2_u43ih"]
+[ext_resource type="Texture2D" uid="uid://dfdqc2yqecdxi" path="res://levels_and_level_objects/choppable/checkpoint_particles.png" id="3_gqht4"]
+[ext_resource type="Texture2D" uid="uid://cmtmfdh5letan" path="res://levels_and_level_objects/choppable/checkpoint_flag_1.png" id="4_nqwjj"]
+[ext_resource type="Texture2D" uid="uid://qix7kyowtq35" path="res://levels_and_level_objects/choppable/checkpoint_flag_2.png" id="5_2cvxo"]
+[ext_resource type="Texture2D" uid="uid://bbeog6xvqw8ae" path="res://levels_and_level_objects/choppable/checkpoint_base.png" id="6_c87ux"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rabtf"]
+size = Vector2(4, 62)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_uyj8c"]
+size = Vector2(4, 62)
+
+[node name="Checkpoint" type="Node2D"]
+script = ExtResource("1_4u8ir")
+
+[node name="ExplodingProp" parent="." instance=ExtResource("2_u43ih")]
+position = Vector2(0, -32)
+particle_texture = ExtResource("3_gqht4")
+
+[node name="Sprite2D" parent="ExplodingProp" index="0"]
+texture = ExtResource("4_nqwjj")
+
+[node name="CollisionShape2D" parent="ExplodingProp/Hurtbox" index="0"]
+position = Vector2(1, 1)
+shape = SubResource("RectangleShape2D_rabtf")
+
+[node name="CollisionShape2D" parent="ExplodingProp" index="2"]
+position = Vector2(1, 1)
+shape = SubResource("RectangleShape2D_uyj8c")
+
+[node name="SuccessFlag" type="Sprite2D" parent="."]
+position = Vector2(0, 32)
+texture = ExtResource("5_2cvxo")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, -32)
+texture = ExtResource("6_c87ux")
+
+[editable path="ExplodingProp"]
+[editable path="ExplodingProp/Hurtbox"]

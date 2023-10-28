@@ -121,7 +121,7 @@ func _take_damage(hitbox) -> void:
 		elif wounded and health <= 0 and hitbox.execute:
 			execute()
 		elif health <= 0:
-			die(false, true)
+			die(false, true, true)
 		else:
 			var slice = preload("res://vfx/slice.tscn").instantiate()
 			slice.position = global_position
@@ -132,7 +132,7 @@ func _take_damage(hitbox) -> void:
 func _on_body_entered(body):
 	if body.name == "TileMap":
 		GameEvents.enemy_took_damage.emit()
-		die(false, false)
+		die(false, false, false)
 
 
 func execute():
@@ -143,12 +143,17 @@ func execute():
 		SoundPlayer.play_sound_positional(death_vocalization, position)
 	await get_tree().create_timer(0.2).timeout
 	GameEvents.drop_food.emit(death_pieces, Vector2(global_position.x, global_position.y - 5))
-	die(true, true)
+	die(true, true, true)
 
 
-func die(was_executed: bool = false, drop_stuff: bool = true) -> void:
+func die(
+	was_executed: bool = false, 
+	drop_stuff: bool = true,
+	was_killed_by_player: bool = false
+	) -> void:
 	SoundPlayer.play_sound_positional(death_vocalization, global_position)
-	OS.delay_msec(80)
+	if was_killed_by_player:
+		OS.delay_msec(80)
 	var explode := preload("res://vfx/explosion.tscn").instantiate()
 	explode.position = global_position
 	if was_executed:
@@ -168,7 +173,6 @@ func die(was_executed: bool = false, drop_stuff: bool = true) -> void:
 	if get_parent().has_method("respawn"):
 		get_parent().respawn() 
 	queue_free()
-	
 
 func drop_health_and_die() -> void:
 	var explode := preload("res://vfx/blood_explosion.tscn").instantiate()

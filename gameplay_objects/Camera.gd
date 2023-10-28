@@ -21,7 +21,7 @@ var cutscene_running := false
 
 var lerp_speed_adj = lerpspeed*0.2
 var y_lead_amount := -70.0
-var y_air_lead_amount := y_lead_amount + 160
+var y_air_lead_amount := y_lead_amount + 130
 var y_peek_amount := -70.0
 var y_lead := y_lead_amount
 var y_target_lead := y_lead
