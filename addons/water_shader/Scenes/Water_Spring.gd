@@ -1,3 +1,4 @@
+@tool
 ##### Spring Modelling
 
 extends Node2D

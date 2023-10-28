@@ -9,7 +9,7 @@ func enter(_msg := {}) -> void:
 	$"../../BoosterPivot".visible = false
 
 
-func physics_update(delta: float) -> void:
+func physics_update(_delta: float) -> void:
 	if owner.in_water:
 		owner.velocity.x = lerp(owner.velocity.x, 0.0, Param.WATER_FRICTION)
 	else:

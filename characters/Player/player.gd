@@ -337,7 +337,7 @@ func out_of_water() -> void:
 	in_water = false
 
 
-func _on_hitbox_body_shape_entered(body_rid, body, _body_shape_index, _local_shape_index) -> void:
+func _on_hitbox_body_shape_entered(_body_rid, body, _body_shape_index, _local_shape_index) -> void:
 	if body is TileMap:
 			
 		# Get the cell position of the tile that the player has collided with

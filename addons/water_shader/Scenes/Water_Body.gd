@@ -1,3 +1,5 @@
+@tool
+
 ##This is the script that controls the water body
 ##it contains all the springs of our water
 extends Node2D

@@ -1,3 +1,4 @@
+@tool
 class_name SmoothPath
 extends Path2D
 
