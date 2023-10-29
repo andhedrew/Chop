@@ -23,8 +23,8 @@ SortLayer="*res://autoloads/SortLayer.gd"
 SoundPlayer="*res://autoloads/SoundPlayer.tscn"
 Param="*res://autoloads/Param.gd"
 SaveManager="*res://autoloads/SaveManager.gd"
-BetterTerrain="*res://addons/better-terrain/BetterTerrain.gd"
 LevelInfo="*res://autoloads/LevelInfo.gd"
+BetterTerrain="*res://addons/better-terrain/BetterTerrain.gd"
 
 [display]
 
