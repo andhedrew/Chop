@@ -121,12 +121,13 @@ func _following_player_adjustments() -> void:
 	else:
 		_is_dashing()
 	
-	if target_node.is_on_floor():
+	if target_node.is_on_floor():# or target_node.in_water:
 		y_lead = y_lead_amount
 		lerpspeed = base_lerpspeed
 	else:
 		y_lead = y_air_lead_amount
 		lerpspeed = base_lerpspeed * 1.5
+		
 
 
 func _following_default_adjustments() -> void:
@@ -139,8 +140,8 @@ func _following_default_adjustments() -> void:
 
 func _adjust_positions_taking_margins_into_account() -> void:
 		var margin_inside = 60 # define the margin
-		var margin_outside = 100 # define the margin
-		var margin_limit = 180
+		var margin_outside = 80 # define the margin
+		var margin_limit = 100
 		var _screen_size = get_viewport_rect().size # get the size of the viewport
 		
 		if abs(target_node.position.y - position.y) > margin_outside:
@@ -149,6 +150,7 @@ func _adjust_positions_taking_margins_into_account() -> void:
 			y_moving = false
 		
 		lerp_speed_adj = lerpspeed*0.2
+		
 		if abs(target_node.position.y - position.y) > margin_limit:
 			lerp_speed_adj = lerpspeed
 

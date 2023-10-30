@@ -16,7 +16,11 @@ var next_level: String
 func _ready():
 	lives_label.text = str(lives)
 	score = SaveManager.load_item("score")
-	score_divider = score/5.0
+	if score:
+		score_divider = score/5.0
+	else:
+		score_divider = 0.0
+		score = 0.0
 	increment_lives()
 	
 

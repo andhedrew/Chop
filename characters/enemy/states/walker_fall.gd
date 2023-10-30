@@ -10,6 +10,7 @@ func update(_delta: float) -> void:
 func physics_update(delta: float) -> void:
 
 	owner.velocity.y += Param.GRAVITY * delta
+	owner.velocity.y = min(owner.velocity.y, 200)
 	owner.move_and_slide()
 	
 	if owner.is_on_floor():
