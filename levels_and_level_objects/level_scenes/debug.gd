@@ -18,7 +18,7 @@ func _process(_delta):
 		
 	match debug:
 		true:
-			var player := $"../Player" as Node2D
+			var player := $"../Player"
 			if player:
 				$"../Player".has_booster_upgrade = true
 				$"../Player".torch_charges = 100

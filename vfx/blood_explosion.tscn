@@ -35,11 +35,10 @@ anim_speed_curve = SubResource("CurveTexture_hrf85")
 [node name="blood_explosion" type="GPUParticles2D"]
 material = SubResource("CanvasItemMaterial_ol3jj")
 position = Vector2(88, 45)
-emitting = false
-amount = 60
+amount = 30
 process_material = SubResource("ParticleProcessMaterial_ns3fy")
 texture = ExtResource("1_luedw")
-lifetime = 0.8
+lifetime = 1.5
 one_shot = true
 explosiveness = 1.0
 collision_base_size = 0.0
