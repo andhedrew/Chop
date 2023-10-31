@@ -1,9 +1,8 @@
 extends Camera2D
 
+# Exported Variables
 @export var target: NodePath = ""
-var original_target := target
 @export var lerpspeed: float = 0.05
-var base_lerpspeed: float = 0.05
 @export var trauma: float = 0.0
 @export var max_x := 150
 @export var max_y := 150
@@ -11,41 +10,42 @@ var base_lerpspeed: float = 0.05
 @export var time_scale := 150.0
 @export var decay: float = 0.6
 
-
+# Variables for X-axis
+var original_target := target
+var base_lerpspeed: float = 0.05
 var x_lead_amount := 150.0
 var x_lead := x_lead_amount
 var x_target_lead := x_lead
-
 var x_cutscene_lead := -30.0
-var cutscene_running := false
 
-var lerp_speed_adj = lerpspeed*0.2
+# Variables for Y-axis
 var y_lead_amount := -70.0
 var y_air_lead_amount := y_lead_amount + 130
 var y_peek_amount := -70.0
 var y_lead := y_lead_amount
 var y_target_lead := y_lead
+
+# Other Variables
 var airtime_index := 0.0
 var airspeed := 0.0
-
 var look_distance := 130.0
+var lerp_speed_adj = lerpspeed*0.2
 
+# State Variables
+var cutscene_running := false
 var y_moving := false
-
-var noise := FastNoiseLite.new()
-
-var target_node: Node
 var dashing := false
-
 var setup_letterbox := false
-var letterbox_bar_1
-var letterbox_bar_2
-
 var freeze_camera := false
 var looking := false 
-
 var split_focus := false
+
+# Node Variables 
+var target_node: Node
 var split_target: Node
+
+# Other Objects 
+var noise := FastNoiseLite.new()
 
 func _ready():
 	noise.noise_type =  FastNoiseLite.TYPE_SIMPLEX
@@ -58,17 +58,17 @@ func _ready():
 	GameEvents.morning_started.connect(_on_morning_start)
 	GameEvents.continue_day.connect(_on_morning_start)
 	GameEvents.player_died.connect(_on_player_die)
-	
+
 	GameEvents.boss_stomped.connect(BIG_SCREENSHAKE)
 	GameEvents.boss_hit_wall.connect(SCREENSHAKE) 
 	GameEvents.big_explosion.connect(on_big_explosion)
 	GameEvents.big_explosion.connect(BIG_SCREENSHAKE)
-	
+
 	GameEvents.camera_change_focus.connect(on_change_focus)
 	GameEvents.camera_split_focus.connect(_on_split_focus)
-	
+
 	GameEvents.player_falling.connect(_on_player_changed_falling_state)
-	
+
 #	$Area2D.body_entered.connect(_on_body_entered)
 	set_camera_limits()
 	original_target = target
@@ -81,7 +81,7 @@ func _ready():
 func _process(_delta):
 	if has_node(target):
 		target_node = get_node(target)
-	
+
 	if !freeze_camera:
 		if target_node is Player:
 			_following_player_adjustments()
@@ -91,7 +91,7 @@ func _process(_delta):
 				_stopped_looking_up_or_down()
 		else:
 			_following_default_adjustments()
-		
+
 		_adjust_positions_taking_margins_into_account()
 		_set_position()
 		_handle_trauma_and_offset()
@@ -101,16 +101,16 @@ func _set_position() -> void:
 	var avg_pos_x = target_node.global_position.x + x_target_lead
 	var avg_pos_y = target_node.global_position.y + y_target_lead
 	var split_pos = target_node.global_position
-	
+
 	if split_focus:
 		split_pos = split_target.global_position
 		avg_pos_x = target_node.global_position.x
 		avg_pos_y = target_node.global_position.y
 		avg_pos_x = (avg_pos_x + split_target.global_position.x) * 0.5
 		avg_pos_y = (avg_pos_y + split_target.global_position.y) * 0.5
-	
 
-	
+
+
 	if y_moving or looking or target_node != Player:
 		position.y = lerp(position.y, avg_pos_y, lerp_speed_adj)
 	position.x = lerp(position.x, avg_pos_x, lerp_speed_adj)
@@ -121,31 +121,31 @@ func _handle_trauma_and_offset() -> void:
 		randf_range(-1, 1) * trauma, \
 		randf_range(-1, 1) * trauma \
 	))
-	
-	
-	
+
+
+
 	var added_trauma = randf_range(-max_r, max_r) * trauma
 	position.x = position.x + added_trauma
 	position.y = position.y + added_trauma
-	
+
 	trauma = lerp(trauma, 0.0, 0.1)
-	
+
 
 func _following_player_adjustments() -> void:
 	_cutscene_running_adjustments()
-	
+
 	if !dashing:
 		_is_not_dashing()
 	else:
 		_is_dashing()
-	
+
 	if target_node.is_on_floor():# or target_node.in_water:
 		y_lead = y_lead_amount
 		lerpspeed = base_lerpspeed
 	else:
 		y_lead = y_air_lead_amount
 		lerpspeed = base_lerpspeed * 1.5
-		
+
 
 
 func _following_default_adjustments() -> void:
@@ -161,25 +161,25 @@ func _adjust_positions_taking_margins_into_account() -> void:
 		var margin_outside = 80 # define the margin
 		var margin_limit = 100
 		var _screen_size = get_viewport_rect().size # get the size of the viewport
-		
+
 		if abs(target_node.position.y - position.y) > margin_outside:
 			y_moving = true
 		elif abs(target_node.position.y - position.y) < margin_inside:
 			y_moving = false
-		
+
 		lerp_speed_adj = lerpspeed*0.2
-		
+
 		if abs(target_node.position.y - position.y) > margin_limit:
 			lerp_speed_adj = lerpspeed
 
 
 func _is_looking_up_or_down() -> void:
 	looking = true
-	
+
 	var look_direction = \
 	Vector2(Input.get_axis("right", "left"), 
 	Input.get_axis("down", "up")).normalized()
-	
+
 	if look_direction.y > 0:
 		y_target_lead = -look_distance
 	elif look_direction.y < 0:
