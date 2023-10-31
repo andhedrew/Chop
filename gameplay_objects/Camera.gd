@@ -44,6 +44,8 @@ var letterbox_bar_2
 var freeze_camera := false
 var looking := false 
 
+var split_focus := false
+var split_target: Node
 
 func _ready():
 	noise.noise_type =  FastNoiseLite.TYPE_SIMPLEX
@@ -63,12 +65,11 @@ func _ready():
 	GameEvents.big_explosion.connect(BIG_SCREENSHAKE)
 	
 	GameEvents.camera_change_focus.connect(on_change_focus)
+	GameEvents.camera_split_focus.connect(_on_split_focus)
 	
 	GameEvents.player_falling.connect(_on_player_changed_falling_state)
 	
 #	$Area2D.body_entered.connect(_on_body_entered)
-	
-	
 	set_camera_limits()
 	original_target = target
 	await get_tree().create_timer(0.001).timeout
@@ -97,9 +98,22 @@ func _process(_delta):
 
 
 func _set_position() -> void:
-		if y_moving or looking or target_node != Player:
-			position.y = lerp(position.y, target_node.global_position.y + y_target_lead, lerp_speed_adj)
-		position.x = lerp(position.x, target_node.global_position.x + x_target_lead, lerp_speed_adj)
+	var avg_pos_x = target_node.global_position.x + x_target_lead
+	var avg_pos_y = target_node.global_position.y + y_target_lead
+	var split_pos = target_node.global_position
+	
+	if split_focus:
+		split_pos = split_target.global_position
+		avg_pos_x = target_node.global_position.x
+		avg_pos_y = target_node.global_position.y
+		avg_pos_x = (avg_pos_x + split_target.global_position.x) * 0.5
+		avg_pos_y = (avg_pos_y + split_target.global_position.y) * 0.5
+	
+
+	
+	if y_moving or looking or target_node != Player:
+		position.y = lerp(position.y, avg_pos_y, lerp_speed_adj)
+	position.x = lerp(position.x, avg_pos_x, lerp_speed_adj)
 
 
 func _handle_trauma_and_offset() -> void:
@@ -108,8 +122,12 @@ func _handle_trauma_and_offset() -> void:
 		randf_range(-1, 1) * trauma \
 	))
 	
-	position.x = position.x + randf_range(-max_r, max_r) * trauma
-	position.y = position.y + randf_range(-max_r, max_r) * trauma
+	
+	
+	var added_trauma = randf_range(-max_r, max_r) * trauma
+	position.x = position.x + added_trauma
+	position.y = position.y + added_trauma
+	
 	trauma = lerp(trauma, 0.0, 0.1)
 	
 
@@ -269,6 +287,16 @@ func _on_morning_start() -> void:
 func _on_player_die() -> void:
 	$AnimationPlayer.play("fade_in")
 	freeze_camera = true
+
+
+func _on_split_focus(new_target, stopping_split_focus: bool = false) -> void:
+	if stopping_split_focus == true:
+		split_focus = false
+		split_target = null
+	else:
+		split_target = new_target
+		split_focus = true
+
 
 func on_change_focus(new_target: Node) -> void:
 	target = new_target.get_path()

@@ -13,13 +13,13 @@ position = Vector2(24, 16)
 
 [node name="Water_Body2" parent="." index="9" instance=ExtResource("4_ct340")]
 position = Vector2(-32, 40)
-spread = 2e-37
+spread = 2e-40
 distance_between_springs = 60
 spring_number = 50
 
 [node name="Water_Body3" parent="." index="10" instance=ExtResource("4_ct340")]
 position = Vector2(2920, 40)
-spread = 2e-40
+spread = 2e-43
 distance_between_springs = 60
 spring_number = 45
 

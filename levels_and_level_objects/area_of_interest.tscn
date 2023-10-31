@@ -1,13 +1,26 @@
-[gd_scene load_steps=3 format=3 uid="uid://cp5j3tbsikxw4"]
+[gd_scene load_steps=4 format=3 uid="uid://cp5j3tbsikxw4"]
 
 [ext_resource type="Script" path="res://levels_and_level_objects/area_of_interest.gd" id="1_exr8v"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3fmd5"]
 size = Vector2(640, 360)
 
-[node name="AreaOfInterest" type="Area2D"]
-collision_mask = 2
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_3rygi"]
+radius = 134.0
+height = 500.0
+
+[node name="AreaOfInterest" type="Node2D"]
 script = ExtResource("1_exr8v")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="SplitFocusArea" type="Area2D" parent="."]
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SplitFocusArea"]
 shape = SubResource("RectangleShape2D_3fmd5")
+
+[node name="MainFocusArea" type="Area2D" parent="."]
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="MainFocusArea"]
+rotation = 1.57079
+shape = SubResource("CapsuleShape2D_3rygi")

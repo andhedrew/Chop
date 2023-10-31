@@ -58,6 +58,7 @@ signal boss_defeated
 
 #utility
 signal camera_change_focus #Param 1: new node target
+signal camera_split_focus #Param 1: new node target, or FALSE if we want to stop.
 signal camera_reset_focus
 signal replace_tile #replace a ghost tile. Param 1: Global position
 
