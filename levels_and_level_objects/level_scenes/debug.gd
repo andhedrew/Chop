@@ -22,3 +22,5 @@ func _process(_delta):
 			if player:
 				$"../Player".has_booster_upgrade = true
 				$"../Player".torch_charges = 100
+				$"../Player".max_health = 20
+				$"../Player".health = 20

@@ -51,6 +51,9 @@ func _process(_delta):
 		_restart_level()
 	if Input.is_action_just_pressed("reset_save_data"):
 		SaveManager.reset_save()
+	
+	if Input.is_action_just_pressed("1"):
+		GameEvents.new_vfx.emit("res://vfx/blood_explosion.tscn", global_position)
 
 
 func _restart_level() -> void:

@@ -2,9 +2,9 @@
 
 [ext_resource type="Texture2D" uid="uid://xhuirgbdfj6n" path="res://levels_and_level_objects/water/water_wave.png" id="1_0l7ar"]
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_2ewy4"]
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_j2fud"]
 texture = ExtResource("1_0l7ar")
-0:0/next_alternative_id = 3
+texture_region_size = Vector2i(112, 112)
 0:0/animation_columns = 7
 0:0/animation_frame_0/duration = 1.0
 0:0/animation_frame_1/duration = 1.0
@@ -14,7 +14,7 @@ texture = ExtResource("1_0l7ar")
 0:0/animation_frame_5/duration = 1.0
 0:0/animation_frame_6/duration = 1.0
 0:0/0 = 0
-0:0/2 = 2
 
 [resource]
-sources/0 = SubResource("TileSetAtlasSource_2ewy4")
+tile_size = Vector2i(112, 112)
+sources/4 = SubResource("TileSetAtlasSource_j2fud")

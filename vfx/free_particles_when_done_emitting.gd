@@ -10,5 +10,5 @@ func _ready():
 
 func _process(_delta):
 	if not emitting:
-		await get_tree().create_timer(3.0).timeout
+		await get_tree().create_timer(1.0).timeout
 		queue_free()

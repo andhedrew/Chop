@@ -3,6 +3,8 @@ extends Area2D
 
 func _ready():
 	self.body_entered.connect(_on_body_entered)
+	self.area_entered.connect(_on_area_entered)
+	self.area_exited.connect(_on_area_exited)
 	
 func _process(_delta):
 	position = _get_viewport_center()
@@ -22,3 +24,13 @@ func _get_viewport_center() -> Vector2:
 func _on_body_entered(body) -> void:
 	if body is Enemy:
 		body.activate()
+	
+
+func _on_area_entered(area) -> void:
+	if area.owner is WaterSpring:
+		area.owner.activate()
+
+
+func _on_area_exited(area) -> void:
+	if area.owner is WaterSpring:
+		area.owner.deactivate()

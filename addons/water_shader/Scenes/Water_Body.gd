@@ -55,7 +55,8 @@ var player = null
 var time := 0.0
 #initializes the spring array and all the springs
 func _ready():
-	
+	if not Engine.is_editor_hint():
+		queue_free()
 	bottom = target_height + depth
 	water_border.width = border_thickness
 	
@@ -103,7 +104,7 @@ func _ready():
 	
 
 func _physics_process(delta):
-
+	
 	#moves all the springs accordingly
 	for i in springs:
 		i.water_update(k,d)

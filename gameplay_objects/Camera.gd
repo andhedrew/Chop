@@ -47,6 +47,7 @@ var split_target: Node
 # Other Objects 
 var noise := FastNoiseLite.new()
 
+# Start of tidied code
 func _ready():
 	noise.noise_type =  FastNoiseLite.TYPE_SIMPLEX
 	GameEvents.player_attacked.connect(SCREENSHAKE)
@@ -58,18 +59,14 @@ func _ready():
 	GameEvents.morning_started.connect(_on_morning_start)
 	GameEvents.continue_day.connect(_on_morning_start)
 	GameEvents.player_died.connect(_on_player_die)
-
 	GameEvents.boss_stomped.connect(BIG_SCREENSHAKE)
 	GameEvents.boss_hit_wall.connect(SCREENSHAKE) 
 	GameEvents.big_explosion.connect(on_big_explosion)
 	GameEvents.big_explosion.connect(BIG_SCREENSHAKE)
-
 	GameEvents.camera_change_focus.connect(on_change_focus)
 	GameEvents.camera_split_focus.connect(_on_split_focus)
-
 	GameEvents.player_falling.connect(_on_player_changed_falling_state)
 
-#	$Area2D.body_entered.connect(_on_body_entered)
 	set_camera_limits()
 	original_target = target
 	await get_tree().create_timer(0.001).timeout
@@ -189,6 +186,7 @@ func _stopped_looking_up_or_down() -> void:
 	looking = false
 	y_target_lead = y_lead
 
+### End of Tidied Code
 
 func _is_dashing() -> void:
 	var look_direction = \

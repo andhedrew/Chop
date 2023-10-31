@@ -4,7 +4,7 @@
 [ext_resource type="Script" path="res://addons/water_shader/Scenes/Water_Spring.gd" id="2"]
 
 [sub_resource type="RectangleShape2D" id="1"]
-size = Vector2(32, 1.57832)
+size = Vector2(60, 1.57832)
 
 [node name="Water_Spring" type="Node2D" groups=["spring"]]
 script = ExtResource("2")

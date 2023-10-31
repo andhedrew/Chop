@@ -1,6 +1,6 @@
 @tool
 ##### Spring Modelling
-
+class_name WaterSpring
 extends Node2D
 
 #the spring's current velocity
@@ -33,33 +33,36 @@ var collided_with = null
 #to make our wave move!
 signal splash
 
+var active := false
+
 func _ready():
 	area.body_exited.connect(_on_body_exited)
 
 
 func water_update(spring_constant, dampening):
-	## This function applies the hooke's law force to the spring!!
-	## This function will be called in each frame
-	## hooke's law ---> F =  - K * x 
-	counter += 1
-	#update the height value based on our current position
-	height = position.y
-	
-	#the spring current extension
-	var x = height - target_height
-	
-	var loss = -dampening * velocity
-	
-	#hooke's law:
-	force = - spring_constant * x + loss
-	
-	#apply the force to the velocity
-	#equivalent to velocity = velocity + force
-	velocity += force
-	
-	#make the spring move!
-	position.y += velocity
-	pass
+	if not Engine.is_editor_hint() and active:
+		## This function applies the hooke's law force to the spring!!
+		## This function will be called in each frame
+		## hooke's law ---> F =  - K * x 
+		counter += 1
+		#update the height value based on our current position
+		height = position.y
+		
+		#the spring current extension
+		var x = height - target_height
+		
+		var loss = -dampening * velocity
+		
+		#hooke's law:
+		force = - spring_constant * x + loss
+		
+		#apply the force to the velocity
+		#equivalent to velocity = velocity + force
+		velocity += force
+		
+		#make the spring move!
+		position.y += velocity
+		pass
 
 func initialize(x_position,id):
 	height = position.y
@@ -83,23 +86,34 @@ func set_collision_width(value):
 
 
 func _on_Area2D_body_entered(body):
-	#called when a body collides with a spring
-	
-	#if the body already collided with the spring, then do not collide
-	if body == collided_with:
-		return
-	
-	#the body is the last thing this spring collided with
-	collided_with = body
+	if active:
+		#called when a body collides with a spring
+		
+		#if the body already collided with the spring, then do not collide
+		if body == collided_with:
+			return
+		
+		#the body is the last thing this spring collided with
+		collided_with = body
 
-	#we multiply the motion of the body by the motion factor
-	#if we didn't the speed would be huge, depending on your game
-	var speed = body.velocity.y * motion_factor
+		#we multiply the motion of the body by the motion factor
+		#if we didn't the speed would be huge, depending on your game
+		var speed = body.velocity.y * motion_factor
+		
+		#emit the signal "splash" to call the splash function, at our water body script
+		emit_signal("splash",index,speed)
+		pass # Replace with function body.
 	
-	#emit the signal "splash" to call the splash function, at our water body script
-	emit_signal("splash",index,speed)
-	pass # Replace with function body.
-	
+
 
 func _on_body_exited(body) -> void:
 	collided_with = null
+
+
+func activate():
+	active = true
+
+
+func deactivate():
+	active = false
+
