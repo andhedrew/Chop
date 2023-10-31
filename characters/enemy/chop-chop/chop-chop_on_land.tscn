@@ -16,7 +16,9 @@ size = Vector2(27, 27)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_u0i4s"]
 size = Vector2(30, 24)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_ct8ym"]
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_2qcum"]
+radius = 11.0
+height = 26.0
 
 [node name="ChopChop" instance=ExtResource("1_2crlq")]
 collision_mask = 137
@@ -25,6 +27,9 @@ health = 5
 speed = 15.0
 death_pieces = Array[Resource]([ExtResource("3_jmooc"), ExtResource("4_yei50")])
 bounty = 1
+
+[node name="state_label" parent="." index="0"]
+visible = true
 
 [node name="Body" parent="Pivot" index="0"]
 texture = ExtResource("5_p88ig")
@@ -55,7 +60,8 @@ shape = SubResource("RectangleShape2D_u0i4s")
 
 [node name="CollisionShape2D" parent="." index="6"]
 position = Vector2(-2, -13)
-shape = SubResource("RectangleShape2D_ct8ym")
+rotation = 1.57079
+shape = SubResource("CapsuleShape2D_2qcum")
 
 [editable path="Hurtbox"]
 [editable path="Hitbox"]

@@ -12,7 +12,7 @@ func enter(_msg := {}) -> void:
 	player_detector.body_exited.connect(_on_body_exited)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func update(_delta: float) -> void:
+func physics_update(_delta: float) -> void:
 	if !owner.is_on_floor():
 		state_machine.transition_to("Fall")
 	
