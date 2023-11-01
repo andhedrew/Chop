@@ -1,20 +1,21 @@
-[gd_resource type="TileSet" load_steps=3 format=3 uid="uid://cxgtjqyi61ndr"]
+[gd_resource type="TileSet" load_steps=5 format=3 uid="uid://cxgtjqyi61ndr"]
 
 [ext_resource type="Texture2D" uid="uid://xhuirgbdfj6n" path="res://levels_and_level_objects/water/water_wave.png" id="1_0l7ar"]
+[ext_resource type="Texture2D" uid="uid://cqj6i3s1wixlu" path="res://levels_and_level_objects/water/water_tiles.png" id="2_r3fut"]
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_j2fud"]
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_p4gsh"]
 texture = ExtResource("1_0l7ar")
-texture_region_size = Vector2i(112, 112)
-0:0/animation_columns = 7
+0:0/animation_columns = 4
 0:0/animation_frame_0/duration = 1.0
 0:0/animation_frame_1/duration = 1.0
 0:0/animation_frame_2/duration = 1.0
 0:0/animation_frame_3/duration = 1.0
-0:0/animation_frame_4/duration = 1.0
-0:0/animation_frame_5/duration = 1.0
-0:0/animation_frame_6/duration = 1.0
+0:0/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_d12ju"]
+texture = ExtResource("2_r3fut")
 0:0/0 = 0
 
 [resource]
-tile_size = Vector2i(112, 112)
-sources/4 = SubResource("TileSetAtlasSource_j2fud")
+sources/0 = SubResource("TileSetAtlasSource_p4gsh")
+sources/1 = SubResource("TileSetAtlasSource_d12ju")
