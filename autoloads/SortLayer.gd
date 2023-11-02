@@ -1,6 +1,7 @@
 extends Node
 
-const BACKGROUND = -3
+const BACKGROUND = -4
+const WATER = -3
 const PROPS = -2
 const FOREGROUND = -1
 const PLAYER = 0 # Tilemap is at this depth

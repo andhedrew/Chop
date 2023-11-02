@@ -16,6 +16,7 @@ func _on_area_entered(hitbox) -> void:
 		particles.texture = texture
 		particles.restart()
 		particles.position = global_position
+		particles.z_index = z_index
 		get_node("/root/World").add_child(particles)
 		_destroy()
 
