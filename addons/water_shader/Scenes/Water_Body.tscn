@@ -9,13 +9,13 @@
 shader = ExtResource("2_qernt")
 shader_parameter/tint = Color(0.27451, 0.254902, 0.360784, 1)
 
-[sub_resource type="Curve2D" id="Curve2D_dx33d"]
+[sub_resource type="Curve2D" id="Curve2D_bw4kj"]
 _data = {
 "points": PackedVector2Array(0, 0, 0, 0, 0, 0, -8, 0, 8, 0, 32, 0, -8, 0, 8, 0, 64, 0, -8, 0, 8, 0, 96, 0, -8, 0, 8, 0, 128, 0, 0, 0, 0, 0, 160, 0)
 }
 point_count = 6
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_btrvd"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0h7no"]
 size = Vector2(160, 1000)
 
 [sub_resource type="Gradient" id="Gradient_3wu5v"]
@@ -56,7 +56,7 @@ color_ramp = SubResource("GradientTexture1D_jwdeb")
 
 [node name="Water_Body" type="Node2D"]
 script = ExtResource("1_wgyix")
-spread = 2e-13
+spread = 2e-16
 
 [node name="Water_Polygon" type="Polygon2D" parent="."]
 material = SubResource("4")
@@ -64,7 +64,7 @@ polygon = PackedVector2Array(0, 0, 3.875, 0, 8.01563, 0, 13, 0, 15.6621, 0, 18.3
 uv = PackedVector2Array(0, 0, 3.875, 0, 8.01563, 0, 13, 0, 15.6621, 0, 18.3594, 0, 21.0332, 0, 23.625, 0, 28.3281, 0, 32, 0, 35.3438, 0, 39.25, 0, 43.5313, 0, 48, 0, 52.4688, 0, 56.75, 0, 60.6563, 0, 64, 0, 67.3438, 0, 71.25, 0, 75.5313, 0, 80, 0, 84.4688, 0, 88.75, 0, 92.6563, 0, 96, 0, 99.3438, 0, 103.25, 0, 107.531, 0, 112, 0, 116.469, 0, 120.75, 0, 124.656, 0, 128, 0, 131.672, 0, 136.375, 0, 138.967, 0, 141.641, 0, 144.338, 0, 147, 0, 151.984, 0, 156.125, 0, 160, 0, 160, 1000, 0, 1000)
 
 [node name="Water_Border" type="Path2D" parent="."]
-curve = SubResource("Curve2D_dx33d")
+curve = SubResource("Curve2D_bw4kj")
 script = ExtResource("3_jj8le")
 color = Color(0.690196, 0.65098, 0.560784, 1)
 
@@ -73,7 +73,7 @@ position = Vector2(80, 500)
 collision_mask = 6
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Water_Body_Area"]
-shape = SubResource("RectangleShape2D_btrvd")
+shape = SubResource("RectangleShape2D_0h7no")
 
 [node name="Water_Mask" type="Control" parent="."]
 clip_contents = true

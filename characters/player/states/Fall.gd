@@ -9,12 +9,13 @@ func enter(_msg := {}) -> void:
 	owner.collision_mask |= (1 << 7)
 
 func physics_update(delta: float) -> void:
-	var jump := Input.is_action_just_pressed("jump")
+	var jump := Input.is_action_pressed("jump")
 	
 	
 	if jump and owner.in_water:
 		GameEvents.new_vfx.emit("res://vfx/bubble_burst.tscn", owner.global_position)
 		owner.velocity.y = owner.jump_height
+		state_machine.transition_to("Jump")
 	
 	if !coyote_timer.is_stopped() and jump:
 		state_machine.transition_to("Jump")

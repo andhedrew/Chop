@@ -885,7 +885,6 @@ collision_mask = 1921
 script = ExtResource("1_xr41x")
 
 [node name="State" type="Label" parent="."]
-visible = false
 offset_left = -13.0
 offset_top = -75.0
 offset_right = 27.0

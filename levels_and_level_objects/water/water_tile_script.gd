@@ -12,24 +12,25 @@ func _ready():
 		for cell in used_cells:
 			var cell_above = Vector2(cell.x, cell.y - 1)  # get the cell above
 			if self.get_cell_source_id(0, cell_above) == -1:  # if there's no tile above
-				create_area2d(cell)
+				pass
+#				create_area2d(cell)
 
 func _physics_process(delta):
 	if Engine.is_editor_hint():
-		if position != Vector2.ZERO:
-			position = Vector2.ZERO
+		if position != Vector2(8,8):
+			position = Vector2(8,8)
 
 
-func create_area2d(cell_pos):
-	var area = Area2D.new()
-	var script = preload("res://levels_and_level_objects/water/water_area.gd")
-	self.add_child(area)
-	area.global_position = self.map_to_local(cell_pos)
-	var collision_shape = CollisionShape2D.new()
-	area.add_child(collision_shape)
-	var shape = RectangleShape2D.new()
-	shape.size = Vector2(16.0, 16.0)
-	collision_shape.shape = shape
+#func create_area2d(cell_pos):
+#	var area = Area2D.new()
+#	var script = preload("res://levels_and_level_objects/water/water_area.gd")
+#	self.add_child(area)
+#	area.global_position = self.map_to_local(cell_pos)
+#	var collision_shape = CollisionShape2D.new()
+#	area.add_child(collision_shape)
+#	var shape = RectangleShape2D.new()
+#	shape.size = Vector2(16.0, 16.0)
+#	collision_shape.shape = shape
 
 
 

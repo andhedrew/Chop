@@ -6,6 +6,8 @@ var jump_multiplier := 1.0
 func enter(_msg := {}) -> void:
 	if owner.belt_detector.is_colliding():
 		jump_multiplier = 1.1
+	elif owner.in_water:
+		jump_multiplier = 0.8
 	else:
 		jump_multiplier = 1.0
 
@@ -19,9 +21,10 @@ func physics_update(delta: float) -> void:
 		owner.velocity.y = jump_height/2
 	elif jump and owner.is_on_floor():
 		owner.velocity.y = jump_height
-	elif jump_pressed and owner.in_water:
+	elif jump and owner.in_water:
 		GameEvents.new_vfx.emit("res://vfx/bubble_burst.tscn", owner.global_position)
 		owner.velocity.y = jump_height
+		state_machine.transition_to("Jump")
 	elif coyote_jump:
 		owner.velocity.y = jump_height
 		coyote_jump = false
@@ -56,7 +59,4 @@ func physics_update(delta: float) -> void:
 		
 	if Input.is_action_just_pressed("dash") and owner.has_booster_upgrade:
 		state_machine.transition_to("Dash")
-	
-	if jump and owner.in_water:
-		print_debug("TRANSITINSAON AGAIN IN WATWERa")
-		state_machine.transition_to("Jump")
+

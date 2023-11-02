@@ -88,12 +88,12 @@ func _ready():
 	GameEvents.charge_amount_changed.emit(torch_charges, max_torch_charges)
 	
 	hurtbox.body_shape_entered.connect(_on_hitbox_body_shape_entered)
+	hurtbox.body_shape_exited.connect(_on_hitbox_body_shape_exited)
 	
 	GameEvents.bullet_hit_breakable.connect(_on_bullet_hit_breakable)
 	GameEvents.add_a_charge.connect(_on_adding_a_charge)
 	z_index = SortLayer.PLAYER
 	_load_data()
-
 
 
 func _load_data() -> void:
@@ -329,11 +329,12 @@ func _feeding_level_start() -> void:
 	cutscene_walk = false
 	GameEvents.cutscene_ended.emit()
 
+
 func is_in_water() -> void:
 	in_water = true
 
 
-func out_of_water() -> void:
+func is_out_of_water() -> void:
 	in_water = false
 
 
@@ -341,7 +342,7 @@ func _on_hitbox_body_shape_entered(_body_rid, body, _body_shape_index, _local_sh
 	
 	if body is TileMap:
 		if body.name == "Water":
-			print_debug("IN WATER")
+			is_in_water()
 		else:
 			# Get the cell position of the tile that the player has collided with
 			var cell_position = body.local_to_map(global_position)
@@ -356,6 +357,12 @@ func _on_hitbox_body_shape_entered(_body_rid, body, _body_shape_index, _local_sh
 			$StateMachine.transition_to("Hurt")
 			take_damage(1)
 
+func _on_hitbox_body_shape_exited(_body_rid, body, _body_shape_index, _local_shape_index) -> void:
+	print_debug("is out of water")
+	if body is TileMap:
+		if body.name == "Water":
+			print("running is out of water funtion")
+			is_out_of_water()
 
 
 func _on_bullet_hit_breakable(bullet_pos: Vector2) -> void:
