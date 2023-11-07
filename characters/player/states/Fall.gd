@@ -10,6 +10,7 @@ func enter(_msg := {}) -> void:
 
 func physics_update(delta: float) -> void:
 	var jump := Input.is_action_pressed("jump")
+	var just_jumped := Input.is_action_just_pressed("jump")
 	
 	
 	if jump and owner.in_water:
@@ -17,10 +18,10 @@ func physics_update(delta: float) -> void:
 		owner.velocity.y = owner.jump_height
 		state_machine.transition_to("Jump")
 	
-	if !coyote_timer.is_stopped() and jump:
+	if !coyote_timer.is_stopped() and just_jumped:
 		state_machine.transition_to("Jump")
 		$"../Jump".coyote_jump = true
-	elif jump and jump_buffer_timer.is_stopped():
+	elif just_jumped and jump_buffer_timer.is_stopped():
 		jump_buffer_timer.start()
 	
 	var input_direction_x: float = Input.get_axis("left", "right")

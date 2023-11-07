@@ -13,7 +13,8 @@ func _ready():
 
 func _take_damage(area):
 	if area is HitBox:
-		_destroy()
+		if not area.execute:
+			_destroy()
 
 func _destroy() -> void:
 	var slice = slice_scene.instantiate()
