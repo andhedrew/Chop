@@ -3,9 +3,8 @@
 [ext_resource type="Script" path="res://levels_and_level_objects/trampoline/Bouncy.gd" id="1_w6d1p"]
 [ext_resource type="Texture2D" uid="uid://dka1j3y2exqti" path="res://levels_and_level_objects/trampoline/trampoline.png" id="2_8oigp"]
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_m8b2r"]
-radius = 5.5
-height = 38.0
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bbj7t"]
+size = Vector2(38, 11)
 
 [sub_resource type="Animation" id="Animation_pnrgw"]
 resource_name = "bounce"
@@ -30,21 +29,21 @@ _data = {
 }
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4ssgs"]
-size = Vector2(35, 4)
+size = Vector2(35, 1)
 
 [node name="Trampoline" type="StaticBody2D"]
 collision_mask = 6
 script = ExtResource("1_w6d1p")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(0, -16)
+position = Vector2(-8, -16)
 texture = ExtResource("2_8oigp")
 hframes = 3
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, -5.5)
-rotation = 1.57079
-shape = SubResource("CapsuleShape2D_m8b2r")
+position = Vector2(-8, -5.5)
+shape = SubResource("RectangleShape2D_bbj7t")
+one_way_collision = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
@@ -52,6 +51,7 @@ libraries = {
 }
 
 [node name="Area2D" type="Area2D" parent="."]
+position = Vector2(-8, 0)
 collision_mask = 6
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
