@@ -31,7 +31,7 @@ func _ready():
 	GameEvents.drop_health.connect(drop_health)
 	GameEvents.drop_coins.connect(drop_coins)
 	GameEvents.new_vfx.connect(vfx)
-	GameEvents.new_score_label.connect(_new_score_label)
+	GameEvents.player_scored.connect(_new_score_label)
 	GameEvents.player_died.connect(_on_player_lives_changed)
 
 	
@@ -191,6 +191,7 @@ func vfx(effect : String, vfx_position : Vector2) -> void:
 
 
 func _new_score_label(amount: int, new_position: Vector2) -> void:
+	GameEvents.player_score_changed.emit(amount, false)
 	var label := preload("res://user_interface/score_number.tscn").instantiate()
 	label.score = amount
 	label.position = new_position

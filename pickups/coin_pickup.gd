@@ -22,9 +22,8 @@ func _add_pickup_to_inventory(player) -> void:
 		score += score_value
 	else:
 		score = score_value
-		
-	GameEvents.player_score_changed.emit(score_value, false)
-	GameEvents.new_score_label.emit(score_value, global_position)
+	
+	GameEvents.player_scored.emit(score_value, global_position)
 
 	
 	SaveManager.save_item("money", player.money)
