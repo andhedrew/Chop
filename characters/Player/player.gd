@@ -358,10 +358,8 @@ func _on_hitbox_body_shape_entered(_body_rid, body, _body_shape_index, _local_sh
 			take_damage(1)
 
 func _on_hitbox_body_shape_exited(_body_rid, body, _body_shape_index, _local_shape_index) -> void:
-	print_debug("is out of water")
 	if body is TileMap:
 		if body.name == "Water":
-			print("running is out of water funtion")
 			is_out_of_water()
 
 

@@ -186,7 +186,6 @@ func _stopped_looking_up_or_down() -> void:
 	looking = false
 	y_target_lead = y_lead
 
-### End of Tidied Code
 
 func _is_dashing() -> void:
 	var look_direction = \
