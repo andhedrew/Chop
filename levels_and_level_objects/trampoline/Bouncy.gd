@@ -16,10 +16,12 @@ func _on_body_entered(body) -> void:
 		var distance = abs(body.position.x - sprite_x_pos)
 		print_debug(str(distance))
 		var speed_multiplier := 1.0
-		if distance < 8:
+		if distance < 10:
 			if not scored:
 				GameEvents.player_scored.emit(1, $Sprite2D.global_position)
 				scored = true
+			$BoostParticles.restart()
+			$BoostParticles.emitting = true
 			speed_multiplier = 1.3
 			SoundPlayer.play_sound_positional("bounce_success", global_position)
 			$AnimationPlayer.play("bounce")

@@ -1,7 +1,32 @@
-[gd_scene load_steps=7 format=3 uid="uid://dtb1demqxaq8y"]
+[gd_scene load_steps=10 format=3 uid="uid://dtb1demqxaq8y"]
 
 [ext_resource type="Script" path="res://levels_and_level_objects/trampoline/Bouncy.gd" id="1_w6d1p"]
 [ext_resource type="Texture2D" uid="uid://dka1j3y2exqti" path="res://levels_and_level_objects/trampoline/trampoline.png" id="2_8oigp"]
+
+[sub_resource type="Curve" id="Curve_heufy"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_nxt6l"]
+curve = SubResource("Curve_heufy")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_s1rbj"]
+emission_shape = 3
+emission_box_extents = Vector3(10, 1, 1)
+particle_flag_disable_z = true
+direction = Vector3(0, 1, 0)
+spread = 105.37
+gravity = Vector3(0, 0, 0)
+initial_velocity_min = 87.14
+initial_velocity_max = 140.38
+orbit_velocity_min = 0.0
+orbit_velocity_max = 0.0
+radial_accel_min = 100.0
+radial_accel_max = 100.0
+damping_min = 13.033
+damping_max = 31.289
+scale_max = 3.0
+scale_curve = SubResource("CurveTexture_nxt6l")
 
 [sub_resource type="Animation" id="Animation_pnrgw"]
 resource_name = "bounce"
@@ -49,6 +74,15 @@ size = Vector2(35, 11.5)
 [node name="Trampoline" type="StaticBody2D"]
 collision_mask = 6
 script = ExtResource("1_w6d1p")
+
+[node name="BoostParticles" type="GPUParticles2D" parent="."]
+visible = false
+position = Vector2(-9, -8)
+emitting = false
+process_material = SubResource("ParticleProcessMaterial_s1rbj")
+lifetime = 0.5
+one_shot = true
+explosiveness = 1.0
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(-8, -16)
