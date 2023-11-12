@@ -110,6 +110,11 @@ func _load_data() -> void:
 	if current_lives != null:
 		lives = current_lives
 	
+	var current_bag = SaveManager.load_item("bag")
+	if current_bag != null:
+		bag = current_bag
+		
+	
 
 func _physics_process(delta):
 

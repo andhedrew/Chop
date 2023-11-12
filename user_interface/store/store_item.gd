@@ -4,7 +4,7 @@ var cost: int = 20
 @export var img: Texture
 @export var header: String
 @export var description: String
-@export_enum("buy_health", "get_more_lives", "buy_booster", "upgrade_booster_charges") var buy_function: String
+@export_enum("buy_health", "get_more_lives", "buy_booster", "upgrade_booster_charges", "buy_value") var buy_function: String
 
 @export var one_time_purchase : bool = false
 
@@ -40,6 +40,8 @@ func _ready():
 		"upgrade_booster_charges": 
 			var booster_charge_number = SaveManager.load_item("booster_charges")
 			cost = 7 * booster_charge_number
+		"buy_value":
+			cost = 10
 	$ColorRect/MarginContainer/ColorRect/MarginContainer/Panel/TextureRect.texture = img
 	$ColorRect/MarginContainer/ColorRect/MarginContainer/Panel/Heading.text = header
 	$ColorRect/MarginContainer/ColorRect/MarginContainer/Panel/Description.text = description
@@ -119,3 +121,13 @@ func upgrade_booster_charges() -> void:
 	cost = 7 * booster_charge_number
 	set_button_text()
 	just_bought = false
+
+
+func buy_value() -> void:
+	GameEvents.player_scored.emit(10, global_position)
+	var value = SaveManager.load_item("score")
+	SaveManager.save_item("score", value+10)
+	await get_tree().create_timer(1.5).timeout
+	set_button_text()
+	just_bought = false
+	

@@ -80,6 +80,7 @@ func _ready():
 func _add_pickup_to_inventory(player) -> void:
 	if player.bag_capacity > player.bag.size():
 		player.bag.append($Sprite2D.texture)
+		SaveManager.save_item("bag", player.bag)
 		GameEvents.added_food_to_bag.emit(self)
 		_destroy(player.position)
 	else:
@@ -100,6 +101,4 @@ func setup(new_texture: CompressedTexture2D) -> void:
 		brick_value = 1
 		meat_value = 0
 		plant_value = 0
-#
-#	velocity.x = randf_range(-200, 200)
-#	velocity.y = -300
+

@@ -43,7 +43,8 @@ func setup_json() -> void:
 		"meat_score": 0,
 		"brick_score": 0,
 		"checkpoint_reached_this_level" : false,
-		"checkpoint_position" : Vector2.ZERO
+		"checkpoint_position" : Vector2.ZERO,
+		"bag" : [],
 		
 			
 				}

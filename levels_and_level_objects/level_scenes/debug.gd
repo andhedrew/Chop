@@ -24,6 +24,8 @@ func _process(_delta):
 #				$"../Player".torch_charges = 100
 				$"../Player".max_health = 20
 				$"../Player".health = 20
+				GameEvents.player_money_changed.emit(100)
+				SaveManager.save_item("money", 100)
 			$"../Camera".limit_left = -10000000
 			$"../Camera".limit_right = 10000000
 			$"../Camera".limit_top = -10000000

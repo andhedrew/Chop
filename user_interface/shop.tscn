@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://cxn7jo1be6y6r"]
+[gd_scene load_steps=11 format=3 uid="uid://cxn7jo1be6y6r"]
 
 [ext_resource type="Script" path="res://user_interface/shop.gd" id="1_qya3q"]
 [ext_resource type="Theme" uid="uid://b0dhfhdkknaj3" path="res://user_interface/chop_theme.tres" id="2_syqwu"]
@@ -8,7 +8,6 @@
 [ext_resource type="PackedScene" uid="uid://de2lypqmnkj8i" path="res://user_interface/store/store_item.tscn" id="5_tfq6r"]
 [ext_resource type="Texture2D" uid="uid://xoihsb8asqow" path="res://user_interface/healthbar/full_heart.png" id="6_rxqss"]
 [ext_resource type="Texture2D" uid="uid://23fffbb5s8y4" path="res://user_interface/lives.png" id="7_88o5g"]
-[ext_resource type="Texture2D" uid="uid://fqlj0b6q2saa" path="res://characters/player/torch_chimney.png" id="8_atysg"]
 
 [sub_resource type="Animation" id="Animation_skycn"]
 resource_name = "fade_in"
@@ -109,6 +108,7 @@ size_flags_vertical = 4
 
 [node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/MarginContainer2/VBoxContainer2"]
 layout_mode = 2
+alignment = 1
 
 [node name="StoreItem" parent="VBoxContainer/MarginContainer2/VBoxContainer2/HBoxContainer" instance=ExtResource("5_tfq6r")]
 custom_minimum_size = Vector2(200, 90)
@@ -128,31 +128,9 @@ buy_function = "get_more_lives"
 [node name="StoreItem3" parent="VBoxContainer/MarginContainer2/VBoxContainer2/HBoxContainer" instance=ExtResource("5_tfq6r")]
 custom_minimum_size = Vector2(200, 90)
 layout_mode = 2
-img = ExtResource("8_atysg")
-header = "Booster"
-description = "Hold Spacebar, then aim with arrow keys. Release to boost."
-buy_function = "buy_booster"
-
-[node name="HBoxContainer2" type="HBoxContainer" parent="VBoxContainer/MarginContainer2/VBoxContainer2"]
-layout_mode = 2
-
-[node name="StoreItem" parent="VBoxContainer/MarginContainer2/VBoxContainer2/HBoxContainer2" instance=ExtResource("5_tfq6r")]
-visible = false
-custom_minimum_size = Vector2(200, 90)
-layout_mode = 2
-header = "Extra Boost"
-description = "Boost one more time before it kicks the bucket."
-buy_function = "upgrade_booster_charges"
-
-[node name="StoreItem2" parent="VBoxContainer/MarginContainer2/VBoxContainer2/HBoxContainer2" instance=ExtResource("5_tfq6r")]
-visible = false
-custom_minimum_size = Vector2(200, 90)
-layout_mode = 2
-
-[node name="StoreItem3" parent="VBoxContainer/MarginContainer2/VBoxContainer2/HBoxContainer2" instance=ExtResource("5_tfq6r")]
-visible = false
-custom_minimum_size = Vector2(200, 90)
-layout_mode = 2
+header = "Value"
+description = "Buy what's most important"
+buy_function = "buy_value"
 
 [node name="Container" type="Container" parent="VBoxContainer"]
 custom_minimum_size = Vector2(0, 15)
