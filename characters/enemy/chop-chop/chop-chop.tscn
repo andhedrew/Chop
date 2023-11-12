@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://bc3gfp2esw84p"]
+[gd_scene load_steps=12 format=3 uid="uid://bc3gfp2esw84p"]
 
 [ext_resource type="PackedScene" uid="uid://g2rn2npgnt8u" path="res://characters/enemy/enemy_flyer.tscn" id="1_jibat"]
 [ext_resource type="Script" path="res://characters/enemy/jumper_jump_attack.gd" id="2_7o8sf"]
@@ -6,6 +6,8 @@
 [ext_resource type="Script" path="res://characters/enemy/chop-chop/chopchop.gd" id="2_kqq86"]
 [ext_resource type="Texture2D" uid="uid://b5m6t0k65pt21" path="res://characters/enemy/chop-chop/chopchop2.png" id="3_vh86u"]
 [ext_resource type="Texture2D" uid="uid://pyw7sdmfjljq" path="res://characters/enemy/chop-chop/chopchop.png" id="4_qgbxh"]
+[ext_resource type="Script" path="res://characters/enemy/chop-chop/player_detector.gd" id="6_cxnd8"]
+[ext_resource type="Script" path="res://characters/enemy/states/walker_fall.gd" id="7_3p1h2"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_n2bgs"]
 size = Vector2(27, 27)
@@ -29,10 +31,14 @@ texture = ExtResource("4_qgbxh")
 [node name="player_detector" parent="Pivot" index="3"]
 target_position = Vector2(-100, -120)
 collision_mask = 2
+script = ExtResource("6_cxnd8")
 
 [node name="Attack" type="Node" parent="StateMachine" index="3"]
 script = ExtResource("2_7o8sf")
 jump_y_speed = 400
+
+[node name="Fall" type="Node" parent="StateMachine" index="4"]
+script = ExtResource("7_3p1h2")
 
 [node name="CollisionShape2D" parent="Hurtbox" index="0"]
 position = Vector2(-1.5, -12.5)

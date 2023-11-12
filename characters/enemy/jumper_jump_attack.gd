@@ -14,9 +14,7 @@ func enter(_msg := {}) -> void:
 	owner.velocity.y = jump_y_speed
 
 
-func physics_update(delta: float) -> void:
-
-	
+func physics_update(delta: float) -> void:	
 	owner.velocity.y += Param.GRAVITY * delta
 	owner.move_and_slide()
 	
@@ -24,5 +22,10 @@ func physics_update(delta: float) -> void:
 		owner.velocity.x = lerp(owner.velocity.x, 0.0, Param.FRICTION)
 		if owner.velocity.x <= 0:
 			state_machine.transition_to("Idle")
+	
+	if owner.velocity.y > 0:
+		owner.animation_player.play("fall")
+	else:
+		owner.animation_player.play("attack")
 
 

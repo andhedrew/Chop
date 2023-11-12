@@ -20,7 +20,13 @@ func _process(_delta):
 		true:
 			var player := $"../Player"
 			if player:
-				$"../Player".has_booster_upgrade = true
-				$"../Player".torch_charges = 100
+#				$"../Player".has_booster_upgrade = true
+#				$"../Player".torch_charges = 100
 				$"../Player".max_health = 20
 				$"../Player".health = 20
+			$"../Camera".limit_left = -10000000
+			$"../Camera".limit_right = 10000000
+			$"../Camera".limit_top = -10000000
+			$"../Camera".limit_bottom = 10000000
+		false:
+			$"../Camera".set_camera_limits()

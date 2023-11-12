@@ -1,3 +1,4 @@
+@tool
 extends TileMap
 
 var particle_scene = preload("res://vfx/dirt_explode.tscn")

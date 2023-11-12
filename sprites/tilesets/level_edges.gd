@@ -1,5 +1,9 @@
+@tool
 extends TileMap
 
 
 func _ready():
-	visible = false
+	if not Engine.is_editor_hint():
+		visible = false
+	else:
+		z_index = SortLayer.IN_FRONT
