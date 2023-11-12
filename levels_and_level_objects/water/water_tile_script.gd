@@ -1,11 +1,15 @@
 @tool
 extends TileMap
+@export var bad_water := false
 
 var chance := 10
 var chance_increase := 3
 
 func _ready():
-	z_index = SortLayer.WATER
+	if bad_water:
+		z_index = SortLayer.COVER_PLAYER
+	else:
+		z_index = SortLayer.WATER
 	await get_tree().create_timer(0.1).timeout
 	if not Engine.is_editor_hint():
 		var used_cells = self.get_used_cells_by_id(0)  # assuming the tiles are on layer 0

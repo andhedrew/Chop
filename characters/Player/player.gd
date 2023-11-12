@@ -342,20 +342,22 @@ func _on_hitbox_body_shape_entered(_body_rid, body, _body_shape_index, _local_sh
 	
 	if body is TileMap:
 		if body.name == "Water":
-			is_in_water()
-		else:
-			# Get the cell position of the tile that the player has collided with
-			var cell_position = body.local_to_map(global_position)
+			if not body.bad_water:
+				is_in_water()
+				return
 
-			# Convert the cell position back to world coordinates, but at the center of the tile
-			var tile_center_position = body.map_to_local(cell_position) + Vector2(8.0, 8.0)
+		# Get the cell position of the tile that the player has collided with
+		var cell_position = body.local_to_map(global_position)
 
-			# Calculate the knockback direction based on the tile center position instead of the tilemap origin
-			knockback_direction = (global_position - tile_center_position).normalized()
+		# Convert the cell position back to world coordinates, but at the center of the tile
+		var tile_center_position = body.map_to_local(cell_position) + Vector2(8.0, 8.0)
 
-			knockback = knockback_direction * knockback_strength
-			$StateMachine.transition_to("Hurt")
-			take_damage(1)
+		# Calculate the knockback direction based on the tile center position instead of the tilemap origin
+		knockback_direction = (global_position - tile_center_position).normalized()
+
+		knockback = knockback_direction * knockback_strength
+		$StateMachine.transition_to("Hurt")
+		take_damage(1)
 
 func _on_hitbox_body_shape_exited(_body_rid, body, _body_shape_index, _local_shape_index) -> void:
 	if body is TileMap:

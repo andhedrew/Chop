@@ -55,8 +55,6 @@ var player = null
 var time := 0.0
 #initializes the spring array and all the springs
 func _ready():
-	if not Engine.is_editor_hint():
-		queue_free()
 	bottom = target_height + depth
 	water_border.width = border_thickness
 	
@@ -225,5 +223,5 @@ func _on_Water_Body_Area_body_entered(body):
 func on_body_exited(body) -> void:
 	if body is Player:
 		SoundPlayer.play_sound("water_reverse")
-		body.out_of_water()
+#		body.out_of_water()
 		player_in_water = false

@@ -1,6 +1,9 @@
 extends TileMap
 
 var particle_scene = preload("res://vfx/dirt_explode.tscn")
+
+func _ready():
+	z_index = SortLayer.WORLD
 func _deflect(deflect_position) -> void:
 	SoundPlayer.play_sound("ping")
 	SoundPlayer.play_sound("dirt")
