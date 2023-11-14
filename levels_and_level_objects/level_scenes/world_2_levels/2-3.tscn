@@ -342,7 +342,7 @@ rotation = 1.5708
 spawn = ExtResource("3_rynpx")
 
 [node name="Player" parent="." index="8"]
-position = Vector2(5192, -72)
+position = Vector2(3272, -16)
 
 [node name="Water" parent="." index="9" instance=ExtResource("6_tubmk")]
 z_index = 1

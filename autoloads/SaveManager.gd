@@ -65,9 +65,21 @@ func load_json() -> void:
 	data = saved_data
 
 
+#func save_item(key, new_value) -> void:
+#	data["saved_data"] = true
+#	data[key] = new_value
+#	var json_data := JSON.stringify(data)
+#	var file_access := FileAccess.open(SAVE_PATH, FileAccess.WRITE)
+#	file_access.store_line(json_data)
+#	file_access.close()
+#
+	
 func save_item(key, new_value) -> void:
 	data["saved_data"] = true
-	data[key] = new_value
+	if typeof(new_value) == TYPE_VECTOR2:
+		data[key] = [new_value.x, new_value.y]  # Convert Vector2 to an array
+	else:
+		data[key] = new_value
 	var json_data := JSON.stringify(data)
 	var file_access := FileAccess.open(SAVE_PATH, FileAccess.WRITE)
 	file_access.store_line(json_data)
@@ -76,9 +88,20 @@ func save_item(key, new_value) -> void:
 
 func load_item(key):
 	if data.has(key):
-		return data[key]
+		var value = data[key]
+		if typeof(value) == TYPE_ARRAY and value.size() == 2:
+			return Vector2(value[0], value[1])  # Reconstruct Vector2
+		else:
+			return value
 	else:
 		return null
+
+
+#func load_item(key):
+#	if data.has(key):
+#		return data[key]
+#	else:
+#		return null
 
 
 func reset_save() -> void:
