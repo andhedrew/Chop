@@ -78,40 +78,40 @@ func _physics_process(delta):
 	
 	if rotating:
 		$Body.rotation += (rotation_speed * delta)
-	
-	if not fan_running:
-		if activating:
-			SoundPlayer.play_sound("metal_clang")
-			var snd_1 = SoundPlayer.play_sound_positional("fan_running", position, 140)
-			var snd_2 = SoundPlayer.play_sound_positional("fan_blow", position, 250)
-			fan_running = true
-			$Body/RustParticles.restart()
-			$Body/BlowParticles.emitting = true
-			
-			if stays_rusty:
-				$Body/RustParticles.amount = 10
-				$Body/AnimatedSprite2D.animation = "new_animation" #GODOT WONT LET ME CHANGE THE ANIMATION NAME AT THIS TIME DONT GET ANGRY WITH ME
-				activating = false
-				await get_tree().create_timer(run_time_before_stopping).timeout
-				SoundPlayer.play_sound("fan_stop")
+	if not Engine.is_editor_hint():
+		if not fan_running:
+			if activating:
+				SoundPlayer.play_sound("metal_clang")
+				var snd_1 = SoundPlayer.play_sound_positional("fan_running", position, 140)
+				var snd_2 = SoundPlayer.play_sound_positional("fan_blow", position, 250)
+				fan_running = true
 				$Body/RustParticles.restart()
-				$Body/BlowParticles.emitting = false
-				$Body/AnimatedSprite2D.animation = "rusty"
-				snd_1.call_deferred("queue_free")
-				snd_2.call_deferred("queue_free")
-				fan_running = false
-			else:
-				$Body/AnimatedSprite2D.animation = "default"
-				rusty = false
-				activating = false
+				$Body/BlowParticles.emitting = true
+				
+				if stays_rusty:
+					$Body/RustParticles.amount = 10
+					$Body/AnimatedSprite2D.animation = "new_animation" #GODOT WONT LET ME CHANGE THE ANIMATION NAME AT THIS TIME DONT GET ANGRY WITH ME
+					activating = false
+					await get_tree().create_timer(run_time_before_stopping).timeout
+					SoundPlayer.play_sound("fan_stop")
+					$Body/RustParticles.restart()
+					$Body/BlowParticles.emitting = false
+					$Body/AnimatedSprite2D.animation = "rusty"
+					snd_1.call_deferred("queue_free")
+					snd_2.call_deferred("queue_free")
+					fan_running = false
+				else:
+					$Body/AnimatedSprite2D.animation = "default"
+					rusty = false
+					activating = false
 
-	else:
-		for body in bodies_in_fan:
-			var direction = Vector2.UP.rotated($Body.rotation)
-			body.velocity += direction * push_strength
-			var speed = body.velocity.length()
-			if speed > max_speed:
-				body.velocity = body.velocity.normalized() * max_speed
+		else:
+			for body in bodies_in_fan:
+				var direction = Vector2.UP.rotated($Body.rotation)
+				body.velocity += direction * push_strength
+				var speed = body.velocity.length()
+				if speed > max_speed:
+					body.velocity = body.velocity.normalized() * max_speed
 
 
 	

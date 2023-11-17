@@ -379,3 +379,4 @@ func _on_adding_a_charge() -> void:
 	if torch_charges < max_torch_charges:
 		torch_charges += 1
 		GameEvents.charge_amount_changed.emit(torch_charges, max_torch_charges )
+

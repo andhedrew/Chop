@@ -60,3 +60,7 @@ func fire() -> void:
 	bullet.setup(transform, fire_range, speed, rotation, spread)
 	Fade.crossfade_prepare(1.0, "Chop")
 	Fade.crossfade_execute() 
+
+
+func exit() -> void:
+	owner.execute_disabled = false
