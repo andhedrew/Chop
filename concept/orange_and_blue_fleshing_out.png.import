@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://mt33ibypprun"
-path="res://.godot/imported/breakable.png-7983ab90452d3cfea10b953edb68e067.ctex"
+uid="uid://bl3xonjop2umi"
+path="res://.godot/imported/orange_and_blue_fleshing_out.png-5b0e50c6fa1ce3a7f4cedb0506c71215.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/tilesets/breakable.png"
-dest_files=["res://.godot/imported/breakable.png-7983ab90452d3cfea10b953edb68e067.ctex"]
+source_file="res://concept/orange_and_blue_fleshing_out.png"
+dest_files=["res://.godot/imported/orange_and_blue_fleshing_out.png-5b0e50c6fa1ce3a7f4cedb0506c71215.ctex"]
 
 [params]
 

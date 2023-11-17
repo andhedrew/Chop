@@ -19,13 +19,19 @@ hurt_vocalizations = Array[AudioStreamWAV]([ExtResource("2_2i8l5")])
 death_vocalization = ExtResource("3_wpd1g")
 death_pieces = Array[Resource]([])
 
+[node name="state_label" parent="." index="0"]
+visible = true
+
 [node name="Body" parent="Pivot" index="0"]
 position = Vector2(-1, 10)
 texture = ExtResource("2_mtmjq")
 
 [node name="player_detector" parent="Pivot" index="3"]
 position = Vector2(0, 0)
-target_position = Vector2(0, -7)
+target_position = Vector2(0, -10)
+
+[node name="StateMachine" parent="." index="3"]
+initial_state = NodePath("Attack")
 
 [node name="Idle" parent="StateMachine" index="0"]
 script = ExtResource("3_st2jk")
