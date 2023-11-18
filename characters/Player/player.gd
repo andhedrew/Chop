@@ -255,7 +255,12 @@ func handle_facing() -> void:
 
 
 func _hurtbox_on_area_entered(hitbox) -> void:
+	if hitbox is HitBox:
+		if hitbox.lethal:
+			take_damage(1000)
 	if !invulnerable and hitbox is HitBox:
+		print("hit by hitbox")
+		print(str(hitbox.lethal))
 		knockback_direction = (global_position - hitbox.global_position).normalized()
 		knockback = knockback_direction * knockback_strength
 		$StateMachine.transition_to("Hurt")

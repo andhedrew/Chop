@@ -3,15 +3,18 @@ extends Node2D
 var push_strength = 60.0  # Adjust this value to change the strength of the push
 var bodies_in_stream = [] 
 @export var max_speed = 200  # replace with your maximum speed
+# Speed of movement in pixels
+var pixel_speed := 16
+# Time in seconds for each movement
+var move_interval := 0.16
 
-
-func _process(delta):
-	$Sprite2D.texture.region.position.x -= speed * delta
 
 
 func _ready():
 	$Area2D.body_entered.connect(_on_body_entered)
 	$Area2D.body_exited.connect(_on_body_exited)
+	$MovementTimer.wait_time = move_interval
+	$MovementTimer.timeout.connect(_on_movement_timer_timeout)
 
 
 func _physics_process(_delta):
@@ -33,3 +36,7 @@ func _on_body_exited(body) -> void:
 		bodies_in_stream.erase(body)
 
 
+func _on_movement_timer_timeout():
+	print_debug("advanced")
+	$Sprite2D.texture.region.position.x -= pixel_speed
+	$MovementTimer.start()

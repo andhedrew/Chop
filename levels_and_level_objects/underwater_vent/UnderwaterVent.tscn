@@ -21,6 +21,8 @@ initial_velocity_min = 60.0
 initial_velocity_max = 120.0
 orbit_velocity_min = 0.0
 orbit_velocity_max = 0.0
+anim_speed_min = 0.5
+anim_speed_max = 1.0
 
 [node name="UnderwaterVent" type="Node2D"]
 position = Vector2(112, -8)

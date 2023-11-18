@@ -34,6 +34,7 @@ anim_speed_max = 1.2
 
 [node name="Bubble" type="GPUParticles2D" parent="."]
 material = SubResource("CanvasItemMaterial_d20x5")
+emitting = false
 amount = 1
 process_material = SubResource("ParticleProcessMaterial_lrppe")
 texture = ExtResource("1_xp45o")

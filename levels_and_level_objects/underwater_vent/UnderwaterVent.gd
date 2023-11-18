@@ -21,7 +21,6 @@ func _ready():
 	fan_running = true
 	$Area2D.body_entered.connect(_on_body_entered)
 	$Area2D.body_exited.connect(_on_body_exited)
-	$Hurtbox.area_entered.connect(_on_area_entered_hurtbox)
 
 
 func _physics_process(_delta):

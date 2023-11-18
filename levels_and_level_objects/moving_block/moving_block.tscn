@@ -1,0 +1,47 @@
+[gd_scene load_steps=7 format=3 uid="uid://3op76g3ya5rx"]
+
+[ext_resource type="Texture2D" uid="uid://dpblwybuqu22j" path="res://levels_and_level_objects/moving_block/block_base.png" id="1_tlohb"]
+[ext_resource type="Script" path="res://levels_and_level_objects/moving_block/moving_block.gd" id="1_vsc41"]
+[ext_resource type="PackedScene" uid="uid://cxfiuhgots5lg" path="res://hitboxes/Hitbox.tscn" id="2_pmo5g"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ij7ay"]
+size = Vector2(64, 48)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_v5t7x"]
+size = Vector2(43, 30)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_x0vk6"]
+size = Vector2(61, 46)
+
+[node name="MovingBlock" type="CharacterBody2D"]
+collision_layer = 64
+collision_mask = 65
+script = ExtResource("1_vsc41")
+
+[node name="Body" type="Node2D" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="Body"]
+texture = ExtResource("1_tlohb")
+
+[node name="Hitbox" parent="." instance=ExtResource("2_pmo5g")]
+collision_layer = 64
+collision_mask = 391
+
+[node name="CollisionShape2D" parent="Hitbox" index="0"]
+shape = SubResource("RectangleShape2D_ij7ay")
+
+[node name="Hitbox2" parent="." instance=ExtResource("2_pmo5g")]
+collision_layer = 64
+collision_mask = 391
+lethal = true
+
+[node name="CollisionShape2D" parent="Hitbox2" index="0"]
+position = Vector2(-0.5, 0)
+shape = SubResource("RectangleShape2D_v5t7x")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-0.5, 0)
+shape = SubResource("RectangleShape2D_x0vk6")
+
+[editable path="Hitbox"]
+[editable path="Hitbox2"]
