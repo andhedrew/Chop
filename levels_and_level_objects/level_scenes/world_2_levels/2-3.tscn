@@ -221,7 +221,7 @@ position = Vector2(6328, 0)
 curve = SubResource("Curve2D_jc8ap")
 
 [node name="Path2D20" type="Path2D" parent="Level" index="17"]
-position = Vector2(6504, 0)
+position = Vector2(6504, 8)
 curve = SubResource("Curve2D_jc8ap")
 
 [node name="PathFollow2D" type="PathFollow2D" parent="Level/Path2D20" index="0"]
@@ -232,7 +232,7 @@ rotation = 1.5708
 spawn = ExtResource("3_rynpx")
 
 [node name="Path2D21" type="Path2D" parent="Level" index="18"]
-position = Vector2(6696, 0)
+position = Vector2(6696, 8)
 curve = SubResource("Curve2D_jc8ap")
 
 [node name="PathFollow2D" type="PathFollow2D" parent="Level/Path2D21" index="0"]
@@ -243,7 +243,7 @@ rotation = 1.5708
 spawn = ExtResource("3_rynpx")
 
 [node name="Path2D22" type="Path2D" parent="Level" index="19"]
-position = Vector2(6696, 0)
+position = Vector2(6696, 8)
 curve = SubResource("Curve2D_jc8ap")
 
 [node name="PathFollow2D" type="PathFollow2D" parent="Level/Path2D22" index="0"]
@@ -254,7 +254,7 @@ rotation = 1.5708
 spawn = ExtResource("3_rynpx")
 
 [node name="Path2D23" type="Path2D" parent="Level" index="20"]
-position = Vector2(6896, 0)
+position = Vector2(6896, 8)
 curve = SubResource("Curve2D_jc8ap")
 
 [node name="PathFollow2D" type="PathFollow2D" parent="Level/Path2D23" index="0"]
@@ -342,7 +342,7 @@ rotation = 1.5708
 spawn = ExtResource("3_rynpx")
 
 [node name="Player" parent="." index="8"]
-position = Vector2(3272, -16)
+position = Vector2(-384, 32)
 
 [node name="Water" parent="." index="9" instance=ExtResource("6_tubmk")]
 z_index = 1

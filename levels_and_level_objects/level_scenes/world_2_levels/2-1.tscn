@@ -89,7 +89,7 @@ value = 8
 floating_pickup = true
 
 [node name="Player" parent="." index="10"]
-position = Vector2(-1192, 16)
+position = Vector2(-1184, 16)
 
 [node name="TileMap" parent="." index="11"]
 z_index = 2

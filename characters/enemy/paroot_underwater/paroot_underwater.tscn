@@ -3,9 +3,9 @@
 [ext_resource type="PackedScene" uid="uid://23cc1xm0v5jp" path="res://characters/enemy/enemy_walker.tscn" id="1_dq4xu"]
 [ext_resource type="AudioStream" uid="uid://c2b7napty0xqn" path="res://audio/sounds/squawk_1.wav" id="2_tvmrg"]
 [ext_resource type="AudioStream" uid="uid://k7akmwtrmxvr" path="res://audio/sounds/squawk_2.wav" id="3_pt6f2"]
-[ext_resource type="Texture2D" uid="uid://b1ffa310elr21" path="res://characters/enemy/paroot/paroot_drop_3.png" id="4_8siu7"]
-[ext_resource type="Texture2D" uid="uid://smo0g21t470d" path="res://characters/enemy/paroot/paroot_drop_2.png" id="5_xoehj"]
-[ext_resource type="Texture2D" uid="uid://bnltgc473omjm" path="res://characters/enemy/paroot/paroot_drop_1.png" id="6_yta1i"]
+[ext_resource type="Texture2D" uid="uid://3b1jwltqwgij" path="res://characters/enemy/paroot_underwater/paroot_drop_1.png" id="4_3pt3q"]
+[ext_resource type="Texture2D" uid="uid://bug12qtgvmr24" path="res://characters/enemy/paroot_underwater/paroot_drop_2.png" id="5_kndet"]
+[ext_resource type="Texture2D" uid="uid://hv0loh065xfv" path="res://characters/enemy/paroot_underwater/paroot_drop_3.png" id="6_m74ej"]
 [ext_resource type="Shader" path="res://levels_and_level_objects/destructible_plants/chop_foliage_underwater.gdshader" id="7_2soey"]
 [ext_resource type="Script" path="res://characters/enemy/states/shoot_projectile.gd" id="8_dixk6"]
 [ext_resource type="Texture2D" uid="uid://lue0igafu3b" path="res://characters/enemy/paroot_underwater/tail.png" id="8_ojg8j"]
@@ -123,7 +123,7 @@ _data = {
 
 [node name="Paroot" instance=ExtResource("1_dq4xu")]
 hurt_vocalizations = Array[AudioStreamWAV]([ExtResource("2_tvmrg"), ExtResource("3_pt6f2")])
-death_pieces = Array[Resource]([ExtResource("4_8siu7"), ExtResource("5_xoehj"), ExtResource("6_yta1i")])
+death_pieces = Array[Resource]([ExtResource("4_3pt3q"), ExtResource("5_kndet"), ExtResource("6_m74ej")])
 bounty = 2
 
 [node name="Sprite2D" type="Sprite2D" parent="Pivot" index="0"]

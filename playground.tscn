@@ -1,8 +1,6 @@
-[gd_scene load_steps=4 format=3 uid="uid://b02bwhhjwen2v"]
+[gd_scene load_steps=2 format=3 uid="uid://b02bwhhjwen2v"]
 
 [ext_resource type="PackedScene" uid="uid://dm85xjdq5mkk3" path="res://levels_and_level_objects/level_scenes/base_level.tscn" id="1_fb7pd"]
-[ext_resource type="PackedScene" uid="uid://boakvecc6j1ta" path="res://characters/enemy/paroot/paroot.tscn" id="2_l6vbl"]
-[ext_resource type="PackedScene" uid="uid://dh6hstxtatowo" path="res://characters/enemy/paroot/pareet.tscn" id="3_ekh5f"]
 
 [node name="World" instance=ExtResource("1_fb7pd")]
 
@@ -13,11 +11,5 @@ layer_0/tile_data = PackedInt32Array(65527, 655365, 0, 65528, 655365, 0, 65529, 
 [node name="LevelEdges" parent="." index="10"]
 z_index = 3
 layer_0/tile_data = PackedInt32Array(393206, 0, 0, -1245160, 0, 0, 1310766, 0, 0, -1638430, 0, 0, -3342375, 0, 0, 2752614, 0, 0, 917536, 0, 0, 852000, 0, 0, 786464, 0, 0, 720928, 0, 0, 655393, 0, 0, 589857, 0, 0, 524321, 0, 0, 458786, 0, 0, 393250, 0, 0, 327715, 0, 0, 262180, 0, 0, 196644, 0, 0, 131109, 0, 0, 65573, 0, 0, -65498, 0, 0, -131034, 0, 0, -196570, 0, 0, -262106, 0, 0, -327642, 0, 0, -393178, 0, 0, -458714, 0, 0, -524250, 0, 0, -589786, 0, 0, -655322, 0, 0, -720858, 0, 0, -786394, 0, 0, -851930, 0, 0, -917466, 0, 0, -983002, 0, 0, -1048538, 0, 0, -1114074, 0, 0, -1179610, 0, 0)
-
-[node name="Paroot" parent="." index="17" instance=ExtResource("2_l6vbl")]
-position = Vector2(111, -32)
-
-[node name="Pareet" parent="." index="18" instance=ExtResource("3_ekh5f")]
-position = Vector2(182, -44)
 
 [editable path="ColorShiftLayer"]

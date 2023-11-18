@@ -70,6 +70,7 @@ func _replace_tile(global_pos: Vector2, crumble_brick) -> void:
 	explode.texture = particle_texture_2
 	var width : int = particle_texture_2.get_width() / 16
 	explode.material.set_particles_anim_h_frames(width)
+	explode.z_index = SortLayer.PLAYER
 	get_parent().add_child(explode)
 	explode.position = to_global(map_to_local(global_pos))
 	
