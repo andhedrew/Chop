@@ -9,4 +9,3 @@ position = Vector2(8, 8)
 tile_set = ExtResource("1_mus5c")
 format = 2
 script = ExtResource("2_6irf3")
-bad_water = null

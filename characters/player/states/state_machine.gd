@@ -8,6 +8,7 @@ var previous_state : String
 var state_timer := 0.0
 var invulnerable_timer := 0.0
 var execute_timer := 0.0
+var current_state_name := ""
 
 func _ready() -> void:
 	await owner.ready
@@ -26,6 +27,7 @@ func _unhandled_input(event: InputEvent) -> void:
 
 func _process(delta: float) -> void:
 	state.update(delta)
+	owner.current_state = current_state_name
 	if owner == Player:
 		if owner.execute_disabled == true:
 			execute_timer += 1.0
@@ -52,6 +54,7 @@ func transition_to(target_state_name: String, msg: Dictionary = {}) -> void:
 		state.exit()
 		GameEvents.player_changed_state.emit(target_state_name, previous_state)
 		state = get_node(target_state_name)
+		current_state_name = target_state_name
 		state.enter(msg)
 		state_timer = 0
 

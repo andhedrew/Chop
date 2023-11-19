@@ -1,6 +1,8 @@
-[gd_scene load_steps=60 format=3 uid="uid://bwvi5m2prncxh"]
+[gd_scene load_steps=67 format=3 uid="uid://bwvi5m2prncxh"]
 
 [ext_resource type="Script" path="res://characters/player/player.gd" id="1_xr41x"]
+[ext_resource type="Script" path="res://characters/player/water_booster.gd" id="2_7lvpa"]
+[ext_resource type="Texture2D" uid="uid://cab2k2uhoafoe" path="res://characters/player/water_booster.png" id="2_nux6a"]
 [ext_resource type="Texture2D" uid="uid://d1go5siomhupw" path="res://user_interface/booster_ui2.png" id="3_56qk1"]
 [ext_resource type="Texture2D" uid="uid://c0gkkcwur73fa" path="res://weapons/cleaver.png" id="3_fpyci"]
 [ext_resource type="Texture2D" uid="uid://51e4hodl1jf4" path="res://characters/player/blowtorch.png" id="3_vjd00"]
@@ -25,6 +27,103 @@
 
 [sub_resource type="Theme" id="Theme_e62t7"]
 default_font_size = 10
+
+[sub_resource type="Animation" id="Animation_evl4l"]
+resource_name = "unfold"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("WaterBooster:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [6, 5, 4]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_3mgmr"]
+resource_name = "fold"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("WaterBooster:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [5, 6]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.2),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_34h6y"]
+resource_name = "move"
+length = 0.8
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("WaterBooster:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3]
+}
+
+[sub_resource type="Animation" id="Animation_eog6q"]
+resource_name = "idle"
+loop_mode = 2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("WaterBooster:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [4]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_uq1an"]
+_data = {
+"fold": SubResource("Animation_3mgmr"),
+"idle": SubResource("Animation_eog6q"),
+"move": SubResource("Animation_34h6y"),
+"unfold": SubResource("Animation_evl4l")
+}
 
 [sub_resource type="Animation" id="Animation_51vkb"]
 resource_name = "booster"
@@ -910,6 +1009,24 @@ offset_right = 27.0
 offset_bottom = -34.0
 theme = SubResource("Theme_e62t7")
 text = "Looking"
+
+[node name="WaterBoosterPivot" type="Marker2D" parent="."]
+script = ExtResource("2_7lvpa")
+
+[node name="WaterBooster" type="Sprite2D" parent="WaterBoosterPivot"]
+position = Vector2(-1, -8)
+texture = ExtResource("2_nux6a")
+hframes = 7
+frame = 4
+
+[node name="InWaterTimer" type="Timer" parent="WaterBoosterPivot"]
+wait_time = 0.5
+one_shot = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="WaterBoosterPivot"]
+libraries = {
+"": SubResource("AnimationLibrary_uq1an")
+}
 
 [node name="BoosterPivot" type="Marker2D" parent="."]
 visible = false

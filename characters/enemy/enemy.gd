@@ -33,7 +33,7 @@ var player_health_full := true
 var reset_effects_player := false
 var cutscene_running := false
 var active := false
-
+var current_state := ""
 func _ready() -> void:
 	max_health = health
 	$Hurtbox.area_entered.connect(_take_damage)

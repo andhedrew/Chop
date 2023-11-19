@@ -9,7 +9,7 @@ const acceleration := 9
 const acceleration_in_air := 5
 const jump_height = -200.0
 
-
+var current_state := ""
 var bullet_hit_breakable := false
 var bullet_hit_breakable_position := Vector2.ZERO
 var invulnerable := false
@@ -76,6 +76,7 @@ var attack_animation_index := 0
 var standing_on_belt := false
 var belt_max_speed := 20
 var belt_move_speed := belt_max_speed
+
 
 
 func _ready():
@@ -349,7 +350,6 @@ func is_out_of_water() -> void:
 
 
 func _on_hitbox_body_shape_entered(_body_rid, body, _body_shape_index, _local_shape_index) -> void:
-	
 	if body is TileMap:
 		if body.name == "Water":
 			if not body.bad_water:
@@ -368,6 +368,7 @@ func _on_hitbox_body_shape_entered(_body_rid, body, _body_shape_index, _local_sh
 		knockback = knockback_direction * knockback_strength
 		$StateMachine.transition_to("Hurt")
 		take_damage(1)
+
 
 func _on_hitbox_body_shape_exited(_body_rid, body, _body_shape_index, _local_shape_index) -> void:
 	if body is TileMap:

@@ -22,7 +22,12 @@ func physics_update(delta: float) -> void:
 	elif jump and owner.is_on_floor():
 		owner.velocity.y = jump_height
 	elif jump and owner.in_water:
-		GameEvents.new_vfx.emit("res://vfx/bubble_burst.tscn", owner.global_position)
+		var pivot_pos = $"../../WaterBoosterPivot".global_position
+		var spacing := 8
+		var left_pos = Vector2(pivot_pos.x-spacing, pivot_pos.y)
+		var right_pos = Vector2(pivot_pos.x+spacing, pivot_pos.y)
+		GameEvents.new_vfx.emit("res://vfx/bubble_burst.tscn", left_pos)
+		GameEvents.new_vfx.emit("res://vfx/bubble_burst.tscn", right_pos)
 		owner.velocity.y = jump_height
 		state_machine.transition_to("Jump")
 	elif coyote_jump:
@@ -37,7 +42,7 @@ func physics_update(delta: float) -> void:
 		owner.velocity.y += Param.GRAVITY * delta
 	owner.move_and_slide()
 	
-	if owner.is_on_ceiling():
+	if owner.is_on_ceiling() and not owner.in_water:
 		SoundPlayer.play_sound("paper_crunch")
 		
 	if owner.velocity.y > 0:

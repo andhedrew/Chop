@@ -33,7 +33,7 @@ anim_speed_max = 1.2
 [node name="BubbleJump" type="GPUParticles2D"]
 material = SubResource("CanvasItemMaterial_d20x5")
 position = Vector2(0, 6)
-amount = 6
+amount = 2
 process_material = SubResource("ParticleProcessMaterial_t61n4")
 texture = ExtResource("1_8jyx5")
 one_shot = true
