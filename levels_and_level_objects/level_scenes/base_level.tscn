@@ -521,11 +521,6 @@ particle_texture_2 = ExtResource("8_68jo1")
 
 [node name="Level" type="Node2D" parent="."]
 
-[node name="Player" parent="." node_paths=PackedStringArray("camera") instance=ExtResource("31_fx83i")]
-position = Vector2(-8, -8)
-collision_mask = 3
-camera = NodePath("../Camera")
-
 [node name="TileMap" type="TileMap" parent="."]
 z_index = 2
 tile_set = ExtResource("7_pgalx")
@@ -623,5 +618,8 @@ text = "Pork Belly Valley"
 
 [node name="ColorShiftLayer" parent="." instance=ExtResource("18_5x8xk")]
 visible = false
+
+[node name="Player" parent="." instance=ExtResource("31_fx83i")]
+position = Vector2(-144, 64)
 
 [editable path="ColorShiftLayer"]

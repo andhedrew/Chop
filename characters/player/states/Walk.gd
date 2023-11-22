@@ -4,9 +4,11 @@ extends State
 @onready var jump_buffer_timer := $"../../JumpBufferTimer"
 
 func enter(_msg := {}) -> void:
-	owner.collision_mask |= (1 << 7)
+	# owner.collision_mask |= (1 << 7)
 	owner.execute_disabled = false
 	$"../../BoosterPivot".visible = false
+	$"../../BrickBasher".monitoring = false
+	$"../../BrickBasher".monitorable = false
 
 
 func physics_update(delta: float) -> void:

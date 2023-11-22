@@ -1,4 +1,4 @@
-[gd_scene load_steps=77 format=3 uid="uid://bwvi5m2prncxh"]
+[gd_scene load_steps=80 format=3 uid="uid://bwvi5m2prncxh"]
 
 [ext_resource type="Script" path="res://characters/player/player.gd" id="1_xr41x"]
 [ext_resource type="Texture2D" uid="uid://qidnhxm7dgua" path="res://characters/player/death_pieces/player_death_pieces_1.png" id="2_7gf3n"]
@@ -18,6 +18,7 @@
 [ext_resource type="Script" path="res://characters/player/states/Walk.gd" id="8_emxp3"]
 [ext_resource type="Script" path="res://characters/player/states/Attack.gd" id="9_46kpd"]
 [ext_resource type="Script" path="res://characters/player/CrumbleHitbox.gd" id="9_pa3o2"]
+[ext_resource type="PackedScene" uid="uid://cxfiuhgots5lg" path="res://hitboxes/Hitbox.tscn" id="10_5k5dc"]
 [ext_resource type="Script" path="res://characters/player/states/Jump.gd" id="10_sp1oq"]
 [ext_resource type="Script" path="res://characters/player/states/Fall.gd" id="11_2nxde"]
 [ext_resource type="Script" path="res://characters/player/states/Execute.gd" id="12_h1f83"]
@@ -149,6 +150,22 @@ tracks/0/keys = {
 "values": [0, 1, 0, 1]
 }
 
+[sub_resource type="Animation" id="Animation_e0m8y"]
+resource_name = "booster_spawn"
+length = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Booster:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [2]
+}
+
 [sub_resource type="Animation" id="Animation_nwnip"]
 resource_name = "fade_in"
 length = 0.5
@@ -208,6 +225,7 @@ tracks/1/keys = {
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_c0fai"]
 _data = {
 "booster": SubResource("Animation_51vkb"),
+"booster_spawn": SubResource("Animation_e0m8y"),
 "fade_in": SubResource("Animation_nwnip"),
 "fade_out": SubResource("Animation_llrec")
 }
@@ -1007,6 +1025,9 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xtksf"]
+size = Vector2(36, 32)
+
 [node name="Player" type="CharacterBody2D"]
 collision_layer = 2
 collision_mask = 1921
@@ -1071,7 +1092,8 @@ texture = ExtResource("3_56qk1")
 [node name="Booster" type="Sprite2D" parent="BoosterPivot"]
 position = Vector2(0, -4)
 texture = ExtResource("3_vjd00")
-hframes = 2
+hframes = 3
+frame = 2
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="BoosterPivot"]
 libraries = {
@@ -1207,4 +1229,15 @@ frame_progress = 0.892046
 wait_time = 0.3
 one_shot = true
 
+[node name="BrickBasher" parent="." instance=ExtResource("10_5k5dc")]
+position = Vector2(0, -14)
+collision_layer = 8
+collision_mask = 388
+monitoring = false
+monitorable = false
+
+[node name="CollisionShape2D" parent="BrickBasher" index="0"]
+shape = SubResource("RectangleShape2D_xtksf")
+
 [editable path="Hurtbox"]
+[editable path="BrickBasher"]

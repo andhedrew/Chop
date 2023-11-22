@@ -6,12 +6,16 @@ var state_timer := 0
 
 var starting_y := 20.0
 var increasing_y := starting_y
+var breaking_a_block := false
+
 
 func enter(_msg := {}) -> void:
-	owner.collision_mask |= (1 << 7)
+	# owner.collision_mask |= (1 << 7)
 	owner.execute_disabled = false
 	increasing_y = starting_y
-
+	$"../../BrickBasher".monitoring = true
+	$"../../BrickBasher".monitorable = true
+	
 
 
 func physics_update(delta: float) -> void:
@@ -22,7 +26,7 @@ func physics_update(delta: float) -> void:
 		owner.velocity.x = lerp(owner.velocity.x, 0.0, 0.5)
 		owner.velocity.y = increasing_y
 		increasing_y += 50*delta
-		print_debug(str(increasing_y))
+
 		owner.move_and_slide()
 	else:
 		if owner.is_on_floor():
@@ -38,6 +42,10 @@ func physics_update(delta: float) -> void:
 		state_machine.transition_to("Attack")
 
 func exit():
+	
+	if breaking_a_block == true:
+		dash_length = dash_length*3
+		
 	if owner.torch_charges > 0:
 		owner.velocity = -dash_direction * dash_length
 	if dash_direction == Vector2(0.0,0.0):
@@ -62,13 +70,15 @@ func exit():
 		var spread := 0
 		var rotation := rad_to_deg(atan2(dash_direction.y, dash_direction.x))
 		bullet.setup(transform, fire_range, speed, rotation, spread)
-
-		bullet = preload("res://bullets/slice_charge_bullet/slice_charge_bullet.tscn").instantiate()
-		owner.call_deferred("add_child", bullet)
-		transform = $"../../BoosterPivot".global_transform
-		fire_range = 10
-		speed = 200
-		spread = 0
-		rotation = rad_to_deg(atan2(dash_direction.y, dash_direction.x))+180
-		bullet.setup(transform, fire_range, speed, rotation, spread)
+		
+		
+#	
+#		bullet = preload("res://bullets/slice_charge_bullet/slice_charge_bullet.tscn").instantiate()
+#		owner.call_deferred("add_child", bullet)
+#		transform = $"../../BoosterPivot".global_transform
+#		fire_range = 10
+#		speed = 200
+#		spread = 0
+#		rotation = rad_to_deg(atan2(dash_direction.y, dash_direction.x))+180
+#		bullet.setup(transform, fire_range, speed, rotation, spread)
 

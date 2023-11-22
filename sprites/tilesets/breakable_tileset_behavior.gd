@@ -88,7 +88,6 @@ func _replace_tile(global_pos: Vector2, crumble_brick) -> void:
 
 
 func _return_tile(global_pos: Vector2) -> void:
-	
 	var atlas_coords = get_cell_atlas_coords(0, global_pos)
 	set_cell(0, global_pos, 2, atlas_coords)
 	BetterTerrain.update_terrain_cell(self, 0, Vector2i(global_pos.x, global_pos.y), true)

@@ -9,7 +9,6 @@ var reload_timer := 0
 var gravity_multiplier := 0.35
 
 func enter(_msg := {}) -> void:
-	owner.collision_mask |= (1 << 7)
 	if !owner.execute_disabled:
 		camera = owner.camera
 		owner.velocity.y = 0
@@ -27,6 +26,8 @@ func enter(_msg := {}) -> void:
 		SoundPlayer.play_sound("slash_flesh")
 	else:
 		state_machine.transition_to("Fall")
+	$"../../BrickBasher".monitoring = false
+	$"../../BrickBasher".monitorable = false
 
 
 func physics_update(delta: float) -> void:

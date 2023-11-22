@@ -9,6 +9,8 @@ var slicing_a_block := false
 
 func _ready() -> void:
 	GameEvents.player_hit_enemy.connect(_on_hitting_enemy)
+	$"../../BrickBasher".monitoring = false
+	$"../../BrickBasher".monitorable = false
 
 
 
@@ -52,7 +54,7 @@ func enter(_msg := {}) -> void:
 		var boost_speed := 33
 		slicing_a_block = true
 		
-		owner.collision_mask |= (1 << 7) # turns off the collider
+#		owner.collision_mask &= ~(1 << 7) # turns off the collider
 		owner.velocity.y = lerp(owner.velocity.y,0.0, 0.8)
 		
 		if owner.looking != Enums.Looking.UP and owner.looking != Enums.Looking.DOWN:

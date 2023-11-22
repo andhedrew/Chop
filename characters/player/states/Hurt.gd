@@ -4,7 +4,7 @@ var hitbox_position : Vector2
 var hurt_timer: SceneTreeTimer
 
 func enter(_msg := {}) -> void:
-	owner.collision_mask |= (1 << 7)
+	# owner.collision_mask |= (1 << 7)
 	owner.animation_player.play("hurt")
 	owner.effects_player.play("fx/take_damage")
 	SoundPlayer.play_sound("player_voice_oof")
@@ -12,6 +12,8 @@ func enter(_msg := {}) -> void:
 	hurt_timer = get_tree().create_timer(0.3)
 	hurt_timer.timeout.connect(_hurt_timer_done)
 	state_machine.invulnerable_timer = 1.3
+	$"../../BrickBasher".monitoring = false
+	$"../../BrickBasher".monitorable = false
 	
 
 func update(_delta: float) -> void:

@@ -3,8 +3,9 @@ var sound_player: AudioStreamPlayer
 var started_engine_sound := false
 var started_stalling_sound := false
 
+var spawn_played := false
+
 func _ready():
-	$AnimationPlayer.play("booster")
 	visible = false
 	$"../Charges".visible = false
 	
@@ -12,7 +13,14 @@ func _ready():
 func _process(_delta):
 	if owner.has_booster_upgrade:
 		visible = true
-		$"../Charges".visible = true
+		if not spawn_played:
+			$AnimationPlayer.play("booster_spawn")
+			await $AnimationPlayer.animation_finished
+			$AnimationPlayer.play("booster")
+			$"../Charges".visible = true
+			spawn_played = true
+		
+		
 
 	if $"../StateMachine".state.name == "Dash":
 		if owner.torch_charges > 0:

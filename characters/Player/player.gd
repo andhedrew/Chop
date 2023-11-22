@@ -33,10 +33,10 @@ var state_last_frame := state
 
 var bag := []
 var bag_capacity := 1000
-var has_booster_upgrade := false
+@export var has_booster_upgrade := false
 var torch_charges := 3
 var max_torch_charges := torch_charges
-var charge_time := 2.0
+var charge_time := 0.3
 var charge_timer := charge_time
 var execute_disabled := false
 
@@ -289,8 +289,8 @@ func _die() -> void:
 			i += 1
 			pickup.position = global_position + Vector2(cos(angle), sin(angle)) * spread
 			pickup.velocity = new_velocity.rotated(angle)
-#			get_node("/root/World").call_deferred("add_child", pickup)
-			get_node("/root/World").add_child(pickup)
+			get_node("/root/World").call_deferred("add_child", pickup)
+
 	OS.delay_msec(80)
 	var explode := preload("res://vfx/oil_explosion.tscn").instantiate()
 	explode.position = global_position
