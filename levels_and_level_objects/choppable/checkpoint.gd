@@ -7,6 +7,7 @@ var flag_in_place = false
 
 
 func _ready():
+	await get_tree().create_timer(0.1).timeout
 	z_index = SortLayer.FOREGROUND
 	flag_y_pos = $ExplodingProp.position.y
 	

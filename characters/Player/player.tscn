@@ -28,34 +28,6 @@
 [sub_resource type="Theme" id="Theme_e62t7"]
 default_font_size = 10
 
-[sub_resource type="Animation" id="Animation_evl4l"]
-resource_name = "unfold"
-length = 0.3
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("WaterBooster:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 1,
-"values": [6, 5, 4]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath(".:visible")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
-}
-
 [sub_resource type="Animation" id="Animation_3mgmr"]
 resource_name = "fold"
 length = 0.2
@@ -84,6 +56,22 @@ tracks/1/keys = {
 "values": [false]
 }
 
+[sub_resource type="Animation" id="Animation_eog6q"]
+resource_name = "idle"
+loop_mode = 2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("WaterBooster:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [4]
+}
+
 [sub_resource type="Animation" id="Animation_34h6y"]
 resource_name = "move"
 length = 0.8
@@ -101,9 +89,9 @@ tracks/0/keys = {
 "values": [0, 1, 2, 3]
 }
 
-[sub_resource type="Animation" id="Animation_eog6q"]
-resource_name = "idle"
-loop_mode = 2
+[sub_resource type="Animation" id="Animation_evl4l"]
+resource_name = "unfold"
+length = 0.3
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -111,10 +99,22 @@ tracks/0/path = NodePath("WaterBooster:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [6, 5, 4]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [4]
+"values": [true]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_uq1an"]
@@ -1011,13 +1011,14 @@ theme = SubResource("Theme_e62t7")
 text = "Looking"
 
 [node name="WaterBoosterPivot" type="Marker2D" parent="."]
+visible = false
 script = ExtResource("2_7lvpa")
 
 [node name="WaterBooster" type="Sprite2D" parent="WaterBoosterPivot"]
 position = Vector2(-1, -8)
 texture = ExtResource("2_nux6a")
 hframes = 7
-frame = 4
+frame = 5
 
 [node name="InWaterTimer" type="Timer" parent="WaterBoosterPivot"]
 wait_time = 0.5

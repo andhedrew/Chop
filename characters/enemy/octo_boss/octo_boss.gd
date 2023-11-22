@@ -5,6 +5,7 @@ var player_position: Vector2
 
 func _ready():
 	player_detector.body_entered.connect(_body_entered)
+	$backArms.z_index = SortLayer.FOREGROUND
 
 
 func _physics_process(delta):

@@ -1,6 +1,6 @@
 extends CharacterBody2D
 
-var speed = 100
+@export var speed = 100
 var move_direction = Vector2(0, 1)
 var pause_duration = 0.5
 var is_paused = false

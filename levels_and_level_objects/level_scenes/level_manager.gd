@@ -20,13 +20,10 @@ func _ready():
 	GameEvents.transition_to_map.connect(_on_transitioning_to_map)
 	GameEvents.morning_started.connect(_on_morning_started)
 	GameEvents.continue_day.connect(_on_morning_started)
-	SaveManager.save_item("level", scene_file_path)
-	GameEvents.hunt_started.connect(_on_hunt_started)
-#	GameEvents.player_died.connect(_restart_level)
 	
+	GameEvents.hunt_started.connect(_on_hunt_started)
 	GameEvents.cutscene_started.connect(_cutscene_started)
 	GameEvents.cutscene_ended.connect(_cutscene_ended)
-	
 	GameEvents.drop_food.connect(drop_food)
 	GameEvents.drop_health.connect(drop_health)
 	GameEvents.drop_coins.connect(drop_coins)
@@ -39,11 +36,16 @@ func _ready():
 		SaveManager.save_item("checkpoint", get_tree().current_scene.scene_file_path)
 	
 	
-	var start_at_checkpoint = SaveManager.load_item("checkpoint_reached_this_level")
-	var checkpoint_pos = SaveManager.load_item("checkpoint_position")
-	
-	if start_at_checkpoint:
-		$Player.position = checkpoint_pos
+	var last_level_reached = SaveManager.load_item("level")
+	if last_level_reached == scene_file_path:
+		var start_at_checkpoint = SaveManager.load_item("checkpoint_reached_this_level")
+		var checkpoint_pos = SaveManager.load_item("checkpoint_position")
+		if start_at_checkpoint:
+			$Player.position = checkpoint_pos
+	else: # if our save level does NOT equal the current level
+		SaveManager.save_item("level", scene_file_path)
+		SaveManager.save_item("checkpoint_reached_this_level", false)
+		SaveManager.save_item("checkpoint_position", Vector2.ZERO)
 
 
 func _process(_delta):
@@ -187,7 +189,6 @@ func vfx(effect : String, vfx_position : Vector2) -> void:
 	var new_vfx = load(effect).instantiate()
 	new_vfx.position = vfx_position
 	call_deferred("add_child", new_vfx)
-	print_debug("added vfx " + str(effect) + " to " + str(vfx_position))
 
 
 func _new_score_label(amount: int, new_position: Vector2) -> void:
