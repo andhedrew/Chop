@@ -2,6 +2,7 @@ extends State
 
 var hitbox_position : Vector2
 var hurt_timer: SceneTreeTimer
+
 func enter(_msg := {}) -> void:
 	owner.collision_mask |= (1 << 7)
 	owner.animation_player.play("hurt")

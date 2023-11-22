@@ -289,9 +289,10 @@ func _die() -> void:
 			i += 1
 			pickup.position = global_position + Vector2(cos(angle), sin(angle)) * spread
 			pickup.velocity = new_velocity.rotated(angle)
-			get_node("/root/World").call_deferred("add_child", pickup)
+#			get_node("/root/World").call_deferred("add_child", pickup)
+			get_node("/root/World").add_child(pickup)
 	OS.delay_msec(80)
-	var explode := preload("res://vfx/blood_explosion.tscn").instantiate()
+	var explode := preload("res://vfx/oil_explosion.tscn").instantiate()
 	explode.position = global_position
 	explode.emitting = true
 	get_node("/root/World").add_child(explode)

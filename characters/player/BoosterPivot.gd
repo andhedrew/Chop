@@ -6,14 +6,15 @@ var started_stalling_sound := false
 func _ready():
 	$AnimationPlayer.play("booster")
 	visible = false
+	$"../Charges".visible = false
 	
 
 func _process(_delta):
 	if owner.has_booster_upgrade:
 		visible = true
+		$"../Charges".visible = true
+
 	if $"../StateMachine".state.name == "Dash":
-		if $"../Charges".visible == false:
-			$AnimationPlayer.play("fade_in")
 		if owner.torch_charges > 0:
 			if !started_engine_sound:
 				sound_player = SoundPlayer.play_sound("engine")
@@ -37,9 +38,7 @@ func _process(_delta):
 			smoke.emitting = true
 			
 	elif $"../StateMachine".state.name == "Idle" or $"../StateMachine".state.name == "Move" or $"../StateMachine".state.name == "Cutscene":
-		if $"../Charges".visible == true:
-			$AnimationPlayer.play("fade_out")
-#		$arrow.visible = false
+		
 		started_engine_sound = false
 		started_stalling_sound = false
 		if sound_player:

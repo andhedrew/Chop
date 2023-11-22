@@ -1,11 +1,14 @@
-[gd_scene load_steps=67 format=3 uid="uid://bwvi5m2prncxh"]
+[gd_scene load_steps=77 format=3 uid="uid://bwvi5m2prncxh"]
 
 [ext_resource type="Script" path="res://characters/player/player.gd" id="1_xr41x"]
+[ext_resource type="Texture2D" uid="uid://qidnhxm7dgua" path="res://characters/player/death_pieces/player_death_pieces_1.png" id="2_7gf3n"]
 [ext_resource type="Script" path="res://characters/player/water_booster.gd" id="2_7lvpa"]
 [ext_resource type="Texture2D" uid="uid://cab2k2uhoafoe" path="res://characters/player/water_booster.png" id="2_nux6a"]
 [ext_resource type="Texture2D" uid="uid://d1go5siomhupw" path="res://user_interface/booster_ui2.png" id="3_56qk1"]
 [ext_resource type="Texture2D" uid="uid://c0gkkcwur73fa" path="res://weapons/cleaver.png" id="3_fpyci"]
+[ext_resource type="Texture2D" uid="uid://l0icomsqfnav" path="res://characters/player/death_pieces/player_death_pieces_2.png" id="3_k26cj"]
 [ext_resource type="Texture2D" uid="uid://51e4hodl1jf4" path="res://characters/player/blowtorch.png" id="3_vjd00"]
+[ext_resource type="Texture2D" uid="uid://cj8fq2xj3qeea" path="res://characters/player/death_pieces/player_death_pieces_3.png" id="4_n4aei"]
 [ext_resource type="Texture2D" uid="uid://tgfvqiycekrm" path="res://characters/player/player.png" id="4_xrcf8"]
 [ext_resource type="Script" path="res://characters/player/player_animation_controller.gd" id="5_g27gf"]
 [ext_resource type="Animation" uid="uid://dep0l7ft0tpjo" path="res://animations/take_damage.res" id="5_i7udj"]
@@ -24,6 +27,10 @@
 [ext_resource type="Script" path="res://characters/player/BoosterPivot.gd" id="17_majmj"]
 [ext_resource type="Script" path="res://characters/player/Syphon.gd" id="18_do748"]
 [ext_resource type="Script" path="res://characters/player/set_charges.gd" id="20_xbxmu"]
+[ext_resource type="Texture2D" uid="uid://bwb172nf07xf6" path="res://user_interface/Layer 1.png" id="25_xivlt"]
+[ext_resource type="Texture2D" uid="uid://eww6m4h63hyo" path="res://user_interface/Layer 2.png" id="26_at6oi"]
+[ext_resource type="Texture2D" uid="uid://bkxhe76d06gsi" path="res://user_interface/Layer 3.png" id="27_a2k8x"]
+[ext_resource type="Texture2D" uid="uid://c2uqgbsl75w0p" path="res://user_interface/steam_dial_alert.png" id="28_gj4cx"]
 
 [sub_resource type="Theme" id="Theme_e62t7"]
 default_font_size = 10
@@ -978,10 +985,33 @@ size = Vector2(10, 25.5)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_t8qf3"]
 size = Vector2(15, 26)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_0yy64"]
+atlas = ExtResource("28_gj4cx")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lgmkv"]
+atlas = ExtResource("28_gj4cx")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_5jrta"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0yy64")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lgmkv")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
 [node name="Player" type="CharacterBody2D"]
 collision_layer = 2
 collision_mask = 1921
 script = ExtResource("1_xr41x")
+death_pieces = Array[Resource]([ExtResource("2_7gf3n"), ExtResource("3_k26cj"), ExtResource("4_n4aei")])
 
 [node name="State" type="Label" parent="."]
 visible = false
@@ -1030,7 +1060,6 @@ libraries = {
 }
 
 [node name="BoosterPivot" type="Marker2D" parent="."]
-visible = false
 position = Vector2(0, -12)
 script = ExtResource("17_majmj")
 
@@ -1151,8 +1180,28 @@ wait_time = 0.1
 one_shot = true
 
 [node name="Charges" type="Marker2D" parent="."]
-position = Vector2(-9, -13)
+position = Vector2(-15, -20)
 script = ExtResource("20_xbxmu")
+
+[node name="TextureProgressBar" type="TextureProgressBar" parent="Charges"]
+custom_minimum_size = Vector2(16, 16)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+value = 100.0
+fill_mode = 5
+texture_under = ExtResource("25_xivlt")
+texture_over = ExtResource("26_at6oi")
+texture_progress = ExtResource("27_a2k8x")
+radial_initial_angle = 360.0
+
+[node name="Alert" type="AnimatedSprite2D" parent="Charges"]
+visible = false
+sprite_frames = SubResource("SpriteFrames_5jrta")
+autoplay = "default"
+frame_progress = 0.892046
 
 [node name="JumpBufferTimer" type="Timer" parent="."]
 wait_time = 0.3

@@ -4,10 +4,13 @@ var dash_direction := Vector2.ZERO
 var dash_length := 380
 var state_timer := 0
 
+var starting_y := 20.0
+var increasing_y := starting_y
 
 func enter(_msg := {}) -> void:
 	owner.collision_mask |= (1 << 7)
 	owner.execute_disabled = false
+	increasing_y = starting_y
 
 
 
@@ -15,13 +18,18 @@ func physics_update(delta: float) -> void:
 
 	if Input.is_action_pressed("dash") and owner.torch_charges > 0:
 		dash_direction = Vector2(Input.get_axis("right", "left"), Input.get_axis("down", "up")).normalized()
-		owner.velocity = -dash_direction * dash_length
+#		owner.velocity = -dash_direction * dash_length
+		owner.velocity.x = lerp(owner.velocity.x, 0.0, 0.5)
+		owner.velocity.y = increasing_y
+		increasing_y += 50*delta
+		print_debug(str(increasing_y))
+		owner.move_and_slide()
 	else:
 		if owner.is_on_floor():
 			state_machine.transition_to("Idle")
 		else:
 			state_machine.transition_to("Fall")
-		owner.position.y += 3*delta
+
 	
 	if Input.is_action_just_pressed("execute"):
 		state_machine.transition_to("Execute")
@@ -30,7 +38,8 @@ func physics_update(delta: float) -> void:
 		state_machine.transition_to("Attack")
 
 func exit():
-	
+	if owner.torch_charges > 0:
+		owner.velocity = -dash_direction * dash_length
 	if dash_direction == Vector2(0.0,0.0):
 		match owner.facing:
 			Enums.Facing.LEFT:
