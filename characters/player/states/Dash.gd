@@ -13,8 +13,7 @@ func enter(_msg := {}) -> void:
 	# owner.collision_mask |= (1 << 7)
 	owner.execute_disabled = false
 	increasing_y = starting_y
-	$"../../BrickBasher".monitoring = true
-	$"../../BrickBasher".monitorable = true
+
 	
 
 
@@ -42,7 +41,8 @@ func physics_update(delta: float) -> void:
 		state_machine.transition_to("Attack")
 
 func exit():
-	
+	$"../../BrickBasher".monitoring = true
+	$"../../BrickBasher".monitorable = true
 	if breaking_a_block == true:
 		dash_length = dash_length*3
 		

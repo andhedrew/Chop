@@ -6,6 +6,9 @@ extends State
 
 func enter(_msg := {}) -> void:
 	GameEvents.player_falling.emit(true)
+	await get_tree().create_timer(1.0).timeout
+	$"../../BrickBasher".monitoring = false
+	$"../../BrickBasher".monitorable = false
 
 func physics_update(delta: float) -> void:
 	var jump := Input.is_action_pressed("jump")

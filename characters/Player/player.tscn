@@ -1026,7 +1026,7 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xtksf"]
-size = Vector2(36, 32)
+size = Vector2(36, 52)
 
 [node name="Player" type="CharacterBody2D"]
 collision_layer = 2
@@ -1035,7 +1035,6 @@ script = ExtResource("1_xr41x")
 death_pieces = Array[Resource]([ExtResource("2_7gf3n"), ExtResource("3_k26cj"), ExtResource("4_n4aei")])
 
 [node name="State" type="Label" parent="."]
-visible = false
 offset_left = -13.0
 offset_top = -75.0
 offset_right = 27.0
