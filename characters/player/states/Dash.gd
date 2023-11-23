@@ -4,13 +4,12 @@ var dash_direction := Vector2.ZERO
 var dash_length := 380
 var state_timer := 0
 
-var starting_y := 20.0
+var starting_y := 2.0
 var increasing_y := starting_y
 var breaking_a_block := false
 
 
 func enter(_msg := {}) -> void:
-	# owner.collision_mask |= (1 << 7)
 	owner.execute_disabled = false
 	increasing_y = starting_y
 
