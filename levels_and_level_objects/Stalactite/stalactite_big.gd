@@ -1,6 +1,6 @@
 extends Node2D
 
-var bullet = preload("res://bullets/stalactite_bullet/stalactite_bullet.tscn")
+var bullet = preload("res://bullets/stalactite_bullet/stalactite_big_bullet.tscn")
 @export var hazard := false
 var fired_bullet := false
 
@@ -22,6 +22,7 @@ func _process(delta):
 	else:
 		if $RayCast2D.is_colliding():
 			if not fired_bullet:
+				
 				_fire_bullet()
 				fired_bullet = true
 

@@ -1,12 +1,12 @@
-[gd_scene load_steps=11 format=3 uid="uid://c257a013dc1s"]
+[gd_scene load_steps=11 format=3 uid="uid://c3n6cddrsy6kh"]
 
-[ext_resource type="Script" path="res://bullets/stalactite_bullet/stalactite_bullet.gd" id="1_tbb3a"]
-[ext_resource type="Texture2D" uid="uid://2jpcri1mnjq2" path="res://levels_and_level_objects/Stalctite/stalactite.png" id="2_mty4o"]
-[ext_resource type="PackedScene" uid="uid://cxfiuhgots5lg" path="res://hitboxes/Hitbox.tscn" id="3_4m261"]
-[ext_resource type="Texture2D" uid="uid://bnq0wr7vc4l75" path="res://levels_and_level_objects/Stalctite/stalactite_hazard.png" id="3_wnx73"]
+[ext_resource type="Script" path="res://bullets/stalactite_bullet/stalactite_bullet.gd" id="1_554tl"]
+[ext_resource type="Texture2D" uid="uid://bep8bdqrc2npk" path="res://levels_and_level_objects/Stalctite/stalactite_big.png" id="2_0jahd"]
+[ext_resource type="Texture2D" uid="uid://jsmmcglcwhn2" path="res://levels_and_level_objects/Stalctite/stalactite_big_hazard.png" id="3_hw3t8"]
+[ext_resource type="PackedScene" uid="uid://cxfiuhgots5lg" path="res://hitboxes/Hitbox.tscn" id="4_cndrp"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_n585r"]
-size = Vector2(25, 14)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_c5baw"]
+size = Vector2(42, 20)
 
 [sub_resource type="Animation" id="Animation_re3lr"]
 resource_name = "animate_bullet"
@@ -67,39 +67,39 @@ _data = {
 "bullet_exit": SubResource("Animation_km3k7")
 }
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_7a7ej"]
-radius = 8.0
-height = 22.0
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_uhkoc"]
+radius = 9.00001
+height = 66.0
 
 [node name="stalg_bullet" type="Area2D"]
 position = Vector2(-15, 0)
 collision_mask = 65
-script = ExtResource("1_tbb3a")
+script = ExtResource("1_554tl")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(9, 0)
+position = Vector2(36.0001, 0)
 rotation = 1.5708
 scale = Vector2(-1, -1)
-texture = ExtResource("2_mty4o")
-hframes = 2
+texture = ExtResource("2_0jahd")
+hframes = 3
 
 [node name="SpriteHazard" type="Sprite2D" parent="."]
 visible = false
 position = Vector2(9, 0)
 rotation = 1.5708
 scale = Vector2(-1, -1)
-texture = ExtResource("3_wnx73")
-hframes = 2
+texture = ExtResource("3_hw3t8")
+hframes = 3
 
-[node name="Hitbox" parent="." instance=ExtResource("3_4m261")]
-position = Vector2(19, -1)
+[node name="Hitbox" parent="." instance=ExtResource("4_cndrp")]
+position = Vector2(46.0001, -1)
 collision_layer = 24
 collision_mask = 6
 damage = 4
 
 [node name="CollisionShape2D" parent="Hitbox" index="0"]
-position = Vector2(-13.5, 1)
-shape = SubResource("RectangleShape2D_n585r")
+position = Vector2(3, 1)
+shape = SubResource("RectangleShape2D_c5baw")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
@@ -107,7 +107,8 @@ libraries = {
 }
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(27.0001, 0)
 rotation = 1.57079
-shape = SubResource("CapsuleShape2D_7a7ej")
+shape = SubResource("CapsuleShape2D_uhkoc")
 
 [editable path="Hitbox"]

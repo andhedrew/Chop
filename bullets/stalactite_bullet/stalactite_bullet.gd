@@ -11,6 +11,7 @@ func _init():
 
 var lifetime := 0.0
 
+var hazard := false
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -25,6 +26,12 @@ func _physics_process(delta):
 	var motion : Vector2 = transform.x * speed * delta
 	position += motion
 	lifetime += delta
+	if hazard:
+		$Sprite2D.visible = false
+		$SpriteHazard.visible = true
+	else:
+		$Sprite2D.visible = true
+		$SpriteHazard.visible = false
 
 
 

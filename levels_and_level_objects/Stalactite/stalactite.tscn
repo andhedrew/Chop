@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://cxqthvoiffubt"]
+[gd_scene load_steps=6 format=3 uid="uid://cxqthvoiffubt"]
 
 [ext_resource type="Script" path="res://levels_and_level_objects/Stalactite/Stalactite.gd" id="1_fpuld"]
 [ext_resource type="Texture2D" uid="uid://2jpcri1mnjq2" path="res://levels_and_level_objects/Stalctite/stalactite.png" id="2_ed4gq"]
 [ext_resource type="PackedScene" uid="uid://bb1h85dym7l4i" path="res://hitboxes/Hurtbox.tscn" id="3_2ng1i"]
+[ext_resource type="Texture2D" uid="uid://bnq0wr7vc4l75" path="res://levels_and_level_objects/Stalctite/stalactite_hazard.png" id="3_ub51t"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dl0yw"]
 size = Vector2(12, 17)
@@ -15,6 +16,12 @@ position = Vector2(0, 13)
 texture = ExtResource("2_ed4gq")
 hframes = 2
 
+[node name="SpriteHazard" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(0, 13)
+texture = ExtResource("3_ub51t")
+hframes = 2
+
 [node name="Hurtbox" parent="." instance=ExtResource("3_2ng1i")]
 position = Vector2(0, 17)
 collision_mask = 8
@@ -22,5 +29,10 @@ collision_mask = 8
 [node name="CollisionShape2D" parent="Hurtbox" index="0"]
 position = Vector2(0, -7.5)
 shape = SubResource("RectangleShape2D_dl0yw")
+
+[node name="RayCast2D" type="RayCast2D" parent="."]
+enabled = false
+target_position = Vector2(0, 1000)
+collision_mask = 2
 
 [editable path="Hurtbox"]
