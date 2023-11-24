@@ -97,13 +97,6 @@ func load_item(key):
 		return null
 
 
-#func load_item(key):
-#	if data.has(key):
-#		return data[key]
-#	else:
-#		return null
-
-
 func reset_save() -> void:
 	if FileAccess.file_exists(SAVE_PATH):
 		OS.move_to_trash(ProjectSettings.globalize_path(SAVE_PATH))

@@ -204,4 +204,6 @@ func _on_player_lives_changed() -> void:
 	if lives_amt == null:
 		lives_amt = 5
 	lives_amt -= 1
+	if $Debug.debug:
+		lives_amt += 1
 	SaveManager.save_item("lives", lives_amt)

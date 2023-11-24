@@ -16,8 +16,8 @@ func _ready():
 	attack_hurtbox.area_entered.connect(on_tongue_attacked)
 	hurtbox_collision.shape.size.x = 1
 	hitbox_collision.shape.size.x = 1
-	attack_hurtbox.monitoring = false
-	attack_hitbox.monitorable = false
+	attack_hurtbox.set_deferred("monitoring", false)
+	attack_hitboxset_deferred("monitorable", false)
 
 
 func enter(_msg := {}) -> void:
@@ -33,7 +33,7 @@ func transition_to_move() ->void:
 func activate_hitboxes() -> void:
 	hitbox_collision.shape.size.x = hitbox_original_width
 	hurtbox_collision.shape.size.x = hurtbox_original_width
-	attack_hurtbox.monitoring = true
+	attack_hurtbox.set_deferred("monitoring", true)
 	attack_hitbox.monitorable = true
 	attack_hurtbox.position += move_amount
 	attack_hitbox.position += move_amount

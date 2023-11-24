@@ -3,7 +3,7 @@ extends WalkerIdle
 
 
 func enter(_msg := {}) -> void:
-	$"../../Hurtbox".monitoring = false
+	$"../../Hurtbox".set_deferred("monitoring", false)
 	owner.animation_player.play("idle")
 	timer = Timer.new()
 	add_child(timer)

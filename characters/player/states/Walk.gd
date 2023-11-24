@@ -7,8 +7,8 @@ func enter(_msg := {}) -> void:
 	# owner.collision_mask |= (1 << 7)
 	owner.execute_disabled = false
 	$"../../BoosterPivot".visible = false
-	$"../../BrickBasher".monitoring = false
-	$"../../BrickBasher".monitorable = false
+	$"../../BrickBasher".set_deferred("monitoring", false)
+	$"../../BrickBasher".set_deferred("monitorable", false)
 
 
 func physics_update(delta: float) -> void:
@@ -42,8 +42,8 @@ func physics_update(delta: float) -> void:
 		coyote_timer.start()
 		state_machine.transition_to("Fall")
 	
-	if Input.is_action_just_pressed("dash") and owner.has_booster_upgrade:
-		state_machine.transition_to("Dash")
+#	if Input.is_action_just_pressed("dash") and owner.has_booster_upgrade:
+#		state_machine.transition_to("Dash")
 	
 	if Input.is_action_just_pressed("down"):
 		owner.position.y += 1

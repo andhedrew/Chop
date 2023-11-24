@@ -26,8 +26,8 @@ func enter(_msg := {}) -> void:
 		SoundPlayer.play_sound("slash_flesh")
 	else:
 		state_machine.transition_to("Fall")
-	$"../../BrickBasher".monitoring = false
-	$"../../BrickBasher".monitorable = false
+	$"../../BrickBasher".set_deferred("monitoring", false)
+	$"../../BrickBasher".set_deferred("monitorable", false)
 
 
 func physics_update(delta: float) -> void:

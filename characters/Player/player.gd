@@ -134,7 +134,7 @@ func _physics_process(delta):
 		if is_on_floor():
 			charge_time -= 1*delta
 			if charge_time < 0:
-				torch_charges += 1
+				torch_charges = max_torch_charges
 				charge_time = charge_timer
 				GameEvents.charge_amount_changed.emit(torch_charges, max_torch_charges)
 	

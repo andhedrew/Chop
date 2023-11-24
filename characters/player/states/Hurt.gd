@@ -12,8 +12,8 @@ func enter(_msg := {}) -> void:
 	hurt_timer = get_tree().create_timer(0.3)
 	hurt_timer.timeout.connect(_hurt_timer_done)
 	state_machine.invulnerable_timer = 1.3
-	$"../../BrickBasher".monitoring = false
-	$"../../BrickBasher".monitorable = false
+	$"../../BrickBasher".set_deferred("monitoring", false)
+	$"../../BrickBasher".set_deferred("monitorable", false)
 	
 
 func update(_delta: float) -> void:

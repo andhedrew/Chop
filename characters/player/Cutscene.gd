@@ -10,8 +10,8 @@ func _ready():
 
 func enter(_msg := {}) -> void:
 	$"../../Pivot/AnimationPlayer".pause()
-	$"../../BrickBasher".monitoring = false
-	$"../../BrickBasher".monitorable = false
+	$"../../BrickBasher".set_deferred("monitoring", false)
+	$"../../BrickBasher".set_deferred("monitorable", false)
 
 func update(delta: float) -> void:
 	if end_of_level:

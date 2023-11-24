@@ -2,7 +2,7 @@ extends State
 
 
 func enter(_msg := {}) -> void:
-	$"../../Hitbox".monitoring = false
+	$"../../Hitbox".set_deferred("monitoring", false)
 	await get_tree().create_timer(0.3).timeout
 	GameEvents.cutscene_started.emit()
 	GameEvents.camera_change_focus.emit(owner)

@@ -132,6 +132,7 @@ theme_override_font_sizes/font_size = 31
 text = "Outta chances."
 
 [node name="DeathScreenHead" type="Sprite2D" parent="."]
+visible = false
 position = Vector2(550, 172)
 texture = ExtResource("4_6btkx")
 

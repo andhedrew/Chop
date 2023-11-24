@@ -1,6 +1,7 @@
 extends Node2D
 
 var bullet = preload("res://bullets/stalactite_bullet/stalactite_bullet.tscn")
+@export var hazard := false
 
 func _ready():
 	$Hurtbox.area_entered.connect(_on_hurtbox_area_entered)

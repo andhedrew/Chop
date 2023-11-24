@@ -1,6 +1,6 @@
-[gd_scene load_steps=9 format=3 uid="uid://c257a013dc1s"]
+[gd_scene load_steps=10 format=3 uid="uid://c257a013dc1s"]
 
-[ext_resource type="Script" path="res://bullets/bullet.gd" id="1_p0bdq"]
+[ext_resource type="Script" path="res://bullets/stalactite_bullet/stalactite_bullet.gd" id="1_tbb3a"]
 [ext_resource type="Texture2D" uid="uid://2jpcri1mnjq2" path="res://levels_and_level_objects/Stalctite/stalactite.png" id="2_mty4o"]
 [ext_resource type="PackedScene" uid="uid://cxfiuhgots5lg" path="res://hitboxes/Hitbox.tscn" id="3_4m261"]
 
@@ -66,10 +66,14 @@ _data = {
 "bullet_exit": SubResource("Animation_km3k7")
 }
 
-[node name="nut_bullet" type="Area2D"]
-collision_layer = 128
-collision_mask = 9
-script = ExtResource("1_p0bdq")
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_7a7ej"]
+radius = 8.0
+height = 22.0
+
+[node name="stalg_bullet" type="Area2D"]
+position = Vector2(-15, 0)
+collision_mask = 65
+script = ExtResource("1_tbb3a")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(9, 0)
@@ -92,5 +96,9 @@ shape = SubResource("RectangleShape2D_n585r")
 libraries = {
 "": SubResource("AnimationLibrary_ocw25")
 }
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+rotation = 1.57079
+shape = SubResource("CapsuleShape2D_7a7ej")
 
 [editable path="Hitbox"]

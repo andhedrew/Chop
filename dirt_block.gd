@@ -12,7 +12,7 @@ func _physics_process(delta):
 	var colliding = move_and_collide(velocity*delta)
 	if $RayCast2D.is_colliding() or $RayCast2D2.is_colliding():
 		velocity.y = 0
-		hit_box.monitorable = false
+		hit_box.set_deferred("monitorable", false)
 		set_collision_layer_value(1, true)
 	else:
 		hit_box.monitorable = true

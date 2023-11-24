@@ -12,7 +12,7 @@ func _ready():
 	super._ready()
 	$Pivot/Hurtbox.area_entered.connect(_take_damage)
 	if difficulty == 1:
-		$"Pivot/Hurtbox".monitoring = true
+		$"Pivot/Hurtbox".set_deferred("monitoring", true)
 
 
 func _process(_delta):

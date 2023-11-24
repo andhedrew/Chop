@@ -29,9 +29,6 @@ hue_variation_max = 1.0
 
 [node name="dirt_explode" type="GPUParticles2D"]
 material = SubResource("CanvasItemMaterial_14k63")
-position = Vector2(88, 45)
-emitting = false
-amount = 30
 process_material = SubResource("ParticleProcessMaterial_kb746")
 texture = ExtResource("1_ig61t")
 lifetime = 0.8

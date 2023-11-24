@@ -9,8 +9,8 @@ var slicing_a_block := false
 
 func _ready() -> void:
 	GameEvents.player_hit_enemy.connect(_on_hitting_enemy)
-	$"../../BrickBasher".monitoring = false
-	$"../../BrickBasher".monitorable = false
+	$"../../BrickBasher".set_deferred("monitoring", false)
+	$"../../BrickBasher".set_deferred("monitorable", false)
 
 
 

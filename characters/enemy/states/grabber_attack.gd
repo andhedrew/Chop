@@ -6,7 +6,7 @@ var end_position
 
 # Called when the node enters the scene tree for the first time.
 func enter(_msg := {}) -> void:
-	$"../../Hurtbox".monitoring = true
+	$"../../Hurtbox".set_deferred("monitoring", true)
 	start_position = owner.position.y
 	end_position = owner.position.y - 20
 	owner.animation_player.play("attack")

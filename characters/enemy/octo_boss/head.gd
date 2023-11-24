@@ -17,14 +17,14 @@ func _ready():
 func _physics_process(delta):
 	match state:
 		EyeState.IDLE:
-			hurtbox.monitoring = true
+			hurtbox.set_deferred("monitoring", true)
 			sprite.frame = 0
 			attacked = false
 		EyeState.HURT:
-			hurtbox.monitoring = false
+			hurtbox.set_deferred("monitoring", false)
 			sprite.frame = 1
 		EyeState.ATTACK:
-			hurtbox.monitoring = false
+			hurtbox.set_deferred("monitoring", false)
 			sprite.frame = 2
 			if not attacked:
 				attacked = true

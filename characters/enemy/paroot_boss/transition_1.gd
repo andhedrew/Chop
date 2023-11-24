@@ -21,7 +21,7 @@ func enter(_msg := {}) -> void:
 		GameEvents.drop_food.emit(owner.death_pieces, pos)
 		GameEvents.cutscene_ended.emit()
 		
-	$"../../Pivot/Hurtbox".monitoring = true
+	$"../../Pivot/Hurtbox".set_deferred("monitoring", true)
 	state_machine.phase = 2
 	state_machine.transition_to("Charge")
 	
