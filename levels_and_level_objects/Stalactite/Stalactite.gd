@@ -33,16 +33,17 @@ func _on_hurtbox_area_entered(area) -> void:
 
 
 func _fire_bullet():
+	$Hurtbox.set_deferred("monitoring", false)
 	$Sprite2D.frame = 1
-	$SpriteHazard.frame = 1
 	var bullet_inst = bullet.instantiate()
-	owner.add_child(bullet_inst)
+	owner.call_deferred("add_child", bullet_inst)
 	var transform = global_transform
 	var fire_range = 100
-	var speed = 200
+	var speed = 250
 	var spread = 0
 	var rotation := 90
 
 	bullet_inst.setup(transform, fire_range, speed, rotation, spread)
+	bullet_inst.position = $Hurtbox.global_position
 	bullet_inst.hazard = hazard
-	$Hurtbox.call_deferred("queue_free")
+

@@ -1,7 +1,7 @@
 extends Node2D
 
 @onready var animation_player = get_node("AnimationPlayer")
-var big = false
+@export var big = false
 func _ready():
 	z_index = SortLayer.IN_FRONT
 	animation_player.play("explode")

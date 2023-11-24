@@ -6,6 +6,8 @@ var max_range := 300.0
 var speed := 500
 var spread := 0
 var triggered_destroy := false
+@export var big_explosion := false
+
 func _init():
 	set_as_top_level(true)
 
@@ -19,13 +21,15 @@ func _ready():
 	$AnimationPlayer.play("bullet_enter")
 	await $AnimationPlayer.animation_finished
 	$AnimationPlayer.play("animate_bullet")
+	GameEvents.new_vfx.emit("res://vfx/dirt_explode.tscn", global_position)
+	monitorable = true
 	
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta):
 	var motion : Vector2 = transform.x * speed * delta
 	position += motion
-	lifetime += delta
+	monitorable = true
 	if hazard:
 		$Sprite2D.visible = false
 		$SpriteHazard.visible = true
@@ -50,15 +54,16 @@ func setup(
 
 
 func on_body_entered(body):
-	
-	if body is TileMap and lifetime > 0.3:
+	if body is TileMap:
 		_destroy()
 
 func _destroy() -> void:
-	$Hitbox.set_deferred("monitorable", false)
+	
 	var pos_adj := Vector2(global_position.x, global_position.y + 8.0)
 	GameEvents.new_vfx.emit("res://vfx/dirt_explode.tscn", global_position)
-	GameEvents.new_vfx.emit("res://vfx/explosion.tscn", pos_adj)
+	if big_explosion:
+		GameEvents.new_vfx.emit("res://vfx/explosion_big.tscn", pos_adj)
+	else:
+		GameEvents.new_vfx.emit("res://vfx/explosion.tscn", pos_adj)
 	queue_free()
-	pass
 
