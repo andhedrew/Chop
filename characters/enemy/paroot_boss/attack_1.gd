@@ -17,7 +17,7 @@ func _ready():
 	hurtbox_collision.shape.size.x = 1
 	hitbox_collision.shape.size.x = 1
 	attack_hurtbox.set_deferred("monitoring", false)
-	attack_hitboxset_deferred("monitorable", false)
+	attack_hitbox.set_deferred("monitorable", false)
 
 
 func enter(_msg := {}) -> void:

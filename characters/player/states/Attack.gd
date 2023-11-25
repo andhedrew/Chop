@@ -50,11 +50,10 @@ func enter(_msg := {}) -> void:
 		owner.velocity.x -= knockback
 	
 	await get_tree().create_timer(0.05).timeout
+	
 	if owner.bullet_hit_breakable:
 		var boost_speed := 33
 		slicing_a_block = true
-		
-#		owner.collision_mask &= ~(1 << 7) # turns off the collider
 		owner.velocity.y = lerp(owner.velocity.y,0.0, 0.8)
 		
 		if owner.looking != Enums.Looking.UP and owner.looking != Enums.Looking.DOWN:
@@ -63,10 +62,10 @@ func enter(_msg := {}) -> void:
 			elif owner.facing == Enums.Facing.RIGHT:
 				owner.velocity.x = knockback*boost_speed
 		elif owner.looking != Enums.Looking.DOWN:
-			owner.velocity.x = lerp(owner.velocity.x,0.0, 0.2)
+			owner.velocity.x = lerp(owner.velocity.x,0.0, 0.1)
 			owner.velocity.y = -knockback*boost_speed
 		else: #Player is looking down
-			owner.velocity.x = lerp(owner.velocity.x,0.0, 0.2)
+			owner.velocity.x = lerp(owner.velocity.x,0.0, 0.1)
 			owner.velocity.y = knockback*boost_speed
 			
 	else:

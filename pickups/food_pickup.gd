@@ -79,7 +79,7 @@ func _ready():
 
 func _add_pickup_to_inventory(player) -> void:
 	if player.bag_capacity > player.bag.size():
-		player.bag.append($Sprite2D.texture)
+		player.bag.append($Sprite2D.texture.resource_path)
 		SaveManager.save_item("bag", player.bag)
 		GameEvents.added_food_to_bag.emit(self)
 		_destroy(player.position)

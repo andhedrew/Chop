@@ -94,7 +94,7 @@ hframes = 2
 [node name="Hitbox" parent="." instance=ExtResource("3_4m261")]
 position = Vector2(19, -1)
 collision_layer = 24
-collision_mask = 6
+collision_mask = 390
 damage = 4
 
 [node name="CollisionShape2D" parent="Hitbox" index="0"]

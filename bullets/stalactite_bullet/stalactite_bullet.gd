@@ -21,7 +21,6 @@ func _ready():
 	$AnimationPlayer.play("bullet_enter")
 	await $AnimationPlayer.animation_finished
 	$AnimationPlayer.play("animate_bullet")
-	GameEvents.new_vfx.emit("res://vfx/dirt_explode.tscn", global_position)
 	monitorable = true
 	
 

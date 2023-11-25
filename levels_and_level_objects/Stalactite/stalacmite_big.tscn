@@ -1,0 +1,41 @@
+[gd_scene load_steps=5 format=3 uid="uid://cuyta6pyxlqv8"]
+
+[ext_resource type="PackedScene" uid="uid://cxfiuhgots5lg" path="res://hitboxes/Hitbox.tscn" id="3_dnk4v"]
+[ext_resource type="Texture2D" uid="uid://jsmmcglcwhn2" path="res://levels_and_level_objects/Stalctite/stalactite_big_hazard.png" id="3_pc15q"]
+[ext_resource type="PackedScene" uid="uid://hf8oc665xro5" path="res://hitboxes/shieldbox.tscn" id="5_oeriv"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_v3vjq"]
+radius = 3.0
+
+[node name="Stalacmite_big" type="StaticBody2D"]
+
+[node name="SpriteHazard" type="Sprite2D" parent="."]
+position = Vector2(0.000179291, -35.9999)
+rotation = -3.14159
+texture = ExtResource("3_pc15q")
+hframes = 3
+
+[node name="Shield" parent="." instance=ExtResource("5_oeriv")]
+monitorable = false
+
+[node name="CollisionShape2D" parent="Shield" index="0"]
+position = Vector2(0, 0)
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Shield"]
+rotation = 3.14159
+polygon = PackedVector2Array(5, -1, -5, 0, 0, 61)
+
+[node name="Hitbox" parent="." instance=ExtResource("3_dnk4v")]
+position = Vector2(0, -58)
+collision_layer = 64
+collision_mask = 391
+
+[node name="CollisionShape2D" parent="Hitbox" index="0"]
+rotation = -3.14159
+shape = SubResource("CapsuleShape2D_v3vjq")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+polygon = PackedVector2Array(-15, 0, -3, -55, 3, -55, 14, 0)
+
+[editable path="Shield"]
+[editable path="Hitbox"]

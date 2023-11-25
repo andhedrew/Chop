@@ -1,8 +1,9 @@
-[gd_scene load_steps=32 format=3 uid="uid://dm85xjdq5mkk3"]
+[gd_scene load_steps=33 format=3 uid="uid://dm85xjdq5mkk3"]
 
 [ext_resource type="Script" path="res://levels_and_level_objects/level_scenes/level_manager.gd" id="1_ity0y"]
 [ext_resource type="Script" path="res://day_night_cycle.gd" id="2_h45bf"]
 [ext_resource type="TileSet" uid="uid://ycdy041jdicq" path="res://sprites/tilesets/bg_tileset.tres" id="3_sucgp"]
+[ext_resource type="Script" path="res://levels_and_level_objects/level_scenes/cloud.gd" id="3_vybto"]
 [ext_resource type="Script" path="res://sprites/tilesets/base_bg_tilemap.gd" id="4_okk2y"]
 [ext_resource type="TileSet" uid="uid://7bvkrk3d1wpy" path="res://sprites/tilesets/breakable_tileset.tres" id="4_qopms"]
 [ext_resource type="Script" path="res://sprites/tilesets/breakable_tileset_behavior.gd" id="5_pq8vy"]
@@ -490,6 +491,11 @@ visibility_rect = Rect2(0, 0, 5000, 5000)
 local_coords = true
 
 [node name="Background" type="ParallaxBackground" parent="."]
+
+[node name="Cloud" type="ParallaxLayer" parent="Background"]
+position = Vector2(0, -50)
+motion_scale = Vector2(0.2, 1)
+script = ExtResource("3_vybto")
 
 [node name="ParallaxLayer4" type="ParallaxLayer" parent="Background"]
 position = Vector2(0, -50)

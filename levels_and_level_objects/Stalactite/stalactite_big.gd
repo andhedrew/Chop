@@ -15,6 +15,9 @@ func _ready():
 		$RayCast2D.enabled = true
 	$Hurtbox.area_entered.connect(_on_hurtbox_area_entered)
 	$Hurtbox2.area_entered.connect(_on_hurtbox2_area_entered)
+	if hazard:
+		$Hurtbox.set_deferred("monitoring", false)
+		$Hurtbox2.set_deferred("monitoring", false)
 
 func _process(delta):
 	if Engine.is_editor_hint():
@@ -27,6 +30,7 @@ func _process(delta):
 	else:
 		if $RayCast2D.is_colliding():
 			if not fired_bullet and not fired_tip:
+				$Shield.monitoring = false
 				_fire_bullet()
 				
 

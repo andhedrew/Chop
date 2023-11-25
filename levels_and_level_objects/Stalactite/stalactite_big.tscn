@@ -1,9 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://cjmlmmiktg1ul"]
+[gd_scene load_steps=8 format=3 uid="uid://cjmlmmiktg1ul"]
 
 [ext_resource type="Script" path="res://levels_and_level_objects/Stalactite/stalactite_big.gd" id="1_ia7gv"]
 [ext_resource type="Texture2D" uid="uid://bep8bdqrc2npk" path="res://levels_and_level_objects/Stalctite/stalactite_big.png" id="2_7lfs7"]
 [ext_resource type="Texture2D" uid="uid://jsmmcglcwhn2" path="res://levels_and_level_objects/Stalctite/stalactite_big_hazard.png" id="3_y45gc"]
 [ext_resource type="PackedScene" uid="uid://bb1h85dym7l4i" path="res://hitboxes/Hurtbox.tscn" id="4_lri45"]
+[ext_resource type="PackedScene" uid="uid://hf8oc665xro5" path="res://hitboxes/shieldbox.tscn" id="5_71h1m"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_lc5qr"]
 size = Vector2(27, 5)
@@ -44,5 +45,15 @@ enabled = false
 target_position = Vector2(0, 1000)
 collision_mask = 2
 
+[node name="Shield" parent="." instance=ExtResource("5_71h1m")]
+monitorable = false
+
+[node name="CollisionShape2D" parent="Shield" index="0"]
+position = Vector2(0, 0)
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Shield"]
+polygon = PackedVector2Array(5, -1, -5, 0, 0, 61)
+
 [editable path="Hurtbox"]
 [editable path="Hurtbox2"]
+[editable path="Shield"]

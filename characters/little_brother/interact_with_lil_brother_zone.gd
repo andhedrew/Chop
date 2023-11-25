@@ -88,6 +88,7 @@ func _on_player_exited(_body):
 
 
 func _generate_food(player) -> void:
+	
 	if player.bag.size() > 0 and not owner.is_full:
 		fade_animation_player.play("fade_out_non_food")
 		faded_in = false
@@ -98,7 +99,8 @@ func _generate_food(player) -> void:
 		for item in player.bag:
 				
 				var pickup := preload("res://pickups/food_pickup.tscn").instantiate()
-				pickup.setup(item)
+				var texture = load(item)
+				pickup.setup(texture)
 				owner.get_node("BeakCollider").disabled = true
 				owner.get_node("HeadCollider").disabled = true
 				owner.get_node("CollisionShape2D").disabled = true

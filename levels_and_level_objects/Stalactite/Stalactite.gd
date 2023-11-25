@@ -25,6 +25,7 @@ func _process(delta):
 				_fire_bullet()
 				fired_bullet = true
 
+
 func _on_hurtbox_area_entered(area) -> void:
 	if not Engine.is_editor_hint():
 		if area is HitBox:
@@ -35,6 +36,7 @@ func _on_hurtbox_area_entered(area) -> void:
 func _fire_bullet():
 	$Hurtbox.set_deferred("monitoring", false)
 	$Sprite2D.frame = 1
+	$SpriteHazard.frame = 1
 	var bullet_inst = bullet.instantiate()
 	owner.call_deferred("add_child", bullet_inst)
 	var transform = global_transform

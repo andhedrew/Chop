@@ -1,7 +1,8 @@
-[gd_scene load_steps=16 format=3 uid="uid://dwtg5vhh2566t"]
+[gd_scene load_steps=17 format=3 uid="uid://dwtg5vhh2566t"]
 
 [ext_resource type="PackedScene" uid="uid://dm85xjdq5mkk3" path="res://levels_and_level_objects/level_scenes/base_level.tscn" id="1_68esq"]
 [ext_resource type="PackedScene" uid="uid://c70w3ktrstfkr" path="res://levels_and_level_objects/water/water.tscn" id="2_4bn14"]
+[ext_resource type="PackedScene" uid="uid://cvlo5mexkgiiq" path="res://levels_and_level_objects/map/map_world_1.tscn" id="2_y601s"]
 [ext_resource type="PackedScene" uid="uid://bg5fv3j7uct3o" path="res://levels_and_level_objects/enemy_dropper/enemy_dropper.tscn" id="3_ck5d0"]
 [ext_resource type="PackedScene" uid="uid://ccl32vi0nwem8" path="res://levels_and_level_objects/destructible_plants/chop_foliage.tscn" id="3_dbb5c"]
 [ext_resource type="PackedScene" uid="uid://c8hbwwnbcoese" path="res://characters/enemy/chop-chop/chop-chop_on_land.tscn" id="4_dv6jo"]
@@ -27,6 +28,9 @@ _data = {
 point_count = 2
 
 [node name="World" instance=ExtResource("1_68esq")]
+map_position = 3.0
+next_map = ExtResource("2_y601s")
+next_level = "res://levels_and_level_objects/level_scenes/world_1_levels/1-4.tscn"
 
 [node name="bg" parent="BackgroundSky" index="0"]
 color = Color(0.690196, 0.65098, 0.560784, 1)
