@@ -37,7 +37,7 @@ func create_ray_cast():
 	while ray_cast.is_colliding():
 		await get_tree().create_timer(0.01).timeout
 		ray_cast.target_position.y -= 4
-	
+	ray_cast.set_collision_mask_value(7, false)
 	raycast_set_up = true
 
 func _process(delta):

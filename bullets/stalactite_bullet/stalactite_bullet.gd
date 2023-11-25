@@ -30,6 +30,8 @@ func _physics_process(delta):
 	position += motion
 	monitorable = true
 	if hazard:
+		$Hitbox.set_collision_mask_value(2, true)
+		$Hitbox.set_collision_layer_value(5, true)
 		$Sprite2D.visible = false
 		$SpriteHazard.visible = true
 	else:
@@ -57,7 +59,6 @@ func on_body_entered(body):
 		_destroy()
 
 func _destroy() -> void:
-	
 	var pos_adj := Vector2(global_position.x, global_position.y + 8.0)
 	GameEvents.new_vfx.emit("res://vfx/dirt_explode.tscn", global_position)
 	if big_explosion:

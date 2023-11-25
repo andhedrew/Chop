@@ -35,5 +35,5 @@ func _on_body_entered(body):
 
 func _on_area_entered(area) -> void:
 	if area is Bullet:
-		GameEvents.new_vfx.emit("res://vfx/slice_soft.tscn", area.position)  #arg 1: String reference to VX # Arg 2: Position
-		area.queue_free()
+		GameEvents.new_vfx.emit("res://vfx/deflect.tscn", area.position)  #arg 1: String reference to VX # Arg 2: Position
+	
