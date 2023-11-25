@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://4ehr10dccqj"]
+[gd_scene load_steps=16 format=3 uid="uid://4ehr10dccqj"]
 
 [ext_resource type="PackedScene" uid="uid://dm85xjdq5mkk3" path="res://levels_and_level_objects/level_scenes/base_level.tscn" id="1_o34es"]
 [ext_resource type="PackedScene" uid="uid://cvlo5mexkgiiq" path="res://levels_and_level_objects/map/map_world_1.tscn" id="2_lmgrh"]
@@ -13,7 +13,6 @@
 [ext_resource type="PackedScene" uid="uid://i5hx0ruiv4wk" path="res://levels_and_level_objects/checkpoint/checkpoint.tscn" id="13_novyb"]
 [ext_resource type="PackedScene" uid="uid://boakvecc6j1ta" path="res://characters/enemy/paroot/paroot.tscn" id="13_ocs5m"]
 [ext_resource type="PackedScene" uid="uid://c8hbwwnbcoese" path="res://characters/enemy/chop-chop/chop-chop_on_land.tscn" id="13_yhkkn"]
-[ext_resource type="PackedScene" uid="uid://3ayqb8hualy8" path="res://levels_and_level_objects/powerups/booster.tscn" id="14_7w7hb"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qsl55"]
 size = Vector2(26, 13)
@@ -63,6 +62,7 @@ position = Vector2(2944, 768)
 
 [node name="CoinPickup" parent="." index="20" instance=ExtResource("11_uxhmy")]
 position = Vector2(3936, 896)
+collision_mask = 449
 
 [node name="AreaOfInterest2" parent="." index="21" instance=ExtResource("10_0ewvd")]
 position = Vector2(5664, 752)
@@ -72,6 +72,7 @@ position = Vector2(5248, 864)
 
 [node name="CoinPickup2" parent="." index="23" instance=ExtResource("11_uxhmy")]
 position = Vector2(2831, -4)
+collision_mask = 449
 
 [node name="Checkpoint" parent="." index="24" instance=ExtResource("13_novyb")]
 position = Vector2(3270, -48)
@@ -118,9 +119,11 @@ shape = SubResource("RectangleShape2D_731hc")
 
 [node name="CoinPickup3" parent="." index="35" instance=ExtResource("11_uxhmy")]
 position = Vector2(1456, 0)
+collision_mask = 449
 
 [node name="Paroot" parent="." index="36" instance=ExtResource("13_ocs5m")]
 position = Vector2(2592, -80)
+collision_mask = 137
 
 [node name="QuestionMarkBlock2" parent="." index="37" instance=ExtResource("11_168f4")]
 position = Vector2(2480, -112)
@@ -130,12 +133,11 @@ position = Vector2(3776, -128)
 
 [node name="CoinPickup4" parent="." index="39" instance=ExtResource("11_uxhmy")]
 position = Vector2(4928, -352)
+collision_mask = 449
 
 [node name="CoinPickup5" parent="." index="40" instance=ExtResource("11_uxhmy")]
 position = Vector2(5104, -352)
-
-[node name="Booster" parent="." index="41" instance=ExtResource("14_7w7hb")]
-position = Vector2(3472, -64)
+collision_mask = 449
 
 [editable path="ColorShiftLayer"]
 [editable path="death_zone"]

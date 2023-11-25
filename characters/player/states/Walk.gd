@@ -16,7 +16,8 @@ func physics_update(delta: float) -> void:
 		Input.get_action_strength("right")
 		- Input.get_action_strength("left")
 	)
-	owner.velocity.x = move_toward(owner.velocity.x, owner.max_speed * input_direction_x, owner.acceleration)
+	var velocity_x = (owner.max_speed * input_direction_x) + owner.belt_speed
+	owner.velocity.x = move_toward(owner.velocity.x, velocity_x, owner.acceleration)
 	if owner.in_water:
 		owner.velocity.y += Param.WATER_GRAVITY * delta
 	else:

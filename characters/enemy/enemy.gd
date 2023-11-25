@@ -34,6 +34,11 @@ var reset_effects_player := false
 var cutscene_running := false
 var active := false
 var current_state := ""
+
+var conveyor_count := 0
+var belt_speed := 0.0
+
+
 func _ready() -> void:
 	max_health = health
 	$Hurtbox.area_entered.connect(_take_damage)
@@ -222,3 +227,15 @@ func _on_end_cutscene() -> void:
 
 func activate() -> void:
 	active = true
+
+
+
+func add_conveyor_velocity(belt_velocity) -> void:
+	conveyor_count += 1
+	belt_speed = belt_velocity
+
+func remove_conveyor_velocity() -> void:
+	conveyor_count -= 1
+	if conveyor_count <= 0:
+		conveyor_count = 0
+		belt_speed = 0

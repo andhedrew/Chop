@@ -27,7 +27,7 @@ func update(_delta: float) -> void:
 		var left_blocked = !ledge_left.is_colliding() or wall_left.is_colliding()
 		var right_blocked = !ledge_right.is_colliding() or wall_right.is_colliding()
 			
-		owner.velocity.x = lerp(owner.velocity.x, 0.0, Param.FRICTION)
+		owner.velocity.x = lerp(owner.velocity.x, owner.belt_speed, Param.FRICTION)
 		owner.move_and_slide()
 
 		if timer.is_stopped() and !(left_blocked and right_blocked) and state_machine.has_node("Move"):

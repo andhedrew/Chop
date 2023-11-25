@@ -13,9 +13,9 @@ func enter(_msg := {}) -> void:
 
 func physics_update(_delta: float) -> void:
 	if owner.in_water:
-		owner.velocity.x = lerp(owner.velocity.x, 0.0, Param.WATER_FRICTION)
+		owner.velocity.x = lerp(owner.velocity.x, owner.belt_speed, Param.WATER_FRICTION)
 	else:
-		owner.velocity.x = lerp(owner.velocity.x, 0.0, Param.FRICTION)
+		owner.velocity.x = lerp(owner.velocity.x, owner.belt_speed, Param.FRICTION)
 	
 	owner.move_and_slide()
 
@@ -35,9 +35,7 @@ func physics_update(_delta: float) -> void:
 
 	if Input.is_action_just_pressed("syphon"):
 		state_machine.transition_to("Syphon")
-	
-#	if Input.is_action_just_pressed("dash") and owner.has_booster_upgrade:
-#		state_machine.transition_to("Dash")
+
 	
 	if Input.is_action_just_pressed("down"):
 		owner.position.y += 1

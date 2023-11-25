@@ -21,12 +21,15 @@ position = Vector2(0, 1008)
 
 [node name="Paroot" parent="." index="17" instance=ExtResource("3_61i6k")]
 position = Vector2(297, 1782)
+collision_mask = 137
 
 [node name="HotDog" parent="." index="18" instance=ExtResource("4_7lnji")]
 position = Vector2(1522, 1736)
+collision_mask = 137
 
 [node name="HotDog2" parent="." index="19" instance=ExtResource("4_7lnji")]
 position = Vector2(2021, 1897)
+collision_mask = 137
 
 [node name="Stalactite" parent="." index="20" instance=ExtResource("2_fl51j")]
 position = Vector2(136, 816)

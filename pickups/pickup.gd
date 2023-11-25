@@ -3,8 +3,11 @@ extends CharacterBody2D
 
 @export var floating_pickup : bool = false
 @onready var animation_player := $AnimationPlayer as AnimationPlayer
-var max_fall_speed := 3.0
+var max_fall_speed := Param.GRAVITY
 var sort_layer = SortLayer.IN_FRONT
+var conveyor_count := 0
+var belt_speed := 0.0
+
 
 func _ready():
 	z_index = sort_layer
@@ -21,11 +24,11 @@ func _physics_process(_delta):
 	if floating_pickup:
 		velocity = Vector2.ZERO
 	apply_friction()
-	move_and_collide(velocity)
+	move_and_slide()
 
 
 func apply_friction():
-	velocity.x = lerp(velocity.x, 0.0, 0.2)
+	velocity.x = lerp(velocity.x, belt_speed, 0.2)
 
 func _on_body_entered(body) -> void:
 	if body is Player and $SlowPickupTimer.is_stopped() and body.state != "Dead":
@@ -50,3 +53,17 @@ func _destroy(player_pos: Vector2) -> void:
 	position = lerp(position, player_pos, 0.2)
 	await get_tree().create_timer(.8).timeout
 	queue_free()
+
+
+
+func add_conveyor_velocity(belt_velocity) -> void:
+	conveyor_count += 1
+	print_debug("Convyor Count: " + str(conveyor_count))
+	belt_speed = belt_velocity
+	print_debug("belt_speed: " + str(belt_speed))
+
+func remove_conveyor_velocity() -> void:
+	conveyor_count -= 1
+	if conveyor_count <= 0:
+		conveyor_count = 0
+		belt_speed = 0

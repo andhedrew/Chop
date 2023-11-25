@@ -15,7 +15,7 @@ func enter(_msg := {}) -> void:
 
 func update(_delta: float) -> void:
 			
-		owner.velocity.x = lerp(owner.velocity.x, 0.0, Param.FRICTION)
+		owner.velocity.x = lerp(owner.velocity.x, owner.belt_speed, Param.FRICTION)
 		owner.move_and_slide()
 
 

@@ -997,8 +997,9 @@ _data = {
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_y680r"]
 size = Vector2(9, 1)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_v5543"]
-size = Vector2(10, 25.5)
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_26a7x"]
+radius = 7.0
+height = 25.5
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_t8qf3"]
 size = Vector2(15, 26)
@@ -1148,7 +1149,7 @@ collision_mask = 512
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -12.75)
-shape = SubResource("RectangleShape2D_v5543")
+shape = SubResource("CapsuleShape2D_26a7x")
 
 [node name="Hurtbox" parent="." instance=ExtResource("5_qkadd")]
 position = Vector2(2, -14)

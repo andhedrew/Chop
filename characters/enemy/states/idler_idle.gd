@@ -19,7 +19,7 @@ func enter(_msg := {}) -> void:
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func physics_update(delta: float) -> void:
 	
-	
+	owner.velocity.x = lerp(owner.velocity.x, owner.belt_speed, Param.FRICTION)
 	owner.move_and_slide()
 	if !owner.is_on_floor():
 		state_machine.transition_to("Fall")

@@ -28,12 +28,12 @@ func physics_update(_delta: float) -> void:
 	var _right_blocked = !ledge_right.is_colliding() or wall_right.is_colliding()
 	
 	if abs(owner.velocity.x + owner.speed * owner.direction) <= owner.max_x_speed:
-		owner.velocity.x += owner.speed * owner.direction
+		owner.velocity.x += (owner.speed * owner.direction) + owner.belt_speed
 	else:
 		if owner.velocity.x < 0:
-			owner.velocity.x = -owner.max_x_speed
+			owner.velocity.x = -owner.max_x_speed + owner.belt_speed
 		else:
-			owner.velocity.x = owner.max_x_speed
+			owner.velocity.x = owner.max_x_speed + owner.belt_speed
 #	owner.velocity.x += owner.speed * owner.direction
 	
 	owner.move_and_slide()

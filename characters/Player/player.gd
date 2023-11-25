@@ -78,6 +78,9 @@ var belt_max_speed := 20
 var belt_move_speed := belt_max_speed
 
 
+var belt_speed := 0.0
+var conveyor_count = 0
+
 
 func _ready():
 	hurtbox.area_entered.connect(_hurtbox_on_area_entered)
@@ -387,3 +390,13 @@ func _on_adding_a_charge() -> void:
 		torch_charges += 1
 		GameEvents.charge_amount_changed.emit(torch_charges, max_torch_charges )
 
+
+func add_conveyor_velocity(belt_velocity) -> void:
+	conveyor_count += 1
+	belt_speed = belt_velocity
+
+func remove_conveyor_velocity() -> void:
+	conveyor_count -= 1
+	if conveyor_count <= 0:
+		conveyor_count = 0
+		belt_speed = 0
