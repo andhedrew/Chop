@@ -3,13 +3,42 @@ extends Node2D
 var bullet = preload("res://bullets/stalactite_bullet/stalactite_bullet.tscn")
 @export var hazard := false
 var fired_bullet := false
+var ray_cast = RayCast2D.new()
+var raycast_set_up := false
 
 func _ready():
 	if hazard:
 		$SpriteHazard.visible = true
 		$Sprite2D.visible = false
-		$RayCast2D.enabled = true
+		create_ray_cast()
 	$Hurtbox.area_entered.connect(_on_hurtbox_area_entered)
+
+func create_ray_cast():
+	add_child(ray_cast)  # Add it as a child of the current node
+	print_debug("ray_cast created: " + str(ray_cast))
+	# Set collision masks
+	ray_cast.set_collision_mask_value(2, true)
+	ray_cast.set_collision_mask_value(1, true)
+	ray_cast.set_collision_mask_value(7, true)
+	ray_cast.set_collision_mask_value(8, true)
+	ray_cast.set_collision_mask_value(9, true)
+	ray_cast.set_collision_mask_value(10, true)
+
+	ray_cast.enabled = true  # Enable the raycast
+	ray_cast.target_position.y = 1  # Start with a minimal length
+
+	# Extend the raycast until it collides or reaches 500 pixels
+	while not ray_cast.is_colliding():
+		await get_tree().create_timer(0.01).timeout
+		ray_cast.target_position.y += 16
+		if ray_cast.target_position.y >= 250:
+			break
+	# If a collision occurred, reduce the length by 1 pixel
+	while ray_cast.is_colliding():
+		await get_tree().create_timer(0.01).timeout
+		ray_cast.target_position.y -= 4
+	
+	raycast_set_up = true
 
 func _process(delta):
 	if Engine.is_editor_hint():
@@ -20,7 +49,7 @@ func _process(delta):
 			$SpriteHazard.visible = false
 			$Sprite2D.visible = true
 	else:
-		if $RayCast2D.is_colliding():
+		if ray_cast.is_colliding() and raycast_set_up:
 			if not fired_bullet:
 				_fire_bullet()
 				fired_bullet = true
