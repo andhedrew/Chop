@@ -18,6 +18,8 @@ func _ready():
 	self.body_entered.connect(_on_body_entered)
 	self.body_exited.connect(_on_body_exited)
 	original_pos = head.position
+	z_index = SortLayer.FOREGROUND
+	$Hurtbox.area_entered.connect(_get_angry)
 	randomize_frames()
 
 func _physics_process(delta):
@@ -45,7 +47,8 @@ func _physics_process(delta):
 
 func randomize_frames():
 	for sprite in [head, mouth, nose, eyes, outline, deets]:
-		sprite.frame = randi() % (sprite.hframes - 1) + 1
+		sprite.frame = 0
+#		sprite.frame = randi() % (sprite.hframes - 1) + 1
 
 
 func _on_body_entered(body) -> void:
@@ -56,3 +59,12 @@ func _on_body_entered(body) -> void:
 func _on_body_exited(body) -> void:
 	if body in bodies_bouncing:
 		bodies_bouncing.erase(body)
+
+
+func _get_angry(area):
+	if area is HitBox:
+		if area.execute:
+			for sprite in [head, mouth, nose, eyes, outline, deets]:
+				sprite.frame = 0
+			
+			bounce_strength = 100

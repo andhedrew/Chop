@@ -38,9 +38,9 @@ func physics_update(delta: float) -> void:
 	
 	
 	await animation_player.animation_finished
-	if owner.is_on_floor() and not Input.is_action_pressed("down"):
+	if owner.is_on_floor():
 		state_machine.transition_to("Idle")
-	elif not Input.is_action_pressed("down") and not Input.is_action_pressed("jump"): 
+	elif not Input.is_action_pressed("jump"): 
 		state_machine.transition_to("Fall")
 	else:
 		state_machine.transition_to("Execute")

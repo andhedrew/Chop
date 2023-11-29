@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://d2mwmw4wcsxo0"]
+[gd_scene load_steps=12 format=3 uid="uid://d2mwmw4wcsxo0"]
 
 [ext_resource type="Script" path="res://levels_and_level_objects/bouncy_face/BouncyFace.gd" id="1_qogb6"]
 [ext_resource type="Texture2D" uid="uid://bihw5fuk0rmt4" path="res://levels_and_level_objects/bouncy_face/outline.png" id="2_jl6dr"]
@@ -7,9 +7,16 @@
 [ext_resource type="Texture2D" uid="uid://ctvt2oqb5s4fs" path="res://levels_and_level_objects/bouncy_face/nose.png" id="4_eugey"]
 [ext_resource type="Texture2D" uid="uid://c3gbs82xtj8m6" path="res://levels_and_level_objects/bouncy_face/eyes.png" id="5_i7hcv"]
 [ext_resource type="Texture2D" uid="uid://nffv8jddoyfr" path="res://levels_and_level_objects/bouncy_face/details.png" id="7_4p6jj"]
+[ext_resource type="PackedScene" uid="uid://bb1h85dym7l4i" path="res://hitboxes/Hurtbox.tscn" id="8_2r4wy"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_cdfdw"]
 radius = 49.6488
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_utfxl"]
+radius = 48.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_05dor"]
+radius = 43.0
 
 [node name="BouncyFace" type="Area2D"]
 collision_mask = 6
@@ -20,24 +27,39 @@ shape = SubResource("CircleShape2D_cdfdw")
 
 [node name="outline" type="Sprite2D" parent="."]
 texture = ExtResource("2_jl6dr")
-hframes = 3
+hframes = 6
 
 [node name="head" type="Sprite2D" parent="."]
 texture = ExtResource("3_0kr50")
-hframes = 3
+hframes = 6
 
 [node name="mouth" type="Sprite2D" parent="."]
 texture = ExtResource("3_xt353")
-hframes = 3
+hframes = 6
 
 [node name="nose" type="Sprite2D" parent="."]
 texture = ExtResource("4_eugey")
-hframes = 3
+hframes = 6
 
 [node name="eyes" type="Sprite2D" parent="."]
 texture = ExtResource("5_i7hcv")
-hframes = 3
+hframes = 6
 
 [node name="detail" type="Sprite2D" parent="."]
 texture = ExtResource("7_4p6jj")
-hframes = 3
+hframes = 6
+
+[node name="Hurtbox" parent="." instance=ExtResource("8_2r4wy")]
+collision_mask = 8
+
+[node name="CollisionShape2D" parent="Hurtbox" index="0"]
+shape = SubResource("CircleShape2D_utfxl")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+shape = SubResource("CircleShape2D_05dor")
+
+[editable path="Hurtbox"]
