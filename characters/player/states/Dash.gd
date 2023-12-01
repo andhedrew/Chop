@@ -13,18 +13,14 @@ func enter(_msg := {}) -> void:
 	owner.execute_disabled = false
 	increasing_y = starting_y
 
-	
-
 
 func physics_update(delta: float) -> void:
-
+	print_debug("owner.torch_charges: " + str(owner.torch_charges))
 	if Input.is_action_pressed("dash") and owner.torch_charges > 0:
 		dash_direction = Vector2(Input.get_axis("right", "left"), Input.get_axis("down", "up")).normalized()
-#		owner.velocity = -dash_direction * dash_length
 		owner.velocity.x = lerp(owner.velocity.x, 0.0, 0.5)
 		owner.velocity.y = increasing_y
 		increasing_y += 50*delta
-
 		owner.move_and_slide()
 	else:
 		if owner.is_on_floor():
@@ -32,7 +28,6 @@ func physics_update(delta: float) -> void:
 		else:
 			state_machine.transition_to("Fall")
 
-	
 	if Input.is_action_just_pressed("execute"):
 		state_machine.transition_to("Execute")
 	
@@ -47,13 +42,13 @@ func exit():
 		
 	if owner.torch_charges > 0:
 		owner.velocity = -dash_direction * dash_length
-	if dash_direction == Vector2(0.0,0.0):
-		match owner.facing:
-			Enums.Facing.LEFT:
-				dash_direction = Vector2(1.0, 0.0)
-			Enums.Facing.RIGHT:
-				dash_direction = Vector2(-1.0, 0.0)
-		owner.velocity = -dash_direction * dash_length
+		if dash_direction == Vector2(0.0,0.0):
+			match owner.facing:
+				Enums.Facing.LEFT:
+					dash_direction = Vector2(1.0, 0.0)
+				Enums.Facing.RIGHT:
+					dash_direction = Vector2(-1.0, 0.0)
+			owner.velocity = -dash_direction * dash_length
 		
 	if owner.torch_charges > 0:
 		SoundPlayer.play_sound("fireball")

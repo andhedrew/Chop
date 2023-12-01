@@ -36,6 +36,7 @@ var bag_capacity := 1000
 @export var has_booster_upgrade := false
 var torch_charges := 3
 var max_torch_charges := torch_charges
+var automatic_recharge := true
 var charge_time := 0.3
 var charge_timer := charge_time
 var execute_disabled := false
@@ -133,7 +134,7 @@ func _physics_process(delta):
 	handle_facing()
 	state_last_frame = state
 	
-	if torch_charges < max_torch_charges:
+	if (torch_charges < max_torch_charges) and automatic_recharge:
 		if is_on_floor():
 			charge_time -= 1*delta
 			if charge_time < 0:
