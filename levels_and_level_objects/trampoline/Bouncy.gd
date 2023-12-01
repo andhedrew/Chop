@@ -12,6 +12,8 @@ func _ready():
 func _on_body_entered(body) -> void:
 	var direction := Vector2.UP.rotated(rotation)
 	var sprite_x_pos = $Sprite2D.global_position.x
+	if body is Player:
+		body.execute_disabled = false
 	if body is Player or body is Enemy:
 		var distance = abs(body.position.x - sprite_x_pos)
 		print_debug(str(distance))

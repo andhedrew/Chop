@@ -65,4 +65,4 @@ func fire() -> void:
 
 
 func exit() -> void:
-	owner.execute_disabled = false
+	owner.execute_disabled = true

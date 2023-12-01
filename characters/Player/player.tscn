@@ -1044,6 +1044,7 @@ theme = SubResource("Theme_e62t7")
 text = "State"
 
 [node name="Facing" type="Label" parent="."]
+visible = false
 offset_left = -13.0
 offset_top = -66.0
 offset_right = 27.0
@@ -1052,6 +1053,7 @@ theme = SubResource("Theme_e62t7")
 text = "Facing"
 
 [node name="Looking" type="Label" parent="."]
+visible = false
 offset_left = -13.0
 offset_top = -57.0
 offset_right = 27.0
