@@ -36,7 +36,7 @@ var bag_capacity := 1000
 @export var has_booster_upgrade := false
 var torch_charges := 3
 var max_torch_charges := torch_charges
-var automatic_recharge := true
+@export var automatic_recharge := true
 var charge_time := 0.3
 var charge_timer := charge_time
 var execute_disabled := false
@@ -84,6 +84,8 @@ var conveyor_count = 0
 
 
 func _ready():
+	if automatic_recharge:
+		torch_charges = 0
 	hurtbox.area_entered.connect(_hurtbox_on_area_entered)
 	GameEvents.enemy_took_damage.connect(_on_enemy_taking_damage)
 	GameEvents.morning_started.connect(_on_morning_start)
@@ -141,7 +143,11 @@ func _physics_process(delta):
 				torch_charges = max_torch_charges
 				charge_time = charge_timer
 				GameEvents.charge_amount_changed.emit(torch_charges, max_torch_charges)
-	
+	elif not automatic_recharge and is_on_floor():
+		torch_charges = 0
+		GameEvents.charge_amount_changed.emit(torch_charges, max_torch_charges)
+		
+		
 	if cutscene_walk:
 		if facing == Enums.Facing.RIGHT:
 			position.x += 1

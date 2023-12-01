@@ -228,7 +228,7 @@ func SCREENSHAKE() -> void:
 
 func BIG_SCREENSHAKE() -> void:
 	await get_tree().create_timer(0.05).timeout
-	add_trauma(3.0)
+	add_trauma(2.0)
 
 
 func on_big_explosion() -> void:

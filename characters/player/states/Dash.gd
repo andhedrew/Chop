@@ -4,7 +4,7 @@ var dash_direction := Vector2.ZERO
 var dash_length := 380
 var state_timer := 0
 
-var starting_y := 2.0
+var starting_y := 0.0
 var increasing_y := starting_y
 var breaking_a_block := false
 
@@ -41,19 +41,21 @@ func exit():
 		dash_length = dash_length*3
 		
 	if owner.torch_charges > 0:
-		owner.velocity = -dash_direction * dash_length
+
 		if dash_direction == Vector2(0.0,0.0):
 			match owner.facing:
 				Enums.Facing.LEFT:
 					dash_direction = Vector2(1.0, 0.0)
+					
 				Enums.Facing.RIGHT:
 					dash_direction = Vector2(-1.0, 0.0)
-			owner.velocity = -dash_direction * dash_length
+					
+		if owner.looking == Enums.Looking.FORWARD:
+			dash_direction.y += 0.4
+		owner.velocity = -dash_direction * dash_length
 		
 	if owner.torch_charges > 0:
 		SoundPlayer.play_sound("fireball")
-#		SoundPlayer.play_sound("rev")
-		
 		owner.torch_charges -= 1
 		GameEvents.charge_amount_changed.emit(owner.torch_charges, owner.max_torch_charges)
 		var bullet = preload("res://bullets/fire_bullet/fire_bullet.tscn").instantiate()

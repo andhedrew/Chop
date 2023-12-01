@@ -36,17 +36,18 @@ func physics_update(delta: float) -> void:
 	owner.velocity.y += (Param.GRAVITY_ON_FALL*gravity_multiplier) * delta
 	owner.move_and_slide()
 	
-	
-	await animation_player.animation_finished
-	if owner.is_on_floor():
-		state_machine.transition_to("Idle")
-	elif not Input.is_action_pressed("jump"): 
-		state_machine.transition_to("Fall")
-	else:
-		state_machine.transition_to("Execute")
-		
 	if Input.is_action_just_pressed("dash") and owner.has_booster_upgrade:
 		state_machine.transition_to("Dash")
+		
+	
+	await animation_player.animation_finished
+	
+	if state_machine.state.name != "Dash":
+		if owner.is_on_floor():
+			state_machine.transition_to("Idle")
+		else:
+			state_machine.transition_to("Fall")
+
 
 
 func fire() -> void:

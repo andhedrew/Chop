@@ -4,6 +4,7 @@ extends Node2D
 var active := true
 
 func _ready():
+	z_index = SortLayer.FOREGROUND
 	$Hurtbox.area_entered.connect(_on_hurtbox_area_entered)
 	$Timer.timeout.connect(_on_timer_timeout)
 
