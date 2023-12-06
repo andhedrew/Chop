@@ -12,6 +12,8 @@ signal player_done_syphoning
 signal player_died
 signal player_hit_enemy #arg 1: the enemy
 
+signal refresh_execute
+
 signal player_falling # Arg 1: True or false? Is he falling or not?
 
 

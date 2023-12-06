@@ -134,6 +134,8 @@ func _on_body_exited(body) -> void:
 
 func _on_area_entered_hurtbox(area) -> void:
 	if area is HitBox:
+		GameEvents.refresh_execute.emit()
 		if rusty:
 			if area.execute:
 				activating = true
+	

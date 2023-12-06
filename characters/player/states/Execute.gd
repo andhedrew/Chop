@@ -65,4 +65,9 @@ func fire() -> void:
 
 
 func exit() -> void:
-	owner.execute_disabled = true
+	if owner.buffer_execute == false:
+		owner.execute_disabled = true
+	else:
+		owner.execute_disabled = false
+		owner.buffer_execute = false
+		

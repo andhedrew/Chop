@@ -40,6 +40,7 @@ var max_torch_charges := torch_charges
 var charge_time := 0.3
 var charge_timer := charge_time
 var execute_disabled := false
+var buffer_execute := false
 
 var set_ui := false
 
@@ -93,6 +94,7 @@ func _ready():
 	GameEvents.SaveDataReady.connect(_load_data)
 	GameEvents.feeding_level_start.connect(_feeding_level_start)
 	GameEvents.charge_amount_changed.emit(torch_charges, max_torch_charges)
+	GameEvents.refresh_execute.connect(_refresh_execute)
 	
 	hurtbox.body_shape_entered.connect(_on_hitbox_body_shape_entered)
 	hurtbox.body_shape_exited.connect(_on_hitbox_body_shape_exited)
@@ -124,7 +126,7 @@ func _load_data() -> void:
 	
 
 func _physics_process(delta):
-
+	print_debug("execute_disabled: " + str(execute_disabled))
 	if !set_ui:
 		set_ui = true
 		GameEvents.player_health_changed.emit(health, max_health)
@@ -407,3 +409,7 @@ func remove_conveyor_velocity() -> void:
 	if conveyor_count <= 0:
 		conveyor_count = 0
 		belt_speed = 0
+
+
+func _refresh_execute():
+	buffer_execute = true
