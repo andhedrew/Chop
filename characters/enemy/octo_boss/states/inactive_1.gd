@@ -1,6 +1,6 @@
 extends State
 
-
+var leave_inactive := false
 
 func enter(_msg := {}) -> void:
 	$"../../PlayerDetector".body_entered.connect(_on_body_entered)
@@ -20,5 +20,7 @@ func exit() -> void:
 
 
 func _on_body_entered(body) -> void:
-	if body is Player:
-		state_machine.transition_to("Idle")
+	if !leave_inactive:
+		if body is Player:
+			leave_inactive = true
+			state_machine.transition_to("Idle")

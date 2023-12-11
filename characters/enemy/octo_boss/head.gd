@@ -13,6 +13,7 @@ var attacked = false
 
 func _ready():
 	hurtbox.area_entered.connect(_on_hurtbox_area_entered)
+	$"../../StateMachine/Cry1".cry.connect(_on_cry)
 
 func _physics_process(delta):
 	match state:
@@ -47,9 +48,14 @@ func _on_hurtbox_area_entered(hitbox) -> void:
 			await get_tree().create_timer(0.5).timeout
 			state = EyeState.IDLE
 
+
+func _on_cry():
+	if state != EyeState.DEAD:
+		state = EyeState.ATTACK
+		
 func attack(aim_pos: Vector2):
 	var bullet_scene = preload("res://bullets/goo_bullet/goo_bullet.tscn")
-	var base_rotation = aim_rotation
+	var base_rotation = randf_range(aim_rotation-60, aim_rotation+60)
 	var rotation_increment = 90 # Adjust this value to control the angle change
 	var number_of_sets = 8
 	var bullets_per_set = 5

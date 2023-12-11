@@ -126,7 +126,6 @@ func _load_data() -> void:
 	
 
 func _physics_process(delta):
-	print_debug("execute_disabled: " + str(execute_disabled))
 	if !set_ui:
 		set_ui = true
 		GameEvents.player_health_changed.emit(health, max_health)
