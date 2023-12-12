@@ -21,6 +21,7 @@ func _ready() -> void:
 
 
 func _process(delta: float) -> void:
+	owner.phase = phase
 	if !owner.cutscene_running:
 		state.update(delta)
 

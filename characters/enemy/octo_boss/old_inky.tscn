@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=3 uid="uid://cy5irklqecg7c"]
+[gd_scene load_steps=30 format=3 uid="uid://cy5irklqecg7c"]
 
 [ext_resource type="Script" path="res://characters/enemy/octo_boss/octo_boss.gd" id="1_pmrs0"]
 [ext_resource type="Shader" path="res://levels_and_level_objects/destructible_plants/chop_foliage_underwater.gdshader" id="2_16cj2"]
@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://bb1h85dym7l4i" path="res://hitboxes/Hurtbox.tscn" id="5_ikshk"]
 [ext_resource type="Script" path="res://characters/enemy/BossStateMachine.gd" id="6_gpral"]
 [ext_resource type="Script" path="res://characters/enemy/octo_boss/states/inactive_1.gd" id="7_hbsvd"]
+[ext_resource type="Script" path="res://characters/enemy/octo_boss/arm_front.gd" id="7_k6fwm"]
 [ext_resource type="Script" path="res://characters/enemy/octo_boss/states/octo_boss_idle_1.gd" id="8_waofn"]
 [ext_resource type="Script" path="res://characters/enemy/octo_boss/player_detector.gd" id="10_u8hmy"]
 [ext_resource type="Script" path="res://characters/enemy/octo_boss/Smash1.gd" id="12_htf1o"]
@@ -48,6 +49,9 @@ size = Vector2(243.375, 33.75)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_h5ju5"]
 size = Vector2(141, 166)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2rgqb"]
+size = Vector2(43, 162)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2oaxa"]
 size = Vector2(651, 23)
@@ -105,11 +109,17 @@ tracks/1/path = NodePath("StateMachine/Smash1")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(1),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0.9, 1, 2.3),
+"transitions": PackedFloat32Array(1, 1, 1),
 "values": [{
 "args": [],
+"method": &"activate_hurtbox"
+}, {
+"args": [],
 "method": &"_spawn_bullet"
+}, {
+"args": [],
+"method": &"deactivate_hurtboxes"
 }]
 }
 
@@ -135,11 +145,17 @@ tracks/1/path = NodePath("StateMachine/Smash1")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(1),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0.9, 1, 2.3),
+"transitions": PackedFloat32Array(1, 1, 1),
 "values": [{
 "args": [],
+"method": &"activate_hurtbox"
+}, {
+"args": [],
 "method": &"_spawn_bullet"
+}, {
+"args": [],
+"method": &"deactivate_hurtboxes"
 }]
 }
 
@@ -193,6 +209,7 @@ script = ExtResource("1_pmrs0")
 [node name="HeadLeft" type="Node2D" parent="Head"]
 script = ExtResource("2_w68j6")
 aim_rotation = 180
+is_left_half = true
 
 [node name="HeadSprite" type="Sprite2D" parent="Head/HeadLeft"]
 material = SubResource("ShaderMaterial_saa62")
@@ -248,6 +265,7 @@ texture = ExtResource("4_710v4")
 hframes = 2
 
 [node name="ArmFrontRight" type="Node2D" parent="."]
+script = ExtResource("7_k6fwm")
 
 [node name="RightArmFront" type="Sprite2D" parent="ArmFrontRight"]
 material = SubResource("ShaderMaterial_0n83b")
@@ -278,7 +296,17 @@ debug_color = Color(0.964706, 0, 0.486275, 0.419608)
 [node name="SmashMarkerRight" type="Marker2D" parent="ArmFrontRight"]
 position = Vector2(36, 237)
 
+[node name="Hurtbox" parent="ArmFrontRight" instance=ExtResource("5_ikshk")]
+position = Vector2(38, 160)
+collision_layer = 4
+collision_mask = 8
+
+[node name="CollisionShape2D" parent="ArmFrontRight/Hurtbox" index="0"]
+shape = SubResource("RectangleShape2D_2rgqb")
+
 [node name="ArmFrontLeft" type="Node2D" parent="."]
+script = ExtResource("7_k6fwm")
+is_left_half = true
 
 [node name="LeftArmFront" type="Sprite2D" parent="ArmFrontLeft"]
 material = SubResource("ShaderMaterial_0n83b")
@@ -307,6 +335,14 @@ debug_color = Color(0.964706, 0, 0.486275, 0.419608)
 [node name="SmashMarkerLeft" type="Marker2D" parent="ArmFrontLeft"]
 position = Vector2(-25, 237)
 scale = Vector2(-1, 1)
+
+[node name="Hurtbox" parent="ArmFrontLeft" instance=ExtResource("5_ikshk")]
+position = Vector2(-38, 159)
+collision_layer = 4
+collision_mask = 8
+
+[node name="CollisionShape2D" parent="ArmFrontLeft/Hurtbox" index="0"]
+shape = SubResource("RectangleShape2D_2rgqb")
 
 [node name="StateMachine" type="Node" parent="."]
 script = ExtResource("6_gpral")
@@ -346,3 +382,5 @@ libraries = {
 
 [editable path="Head/HeadLeft/Hurtbox"]
 [editable path="Head/HeadRight/Hurtbox"]
+[editable path="ArmFrontRight/Hurtbox"]
+[editable path="ArmFrontLeft/Hurtbox"]

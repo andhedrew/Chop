@@ -10,30 +10,34 @@ var attacked = false
 @onready var hurtbox = $Hurtbox
 @onready var sprite = $HeadSprite
 @export var aim_rotation = 0
+@export var is_left_half := false
 
 func _ready():
 	hurtbox.area_entered.connect(_on_hurtbox_area_entered)
 	$"../../StateMachine/Cry1".cry.connect(_on_cry)
 
 func _physics_process(delta):
-	match state:
-		EyeState.IDLE:
-			hurtbox.set_deferred("monitoring", true)
-			sprite.frame = 0
-			attacked = false
-		EyeState.HURT:
-			hurtbox.set_deferred("monitoring", false)
-			sprite.frame = 1
-		EyeState.ATTACK:
-			hurtbox.set_deferred("monitoring", false)
-			sprite.frame = 2
-			if not attacked:
-				attacked = true
-				await get_tree().create_timer(0.5).timeout
-				attack(last_hit_position)
-				
-		EyeState.DEAD:
-			pass
+	if $"../../StateMachine".phase != 1:
+		match state:
+			EyeState.IDLE:
+				hurtbox.set_deferred("monitoring", true)
+				sprite.frame = 0
+				attacked = false
+			EyeState.HURT:
+				hurtbox.set_deferred("monitoring", false)
+				sprite.frame = 1
+			EyeState.ATTACK:
+				hurtbox.set_deferred("monitoring", false)
+				sprite.frame = 2
+				if not attacked:
+					attacked = true
+					await get_tree().create_timer(0.5).timeout
+					attack(last_hit_position)
+					
+			EyeState.DEAD:
+				sprite.frame = 3
+	else:
+		hurtbox.set_deferred("monitoring", false)
 
 func _on_hurtbox_area_entered(hitbox) -> void:
 	if hitbox is HitBox:
@@ -47,6 +51,14 @@ func _on_hurtbox_area_entered(hitbox) -> void:
 			state = EyeState.HURT
 			await get_tree().create_timer(0.5).timeout
 			state = EyeState.IDLE
+		
+		if health <= 0:
+			state = EyeState.DEAD
+			hurtbox.set_deferred("monitoring", false)
+			if is_left_half:
+				owner.lost_left_eye = true
+			else: 
+				owner.lost_right_eye = true
 
 
 func _on_cry():

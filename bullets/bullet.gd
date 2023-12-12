@@ -22,8 +22,7 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta):
 	var motion : Vector2 = transform.x * speed * delta
-	if ! triggered_destroy:
-		position += motion
+	position += motion
 	travelled_distance += speed * delta
 	if travelled_distance > max_range and not triggered_destroy:
 		_destroy()

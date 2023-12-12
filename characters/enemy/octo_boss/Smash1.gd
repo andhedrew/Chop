@@ -2,6 +2,7 @@ extends State
 
 var bullet_marker: Marker2D
 var rot := 0
+var hurtbox
 
 func enter(msg := {}) -> void:
 	await get_tree().create_timer(0.3).timeout
@@ -10,10 +11,14 @@ func enter(msg := {}) -> void:
 			$"../../AnimationPlayer".play("smash_arm_left")
 			bullet_marker = $"../../ArmFrontLeft/SmashMarkerLeft"
 			rot = 180
+			hurtbox = $"../../ArmFrontLeft/Hurtbox"
+			
 		"right":
 			$"../../AnimationPlayer".play("smash_arm_right")
 			bullet_marker = $"../../ArmFrontRight/SmashMarkerRight"
 			rot = 0
+			hurtbox = $"../../ArmFrontRight/Hurtbox"
+
 	
 	
 	
@@ -52,3 +57,9 @@ func physics_update(_delta: float) -> void:
 func exit() -> void:
 	pass
 
+func activate_hurtbox():
+	hurtbox.set_deferred("monitoring", true)
+
+func deactivate_hurtboxes():
+	$"../../ArmFrontRight/Hurtbox".set_deferred("monitoring", false)
+	$"../../ArmFrontLeft/Hurtbox".set_deferred("monitoring", false)

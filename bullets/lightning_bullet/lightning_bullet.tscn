@@ -1,6 +1,6 @@
 [gd_scene load_steps=10 format=3 uid="uid://bpagxhrxhfxsk"]
 
-[ext_resource type="Script" path="res://bullets/bullet.gd" id="1_4ijrh"]
+[ext_resource type="Script" path="res://bullets/lightning_bullet/lightning_bullet.gd" id="1_ftagq"]
 [ext_resource type="Texture2D" uid="uid://bkyruqcxe021h" path="res://bullets/lightning_bullet/luightiningbullet.png" id="2_73gi4"]
 [ext_resource type="PackedScene" uid="uid://cxfiuhgots5lg" path="res://hitboxes/Hitbox.tscn" id="3_31ow8"]
 
@@ -72,7 +72,7 @@ size = Vector2(24, 30)
 
 [node name="lightning_bullet" type="Area2D"]
 collision_layer = 0
-script = ExtResource("1_4ijrh")
+script = ExtResource("1_ftagq")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(9, 0)
