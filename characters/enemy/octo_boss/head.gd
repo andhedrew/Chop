@@ -6,7 +6,8 @@ var state = EyeState.IDLE
 var health = 8
 var last_hit_position := Vector2.ZERO
 var attacked = false
-
+@export var wince := false
+var wince_timer := 0.0
 @onready var hurtbox = $Hurtbox
 @onready var sprite = $HeadSprite
 @export var aim_rotation = 0
@@ -21,7 +22,10 @@ func _physics_process(delta):
 		match state:
 			EyeState.IDLE:
 				hurtbox.set_deferred("monitoring", true)
-				sprite.frame = 0
+				if wince:
+					sprite.frame = 1
+				else:
+					sprite.frame = 0
 				attacked = false
 			EyeState.HURT:
 				hurtbox.set_deferred("monitoring", false)
@@ -35,9 +39,16 @@ func _physics_process(delta):
 					attack(last_hit_position)
 					
 			EyeState.DEAD:
-				sprite.frame = 3
+				if wince:
+					sprite.frame = 1
+				else:
+					sprite.frame = 3
 	else:
 		hurtbox.set_deferred("monitoring", false)
+		if wince:
+			sprite.frame = 1
+		else:
+			sprite.frame = 0
 
 func _on_hurtbox_area_entered(hitbox) -> void:
 	if hitbox is HitBox:

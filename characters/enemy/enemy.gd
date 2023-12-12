@@ -44,9 +44,6 @@ func _ready() -> void:
 	$Hurtbox.area_entered.connect(_take_damage)
 	$Hurtbox.body_entered.connect(_on_body_entered)
 
-
-
-
 	GameEvents.player_started_syphoning.connect(_on_player_syphoning)
 	GameEvents.player_done_syphoning.connect(_on_player_done_syphoning)
 	GameEvents.evening_started.connect(_on_end_of_day)
@@ -72,41 +69,41 @@ func _physics_process(_delta):
 		effects_player.play("RESET")
 		reset_effects_player = false
 	
-
-
-	if facing == Enums.Facing.RIGHT:
-		if pivot.scale.y != -1:
-			pivot.scale.y = lerp(pivot.scale.y, -1.0, 0.1)
-		if pivot.scale.x != 1:
-			pivot.scale.x = lerp(pivot.scale.x, 1.0, 0.1)
-#
-	if facing == Enums.Facing.LEFT:
-		if pivot.scale.y != 1:
-			pivot.scale.y = lerp(pivot.scale.y, 1.0, 0.1)
-		if pivot.scale.x != 1:
-			pivot.scale.x = lerp(pivot.scale.x, 1.0, 0.1)
+	
+	#scale back to original for squash and stretch
+#	if facing == Enums.Facing.RIGHT:
+#		if pivot.scale.y != -1:
+#			pivot.scale.y = lerp(pivot.scale.y, 1.0, 0.1)
+#		if pivot.scale.x != 1:
+#			pivot.scale.x = lerp(pivot.scale.x, 1.0, 0.1)
+##
+#	if facing == Enums.Facing.LEFT:
+#		if pivot.scale.y != 1:
+#			pivot.scale.y = lerp(pivot.scale.y, 1.0, 0.1)
+#		if pivot.scale.x != 1:
+#			pivot.scale.x = lerp(pivot.scale.x, 1.0, 0.1)
 
 
 func set_facing(facing_dir, squash_and_stretch := false) -> void:
 	if facing_dir == Enums.Facing.LEFT:
 		direction = -1
-		$Pivot.transform.x.x = 1
-		if squash_and_stretch:
-			$Pivot.scale.x = 0.8
-			$Pivot.scale.y = 1.1
+		$Pivot.scale.x = 1
+#		if squash_and_stretch:
+#			$Pivot.scale.x = 0.8
+#			$Pivot.scale.y = 1.1
 		$BloodParticles.transform.x.x = 1
 	elif facing_dir == Enums.Facing.RIGHT:
 		direction = 1
-		$Pivot.transform.x.x = -1
-		if squash_and_stretch:
-			$Pivot.scale.x = 0.8
-			$Pivot.scale.y = -1.1
+		$Pivot.scale.x = -1
+#		if squash_and_stretch:
+#			$Pivot.scale.x = 0.8
+#			$Pivot.scale.y = 1.1
 		$BloodParticles.transform.x.x = -1
-	
 	facing = facing_dir
 
 
 func switch_facing() -> void:
+	
 	if facing == Enums.Facing.LEFT:
 		facing = Enums.Facing.RIGHT
 	elif facing == Enums.Facing.RIGHT:

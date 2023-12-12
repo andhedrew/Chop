@@ -11,18 +11,18 @@ var timer: Timer
 
 # Called when the node enters the scene tree for the first time.
 func enter(_msg := {}) -> void:
-	owner.animation_player.play("idle")
+	
 	owner.animation_player.speed_scale = randf_range(0.55, 0.65)
 #	owner.animation_player.
 	timer = Timer.new()
 	add_child(timer)
-	timer.wait_time = 5.0 + randf_range(-owner.erratic_walking_amount, owner.erratic_walking_amount)
+	timer.wait_time = 2.0 + randf_range(-owner.erratic_walking_amount, owner.erratic_walking_amount)
 	timer.one_shot = true
 	timer.start()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func update(_delta: float) -> void:
-	
+	owner.animation_player.play("idle")
 	if owner.speed > 0:
 		var left_blocked = !ledge_left.is_colliding() or wall_left.is_colliding()
 		var right_blocked = !ledge_right.is_colliding() or wall_right.is_colliding()
@@ -32,7 +32,7 @@ func update(_delta: float) -> void:
 
 		if timer.is_stopped() and !(left_blocked and right_blocked) and state_machine.has_node("Move"):
 			timer.queue_free()
-			state_machine.transition_to("Move")
+			state_machine.transition_to("Attack")
 
 		if !owner.is_on_floor():
 			state_machine.transition_to("Fall")

@@ -10,6 +10,7 @@ var attacked = false
 @onready var hurtbox = $Hurtbox
 @export var aim_rotation = 0
 @export var is_left_half := false
+@onready var animation_player = $"../AnimationPlayer2"
 
 func _ready():
 	hurtbox.area_entered.connect(_on_hurtbox_area_entered)
@@ -29,7 +30,7 @@ func _physics_process(delta):
 
 func _on_hurtbox_area_entered(hitbox) -> void:
 	if hitbox is HitBox:
-		print("player attacked arm")
+		animation_player.play("hurt")
 		hurtbox.set_deferred("monitoring", false)
 		health -= 1
 		if health <= 0:

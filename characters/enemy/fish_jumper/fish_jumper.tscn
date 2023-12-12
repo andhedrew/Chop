@@ -23,11 +23,12 @@ size = Vector2(13, 38)
 hurt_vocalizations = Array[AudioStreamWAV]([ExtResource("2_53jbm"), ExtResource("3_htloi")])
 death_vocalization = ExtResource("4_jqj1u")
 death_pieces = Array[Resource]([ExtResource("2_k4xej"), ExtResource("3_83r0h"), ExtResource("3_83r0h"), ExtResource("3_83r0h")])
+bounty = 0
 
 [node name="Body" parent="Pivot" index="0"]
 position = Vector2(0, -25)
 texture = ExtResource("2_3vx3p")
-frame = 1
+frame = 0
 
 [node name="player_detector" parent="Pivot" index="3"]
 collision_mask = 2
@@ -52,6 +53,12 @@ shape = SubResource("RectangleShape2D_bb3ng")
 
 [node name="ledge_check_right" parent="." index="7"]
 position = Vector2(4, 0)
+
+[node name="wall_check_left" parent="." index="9"]
+target_position = Vector2(-30, 0)
+
+[node name="wall_check_right" parent="." index="12"]
+target_position = Vector2(30, 0)
 
 [editable path="Hurtbox"]
 [editable path="Hitbox"]

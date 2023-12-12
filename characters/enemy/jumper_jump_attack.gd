@@ -7,6 +7,8 @@ extends State
 
 # Called when the node enters the scene tree for the first time.
 func enter(_msg := {}) -> void:
+	jump_y_speed = int(randf_range(200, 230))
+	jump_x_speed = int(randf_range(30, 45))
 	owner.animation_player.play("attack")
 	jump_x_speed *= owner.direction
 	jump_y_speed *= -1

@@ -34,7 +34,6 @@ func physics_update(_delta: float) -> void:
 			owner.velocity.x = -owner.max_x_speed + owner.belt_speed
 		else:
 			owner.velocity.x = owner.max_x_speed + owner.belt_speed
-#	owner.velocity.x += owner.speed * owner.direction
 	
 	owner.move_and_slide()
 	

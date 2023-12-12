@@ -10,6 +10,9 @@ var lost_right_eye := false
 
 var phase := 1
 
+signal spawn
+var spawn_timer := 0.0
+
 func _ready():
 	player_detector.body_entered.connect(_body_entered)
 	$backArms.z_index = SortLayer.FOREGROUND
@@ -18,6 +21,10 @@ func _ready():
 
 
 func _physics_process(delta):
+	spawn_timer += delta
+	if spawn_timer > 3:
+		spawn_timer = 0.0
+		GameEvents.spawn_fish.emit()
 	if lost_left_arm:
 		if lost_right_arm:
 			if lost_left_eye:
