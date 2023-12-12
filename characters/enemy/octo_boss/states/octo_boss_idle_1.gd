@@ -4,7 +4,7 @@ var wait_time: float
 var arm_detecting_smash := "right"
 var arm_detecting_swipe := "right"
 
-var state_odds: Dictionary = {"Cry": 1.0, "Smash": 1.0, "Swipe": 1.0}
+var state_odds: Dictionary = {"Cry": 1.0, "Smash": 1.0, "Cast": 1.0}
 const ODDS_INCREASE = 2.0
 const ODDS_DECREASE = 0.5
 
@@ -24,9 +24,9 @@ func update(_delta: float) -> void:
 		if state == "Smash":
 			state_machine.transition_to("Smash", {"arm": arm_detecting_smash})
 			state_odds["Smash"] *= ODDS_DECREASE
-		elif state == "Swipe":
-			state_machine.transition_to("Swipe", {"arm": arm_detecting_swipe})
-			state_odds["Swipe"] *= ODDS_DECREASE
+		elif state == "Cast":
+			state_machine.transition_to("Cast", {"arm": arm_detecting_swipe})
+			state_odds["Cast"] *= ODDS_DECREASE
 		else:
 			state_machine.transition_to("Cry")
 		adjust_state_odds(state)
@@ -62,8 +62,8 @@ func on_detect_player_smash_left(body):
 
 func on_detect_player_swipe_right(body):
 	arm_detecting_swipe = "right"
-	state_odds["Swipe"] *= ODDS_INCREASE
+	state_odds["Cast"] *= ODDS_INCREASE
 
 func on_detect_player_swipe_left(body):
 	arm_detecting_swipe = "left"
-	state_odds["Swipe"] *= ODDS_INCREASE
+	state_odds["Cast"] *= ODDS_INCREASE

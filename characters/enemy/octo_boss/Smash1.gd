@@ -17,7 +17,8 @@ func enter(msg := {}) -> void:
 	
 	
 	
-	await get_tree().create_timer(0.3).timeout
+func _spawn_bullet():
+	
 	GameEvents.boss_hit_wall.emit()
 	GameEvents.new_vfx.emit("res://vfx/dirt_explode.tscn", bullet_marker.global_position)
 	var bullet = preload("res://bullets/vine_whip_bullet/vine_whip_bullet_big.tscn").instantiate()
@@ -27,8 +28,15 @@ func enter(msg := {}) -> void:
 	var speed = 250
 	var spread = 0
 	var rotation := rot
-
 	bullet.setup(transform, fire_range, speed, rotation, spread)
+	
+	bullet = preload("res://bullets/vine_whip_bullet/vine_whip_bullet_big.tscn").instantiate()
+	owner.add_child(bullet)
+	rotation = rot - 180
+	bullet.setup(transform, fire_range, speed, rotation, spread)
+	
+	
+		
 	await get_tree().create_timer(1.0).timeout
 	state_machine.transition_to("Idle")
 
