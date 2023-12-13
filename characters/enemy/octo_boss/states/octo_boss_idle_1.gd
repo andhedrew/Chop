@@ -25,11 +25,13 @@ func update(_delta: float) -> void:
 		state = new_state
 		
 		if state == "Cast":
-			state_machine.transition_to("Cast", {"arm": arm_detecting_swipe})
+			if not owner.arm_gone[arm_detecting_smash]:
+				state_machine.transition_to("Cast", {"arm": arm_detecting_swipe})
 		elif state == "Cry":
 			state_machine.transition_to("Cry")
 		elif state == "Smash":
-			state_machine.transition_to("Smash", {"arm": arm_detecting_smash})
+			if not owner.arm_gone[arm_detecting_smash]:
+				state_machine.transition_to("Smash", {"arm": arm_detecting_smash})
 		elif state == "Summon":
 			if fish_dead:
 				GameEvents.spawn_fish.emit()

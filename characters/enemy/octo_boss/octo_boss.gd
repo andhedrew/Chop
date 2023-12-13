@@ -3,10 +3,16 @@ extends Enemy
 var player_position: Vector2
 @onready var player_detector := $PlayerDetector
 
-var lost_left_arm := false
-var lost_right_arm := false
-var lost_left_eye := false
-var lost_right_eye := false
+var arm_gone = {
+	"left": false,
+	"right": false,
+}
+
+var eye_gone = {
+	"left": false,
+	"right": false,
+}
+
 
 var phase := 1
 
@@ -20,10 +26,10 @@ func _ready():
 
 func _physics_process(delta):
 
-	if lost_left_arm:
-		if lost_right_arm:
-			if lost_left_eye:
-				if lost_right_eye:
+	if arm_gone["left"]:
+		if arm_gone["right"]:
+			if eye_gone["left"]:
+				if eye_gone["right"]:
 					queue_free()
 
 

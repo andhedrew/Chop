@@ -3,7 +3,7 @@ extends Node2D
 enum ArmState { IDLE, HURT, ATTACK, DEAD }
 
 var state = ArmState.IDLE
-var health = 8
+var health = 1
 var last_hit_position := Vector2.ZERO
 var attacked = false
 
@@ -17,15 +17,15 @@ func _ready():
 	hurtbox.set_deferred("monitoring", false)
 
 func _physics_process(delta):
-	if owner.phase != 1:
-		match state:
-			ArmState.IDLE:
-				pass
-			ArmState.HURT:
-				pass
+	
+	match state:
+		ArmState.IDLE:
+			pass
+		ArmState.HURT:
+			pass
 
-			ArmState.DEAD:
-				queue_free()
+		ArmState.DEAD:
+			queue_free()
 
 
 func _on_hurtbox_area_entered(hitbox) -> void:
@@ -37,9 +37,9 @@ func _on_hurtbox_area_entered(hitbox) -> void:
 			state = ArmState.DEAD
 			hurtbox.set_deferred("monitoring", false)
 			if is_left_half:
-				owner.lost_left_arm = true
+				owner.arm_gone["left"] = true
 			else: 
-				owner.lost_right_arm = true
+				owner.arm_gone["right"] = true
 		else:
 			state = ArmState.HURT
 

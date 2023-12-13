@@ -61,5 +61,8 @@ func activate_hurtbox():
 	hurtbox.set_deferred("monitoring", true)
 
 func deactivate_hurtboxes():
-	$"../../ArmFrontRight/Hurtbox".set_deferred("monitoring", false)
-	$"../../ArmFrontLeft/Hurtbox".set_deferred("monitoring", false)
+	if not owner.arm_gone["left"]:
+		$"../../ArmFrontLeft/Hurtbox".set_deferred("monitoring", false)
+	if not owner.arm_gone["right"]:
+		$"../../ArmFrontRight/Hurtbox".set_deferred("monitoring", false)
+
