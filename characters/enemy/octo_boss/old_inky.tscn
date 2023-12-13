@@ -1,10 +1,11 @@
-[gd_scene load_steps=31 format=3 uid="uid://cy5irklqecg7c"]
+[gd_scene load_steps=39 format=3 uid="uid://cy5irklqecg7c"]
 
 [ext_resource type="Script" path="res://characters/enemy/octo_boss/octo_boss.gd" id="1_pmrs0"]
 [ext_resource type="Shader" path="res://levels_and_level_objects/destructible_plants/chop_foliage_underwater.gdshader" id="2_16cj2"]
 [ext_resource type="Script" path="res://characters/enemy/octo_boss/head.gd" id="2_w68j6"]
 [ext_resource type="Texture2D" uid="uid://co2dect180tqi" path="res://characters/enemy/octo_boss/octo_head.png" id="3_gtsvm"]
 [ext_resource type="Texture2D" uid="uid://cyyxqkj3gu8jp" path="res://characters/enemy/octo_boss/back_arm.png" id="4_710v4"]
+[ext_resource type="Texture2D" uid="uid://damw3cj8hluqn" path="res://characters/enemy/octo_boss/octo_head_transition.png" id="4_y2xnk"]
 [ext_resource type="Texture2D" uid="uid://b2fcxdc530e24" path="res://characters/enemy/octo_boss/front_arm.png" id="5_4mfyp"]
 [ext_resource type="PackedScene" uid="uid://bb1h85dym7l4i" path="res://hitboxes/Hurtbox.tscn" id="5_ikshk"]
 [ext_resource type="Script" path="res://characters/enemy/BossStateMachine.gd" id="6_gpral"]
@@ -13,8 +14,13 @@
 [ext_resource type="Script" path="res://characters/enemy/octo_boss/states/octo_boss_idle_1.gd" id="8_waofn"]
 [ext_resource type="Script" path="res://characters/enemy/octo_boss/player_detector.gd" id="10_u8hmy"]
 [ext_resource type="Script" path="res://characters/enemy/octo_boss/Smash1.gd" id="12_htf1o"]
+[ext_resource type="Script" path="res://characters/enemy/octo_boss/idle_2.gd" id="12_meeh5"]
 [ext_resource type="Script" path="res://characters/enemy/octo_boss/cry_1.gd" id="12_xxqrf"]
 [ext_resource type="Script" path="res://characters/enemy/octo_boss/swipe_1.gd" id="13_6n10h"]
+[ext_resource type="Script" path="res://characters/enemy/octo_boss/Smash2.gd" id="14_ut82a"]
+[ext_resource type="Script" path="res://characters/enemy/octo_boss/transition.gd" id="15_vxtyr"]
+[ext_resource type="Texture2D" uid="uid://8y6cetkvvp51" path="res://characters/enemy/octo_boss/octo_head_2.png" id="18_qlvyf"]
+[ext_resource type="PackedScene" uid="uid://cxfiuhgots5lg" path="res://hitboxes/Hitbox.tscn" id="21_82y0w"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_saa62"]
 shader = ExtResource("2_16cj2")
@@ -81,6 +87,66 @@ tracks/1/path = NodePath("ArmFrontLeft/LeftArmFront:frame")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.1),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Head/HeadLeft/HeadSprite:texture")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0.1),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("3_gtsvm")]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Head/HeadRight/HeadSprite:texture")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0.1),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("3_gtsvm")]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("backArms/LeftArmBack:frame")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("backArms/RightArmBack:frame")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
@@ -165,14 +231,14 @@ length = 3.0
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("ArmFrontLeft/LeftArmFront:frame")
+tracks/0/path = NodePath("backArms/LeftArmBack:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2, 1.5, 1.6, 1.7, 1.8, 2.2, 2.3, 2.4, 2.5),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"times": PackedFloat32Array(0, 1, 1.1, 1.2, 1.3, 1.4, 1.5, 1.6, 1.7, 1.8),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
 "update": 1,
-"values": [0, 2, 1, 2, 3, 4, 5, 4, 3, 1, 0]
+"values": [1, 2, 3, 4, 3, 4, 3, 4, 2, 0]
 }
 
 [sub_resource type="Animation" id="Animation_2to46"]
@@ -181,14 +247,14 @@ length = 3.0
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("ArmFrontRight/RightArmFront:frame")
+tracks/0/path = NodePath("backArms/RightArmBack:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2, 1.5, 1.6, 1.7, 1.8, 2.3, 2.4, 2.5, 2.6),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"times": PackedFloat32Array(0, 1, 1.1, 1.2, 1.3, 1.4, 1.5, 1.6, 1.7, 1.8),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
 "update": 1,
-"values": [0, 2, 1, 2, 3, 4, 5, 4, 3, 2, 1]
+"values": [1, 2, 3, 4, 3, 4, 3, 4, 2, 0]
 }
 
 [sub_resource type="Animation" id="Animation_3q507"]
@@ -232,6 +298,58 @@ tracks/2/keys = {
 "values": [true, false]
 }
 
+[sub_resource type="Animation" id="Animation_xkhn7"]
+resource_name = "transition"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Head/HeadLeft/HeadSprite:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.9),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [ExtResource("4_y2xnk"), ExtResource("18_qlvyf")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Head/HeadRight/HeadSprite:texture")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1.9),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [ExtResource("4_y2xnk"), ExtResource("18_qlvyf")]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Head/HeadLeft/HeadSprite:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.5, 1.1, 1.6, 1.9),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [3, 2, 1, 0, 0]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Head/HeadRight/HeadSprite:frame")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.5, 1.1, 1.6, 1.9),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [3, 2, 1, 0, 0]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_w1jmw"]
 _data = {
 "RESET": SubResource("Animation_pemyj"),
@@ -239,11 +357,16 @@ _data = {
 "smash_arm_left": SubResource("Animation_g8ueh"),
 "smash_arm_right": SubResource("Animation_c3p3p"),
 "swipe_arm_left": SubResource("Animation_1dpsu"),
-"swipe_arm_right": SubResource("Animation_2to46")
+"swipe_arm_right": SubResource("Animation_2to46"),
+"transition": SubResource("Animation_xkhn7")
 }
 
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_g530t"]
+radius = 74.0
+height = 164.0
+
 [node name="OldInky" type="CharacterBody2D"]
-collision_mask = 2
+collision_mask = 3
 script = ExtResource("1_pmrs0")
 
 [node name="Head" type="Node2D" parent="."]
@@ -257,6 +380,7 @@ is_left_half = true
 material = SubResource("ShaderMaterial_saa62")
 texture = ExtResource("3_gtsvm")
 hframes = 4
+frame = 3
 
 [node name="Hurtbox" parent="Head/HeadLeft" instance=ExtResource("5_ikshk")]
 position = Vector2(-47, 24)
@@ -278,6 +402,7 @@ rotation = 3.14159
 scale = Vector2(1, -1)
 texture = ExtResource("3_gtsvm")
 hframes = 4
+frame = 3
 
 [node name="Hurtbox" parent="Head/HeadRight" instance=ExtResource("5_ikshk")]
 position = Vector2(47, 23)
@@ -296,7 +421,8 @@ position = Vector2(39, 24)
 material = SubResource("ShaderMaterial_0n83b")
 position = Vector2(-168, 61)
 texture = ExtResource("4_710v4")
-hframes = 2
+hframes = 5
+frame = 3
 
 [node name="RightArmBack" type="Sprite2D" parent="backArms"]
 material = SubResource("ShaderMaterial_0n83b")
@@ -304,7 +430,7 @@ position = Vector2(164, 61)
 rotation = 3.14159
 scale = Vector2(1, -1)
 texture = ExtResource("4_710v4")
-hframes = 2
+hframes = 5
 
 [node name="ArmFrontRight" type="Node2D" parent="."]
 script = ExtResource("7_k6fwm")
@@ -396,14 +522,29 @@ script = ExtResource("7_hbsvd")
 [node name="Idle1" type="Node" parent="StateMachine"]
 script = ExtResource("8_waofn")
 
+[node name="Idle2" type="Node" parent="StateMachine"]
+script = ExtResource("12_meeh5")
+
 [node name="Smash1" type="Node" parent="StateMachine"]
 script = ExtResource("12_htf1o")
+
+[node name="Smash2" type="Node" parent="StateMachine"]
+script = ExtResource("14_ut82a")
 
 [node name="Cry1" type="Node" parent="StateMachine"]
 script = ExtResource("12_xxqrf")
 
+[node name="Cry2" type="Node" parent="StateMachine"]
+script = ExtResource("12_xxqrf")
+
 [node name="Cast1" type="Node" parent="StateMachine"]
 script = ExtResource("13_6n10h")
+
+[node name="Cast2" type="Node" parent="StateMachine"]
+script = ExtResource("13_6n10h")
+
+[node name="Transition1" type="Node" parent="StateMachine"]
+script = ExtResource("15_vxtyr")
 
 [node name="PlayerDetector" type="Area2D" parent="."]
 collision_mask = 2
@@ -427,7 +568,18 @@ libraries = {
 "": SubResource("AnimationLibrary_w1jmw")
 }
 
+[node name="Phase2SmashHitbox" parent="." instance=ExtResource("21_82y0w")]
+collision_layer = 16
+collision_mask = 2
+monitoring = false
+monitorable = false
+
+[node name="CollisionShape2D" parent="Phase2SmashHitbox" index="0"]
+position = Vector2(-2, -4)
+shape = SubResource("CapsuleShape2D_g530t")
+
 [editable path="Head/HeadLeft/Hurtbox"]
 [editable path="Head/HeadRight/Hurtbox"]
 [editable path="ArmFrontRight/Hurtbox"]
 [editable path="ArmFrontLeft/Hurtbox"]
+[editable path="Phase2SmashHitbox"]

@@ -18,6 +18,7 @@ var phase := 1
 
 
 func _ready():
+	$AnimationPlayer.play("RESET")
 	player_detector.body_entered.connect(_body_entered)
 	$backArms.z_index = SortLayer.FOREGROUND
 	z_index = SortLayer.FOREGROUND

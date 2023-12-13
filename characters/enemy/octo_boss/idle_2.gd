@@ -16,24 +16,21 @@ func _ready():
 	GameEvents.fish_dead.connect(on_fish_all_dead)
 
 func enter(_msg := {}) -> void:
-	wait_time = randf_range(1.0, 3.0)
+	wait_time = randf_range(0.8, 2.0)
+	
 
 func update(_delta: float) -> void:
-	if owner.arm_gone["left"] and owner.arm_gone["right"]:
-		state_machine.transition_to("Transition")
 	
 	if state_machine.state_timer > wait_time:
 		var new_state = get_state()
-		print_debug("new_state: " + str(new_state))
 		state = new_state
-		
+		state = "Smash"
 		if state == "Cast":
 			state_machine.transition_to("Cast", {"arm": arm_detecting_swipe})
 		elif state == "Cry":
 			state_machine.transition_to("Cry")
 		elif state == "Smash":
-			if not owner.arm_gone[arm_detecting_smash]:
-				state_machine.transition_to("Smash", {"arm": arm_detecting_smash})
+			state_machine.transition_to("Smash")
 		elif state == "Summon":
 			if fish_dead:
 				GameEvents.spawn_fish.emit()

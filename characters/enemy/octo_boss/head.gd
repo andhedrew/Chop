@@ -3,7 +3,7 @@ extends Node2D
 enum EyeState { IDLE, HURT, ATTACK, DEAD }
 
 var state = EyeState.IDLE
-var health = 8
+var health = 1
 var last_hit_position := Vector2.ZERO
 var attacked = false
 @export var wince := false
@@ -12,52 +12,56 @@ var wince_timer := 0.0
 @onready var sprite = $HeadSprite
 @export var aim_rotation = 0
 @export var is_left_half := false
+var cutscene_running = false
 
 func _ready():
 	hurtbox.area_entered.connect(_on_hurtbox_area_entered)
 	$"../../StateMachine/Cry1".cry.connect(_on_cry)
+	GameEvents.cutscene_started.connect(_on_cutscene_start)
+	GameEvents.cutscene_ended.connect(_on_cutscene_end)
 
 func _physics_process(delta):
-	if $"../../StateMachine".phase != 1:
-		match state:
-			EyeState.IDLE:
-				hurtbox.set_deferred("monitoring", true)
-				if wince:
+	if not cutscene_running:
+		if $"../../StateMachine".phase != 1:
+			match state:
+				EyeState.IDLE:
+					hurtbox.set_deferred("monitoring", true)
+					if wince:
+						sprite.frame = 1
+					else:
+						sprite.frame = 0
+					attacked = false
+				EyeState.HURT:
+					hurtbox.set_deferred("monitoring", false)
 					sprite.frame = 1
-				else:
-					sprite.frame = 0
-				attacked = false
-			EyeState.HURT:
-				hurtbox.set_deferred("monitoring", false)
-				sprite.frame = 1
-			EyeState.ATTACK:
-				hurtbox.set_deferred("monitoring", false)
-				sprite.frame = 2
-				if not attacked:
-					attacked = true
-					await get_tree().create_timer(0.5).timeout
-					attack(last_hit_position)
-					
-			EyeState.DEAD:
-				if wince:
-					sprite.frame = 1
-				else:
-					sprite.frame = 3
-	else:
-		hurtbox.set_deferred("monitoring", false)
-		match state:
-			EyeState.IDLE:
-				if wince:
-					sprite.frame = 1
-				else:
-					sprite.frame = 0
-				attacked = false
-			EyeState.ATTACK:
-				sprite.frame = 2
-				if not attacked:
-					attacked = true
-					await get_tree().create_timer(0.5).timeout
-					attack(last_hit_position)
+				EyeState.ATTACK:
+					hurtbox.set_deferred("monitoring", false)
+					sprite.frame = 2
+					if not attacked:
+						attacked = true
+						await get_tree().create_timer(0.5).timeout
+						attack(last_hit_position)
+						
+				EyeState.DEAD:
+					if wince:
+						sprite.frame = 1
+					else:
+						sprite.frame = 3
+		else:
+			hurtbox.set_deferred("monitoring", false)
+			match state:
+				EyeState.IDLE:
+					if wince:
+						sprite.frame = 1
+					else:
+						sprite.frame = 0
+					attacked = false
+				EyeState.ATTACK:
+					sprite.frame = 2
+					if not attacked:
+						attacked = true
+						await get_tree().create_timer(0.5).timeout
+						attack(last_hit_position)
 					
 
 func _on_hurtbox_area_entered(hitbox) -> void:
@@ -77,9 +81,9 @@ func _on_hurtbox_area_entered(hitbox) -> void:
 			state = EyeState.DEAD
 			hurtbox.set_deferred("monitoring", false)
 			if is_left_half:
-				owner.lost_left_eye = true
+				owner.eye_gone["left"] = true
 			else: 
-				owner.lost_right_eye = true
+				owner.eye_gone["right"] = true
 
 
 func _on_cry():
@@ -117,3 +121,11 @@ func attack(aim_pos: Vector2):
 	
 	state = EyeState.IDLE
 
+
+
+func _on_cutscene_start() -> void:
+	cutscene_running = true
+
+
+func _on_cutscene_end() -> void:
+	cutscene_running = false
