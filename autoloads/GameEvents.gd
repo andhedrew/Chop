@@ -58,6 +58,7 @@ signal boss_stomped
 signal boss_hit_wall
 signal boss_defeated
 signal spawn_fish
+signal fish_dead
 #utility
 signal camera_change_focus #Param 1: new node target
 signal camera_split_focus #Param 1: new node target, or FALSE if we want to stop.

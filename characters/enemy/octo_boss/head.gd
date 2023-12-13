@@ -45,10 +45,20 @@ func _physics_process(delta):
 					sprite.frame = 3
 	else:
 		hurtbox.set_deferred("monitoring", false)
-		if wince:
-			sprite.frame = 1
-		else:
-			sprite.frame = 0
+		match state:
+			EyeState.IDLE:
+				if wince:
+					sprite.frame = 1
+				else:
+					sprite.frame = 0
+				attacked = false
+			EyeState.ATTACK:
+				sprite.frame = 2
+				if not attacked:
+					attacked = true
+					await get_tree().create_timer(0.5).timeout
+					attack(last_hit_position)
+					
 
 func _on_hurtbox_area_entered(hitbox) -> void:
 	if hitbox is HitBox:

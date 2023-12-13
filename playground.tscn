@@ -51,7 +51,7 @@ shape = SubResource("RectangleShape2D_wikk7")
 position = Vector2(-232, 40)
 
 [node name="FishSpawn" type="Marker2D" parent="." index="22"]
-position = Vector2(504, 296)
+position = Vector2(336, 328)
 script = ExtResource("7_whtap")
 
 [editable path="ColorShiftLayer"]

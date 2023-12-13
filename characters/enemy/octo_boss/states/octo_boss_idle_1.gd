@@ -4,66 +4,69 @@ var wait_time: float
 var arm_detecting_smash := "right"
 var arm_detecting_swipe := "right"
 
-var state_odds: Dictionary = {"Cry": 1.0, "Smash": 1.0, "Cast": 1.0}
-const ODDS_INCREASE = 2.0
-const ODDS_DECREASE = 0.5
-
+var fish_dead := true
+var state: String = "Cast"
+var pre_summon_smashes := 0
 
 func _ready():
 	$"../../ArmFrontRight/PlayerDetectorAttackRight".body_entered.connect(on_detect_player_smash_right)
 	$"../../ArmFrontLeft/PlayerDetectorAttackLeft".body_entered.connect(on_detect_player_smash_left)
 	$"../../ArmFrontRight/PlayerDetectorSwipeAttackRight".body_entered.connect(on_detect_player_swipe_right)
 	$"../../ArmFrontLeft/PlayerDetectorSwipeAttackLeft".body_entered.connect(on_detect_player_swipe_left)
+	GameEvents.fish_dead.connect(on_fish_all_dead)
 
 func enter(_msg := {}) -> void:
-	wait_time = randf_range(3.0, 6.0)
+	wait_time = randf_range(1.0, 3.0)
 
 func update(_delta: float) -> void:
 	if state_machine.state_timer > wait_time:
-		var state = get_weighted_random_state()
-		if state == "Smash":
-			state_machine.transition_to("Smash", {"arm": arm_detecting_smash})
-			state_odds["Smash"] *= ODDS_DECREASE
-		elif state == "Cast":
+		var new_state = get_state()
+		print_debug("new_state: " + str(new_state))
+		state = new_state
+		
+		if state == "Cast":
 			state_machine.transition_to("Cast", {"arm": arm_detecting_swipe})
-			state_odds["Cast"] *= ODDS_DECREASE
-		else:
+		elif state == "Cry":
 			state_machine.transition_to("Cry")
-		adjust_state_odds(state)
+		elif state == "Smash":
+			state_machine.transition_to("Smash", {"arm": arm_detecting_smash})
+		elif state == "Summon":
+			if fish_dead:
+				GameEvents.spawn_fish.emit()
+				fish_dead = false
 
-func get_weighted_random_state() -> String:
-	var total_odds = 0.0
-	for odds in state_odds.values():
-		total_odds += odds
-	
-	var random_point = randf() * total_odds
-	for state in state_odds.keys():
-		var odds = state_odds[state]
-		if random_point < odds:
-			return state
-		random_point -= odds
 
-	return "Cry" # Fallback
-
-func adjust_state_odds(selected_state: String) -> void:
-	for state in state_odds.keys():
-		if state == selected_state:
-			state_odds[state] *= ODDS_DECREASE
-		else:
-			state_odds[state] *= ODDS_INCREASE
+func get_state() -> String:
+	if state == "Cast":
+		return "Cry"
+	elif state == "Cry" and fish_dead and pre_summon_smashes >= 2:
+		pre_summon_smashes = 0
+		return "Summon"
+	elif state == "Cry":
+		pre_summon_smashes += 1
+		return "Smash"
+	else:
+		return "Cast"
+		
+		
 
 func on_detect_player_smash_right(body):
 	arm_detecting_smash = "right"
-	state_odds["Smash"] *= ODDS_INCREASE
+	
 
 func on_detect_player_smash_left(body):
 	arm_detecting_smash = "left"
-	state_odds["Smash"] *= ODDS_INCREASE
+	
 
 func on_detect_player_swipe_right(body):
 	arm_detecting_swipe = "right"
-	state_odds["Cast"] *= ODDS_INCREASE
+	
 
 func on_detect_player_swipe_left(body):
 	arm_detecting_swipe = "left"
-	state_odds["Cast"] *= ODDS_INCREASE
+	
+
+
+func on_fish_all_dead():
+	fish_dead = true
+	

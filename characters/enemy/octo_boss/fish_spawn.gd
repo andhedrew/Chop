@@ -1,49 +1,48 @@
 extends Marker2D
 
-@export var spawn : PackedScene = preload("res://characters/enemy/fish_jumper/fish_jumper.tscn")
-@export_enum("Left", "Right") var facing = "Left"
-var active := true
+@export var spawn: PackedScene = preload("res://characters/enemy/fish_jumper/fish_jumper.tscn")
 
-var timer_minimum := 40.0
-var timer_maximum := 80.0
+# Array to keep track of spawned fish
+var fish_instances = []
 
 func _ready():
 	GameEvents.spawn_fish.connect(spawn_fish)
-	pass
-#	spawn_fish()
 
+func _process(delta):
+	check_fish_status()
 
 func spawn_fish():
-	var new_spawn = spawn.instantiate()
-	add_child(new_spawn)
-	await get_tree().create_timer(0.1).timeout
-	new_spawn.set_facing(new_spawn.facing)
-	GameEvents.cutscene_started.connect(_cutscene_started)
-	GameEvents.cutscene_ended.connect(_cutscene_ended)
+	var original_position = global_position # Store the original position
+	var rect_width = 300
+	var rect_height = 150
 
-func respawn():
-	await get_tree().create_timer(randf_range(timer_minimum, timer_maximum)).timeout
-	if active:
-		var particles = preload("res://vfx/spawn_particles.tscn").instantiate()
-		add_child(particles)
-		particles.position = Vector2(0,-5)
-		particles.emitting = true
-		SoundPlayer.play_sound_positional("spawn", position)
-		await get_tree().create_timer(1.0).timeout
+	fish_instances.clear() # Clear the array when spawning new fish
+	for i in range(3):
+		# Set a random position within the rectangle
+		global_position = original_position + Vector2(randf_range(-rect_width / 2, rect_width / 2), randf_range(-rect_height / 2, rect_height / 2))
+
 		var new_spawn = spawn.instantiate()
-		add_child(new_spawn)
-		if facing == "Left":
-			new_spawn.facing = Enums.Facing.LEFT
-		elif facing == "Right":
-			new_spawn.facing = Enums.Facing.RIGHT
+		GameEvents.new_vfx.emit("res://vfx/magic_dust_big.tscn", global_position)
+		get_parent().add_child(new_spawn)
+		new_spawn.z_index = SortLayer.FOREGROUND
+		new_spawn.position = global_position
+		fish_instances.append(new_spawn)
+
+		# Wait a bit before spawning the next fish
+		await get_tree().create_timer(0.1).timeout
 		new_spawn.set_facing(new_spawn.facing)
-		new_spawn.has_respawned = true
 
+	global_position = original_position # Reset position to original after spawning fish
 
-func _cutscene_started():
-	active = false
-	$ActiveLabel.text = str(active)
+func check_fish_status():
+	# Filter the fish_instances array to keep only valid instances
+	var valid_fish = []
+	for fish in fish_instances:
+		if is_instance_valid(fish):
+			valid_fish.append(fish)
+	
+	fish_instances = valid_fish
 
-func _cutscene_ended():
-	active = true
-	$ActiveLabel.text = str(active)
+	# Check if all fish are destroyed
+	if len(fish_instances) == 0:
+		GameEvents.fish_dead.emit()
