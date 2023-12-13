@@ -23,6 +23,7 @@ func spawn_fish():
 
 		var new_spawn = spawn.instantiate()
 		GameEvents.new_vfx.emit("res://vfx/magic_dust_big.tscn", global_position)
+		await get_tree().create_timer(0.5).timeout
 		get_parent().add_child(new_spawn)
 		new_spawn.z_index = SortLayer.FOREGROUND
 		new_spawn.position = global_position

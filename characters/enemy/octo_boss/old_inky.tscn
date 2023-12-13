@@ -1,4 +1,4 @@
-[gd_scene load_steps=39 format=3 uid="uid://cy5irklqecg7c"]
+[gd_scene load_steps=43 format=3 uid="uid://cy5irklqecg7c"]
 
 [ext_resource type="Script" path="res://characters/enemy/octo_boss/octo_boss.gd" id="1_pmrs0"]
 [ext_resource type="Shader" path="res://levels_and_level_objects/destructible_plants/chop_foliage_underwater.gdshader" id="2_16cj2"]
@@ -18,7 +18,10 @@
 [ext_resource type="Script" path="res://characters/enemy/octo_boss/cry_1.gd" id="12_xxqrf"]
 [ext_resource type="Script" path="res://characters/enemy/octo_boss/swipe_1.gd" id="13_6n10h"]
 [ext_resource type="Script" path="res://characters/enemy/octo_boss/Smash2.gd" id="14_ut82a"]
+[ext_resource type="Script" path="res://characters/enemy/octo_boss/dead.gd" id="15_5ly3c"]
 [ext_resource type="Script" path="res://characters/enemy/octo_boss/transition.gd" id="15_vxtyr"]
+[ext_resource type="Script" path="res://characters/enemy/octo_boss/Cry2.gd" id="16_xpngb"]
+[ext_resource type="Script" path="res://characters/enemy/octo_boss/Cast2.gd" id="18_k4xcg"]
 [ext_resource type="Texture2D" uid="uid://8y6cetkvvp51" path="res://characters/enemy/octo_boss/octo_head_2.png" id="18_qlvyf"]
 [ext_resource type="PackedScene" uid="uid://cxfiuhgots5lg" path="res://hitboxes/Hitbox.tscn" id="21_82y0w"]
 
@@ -365,6 +368,10 @@ _data = {
 radius = 74.0
 height = 164.0
 
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_wv41m"]
+radius = 68.0
+height = 140.0
+
 [node name="OldInky" type="CharacterBody2D"]
 collision_mask = 3
 script = ExtResource("1_pmrs0")
@@ -531,17 +538,20 @@ script = ExtResource("12_htf1o")
 [node name="Smash2" type="Node" parent="StateMachine"]
 script = ExtResource("14_ut82a")
 
+[node name="Dead2" type="Node" parent="StateMachine"]
+script = ExtResource("15_5ly3c")
+
 [node name="Cry1" type="Node" parent="StateMachine"]
 script = ExtResource("12_xxqrf")
 
 [node name="Cry2" type="Node" parent="StateMachine"]
-script = ExtResource("12_xxqrf")
+script = ExtResource("16_xpngb")
 
 [node name="Cast1" type="Node" parent="StateMachine"]
 script = ExtResource("13_6n10h")
 
 [node name="Cast2" type="Node" parent="StateMachine"]
-script = ExtResource("13_6n10h")
+script = ExtResource("18_k4xcg")
 
 [node name="Transition1" type="Node" parent="StateMachine"]
 script = ExtResource("15_vxtyr")
@@ -578,8 +588,23 @@ monitorable = false
 position = Vector2(-2, -4)
 shape = SubResource("CapsuleShape2D_g530t")
 
+[node name="State" type="Label" parent="."]
+offset_left = -23.0
+offset_top = -58.0
+offset_right = 17.0
+offset_bottom = -32.0
+text = "state"
+
+[node name="DeadHurtbox" parent="." instance=ExtResource("5_ikshk")]
+monitoring = false
+monitorable = false
+
+[node name="CollisionShape2D" parent="DeadHurtbox" index="0"]
+shape = SubResource("CapsuleShape2D_wv41m")
+
 [editable path="Head/HeadLeft/Hurtbox"]
 [editable path="Head/HeadRight/Hurtbox"]
 [editable path="ArmFrontRight/Hurtbox"]
 [editable path="ArmFrontLeft/Hurtbox"]
 [editable path="Phase2SmashHitbox"]
+[editable path="DeadHurtbox"]

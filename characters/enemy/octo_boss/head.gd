@@ -3,7 +3,7 @@ extends Node2D
 enum EyeState { IDLE, HURT, ATTACK, DEAD }
 
 var state = EyeState.IDLE
-var health = 1
+var health = 7
 var last_hit_position := Vector2.ZERO
 var attacked = false
 @export var wince := false
@@ -16,7 +16,13 @@ var cutscene_running = false
 
 func _ready():
 	hurtbox.area_entered.connect(_on_hurtbox_area_entered)
-	$"../../StateMachine/Cry1".cry.connect(_on_cry)
+	if is_left_half:
+		$"../../StateMachine/Cry1".cry_left.connect(_on_cry)
+		$"../../StateMachine/Cry2".cry_left.connect(_on_cry)
+	else:
+		$"../../StateMachine/Cry1".cry_right.connect(_on_cry)
+		$"../../StateMachine/Cry2".cry_right.connect(_on_cry)
+	
 	GameEvents.cutscene_started.connect(_on_cutscene_start)
 	GameEvents.cutscene_ended.connect(_on_cutscene_end)
 

@@ -17,10 +17,13 @@ func enter(msg := {}) -> void:
 	await get_tree().create_timer(2.0).timeout
 	
 	var random_number = randf_range(3, 7)
-	for i in range(9):
+	var range := 9
+	if owner.eye_gone["left"] or owner.eye_gone["right"]:
+		range = 18
+	for i in range(range):
 		GameEvents.boss_hit_wall.emit()
 		var bullet = preload("res://bullets/lightning_bullet/lightning_bullet.tscn").instantiate()
-		if i != round(random_number) and (i != round(random_number)+1):
+		if (i != round(random_number)) and (i != round(random_number)+1):
 			owner.add_child(bullet)
 		var transform = owner.global_transform
 		transform.origin.x -= initial_x_offset - (i * x_offset_decrement)

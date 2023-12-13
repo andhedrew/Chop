@@ -10,7 +10,6 @@ var invulnerable_timer := 0.0
 var phase := 1
 
 func _ready() -> void:
-	print_debug("state:" + str(initial_state_name))
 
 	await owner.ready
 	GameEvents.cutscene_started.connect(_on_cutscene_start)
@@ -22,6 +21,7 @@ func _ready() -> void:
 
 func _process(delta: float) -> void:
 	owner.phase = phase
+	$"../State".text = state.name
 	if !owner.cutscene_running:
 		state.update(delta)
 

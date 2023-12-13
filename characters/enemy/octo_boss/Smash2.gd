@@ -10,6 +10,7 @@ func enter(msg := {}) -> void:
 	start_position = owner.global_position
 	$"../../Phase2SmashHitbox".set_deferred("monitorable", true)
 	direction = direction.normalized() # Ensure the direction is normalized
+	speed = 200
 
 
 func physics_update(delta: float) -> void:
@@ -31,6 +32,8 @@ func physics_update(delta: float) -> void:
 			direction = Vector2(0, -1)
 		if owner.global_position.distance_to(start_position) < 3: # 10 is a threshold
 			owner.global_position = start_position # Reset position
+			go_home = false
+			direction = Vector2(0, 1)
 			state_machine.transition_to("Idle")
 
 func exit() -> void:

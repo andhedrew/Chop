@@ -1,5 +1,8 @@
-extends Enemy
+extends CharacterBody2D
 
+
+var cutscene_running := false
+var invulnerable := false
 var player_position: Vector2
 @onready var player_detector := $PlayerDetector
 
@@ -26,12 +29,7 @@ func _ready():
 
 
 func _physics_process(delta):
-
-	if arm_gone["left"]:
-		if arm_gone["right"]:
-			if eye_gone["left"]:
-				if eye_gone["right"]:
-					queue_free()
+	pass
 
 
 func _body_entered(body) -> void:

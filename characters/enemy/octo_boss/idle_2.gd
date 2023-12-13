@@ -24,7 +24,6 @@ func update(_delta: float) -> void:
 	if state_machine.state_timer > wait_time:
 		var new_state = get_state()
 		state = new_state
-		state = "Smash"
 		if state == "Cast":
 			state_machine.transition_to("Cast", {"arm": arm_detecting_swipe})
 		elif state == "Cry":
@@ -35,6 +34,12 @@ func update(_delta: float) -> void:
 			if fish_dead:
 				GameEvents.spawn_fish.emit()
 				fish_dead = false
+	
+	if owner.arm_gone["left"]:
+		if owner.arm_gone["right"]:
+			if owner.eye_gone["left"]:
+				if owner.eye_gone["right"]:
+					state_machine.transition_to("Dead")
 
 
 func get_state() -> String:
