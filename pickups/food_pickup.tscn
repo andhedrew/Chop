@@ -6,6 +6,7 @@
 
 [node name="food_pickup" instance=ExtResource("1_0p5e2")]
 position = Vector2(0, -14)
+collision_mask = 993
 script = ExtResource("2_8moa5")
 
 [node name="Sprite2D" parent="." index="1"]

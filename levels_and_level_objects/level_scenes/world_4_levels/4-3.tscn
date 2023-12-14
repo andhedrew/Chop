@@ -1,6 +1,7 @@
-[gd_scene load_steps=8 format=3 uid="uid://do312iojg11dv"]
+[gd_scene load_steps=9 format=3 uid="uid://do312iojg11dv"]
 
 [ext_resource type="PackedScene" uid="uid://dm85xjdq5mkk3" path="res://levels_and_level_objects/level_scenes/base_level.tscn" id="1_u60df"]
+[ext_resource type="PackedScene" uid="uid://d0ax1shk2qgfm" path="res://levels_and_level_objects/map/map_world_4.tscn" id="2_a0xyv"]
 [ext_resource type="PackedScene" uid="uid://d2mwmw4wcsxo0" path="res://levels_and_level_objects/bouncy_face/bouncy_face.tscn" id="2_fcfvo"]
 [ext_resource type="PackedScene" uid="uid://bhy0tp4niaiv1" path="res://levels_and_level_objects/fan/fan.tscn" id="3_gbv4o"]
 [ext_resource type="PackedScene" uid="uid://3op76g3ya5rx" path="res://levels_and_level_objects/moving_block/moving_block.tscn" id="4_ufysj"]
@@ -11,6 +12,9 @@
 radius = 40.0
 
 [node name="World" instance=ExtResource("1_u60df")]
+map_position = 3.0
+next_map = ExtResource("2_a0xyv")
+next_level = "res://levels_and_level_objects/level_scenes/world_4_levels/4-4.tscn"
 
 [node name="Breakable" parent="." index="6"]
 layer_0/tile_data = PackedInt32Array(5570679, 65537, 3, 5570680, 131073, 3, 5570681, 131073, 3, 5570682, 131073, 3, 5570683, 131073, 3, 5570684, 196609, 3, 5701972, 524290, 0, 5701973, 720898, 0, 5767508, 524290, 1, 5767509, 720898, 2, 5833044, 524290, 1, 5833045, 720898, 2, 5898580, 524290, 1, 5898581, 720898, 2, 5964116, 524290, 1, 5964117, 720898, 2, 6029652, 524290, 1, 6029653, 720898, 2, 6095188, 524290, 1, 6095189, 720898, 2, 6160724, 524290, 1, 6160725, 720898, 2, 6226260, 524290, 1, 6226261, 720898, 2, 6291796, 524290, 1, 6291797, 720898, 2, 6357332, 524290, 3, 6357333, 720898, 3, 2359621, 65537, 3, 2359622, 131073, 3, 2359623, 131073, 3, 2359624, 131073, 3, 2359625, 131073, 3, 2359626, 196609, 3)

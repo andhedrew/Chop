@@ -7,6 +7,7 @@ var count := 0
 var reset_animation = false
 @export var difficulty := 3 # out of three
 @export var difficulty_1_death_pieces: Array[Resource]
+var phase := 1
 
 func _ready():
 	super._ready()

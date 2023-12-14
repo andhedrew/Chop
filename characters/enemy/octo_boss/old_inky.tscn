@@ -1,29 +1,43 @@
-[gd_scene load_steps=46 format=3 uid="uid://cy5irklqecg7c"]
+[gd_scene load_steps=60 format=3 uid="uid://cy5irklqecg7c"]
 
 [ext_resource type="Script" path="res://characters/enemy/octo_boss/octo_boss.gd" id="1_pmrs0"]
 [ext_resource type="Shader" path="res://levels_and_level_objects/destructible_plants/chop_foliage_underwater.gdshader" id="2_16cj2"]
-[ext_resource type="Texture2D" uid="uid://bbx3vpsfp6t5j" path="res://characters/enemy/cement_golem/cement_golem_piece_1.png" id="2_amtyq"]
+[ext_resource type="Texture2D" uid="uid://df8p0cggyswfr" path="res://characters/enemy/octo_boss/pieces/octo_pieces1.png" id="2_trbf1"]
 [ext_resource type="Script" path="res://characters/enemy/octo_boss/head.gd" id="2_w68j6"]
-[ext_resource type="Texture2D" uid="uid://ntitf7t3jsc7" path="res://characters/enemy/cement_golem/cement_golem_piece_2.png" id="3_g43cb"]
+[ext_resource type="Texture2D" uid="uid://o27uusf0dewl" path="res://characters/enemy/octo_boss/pieces/octo_pieces2.png" id="3_4c7eu"]
 [ext_resource type="Texture2D" uid="uid://co2dect180tqi" path="res://characters/enemy/octo_boss/octo_head.png" id="3_gtsvm"]
+[ext_resource type="Texture2D" uid="uid://cjf76aq6jwrts" path="res://characters/enemy/octo_boss/pieces/octo_pieces3.png" id="4_8d3un"]
 [ext_resource type="Texture2D" uid="uid://cyyxqkj3gu8jp" path="res://characters/enemy/octo_boss/back_arm.png" id="4_710v4"]
-[ext_resource type="Texture2D" uid="uid://cvs8td0tpywqi" path="res://characters/enemy/cement_golem/cement_golem_piece_3.png" id="4_kx3ak"]
 [ext_resource type="Texture2D" uid="uid://damw3cj8hluqn" path="res://characters/enemy/octo_boss/octo_head_transition.png" id="4_y2xnk"]
 [ext_resource type="Texture2D" uid="uid://b2fcxdc530e24" path="res://characters/enemy/octo_boss/front_arm.png" id="5_4mfyp"]
 [ext_resource type="PackedScene" uid="uid://bb1h85dym7l4i" path="res://hitboxes/Hurtbox.tscn" id="5_ikshk"]
+[ext_resource type="Texture2D" uid="uid://bxnlx2mfe8l1o" path="res://characters/enemy/octo_boss/pieces/octo_pieces4.png" id="5_v0cih"]
 [ext_resource type="Script" path="res://characters/enemy/BossStateMachine.gd" id="6_gpral"]
+[ext_resource type="Texture2D" uid="uid://mt5hdjy1ky8s" path="res://characters/enemy/octo_boss/pieces/octo_pieces5.png" id="6_of3ln"]
 [ext_resource type="Script" path="res://characters/enemy/octo_boss/states/inactive_1.gd" id="7_hbsvd"]
 [ext_resource type="Script" path="res://characters/enemy/octo_boss/arm_front.gd" id="7_k6fwm"]
+[ext_resource type="Texture2D" uid="uid://bi800jvlh6ynh" path="res://characters/enemy/octo_boss/pieces/octo_pieces6.png" id="7_qvhdl"]
+[ext_resource type="Texture2D" uid="uid://cem37dym81piw" path="res://characters/enemy/octo_boss/pieces/octo_pieces7.png" id="8_bk6gu"]
 [ext_resource type="Script" path="res://characters/enemy/octo_boss/states/octo_boss_idle_1.gd" id="8_waofn"]
+[ext_resource type="Texture2D" uid="uid://bxsw6g8qmvl2w" path="res://characters/enemy/octo_boss/pieces/octo_pieces8.png" id="9_44tng"]
+[ext_resource type="Texture2D" uid="uid://ca5bvkbcylbin" path="res://characters/enemy/octo_boss/pieces/octo_pieces9.png" id="10_obotr"]
 [ext_resource type="Script" path="res://characters/enemy/octo_boss/player_detector.gd" id="10_u8hmy"]
+[ext_resource type="Texture2D" uid="uid://bttqc7414m3gn" path="res://characters/enemy/octo_boss/pieces/octo_pieces10.png" id="11_to420"]
+[ext_resource type="Texture2D" uid="uid://dwtis25y4sn56" path="res://characters/enemy/octo_boss/pieces/octo_pieces11.png" id="12_0l45n"]
 [ext_resource type="Script" path="res://characters/enemy/octo_boss/Smash1.gd" id="12_htf1o"]
 [ext_resource type="Script" path="res://characters/enemy/octo_boss/idle_2.gd" id="12_meeh5"]
 [ext_resource type="Script" path="res://characters/enemy/octo_boss/cry_1.gd" id="12_xxqrf"]
 [ext_resource type="Script" path="res://characters/enemy/octo_boss/swipe_1.gd" id="13_6n10h"]
+[ext_resource type="Texture2D" uid="uid://bd655xe1xn2m8" path="res://characters/enemy/octo_boss/pieces/octo_pieces12.png" id="13_355u8"]
+[ext_resource type="Texture2D" uid="uid://b2pd65x2xybho" path="res://characters/enemy/octo_boss/pieces/octo_pieces13.png" id="14_d7r7x"]
 [ext_resource type="Script" path="res://characters/enemy/octo_boss/Smash2.gd" id="14_ut82a"]
 [ext_resource type="Script" path="res://characters/enemy/octo_boss/dead.gd" id="15_5ly3c"]
 [ext_resource type="Script" path="res://characters/enemy/octo_boss/transition.gd" id="15_vxtyr"]
+[ext_resource type="Texture2D" uid="uid://burx3yuprq6um" path="res://characters/enemy/octo_boss/pieces/octo_pieces14.png" id="15_wk8oc"]
+[ext_resource type="Texture2D" uid="uid://csngajlugovbt" path="res://characters/enemy/octo_boss/pieces/octo_pieces15.png" id="16_6rlv0"]
 [ext_resource type="Script" path="res://characters/enemy/octo_boss/Cry2.gd" id="16_xpngb"]
+[ext_resource type="Texture2D" uid="uid://bcrosn05c0mx1" path="res://characters/enemy/octo_boss/pieces/octo_pieces16.png" id="17_e47ga"]
+[ext_resource type="Texture2D" uid="uid://co572b35v1ow1" path="res://characters/enemy/octo_boss/pieces/octo_pieces17.png" id="18_ilrub"]
 [ext_resource type="Script" path="res://characters/enemy/octo_boss/Cast2.gd" id="18_k4xcg"]
 [ext_resource type="Texture2D" uid="uid://8y6cetkvvp51" path="res://characters/enemy/octo_boss/octo_head_2.png" id="18_qlvyf"]
 [ext_resource type="PackedScene" uid="uid://cxfiuhgots5lg" path="res://hitboxes/Hitbox.tscn" id="21_82y0w"]
@@ -159,6 +173,47 @@ tracks/6/keys = {
 "values": [0]
 }
 
+[sub_resource type="Animation" id="Animation_3q507"]
+resource_name = "hurt"
+length = 2.0
+step = 0.01
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.1, 0.27, 0.41, 0.55),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(0.721008, 0.0339327, 0.0188684, 1), Color(1, 1, 1, 1), Color(0.897638, 0.0622129, 0.0368863, 1), Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Head/HeadLeft:wince")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.1, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Head/HeadRight:wince")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.1, 0.47),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+
 [sub_resource type="Animation" id="Animation_g8ueh"]
 resource_name = "smash_arm_left"
 length = 3.0
@@ -263,47 +318,6 @@ tracks/0/keys = {
 "values": [1, 2, 3, 4, 3, 4, 3, 4, 2, 0]
 }
 
-[sub_resource type="Animation" id="Animation_3q507"]
-resource_name = "hurt"
-length = 2.0
-step = 0.01
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0.1, 0.27, 0.41, 0.55),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 0,
-"values": [Color(0.721008, 0.0339327, 0.0188684, 1), Color(1, 1, 1, 1), Color(0.897638, 0.0622129, 0.0368863, 1), Color(1, 1, 1, 1)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Head/HeadLeft:wince")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0.1, 0.5),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [true, false]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("Head/HeadRight:wince")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0.1, 0.47),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [true, false]
-}
-
 [sub_resource type="Animation" id="Animation_xkhn7"]
 resource_name = "transition"
 length = 2.0
@@ -378,7 +392,7 @@ height = 140.0
 [node name="OldInky" type="CharacterBody2D"]
 collision_mask = 3
 script = ExtResource("1_pmrs0")
-death_pieces = Array[Resource]([ExtResource("2_amtyq"), ExtResource("3_g43cb"), ExtResource("4_kx3ak")])
+death_pieces = Array[Resource]([ExtResource("2_trbf1"), ExtResource("3_4c7eu"), ExtResource("4_8d3un"), ExtResource("5_v0cih"), ExtResource("6_of3ln"), ExtResource("7_qvhdl"), ExtResource("8_bk6gu"), ExtResource("9_44tng"), ExtResource("10_obotr"), ExtResource("11_to420"), ExtResource("12_0l45n"), ExtResource("13_355u8"), ExtResource("14_d7r7x"), ExtResource("15_wk8oc"), ExtResource("16_6rlv0"), ExtResource("17_e47ga"), ExtResource("18_ilrub")])
 
 [node name="Head" type="Node2D" parent="."]
 
@@ -591,7 +605,8 @@ monitorable = false
 position = Vector2(-2, -4)
 shape = SubResource("CapsuleShape2D_g530t")
 
-[node name="State" type="Label" parent="."]
+[node name="state_label" type="Label" parent="."]
+visible = false
 offset_left = -23.0
 offset_top = -58.0
 offset_right = 17.0

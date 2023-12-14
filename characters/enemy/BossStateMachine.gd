@@ -21,7 +21,7 @@ func _ready() -> void:
 
 func _process(delta: float) -> void:
 	owner.phase = phase
-	$"../State".text = state.name
+	$"../state_label".text = state.name
 	if !owner.cutscene_running:
 		state.update(delta)
 

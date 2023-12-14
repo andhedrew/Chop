@@ -1,0 +1,25 @@
+[gd_scene load_steps=4 format=3 uid="uid://d0ax1shk2qgfm"]
+
+[ext_resource type="PackedScene" uid="uid://b06gyuhub517b" path="res://levels_and_level_objects/map/map.tscn" id="1_mvt3q"]
+[ext_resource type="Texture2D" uid="uid://f24htvqewmf4" path="res://user_interface/map/map_world_1.png" id="2_kgdpc"]
+
+[sub_resource type="Curve2D" id="Curve2D_rubcq"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 137, 270, 0, 0, 0, 0, 280, 188, 0, 0, 0, 0, 371, 281, 0, 0, 0, 0, 486, 166)
+}
+point_count = 4
+
+[node name="Map" instance=ExtResource("1_mvt3q")]
+
+[node name="map" parent="Control/paper" index="0"]
+texture = ExtResource("2_kgdpc")
+flip_v = true
+
+[node name="Path2D" parent="Control" index="1"]
+curve = SubResource("Curve2D_rubcq")
+
+[node name="PathFollow2D" parent="Control/Path2D" index="0"]
+position = Vector2(137, 270)
+
+[node name="roll" parent="Control" index="2"]
+visible = false

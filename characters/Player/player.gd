@@ -101,6 +101,8 @@ func _ready():
 	
 	GameEvents.bullet_hit_breakable.connect(_on_bullet_hit_breakable)
 	GameEvents.add_a_charge.connect(_on_adding_a_charge)
+	
+	GameEvents.cheatmode.connect(_on_activating_cheat_mode)
 	z_index = SortLayer.PLAYER
 	_load_data()
 
@@ -412,3 +414,9 @@ func remove_conveyor_velocity() -> void:
 
 func _refresh_execute():
 	buffer_execute = true
+
+
+func _on_activating_cheat_mode():
+	has_booster_upgrade = true
+	torch_charges = 30
+	max_torch_charges = 30

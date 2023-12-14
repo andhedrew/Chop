@@ -134,21 +134,30 @@ func _cutscene_ended():
 
 func drop_food(food : Array, drop_position : Vector2) -> void:
 	print_debug("dropping food")
-	var spread = 6 # adjust this value to increase or decrease the spread of the pickups
-	var new_velocity = Vector2(0, -12) # adjust this value to control the initial velocity of the pickups
-	var food_size = food.size()
-	var i = 0
+	var min_spread = 3 # Minimum spread distance
+	var max_spread = 6 # Maximum spread distance
+	var min_velocity = 30 # Minimum initial velocity
+	var max_velocity = 60 # Maximum initial velocity
+
 	for sprite in food:
 		var pickup = preload("res://pickups/food_pickup.tscn").instantiate()
 		pickup.setup(sprite)
 		pickup.z_index = SortLayer.FOREGROUND
-		var angle = (PI/2) + (i * PI / food_size) + 180
-		i += 1
+
+		# Randomize the angle for each food item
+		var angle = randf_range(0, 2 * PI)
+
+		# Randomize spread and velocity within specified ranges
+		var spread = randf_range(min_spread, max_spread)
+		var velocity_magnitude = randf_range(min_velocity, max_velocity)
+
+		# Calculate position and velocity
 		pickup.position = drop_position + Vector2(cos(angle), sin(angle)) * spread
-		pickup.velocity = new_velocity.rotated(angle)
+		pickup.velocity = Vector2(cos(angle), sin(angle)) * velocity_magnitude
 		
 		call_deferred("add_child", pickup)
-		
+
+
 
 
 func drop_health(drop_position : Vector2) -> void:

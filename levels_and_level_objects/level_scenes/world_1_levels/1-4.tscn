@@ -66,7 +66,7 @@ position = Vector2(3056, 32)
 position = Vector2(3504, -48)
 
 [node name="Player" parent="." index="22"]
-position = Vector2(2656, -64)
+position = Vector2(88, -32)
 
 [editable path="ParootBoss"]
 [editable path="ParootBoss/Pivot/AttackHurtbox"]

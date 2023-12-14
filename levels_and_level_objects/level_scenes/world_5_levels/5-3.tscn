@@ -1,9 +1,10 @@
-[gd_scene load_steps=13 format=3 uid="uid://b8adt4w03of1q"]
+[gd_scene load_steps=14 format=3 uid="uid://b8adt4w03of1q"]
 
 [ext_resource type="PackedScene" uid="uid://dm85xjdq5mkk3" path="res://levels_and_level_objects/level_scenes/base_level.tscn" id="1_76j6w"]
 [ext_resource type="PackedScene" uid="uid://3ayqb8hualy8" path="res://levels_and_level_objects/powerups/booster.tscn" id="2_1r6ar"]
 [ext_resource type="PackedScene" uid="uid://kmrlgcnwdtgh" path="res://characters/enemy/chop-chop/chop_chop_with_path.tscn" id="2_8hsd5"]
 [ext_resource type="PackedScene" uid="uid://d2mwmw4wcsxo0" path="res://levels_and_level_objects/bouncy_face/bouncy_face.tscn" id="2_x15gt"]
+[ext_resource type="PackedScene" uid="uid://jcnmai7748kf" path="res://levels_and_level_objects/map/map_world_5.tscn" id="2_xbhd6"]
 [ext_resource type="PackedScene" uid="uid://t73iskru6pf8" path="res://levels_and_level_objects/belt/conveyer_belts_tileset.tscn" id="3_h2vtw"]
 [ext_resource type="PackedScene" uid="uid://c70w3ktrstfkr" path="res://levels_and_level_objects/water/water.tscn" id="4_4n1pa"]
 [ext_resource type="PackedScene" uid="uid://dtb1demqxaq8y" path="res://levels_and_level_objects/trampoline/trampoline.tscn" id="5_gmdy0"]
@@ -14,6 +15,9 @@
 [ext_resource type="PackedScene" uid="uid://eow2ybkt3135" path="res://levels_and_level_objects/flagpole.tscn" id="12_i631k"]
 
 [node name="World" instance=ExtResource("1_76j6w")]
+map_position = 3.0
+next_map = ExtResource("2_xbhd6")
+next_level = "res://levels_and_level_objects/level_scenes/world_5_levels/5-4.tscn"
 
 [node name="chop-chop" parent="." index="5" instance=ExtResource("2_8hsd5")]
 position = Vector2(2744, 40)

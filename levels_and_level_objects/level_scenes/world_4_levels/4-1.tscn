@@ -1,6 +1,7 @@
-[gd_scene load_steps=9 format=3 uid="uid://cctr0i7bgav8j"]
+[gd_scene load_steps=10 format=3 uid="uid://cctr0i7bgav8j"]
 
 [ext_resource type="PackedScene" uid="uid://dm85xjdq5mkk3" path="res://levels_and_level_objects/level_scenes/base_level.tscn" id="1_1gs3x"]
+[ext_resource type="PackedScene" uid="uid://d0ax1shk2qgfm" path="res://levels_and_level_objects/map/map_world_4.tscn" id="2_eh4pq"]
 [ext_resource type="PackedScene" uid="uid://3ayqb8hualy8" path="res://levels_and_level_objects/powerups/booster.tscn" id="2_p7c1f"]
 [ext_resource type="PackedScene" uid="uid://t73iskru6pf8" path="res://levels_and_level_objects/belt/conveyer_belts_tileset.tscn" id="2_sm6hm"]
 [ext_resource type="PackedScene" uid="uid://3op76g3ya5rx" path="res://levels_and_level_objects/moving_block/moving_block.tscn" id="3_omx3i"]
@@ -10,6 +11,10 @@
 [ext_resource type="PackedScene" uid="uid://eow2ybkt3135" path="res://levels_and_level_objects/flagpole.tscn" id="8_iygld"]
 
 [node name="World" instance=ExtResource("1_1gs3x")]
+map_position = 1.0
+next_map = ExtResource("2_eh4pq")
+next_level = "res://levels_and_level_objects/level_scenes/world_4_levels/4-2.tscn"
+checkpoint = true
 
 [node name="Breakable" parent="." index="6"]
 layer_0/tile_data = PackedInt32Array(5177686, 524290, 0, 5177687, 655362, 0, 5177688, 655362, 0, 5177689, 655362, 0, 5177690, 655362, 0, 5177691, 655362, 0, 5177692, 655362, 0, 5177693, 655362, 0, 5177694, 655362, 0, 5177695, 655362, 0, 5177696, 655362, 0, 5177697, 655362, 0, 5177698, 655362, 0, 5177699, 655362, 0, 5177700, 655362, 0, 5177701, 655362, 0, 5177702, 655362, 0, 5177703, 720898, 0, 5243222, 524290, 1, 5243223, 589826, 2, 5243224, 589826, 2, 5243225, 589826, 2, 5243226, 589826, 2, 5243227, 589826, 2, 5243228, 589826, 2, 5243229, 589826, 2, 5243230, 589826, 2, 5243231, 589826, 2, 5243232, 589826, 2, 5243233, 589826, 2, 5243234, 589826, 2, 5243235, 589826, 2, 5243236, 589826, 2, 5243237, 589826, 2, 5243238, 589826, 2, 5243239, 720898, 2, 5308758, 65538, 2, 5308759, 589826, 3, 5308760, 589826, 3, 5308761, 589826, 3, 5308762, 589826, 3, 5308763, 589826, 3, 5308764, 589826, 3, 5308765, 589826, 3, 5308766, 589826, 3, 5308767, 589826, 3, 5308768, 589826, 3, 5308769, 589826, 3, 5308770, 589826, 3, 5308771, 589826, 3, 5308772, 589826, 3, 5308773, 589826, 3, 5308774, 589826, 3, 5308775, 720898, 3, 5374295, 65540, 0, 5374296, 196612, 0, 5374297, 65540, 0, 5374298, 131076, 0, 5374299, 4, 0, 5374300, 4, 0, 5374301, 65540, 0, 5374302, 65540, 0, 5374303, 65540, 0, 5374304, 196612, 0, 5374305, 4, 0, 5374306, 65540, 0, 5374307, 196612, 0, 5374308, 196612, 0, 5374309, 4, 0, 5374310, 131076, 0)
