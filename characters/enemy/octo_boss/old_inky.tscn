@@ -1,10 +1,13 @@
-[gd_scene load_steps=43 format=3 uid="uid://cy5irklqecg7c"]
+[gd_scene load_steps=46 format=3 uid="uid://cy5irklqecg7c"]
 
 [ext_resource type="Script" path="res://characters/enemy/octo_boss/octo_boss.gd" id="1_pmrs0"]
 [ext_resource type="Shader" path="res://levels_and_level_objects/destructible_plants/chop_foliage_underwater.gdshader" id="2_16cj2"]
+[ext_resource type="Texture2D" uid="uid://bbx3vpsfp6t5j" path="res://characters/enemy/cement_golem/cement_golem_piece_1.png" id="2_amtyq"]
 [ext_resource type="Script" path="res://characters/enemy/octo_boss/head.gd" id="2_w68j6"]
+[ext_resource type="Texture2D" uid="uid://ntitf7t3jsc7" path="res://characters/enemy/cement_golem/cement_golem_piece_2.png" id="3_g43cb"]
 [ext_resource type="Texture2D" uid="uid://co2dect180tqi" path="res://characters/enemy/octo_boss/octo_head.png" id="3_gtsvm"]
 [ext_resource type="Texture2D" uid="uid://cyyxqkj3gu8jp" path="res://characters/enemy/octo_boss/back_arm.png" id="4_710v4"]
+[ext_resource type="Texture2D" uid="uid://cvs8td0tpywqi" path="res://characters/enemy/cement_golem/cement_golem_piece_3.png" id="4_kx3ak"]
 [ext_resource type="Texture2D" uid="uid://damw3cj8hluqn" path="res://characters/enemy/octo_boss/octo_head_transition.png" id="4_y2xnk"]
 [ext_resource type="Texture2D" uid="uid://b2fcxdc530e24" path="res://characters/enemy/octo_boss/front_arm.png" id="5_4mfyp"]
 [ext_resource type="PackedScene" uid="uid://bb1h85dym7l4i" path="res://hitboxes/Hurtbox.tscn" id="5_ikshk"]
@@ -375,6 +378,7 @@ height = 140.0
 [node name="OldInky" type="CharacterBody2D"]
 collision_mask = 3
 script = ExtResource("1_pmrs0")
+death_pieces = Array[Resource]([ExtResource("2_amtyq"), ExtResource("3_g43cb"), ExtResource("4_kx3ak")])
 
 [node name="Head" type="Node2D" parent="."]
 
@@ -429,7 +433,6 @@ material = SubResource("ShaderMaterial_0n83b")
 position = Vector2(-168, 61)
 texture = ExtResource("4_710v4")
 hframes = 5
-frame = 3
 
 [node name="RightArmBack" type="Sprite2D" parent="backArms"]
 material = SubResource("ShaderMaterial_0n83b")
@@ -596,6 +599,8 @@ offset_bottom = -32.0
 text = "state"
 
 [node name="DeadHurtbox" parent="." instance=ExtResource("5_ikshk")]
+collision_layer = 4
+collision_mask = 8
 monitoring = false
 monitorable = false
 

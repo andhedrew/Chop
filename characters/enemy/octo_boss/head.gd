@@ -3,7 +3,7 @@ extends Node2D
 enum EyeState { IDLE, HURT, ATTACK, DEAD }
 
 var state = EyeState.IDLE
-var health = 7
+var health = 1
 var last_hit_position := Vector2.ZERO
 var attacked = false
 @export var wince := false
@@ -13,9 +13,13 @@ var wince_timer := 0.0
 @export var aim_rotation = 0
 @export var is_left_half := false
 var cutscene_running = false
+var octo_dead := false
+var octo_dead_set_sprite := false
 
 func _ready():
 	hurtbox.area_entered.connect(_on_hurtbox_area_entered)
+	GameEvents.octo_dead.connect(_on_dead)
+	GameEvents.octo_chopped.connect(_on_dead_chopped)
 	if is_left_half:
 		$"../../StateMachine/Cry1".cry_left.connect(_on_cry)
 		$"../../StateMachine/Cry2".cry_left.connect(_on_cry)
@@ -27,7 +31,7 @@ func _ready():
 	GameEvents.cutscene_ended.connect(_on_cutscene_end)
 
 func _physics_process(delta):
-	if not cutscene_running:
+	if not cutscene_running and not octo_dead:
 		if $"../../StateMachine".phase != 1:
 			match state:
 				EyeState.IDLE:
@@ -53,7 +57,7 @@ func _physics_process(delta):
 						sprite.frame = 1
 					else:
 						sprite.frame = 3
-		else:
+		elif not octo_dead:
 			hurtbox.set_deferred("monitoring", false)
 			match state:
 				EyeState.IDLE:
@@ -68,10 +72,14 @@ func _physics_process(delta):
 						attacked = true
 						await get_tree().create_timer(0.5).timeout
 						attack(last_hit_position)
+	elif octo_dead and not octo_dead_set_sprite:
+		sprite.texture = preload("res://characters/enemy/octo_boss/octo_head_dead.png")
+		sprite.frame = 0
+		octo_dead_set_sprite = true
 					
 
 func _on_hurtbox_area_entered(hitbox) -> void:
-	if hitbox is HitBox:
+	if hitbox is HitBox and not octo_dead:
 		last_hit_position = hitbox.position
 		health -= 1
 		if health % 3 == 0:
@@ -135,3 +143,11 @@ func _on_cutscene_start() -> void:
 
 func _on_cutscene_end() -> void:
 	cutscene_running = false
+
+
+func _on_dead():
+	octo_dead = true
+
+
+func _on_dead_chopped():
+	sprite.frame += 1

@@ -44,6 +44,7 @@ signal feeding_level_start
 signal evening_started 
 signal evening_ended
 
+
 signal transition_to_map #Arg 1: Map Scene Arg 2: Position on map (1-4) Arg 3: Next level (after map)
 signal map_started
 
@@ -59,6 +60,8 @@ signal boss_hit_wall
 signal boss_defeated
 signal spawn_fish
 signal fish_dead
+signal octo_dead
+signal octo_chopped
 #utility
 signal camera_change_focus #Param 1: new node target
 signal camera_split_focus #Param 1: new node target, or FALSE if we want to stop.

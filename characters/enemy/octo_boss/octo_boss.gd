@@ -1,10 +1,10 @@
-extends CharacterBody2D
+extends Enemy
 
 
-var cutscene_running := false
-var invulnerable := false
+
 var player_position: Vector2
 @onready var player_detector := $PlayerDetector
+
 
 var arm_gone = {
 	"left": false,

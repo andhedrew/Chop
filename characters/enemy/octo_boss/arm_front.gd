@@ -3,7 +3,7 @@ extends Node2D
 enum ArmState { IDLE, HURT, ATTACK, DEAD }
 
 var state = ArmState.IDLE
-var health = 4
+var health = 1
 var last_hit_position := Vector2.ZERO
 var attacked = false
 

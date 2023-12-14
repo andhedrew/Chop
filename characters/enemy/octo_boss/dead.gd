@@ -7,11 +7,13 @@ var start_position # To store the start position
 var go_home := false
 var wait := false
 var hit_ground = false
+var chop_counter := 0
 
 func enter(msg := {}) -> void:
+	GameEvents.octo_dead.emit()
 	start_position = owner.global_position
 	$"../../DeadHurtbox".area_entered.connect(_on_hurtbox_area_entered)
-	$"../../DeadHurtbox".set_deferred("monitorable", true)
+	$"../../DeadHurtbox".set_deferred("monitoring", true)
 	
 	direction = direction.normalized() # Ensure the direction is normalized
 	speed = 0
@@ -27,7 +29,10 @@ func physics_update(delta: float) -> void:
 		hit_ground = true
 
 
-func _on_hurtbox_area_entered(area):
-	if area is HitBox:
-		if area.execute:
-			print("executed")
+func _on_hurtbox_area_entered(hitbox):
+	if hitbox is HitBox:
+		if hitbox.execute:
+			GameEvents.octo_chopped.emit()
+			chop_counter += 1
+			if chop_counter >= 3:
+				owner.execute()
