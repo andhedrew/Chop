@@ -31,15 +31,16 @@ func _on_boss_defeated() -> void:
 
 
 func _cheat_skip_level():
+	# Skips levels when in debug: Reenable when testing the flow of the whole game quickly
 	if not cheated:
-		GameEvents.cutscene_started.emit()
-		
-		GameEvents.continue_day.emit()
-		if !get_node("/root/World").skip_map_after_this_level:
-			await get_tree().create_timer(3).timeout
-			GameEvents.transition_to_map.emit()
-		else:
-			get_node("/root/World").transition_to_next_level()
+#		GameEvents.cutscene_started.emit()
+#
+#		GameEvents.continue_day.emit()
+#		if !get_node("/root/World").skip_map_after_this_level:
+#			await get_tree().create_timer(3).timeout
+#			GameEvents.transition_to_map.emit()
+#		else:
+#			get_node("/root/World").transition_to_next_level()
 		cheated = true
 
 

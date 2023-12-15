@@ -1,7 +1,7 @@
 [gd_scene load_steps=8 format=3 uid="uid://na5sxed2w2fc"]
 
 [ext_resource type="PackedScene" uid="uid://dm85xjdq5mkk3" path="res://levels_and_level_objects/level_scenes/base_level.tscn" id="1_n327h"]
-[ext_resource type="PackedScene" uid="uid://biem6a8q170tw" path="res://levels_and_level_objects/map/map_world_2.tscn" id="2_dkngf"]
+[ext_resource type="PackedScene" uid="uid://dwlnm64mxfmad" path="res://levels_and_level_objects/map/map_world_2.tscn" id="2_dkngf"]
 [ext_resource type="PackedScene" uid="uid://t73iskru6pf8" path="res://levels_and_level_objects/belt/conveyer_belts_tileset.tscn" id="3_g8hy2"]
 [ext_resource type="PackedScene" uid="uid://dtb1demqxaq8y" path="res://levels_and_level_objects/trampoline/trampoline.tscn" id="4_ho5s3"]
 [ext_resource type="PackedScene" uid="uid://eow2ybkt3135" path="res://levels_and_level_objects/flagpole.tscn" id="5_0pdn0"]
@@ -9,9 +9,9 @@
 [ext_resource type="PackedScene" uid="uid://i5hx0ruiv4wk" path="res://levels_and_level_objects/checkpoint/checkpoint.tscn" id="7_wjrcm"]
 
 [node name="World" instance=ExtResource("1_n327h")]
-map_position = 4.0
+map_position = 2.0
 next_map = ExtResource("2_dkngf")
-next_level = "res://levels_and_level_objects/level_scenes/world_2_levels/2-2.tscn"
+next_level = "res://levels_and_level_objects/level_scenes/world_2_levels/2-3.tscn"
 
 [node name="ParallaxLayer4" parent="Background" index="1"]
 modulate = Color(0.34902, 0.34902, 0.470588, 1)

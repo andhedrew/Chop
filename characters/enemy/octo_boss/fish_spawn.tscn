@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://cdf0elcitp0pg"]
+
+[ext_resource type="Script" path="res://characters/enemy/octo_boss/fish_spawn.gd" id="1_tq3up"]
+
+[node name="FishSpawn" type="Marker2D"]
+position = Vector2(336, 328)
+script = ExtResource("1_tq3up")

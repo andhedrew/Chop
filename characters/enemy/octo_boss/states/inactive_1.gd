@@ -23,4 +23,5 @@ func _on_body_entered(body) -> void:
 	if !leave_inactive:
 		if body is Player:
 			leave_inactive = true
+			GameEvents.start_octo_battle.emit()
 			state_machine.transition_to("Idle")

@@ -3,7 +3,7 @@ extends Node2D
 enum EyeState { IDLE, HURT, ATTACK, DEAD }
 
 var state = EyeState.IDLE
-var health = 1
+var health = 7
 var last_hit_position := Vector2.ZERO
 var attacked = false
 @export var wince := false

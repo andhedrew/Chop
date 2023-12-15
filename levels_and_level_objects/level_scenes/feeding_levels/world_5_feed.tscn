@@ -1,10 +1,11 @@
 [gd_scene load_steps=3 format=3 uid="uid://hqjoqvbintby"]
 
 [ext_resource type="PackedScene" uid="uid://d1ug5tmwjvf15" path="res://levels_and_level_objects/level_scenes/base_feeding_level.tscn" id="1_0ebmv"]
-[ext_resource type="PackedScene" uid="uid://biem6a8q170tw" path="res://levels_and_level_objects/map/map_world_2.tscn" id="2_rts34"]
+[ext_resource type="PackedScene" uid="uid://jcnmai7748kf" path="res://levels_and_level_objects/map/map_world_5.tscn" id="2_b8l4r"]
 
 [node name="World" node_paths=PackedStringArray("camera") instance=ExtResource("1_0ebmv")]
-next_map = ExtResource("2_rts34")
+map_position = 5.0
+next_map = ExtResource("2_b8l4r")
 next_level = "res://levels_and_level_objects/level_scenes/world_2_levels/2-1.tscn"
 camera = NodePath("Camera")
 
@@ -13,3 +14,5 @@ layer_0/tile_data = PackedInt32Array(851988, 131073, 4, 786452, 65537, 3, 720916
 
 [node name="CameraTarget" parent="." index="13"]
 position = Vector2(184, -48)
+
+[editable path="EndOfLevel"]

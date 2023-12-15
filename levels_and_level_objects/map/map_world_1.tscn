@@ -3,4 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://b06gyuhub517b" path="res://levels_and_level_objects/map/map.tscn" id="1_bcy8x"]
 
 [node name="Map" instance=ExtResource("1_bcy8x")]
-world_number = 1
+
+[node name="paper" parent="Control" index="1"]
+offset_left = -680.0
+offset_right = 4440.0

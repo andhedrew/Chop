@@ -62,6 +62,8 @@ signal spawn_fish
 signal fish_dead
 signal octo_dead
 signal octo_chopped
+signal start_octo_battle
+signal end_octo_battle
 #utility
 signal camera_change_focus #Param 1: new node target
 signal camera_split_focus #Param 1: new node target, or FALSE if we want to stop.

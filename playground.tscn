@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://t73iskru6pf8" path="res://levels_and_level_objects/belt/conveyer_belts_tileset.tscn" id="3_37i81"]
 [ext_resource type="PackedScene" uid="uid://cy5irklqecg7c" path="res://characters/enemy/octo_boss/old_inky.tscn" id="3_hjul6"]
 [ext_resource type="PackedScene" uid="uid://cp5j3tbsikxw4" path="res://levels_and_level_objects/area_of_interest.tscn" id="4_w4ywb"]
-[ext_resource type="Script" path="res://characters/enemy/octo_boss/fish_spawn.gd" id="7_whtap"]
+[ext_resource type="PackedScene" uid="uid://cdf0elcitp0pg" path="res://characters/enemy/octo_boss/fish_spawn.tscn" id="7_tlo7c"]
 [ext_resource type="PackedScene" uid="uid://d2mwmw4wcsxo0" path="res://levels_and_level_objects/bouncy_face/bouncy_face.tscn" id="8_x47tp"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wikk7"]
@@ -50,9 +50,7 @@ shape = SubResource("RectangleShape2D_wikk7")
 [node name="BouncyFace" parent="." index="21" instance=ExtResource("8_x47tp")]
 position = Vector2(-232, 40)
 
-[node name="FishSpawn" type="Marker2D" parent="." index="22"]
-position = Vector2(336, 328)
-script = ExtResource("7_whtap")
+[node name="FishSpawn" parent="." index="22" instance=ExtResource("7_tlo7c")]
 
 [editable path="ColorShiftLayer"]
 [editable path="AreaOfInterest"]

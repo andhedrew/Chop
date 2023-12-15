@@ -17,6 +17,7 @@ func enter(msg := {}) -> void:
 	
 	direction = direction.normalized() # Ensure the direction is normalized
 	speed = 0
+	GameEvents.end_octo_battle.emit()
 
 
 func physics_update(delta: float) -> void:

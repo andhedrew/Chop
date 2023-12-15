@@ -1,3 +1,4 @@
+@tool
 extends CanvasLayer
 
 var number_of_levels := 4.0
@@ -23,36 +24,43 @@ var starting_path_pos := Vector2.ZERO
 
 
 func _ready():
-	roll.visible = true
-	starting_path_pos = path.position
-	paper_pos = - ((paper.texture.get_width()/8) * world_number)
-	paper.position.x = paper_pos
-	roll.position = Vector2(-5080, -320)
-	if debug_test:
-		_setup(debug_setup[0], debug_setup[1])
+	if not Engine.is_editor_hint():
+		roll.visible = true
+		starting_path_pos = path.position
+		paper_pos = - ((paper.texture.get_width()/8) * world_number)
+		paper.position.x = paper_pos
+		roll.position = Vector2(-5080, -320)
+		if debug_test:
+			_setup(debug_setup[0], debug_setup[1])
 
-	GameEvents.map_started.connect(_setup) #pass position, next scene
-	await get_tree().create_timer(2.0).timeout
-	animation_player.play("roll")
+		GameEvents.map_started.connect(_setup) #pass position, next scene
+		await get_tree().create_timer(2.0).timeout
+		animation_player.play("roll")
+
 
 
 func _process(_delta):
-	if moving_paper:
-		var move_speed := 0.02
-		paper.position.x = lerp(paper.position.x, paper_pos, move_speed)
-		roll.position.x = lerp(roll.position.x, roll.position.x+640, move_speed)
-		if paper.position.x-5 <= paper_pos:
-			drop_pin = true
-	if drop_pin:
-		var tween = create_tween()
-		tween.tween_property(path, "position", starting_path_pos, 0.2).set_trans(Tween.TRANS_LINEAR)
-		#move_pin = true
-	if move_pin:
-		path_follow.progress_ratio = lerp(path_follow.progress_ratio, pos, 0.01)
-		if path_follow.progress_ratio+0.01 >= pos:
-			await get_tree().create_timer(2.0).timeout
+	if not Engine.is_editor_hint():
+		if moving_paper:
+			var move_speed := 0.02
+			paper.position.x = lerp(paper.position.x, paper_pos, move_speed)
+			roll.position.x = lerp(roll.position.x, roll.position.x+640, move_speed)
+			if paper.position.x-5 <= paper_pos:
+				drop_pin = true
+		if drop_pin:
+			var tween = create_tween()
+			tween.tween_property(path, "position", starting_path_pos, 0.2).set_trans(Tween.TRANS_LINEAR)
+			await get_tree().create_timer(1.0).timeout
 			_end_scene()
-			move_pin = false
+		if move_pin:
+			path_follow.progress_ratio = lerp(path_follow.progress_ratio, pos, 0.01)
+			if path_follow.progress_ratio+0.05 >= pos:
+				await get_tree().create_timer(1.0).timeout
+				_end_scene()
+				move_pin = false
+	else:
+		paper_pos = - ((paper.texture.get_width()/8) * world_number)
+		paper.position.x = paper_pos
 
 
 func _setup(new_position: float, next_scene: String) -> void:
@@ -62,12 +70,9 @@ func _setup(new_position: float, next_scene: String) -> void:
 		pos = 0.0
 		paper_pos -= paper.texture.get_width()/8
 		await animation_player.animation_finished
-		
-
 		moving_paper = true
 		move_pin = false
 	else:
-		
 		var start_pos = new_position - 1.0
 		var end_pos = new_position/number_of_levels
 		var start_pos_adj = start_pos/number_of_levels
@@ -80,6 +85,7 @@ func _setup(new_position: float, next_scene: String) -> void:
 		move_pin = true
 	
 	new_scene = next_scene
+	
 	
 
 

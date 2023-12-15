@@ -1,25 +1,22 @@
-[gd_scene load_steps=4 format=3 uid="uid://jcnmai7748kf"]
+[gd_scene load_steps=3 format=3 uid="uid://jcnmai7748kf"]
 
 [ext_resource type="PackedScene" uid="uid://b06gyuhub517b" path="res://levels_and_level_objects/map/map.tscn" id="1_rwrev"]
-[ext_resource type="Texture2D" uid="uid://f24htvqewmf4" path="res://user_interface/map/map_world_1.png" id="2_2h4dv"]
 
 [sub_resource type="Curve2D" id="Curve2D_rubcq"]
 _data = {
-"points": PackedVector2Array(0, 0, 0, 0, 137, 270, 0, 0, 0, 0, 280, 188, 0, 0, 0, 0, 371, 281, 0, 0, 0, 0, 486, 166)
+"points": PackedVector2Array(0, 0, 0, 0, -552, -88, 0, 0, 0, 0, -472, -56, 0, 0, 0, 0, -416, -160, 0, 0, 0, 0, -296, -160, 0, 0, 0, 0, -264, -88, 0, 0, 0, 0, -136, -40)
 }
-point_count = 4
+point_count = 6
 
 [node name="Map" instance=ExtResource("1_rwrev")]
+world_number = 5
 
-[node name="map" parent="Control/paper" index="0"]
-texture = ExtResource("2_2h4dv")
-flip_v = true
+[node name="paper" parent="Control" index="1"]
+offset_left = -3240.0
+offset_right = 1880.0
 
-[node name="Path2D" parent="Control" index="1"]
+[node name="Path2D" parent="Control" index="2"]
 curve = SubResource("Curve2D_rubcq")
 
 [node name="PathFollow2D" parent="Control/Path2D" index="0"]
-position = Vector2(137, 270)
-
-[node name="roll" parent="Control" index="2"]
-visible = false
+position = Vector2(-552, -88)

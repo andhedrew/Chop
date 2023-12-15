@@ -2,7 +2,7 @@
 extends CanvasLayer
 
 @export var debug := false
-
+var cheated := false
 
 func _process(_delta):
 	if debug:
@@ -18,7 +18,9 @@ func _process(_delta):
 		
 	match debug:
 		true:
-			GameEvents.cheatmode.emit()
+			if not cheated:
+				GameEvents.cheatmode.emit()
+				cheated = true
 			$"../Camera".limit_left = -10000000
 			$"../Camera".limit_right = 10000000
 			$"../Camera".limit_top = -10000000
