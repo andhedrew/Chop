@@ -1,0 +1,28 @@
+[gd_scene load_steps=4 format=3 uid="uid://btlg8kyvxhpog"]
+
+[ext_resource type="Script" path="res://characters/enemy/spider_boss_1/leg_upper.gd" id="1_meee5"]
+[ext_resource type="Texture2D" uid="uid://bi7x0kjrw24gb" path="res://characters/enemy/spider_boss_1/leg_upper.png" id="2_w3u4e"]
+[ext_resource type="Texture2D" uid="uid://b6equ7sja70ey" path="res://characters/enemy/spider_boss_1/leg.png" id="3_fxtj1"]
+
+[node name="leg" type="Node2D"]
+
+[node name="leg_upper" type="Node2D" parent="."]
+rotation = 0.906499
+script = ExtResource("1_meee5")
+
+[node name="joint" type="Node2D" parent="leg_upper"]
+scale = Vector2(1, 1.11111)
+
+[node name="Sprite2D" type="Sprite2D" parent="leg_upper/joint"]
+position = Vector2(-3.47217, -180.986)
+texture = ExtResource("2_w3u4e")
+
+[node name="leg_lower" type="Node2D" parent="."]
+position = Vector2(320, -240)
+rotation = 0.00222977
+scale = Vector2(1, 1)
+
+[node name="Sprite2D" type="Sprite2D" parent="leg_lower"]
+position = Vector2(8, 184)
+texture = ExtResource("3_fxtj1")
+flip_h = true

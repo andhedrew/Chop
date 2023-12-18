@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://cs4gulcchhci1"]
+[gd_scene load_steps=13 format=3 uid="uid://cs4gulcchhci1"]
 
 [ext_resource type="Script" path="res://spider_boss.gd" id="1_ujbax"]
 [ext_resource type="Texture2D" uid="uid://bnync6r5e0nyd" path="res://characters/enemy/spider_boss_1/spider.png" id="2_6yf3b"]
@@ -6,8 +6,8 @@
 [ext_resource type="Script" path="res://boss_spider_walk.gd" id="4_8j4mp"]
 [ext_resource type="PackedScene" uid="uid://cxfiuhgots5lg" path="res://hitboxes/Hitbox.tscn" id="5_4bj0q"]
 [ext_resource type="PackedScene" uid="uid://hf8oc665xro5" path="res://hitboxes/shieldbox.tscn" id="6_6aqvm"]
-[ext_resource type="Texture2D" uid="uid://bi7x0kjrw24gb" path="res://characters/enemy/spider_boss_1/leg_upper.png" id="7_gfmmk"]
-[ext_resource type="Texture2D" uid="uid://b6equ7sja70ey" path="res://characters/enemy/spider_boss_1/leg.png" id="8_36yyd"]
+[ext_resource type="PackedScene" uid="uid://btlg8kyvxhpog" path="res://characters/enemy/spider_boss_1/leg.tscn" id="7_you2x"]
+[ext_resource type="PackedScene" uid="uid://cp5j3tbsikxw4" path="res://levels_and_level_objects/area_of_interest.tscn" id="8_4dayx"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_c5vw5"]
 size = Vector2(16, 192)
@@ -17,6 +17,9 @@ size = Vector2(20, 272)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6i7c1"]
 size = Vector2(20, 64)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fn57f"]
+size = Vector2(352.003, 544)
 
 [node name="Spoider" type="CharacterBody2D"]
 position = Vector2(-408, -312)
@@ -66,20 +69,39 @@ shape = SubResource("RectangleShape2D_6i7c1")
 [node name="Shoulder" type="Node2D" parent="."]
 position = Vector2(64, 64)
 
-[node name="leg_upper" type="Node2D" parent="Shoulder"]
+[node name="leg" parent="Shoulder" instance=ExtResource("7_you2x")]
 
-[node name="Sprite2D" type="Sprite2D" parent="Shoulder/leg_upper"]
-position = Vector2(0, -176)
-texture = ExtResource("7_gfmmk")
+[node name="leg2" parent="Shoulder" instance=ExtResource("7_you2x")]
 
-[node name="leg_lower" type="Node2D" parent="Shoulder/leg_upper"]
-position = Vector2(0, -352)
+[node name="leg_upper" parent="Shoulder/leg2" index="0"]
+rotation = 1.56587
 
-[node name="Sprite2D" type="Sprite2D" parent="Shoulder/leg_upper/leg_lower"]
-position = Vector2(8, 184)
-texture = ExtResource("8_36yyd")
-flip_h = true
+[node name="joint" parent="Shoulder/leg2/leg_upper" index="0"]
+scale = Vector2(1, 1.40018)
+
+[node name="leg_lower" parent="Shoulder/leg2" index="1"]
+position = Vector2(504, 8.00003)
+
+[node name="leg3" parent="Shoulder" instance=ExtResource("7_you2x")]
+
+[node name="leg_upper" parent="Shoulder/leg3" index="0"]
+rotation = -0.962796
+
+[node name="joint" parent="Shoulder/leg3/leg_upper" index="0"]
+scale = Vector2(1, 0.302255)
+
+[node name="leg_lower" parent="Shoulder/leg3" index="1"]
+position = Vector2(-88, -64)
+
+[node name="AreaOfInterest" parent="." instance=ExtResource("8_4dayx")]
+position = Vector2(376, 152)
+
+[node name="CollisionShape2D" parent="AreaOfInterest/MainFocusArea" index="0"]
+shape = SubResource("RectangleShape2D_fn57f")
 
 [editable path="Hitbox"]
 [editable path="Shield"]
 [editable path="Shield2"]
+[editable path="Shoulder/leg2"]
+[editable path="Shoulder/leg3"]
+[editable path="AreaOfInterest"]
