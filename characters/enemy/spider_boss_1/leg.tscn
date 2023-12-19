@@ -1,10 +1,18 @@
-[gd_scene load_steps=4 format=3 uid="uid://btlg8kyvxhpog"]
+[gd_scene load_steps=6 format=3 uid="uid://btlg8kyvxhpog"]
 
 [ext_resource type="Script" path="res://characters/enemy/spider_boss_1/leg_upper.gd" id="1_meee5"]
+[ext_resource type="Script" path="res://characters/enemy/spider_boss_1/leg.gd" id="1_xvrp4"]
 [ext_resource type="Texture2D" uid="uid://bi7x0kjrw24gb" path="res://characters/enemy/spider_boss_1/leg_upper.png" id="2_w3u4e"]
 [ext_resource type="Texture2D" uid="uid://b6equ7sja70ey" path="res://characters/enemy/spider_boss_1/leg.png" id="3_fxtj1"]
 
+[sub_resource type="Curve2D" id="Curve2D_d6215"]
+_data = {
+"points": PackedVector2Array(-223.384, 69.2174, 223.384, -69.2174, 184, -256, -49.7107, -32.721, 49.7107, 32.721, 544, -104, 58.5202, 14.4727, -58.5202, -14.4727, 136, -96, 0, 0, 0, 0, 184, -256)
+}
+point_count = 4
+
 [node name="leg" type="Node2D"]
+script = ExtResource("1_xvrp4")
 
 [node name="leg_upper" type="Node2D" parent="."]
 rotation = 0.906499
@@ -17,12 +25,16 @@ scale = Vector2(1, 1.11111)
 position = Vector2(-3.47217, -180.986)
 texture = ExtResource("2_w3u4e")
 
-[node name="leg_lower" type="Node2D" parent="."]
-position = Vector2(320, -240)
-rotation = 0.00222977
-scale = Vector2(1, 1)
+[node name="Path2D" type="Path2D" parent="."]
+curve = SubResource("Curve2D_d6215")
 
-[node name="Sprite2D" type="Sprite2D" parent="leg_lower"]
+[node name="leg_lower" type="PathFollow2D" parent="Path2D"]
+position = Vector2(193.893, -258.923)
+scale = Vector2(1, 1)
+progress = 10.3149
+rotates = false
+
+[node name="Sprite2D" type="Sprite2D" parent="Path2D/leg_lower"]
 position = Vector2(8, 184)
 texture = ExtResource("3_fxtj1")
 flip_h = true

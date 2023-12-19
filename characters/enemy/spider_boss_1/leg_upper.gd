@@ -2,7 +2,7 @@
 extends Node2D
 
 
-@onready var lower_leg := $"../leg_lower"
+@onready var lower_leg := $"../Path2D/leg_lower"
 var default_distance := 360.0
 var default_scale := 1.0
 

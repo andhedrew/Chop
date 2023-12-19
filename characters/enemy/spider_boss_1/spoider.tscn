@@ -70,28 +70,7 @@ shape = SubResource("RectangleShape2D_6i7c1")
 position = Vector2(64, 64)
 
 [node name="leg" parent="Shoulder" instance=ExtResource("7_you2x")]
-
-[node name="leg2" parent="Shoulder" instance=ExtResource("7_you2x")]
-
-[node name="leg_upper" parent="Shoulder/leg2" index="0"]
-rotation = 1.56587
-
-[node name="joint" parent="Shoulder/leg2/leg_upper" index="0"]
-scale = Vector2(1, 1.40018)
-
-[node name="leg_lower" parent="Shoulder/leg2" index="1"]
-position = Vector2(504, 8.00003)
-
-[node name="leg3" parent="Shoulder" instance=ExtResource("7_you2x")]
-
-[node name="leg_upper" parent="Shoulder/leg3" index="0"]
-rotation = -0.962796
-
-[node name="joint" parent="Shoulder/leg3/leg_upper" index="0"]
-scale = Vector2(1, 0.302255)
-
-[node name="leg_lower" parent="Shoulder/leg3" index="1"]
-position = Vector2(-88, -64)
+leg_movement = 0.295035
 
 [node name="AreaOfInterest" parent="." instance=ExtResource("8_4dayx")]
 position = Vector2(376, 152)
@@ -99,9 +78,13 @@ position = Vector2(376, 152)
 [node name="CollisionShape2D" parent="AreaOfInterest/MainFocusArea" index="0"]
 shape = SubResource("RectangleShape2D_fn57f")
 
+[node name="Pivot" type="Marker2D" parent="."]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Pivot"]
+
+[node name="EffectsPlayer" type="AnimationPlayer" parent="Pivot"]
+
 [editable path="Hitbox"]
 [editable path="Shield"]
 [editable path="Shield2"]
-[editable path="Shoulder/leg2"]
-[editable path="Shoulder/leg3"]
 [editable path="AreaOfInterest"]

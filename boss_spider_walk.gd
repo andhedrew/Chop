@@ -1,6 +1,6 @@
 extends State
 
-var speed := 10
+var speed := 85
 
 func enter(_msg := {}) -> void:
 	pass
