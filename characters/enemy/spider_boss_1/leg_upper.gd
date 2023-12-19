@@ -2,14 +2,9 @@
 extends Node2D
 
 
-@onready var lower_leg := $"../Path2D/leg_lower"
+@onready var lower_leg := $"../leg_lower"
 var default_distance := 360.0
 var default_scale := 1.0
-
-
-func _ready():
-	default_distance = 360.0
-	default_scale = 1.0
 	
 	
 func _process(delta):
@@ -19,7 +14,7 @@ func _process(delta):
 func point_at(target_position: Vector2):
 	# Calculate the angle to the target
 	var direction: Vector2 = target_position - position
-	rotation = direction.angle() + 1.55
+	rotation_degrees = rad_to_deg(direction.angle()) + 100
 
 #
 func adjust_scale(target_position: Vector2):

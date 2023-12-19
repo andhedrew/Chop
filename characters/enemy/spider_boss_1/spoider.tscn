@@ -1,11 +1,14 @@
-[gd_scene load_steps=13 format=3 uid="uid://cs4gulcchhci1"]
+[gd_scene load_steps=16 format=3 uid="uid://cs4gulcchhci1"]
 
 [ext_resource type="Script" path="res://spider_boss.gd" id="1_ujbax"]
 [ext_resource type="Texture2D" uid="uid://bnync6r5e0nyd" path="res://characters/enemy/spider_boss_1/spider.png" id="2_6yf3b"]
 [ext_resource type="Script" path="res://characters/enemy/BossStateMachine.gd" id="3_cq3fq"]
 [ext_resource type="Script" path="res://boss_spider_walk.gd" id="4_8j4mp"]
 [ext_resource type="PackedScene" uid="uid://cxfiuhgots5lg" path="res://hitboxes/Hitbox.tscn" id="5_4bj0q"]
+[ext_resource type="Script" path="res://characters/enemy/spider_boss_1/Attack1.gd" id="5_rwc5f"]
 [ext_resource type="PackedScene" uid="uid://hf8oc665xro5" path="res://hitboxes/shieldbox.tscn" id="6_6aqvm"]
+[ext_resource type="Script" path="res://characters/enemy/spider_boss_1/LegStuck1.gd" id="6_vrgcr"]
+[ext_resource type="Script" path="res://characters/enemy/spider_boss_1/Stunned1.gd" id="7_diqac"]
 [ext_resource type="PackedScene" uid="uid://btlg8kyvxhpog" path="res://characters/enemy/spider_boss_1/leg.tscn" id="7_you2x"]
 [ext_resource type="PackedScene" uid="uid://cp5j3tbsikxw4" path="res://levels_and_level_objects/area_of_interest.tscn" id="8_4dayx"]
 
@@ -32,6 +35,33 @@ offset_right = 208.0
 offset_bottom = -102.0
 text = "state"
 
+[node name="Shoulder_back" type="Node2D" parent="."]
+modulate = Color(2, 2, 2, 1)
+position = Vector2(64, 64)
+
+[node name="leg" parent="Shoulder_back" instance=ExtResource("7_you2x")]
+position = Vector2(-3.5, 0)
+back_leg = true
+leg_movement = 0.426329
+
+[node name="leg2" parent="Shoulder_back" instance=ExtResource("7_you2x")]
+position = Vector2(-22, 0)
+start_point = 0.27
+back_leg = true
+leg_movement = 0.0826795
+
+[node name="leg3" parent="Shoulder_back" instance=ExtResource("7_you2x")]
+position = Vector2(7, 0)
+start_point = 0.45
+back_leg = true
+leg_movement = 0.263658
+
+[node name="leg4" parent="Shoulder_back" instance=ExtResource("7_you2x")]
+position = Vector2(66, 0)
+start_point = 0.63
+back_leg = true
+leg_movement = 0.336855
+
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(-24, 112)
 texture = ExtResource("2_6yf3b")
@@ -39,10 +69,19 @@ flip_h = true
 
 [node name="StateMachine" type="Node" parent="."]
 script = ExtResource("3_cq3fq")
-initial_state = NodePath("Walk")
+initial_state = NodePath("Walk1")
 
-[node name="Walk" type="Node" parent="StateMachine"]
+[node name="Walk1" type="Node" parent="StateMachine"]
 script = ExtResource("4_8j4mp")
+
+[node name="Attack1" type="Node" parent="StateMachine"]
+script = ExtResource("5_rwc5f")
+
+[node name="LegStuck1" type="Node" parent="StateMachine"]
+script = ExtResource("6_vrgcr")
+
+[node name="Stunned1" type="Node" parent="StateMachine"]
+script = ExtResource("7_diqac")
 
 [node name="Hitbox" parent="." instance=ExtResource("5_4bj0q")]
 position = Vector2(176, 208)
@@ -70,7 +109,28 @@ shape = SubResource("RectangleShape2D_6i7c1")
 position = Vector2(64, 64)
 
 [node name="leg" parent="Shoulder" instance=ExtResource("7_you2x")]
-leg_movement = 0.295035
+position = Vector2(-11, 0)
+start_point = 0.17
+back_leg = false
+leg_movement = 0.760726
+
+[node name="leg2" parent="Shoulder" instance=ExtResource("7_you2x")]
+position = Vector2(-25.5, 0)
+start_point = 0.36
+back_leg = false
+leg_movement = 0.166408
+
+[node name="leg3" parent="Shoulder" instance=ExtResource("7_you2x")]
+position = Vector2(54.5, 0)
+start_point = 0.54
+back_leg = false
+leg_movement = 0.309411
+
+[node name="leg4" parent="Shoulder" instance=ExtResource("7_you2x")]
+position = Vector2(66.5, 0)
+start_point = 0.73
+back_leg = false
+leg_movement = 0.356952
 
 [node name="AreaOfInterest" parent="." instance=ExtResource("8_4dayx")]
 position = Vector2(376, 152)
