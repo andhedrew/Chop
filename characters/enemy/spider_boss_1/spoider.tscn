@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://cs4gulcchhci1"]
+[gd_scene load_steps=18 format=3 uid="uid://cs4gulcchhci1"]
 
 [ext_resource type="Script" path="res://spider_boss.gd" id="1_ujbax"]
 [ext_resource type="Texture2D" uid="uid://bnync6r5e0nyd" path="res://characters/enemy/spider_boss_1/spider.png" id="2_6yf3b"]
@@ -11,6 +11,7 @@
 [ext_resource type="Script" path="res://characters/enemy/spider_boss_1/Stunned1.gd" id="7_diqac"]
 [ext_resource type="PackedScene" uid="uid://btlg8kyvxhpog" path="res://characters/enemy/spider_boss_1/leg.tscn" id="7_you2x"]
 [ext_resource type="PackedScene" uid="uid://cp5j3tbsikxw4" path="res://levels_and_level_objects/area_of_interest.tscn" id="8_4dayx"]
+[ext_resource type="Texture2D" uid="uid://chi0clpdq5mom" path="res://characters/enemy/spider_boss_1/spider_head.png" id="12_nyyit"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_c5vw5"]
 size = Vector2(16, 192)
@@ -24,6 +25,9 @@ size = Vector2(20, 64)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fn57f"]
 size = Vector2(352.003, 544)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_o27t0"]
+size = Vector2(592, 64)
+
 [node name="Spoider" type="CharacterBody2D"]
 position = Vector2(-408, -312)
 script = ExtResource("1_ujbax")
@@ -36,36 +40,35 @@ offset_bottom = -102.0
 text = "state"
 
 [node name="Shoulder_back" type="Node2D" parent="."]
-modulate = Color(2, 2, 2, 1)
-position = Vector2(64, 64)
+position = Vector2(120, 64)
 
 [node name="leg" parent="Shoulder_back" instance=ExtResource("7_you2x")]
-position = Vector2(-3.5, 0)
 back_leg = true
-leg_movement = 0.426329
+leg_movement = 0.617142
 
 [node name="leg2" parent="Shoulder_back" instance=ExtResource("7_you2x")]
-position = Vector2(-22, 0)
 start_point = 0.27
 back_leg = true
-leg_movement = 0.0826795
+leg_movement = 0.985985
 
 [node name="leg3" parent="Shoulder_back" instance=ExtResource("7_you2x")]
-position = Vector2(7, 0)
 start_point = 0.45
 back_leg = true
-leg_movement = 0.263658
+leg_movement = 0.199976
 
 [node name="leg4" parent="Shoulder_back" instance=ExtResource("7_you2x")]
-position = Vector2(66, 0)
 start_point = 0.63
 back_leg = true
-leg_movement = 0.336855
+leg_movement = 0.199976
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(-24, 112)
 texture = ExtResource("2_6yf3b")
-flip_h = true
+
+[node name="hed" type="Sprite2D" parent="."]
+position = Vector2(184, 152)
+texture = ExtResource("12_nyyit")
+hframes = 2
 
 [node name="StateMachine" type="Node" parent="."]
 script = ExtResource("3_cq3fq")
@@ -87,6 +90,9 @@ script = ExtResource("7_diqac")
 position = Vector2(176, 208)
 collision_layer = 64
 collision_mask = 391
+monitoring = false
+monitorable = false
+lethal = true
 
 [node name="CollisionShape2D" parent="Hitbox" index="0"]
 shape = SubResource("RectangleShape2D_c5vw5")
@@ -109,28 +115,20 @@ shape = SubResource("RectangleShape2D_6i7c1")
 position = Vector2(64, 64)
 
 [node name="leg" parent="Shoulder" instance=ExtResource("7_you2x")]
-position = Vector2(-11, 0)
 start_point = 0.17
-back_leg = false
-leg_movement = 0.760726
+leg_movement = 0.783241
 
 [node name="leg2" parent="Shoulder" instance=ExtResource("7_you2x")]
-position = Vector2(-25.5, 0)
 start_point = 0.36
-back_leg = false
-leg_movement = 0.166408
+leg_movement = 0.0173795
 
 [node name="leg3" parent="Shoulder" instance=ExtResource("7_you2x")]
-position = Vector2(54.5, 0)
 start_point = 0.54
-back_leg = false
-leg_movement = 0.309411
+leg_movement = 0.199976
 
 [node name="leg4" parent="Shoulder" instance=ExtResource("7_you2x")]
-position = Vector2(66.5, 0)
 start_point = 0.73
-back_leg = false
-leg_movement = 0.356952
+leg_movement = 0.199976
 
 [node name="AreaOfInterest" parent="." instance=ExtResource("8_4dayx")]
 position = Vector2(376, 152)
@@ -143,6 +141,16 @@ shape = SubResource("RectangleShape2D_fn57f")
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Pivot"]
 
 [node name="EffectsPlayer" type="AnimationPlayer" parent="Pivot"]
+
+[node name="PlayerDetector" type="Area2D" parent="."]
+position = Vector2(408, 304)
+collision_layer = 0
+collision_mask = 2
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerDetector"]
+shape = SubResource("RectangleShape2D_o27t0")
+debug_color = Color(0.709804, 0.482353, 0.141176, 0.419608)
 
 [editable path="Hitbox"]
 [editable path="Shield"]

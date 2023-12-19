@@ -4,57 +4,57 @@
 [ext_resource type="Script" path="res://characters/enemy/spider_boss_1/leg.gd" id="1_xvrp4"]
 [ext_resource type="Texture2D" uid="uid://bi7x0kjrw24gb" path="res://characters/enemy/spider_boss_1/leg_upper.png" id="2_w3u4e"]
 [ext_resource type="Texture2D" uid="uid://b6equ7sja70ey" path="res://characters/enemy/spider_boss_1/leg.png" id="3_fxtj1"]
-[ext_resource type="PackedScene" uid="uid://hf8oc665xro5" path="res://hitboxes/shieldbox.tscn" id="4_d407p"]
+[ext_resource type="PackedScene" uid="uid://bb1h85dym7l4i" path="res://hitboxes/Hurtbox.tscn" id="4_v08w7"]
 
 [sub_resource type="Curve2D" id="Curve2D_d6215"]
 _data = {
-"points": PackedVector2Array(-15.0624, -34.2779, 15.0624, 34.2779, 544, -104, 0, 0, 0, 0, 528, -16, 0, 0, 0, 0, -392, -16, -3.68895, 30.8125, 3.68895, -30.8125, -384, -96, -6.83399, -34.5923, 6.83399, 34.5923, 544, -104, -10.7029, -48.2871, 10.7029, 48.2871, 544, -104, 0, 0, 0, 0, 544, -104)
+"points": PackedVector2Array(0, 0, 0, 0, 184, -16, 0, 0, 0, 0, -168, -16, -3.68895, 30.8125, 3.68895, -30.8125, -168, -104, 0, 0, 0, 0, 184, -16)
 }
-point_count = 7
+point_count = 4
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_hl614"]
-height = 296.79
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kxxr3"]
+size = Vector2(20, 240)
 
 [node name="leg" type="Node2D"]
 script = ExtResource("1_xvrp4")
-back_leg = null
-leg_movement = 0.393931
+leg_movement = 0.705302
 
 [node name="Path2D" type="Path2D" parent="."]
-position = Vector2(0, -72)
+position = Vector2(0, -70)
 curve = SubResource("Curve2D_d6215")
 
 [node name="leg_lower" type="PathFollow2D" parent="Path2D"]
-position = Vector2(-177.756, -16)
-progress = 797.941
+position = Vector2(-43.1679, -86.5163)
+progress = 569.348
 rotates = false
 
 [node name="Sprite2D" type="Sprite2D" parent="Path2D/leg_lower"]
 position = Vector2(10.6068, 185.334)
 texture = ExtResource("3_fxtj1")
 flip_h = true
-hframes = 3
-frame = 1
+hframes = 7
+frame = 4
 
-[node name="Shield" parent="Path2D/leg_lower" instance=ExtResource("4_d407p")]
-position = Vector2(-161.439, 272)
+[node name="Hurtbox" parent="Path2D/leg_lower" instance=ExtResource("4_v08w7")]
+collision_layer = 0
+collision_mask = 8
+monitorable = false
 
-[node name="CollisionShape2D" parent="Path2D/leg_lower/Shield" index="0"]
-shape = SubResource("CapsuleShape2D_hl614")
+[node name="CollisionShape2D" parent="Path2D/leg_lower/Hurtbox" index="0"]
+position = Vector2(8.03784, 160)
+shape = SubResource("RectangleShape2D_kxxr3")
 
 [node name="leg_upper" type="Node2D" parent="Path2D"]
-position = Vector2(0, 72)
-rotation = -0.936575
-scale = Vector2(1, 1)
+rotation = -0.28828
 script = ExtResource("1_meee5")
 
 [node name="joint" type="Node2D" parent="Path2D/leg_upper"]
 rotation = -0.20944
-scale = Vector2(1, 0.550961)
+scale = Vector2(1, 0.268577)
 
 [node name="Sprite2D" type="Sprite2D" parent="Path2D/leg_upper/joint"]
 position = Vector2(-3.47217, -180.986)
 texture = ExtResource("2_w3u4e")
 hframes = 2
 
-[editable path="Path2D/leg_lower/Shield"]
+[editable path="Path2D/leg_lower/Hurtbox"]
