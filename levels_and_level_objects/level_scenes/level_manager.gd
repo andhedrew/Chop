@@ -30,6 +30,8 @@ func _ready():
 	GameEvents.new_vfx.connect(vfx)
 	GameEvents.player_scored.connect(_new_score_label)
 	GameEvents.player_died.connect(_on_player_lives_changed)
+	
+	GameEvents.lil_bro_died.connect(_on_lil_bro_die)
 
 	
 	if checkpoint: #THIS IS THE WORLD CHECKPOINT
@@ -49,13 +51,12 @@ func _ready():
 
 
 func _process(_delta):
+	if Input.is_action_just_pressed("1"):
+		GameEvents.lil_bro_died.emit()
 	if Input.is_action_just_pressed("quit"):
 		_restart_level()
 	if Input.is_action_just_pressed("reset_save_data"):
 		SaveManager.reset_save()
-	
-	if Input.is_action_just_pressed("1"):
-		GameEvents.new_vfx.emit("res://vfx/blood_explosion.tscn", global_position)
 
 
 func _restart_level() -> void:
@@ -216,3 +217,11 @@ func _on_player_lives_changed() -> void:
 	if $Debug.debug:
 		lives_amt += 1
 	SaveManager.save_item("lives", lives_amt)
+
+
+func _on_lil_bro_die():
+	Fade.crossfade_prepare(0.4, "ChopChomp")
+#	SoundPlayer.play_sound("paper_rip")
+	get_tree().reload_current_scene()
+	get_tree().change_scene_to_file(get_tree().current_scene.scene_file_path)
+	Fade.crossfade_execute() 

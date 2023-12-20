@@ -66,6 +66,7 @@ func _ready():
 	GameEvents.camera_change_focus.connect(on_change_focus)
 	GameEvents.camera_split_focus.connect(_on_split_focus)
 	GameEvents.player_falling.connect(_on_player_changed_falling_state)
+	
 
 	set_camera_limits()
 	original_target = target

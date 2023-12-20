@@ -83,6 +83,7 @@ var belt_move_speed := belt_max_speed
 var belt_speed := 0.0
 var conveyor_count = 0
 
+var spider_level_restart := false
 
 func _ready():
 	if automatic_recharge:
@@ -420,3 +421,5 @@ func _on_activating_cheat_mode():
 	has_booster_upgrade = true
 	torch_charges = 30
 	max_torch_charges = 30
+
+
