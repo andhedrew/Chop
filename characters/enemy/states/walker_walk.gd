@@ -1,3 +1,4 @@
+class_name WalkerWalk
 extends State
 
 @onready var ledge_check_left := $"../../ledge_check_left"

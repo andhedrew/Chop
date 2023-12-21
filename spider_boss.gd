@@ -21,7 +21,9 @@ func _process(delta):
 		var leg = $Shoulder_back.get_child(child)
 
 	if leg_count_back + leg_count_front < 3:
-		queue_free()
+		_die()
+
+		
 
 
 func _on_body_entered(body):
@@ -40,4 +42,11 @@ func _on_body_exited(body):
 func _on_chase_start():
 	GameEvents.camera_change_focus.emit(self)
 	await get_tree().create_timer(2.5).timeout
-	GameEvents.camera_change_focus.emit($"../Player")
+	GameEvents.camera_reset_focus.emit()
+	GameEvents.cutscene_ended.emit()
+
+
+func _die():
+	await get_tree().create_timer(2.0).timeout
+	GameEvents.spider_boss_killed.emit()
+	call_deferred("queue_free")

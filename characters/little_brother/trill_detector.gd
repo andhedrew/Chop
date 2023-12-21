@@ -9,6 +9,7 @@ func _ready():
 	GameEvents.done_feeding_little_brother.connect(_reset_trill)
 	GameEvents.cutscene_ended.connect(_on_cutscene_end)
 	GameEvents.cutscene_started.connect(_on_cutscene_begin)
+	GameEvents.start_spider_chase.connect(_disable)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -34,3 +35,7 @@ func _on_cutscene_end() -> void:
 
 func _on_cutscene_begin() -> void:
 	cutscene_running = true
+
+
+func _disable():
+	set_deferred("monitoring", false)

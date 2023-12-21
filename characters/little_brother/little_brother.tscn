@@ -1,4 +1,4 @@
-[gd_scene load_steps=53 format=3 uid="uid://cf8s3hxbyvsv8"]
+[gd_scene load_steps=54 format=3 uid="uid://cf8s3hxbyvsv8"]
 
 [ext_resource type="Script" path="res://characters/little_brother/little_brother.gd" id="1_cpyu1"]
 [ext_resource type="Script" path="res://characters/little_brother/interact_with_lil_brother_zone.gd" id="2_sa06n"]
@@ -923,17 +923,14 @@ _data = {
 "take_damage": ExtResource("4_xkikf")
 }
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_ocmnl"]
-size = Vector2(63, 80)
-
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_poim7"]
 size = Vector2(36, 6)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_cydai"]
-size = Vector2(19, 16)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hlvcp"]
+size = Vector2(18.5, 18)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_plkfx"]
-size = Vector2(18.5, 14)
+size = Vector2(12.5, 14)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_iea46"]
 size = Vector2(29, 17)
@@ -944,8 +941,14 @@ size = Vector2(35, 49)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gnxw1"]
 size = Vector2(50, 80)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ocmnl"]
+size = Vector2(63, 80)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_21hyk"]
+size = Vector2(28, 34)
+
 [node name="LittleBrother" type="CharacterBody2D"]
-collision_mask = 6
+collision_mask = 2
 script = ExtResource("1_cpyu1")
 
 [node name="InteractZone" type="Area2D" parent="."]
@@ -1053,7 +1056,7 @@ position = Vector2(6, -46)
 texture = ExtResource("6_kyt5c")
 hframes = 10
 vframes = 6
-frame = 12
+frame = 55
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Pivot"]
 root_node = NodePath("../..")
@@ -1068,22 +1071,18 @@ libraries = {
 "effects": SubResource("AnimationLibrary_4ji8v")
 }
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-5.5, -40)
-shape = SubResource("RectangleShape2D_ocmnl")
-
 [node name="BeakCollider" type="CollisionShape2D" parent="."]
 position = Vector2(36, -25)
 shape = SubResource("RectangleShape2D_poim7")
 one_way_collision = true
 
 [node name="HeadCollider" type="CollisionShape2D" parent="."]
-position = Vector2(27.5, -30)
-shape = SubResource("RectangleShape2D_cydai")
+position = Vector2(26.75, -29)
+shape = SubResource("RectangleShape2D_hlvcp")
 one_way_collision = true
 
 [node name="ACCollider" type="CollisionShape2D" parent="."]
-position = Vector2(-36.75, -29)
+position = Vector2(-38, -28)
 shape = SubResource("RectangleShape2D_plkfx")
 one_way_collision = true
 
@@ -1122,5 +1121,19 @@ script = ExtResource("14_o806h")
 [node name="TrillCollider" type="CollisionShape2D" parent="TrillDetector"]
 position = Vector2(208, -35)
 shape = SubResource("RectangleShape2D_gnxw1")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-5.5, -40)
+shape = SubResource("RectangleShape2D_ocmnl")
+
+[node name="EnemyKiller" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 4
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="EnemyKiller"]
+position = Vector2(40, -36)
+shape = SubResource("RectangleShape2D_21hyk")
+debug_color = Color(0.768627, 0.32549, 0.772549, 0.419608)
 
 [editable path="InteractZone/HungerBars"]

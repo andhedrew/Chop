@@ -11,6 +11,7 @@ func _ready():
 	full_focus_area.body_exited.connect(_on_body_exited)
 	split_focus_area.body_entered.connect(_on_body_entered_split)
 	split_focus_area.body_exited.connect(_on_body_exited_split)
+	GameEvents.start_spider_chase.connect(_destroy)
 
 
 func _on_body_entered(body) ->void:
@@ -32,3 +33,7 @@ func _on_body_exited_split(body) ->void:
 	if body is Player:
 		GameEvents.camera_split_focus.emit(self, true)
 		GameEvents.camera_change_focus.emit(body)
+
+
+func _destroy():
+	queue_free()

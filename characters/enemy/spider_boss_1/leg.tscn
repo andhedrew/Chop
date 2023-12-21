@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://btlg8kyvxhpog"]
+[gd_scene load_steps=10 format=3 uid="uid://btlg8kyvxhpog"]
 
 [ext_resource type="Script" path="res://characters/enemy/spider_boss_1/leg_upper.gd" id="1_meee5"]
 [ext_resource type="Script" path="res://characters/enemy/spider_boss_1/leg.gd" id="1_xvrp4"]
@@ -13,7 +13,27 @@ _data = {
 point_count = 4
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_kxxr3"]
-size = Vector2(20, 240)
+size = Vector2(20, 320)
+
+[sub_resource type="Animation" id="Animation_v0qbm"]
+resource_name = "hurt"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.9),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 0, 0, 1), Color(1, 1, 1, 1), Color(0.774956, 0.0410146, 0.0228194, 1), Color(1, 1, 1, 1), Color(0.774956, 0.0410146, 0.0228194, 1), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_5i5ey"]
+_data = {
+"hurt": SubResource("Animation_v0qbm")
+}
 
 [node name="leg" type="Node2D"]
 script = ExtResource("1_xvrp4")
@@ -24,7 +44,7 @@ position = Vector2(0, -70)
 curve = SubResource("Curve2D_d6215")
 
 [node name="leg_lower" type="PathFollow2D" parent="Path2D"]
-position = Vector2(-43.1679, -86.5163)
+position = Vector2(-43.1678, -86.5163)
 progress = 569.348
 rotates = false
 
@@ -33,19 +53,18 @@ position = Vector2(10.6068, 185.334)
 texture = ExtResource("3_fxtj1")
 flip_h = true
 hframes = 7
-frame = 4
 
 [node name="Hurtbox" parent="Path2D/leg_lower" instance=ExtResource("4_v08w7")]
+position = Vector2(0, 172.516)
 collision_layer = 0
 collision_mask = 8
 monitorable = false
 
 [node name="CollisionShape2D" parent="Path2D/leg_lower/Hurtbox" index="0"]
-position = Vector2(8.03784, 160)
 shape = SubResource("RectangleShape2D_kxxr3")
 
 [node name="leg_upper" type="Node2D" parent="Path2D"]
-rotation = -0.28828
+rotation = -0.288279
 script = ExtResource("1_meee5")
 
 [node name="joint" type="Node2D" parent="Path2D/leg_upper"]
@@ -56,5 +75,10 @@ scale = Vector2(1, 0.268577)
 position = Vector2(-3.47217, -180.986)
 texture = ExtResource("2_w3u4e")
 hframes = 2
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_5i5ey")
+}
 
 [editable path="Path2D/leg_lower/Hurtbox"]

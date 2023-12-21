@@ -1,0 +1,303 @@
+[gd_scene load_steps=26 format=3 uid="uid://dnt3o2w8vd8ef"]
+
+[ext_resource type="Script" path="res://main_menu.gd" id="1_rcehk"]
+[ext_resource type="Texture2D" uid="uid://d4cpdtp6ng8ou" path="res://user_interface/main_menu/menu_beast.png" id="2_7shun"]
+[ext_resource type="Texture2D" uid="uid://clrb5gif84bdf" path="res://user_interface/main_menu/menu_butcher.png" id="3_ud8cu"]
+[ext_resource type="Texture2D" uid="uid://8gy7beu6w5fj" path="res://user_interface/main_menu/menu_logo.png" id="4_gyb7r"]
+[ext_resource type="Theme" uid="uid://b0dhfhdkknaj3" path="res://user_interface/chop_theme.tres" id="5_kx0jy"]
+[ext_resource type="Texture2D" uid="uid://d2sfjwkrv1clw" path="res://vfx/rain_drop.png" id="6_q88gs"]
+[ext_resource type="Texture2D" uid="uid://bilkanq4ivsho" path="res://vfx/rain_striking.png" id="7_808we"]
+[ext_resource type="PackedScene" uid="uid://eh11t8si04ed" path="res://user_interface/splattering_rain.tscn" id="8_nr42r"]
+[ext_resource type="FontFile" uid="uid://baykuh7pqbali" path="res://user_interface/fonts/Giza.otf" id="9_lfhwe"]
+[ext_resource type="FontFile" uid="uid://b8ei6fu0n0k4s" path="res://user_interface/fonts/Printvetica.otf" id="10_qjhcg"]
+[ext_resource type="PackedScene" uid="uid://bg5fv3j7uct3o" path="res://levels_and_level_objects/enemy_dropper/enemy_dropper.tscn" id="11_223eo"]
+[ext_resource type="PackedScene" uid="uid://c8hbwwnbcoese" path="res://characters/enemy/chop-chop/chop-chop_on_land.tscn" id="12_kw62e"]
+[ext_resource type="TileSet" uid="uid://dncfauqbtucau" path="res://sprites/tilesets/grass_fg.tres" id="13_ix2p8"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_84x4k"]
+bg_color = Color(0.156863, 0.14902, 0.156863, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_eytvx"]
+bg_color = Color(0.2, 0.143267, 0.126, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vfl18"]
+bg_color = Color(0.101961, 0.0941176, 0.101961, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7cqy0"]
+bg_color = Color(0.278431, 0.266667, 0.278431, 1)
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_sy1oe"]
+emission_shape = 3
+emission_box_extents = Vector3(400, 5, 1)
+particle_flag_disable_z = true
+direction = Vector3(0, 1, 0)
+spread = 0.0
+gravity = Vector3(0, 0, 0)
+initial_velocity_min = 300.0
+initial_velocity_max = 300.0
+orbit_velocity_min = 0.0
+orbit_velocity_max = 0.0
+color = Color(1, 1, 1, 0.584314)
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_jmwst"]
+particles_animation = true
+particles_anim_h_frames = 6
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="Gradient" id="Gradient_qorv8"]
+colors = PackedColorArray(1, 1, 1, 1, 0.231518, 0.231518, 0.231518, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_ruwf1"]
+gradient = SubResource("Gradient_qorv8")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_nq8je"]
+emission_shape = 3
+emission_box_extents = Vector3(8, 1, 1)
+particle_flag_disable_z = true
+gravity = Vector3(0, 0, 0)
+orbit_velocity_min = 0.0
+orbit_velocity_max = 0.0
+color = Color(1, 1, 1, 0.87451)
+color_ramp = SubResource("GradientTexture1D_ruwf1")
+anim_speed_min = 0.4
+anim_speed_max = 0.4
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_7gh33"]
+emission_shape = 3
+emission_box_extents = Vector3(30, 30, 1)
+particle_flag_disable_z = true
+gravity = Vector3(0, 0, 0)
+orbit_velocity_min = 0.0
+orbit_velocity_max = 0.0
+color = Color(1, 1, 1, 0.87451)
+color_ramp = SubResource("GradientTexture1D_ruwf1")
+anim_speed_min = 0.4
+anim_speed_max = 0.4
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_kr7tk"]
+emission_shape = 3
+emission_box_extents = Vector3(1, 6, 1)
+particle_flag_disable_z = true
+direction = Vector3(0, 1, 0)
+spread = 0.0
+gravity = Vector3(0, 0, 0)
+initial_velocity_min = 300.0
+initial_velocity_max = 300.0
+orbit_velocity_min = 0.0
+orbit_velocity_max = 0.0
+color = Color(1, 1, 1, 0.584314)
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_1r2yo"]
+emission_shape = 3
+emission_box_extents = Vector3(1, 6, 1)
+particle_flag_disable_z = true
+direction = Vector3(0, 1, 0)
+spread = 0.0
+gravity = Vector3(0, 0, 0)
+initial_velocity_min = 300.0
+initial_velocity_max = 300.0
+orbit_velocity_min = 0.0
+orbit_velocity_max = 0.0
+color = Color(1, 1, 1, 0.584314)
+
+[node name="World" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_rcehk")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.156863, 0.14902, 0.156863, 1)
+
+[node name="TextureRect" type="TextureRect" parent="."]
+visible = false
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("2_7shun")
+
+[node name="TextureRect2" type="TextureRect" parent="."]
+visible = false
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("3_ud8cu")
+
+[node name="TextureRect3" type="TextureRect" parent="."]
+visible = false
+layout_mode = 0
+offset_left = -68.0
+offset_top = -97.0
+offset_right = 572.0
+offset_bottom = 263.0
+texture = ExtResource("4_gyb7r")
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 0
+offset_left = -200.0
+offset_top = 120.0
+offset_right = -104.0
+offset_bottom = 151.0
+theme = ExtResource("5_kx0jy")
+theme_override_styles/normal = SubResource("StyleBoxFlat_84x4k")
+theme_override_styles/hover = SubResource("StyleBoxFlat_eytvx")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_vfl18")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_7cqy0")
+text = "New Game"
+
+[node name="Button3" type="Button" parent="."]
+layout_mode = 0
+offset_left = -256.0
+offset_top = 176.0
+offset_right = -122.0
+offset_bottom = 207.0
+theme = ExtResource("5_kx0jy")
+theme_override_styles/normal = SubResource("StyleBoxFlat_84x4k")
+theme_override_styles/hover = SubResource("StyleBoxFlat_eytvx")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_vfl18")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_7cqy0")
+disabled = true
+text = "Continue Game"
+
+[node name="Button2" type="Button" parent="."]
+layout_mode = 0
+offset_left = 280.0
+offset_top = 208.0
+offset_right = 384.0
+offset_bottom = 239.0
+theme = ExtResource("5_kx0jy")
+theme_override_styles/normal = SubResource("StyleBoxFlat_84x4k")
+theme_override_styles/hover = SubResource("StyleBoxFlat_eytvx")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_vfl18")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_7cqy0")
+text = "Quit Game"
+
+[node name="rain" type="GPUParticles2D" parent="."]
+visible = false
+position = Vector2(304, -26)
+amount = 200
+process_material = SubResource("ParticleProcessMaterial_sy1oe")
+texture = ExtResource("6_q88gs")
+lifetime = 4.0
+
+[node name="GPUParticles2D2" type="GPUParticles2D" parent="."]
+visible = false
+material = SubResource("CanvasItemMaterial_jmwst")
+position = Vector2(449, 133)
+amount = 1
+process_material = SubResource("ParticleProcessMaterial_nq8je")
+texture = ExtResource("7_808we")
+lifetime = 0.2
+randomness = 0.43
+
+[node name="GPUParticles2D5" type="GPUParticles2D" parent="."]
+visible = false
+material = SubResource("CanvasItemMaterial_jmwst")
+position = Vector2(300, 346)
+amount = 1
+process_material = SubResource("ParticleProcessMaterial_7gh33")
+texture = ExtResource("7_808we")
+lifetime = 0.2
+
+[node name="SplatteringRain" parent="." instance=ExtResource("8_nr42r")]
+visible = false
+
+[node name="GPUParticles2D6" type="GPUParticles2D" parent="."]
+visible = false
+material = SubResource("CanvasItemMaterial_jmwst")
+position = Vector2(344, 49)
+rotation = -0.5044
+amount = 1
+process_material = SubResource("ParticleProcessMaterial_7gh33")
+texture = ExtResource("7_808we")
+lifetime = 0.2
+
+[node name="rain2" type="GPUParticles2D" parent="."]
+visible = false
+position = Vector2(280, 111)
+amount = 12
+process_material = SubResource("ParticleProcessMaterial_kr7tk")
+texture = ExtResource("6_q88gs")
+lifetime = 4.0
+
+[node name="rain3" type="GPUParticles2D" parent="."]
+visible = false
+position = Vector2(508, 224)
+amount = 12
+process_material = SubResource("ParticleProcessMaterial_1r2yo")
+texture = ExtResource("6_q88gs")
+lifetime = 4.0
+
+[node name="Control" type="Control" parent="."]
+anchors_preset = 0
+offset_left = -214.0
+offset_top = -106.0
+offset_right = -174.0
+offset_bottom = -66.0
+
+[node name="Butcher" type="Label" parent="Control"]
+visible = false
+layout_mode = 0
+offset_left = 261.0
+offset_top = 157.0
+offset_right = 446.0
+offset_bottom = 230.0
+theme_override_colors/font_color = Color(0.835294, 0.423529, 0.2, 1)
+theme_override_fonts/font = ExtResource("9_lfhwe")
+theme_override_font_sizes/font_size = 51
+text = "Butcher"
+
+[node name="And" type="Label" parent="Control"]
+visible = false
+layout_mode = 0
+offset_left = 261.0
+offset_top = 210.0
+offset_right = 322.0
+offset_bottom = 227.0
+theme_override_colors/font_color = Color(0.678431, 0.580392, 0.392157, 1)
+theme_override_fonts/font = ExtResource("10_qjhcg")
+theme_override_font_sizes/font_size = 14
+text = "AND"
+horizontal_alignment = 1
+
+[node name="THE" type="Label" parent="Control"]
+layout_mode = 0
+offset_left = 358.0
+offset_top = 266.0
+offset_right = 709.0
+offset_bottom = 283.0
+theme_override_colors/font_color = Color(0.678431, 0.580392, 0.392157, 1)
+theme_override_fonts/font = ExtResource("10_qjhcg")
+theme_override_font_sizes/font_size = 14
+text = "There will be an ending, but it's not ready yet."
+horizontal_alignment = 1
+
+[node name="BEAST" type="Label" parent="Control"]
+layout_mode = 0
+offset_left = 318.0
+offset_top = 194.0
+offset_right = 726.0
+offset_bottom = 256.0
+theme_override_fonts/font = ExtResource("9_lfhwe")
+theme_override_font_sizes/font_size = 51
+text = "Thanks for playing."
+
+[node name="EnemyDropper" parent="." instance=ExtResource("11_223eo")]
+position = Vector2(320, 8)
+enemy = ExtResource("12_kw62e")
+
+[node name="TileMap" type="TileMap" parent="."]
+position = Vector2(328, -64)
+tile_set = ExtResource("13_ix2p8")
+format = 2
+layer_0/tile_data = PackedInt32Array(1507316, 0, 0, 1572852, 0, 2, 1638389, 524288, 0, 1703925, 327680, 1, 1769461, 327680, 2, 1834997, 524288, 1, 1638390, 327680, 1, 1703926, 589824, 2, 1769462, 589824, 2, 1834998, 589824, 2, 1638386, 0, 0, 1703922, 589824, 0, 1769458, 393216, 2, 1834994, 720896, 2, 1572855, 655360, 0, 1638391, 589824, 2, 1703927, 589824, 2, 1769463, 589824, 2, 1834999, 589824, 2, 1900535, 589824, 3, 1507321, 393216, 1, 1572857, 589824, 2, 1572858, 393216, 1, 1638394, 589824, 2, 1703930, 589824, 2, 1769466, 589824, 2, 1835002, 589824, 2, 1900538, 589824, 3, 1769467, 589824, 2, 1769468, 589824, 2, 1835004, 589824, 2, 1769469, 589824, 2, 1703933, 393216, 1, 1638397, 720896, 0, 1703934, 720896, 0, 1769470, 393216, 1, 1835006, 393216, 2, 1900542, 458752, 2, 1966078, 0, 2, 1835007, 589824, 3, 1769471, 655360, 0, 1703936, 655360, 0, 1769472, 589824, 3, 1703937, 327680, 1, 1769473, 327680, 2, 1835009, 524288, 3, 1835010, 720896, 3, 1769474, 393216, 2, 1703938, 589824, 2, 1703939, 589824, 2, 1638403, 589824, 2, 1638404, 589824, 2, 1572868, 655360, 0, 1703940, 589824, 2, 1703941, 589824, 2, 1769477, 655360, 3, 1835013, 0, 2, 1638405, 589824, 2, 1572869, 327680, 1, 1507333, 524288, 0, 1507334, 458752, 1, 1441798, 0, 0, 1572870, 393216, 1, 1638406, 589824, 2, 1703942, 589824, 2, 1769478, 589824, 3, 1638407, 589824, 2, 1703944, 589824, 2, 1769480, 589824, 2, 1835016, 589824, 3, 1835017, 393216, 3, 1769481, 720896, 2, 1703945, 393216, 2, 1638409, 655360, 0, 1638410, 327680, 1, 1572874, 524288, 1, 1507338, 524288, 0, 1441803, 0, 1, 1376267, 0, 1, 1310731, 0, 1, 1245195, 0, 0, 1507339, 458752, 1, 1572875, 720896, 2, 1638411, 393216, 1, 1703947, 327680, 2, 1769483, 524288, 1, 1638412, 655360, 0, 1703948, 589824, 2, 1769484, 393216, 2, 1769485, 589824, 3, 1703949, 589824, 2, 1703950, 589824, 2, 1703951, 589824, 2, 1769487, 589824, 3, 1769488, 589824, 3, 1769489, 589824, 3, 1769490, 589824, 3, 1769491, 589824, 3, 1703956, 720896, 0, 1769492, 393216, 3, 1769493, 196608, 3, 1769486, 589824, 3, 1835020, 720896, 3, 1835019, 327680, 3, 1835018, 131072, 3, 1835015, 524288, 3, 1769479, 327680, 2, 1769476, 589824, 3, 1703943, 589824, 2, 1703946, 589824, 3, 1769475, 589824, 3, 1769465, 589824, 2, 1769464, 589824, 2, 1900536, 589824, 3, 1900537, 589824, 3, 1900539, 589824, 3, 1900540, 589824, 3, 1900541, 589824, 3, 1835005, 589824, 2, 1835003, 589824, 2, 1835001, 589824, 2, 1835000, 589824, 2, 1703928, 589824, 2, 1703929, 589824, 2, 1769460, 589824, 3, 1769459, 589824, 3, 1769457, 589824, 2, 1834993, 589824, 2, 1834992, 589824, 2, 1834991, 589824, 2, 1834990, 524288, 1, 1769455, 589824, 2, 1769456, 589824, 2, 1703924, 655360, 0, 1703923, 655360, 0, 1703921, 655360, 0, 1703920, 655360, 0, 1769454, 327680, 2, 1769453, 589824, 3, 1769452, 327680, 3, 1769451, 131072, 3, 1769450, 393216, 0, 1769449, 524288, 0, 1834984, 65536, 3, 1834985, 327680, 3, 1834986, 720896, 3, 1900523, 65536, 3, 1900524, 131072, 3, 1900525, 131072, 3, 1900526, 327680, 3, 1900527, 589824, 3, 1900528, 589824, 3, 1900529, 589824, 3, 1900530, 393216, 3, 1900531, 131072, 3, 1900532, 131072, 3, 1900533, 327680, 3, 1900534, 589824, 3, 1572865, 524288, 0, 1638401, 524288, 1, 1638402, 589824, 2, 1572866, 655360, 0, 1572867, 589824, 0, 1507331, 0, 1, 1441795, 0, 1, 1376259, 0, 0, 1507324, 0, 0, 1572860, 458752, 1, 1638396, 393216, 1, 1703932, 589824, 2, 1507322, 720896, 0, 1310713, 0, 0, 1376249, 0, 1, 1441785, 458752, 1, 1638393, 589824, 2, 1572859, 655360, 0, 1638395, 589824, 2, 1703931, 589824, 2, 1376247, 0, 0, 1441783, 65536, 2, 1441784, 327680, 0, 1507320, 524288, 1, 1572856, 327680, 1, 1638392, 589824, 2, 1507318, 0, 0, 1572854, 262144, 1, 1572871, 655360, 0, 1572872, 458752, 1, 1310728, 0, 0, 1376264, 0, 1, 1441800, 0, 1, 1507336, 0, 1, 1638408, 393216, 1, 1507341, 0, 0, 1572877, 262144, 1, 1638413, 327680, 1, 1572878, 655360, 0, 1572879, 458752, 1, 1507343, 0, 1, 1441807, 0, 0, 1638415, 393216, 1, 1638416, 655360, 0, 1638417, 655360, 0, 1638418, 720896, 0, 1638414, 589824, 2, 1703952, 589824, 2, 1703953, 589824, 2, 1703954, 393216, 1, 1703955, 655360, 0, 1703919, 589824, 0, 1638383, 0, 1, 1572847, 0, 0, 1703918, 655360, 0, 1703917, 655360, 0, 1703916, 524288, 0)

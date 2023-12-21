@@ -38,6 +38,7 @@ var current_state := ""
 var conveyor_count := 0
 var belt_speed := 0.0
 
+var lilbro_can_kill := false
 
 func _ready() -> void:
 	max_health = health

@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://cs4gulcchhci1"]
+[gd_scene load_steps=17 format=3 uid="uid://cs4gulcchhci1"]
 
 [ext_resource type="Script" path="res://spider_boss.gd" id="1_ujbax"]
 [ext_resource type="Texture2D" uid="uid://bnync6r5e0nyd" path="res://characters/enemy/spider_boss_1/spider.png" id="2_6yf3b"]
@@ -10,7 +10,6 @@
 [ext_resource type="Script" path="res://characters/enemy/spider_boss_1/LegStuck1.gd" id="6_vrgcr"]
 [ext_resource type="Script" path="res://characters/enemy/spider_boss_1/Stunned1.gd" id="7_diqac"]
 [ext_resource type="PackedScene" uid="uid://btlg8kyvxhpog" path="res://characters/enemy/spider_boss_1/leg.tscn" id="7_you2x"]
-[ext_resource type="PackedScene" uid="uid://cp5j3tbsikxw4" path="res://levels_and_level_objects/area_of_interest.tscn" id="8_4dayx"]
 [ext_resource type="Script" path="res://characters/enemy/spider_boss_1/Node.gd" id="10_b21r0"]
 [ext_resource type="Texture2D" uid="uid://chi0clpdq5mom" path="res://characters/enemy/spider_boss_1/spider_head.png" id="12_nyyit"]
 
@@ -22,9 +21,6 @@ size = Vector2(20, 272)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6i7c1"]
 size = Vector2(20, 64)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_fn57f"]
-size = Vector2(352.003, 544)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_o27t0"]
 size = Vector2(592, 64)
@@ -134,12 +130,6 @@ leg_movement = 0.199976
 start_point = 0.73
 leg_movement = 0.199976
 
-[node name="AreaOfInterest" parent="." instance=ExtResource("8_4dayx")]
-position = Vector2(376, 152)
-
-[node name="CollisionShape2D" parent="AreaOfInterest/MainFocusArea" index="0"]
-shape = SubResource("RectangleShape2D_fn57f")
-
 [node name="Pivot" type="Marker2D" parent="."]
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Pivot"]
@@ -156,7 +146,12 @@ monitorable = false
 shape = SubResource("RectangleShape2D_o27t0")
 debug_color = Color(0.709804, 0.482353, 0.141176, 0.419608)
 
+[node name="Marker2D" type="Marker2D" parent="."]
+position = Vector2(176, 96)
+
+[node name="SpawnPoint" type="Marker2D" parent="."]
+position = Vector2(-232, 200)
+
 [editable path="Hitbox"]
 [editable path="Shield"]
 [editable path="Shield2"]
-[editable path="AreaOfInterest"]

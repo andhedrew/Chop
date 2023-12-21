@@ -18,6 +18,7 @@ func _ready():
 
 
 func _process(_delta):
+	
 	match owner.state:
 		Enums.State.MOVE:
 			animation_player.play("walk")
@@ -29,6 +30,8 @@ func _process(_delta):
 			animation_player.play("hungry")
 		Enums.State.TRILL:
 			animation_player.play("swallow")
+		Enums.State.ATTACK:
+			animation_player.play("parry_2")
 
 
 func _on_feeding() -> void:

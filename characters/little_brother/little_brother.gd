@@ -6,12 +6,13 @@ extends CharacterBody2D
 @export var last_level := false
 
 var is_full := false
-
+var killing := false
 var state := Enums.State.IDLE
 var running_from_spider := false
 
 func _ready():
 	GameEvents.start_spider_chase.connect(start_spider_chase)
+	$EnemyKiller.body_entered.connect(_on_enemy_entered_kill_zone)
 	z_index = SortLayer.PLAYER
 	state = Enums.State.IDLE
 #	await get_tree().create_timer(3).timeout
@@ -23,10 +24,12 @@ func _ready():
 
 
 func _process(delta):
-	if running_from_spider and state == Enums.State.IDLE:
+	if running_from_spider and state == Enums.State.IDLE and not killing:
 		state = Enums.State.MOVE
 	if state == Enums.State.MOVE:
 		position.x += 45 * delta
+		
+	
 
 
 func done_feeding() -> void:
@@ -41,3 +44,13 @@ func save_stomachs() -> void:
 func start_spider_chase():
 	state = Enums.State.MOVE
 	running_from_spider = true
+
+
+func _on_enemy_entered_kill_zone(body):
+	if body is Enemy:
+		if body.lilbro_can_kill:
+			killing = true
+			state = Enums.State.ATTACK
+			body.die(false, false, false)
+			await get_tree().create_timer(0.5).timeout
+			killing = false

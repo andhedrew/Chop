@@ -64,6 +64,7 @@ signal octo_dead
 signal octo_chopped
 signal start_octo_battle
 signal end_octo_battle
+signal spider_boss_killed
 #spider
 signal lil_bro_died
 signal start_spider_chase

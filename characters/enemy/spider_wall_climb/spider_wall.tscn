@@ -1,0 +1,43 @@
+[gd_scene load_steps=6 format=3 uid="uid://ctue3xtyb42g2"]
+
+[ext_resource type="PackedScene" uid="uid://23cc1xm0v5jp" path="res://characters/enemy/enemy_walker.tscn" id="1_kf4dc"]
+[ext_resource type="Texture2D" uid="uid://cmdjujrnqlusx" path="res://characters/enemy/spider_wall_climb/spider_wall_climb.png" id="2_ed434"]
+[ext_resource type="Texture2D" uid="uid://qf6s4i35sf4q" path="res://characters/enemy/default/mallow_pieces2.png" id="2_no5xj"]
+[ext_resource type="Script" path="res://characters/enemy/spider_wall_climb/spider_walk.gd" id="2_no6og"]
+[ext_resource type="Script" path="res://characters/enemy/jumper_jump_attack.gd" id="5_xvwb3"]
+
+[node name="Spider" instance=ExtResource("1_kf4dc")]
+speed = 3.0
+death_pieces = Array[Resource]([ExtResource("2_no5xj")])
+bounty = 0
+
+[node name="Pivot" parent="." index="2"]
+position = Vector2(0, -10)
+
+[node name="Body" parent="Pivot" index="0"]
+position = Vector2(0, -3)
+texture = ExtResource("2_ed434")
+frame = 11
+
+[node name="player_detector" parent="Pivot" index="3"]
+position = Vector2(0, 0)
+target_position = Vector2(0, 240)
+collision_mask = 2
+
+[node name="StateMachine" parent="." index="3"]
+initial_state = NodePath("Move")
+
+[node name="Move" type="Node" parent="StateMachine" index="3"]
+script = ExtResource("2_no6og")
+
+[node name="Attack" type="Node" parent="StateMachine" index="4"]
+script = ExtResource("5_xvwb3")
+
+[node name="ceiling_check" type="RayCast2D" parent="." index="13"]
+target_position = Vector2(0, -30)
+
+[node name="floor_check" type="RayCast2D" parent="." index="14"]
+target_position = Vector2(0, 5)
+
+[editable path="Hurtbox"]
+[editable path="Hitbox"]

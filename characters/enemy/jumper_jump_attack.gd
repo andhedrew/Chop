@@ -23,7 +23,10 @@ func physics_update(delta: float) -> void:
 	if owner.is_on_floor():
 		owner.velocity.x = lerp(owner.velocity.x, 0.0, Param.FRICTION)
 		if owner.velocity.x <= 0:
-			state_machine.transition_to("Idle")
+			if state_machine.has_node("Idle"):
+				state_machine.transition_to("Idle")
+			else:
+				state_machine.transition_to("Move")
 	
 	if owner.velocity.y > 0:
 		owner.animation_player.play("fall")

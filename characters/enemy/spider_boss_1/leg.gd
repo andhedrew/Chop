@@ -9,13 +9,16 @@ var leg_state := "Walk"
 
 var x_shift := 30
 var chopped := 0
-var health := 3
+var health := 11
 var leg_pos := -70.0
+var flinch_amount := 0.0
+var hurtbox_y
 
 @export var leg_movement := 0.0
 var leg_move_speed :=  0.061
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	hurtbox_y = $Path2D/leg_lower/Hurtbox.position.y
 	$Path2D/leg_lower/Hurtbox.area_entered.connect(on_hurtbox_area_entered)
 	if not Engine.is_editor_hint():
 		z_index = SortLayer.PLAYER
@@ -30,11 +33,15 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	if not Engine.is_editor_hint():
-
+		
+		if flinch_amount < 0.0:
+			flinch_amount = lerp(flinch_amount, 0.0, 0.02)
+		
+		
 		if chopped != 0:
-			leg_pos = lerp(leg_pos, 0.0 + (90.0 * (chopped-1)), 0.2)
+			leg_pos = lerp(leg_pos, 0.0 + (90.0 * (chopped-1)), 0.2) + flinch_amount
 		else:
-			leg_pos = lerp(leg_pos, -70.0, 0.2)
+			leg_pos = lerp(leg_pos, -70.0, 0.2) + flinch_amount
 		
 		$Path2D.position = Vector2(0.0, leg_pos)
 		$Path2D/leg_upper.position = Vector2(0.0, -leg_pos)
@@ -65,16 +72,23 @@ func _process(delta):
 		if leg_movement > 1.0:
 			leg_movement = 0.0
 		$Path2D/leg_lower.progress_ratio = leg_movement
+		
+		$Path2D/leg_lower/Hurtbox.position.y = hurtbox_y - (110.0 * (max(chopped-1, 0)))
 
 func on_hurtbox_area_entered(area):
 	if not Engine.is_editor_hint():
-		if chopped < 3:
-			GameEvents.new_vfx.emit("res://vfx/explosion.tscn", area.global_position)
-			GameEvents.new_vfx.emit("res://vfx/blood_explosion.tscn", area.global_position)
-			chopped +=1
+		if health % 4 == 0:
+			if chopped < 3:
+				GameEvents.new_vfx.emit("res://vfx/explosion.tscn", area.global_position)
+				GameEvents.new_vfx.emit("res://vfx/blood_explosion.tscn", area.global_position)
+				chopped +=1
+			else:
+				GameEvents.new_vfx.emit("res://vfx/explosion_big.tscn", area.global_position)
+				GameEvents.new_vfx.emit("res://vfx/blood_explosion.tscn", area.global_position)
+				GameEvents.new_vfx.emit("res://vfx/explosion_big.tscn", global_position)
+				GameEvents.new_vfx.emit("res://vfx/blood_explosion.tscn", global_position)
+				call_deferred("queue_free")
 		else:
-			GameEvents.new_vfx.emit("res://vfx/explosion_big.tscn", area.global_position)
-			GameEvents.new_vfx.emit("res://vfx/blood_explosion.tscn", area.global_position)
-			GameEvents.new_vfx.emit("res://vfx/explosion_big.tscn", global_position)
-			GameEvents.new_vfx.emit("res://vfx/blood_explosion.tscn", global_position)
-			call_deferred("queue_free")
+			health -= 1
+		flinch_amount = -60
+		$AnimationPlayer.play("hurt")
