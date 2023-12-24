@@ -73,6 +73,8 @@ var execute_speed := 3000
 var execute_spread := 0
 
 @onready var collider := $CollisionShape2D
+@onready var brick_detector_1 := $Pivot/BreakableDetector
+@onready var brick_detector_2 := $Pivot/BreakableDetector2
 
 var attack_animation_index := 0
 var standing_on_belt := false
@@ -84,6 +86,9 @@ var belt_speed := 0.0
 var conveyor_count = 0
 
 var spider_level_restart := false
+
+var bullet_hit_breakable_count := 0
+
 
 func _ready():
 	if automatic_recharge:
@@ -242,18 +247,38 @@ func handle_facing() -> void:
 	if input.x > 0:
 		facing = Enums.Facing.RIGHT
 		default_facing = facing
+		
+
+		
 	elif input.x < 0:
 		facing = Enums.Facing.LEFT
 		default_facing = facing
 		
+		
 	if input.y == 0:
 		looking = Enums.Looking.FORWARD
+		brick_detector_1.position = Vector2(-2.0, 14.0)
+		brick_detector_1.target_position = Vector2(32.0, 0.0)
+		brick_detector_2.position = Vector2(-2.0, -4.0)
+		brick_detector_2.target_position = Vector2(32.0, 0.0)
 	elif input.y < 0:
 		looking = Enums.Looking.UP
 		$Pivot/BulletSpawn.position = Vector2(0, -20)
+		
+		brick_detector_1.position = Vector2(6.0, -12.0)
+		brick_detector_1.target_position = Vector2(0.0, -16.0)
+		brick_detector_2.position = Vector2(-9.0, -12.0)
+		brick_detector_2.target_position = Vector2(0.0, -16.0)
+		
 	elif input.y > 0:
 		looking = Enums.Looking.DOWN
 		$Pivot/BulletSpawn.position = Vector2(0, 20)
+		
+		brick_detector_1.position = Vector2(6.0, 14.0)
+		brick_detector_1.target_position = Vector2(0.0, 16.0)
+		brick_detector_2.position = Vector2(-9.0, -13.0)
+		brick_detector_2.target_position = Vector2(0.0, 16.0)
+		
 	if facing_last_frame != facing:
 		GameEvents.player_changed_facing.emit(facing)
 	facing_last_frame = facing
@@ -392,8 +417,13 @@ func _on_hitbox_body_shape_exited(_body_rid, body, _body_shape_index, _local_sha
 
 
 func _on_bullet_hit_breakable(bullet_pos: Vector2) -> void:
-	bullet_hit_breakable = true
-	bullet_hit_breakable_position = bullet_pos
+	bullet_hit_breakable_count += 1
+	if brick_detector_1.is_colliding() or brick_detector_2.is_colliding():
+		bullet_hit_breakable = true
+		bullet_hit_breakable_position = bullet_pos
+	
+	await get_tree().create_timer(1.5).timeout
+	bullet_hit_breakable_count -= 1
 
 
 func _on_adding_a_charge() -> void:

@@ -1,7 +1,7 @@
 [gd_scene load_steps=14 format=3 uid="uid://bj1lmcqabp7ck"]
 
 [ext_resource type="PackedScene" uid="uid://dm85xjdq5mkk3" path="res://levels_and_level_objects/level_scenes/base_level.tscn" id="1_w5o1i"]
-[ext_resource type="PackedScene" uid="uid://biem6a8q170tw" path="res://levels_and_level_objects/map/map_world_2.tscn" id="2_3xytf"]
+[ext_resource type="PackedScene" uid="uid://dwlnm64mxfmad" path="res://levels_and_level_objects/map/map_world_2.tscn" id="2_3xytf"]
 [ext_resource type="PackedScene" uid="uid://eow2ybkt3135" path="res://levels_and_level_objects/flagpole.tscn" id="3_a4jbd"]
 [ext_resource type="TileSet" uid="uid://ycdy041jdicq" path="res://sprites/tilesets/bg_tileset.tres" id="3_m2x2i"]
 [ext_resource type="Script" path="res://sprites/tilesets/base_bg_tilemap.gd" id="4_psht7"]

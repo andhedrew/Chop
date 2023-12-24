@@ -8,6 +8,7 @@ var speed = 80.0
 var turning = false
 
 func _ready():
+	await get_tree().create_timer(0.2).timeout
 	hurtbox.area_entered.connect(_take_damage)
 
 

@@ -27,7 +27,7 @@ func _new_game() -> void:
 	SaveManager.load_json()
 	Fade.crossfade_prepare(0.4, "ChopHorizontal")
 	SoundPlayer.play_sound("paper_rip")
-	get_tree().change_scene_to_file("res://levels_and_level_objects/level_scenes/city/city_1.tscn")
+	get_tree().change_scene_to_file("res://levels_and_level_objects/level_scenes/world_1_levels/1-1.tscn")
 	Fade.crossfade_execute() 
 	print_debug("new_game")
 

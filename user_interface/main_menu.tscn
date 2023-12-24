@@ -178,7 +178,6 @@ theme_override_styles/disabled = SubResource("StyleBoxFlat_7cqy0")
 text = "Quit Game"
 
 [node name="rain" type="GPUParticles2D" parent="."]
-visible = false
 position = Vector2(304, -26)
 amount = 200
 process_material = SubResource("ParticleProcessMaterial_sy1oe")
@@ -186,7 +185,6 @@ texture = ExtResource("6_dpn0x")
 lifetime = 4.0
 
 [node name="GPUParticles2D2" type="GPUParticles2D" parent="."]
-visible = false
 material = SubResource("CanvasItemMaterial_jmwst")
 position = Vector2(449, 133)
 amount = 1
@@ -196,7 +194,6 @@ lifetime = 0.2
 randomness = 0.43
 
 [node name="GPUParticles2D5" type="GPUParticles2D" parent="."]
-visible = false
 material = SubResource("CanvasItemMaterial_jmwst")
 position = Vector2(300, 346)
 amount = 1
@@ -205,10 +202,8 @@ texture = ExtResource("7_03ygk")
 lifetime = 0.2
 
 [node name="SplatteringRain" parent="." instance=ExtResource("8_hdx4d")]
-visible = false
 
 [node name="GPUParticles2D6" type="GPUParticles2D" parent="."]
-visible = false
 material = SubResource("CanvasItemMaterial_jmwst")
 position = Vector2(344, 49)
 rotation = -0.5044
@@ -218,7 +213,6 @@ texture = ExtResource("7_03ygk")
 lifetime = 0.2
 
 [node name="rain2" type="GPUParticles2D" parent="."]
-visible = false
 position = Vector2(280, 111)
 amount = 12
 process_material = SubResource("ParticleProcessMaterial_kr7tk")
@@ -226,7 +220,6 @@ texture = ExtResource("6_dpn0x")
 lifetime = 4.0
 
 [node name="rain3" type="GPUParticles2D" parent="."]
-visible = false
 position = Vector2(508, 224)
 amount = 12
 process_material = SubResource("ParticleProcessMaterial_1r2yo")
