@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://b02bwhhjwen2v"]
+[gd_scene load_steps=5 format=3 uid="uid://b02bwhhjwen2v"]
 
 [ext_resource type="PackedScene" uid="uid://dm85xjdq5mkk3" path="res://levels_and_level_objects/level_scenes/base_level.tscn" id="1_fb7pd"]
 [ext_resource type="PackedScene" uid="uid://ctue3xtyb42g2" path="res://characters/enemy/spider_wall_climb/spider_wall.tscn" id="2_70rw1"]
 [ext_resource type="PackedScene" uid="uid://cf8s3hxbyvsv8" path="res://characters/little_brother/little_brother.tscn" id="3_2v8k4"]
+[ext_resource type="Script" path="res://player_camera.gd" id="4_pr1fb"]
 
 [node name="World" instance=ExtResource("1_fb7pd")]
 
@@ -17,6 +18,9 @@ layer_0/tile_data = PackedInt32Array(-2818067, 0, 0, -2752531, 0, 0, -2686995, 0
 
 [node name="ParallaxLayer" parent="ForegroundScenery" index="0"]
 modulate = Color(0.529412, 0.529412, 0.529412, 1)
+
+[node name="Camera" parent="." index="11"]
+enabled = false
 
 [node name="CollisionShape2D" parent="EnemyActivationArea" index="0"]
 position = Vector2(-1, -14)
@@ -35,5 +39,8 @@ position = Vector2(-152, -136)
 
 [node name="Spider3" parent="." index="20" instance=ExtResource("2_70rw1")]
 position = Vector2(-56, -120)
+
+[node name="PlayerCamera" type="Camera2D" parent="." index="21"]
+script = ExtResource("4_pr1fb")
 
 [editable path="ColorShiftLayer"]
