@@ -1,6 +1,6 @@
 [gd_scene load_steps=9 format=3 uid="uid://bqg8q7u0o16hm"]
 
-[ext_resource type="Script" path="res://gameplay_objects/Camera.gd" id="1_l580n"]
+[ext_resource type="Script" path="res://player_camera.gd" id="1_5k70u"]
 [ext_resource type="Shader" path="res://letterboxing.gdshader" id="2_6dewy"]
 [ext_resource type="Script" path="res://letterboxes.gd" id="3_0go20"]
 [ext_resource type="Theme" uid="uid://b0dhfhdkknaj3" path="res://user_interface/chop_theme.tres" id="4_0ynlv"]
@@ -44,7 +44,7 @@ shader = ExtResource("2_6dewy")
 shader_parameter/squishedness = 0.0
 
 [node name="Camera" type="Camera2D"]
-script = ExtResource("1_l580n")
+script = ExtResource("1_5k70u")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 root_node = NodePath("../..")

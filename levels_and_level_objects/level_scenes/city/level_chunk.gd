@@ -9,16 +9,17 @@ func _ready():
 		current_scene = get_child(0)
 
 func _process(_delta):
-	if Input.is_action_pressed("1"):
-		change_scene(0)
-	elif Input.is_action_pressed("2"):
-		change_scene(1)
-	elif Input.is_action_pressed("3"):
-		change_scene(2)
-	elif Input.is_action_pressed("4"):
-		change_scene(3)
-	elif Input.is_action_pressed("5"):
-		change_scene(4)
+	pass
+#	if Input.is_action_pressed("1"):
+#		change_scene(0)
+#	elif Input.is_action_pressed("2"):
+#		change_scene(1)
+#	elif Input.is_action_pressed("3"):
+#		change_scene(2)
+#	elif Input.is_action_pressed("4"):
+#		change_scene(3)
+#	elif Input.is_action_pressed("5"):
+#		change_scene(4)
 
 func change_scene(index):
 	if index < 0 or index >= scenes.size():

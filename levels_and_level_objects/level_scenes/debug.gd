@@ -21,9 +21,3 @@ func _process(_delta):
 			if not cheated:
 				GameEvents.cheatmode.emit()
 				cheated = true
-			$"../Camera".limit_left = -10000000
-			$"../Camera".limit_right = 10000000
-			$"../Camera".limit_top = -10000000
-			$"../Camera".limit_bottom = 10000000
-		false:
-			$"../Camera".set_camera_limits()

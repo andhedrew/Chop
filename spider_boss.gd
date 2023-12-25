@@ -42,7 +42,7 @@ func _on_body_exited(body):
 func _on_chase_start():
 	GameEvents.camera_change_focus.emit(self)
 	await get_tree().create_timer(2.5).timeout
-	GameEvents.camera_reset_focus.emit()
+#	GameEvents.camera_reset_focus.emit()
 	GameEvents.cutscene_ended.emit()
 
 

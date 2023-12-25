@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://b02bwhhjwen2v"]
+[gd_scene load_steps=6 format=3 uid="uid://b02bwhhjwen2v"]
 
 [ext_resource type="PackedScene" uid="uid://dm85xjdq5mkk3" path="res://levels_and_level_objects/level_scenes/base_level.tscn" id="1_fb7pd"]
-[ext_resource type="PackedScene" uid="uid://ctue3xtyb42g2" path="res://characters/enemy/spider_wall_climb/spider_wall.tscn" id="2_70rw1"]
 [ext_resource type="PackedScene" uid="uid://cf8s3hxbyvsv8" path="res://characters/little_brother/little_brother.tscn" id="3_2v8k4"]
+[ext_resource type="Script" path="res://test_the_camera.gd" id="4_81jgb"]
 [ext_resource type="Script" path="res://player_camera.gd" id="4_pr1fb"]
+[ext_resource type="Texture2D" uid="uid://d3jxunvnurpe2" path="res://characters/little_brother/LittleBrotherDrop.png" id="5_wm0ho"]
 
 [node name="World" instance=ExtResource("1_fb7pd")]
 
@@ -31,16 +32,14 @@ position = Vector2(-112, -16)
 [node name="LittleBrother" parent="." index="17" instance=ExtResource("3_2v8k4")]
 position = Vector2(48, 0)
 
-[node name="Spider" parent="." index="18" instance=ExtResource("2_70rw1")]
-position = Vector2(-232, -112)
-
-[node name="Spider2" parent="." index="19" instance=ExtResource("2_70rw1")]
-position = Vector2(-152, -136)
-
-[node name="Spider3" parent="." index="20" instance=ExtResource("2_70rw1")]
-position = Vector2(-56, -120)
-
-[node name="PlayerCamera" type="Camera2D" parent="." index="21"]
+[node name="PlayerCamera" type="Camera2D" parent="." index="18"]
 script = ExtResource("4_pr1fb")
+
+[node name="Node2D" type="Node2D" parent="." index="19"]
+position = Vector2(320, -224)
+script = ExtResource("4_81jgb")
+
+[node name="Sprite2D" type="Sprite2D" parent="Node2D" index="0"]
+texture = ExtResource("5_wm0ho")
 
 [editable path="ColorShiftLayer"]

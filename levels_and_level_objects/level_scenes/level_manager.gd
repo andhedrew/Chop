@@ -51,8 +51,6 @@ func _ready():
 
 
 func _process(_delta):
-	if Input.is_action_just_pressed("1"):
-		GameEvents.lil_bro_died.emit()
 	if Input.is_action_just_pressed("quit"):
 		_restart_level()
 	if Input.is_action_just_pressed("reset_save_data"):
