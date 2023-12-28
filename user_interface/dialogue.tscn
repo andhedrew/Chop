@@ -1,70 +1,79 @@
-[gd_scene load_steps=5 format=3 uid="uid://ca5fmv4wp58t4"]
+[gd_scene load_steps=6 format=3 uid="uid://ca5fmv4wp58t4"]
 
 [ext_resource type="Theme" uid="uid://b0dhfhdkknaj3" path="res://user_interface/chop_theme.tres" id="1_fka35"]
 [ext_resource type="Script" path="res://user_interface/dialog_box.gd" id="2_daugo"]
 [ext_resource type="Texture2D" uid="uid://dq4ax8r7uk7vx" path="res://user_interface/dialog_box.png" id="2_icccj"]
 [ext_resource type="Texture2D" uid="uid://b8nm7f1s3bsff" path="res://user_interface/pointer.png" id="3_1givs"]
+[ext_resource type="FontFile" uid="uid://baykuh7pqbali" path="res://user_interface/fonts/Giza.otf" id="3_pnb6b"]
 
-[node name="DialogBox" type="Control"]
-custom_minimum_size = Vector2(250, 60)
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
+[node name="DialogBox" type="MarginContainer"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -80.0
+offset_top = -55.0
+offset_right = 82.0
+offset_bottom = 55.0
 grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("1_fka35")
 script = ExtResource("2_daugo")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="."]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
-
-[node name="Label" type="Label" parent="VBoxContainer"]
-z_index = 1
-z_as_relative = false
-custom_minimum_size = Vector2(180, 0)
-layout_mode = 2
-text = "thid id filber tex "
-horizontal_alignment = 1
-vertical_alignment = 1
-autowrap_mode = 2
-
-[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/Label"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_constants/margin_left = -10
-theme_override_constants/margin_top = -10
-theme_override_constants/margin_right = -10
-theme_override_constants/margin_bottom = -10
-
-[node name="NinePatchRect" type="NinePatchRect" parent="VBoxContainer/Label/MarginContainer"]
+[node name="NinePatchRect" type="NinePatchRect" parent="."]
+z_index = 1000
 z_as_relative = false
 layout_mode = 2
+size_flags_vertical = 3
 texture = ExtResource("2_icccj")
 region_rect = Rect2(4, 4, 26, 26)
-patch_margin_left = 11
-patch_margin_top = 12
-patch_margin_right = 11
-patch_margin_bottom = 12
+patch_margin_left = 10
+patch_margin_top = 10
+patch_margin_right = 10
+patch_margin_bottom = 10
 
-[node name="Sprite2D" type="TextureRect" parent="VBoxContainer/Label/MarginContainer/NinePatchRect"]
+[node name="Sprite2D" type="TextureRect" parent="NinePatchRect"]
 layout_mode = 1
 anchors_preset = 3
 anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -12.0
-offset_top = -15.0
-offset_right = -4.0
-offset_bottom = -7.0
+offset_left = -15.0
+offset_top = -19.0
+offset_right = -7.0
+offset_bottom = -11.0
 grow_horizontal = 0
 grow_vertical = 0
+size_flags_vertical = 8
 texture = ExtResource("3_1givs")
 stretch_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="Label2" type="Label" parent="MarginContainer/VBoxContainer"]
+z_index = 1001
+z_as_relative = false
+layout_mode = 2
+theme = ExtResource("1_fka35")
+theme_override_fonts/font = ExtResource("3_pnb6b")
+theme_override_font_sizes/font_size = 30
+text = "Filber Filbe
+"
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer"]
+z_index = 1001
+z_as_relative = false
+layout_mode = 2
+text = "thid id filber tex "
+vertical_alignment = 1
+autowrap_mode = 2

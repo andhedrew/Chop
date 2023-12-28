@@ -6,6 +6,7 @@ var particle_scene = preload("res://vfx/explosive_particles.tscn")
 @export var particle_texture: Texture
 var speed = 80.0
 var turning = false
+var cutscene_running = false
 
 func _ready():
 	await get_tree().create_timer(0.2).timeout
@@ -13,6 +14,8 @@ func _ready():
 
 
 func _physics_process(delta):
+	if cutscene_running:
+		return
 	velocity.x = speed
 	if !is_on_floor():
 		velocity.y += Param.GRAVITY * delta
@@ -28,13 +31,13 @@ func _physics_process(delta):
 	
 func _take_damage(hitbox) -> void:
 	if hitbox is HitBox:
-		GameEvents.enemy_took_damage.emit()
+		GameEvents.enemy_took_damage.emit(0)
 		die()
 		
 
 func die() -> void:
 	OS.delay_msec(80)
-	
+	GameEvents.mush_destroyed.emit()
 	var explode = particle_scene.instantiate()
 	explode.restart()
 	explode.texture = particle_texture
@@ -46,3 +49,11 @@ func die() -> void:
 	GameEvents.new_vfx.emit("res://vfx/explosion.tscn", global_position)
 	GameEvents.drop_food.emit(death_pieces, Vector2(global_position.x, global_position.y - 5))
 	queue_free()
+
+
+func _on_start_cutscene() -> void:
+	cutscene_running = true
+
+
+func _on_end_cutscene() -> void:
+	cutscene_running =  false

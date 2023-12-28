@@ -10,6 +10,10 @@ var tutorial = {
 	"full_bag_prompted": false,
 }
 
+var dialogue_running := false
+var y_pos := -85.0
+
+
 func _ready():
 #	SoundPlayer.play_music("blues")
 	tutorial = SaveManager.load_item("tutorial")
@@ -21,44 +25,23 @@ func _ready():
 	GameEvents.hunt_started.connect(_on_hunt_started)
 	GameEvents.enemy_took_damage.connect(_on_enemy_took_damage)
 	GameEvents.added_food_to_bag.connect(_on_adding_food_to_bag)
-	GameEvents.done_feeding_little_brother.connect(_on_done_feeding)
 	GameEvents.player_money_changed.connect(_on_collected_a_coin)
-	GameEvents.plant_hunger_bar_filled.connect(_on_plant_bar_filled)
-	GameEvents.bag_full.connect(_on_full_bag)
-	
-		
 	GameEvents.drop_food.connect(drop_food)
 	GameEvents.drop_health.connect(drop_health)
 	GameEvents.drop_coins.connect(drop_coins)
+	GameEvents.dialogue_finished.connect(_on_finished_dialogue)
+	GameEvents.mush_destroyed.connect(_on_mush_destroyed)
 
-
-func _on_full_bag() -> void:
-	if not SaveManager.load_item("tutorial/full_bag_prompted"):
-		var dialogue = preload("res://user_interface/dialogue.tscn").instantiate()
-		dialogue.dialog = [
-			"Bag's full, can't pick up no more.", 
-			"Can press 'D' to empty some out, or go feed the beast", 
-			]
-		camera.add_child(dialogue)
-		var dialogue_width := 180.0
-		dialogue.position = Vector2(-(dialogue_width * 0.5)+95, -45.0)
-		SaveManager.save_item("tutorial/full_bag_prompted", true)
-
-func _on_plant_bar_filled() -> void:
-	if not SaveManager.load_item("tutorial/plant_bar_prompted"):
-		var dialogue = preload("res://user_interface/dialogue.tscn").instantiate()
-		dialogue.dialog = [
-			"His plant stomach's full.", 
-			"Gotta find something else for him.",
-			]
-		camera.add_child(dialogue)
-		var dialogue_width := 180.0
-		dialogue.position = Vector2(-(dialogue_width * 0.5)+95, -45.0)
-		SaveManager.save_item("tutorial/plant_bar_prompted", true)
 
 func _on_collected_a_coin(_money) -> void:
-	if not SaveManager.load_item("tutorial/coin_prompted"):
+	if not SaveManager.load_item("tutorial/coin_prompted") and not dialogue_running:
+		dialogue_running = true
 		var dialogue = preload("res://user_interface/dialogue.tscn").instantiate()
+		dialogue.header = [
+			"Cash Money", 
+			"Thrift",
+			"Savings Plan",
+			]
 		dialogue.dialog = [
 			"Found some cash.", 
 			"Full coins are real rare, you'll mostly find bits.",
@@ -66,65 +49,67 @@ func _on_collected_a_coin(_money) -> void:
 			]
 		camera.add_child(dialogue)
 		var dialogue_width := 180.0
-		dialogue.position = Vector2(-(dialogue_width * 0.5), -45.0)
+		dialogue.position = Vector2(-(dialogue_width * 0.5), y_pos)
 		SaveManager.save_item("tutorial/coin_prompted", true)
 
 
-func _on_done_feeding() -> void:
-	await get_tree().create_timer(0.2).timeout
-
-	if not SaveManager.load_item("tutorial/done_feeding_prompted"):
-		var dialogue = preload("res://user_interface/dialogue.tscn").instantiate()
-		dialogue.dialog = [
-			"He's got three stomachs in him.", 
-			"Can't just stuff melon down his gullet all day.",
-			"Once one stomach's full, gotta go hunting for something else." 
-			]
-		camera.add_child(dialogue)
-		var dialogue_width := 180.0
-		dialogue.position = Vector2(-(dialogue_width * 0.5)+95, -45.0)
-		
-		SaveManager.save_item("tutorial/done_feeding_prompted", true)
-
-
 func _on_adding_food_to_bag(_food) -> void:
-	if not SaveManager.load_item("tutorial/adding_food_prompted"):
+	if not SaveManager.load_item("tutorial/adding_food_prompted") and not dialogue_running:
+		dialogue_running = true
 		var dialogue = preload("res://user_interface/dialogue.tscn").instantiate()
+		dialogue.header = [
+			"Lucky you", 
+			"Feeding",
+			]
 		dialogue.dialog = [
 			"Got some food in your bag.", 
-			"Go back any time to feed him.", 
+			"Feed it to the beast later. If you want.", 
 			]
 		camera.add_child(dialogue)
 		var dialogue_width := 180.0
-		dialogue.position = Vector2(-(dialogue_width * 0.5),  -45.0)
+		dialogue.position = Vector2(-(dialogue_width * 0.5),  y_pos)
 		SaveManager.save_item("tutorial/adding_food_prompted", true)
 
 
-func _on_hunt_started() -> void:
-	if not SaveManager.load_item("tutorial/start_of_level_prompted"):
-		var dialogue = preload("res://user_interface/dialogue.tscn").instantiate()
-		dialogue.dialog = [
-			"Won't go no farther without a meal.", 
-			"Maybe chop up some melons - ",
-			"they got faces, but they don't feel no pain.",
-			"Most likely." ,
-			"X to attack."]
-		camera.add_child(dialogue)
-		var dialogue_width := 180.0
-		dialogue.position = Vector2(-(dialogue_width * 0.5), -45.0)
-		SaveManager.save_item("tutorial/start_of_level_prompted", true)
 
-
-func _on_enemy_took_damage() -> void:
-	if not SaveManager.load_item("tutorial/enemy_execute_prompted"):
+func _on_enemy_took_damage(health) -> void:
+	if not SaveManager.load_item("tutorial/enemy_execute_prompted") and health == 1 and not dialogue_running:
+		dialogue_running = true
 		var dialogue = preload("res://user_interface/dialogue.tscn").instantiate()
+		dialogue.header = [
+			"Got 'im Good", 
+			"Use Your Legs", 
+			"CHOP", 
+			"Cold Cuts"
+			]
 		dialogue.dialog = [
 			"It's bleeding, one health left.", 
 			"Press Z to jump.", 
-			"While holding down Z, press down to CHOP!", 
+			"While in the air, press S to CHOP!", 
 			"CHOP enemies when they're bleeding to slice 'em up into food."
 			]
 		camera.add_child(dialogue)
 		var dialogue_width := 180.0
-		dialogue.position = Vector2(-(dialogue_width * 0.5), -45.0)
+		dialogue.position = Vector2(-(dialogue_width * 0.5), y_pos)
 		SaveManager.save_item("tutorial/enemy_execute_prompted", true)
+
+
+func _on_mush_destroyed() -> void:
+	if not SaveManager.load_item("tutorial/mush_prompted") and not dialogue_running:
+		dialogue_running = true
+		var dialogue = preload("res://user_interface/dialogue.tscn").instantiate()
+		dialogue.header = [
+			"I Don't Eat Mushrooms", 
+			"Not Hungry Nohow", 
+			]
+		dialogue.dialog = [
+			"I'm not some stupid junkie or something.", 
+			"I don't take to food so much.",
+			]
+		camera.add_child(dialogue)
+		var dialogue_width := 180.0
+		dialogue.position = Vector2(-(dialogue_width * 0.5), y_pos)
+		SaveManager.save_item("tutorial/enemy_execute_prompted", true)
+
+func _on_finished_dialogue():
+	dialogue_running = false

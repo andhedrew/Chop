@@ -24,10 +24,11 @@ func _process(_delta):
 func _take_damage(hitbox) -> void:
 	if hitbox is HitBox and !invulnerable:
 			if hitbox.execute:
-				GameEvents.enemy_took_damage.emit()
+				
 				colliding_hitbox_position = {"position": hitbox.owner.get_parent().global_position}
 				$StateMachine.transition_to("Hurt", colliding_hitbox_position)
 				health -= hitbox.damage
+				GameEvents.enemy_took_damage.emit(health)
 				if health <= 0:
 					$StateMachine.transition_to("Die")
 				else:

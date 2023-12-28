@@ -85,6 +85,7 @@ signal new_vfx  #arg 1: String reference to VX (PATH!! - drag theVFX scene from 
 signal player_scored #Arg 1:amount, arg 2: Position DOES give the player a score automatically
 # tutorial
 signal plant_hunger_bar_filled # no parameters
+signal mush_destroyed
 
 
 

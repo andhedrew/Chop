@@ -39,6 +39,9 @@ var conveyor_count := 0
 var belt_speed := 0.0
 
 var lilbro_can_kill := false
+var is_pooled := false
+var in_a_pool := false
+var pool_pos := Vector2.ZERO
 
 func _ready() -> void:
 	max_health = health
@@ -57,7 +60,12 @@ func _ready() -> void:
 
 func _physics_process(_delta):
 	if not active:
+		$Hurtbox.set_deferred("Monitoring", false)
+		$Hitbox.set_deferred("Monitorable", false)
 		return
+	
+	$Hurtbox.set_deferred("Monitoring", true)
+	$Hitbox.set_deferred("Monitorable", true)
 	state_label.text = $StateMachine.state.name
 	
 	if health <= 1:
@@ -114,11 +122,12 @@ func switch_facing() -> void:
 
 func _take_damage(hitbox) -> void:
 	if hitbox is HitBox and !invulnerable:
-		GameEvents.enemy_took_damage.emit()
+		
 		
 		colliding_hitbox_position = {"position": hitbox.owner.get_parent().global_position}
 		$StateMachine.transition_to("Hurt", colliding_hitbox_position)
 		health -= hitbox.damage
+		GameEvents.enemy_took_damage.emit(health)
 		if hitbox.lethal:
 			die(true, true)
 		elif wounded and health <= 0 and hitbox.execute:
@@ -154,28 +163,36 @@ func die(
 	drop_stuff: bool = true,
 	was_killed_by_player: bool = false
 	) -> void:
-	SoundPlayer.play_sound_positional(death_vocalization, global_position)
-	if was_killed_by_player:
-		OS.delay_msec(80)
-	var explode := preload("res://vfx/explosion.tscn").instantiate()
-	explode.position = global_position
-	if was_executed:
-		explode.big = true
-	elif drop_stuff: # drop stuff
-		randomize()
-		var options = [1, 2, 3]
-		var rand_index: int = randi() % options.size()
-		if rand_index == 1:
-			pass
-		elif rand_index == 2 and not player_health_full:
-			GameEvents.drop_health.emit(global_position)
+	if active:
+		SoundPlayer.play_sound_positional(death_vocalization, global_position)
+		if was_killed_by_player:
+			OS.delay_msec(80)
+		var explode := preload("res://vfx/explosion.tscn").instantiate()
+		explode.position = global_position
+		if was_executed:
+			explode.big = true
+		elif drop_stuff: # drop stuff
+			randomize()
+			var options = [1, 2, 3]
+			var rand_index: int = randi() % options.size()
+			if rand_index == 1:
+				pass
+			elif rand_index == 2 and not player_health_full:
+				GameEvents.drop_health.emit(global_position)
+			else:
+				GameEvents.drop_coins.emit(bounty, global_position)
+				
+		get_node("/root/World").add_child(explode)
+		
+		if get_parent().has_method("respawn"):
+			get_parent().respawn() 
+		
+		if in_a_pool:
+			visible = false
+			active = false
+			position = pool_pos
 		else:
-			GameEvents.drop_coins.emit(bounty, global_position)
-			
-	get_node("/root/World").add_child(explode)
-	if get_parent().has_method("respawn"):
-		get_parent().respawn() 
-	queue_free()
+			call_deferred("queue_free")
 
 func drop_health_and_die() -> void:
 	var explode := preload("res://vfx/blood_explosion.tscn").instantiate()
@@ -205,7 +222,7 @@ func _on_end_of_day() -> void:
 	particles.z_index = SortLayer.IN_FRONT
 	particles.emitting = true
 	$StateMachine.transition_to("Syphoned")
-	queue_free()
+#	queue_free()
 
 
 func _on_player_health_change(player_health, full_health) -> void:

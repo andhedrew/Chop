@@ -1,7 +1,7 @@
 @tool
 extends TileMap
 
-var chance := 10
+var chance := 1
 var chance_increase := 3
 var conveyor_speed := 50.0
 

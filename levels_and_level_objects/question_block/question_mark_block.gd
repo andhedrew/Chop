@@ -23,7 +23,7 @@ func _take_damage(area):
 			
 		elif scene_to_spawn != null:
 			var object := scene_to_spawn.instantiate()
-			get_parent().add_child(object)
+			get_parent().call_deferred("add_child", object)
 			object.position = position
 			GameEvents.new_vfx.emit("res://vfx/explosion.tscn", global_position)
 			GameEvents.drop_food.emit(death_pieces, global_position)

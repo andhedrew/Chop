@@ -31,8 +31,11 @@ var shake_intensity: float = 0.0
 var shake_decay: float = 0.1
 
 
+var freeze := false
+
 func _ready():
 	self.enabled = true
+	z_index = SortLayer.HUD
 	# Assign the player node. Replace 'Player' with the correct node name or path.
 	player = get_node_or_null("../Player")
 	target = player
@@ -46,6 +49,8 @@ func _ready():
 	GameEvents.camera_change_focus.connect(on_change_focus)
 	GameEvents.camera_reset_focus.connect(reset_focus)
 	GameEvents.camera_split_focus.connect(set_averaging)
+	GameEvents.cutscene_started.connect(_on_cutscene_started)
+	GameEvents.cutscene_ended.connect(_on_cutscene_ended)
 
 	set_camera_limits()
 	
@@ -60,7 +65,7 @@ func _process(delta: float) -> void:
 	if player == null:
 		return
 	
-	if target == player:
+	if target == player and not freeze:
 		var player_pos: Vector2 = player.global_position
 		var target_pos: Vector2 = target_node_to_average.global_position if target_node_to_average != null else player_pos
 		var averaged_position: Vector2
@@ -109,8 +114,7 @@ func _process(delta: float) -> void:
 		else:
 			var edge_smoothness: float = 0.1
 			global_position = lerp(global_position, player_global_pos, edge_smoothness)
-	else: # Follow a non-player target
-		print("following other targe")
+	elif not freeze: # Follow a non-player target
 		global_position = lerp(global_position, target.global_position, follow_speed * delta)
 	
 	if shake_intensity > 0:
@@ -128,6 +132,7 @@ func BIG_SCREENSHAKE() -> void:
 
 
 func shake(duration: float, intensity: float, decay: float):
+
 	shake_intensity = intensity
 	shake_decay = decay
 	# Optionally, you could use a Timer node to manage the duration of the shake
@@ -150,6 +155,7 @@ func set_camera_limits():
 
 func _on_shake_timer_timeout():
 	shake_intensity = 0.0
+
 
 
 func on_big_explosion() -> void:
@@ -179,3 +185,10 @@ func reset_focus() -> void:
 	target = player
 	average_with_target = false
 	target_node_to_average = null
+
+
+func _on_cutscene_started():
+	freeze = true
+
+func _on_cutscene_ended():
+	freeze = false

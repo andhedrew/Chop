@@ -13,7 +13,7 @@ func _ready():
 func _take_damage(hitbox) -> void:
 	if hitbox is HitBox and !invulnerable:
 		GameEvents.new_vfx.emit("res://vfx/slice_soft.tscn", global_position)
-		GameEvents.enemy_took_damage.emit()
+		GameEvents.enemy_took_damage.emit(health)
 		colliding_hitbox_position = {"position": hitbox.owner.get_parent().global_position}
 		if death_vocalization:
 			SoundPlayer.play_sound_positional(death_vocalization, position)
