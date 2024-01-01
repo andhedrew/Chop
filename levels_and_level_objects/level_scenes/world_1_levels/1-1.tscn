@@ -51,7 +51,7 @@ layer_0/tile_data = PackedInt32Array(-1966085, 0, 0, 327772, 0, 0)
 modulate = Color(0.529412, 0.529412, 0.529412, 1)
 
 [node name="Flagpole" parent="." index="11" instance=ExtResource("2_gju63")]
-position = Vector2(1328, -16)
+position = Vector2(2184, 640)
 
 [node name="QuestionMarkBlock" parent="." index="14" instance=ExtResource("3_ffakt")]
 position = Vector2(496, -80)
@@ -60,10 +60,10 @@ position = Vector2(496, -80)
 position = Vector2(624, -80)
 
 [node name="QuestionMarkBlock3" parent="." index="16" instance=ExtResource("3_ffakt")]
-position = Vector2(624, -160)
+position = Vector2(624, -192)
 
 [node name="HotDog" parent="." index="17" instance=ExtResource("5_dlvui")]
-position = Vector2(560, -16)
+position = Vector2(1256, -16)
 
 [node name="Label" parent="WorldName/Control" index="0"]
 text = "TEST"
@@ -72,7 +72,7 @@ text = "TEST"
 text = "TEST"
 
 [node name="Player" parent="." index="21"]
-position = Vector2(-64, -24)
+position = Vector2(136, -16)
 
 [node name="QuestionMarkBlock4" parent="." index="22" instance=ExtResource("3_ffakt")]
 position = Vector2(704, -80)

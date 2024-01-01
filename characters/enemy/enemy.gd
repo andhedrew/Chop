@@ -122,8 +122,6 @@ func switch_facing() -> void:
 
 func _take_damage(hitbox) -> void:
 	if hitbox is HitBox and !invulnerable:
-		
-		
 		colliding_hitbox_position = {"position": hitbox.owner.get_parent().global_position}
 		$StateMachine.transition_to("Hurt", colliding_hitbox_position)
 		health -= hitbox.damage
@@ -143,7 +141,7 @@ func _take_damage(hitbox) -> void:
 
 func _on_body_entered(body):
 	if body.name == "TileMap":
-		GameEvents.enemy_took_damage.emit()
+		GameEvents.enemy_took_damage.emit(0)
 		die(false, false, false)
 
 

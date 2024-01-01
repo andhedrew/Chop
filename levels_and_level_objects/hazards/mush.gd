@@ -7,15 +7,17 @@ var particle_scene = preload("res://vfx/explosive_particles.tscn")
 var speed = 80.0
 var turning = false
 var cutscene_running = false
-
+var timer := 1.0
 func _ready():
 	await get_tree().create_timer(0.2).timeout
 	hurtbox.area_entered.connect(_take_damage)
 
 
 func _physics_process(delta):
+	
 	if cutscene_running:
 		return
+	timer -= delta
 	velocity.x = speed
 	if !is_on_floor():
 		velocity.y += Param.GRAVITY * delta
@@ -30,7 +32,7 @@ func _physics_process(delta):
 		
 	
 func _take_damage(hitbox) -> void:
-	if hitbox is HitBox:
+	if hitbox is HitBox and timer < 0:
 		GameEvents.enemy_took_damage.emit(0)
 		die()
 		

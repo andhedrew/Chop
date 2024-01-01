@@ -22,7 +22,7 @@ signal removed_food_from_bag
 signal bag_full
 signal charge_amount_changed # Arg 1: Torch Charges Arg 2: Max charges
 signal add_a_charge
-signal enemy_took_damage
+signal enemy_took_damage  # Arg 1: health
 signal bag_capacity_changed
 signal enemy_being_syphoned
 signal started_feeding_little_brother

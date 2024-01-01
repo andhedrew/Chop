@@ -15,20 +15,12 @@ var y_pos := -85.0
 
 
 func _ready():
-#	SoundPlayer.play_music("blues")
+	super._ready()
 	tutorial = SaveManager.load_item("tutorial")
-	GameEvents.evening_ended.connect(_on_evening_ended)
-	GameEvents.transition_to_map.connect(_on_transitioning_to_map)
-	GameEvents.morning_started.connect(_on_morning_started)
-	GameEvents.continue_day.connect(_on_morning_started)
 	SaveManager.save_item("level", scene_file_path)
-	GameEvents.hunt_started.connect(_on_hunt_started)
 	GameEvents.enemy_took_damage.connect(_on_enemy_took_damage)
 	GameEvents.added_food_to_bag.connect(_on_adding_food_to_bag)
 	GameEvents.player_money_changed.connect(_on_collected_a_coin)
-	GameEvents.drop_food.connect(drop_food)
-	GameEvents.drop_health.connect(drop_health)
-	GameEvents.drop_coins.connect(drop_coins)
 	GameEvents.dialogue_finished.connect(_on_finished_dialogue)
 	GameEvents.mush_destroyed.connect(_on_mush_destroyed)
 
@@ -48,8 +40,6 @@ func _on_collected_a_coin(_money) -> void:
 			"Save 'em up, buy yourself something nice." 
 			]
 		camera.add_child(dialogue)
-		var dialogue_width := 180.0
-		dialogue.position = Vector2(-(dialogue_width * 0.5), y_pos)
 		SaveManager.save_item("tutorial/coin_prompted", true)
 
 
@@ -66,8 +56,6 @@ func _on_adding_food_to_bag(_food) -> void:
 			"Feed it to the beast later. If you want.", 
 			]
 		camera.add_child(dialogue)
-		var dialogue_width := 180.0
-		dialogue.position = Vector2(-(dialogue_width * 0.5),  y_pos)
 		SaveManager.save_item("tutorial/adding_food_prompted", true)
 
 
@@ -89,9 +77,9 @@ func _on_enemy_took_damage(health) -> void:
 			"CHOP enemies when they're bleeding to slice 'em up into food."
 			]
 		camera.add_child(dialogue)
-		var dialogue_width := 180.0
-		dialogue.position = Vector2(-(dialogue_width * 0.5), y_pos)
 		SaveManager.save_item("tutorial/enemy_execute_prompted", true)
+	else:
+		print("SKIPPED ENEMY TOOK DAMAGE")
 
 
 func _on_mush_destroyed() -> void:
@@ -99,17 +87,15 @@ func _on_mush_destroyed() -> void:
 		dialogue_running = true
 		var dialogue = preload("res://user_interface/dialogue.tscn").instantiate()
 		dialogue.header = [
-			"I Don't Eat Mushrooms", 
-			"Not Hungry Nohow", 
+			"I don't eat mushrooms", 
 			]
 		dialogue.dialog = [
-			"I'm not some stupid junkie or something.", 
-			"I don't take to food so much.",
+			"Not a pig, Not a junkie.", 
 			]
 		camera.add_child(dialogue)
-		var dialogue_width := 180.0
-		dialogue.position = Vector2(-(dialogue_width * 0.5), y_pos)
 		SaveManager.save_item("tutorial/enemy_execute_prompted", true)
+
+
 
 func _on_finished_dialogue():
 	dialogue_running = false
