@@ -31,5 +31,6 @@ func enter(_msg := {}) -> void:
 	# camera zoom?
 	# player animate victory (wipe brow, undersell it)
 	GameEvents.cutscene_ended.emit()
+	GameEvents.camera_reset_focus.emit()
 	owner.call_deferred("queue_free")
 	GameEvents.boss_defeated.emit()

@@ -116,7 +116,8 @@ func _process(delta: float) -> void:
 			global_position = lerp(global_position, player_global_pos, edge_smoothness)
 	elif not freeze: # Follow a non-player target
 		global_position = lerp(global_position, target.global_position, follow_speed * delta)
-	
+
+
 	if shake_intensity > 0:
 		var random_offset: Vector2 = Vector2(randf() * 2.0 - 1.0, randf() * 2.0 - 1.0) * shake_intensity
 		global_position += random_offset
