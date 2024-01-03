@@ -67,15 +67,6 @@ func load_json() -> void:
 	data = saved_data
 
 
-#func save_item(key, new_value) -> void:
-#	data["saved_data"] = true
-#	data[key] = new_value
-#	var json_data := JSON.stringify(data)
-#	var file_access := FileAccess.open(SAVE_PATH, FileAccess.WRITE)
-#	file_access.store_line(json_data)
-#	file_access.close()
-#
-	
 func save_item(key, new_value) -> void:
 	data["saved_data"] = true
 	if typeof(new_value) == TYPE_VECTOR2:
@@ -88,11 +79,26 @@ func save_item(key, new_value) -> void:
 	file_access.close()
 
 
+#func load_item(key):
+#	if data.has(key):
+#		var value = data[key]
+#		if typeof(value) == TYPE_ARRAY and value.size() == 2:
+#			print_debug("save value: " + str(value))
+#			return Vector2(value[0], value[1])  # Reconstruct Vector2
+#		else:
+#			return value
+#	else:
+#		return null
+
 func load_item(key):
 	if data.has(key):
 		var value = data[key]
-		if typeof(value) == TYPE_ARRAY and value.size() == 2:
-			return Vector2(value[0], value[1])  # Reconstruct Vector2
+		if typeof(value) == TYPE_ARRAY and value.size() == 2 and key == "checkpoint_position":
+			print_debug("save value: " + str(value))
+			# Ensure the values are converted to floats
+			var x = float(value[0])
+			var y = float(value[1])
+			return Vector2(x, y)  # Reconstruct Vector2
 		else:
 			return value
 	else:

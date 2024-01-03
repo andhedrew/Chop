@@ -12,7 +12,7 @@ func _ready():
 	$Button.pressed.connect(_new_game)
 	$Button3.pressed.connect(_continue_game)
 	$Button2.pressed.connect(_end_game)
-	music = SoundPlayer.play_music("violins")
+	music = SoundPlayer.play_music("City1")
 	ambient = SoundPlayer.play_music("rain")
 
 

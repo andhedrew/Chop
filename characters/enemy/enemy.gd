@@ -42,6 +42,7 @@ var lilbro_can_kill := false
 var is_pooled := false
 var in_a_pool := false
 var pool_pos := Vector2.ZERO
+var pool = null
 
 func _ready() -> void:
 	max_health = health
@@ -186,11 +187,25 @@ func die(
 			get_parent().respawn() 
 		
 		if in_a_pool:
-			visible = false
-			active = false
 			position = pool_pos
+			pool.return_to_pool(self)  # Make sure to add this instance back to the pool
 		else:
 			call_deferred("queue_free")
+
+
+func return_to_pool(enemy_node: Node):
+	if is_instance_valid(enemy_node):
+		enemy_node.set("is_pooled", true)
+		enemy_node.set("active", false)
+		enemy_node.visible = false
+		enemy_node.set_process(false)
+		enemy_node.set_physics_process(false)
+		# Reset any other state of the enemy as necessary
+	else:
+		# Handle the case where the instance is not valid
+		print("Attempted to return an invalid enemy to the pool.")
+		pool.erase(enemy_node)  # Remove invalid instance from the pool
+
 
 func drop_health_and_die() -> void:
 	var explode := preload("res://vfx/blood_explosion.tscn").instantiate()
@@ -252,3 +267,8 @@ func remove_conveyor_velocity() -> void:
 	if conveyor_count <= 0:
 		conveyor_count = 0
 		belt_speed = 0
+
+
+func reset():
+	health = max_health
+	wounded = false

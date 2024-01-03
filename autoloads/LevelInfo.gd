@@ -38,7 +38,7 @@ const LEVEL_MAP: Dictionary = {
 }
 
 const WORLD_NAME: Dictionary = {
-	"res://levels_and_level_objects/level_scenes/world_1_levels/1-1.tscn": "Pork Belly Valley!",
+	"res://levels_and_level_objects/level_scenes/world_1_levels/1-1.tscn": "Learnin'",
 	"res://levels_and_level_objects/level_scenes/world_1_levels/1-2.tscn": "Pork Belly Valley!",
 	"res://levels_and_level_objects/level_scenes/world_1_levels/1-3.tscn": "Pork Belly Valley!",
 	"res://levels_and_level_objects/level_scenes/world_1_levels/1-4.tscn": "Pork Belly Valley!",

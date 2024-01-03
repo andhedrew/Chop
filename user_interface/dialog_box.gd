@@ -17,7 +17,10 @@ var finished = false
 @onready var label_header := $MarginContainer/VBoxContainer/Label2
 signal is_finished
 
+var tut = 0
+
 func _ready():
+	GameEvents.dialogue_started.emit()
 	load_dialog()
 	z_index = SortLayer.HUD
 
@@ -30,7 +33,7 @@ func _process(delta):
 func load_dialog():
 	visible = false
 	GameEvents.cutscene_started.emit()
-	GameEvents.dialogue_started.emit()
+	
 	if dialog_index < dialog.size():
 		finished = false
 		label.text = dialog[dialog_index]
@@ -40,8 +43,8 @@ func load_dialog():
 	else:
 		GameEvents.cutscene_ended.emit()
 		GameEvents.dialogue_finished.emit()
-		queue_free()
 		is_finished.emit()
+		_kill()
 	
 	reset_size()
 	set_new_position()
@@ -54,6 +57,8 @@ func load_dialog():
 
 func _kill() -> void:
 	GameEvents.cutscene_ended.emit()
+	if tut != 0:
+		GameEvents.tut3.emit()
 	queue_free()
 
 

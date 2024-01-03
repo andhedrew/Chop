@@ -15,7 +15,7 @@ var skip_map := false
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-#	SoundPlayer.play_music("blues")
+	SoundPlayer.play_music("City1")
 	GameEvents.evening_ended.connect(_on_evening_ended)
 	GameEvents.transition_to_map.connect(_on_transitioning_to_map)
 	GameEvents.morning_started.connect(_on_morning_started)

@@ -41,6 +41,7 @@ script = ExtResource("4_81jgb")
 texture = ExtResource("5_wm0ho")
 
 [node name="EnemyDropper" parent="." index="19" instance=ExtResource("5_wpopt")]
+z_as_relative = false
 position = Vector2(136, -160)
 enemy = ExtResource("6_v7cr1")
 

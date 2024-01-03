@@ -66,18 +66,19 @@ func _on_enemy_took_damage(health) -> void:
 		var dialogue = preload("res://user_interface/dialogue.tscn").instantiate()
 		dialogue.header = [
 			"Got 'im Good", 
-			"Use Your Legs", 
-			"CHOP", 
+			"CHOP!", 
 			"Cold Cuts"
 			]
 		dialogue.dialog = [
-			"It's bleeding, one health left.", 
-			"Press Z to jump.", 
+			"It's wounded, one health left.", 
 			"While in the air, press S to CHOP!", 
-			"CHOP enemies when they're bleeding to slice 'em up into food."
+			"CHOP enemies when they're wounded to slice 'em up into food."
 			]
+		
 		camera.add_child(dialogue)
+		dialogue.tut = 3
 		SaveManager.save_item("tutorial/enemy_execute_prompted", true)
+		
 	else:
 		print("SKIPPED ENEMY TOOK DAMAGE")
 

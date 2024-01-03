@@ -86,6 +86,9 @@ signal player_scored #Arg 1:amount, arg 2: Position DOES give the player a score
 # tutorial
 signal plant_hunger_bar_filled # no parameters
 signal mush_destroyed
+signal tut1
+signal tut2
+signal tut3
 
 
 

@@ -16,11 +16,11 @@ func _on_body_entered(body) -> void:
 	if not cutscene_running:
 		if body is Player:
 			GameEvents.camera_change_focus.emit(get_parent())
+			await get_tree().create_timer(0.5).timeout
 			GameEvents.cutscene_started.emit()
-			
 			GameEvents.continue_day.emit()
 			if !get_node("/root/World").skip_map_after_this_level:
-				await get_tree().create_timer(3).timeout
+				await get_tree().create_timer(2).timeout
 				GameEvents.transition_to_map.emit()
 			else:
 				get_node("/root/World").transition_to_next_level()

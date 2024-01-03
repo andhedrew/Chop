@@ -32,5 +32,5 @@ func _go_to_menu() -> void:
 func _exit_tree():
 	print_debug("exited")
 	music.playing = false
-	ambient.playing = false
+#	ambient.playing = false
 	
