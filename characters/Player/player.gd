@@ -6,7 +6,7 @@ class_name Player
 @export var death_pieces: Array[Resource]
 const max_speed := 120
 const acceleration := 9
-const acceleration_in_air := 5
+const acceleration_in_air := 12
 const jump_height = -200.0
 
 var current_state := ""
