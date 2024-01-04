@@ -163,8 +163,9 @@ func _physics_process(delta):
 		else:
 			position.x -= 1
 	
-	if Input.is_action_just_pressed("unload_bag"):
-		drop_last_item()
+		# Bugged, not sure if I need to fix it.
+#	if Input.is_action_just_pressed("unload_bag"):
+#		drop_last_item()
 	
 
 

@@ -1,10 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://hqjoqvbintby"]
+[gd_scene load_steps=5 format=3 uid="uid://hqjoqvbintby"]
 
 [ext_resource type="PackedScene" uid="uid://d1ug5tmwjvf15" path="res://levels_and_level_objects/level_scenes/base_feeding_level.tscn" id="1_0ebmv"]
 [ext_resource type="PackedScene" uid="uid://cp5j3tbsikxw4" path="res://levels_and_level_objects/area_of_interest.tscn" id="3_bn2j0"]
 [ext_resource type="TileSet" uid="uid://dncfauqbtucau" path="res://sprites/tilesets/grass_fg.tres" id="3_vo4ov"]
 [ext_resource type="PackedScene" uid="uid://cs4gulcchhci1" path="res://characters/enemy/spider_boss_1/spoider.tscn" id="4_pn4jx"]
-[ext_resource type="PackedScene" uid="uid://cm208i2oyjrct" path="res://characters/enemy/hotdog/hotdog.tscn" id="5_t80q6"]
 
 [node name="World" instance=ExtResource("1_0ebmv")]
 dream_images = Array[Texture]([])
@@ -36,8 +35,5 @@ position = Vector2(536, 368)
 
 [node name="AreaOfInterest" parent="." index="18" instance=ExtResource("3_bn2j0")]
 position = Vector2(176, -168)
-
-[node name="HotDog" parent="." index="19" instance=ExtResource("5_t80q6")]
-position = Vector2(384, -136)
 
 [editable path="EndOfLevel"]
