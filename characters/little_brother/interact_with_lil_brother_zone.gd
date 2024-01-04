@@ -110,7 +110,8 @@ func _generate_food(player) -> void:
 				
 				var pickup := preload("res://pickups/food_pickup.tscn").instantiate()
 				var texture = load(item)
-				pickup.setup(texture)
+				var no_collision := false
+				pickup.setup(texture, no_collision)
 				owner.get_node("BeakCollider").disabled = true
 				owner.get_node("HeadCollider").disabled = true
 				owner.get_node("CollisionShape2D").disabled = true

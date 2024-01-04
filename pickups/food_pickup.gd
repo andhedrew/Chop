@@ -87,11 +87,12 @@ func _add_pickup_to_inventory(player) -> void:
 		GameEvents.bag_full.emit()
 
 
-func setup(new_texture: CompressedTexture2D) -> void:
+func setup(new_texture: CompressedTexture2D, setup_collision : bool = true) -> void:
 	$Sprite2D.texture = new_texture
-	var size = $Sprite2D.texture.get_size()
-	$CollisionShape2D.shape = RectangleShape2D.new()
-	$CollisionShape2D.shape.extents = (size * 0.8) / 2
+	if setup_collision:
+		var size = $Sprite2D.texture.get_size()
+		$CollisionShape2D.shape = RectangleShape2D.new()
+		$CollisionShape2D.shape.extents = (size * 0.8) / 2
 	
 	if nutrition_value_lookup.has(new_texture):
 		brick_value = nutrition_value_lookup[new_texture]["brick"]
