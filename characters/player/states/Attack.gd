@@ -6,8 +6,11 @@ var reload_timer := 0
 @onready var animation_player := $"../../Pivot/AnimationPlayer"
 var slicing_a_block := false
 var boost_speed := 0.0
+var attack_delay := 0.3
+var default_attack_delay := attack_delay
 
 func _ready() -> void:
+	attack_delay = default_attack_delay
 	GameEvents.player_hit_enemy.connect(_on_hitting_enemy)
 	$"../../BrickBasher".set_deferred("monitoring", false)
 	$"../../BrickBasher".set_deferred("monitorable", false)
@@ -52,6 +55,7 @@ func enter(_msg := {}) -> void:
 	
 	
 	if owner.bullet_hit_breakable:
+		attack_delay = 0.6
 		owner.velocity = Vector2.ZERO
 
 		var grid_size = 16
@@ -64,36 +68,36 @@ func enter(_msg := {}) -> void:
 
 
 func physics_update(delta: float) -> void:
+	
 	if owner.bullet_hit_breakable:
-		
-		var speed_calc = 80.0 * owner.bullet_hit_breakable_count
-		speed_calc = max(speed_calc, 250.0)
+		var speed_calc = 100.0 * owner.bullet_hit_breakable_count
+		speed_calc = max(speed_calc, 200.0)
 		
 		if owner.looking == Enums.Looking.DOWN:
 			speed_calc = max(speed_calc, 180.0)
 		elif owner.looking ==  Enums.Looking.UP:
-			speed_calc = max(speed_calc, 250.0)
+			speed_calc = max(speed_calc, 200.0)
 			
 		boost_speed = lerp(boost_speed, speed_calc, 0.4)
 		slicing_a_block = true
 
-		# Directly set the velocity instead of using lerp
+		# Directly set the velocity
 		if owner.looking != Enums.Looking.UP and owner.looking != Enums.Looking.DOWN:
 			if owner.facing == Enums.Facing.LEFT:
 				owner.velocity.x = -boost_speed
+				owner.velocity.y = 0.0
 			elif owner.facing == Enums.Facing.RIGHT:
 				owner.velocity.x = boost_speed
+				owner.velocity.y = 0.0
 		elif owner.looking != Enums.Looking.DOWN:
 			owner.velocity.y = -boost_speed
+			owner.velocity.x = 0.0
 		else: # Player is looking down
 			owner.velocity.y = boost_speed
+			owner.velocity.x = 0.0
 	else:
 		slicing_a_block = false
 
-
-
-#
-	
 	if owner.weapon == Enums.Weapon.FAST or slicing_a_block:
 		if Input.is_action_just_pressed("attack"):
 			state_machine.transition_to("Attack")
@@ -110,7 +114,7 @@ func physics_update(delta: float) -> void:
 
 	owner.move_and_slide()
 		
-	if state_machine.state_timer > owner.attack_delay and owner.state != "Cutscene":
+	if state_machine.state_timer > attack_delay and owner.state != "Cutscene":
 		state_machine.transition_to("Idle")
 	
 	if Input.is_action_just_pressed("dash") and owner.has_booster_upgrade:
@@ -118,6 +122,8 @@ func physics_update(delta: float) -> void:
 	
 	if Input.is_action_just_pressed("execute"):
 		state_machine.transition_to("Execute")
+
+
 
 func _on_hitting_enemy(_enemy) -> void:
 	if owner.looking == Enums.Looking.DOWN:

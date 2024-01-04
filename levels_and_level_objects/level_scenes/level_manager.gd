@@ -19,7 +19,7 @@ func _ready():
 	GameEvents.evening_ended.connect(_on_evening_ended)
 	GameEvents.transition_to_map.connect(_on_transitioning_to_map)
 	GameEvents.morning_started.connect(_on_morning_started)
-	GameEvents.continue_day.connect(_on_morning_started)
+#	GameEvents.continue_day.connect(_on_morning_started)
 	
 	GameEvents.hunt_started.connect(_on_hunt_started)
 	GameEvents.cutscene_started.connect(_cutscene_started)

@@ -254,30 +254,30 @@ func handle_facing() -> void:
 		facing = Enums.Facing.LEFT
 		default_facing = facing
 		
-		
+	var buff := 6.0
 	if input.y == 0:
 		looking = Enums.Looking.FORWARD
 		brick_detector_1.position = Vector2(-2.0, 14.0)
-		brick_detector_1.target_position = Vector2(32.0, 0.0)
+		brick_detector_1.target_position = Vector2(32.0 + buff, 0.0)
 		brick_detector_2.position = Vector2(-2.0, -4.0)
-		brick_detector_2.target_position = Vector2(32.0, 0.0)
+		brick_detector_2.target_position = Vector2(32.0 + buff, 0.0)
 	elif input.y < 0:
 		looking = Enums.Looking.UP
 		$Pivot/BulletSpawn.position = Vector2(0, -20)
 		
 		brick_detector_1.position = Vector2(6.0, -12.0)
-		brick_detector_1.target_position = Vector2(0.0, -16.0)
+		brick_detector_1.target_position = Vector2(6.0, -16.0 - buff)
 		brick_detector_2.position = Vector2(-9.0, -12.0)
-		brick_detector_2.target_position = Vector2(0.0, -16.0)
+		brick_detector_2.target_position = Vector2(0.0, -16.0 - buff)
 		
 	elif input.y > 0:
 		looking = Enums.Looking.DOWN
 		$Pivot/BulletSpawn.position = Vector2(0, 20)
 		
 		brick_detector_1.position = Vector2(6.0, 14.0)
-		brick_detector_1.target_position = Vector2(0.0, 16.0)
+		brick_detector_1.target_position = Vector2(0.0, 16.0 + buff)
 		brick_detector_2.position = Vector2(-9.0, -13.0)
-		brick_detector_2.target_position = Vector2(0.0, 16.0)
+		brick_detector_2.target_position = Vector2(0.0, 16.0 + buff)
 		
 	if facing_last_frame != facing:
 		GameEvents.player_changed_facing.emit(facing)

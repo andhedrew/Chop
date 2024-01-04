@@ -38,7 +38,7 @@ signal cutscene_ended
 signal dialogue_started
 signal dialogue_finished
 
-signal morning_started #start of level
+signal morning_started #start of day, spawns shop
 signal continue_day #end of level
 signal feeding_level_start
 signal evening_started 

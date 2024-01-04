@@ -3,7 +3,7 @@ extends CharacterBody2D
 
 @export var floating_pickup : bool = false
 @onready var animation_player := $AnimationPlayer as AnimationPlayer
-var max_fall_speed := Param.GRAVITY
+var max_fall_speed := 80.0
 var sort_layer = SortLayer.IN_FRONT
 var conveyor_count := 0
 var belt_speed := 0.0
@@ -16,7 +16,7 @@ func _ready():
 	$SlowPickupTimer.start()
 
 
-func _physics_process(_delta):
+func _physics_process(delta):
 	if !is_on_floor():
 		velocity.y = lerp(velocity.y, max_fall_speed, 0.1)
 	else:

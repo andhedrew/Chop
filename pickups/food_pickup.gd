@@ -91,7 +91,7 @@ func setup(new_texture: CompressedTexture2D) -> void:
 	$Sprite2D.texture = new_texture
 	var size = $Sprite2D.texture.get_size()
 	$CollisionShape2D.shape = RectangleShape2D.new()
-	$CollisionShape2D.shape.extents = size / 2
+	$CollisionShape2D.shape.extents = (size * 0.8) / 2
 	
 	if nutrition_value_lookup.has(new_texture):
 		brick_value = nutrition_value_lookup[new_texture]["brick"]

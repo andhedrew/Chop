@@ -1,9 +1,16 @@
-[gd_scene load_steps=2 format=3 uid="uid://cvlo5mexkgiiq"]
+[gd_scene load_steps=3 format=3 uid="uid://cvlo5mexkgiiq"]
 
 [ext_resource type="PackedScene" uid="uid://b06gyuhub517b" path="res://levels_and_level_objects/map/map.tscn" id="1_bcy8x"]
+[ext_resource type="Texture2D" uid="uid://big2801n8rpl8" path="res://user_interface/map/roll.png" id="2_sqpbc"]
 
 [node name="Map" instance=ExtResource("1_bcy8x")]
 
 [node name="paper" parent="Control" index="1"]
 offset_left = -680.0
 offset_right = 4440.0
+
+[node name="Path2D" parent="Control" index="2"]
+position = Vector2(-40, 0)
+
+[node name="roll" parent="Control" index="3"]
+texture = ExtResource("2_sqpbc")
