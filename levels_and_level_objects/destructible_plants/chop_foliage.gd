@@ -17,6 +17,23 @@ func _on_area_entered(hitbox) -> void:
 		particles.restart()
 		particles.position = global_position
 		particles.z_index = z_index
+		
+		var region = Rect2(0, 64 * frame, 64, 64)
+		var canvas_material = particles.material as CanvasItemMaterial
+		var particle_material := particles.process_material as ParticleProcessMaterial
+		
+		canvas_material.particles_anim_h_frames = 200 * 2
+		canvas_material.particles_anim_v_frames = 2
+		
+		var offset_frame = (((frame+1)) * 0.25) * 0.01
+		if randf() > 0.5:
+			offset_frame += 0.5
+		particle_material.anim_offset_min = offset_frame
+		particle_material.anim_offset_max = offset_frame
+		
+		
+		
+		
 		get_node("/root/World").add_child(particles)
 		_destroy()
 
