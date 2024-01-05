@@ -22,7 +22,7 @@ func _on_area_entered(hitbox) -> void:
 		var canvas_material = particles.material as CanvasItemMaterial
 		var particle_material := particles.process_material as ParticleProcessMaterial
 		
-		canvas_material.particles_anim_h_frames = 200 * 2
+		canvas_material.particles_anim_h_frames = hframes * 2
 		canvas_material.particles_anim_v_frames = 2
 		
 		var offset_frame = (((frame+1)) * 0.25) * 0.01
