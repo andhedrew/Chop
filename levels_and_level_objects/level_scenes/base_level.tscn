@@ -1,11 +1,14 @@
-[gd_scene load_steps=33 format=3 uid="uid://dm85xjdq5mkk3"]
+[gd_scene load_steps=39 format=3 uid="uid://dm85xjdq5mkk3"]
 
 [ext_resource type="Script" path="res://levels_and_level_objects/level_scenes/level_manager.gd" id="1_ity0y"]
 [ext_resource type="Script" path="res://day_night_cycle.gd" id="2_h45bf"]
 [ext_resource type="TileSet" uid="uid://ycdy041jdicq" path="res://sprites/tilesets/bg_tileset.tres" id="3_sucgp"]
 [ext_resource type="Script" path="res://levels_and_level_objects/level_scenes/cloud.gd" id="3_vybto"]
+[ext_resource type="Script" path="res://vfx/ParallaxLayer.gd" id="4_dngi1"]
 [ext_resource type="Script" path="res://sprites/tilesets/base_bg_tilemap.gd" id="4_okk2y"]
 [ext_resource type="TileSet" uid="uid://7bvkrk3d1wpy" path="res://sprites/tilesets/breakable_tileset.tres" id="4_qopms"]
+[ext_resource type="Shader" path="res://vfx/lighten_bg_objects_far.gdshader" id="5_7sfwi"]
+[ext_resource type="Shader" path="res://vfx/lighten_bg_objects_mid.gdshader" id="5_jj37c"]
 [ext_resource type="Script" path="res://sprites/tilesets/breakable_tileset_behavior.gd" id="5_pq8vy"]
 [ext_resource type="PackedScene" uid="uid://bqg8q7u0o16hm" path="res://gameplay_objects/camera.tscn" id="6_818il"]
 [ext_resource type="TileSet" uid="uid://dncfauqbtucau" path="res://sprites/tilesets/grass_fg.tres" id="7_pgalx"]
@@ -20,6 +23,7 @@
 [ext_resource type="FontFile" uid="uid://baykuh7pqbali" path="res://user_interface/fonts/Giza.otf" id="14_hjp1d"]
 [ext_resource type="Script" path="res://levels_and_level_objects/level_interactive_objects/enemy_activation_area.gd" id="15_swnbw"]
 [ext_resource type="PackedScene" uid="uid://c45dv8km6cdm" path="res://vfx/color_shift_layer.tscn" id="18_5x8xk"]
+[ext_resource type="Texture2D" uid="uid://bis3grh3yyda5" path="res://levels_and_level_objects/backgrounds/unmoving_scenery_dark/tree_1.png" id="24_2cect"]
 [ext_resource type="PackedScene" uid="uid://bwvi5m2prncxh" path="res://characters/player/player.tscn" id="31_fx83i"]
 
 [sub_resource type="Animation" id="Animation_vp1kt"]
@@ -441,6 +445,12 @@ scale_max = 2.0
 color = Color(0.698039, 1, 1, 1)
 hue_variation_max = 0.1
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_fe8g0"]
+shader = ExtResource("5_7sfwi")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_yckio"]
+shader = ExtResource("5_jj37c")
+
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_r66b7"]
 texture = ExtResource("12_cgc0d")
 0:0/0 = 0
@@ -498,16 +508,24 @@ motion_scale = Vector2(0.2, 1)
 script = ExtResource("3_vybto")
 
 [node name="ParallaxLayer4" type="ParallaxLayer" parent="Background"]
+material = SubResource("ShaderMaterial_fe8g0")
 position = Vector2(0, -50)
+scale = Vector2(0.1, 0.1)
 motion_scale = Vector2(0.2, 1)
+script = ExtResource("4_dngi1")
 
 [node name="ParallaxLayer3" type="ParallaxLayer" parent="Background"]
+material = SubResource("ShaderMaterial_yckio")
 position = Vector2(0, -32)
+scale = Vector2(0.4, 0.4)
 motion_scale = Vector2(0.5, 1)
+script = ExtResource("4_dngi1")
 
 [node name="ParallaxLayer2" type="ParallaxLayer" parent="Background"]
 position = Vector2(8, -16)
+scale = Vector2(0.7, 0.7)
 motion_scale = Vector2(0.8, 1)
+script = ExtResource("4_dngi1")
 
 [node name="UnmovingScenery" type="ParallaxLayer" parent="Background"]
 
@@ -627,5 +645,9 @@ visible = false
 [node name="Player" parent="." node_paths=PackedStringArray("camera") instance=ExtResource("31_fx83i")]
 position = Vector2(-144, 64)
 camera = NodePath("../Camera")
+
+[node name="Tree1" type="Sprite2D" parent="."]
+position = Vector2(200, 160)
+texture = ExtResource("24_2cect")
 
 [editable path="ColorShiftLayer"]

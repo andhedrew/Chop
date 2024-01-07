@@ -24,6 +24,7 @@ SoundPlayer="*res://autoloads/SoundPlayer.tscn"
 Param="*res://autoloads/Param.gd"
 SaveManager="*res://autoloads/SaveManager.gd"
 LevelInfo="*res://autoloads/LevelInfo.gd"
+BetterTerrain="*res://addons/better-terrain/BetterTerrain.gd"
 
 [display]
 
