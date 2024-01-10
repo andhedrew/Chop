@@ -5,10 +5,6 @@
 
 [node name="Map" instance=ExtResource("1_bcy8x")]
 
-[node name="paper" parent="Control" index="1"]
-offset_left = -680.0
-offset_right = 4440.0
-
 [node name="Path2D" parent="Control" index="2"]
 position = Vector2(-40, 0)
 

@@ -13,6 +13,7 @@ point_count = 3
 curve = SubResource("Curve2D_nqfpm")
 
 [node name="PathFollow2D" type="PathFollow2D" parent="."]
+position = Vector2(130, -166)
 rotation = 1.42287
 
 [node name="EnemySpawn" parent="PathFollow2D" instance=ExtResource("1_u05ek")]
@@ -20,6 +21,7 @@ spawn = ExtResource("2_k46rq")
 facing = "Left"
 
 [node name="DandiRaven" parent="PathFollow2D/EnemySpawn" instance=ExtResource("2_k46rq")]
+speed = 6.0
 
 [node name="346979" type="Timer" parent="PathFollow2D"]
 wait_time = 0.2

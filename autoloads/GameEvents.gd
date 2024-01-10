@@ -72,7 +72,7 @@ signal start_spider_chase
 
 #utility
 signal camera_change_focus #Param 1: new node target
-signal camera_split_focus #Param 1: new node target
+signal camera_split_focus #Param 1: new node target Param 2: splitting focus or not?
 signal camera_reset_focus
 
 

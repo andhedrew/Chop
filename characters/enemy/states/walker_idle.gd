@@ -32,7 +32,7 @@ func update(_delta: float) -> void:
 
 		if timer.is_stopped() and !(left_blocked and right_blocked) and state_machine.has_node("Move"):
 			timer.queue_free()
-			state_machine.transition_to("Attack")
+			state_machine.transition_to("Move")
 
 		if !owner.is_on_floor():
 			state_machine.transition_to("Fall")

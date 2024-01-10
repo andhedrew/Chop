@@ -4,9 +4,9 @@
 
 [sub_resource type="Curve2D" id="Curve2D_rubcq"]
 _data = {
-"points": PackedVector2Array(0, 0, 0, 0, -552, -88, 0, 0, 0, 0, -472, -56, 0, 0, 0, 0, -416, -160, 0, 0, 0, 0, -296, -160, 0, 0, 0, 0, -264, -88, 0, 0, 0, 0, -136, -40)
+"points": PackedVector2Array(0, 0, 0, 0, -583, -37, 0, 0, 0, 0, -517, -42, 0, 0, 0, 0, -463, -38, 0, 0, 0, 0, -413, -34, 0, 0, 0, 0, -367, -38, 0, 0, 0, 0, -293, -38, 0, 0, 0, 0, -235, -35, 0, 0, 0, 0, -182, -38, 0, 0, 0, 0, -131, -44)
 }
-point_count = 6
+point_count = 9
 
 [node name="Map" instance=ExtResource("1_rwrev")]
 world_number = 5
@@ -19,4 +19,4 @@ offset_right = 1880.0
 curve = SubResource("Curve2D_rubcq")
 
 [node name="PathFollow2D" parent="Control/Path2D" index="0"]
-position = Vector2(-552, -88)
+position = Vector2(-583, -37)

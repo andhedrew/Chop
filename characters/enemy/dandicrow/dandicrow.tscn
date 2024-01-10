@@ -109,6 +109,7 @@ size = Vector2(20, 24)
 
 [node name="DandiRaven" instance=ExtResource("1_g4qc5")]
 health = 2
+speed = 10.0
 hurt_vocalizations = Array[AudioStreamWAV]([ExtResource("2_qdafx"), ExtResource("3_u2xng"), ExtResource("4_c600n"), ExtResource("5_aoi4b"), ExtResource("6_k5j7d")])
 death_vocalization = ExtResource("7_bhjp8")
 impact_sound = ExtResource("8_8clu6")

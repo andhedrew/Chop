@@ -1,4 +1,4 @@
-[gd_scene load_steps=39 format=3 uid="uid://dm85xjdq5mkk3"]
+[gd_scene load_steps=38 format=3 uid="uid://dm85xjdq5mkk3"]
 
 [ext_resource type="Script" path="res://levels_and_level_objects/level_scenes/level_manager.gd" id="1_ity0y"]
 [ext_resource type="Script" path="res://day_night_cycle.gd" id="2_h45bf"]
@@ -23,7 +23,6 @@
 [ext_resource type="FontFile" uid="uid://baykuh7pqbali" path="res://user_interface/fonts/Giza.otf" id="14_hjp1d"]
 [ext_resource type="Script" path="res://levels_and_level_objects/level_interactive_objects/enemy_activation_area.gd" id="15_swnbw"]
 [ext_resource type="PackedScene" uid="uid://c45dv8km6cdm" path="res://vfx/color_shift_layer.tscn" id="18_5x8xk"]
-[ext_resource type="Texture2D" uid="uid://bis3grh3yyda5" path="res://levels_and_level_objects/backgrounds/unmoving_scenery_dark/tree_1.png" id="24_2cect"]
 [ext_resource type="PackedScene" uid="uid://bwvi5m2prncxh" path="res://characters/player/player.tscn" id="31_fx83i"]
 
 [sub_resource type="Animation" id="Animation_vp1kt"]
@@ -482,7 +481,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0.560784, 0.827451, 1, 1)
+color = Color(0.827451, 0.831373, 0.780392, 1)
 
 [node name="Stars" type="ParallaxBackground" parent="."]
 scroll_offset = Vector2(1, 1)
@@ -645,9 +644,5 @@ visible = false
 [node name="Player" parent="." node_paths=PackedStringArray("camera") instance=ExtResource("31_fx83i")]
 position = Vector2(-144, 64)
 camera = NodePath("../Camera")
-
-[node name="Tree1" type="Sprite2D" parent="."]
-position = Vector2(200, 160)
-texture = ExtResource("24_2cect")
 
 [editable path="ColorShiftLayer"]

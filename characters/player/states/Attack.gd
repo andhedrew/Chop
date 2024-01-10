@@ -76,9 +76,9 @@ func physics_update(delta: float) -> void:
 		speed_calc = min(speed_calc, 400.0)
 		
 		if owner.looking == Enums.Looking.DOWN:
-			speed_calc = min(speed_calc, 180.0)
+			speed_calc = min(speed_calc, 220.0)
 		elif owner.looking ==  Enums.Looking.UP:
-			speed_calc = min(speed_calc, 250.0)
+			speed_calc = min(speed_calc, 350.0)
 			
 		boost_speed = lerp(boost_speed, speed_calc, 0.4)
 		slicing_a_block = true

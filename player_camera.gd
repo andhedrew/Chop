@@ -17,7 +17,8 @@ var deadzone_size: Vector2 = Vector2(100, 100)
 # Vertical offset parameters
 var is_player_on_ground: bool = false
 var vertical_offset: float = 0.0
-var offset_speed: float = 0.05
+var offset_speed_up: float = 5.0
+var offset_speed_down: float = 1.5
 
 var horizontal_look_ahead: float = 120.0
 var vertical_look_ahead: float = 180.0
@@ -56,8 +57,8 @@ func _ready():
 	
 
 
-func set_averaging(target_to_avg: Node2D):
-	average_with_target = true
+func set_averaging(target_to_avg: Node2D, split_focus: bool = false):
+	average_with_target = split_focus
 	target_node_to_average = target_to_avg
 
 
@@ -96,9 +97,15 @@ func _process(delta: float) -> void:
 		# For example, you might check a variable or call a function in the player script
 		is_player_on_ground = player.is_on_floor()
 
+		var viewport_margin = -get_viewport_rect().size.y / 3
 		# Calculate the desired vertical offset
-		var target_vertical_offset: float = -get_viewport_rect().size.y / 3 if is_player_on_ground else 0
-		vertical_offset = lerp(vertical_offset, target_vertical_offset, offset_speed * delta)
+		var target_vertical_offset: float
+		if is_player_on_ground:
+			target_vertical_offset = viewport_margin 
+			vertical_offset = lerp(vertical_offset, target_vertical_offset, offset_speed_up * delta)
+		else:
+			-viewport_margin
+			vertical_offset = lerp(vertical_offset, target_vertical_offset, offset_speed_down * delta)
 
 		# Calculate the deadzone
 		var deadzone_half: Vector2 = deadzone_size * 0.5
