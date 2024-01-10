@@ -21,6 +21,7 @@ func _on_body_entered(body):
 		GameEvents.player_hit_enemy.emit(body)
 		get_parent().set_deferred("monitorable", false)
 	elif body.name == "Breakable":
+		get_parent().set_deferred("monitorable", false)
 		GameEvents.bullet_hit_breakable.emit(global_position)
 		var collisionShape = $CollisionShape2D.shape
 		var extents = collisionShape.extents

@@ -108,6 +108,7 @@ func physics_update(delta: float) -> void:
 	if owner.is_on_floor():
 		if Input.is_action_pressed("jump"):
 			state_machine.transition_to("Jump")
+			
 #	
 	if !slicing_a_block:
 		if owner.in_water:
@@ -125,7 +126,13 @@ func physics_update(delta: float) -> void:
 	
 	if Input.is_action_just_pressed("execute"):
 		state_machine.transition_to("Execute")
-
+	
+	var input_check_1 := Input.is_action_just_released("up")
+	var input_check_2 := Input.is_action_just_released("left")
+	var input_check_3 := Input.is_action_just_released("right")
+	
+	if input_check_1 or input_check_2 or input_check_3:
+		state_machine.transition_to("Idle")
 
 
 func _on_hitting_enemy(_enemy) -> void:

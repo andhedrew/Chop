@@ -8,10 +8,12 @@ var reset_animation = false
 @export var difficulty := 3 # out of three
 @export var difficulty_1_death_pieces: Array[Resource]
 var phase := 1
+var player_dead := false
 
 func _ready():
 	super._ready()
 	$Pivot/Hurtbox.area_entered.connect(_take_damage)
+	GameEvents.player_died.connect(_on_player_die)
 	if difficulty == 1:
 		$"Pivot/Hurtbox".set_deferred("monitoring", true)
 
@@ -19,6 +21,9 @@ func _ready():
 func _process(_delta):
 	count += 1
 	$state_label2.text = str(health)
+	if player_dead:
+		if $StateMachine.state.name != "Idle":
+			$StateMachine.transition_to("Idle")
 
 
 func _take_damage(hitbox) -> void:
@@ -39,3 +44,9 @@ func _take_damage(hitbox) -> void:
 		var slice = preload("res://vfx/slice.tscn").instantiate()
 		slice.position = global_position
 		get_node("/root/World").add_child(slice)
+
+
+func _on_player_die():
+	player_dead = true
+	
+
