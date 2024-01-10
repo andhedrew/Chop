@@ -36,6 +36,7 @@ func _ready():
 	
 	if checkpoint: #THIS IS THE WORLD CHECKPOINT
 		SaveManager.save_item("checkpoint", get_tree().current_scene.scene_file_path)
+		print_debug("Saved Scene checkpoint: " + str(get_tree().current_scene.scene_file_path))
 	
 	
 	var last_level_reached = SaveManager.load_item("level")

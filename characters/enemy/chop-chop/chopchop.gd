@@ -10,6 +10,7 @@ func _ready():
 	global_rotation = 0
 
 
+
 func _take_damage(hitbox) -> void:
 	if hitbox is HitBox and !invulnerable:
 		GameEvents.new_vfx.emit("res://vfx/slice_soft.tscn", global_position)
