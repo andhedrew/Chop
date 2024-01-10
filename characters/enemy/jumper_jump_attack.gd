@@ -1,14 +1,14 @@
 extends State
 
 @onready var player_detector := $"../../Pivot/player_detector"
-@export var jump_x_speed : int = 30
-@export var jump_y_speed : int = 200
+@export var jump_x_speed : int
+@export var jump_y_speed : int
 
 
 # Called when the node enters the scene tree for the first time.
 func enter(_msg := {}) -> void:
-	jump_y_speed = int(randf_range(200, 230))
-	jump_x_speed = int(randf_range(30, 45))
+	jump_y_speed = int(randf_range(300, 330))
+	jump_x_speed = int(randf_range(50, 65))
 	owner.animation_player.play("attack")
 	jump_x_speed *= owner.direction
 	jump_y_speed *= -1

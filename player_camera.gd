@@ -17,7 +17,7 @@ var deadzone_size: Vector2 = Vector2(100, 100)
 # Vertical offset parameters
 var is_player_on_ground: bool = false
 var vertical_offset: float = 0.0
-var offset_speed_up: float = 5.0
+var offset_speed_up: float = 3.0
 var offset_speed_down: float = 1.5
 
 var horizontal_look_ahead: float = 120.0
@@ -97,14 +97,14 @@ func _process(delta: float) -> void:
 		# For example, you might check a variable or call a function in the player script
 		is_player_on_ground = player.is_on_floor()
 
-		var viewport_margin = -get_viewport_rect().size.y / 3
+		var viewport_margin = -get_viewport_rect().size.y / 4
 		# Calculate the desired vertical offset
 		var target_vertical_offset: float
 		if is_player_on_ground:
 			target_vertical_offset = viewport_margin 
 			vertical_offset = lerp(vertical_offset, target_vertical_offset, offset_speed_up * delta)
 		else:
-			-viewport_margin
+#			target_vertical_offset = -viewport_margin
 			vertical_offset = lerp(vertical_offset, target_vertical_offset, offset_speed_down * delta)
 
 		# Calculate the deadzone
