@@ -28,7 +28,7 @@ bounty = 0
 [node name="Body" parent="Pivot" index="0"]
 position = Vector2(0, -25)
 texture = ExtResource("2_3vx3p")
-frame = 0
+frame = 4
 
 [node name="player_detector" parent="Pivot" index="3"]
 collision_mask = 2
@@ -53,6 +53,10 @@ shape = SubResource("RectangleShape2D_bb3ng")
 
 [node name="ledge_check_right" parent="." index="7"]
 position = Vector2(4, 0)
+target_position = Vector2(0, 16)
+
+[node name="ledge_check_left" parent="." index="8"]
+target_position = Vector2(0, 16)
 
 [node name="wall_check_left" parent="." index="9"]
 target_position = Vector2(-30, 0)

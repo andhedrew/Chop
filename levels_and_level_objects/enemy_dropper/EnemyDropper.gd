@@ -1,3 +1,4 @@
+class_name Dropper
 extends Node2D
 
 @export var enemy: PackedScene
@@ -6,7 +7,6 @@ extends Node2D
 var pool := []
 
 func _ready():
-	
 	z_index = SortLayer.IN_FRONT
 	$Timer.wait_time = wait_time
 	$Timer.timeout.connect(_drop_enemy)
@@ -18,7 +18,7 @@ func _initialize_pool():
 	for i in range(pool_size):
 		var enemy_instance = enemy.instantiate()
 		enemy_instance.visible = false
-		enemy_instance.set_process(false)  # Disable processing
+		enemy_instance.set_process(false)  # Disable processing"res://pickups/coin_pickup_float.tscn"
 		enemy_instance.set_physics_process(false)  # Disable physics processing
 		enemy_instance.set("is_pooled", true)
 		enemy_instance.set("active", false)

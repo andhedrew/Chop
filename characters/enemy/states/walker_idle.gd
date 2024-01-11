@@ -11,9 +11,7 @@ var timer: Timer
 
 # Called when the node enters the scene tree for the first time.
 func enter(_msg := {}) -> void:
-	
 	owner.animation_player.speed_scale = randf_range(0.55, 0.65)
-#	owner.animation_player.
 	timer = Timer.new()
 	add_child(timer)
 	timer.wait_time = 2.0 + randf_range(-owner.erratic_walking_amount, owner.erratic_walking_amount)

@@ -392,7 +392,7 @@ func is_out_of_water() -> void:
 
 func _on_hitbox_body_shape_entered(_body_rid, body, _body_shape_index, _local_shape_index) -> void:
 	if body is TileMap:
-		if body.name == "Water":
+		if body.name == "Water" or body.name == "Water2":
 			if not body.bad_water:
 				is_in_water()
 				return
@@ -413,7 +413,7 @@ func _on_hitbox_body_shape_entered(_body_rid, body, _body_shape_index, _local_sh
 
 func _on_hitbox_body_shape_exited(_body_rid, body, _body_shape_index, _local_shape_index) -> void:
 	if body is TileMap:
-		if body.name == "Water":
+		if body.name == "Water" or body.name == "Water2":
 			is_out_of_water()
 
 
@@ -452,5 +452,6 @@ func _on_activating_cheat_mode():
 	has_booster_upgrade = true
 	torch_charges = 30
 	max_torch_charges = 30
+	max_health = 30
 
 

@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://cctr0i7bgav8j"]
+[gd_scene load_steps=13 format=3 uid="uid://cctr0i7bgav8j"]
 
 [ext_resource type="PackedScene" uid="uid://dm85xjdq5mkk3" path="res://levels_and_level_objects/level_scenes/base_level.tscn" id="1_1gs3x"]
 [ext_resource type="PackedScene" uid="uid://d0ax1shk2qgfm" path="res://levels_and_level_objects/map/map_world_4.tscn" id="2_eh4pq"]
@@ -9,6 +9,9 @@
 [ext_resource type="PackedScene" uid="uid://bhy0tp4niaiv1" path="res://levels_and_level_objects/fan/fan.tscn" id="6_yyu80"]
 [ext_resource type="PackedScene" uid="uid://i5hx0ruiv4wk" path="res://levels_and_level_objects/checkpoint/checkpoint.tscn" id="7_xgov6"]
 [ext_resource type="PackedScene" uid="uid://eow2ybkt3135" path="res://levels_and_level_objects/flagpole.tscn" id="8_iygld"]
+[ext_resource type="PackedScene" uid="uid://b1n0gcm7axson" path="res://characters/enemy/cement_golem/cement_golem.tscn" id="10_tn422"]
+[ext_resource type="PackedScene" uid="uid://clqfj20nn10q8" path="res://characters/enemy/grabnimonie/grabnimonie.tscn" id="11_2ady0"]
+[ext_resource type="PackedScene" uid="uid://boakvecc6j1ta" path="res://characters/enemy/paroot/paroot.tscn" id="12_olhv7"]
 
 [node name="World" instance=ExtResource("1_1gs3x")]
 map_position = 1.0
@@ -79,5 +82,14 @@ position = Vector2(4120, -304)
 
 [node name="Flagpole" parent="." index="30" instance=ExtResource("8_iygld")]
 position = Vector2(7864, -1072)
+
+[node name="CementGolem" parent="." index="31" instance=ExtResource("10_tn422")]
+position = Vector2(1584, 32)
+
+[node name="grabnimonie" parent="." index="32" instance=ExtResource("11_2ady0")]
+position = Vector2(2616, -64)
+
+[node name="Paroot" parent="." index="33" instance=ExtResource("12_olhv7")]
+position = Vector2(3608, -64)
 
 [editable path="ColorShiftLayer"]

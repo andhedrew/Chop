@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://dcdao5lery6po"]
+[gd_scene load_steps=26 format=3 uid="uid://dcdao5lery6po"]
 
 [ext_resource type="PackedScene" uid="uid://dm85xjdq5mkk3" path="res://levels_and_level_objects/level_scenes/base_level.tscn" id="1_ni0cc"]
 [ext_resource type="TileSet" uid="uid://ycdy041jdicq" path="res://sprites/tilesets/bg_tileset.tres" id="2_bojb7"]
@@ -8,10 +8,13 @@
 [ext_resource type="Script" path="res://sprites/tilesets/base_bg_tilemap.gd" id="3_pb62v"]
 [ext_resource type="PackedScene" uid="uid://c70w3ktrstfkr" path="res://levels_and_level_objects/water/water.tscn" id="5_me7e1"]
 [ext_resource type="PackedScene" uid="uid://t73iskru6pf8" path="res://levels_and_level_objects/belt/conveyer_belts_tileset.tscn" id="6_msohr"]
-[ext_resource type="Texture2D" uid="uid://ciajn4gnwclxu" path="res://characters/enemy/paroot_boss/paroot_boss_phase_2.png" id="6_nw445"]
 [ext_resource type="PackedScene" uid="uid://dnsw5r66w3a15" path="res://characters/enemy/paroot_boss/paroot_boss.tscn" id="6_rmvey"]
 [ext_resource type="Script" path="res://levels_and_level_objects/level_scenes/level_managers/tilemap_manager.gd" id="8_cbi86"]
 [ext_resource type="PackedScene" uid="uid://cp5j3tbsikxw4" path="res://levels_and_level_objects/area_of_interest.tscn" id="8_plovh"]
+[ext_resource type="Texture2D" uid="uid://qb5xghqrlhi6" path="res://characters/enemy/paroot_boss/paroot_boss_deathpiece_3.png" id="10_icuot"]
+[ext_resource type="Texture2D" uid="uid://c50hp6ekmcyma" path="res://characters/enemy/paroot_boss/paroot_boss_deathpiece_2.png" id="11_2ofg5"]
+[ext_resource type="Texture2D" uid="uid://7q4foqfhgb8j" path="res://characters/enemy/paroot_boss/paroot_boss_deathpiece_1.png" id="12_4ptab"]
+[ext_resource type="Texture2D" uid="uid://br5eeajpu3o03" path="res://characters/enemy/paroot_boss/paroot_boss_deathpiece_5.png" id="13_0japx"]
 [ext_resource type="PackedScene" uid="uid://cm208i2oyjrct" path="res://characters/enemy/hotdog/hotdog.tscn" id="13_0piga"]
 [ext_resource type="PackedScene" uid="uid://boakvecc6j1ta" path="res://characters/enemy/paroot/paroot.tscn" id="14_hj3hh"]
 [ext_resource type="PackedScene" uid="uid://brm8j8o7p8cd3" path="res://characters/enemy/paroot/paroot_stationary.tscn" id="15_tau1l"]
@@ -67,11 +70,8 @@ cell_positions = Array[Vector2i]([Vector2i(203, 5), Vector2i(203, 2), Vector2i(2
 
 [node name="ParootBoss" parent="." index="12" instance=ExtResource("6_rmvey")]
 position = Vector2(3136, 128)
-difficulty = 1
 health = 8
-
-[node name="Body" parent="ParootBoss/Pivot" index="0"]
-texture = ExtResource("6_nw445")
+death_pieces = Array[Resource]([ExtResource("10_icuot"), ExtResource("11_2ofg5"), ExtResource("12_4ptab"), ExtResource("10_icuot"), ExtResource("13_0japx")])
 
 [node name="LevelEdges" parent="." index="13"]
 position = Vector2(0, -40)

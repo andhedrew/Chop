@@ -24,6 +24,9 @@ var max_x_speed := 30
 
 @onready var pivot := $Pivot
 
+@onready var ledge_detect_left := $ledge_check_left
+@onready var ledge_detect_right := $ledge_check_right
+
 var direction := -1
 var facing := Enums.Facing.LEFT
 var colliding_hitbox_position : Dictionary
@@ -45,6 +48,7 @@ var pool_pos := Vector2.ZERO
 var pool = null
 
 func _ready() -> void:
+
 	max_health = health
 	$Hurtbox.area_entered.connect(_take_damage)
 	$Hurtbox.body_entered.connect(_on_body_entered)
@@ -56,7 +60,10 @@ func _ready() -> void:
 	GameEvents.player_health_changed.connect(_on_player_health_change)
 	GameEvents.cutscene_started.connect(_on_start_cutscene)
 	GameEvents.cutscene_ended.connect(_on_end_cutscene)
-	set_facing(Enums.Facing.LEFT, false)
+	if ledge_detect_left:
+		ledge_detect_left.force_raycast_update()
+		ledge_detect_right.force_raycast_update()
+	set_facing(facing, false)
 
 
 func _physics_process(_delta):
@@ -67,7 +74,7 @@ func _physics_process(_delta):
 	
 	$Hurtbox.set_deferred("Monitoring", true)
 	$Hitbox.set_deferred("Monitorable", true)
-	state_label.text = $StateMachine.state.name
+	state_label.text = str(facing)
 	
 	if health <= 1:
 		wounded = true
@@ -109,11 +116,10 @@ func set_facing(facing_dir, squash_and_stretch := false) -> void:
 #			$Pivot.scale.x = 0.8
 #			$Pivot.scale.y = 1.1
 		$BloodParticles.transform.x.x = -1
-	facing = facing_dir
+#	facing = facing_dir
 
 
 func switch_facing() -> void:
-	
 	if facing == Enums.Facing.LEFT:
 		facing = Enums.Facing.RIGHT
 	elif facing == Enums.Facing.RIGHT:

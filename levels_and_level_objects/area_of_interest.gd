@@ -12,6 +12,7 @@ func _ready():
 	split_focus_area.body_entered.connect(_on_body_entered_split)
 	split_focus_area.body_exited.connect(_on_body_exited_split)
 	GameEvents.start_spider_chase.connect(_destroy)
+	GameEvents.end_octo_battle.connect(_destroy)
 
 
 func _on_body_entered(body) ->void:

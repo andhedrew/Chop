@@ -36,16 +36,20 @@ func physics_update(_delta: float) -> void:
 		else:
 			owner.velocity.x = owner.max_x_speed + owner.belt_speed
 	
-	owner.move_and_slide()
 	
-	var found_hazard = wall_left.is_colliding() or wall_right.is_colliding()
-	if found_hazard or !ledge_check_right.is_colliding() or !ledge_check_left.is_colliding():
+	
+	var found_wall = wall_left.is_colliding() or wall_right.is_colliding()
+	
+	if found_wall or !ledge_check_right.is_colliding() or !ledge_check_left.is_colliding():
 		if !flipping:
 			flipping = true
 			owner.switch_facing()
 	
-	if !found_hazard and ledge_check_right.is_colliding() and ledge_check_left.is_colliding():
+	
+	if !found_wall and ledge_check_right.is_colliding() and ledge_check_left.is_colliding():
 		flipping = false
+	
+	owner.move_and_slide()
 
 	if !owner.is_on_floor():
 		state_machine.transition_to("Fall")
