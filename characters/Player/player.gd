@@ -255,7 +255,7 @@ func handle_facing() -> void:
 		facing = Enums.Facing.LEFT
 		default_facing = facing
 		
-	var buff := 6.0
+	var buff := 20.0
 	if input.y == 0:
 		looking = Enums.Looking.FORWARD
 		brick_detector_1.position = Vector2(-2.0, 14.0)

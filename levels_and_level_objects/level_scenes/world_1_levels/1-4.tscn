@@ -70,7 +70,6 @@ cell_positions = Array[Vector2i]([Vector2i(203, 5), Vector2i(203, 2), Vector2i(2
 
 [node name="ParootBoss" parent="." index="12" instance=ExtResource("6_rmvey")]
 position = Vector2(3136, 128)
-health = 8
 death_pieces = Array[Resource]([ExtResource("10_icuot"), ExtResource("11_2ofg5"), ExtResource("12_4ptab"), ExtResource("10_icuot"), ExtResource("13_0japx")])
 
 [node name="LevelEdges" parent="." index="13"]
@@ -160,3 +159,4 @@ facing = "Right"
 [editable path="Flagpole/ExplodingBlock2"]
 [editable path="Flagpole/ExplodingBlock2/Hurtbox"]
 [editable path="Flagpole/EndOfLevel"]
+[editable path="Flagpole/AreaOfInterest"]

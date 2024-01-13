@@ -169,5 +169,6 @@ position = Vector2(1160, -24)
 [editable path="Flagpole/ExplodingBlock2"]
 [editable path="Flagpole/ExplodingBlock2/Hurtbox"]
 [editable path="Flagpole/EndOfLevel"]
+[editable path="Flagpole/AreaOfInterest"]
 [editable path="ColorShiftLayer"]
 [editable path="death_zone"]

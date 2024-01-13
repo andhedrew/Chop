@@ -117,6 +117,7 @@ func _generate_food(player) -> void:
 				owner.get_node("CollisionShape2D").disabled = true
 				get_node("/root/World").call_deferred("add_child", pickup)
 				pickup.sort_layer = SortLayer.BACKGROUND
+				pickup.feeding = true
 				pickup.position = $FoodSpawn.global_position
 				pickup.velocity = Vector2(0, randf_range(-4, -6))
 				GameEvents.removed_food_from_bag.emit(pickup)

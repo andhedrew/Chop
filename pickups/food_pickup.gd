@@ -6,6 +6,7 @@ extends Pickup
 var brick_value :int = 0
 var meat_value :int = 0
 var plant_value :int = 0
+var feeding := false
 @onready var current_texture = $Sprite2D.texture
 var nutrition_value_lookup : Dictionary = {
 	load("res://characters/enemy/default/mallow_pieces1.png") : {"brick" : 20, "meat" : 22, "plant" : 20 },
@@ -76,6 +77,13 @@ func _ready():
 		plant_value = 0
 	z_index = SortLayer.FOREGROUND
 	
+	
+	
+func _physics_process(delta):
+	super(delta)
+	if feeding:
+		scale -= Vector2(delta, delta)
+		$CollisionShape2D.disabled = true
 
 func _add_pickup_to_inventory(player) -> void:
 	if player.bag_capacity > player.bag.size():

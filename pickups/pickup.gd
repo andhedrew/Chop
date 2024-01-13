@@ -14,6 +14,7 @@ func _ready():
 	animation_player.play("idle")
 	$Area2D.body_entered.connect(_on_body_entered)
 	$SlowPickupTimer.start()
+	$SlowPickupTimer.timeout.connect(_on_timer_finish)
 
 
 func _physics_process(delta):
@@ -30,14 +31,19 @@ func _physics_process(delta):
 func apply_friction():
 	velocity.x = lerp(velocity.x, belt_speed, 0.2)
 
+
 func _on_body_entered(body) -> void:
 	if body is Player and $SlowPickupTimer.is_stopped() and body.state != "Dead":
 		_add_pickup_to_inventory(body)
-		
+
 
 func _add_pickup_to_inventory(player) -> void:
 	_destroy(player)
 
+
+func _on_timer_finish():
+	$Area2D.monitoring = false
+	$Area2D.monitoring = true
 
 func setup(new_texture: CompressedTexture2D) -> void:
 	$Sprite2D.texture = new_texture
