@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://eow2ybkt3135"]
+[gd_scene load_steps=21 format=3 uid="uid://eow2ybkt3135"]
 
 [ext_resource type="Script" path="res://levels_and_level_objects/flagpole.gd" id="1_3hp42"]
 [ext_resource type="PackedScene" uid="uid://bnt6xxew5jdel" path="res://levels_and_level_objects/question_block/exploding_prop.tscn" id="1_er2iq"]
@@ -40,6 +40,9 @@ _data = {
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2l75k"]
 size = Vector2(262, 219)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fvnul"]
+size = Vector2(311.996, 580.002)
 
 [sub_resource type="GDScript" id="GDScript_0tbmf"]
 script/source = "extends Label
@@ -109,6 +112,12 @@ shape = SubResource("RectangleShape2D_2l75k")
 [node name="AreaOfInterest" parent="." instance=ExtResource("5_ak60v")]
 position = Vector2(-102, -116)
 
+[node name="CollisionShape2D" parent="AreaOfInterest/SplitFocusArea" index="0"]
+shape = null
+
+[node name="CollisionShape2D" parent="AreaOfInterest/MainFocusArea" index="0"]
+shape = SubResource("RectangleShape2D_fvnul")
+
 [node name="ScoreMarker" type="Sprite2D" parent="."]
 visible = false
 texture = ExtResource("7_k6nrj")
@@ -138,3 +147,4 @@ debug_color = Color(0.905882, 0.14902, 0.65098, 0.419608)
 [editable path="ExplodingBlock2"]
 [editable path="ExplodingBlock2/Hurtbox"]
 [editable path="EndOfLevel"]
+[editable path="AreaOfInterest"]

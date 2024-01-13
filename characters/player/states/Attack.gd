@@ -45,10 +45,6 @@ func enter(_msg := {}) -> void:
 	
 	var knockback = owner.attack_backward_force
 	
-	
-	
-	
-	
 	if owner.bullet_hit_breakable:
 
 		owner.velocity = Vector2.ZERO
@@ -61,7 +57,7 @@ func enter(_msg := {}) -> void:
 	else:
 		if owner.in_water:
 			knockback *= 1.1
-			
+		
 		if owner.facing == Enums.Facing.LEFT:
 			owner.velocity.x += knockback
 		else:
@@ -70,6 +66,8 @@ func enter(_msg := {}) -> void:
 
 
 func physics_update(delta: float) -> void:
+	
+	
 	
 	if owner.bullet_hit_breakable:
 		var speed_calc = 200.0 * owner.bullet_hit_breakable_count
@@ -106,6 +104,10 @@ func physics_update(delta: float) -> void:
 			
 	
 	if owner.is_on_floor():
+		if owner.in_water:
+			owner.velocity.x = lerp(owner.velocity.x, owner.belt_speed, Param.WATER_FRICTION)
+		else:
+			owner.velocity.x = lerp(owner.velocity.x, owner.belt_speed, Param.FRICTION)
 		if Input.is_action_pressed("jump"):
 			state_machine.transition_to("Jump")
 			

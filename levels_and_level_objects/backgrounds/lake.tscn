@@ -1,0 +1,35 @@
+[gd_scene load_steps=8 format=3 uid="uid://bmk1drga7kfmh"]
+
+[ext_resource type="Shader" path="res://vfx/bg_water_shader.gdshader" id="1_hgg8n"]
+[ext_resource type="Texture2D" uid="uid://cpf07186myfxo" path="res://levels_and_level_objects/backgrounds/lakes/lake1.png" id="2_qxooo"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_4unvs"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_l1fpj"]
+seamless = true
+noise = SubResource("FastNoiseLite_4unvs")
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_vlemm"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_gbfvf"]
+seamless = true
+noise = SubResource("FastNoiseLite_vlemm")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ik5fj"]
+shader = ExtResource("1_hgg8n")
+shader_parameter/scroll1 = Vector2(0.01, 0.01)
+shader_parameter/scroll2 = Vector2(-0.01, -0.01)
+shader_parameter/distortion_strength = 0.809
+shader_parameter/tone_color = Color(0.407843, 0.741176, 0.733333, 1)
+shader_parameter/shine_color = Color(0.168627, 0.168627, 0.168627, 0.164706)
+shader_parameter/light_start = 0.275
+shader_parameter/light_end = 0.377
+shader_parameter/bottom_color = Color(0.223529, 0.376471, 0.658824, 1)
+shader_parameter/noise1 = SubResource("NoiseTexture2D_l1fpj")
+shader_parameter/noise2 = SubResource("NoiseTexture2D_gbfvf")
+
+[node name="lake8" type="Sprite2D"]
+material = SubResource("ShaderMaterial_ik5fj")
+position = Vector2(368, -112)
+scale = Vector2(1.80983, 0.228256)
+texture = ExtResource("2_qxooo")

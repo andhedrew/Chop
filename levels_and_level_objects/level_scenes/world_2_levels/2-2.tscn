@@ -31,13 +31,13 @@ next_level = "res://levels_and_level_objects/level_scenes/world_2_levels/2-3.tsc
 [node name="ParallaxLayer4" parent="Background" index="1"]
 modulate = Color(0.34902, 0.34902, 0.470588, 1)
 
-[node name="ParallaxLayer3" parent="Background" index="2"]
+[node name="ParallaxLayer3" parent="Background" index="3"]
 modulate = Color(0.290196, 0.317647, 0.341176, 1)
 
-[node name="ParallaxLayer2" parent="Background" index="3"]
+[node name="ParallaxLayer2" parent="Background" index="5"]
 modulate = Color(0.313726, 0.313726, 0.360784, 1)
 
-[node name="UnmovingScenery" parent="Background" index="4"]
+[node name="UnmovingScenery" parent="Background" index="7"]
 modulate = Color(0.321569, 0.321569, 0.321569, 1)
 
 [node name="InteractiveProps" parent="." index="4"]
@@ -161,141 +161,144 @@ rotation = 0.523598
 [node name="Trampoline33" parent="." index="50" instance=ExtResource("4_ho5s3")]
 position = Vector2(8016, -376)
 
-[node name="Trampoline32" parent="." index="51" instance=ExtResource("4_ho5s3")]
+[node name="Trampoline45" parent="." index="51" instance=ExtResource("4_ho5s3")]
+position = Vector2(8056, -376)
+
+[node name="Trampoline32" parent="." index="52" instance=ExtResource("4_ho5s3")]
 position = Vector2(8536, -408)
 
-[node name="Trampoline46" parent="." index="52" instance=ExtResource("4_ho5s3")]
+[node name="Trampoline46" parent="." index="53" instance=ExtResource("4_ho5s3")]
 position = Vector2(8920, -640)
 
-[node name="Trampoline21" parent="." index="53" instance=ExtResource("4_ho5s3")]
+[node name="Trampoline21" parent="." index="54" instance=ExtResource("4_ho5s3")]
 position = Vector2(5008, 1440)
 rotation = 0.523598
 
-[node name="Trampoline9" parent="." index="54" instance=ExtResource("4_ho5s3")]
+[node name="Trampoline9" parent="." index="55" instance=ExtResource("4_ho5s3")]
 position = Vector2(3056, 1392)
 
-[node name="Trampoline10" parent="." index="55" instance=ExtResource("4_ho5s3")]
+[node name="Trampoline10" parent="." index="56" instance=ExtResource("4_ho5s3")]
 position = Vector2(3384, 1592)
 rotation = 0.349066
 
-[node name="Trampoline14" parent="." index="56" instance=ExtResource("4_ho5s3")]
+[node name="Trampoline14" parent="." index="57" instance=ExtResource("4_ho5s3")]
 position = Vector2(3416, 1512)
 rotation = 0.349066
 
-[node name="Trampoline15" parent="." index="57" instance=ExtResource("4_ho5s3")]
+[node name="Trampoline15" parent="." index="58" instance=ExtResource("4_ho5s3")]
 position = Vector2(3432, 1424)
 rotation = 0.349066
 
-[node name="Trampoline16" parent="." index="58" instance=ExtResource("4_ho5s3")]
+[node name="Trampoline16" parent="." index="59" instance=ExtResource("4_ho5s3")]
 position = Vector2(3896, 1240)
 rotation = 0.349066
 
-[node name="Trampoline11" parent="." index="59" instance=ExtResource("4_ho5s3")]
+[node name="Trampoline11" parent="." index="60" instance=ExtResource("4_ho5s3")]
 position = Vector2(3600, -32)
 rotation = 0.349066
 
-[node name="Trampoline12" parent="." index="60" instance=ExtResource("4_ho5s3")]
+[node name="Trampoline12" parent="." index="61" instance=ExtResource("4_ho5s3")]
 position = Vector2(3600, -232)
 rotation = 0.349066
 
-[node name="Trampoline13" parent="." index="61" instance=ExtResource("4_ho5s3")]
+[node name="Trampoline13" parent="." index="62" instance=ExtResource("4_ho5s3")]
 position = Vector2(3712, -120)
 rotation = -0.349066
 
-[node name="AreaOfInterest" parent="." index="62" instance=ExtResource("5_yv2gf")]
+[node name="AreaOfInterest" parent="." index="63" instance=ExtResource("5_yv2gf")]
 position = Vector2(4472, 1288)
 
-[node name="Checkpoint" parent="." index="63" instance=ExtResource("7_wjrcm")]
+[node name="Checkpoint" parent="." index="64" instance=ExtResource("7_wjrcm")]
 position = Vector2(5008, -160)
 
-[node name="Flagpole2" parent="." index="64" instance=ExtResource("5_0pdn0")]
+[node name="Flagpole2" parent="." index="65" instance=ExtResource("5_0pdn0")]
 position = Vector2(9056, -544)
 
-[node name="HotDog" parent="." index="65" instance=ExtResource("8_efvaq")]
+[node name="HotDog" parent="." index="66" instance=ExtResource("8_efvaq")]
 position = Vector2(712, 0)
 
-[node name="HotDog2" parent="." index="66" instance=ExtResource("8_efvaq")]
+[node name="HotDog2" parent="." index="67" instance=ExtResource("8_efvaq")]
 position = Vector2(1000, 0)
 
-[node name="QuestionMarkBlock" parent="." index="67" instance=ExtResource("9_qvwjr")]
+[node name="QuestionMarkBlock" parent="." index="68" instance=ExtResource("9_qvwjr")]
 position = Vector2(1304, -48)
 
-[node name="Path2D" parent="." index="68" instance=ExtResource("10_4bkw0")]
+[node name="Path2D" parent="." index="69" instance=ExtResource("10_4bkw0")]
 position = Vector2(1632, 48)
 
-[node name="Paroot2" parent="." index="69" instance=ExtResource("11_tx8nw")]
+[node name="Paroot2" parent="." index="70" instance=ExtResource("11_tx8nw")]
 position = Vector2(3472, -16)
 
-[node name="HotDog3" parent="." index="70" instance=ExtResource("8_efvaq")]
+[node name="HotDog3" parent="." index="71" instance=ExtResource("8_efvaq")]
 position = Vector2(3840, -288)
 
-[node name="HotDog4" parent="." index="71" instance=ExtResource("8_efvaq")]
+[node name="HotDog4" parent="." index="72" instance=ExtResource("8_efvaq")]
 position = Vector2(3880, -288)
 
-[node name="MossHopper" parent="." index="72" instance=ExtResource("12_jq0pt")]
+[node name="MossHopper" parent="." index="73" instance=ExtResource("12_jq0pt")]
 position = Vector2(2656, -32)
 
-[node name="MossHopper2" parent="." index="73" instance=ExtResource("12_jq0pt")]
+[node name="MossHopper2" parent="." index="74" instance=ExtResource("12_jq0pt")]
 position = Vector2(4280, -240)
 
-[node name="Path2D2" parent="." index="74" instance=ExtResource("10_4bkw0")]
+[node name="Path2D2" parent="." index="75" instance=ExtResource("10_4bkw0")]
 position = Vector2(6056, -224)
 
-[node name="Path2D3" parent="." index="75" instance=ExtResource("10_4bkw0")]
+[node name="Path2D3" parent="." index="76" instance=ExtResource("10_4bkw0")]
 position = Vector2(8720, -536)
 
-[node name="QuestionMarkBlock2" parent="." index="76" instance=ExtResource("9_qvwjr")]
+[node name="QuestionMarkBlock2" parent="." index="77" instance=ExtResource("9_qvwjr")]
 position = Vector2(6672, -320)
 
-[node name="QuestionMarkBlock3" parent="." index="77" instance=ExtResource("9_qvwjr")]
+[node name="QuestionMarkBlock3" parent="." index="78" instance=ExtResource("9_qvwjr")]
 position = Vector2(3320, -72)
 
-[node name="QuestionMarkBlock4" parent="." index="78" instance=ExtResource("9_qvwjr")]
+[node name="QuestionMarkBlock4" parent="." index="79" instance=ExtResource("9_qvwjr")]
 position = Vector2(3352, -72)
 
-[node name="death_zone" parent="." index="79" instance=ExtResource("13_nwqhg")]
+[node name="death_zone" parent="." index="80" instance=ExtResource("13_nwqhg")]
 position = Vector2(1952, 80)
 
 [node name="CollisionShape2D" parent="death_zone" index="0"]
 position = Vector2(0, 0)
 shape = SubResource("RectangleShape2D_ov68x")
 
-[node name="death_zone2" parent="." index="80" instance=ExtResource("13_nwqhg")]
+[node name="death_zone2" parent="." index="81" instance=ExtResource("13_nwqhg")]
 position = Vector2(2936, 32)
 
 [node name="CollisionShape2D" parent="death_zone2" index="0"]
 position = Vector2(368, 0)
 shape = SubResource("RectangleShape2D_ov68x")
 
-[node name="death_zone3" parent="." index="81" instance=ExtResource("13_nwqhg")]
+[node name="death_zone3" parent="." index="82" instance=ExtResource("13_nwqhg")]
 position = Vector2(4456, -72)
 
 [node name="CollisionShape2D" parent="death_zone3" index="0"]
 position = Vector2(368, 0)
 shape = SubResource("RectangleShape2D_ov68x")
 
-[node name="death_zone4" parent="." index="82" instance=ExtResource("13_nwqhg")]
+[node name="death_zone4" parent="." index="83" instance=ExtResource("13_nwqhg")]
 position = Vector2(6176, -128)
 
 [node name="CollisionShape2D" parent="death_zone4" index="0"]
 position = Vector2(368, 0)
 shape = SubResource("RectangleShape2D_ov68x")
 
-[node name="death_zone6" parent="." index="83" instance=ExtResource("13_nwqhg")]
+[node name="death_zone6" parent="." index="84" instance=ExtResource("13_nwqhg")]
 position = Vector2(5624, -88)
 
 [node name="CollisionShape2D" parent="death_zone6" index="0"]
 position = Vector2(0, 0)
 shape = SubResource("RectangleShape2D_p7j6c")
 
-[node name="death_zone7" parent="." index="84" instance=ExtResource("13_nwqhg")]
+[node name="death_zone7" parent="." index="85" instance=ExtResource("13_nwqhg")]
 position = Vector2(4048, -24)
 
 [node name="CollisionShape2D" parent="death_zone7" index="0"]
 position = Vector2(0, 0)
 shape = SubResource("RectangleShape2D_w48q4")
 
-[node name="death_zone5" parent="." index="85" instance=ExtResource("13_nwqhg")]
+[node name="death_zone5" parent="." index="86" instance=ExtResource("13_nwqhg")]
 position = Vector2(7736, -280)
 
 [node name="CollisionShape2D" parent="death_zone5" index="0"]

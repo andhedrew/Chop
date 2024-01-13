@@ -1,10 +1,9 @@
-[gd_scene load_steps=38 format=3 uid="uid://dm85xjdq5mkk3"]
+[gd_scene load_steps=37 format=3 uid="uid://dm85xjdq5mkk3"]
 
 [ext_resource type="Script" path="res://levels_and_level_objects/level_scenes/level_manager.gd" id="1_ity0y"]
 [ext_resource type="Script" path="res://day_night_cycle.gd" id="2_h45bf"]
 [ext_resource type="TileSet" uid="uid://ycdy041jdicq" path="res://sprites/tilesets/bg_tileset.tres" id="3_sucgp"]
 [ext_resource type="Script" path="res://levels_and_level_objects/level_scenes/cloud.gd" id="3_vybto"]
-[ext_resource type="Script" path="res://vfx/ParallaxLayer.gd" id="4_dngi1"]
 [ext_resource type="Script" path="res://sprites/tilesets/base_bg_tilemap.gd" id="4_okk2y"]
 [ext_resource type="TileSet" uid="uid://7bvkrk3d1wpy" path="res://sprites/tilesets/breakable_tileset.tres" id="4_qopms"]
 [ext_resource type="Shader" path="res://vfx/lighten_bg_objects_far.gdshader" id="5_7sfwi"]
@@ -509,22 +508,30 @@ script = ExtResource("3_vybto")
 [node name="ParallaxLayer4" type="ParallaxLayer" parent="Background"]
 material = SubResource("ShaderMaterial_fe8g0")
 position = Vector2(0, -50)
-scale = Vector2(0.1, 0.1)
 motion_scale = Vector2(0.2, 1)
-script = ExtResource("4_dngi1")
+
+[node name="Layer4NonRepeating" type="ParallaxLayer" parent="Background"]
+material = SubResource("ShaderMaterial_fe8g0")
+position = Vector2(0, -50)
+motion_scale = Vector2(0.2, 1)
 
 [node name="ParallaxLayer3" type="ParallaxLayer" parent="Background"]
 material = SubResource("ShaderMaterial_yckio")
 position = Vector2(0, -32)
-scale = Vector2(0.4, 0.4)
 motion_scale = Vector2(0.5, 1)
-script = ExtResource("4_dngi1")
+
+[node name="Layer3NonRepeating" type="ParallaxLayer" parent="Background"]
+material = SubResource("ShaderMaterial_yckio")
+position = Vector2(0, -32)
+motion_scale = Vector2(0.5, 1)
 
 [node name="ParallaxLayer2" type="ParallaxLayer" parent="Background"]
 position = Vector2(8, -16)
-scale = Vector2(0.7, 0.7)
 motion_scale = Vector2(0.8, 1)
-script = ExtResource("4_dngi1")
+
+[node name="Layer2NonRepeating" type="ParallaxLayer" parent="Background"]
+position = Vector2(8, -16)
+motion_scale = Vector2(0.8, 1)
 
 [node name="UnmovingScenery" type="ParallaxLayer" parent="Background"]
 
