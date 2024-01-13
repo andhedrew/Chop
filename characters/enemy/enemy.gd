@@ -165,8 +165,8 @@ func die(
 	) -> void:
 	if active:
 		SoundPlayer.play_sound_positional(death_vocalization, global_position)
-		if was_killed_by_player:
-			OS.delay_msec(80)
+#		if was_killed_by_player:
+#			OS.delay_msec(80)
 		var explode := preload("res://vfx/explosion.tscn").instantiate()
 		explode.position = global_position
 		if was_executed:

@@ -32,6 +32,7 @@ func _ready():
 	GameEvents.player_died.connect(_on_player_lives_changed)
 	
 	GameEvents.lil_bro_died.connect(_on_lil_bro_die)
+	GameEvents.restart_level.connect(_restart_level)
 
 	
 	if checkpoint: #THIS IS THE WORLD CHECKPOINT
