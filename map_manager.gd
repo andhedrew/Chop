@@ -27,7 +27,10 @@ func _ready():
 	if not Engine.is_editor_hint():
 		roll.visible = true
 		starting_path_pos = path.position
-		paper_pos = - ((paper.texture.get_width()/8) * world_number)
+		
+		var paper_width = paper.texture.get_width()/8
+		paper_pos = - (paper_width * world_number)
+		
 		paper.position.x = paper_pos
 		roll.position = Vector2(-5080, -320)
 		if debug_test:
@@ -68,7 +71,8 @@ func _setup(new_position: float, next_scene: String) -> void:
 		path.position.y = -400
 		path_follow.progress_ratio = 0.0
 		pos = 0.0
-		paper_pos -= paper.texture.get_width()/8
+		paper.position.x += paper.texture.get_width()/8
+		
 		await animation_player.animation_finished
 		moving_paper = true
 		move_pin = false
@@ -85,9 +89,6 @@ func _setup(new_position: float, next_scene: String) -> void:
 		move_pin = true
 	
 	new_scene = next_scene
-	
-	
-
 
 
 func _end_scene() -> void:

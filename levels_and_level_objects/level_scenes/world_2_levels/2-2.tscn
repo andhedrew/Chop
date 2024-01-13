@@ -245,7 +245,7 @@ position = Vector2(4280, -240)
 position = Vector2(6056, -224)
 
 [node name="Path2D3" parent="." index="76" instance=ExtResource("10_4bkw0")]
-position = Vector2(8720, -536)
+position = Vector2(8856, -632)
 
 [node name="QuestionMarkBlock2" parent="." index="77" instance=ExtResource("9_qvwjr")]
 position = Vector2(6672, -320)

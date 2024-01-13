@@ -24,9 +24,6 @@ var max_x_speed := 30
 
 @onready var pivot := $Pivot
 
-@onready var ledge_detect_left := $ledge_check_left
-@onready var ledge_detect_right := $ledge_check_right
-
 var direction := -1
 var facing := Enums.Facing.LEFT
 var colliding_hitbox_position : Dictionary
@@ -60,9 +57,7 @@ func _ready() -> void:
 	GameEvents.player_health_changed.connect(_on_player_health_change)
 	GameEvents.cutscene_started.connect(_on_start_cutscene)
 	GameEvents.cutscene_ended.connect(_on_end_cutscene)
-	if ledge_detect_left:
-		ledge_detect_left.force_raycast_update()
-		ledge_detect_right.force_raycast_update()
+
 	set_facing(facing, false)
 
 

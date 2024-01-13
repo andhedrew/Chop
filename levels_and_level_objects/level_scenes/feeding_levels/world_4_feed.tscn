@@ -1,11 +1,11 @@
 [gd_scene load_steps=3 format=3 uid="uid://usgsnhxad05g"]
 
 [ext_resource type="PackedScene" uid="uid://d1ug5tmwjvf15" path="res://levels_and_level_objects/level_scenes/base_feeding_level.tscn" id="1_t0byp"]
-[ext_resource type="PackedScene" uid="uid://d0ax1shk2qgfm" path="res://levels_and_level_objects/map/map_world_4.tscn" id="2_u4j86"]
+[ext_resource type="PackedScene" uid="uid://jcnmai7748kf" path="res://levels_and_level_objects/map/map_world_5.tscn" id="2_cq14p"]
 
 [node name="World" node_paths=PackedStringArray("camera") instance=ExtResource("1_t0byp")]
 map_position = 5.0
-next_map = ExtResource("2_u4j86")
+next_map = ExtResource("2_cq14p")
 next_level = "res://levels_and_level_objects/level_scenes/world_5_levels/5-1.tscn"
 camera = NodePath("Camera")
 
