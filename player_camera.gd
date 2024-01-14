@@ -52,6 +52,7 @@ func _ready():
 	GameEvents.camera_split_focus.connect(set_averaging)
 	GameEvents.cutscene_started.connect(_on_cutscene_started)
 	GameEvents.cutscene_ended.connect(_on_cutscene_ended)
+	GameEvents.wave_level_start.connect(_on_wave_level)
 
 	set_camera_limits()
 	
@@ -200,3 +201,6 @@ func _on_cutscene_started():
 
 func _on_cutscene_ended():
 	freeze = false
+
+func _on_wave_level():
+	$GPUParticles2D.emitting = true

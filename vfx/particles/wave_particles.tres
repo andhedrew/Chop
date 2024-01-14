@@ -1,0 +1,31 @@
+[gd_resource type="ParticleProcessMaterial" load_steps=5 format=3 uid="uid://ctvnuweab1vkb"]
+
+[sub_resource type="Curve" id="Curve_rq6ed"]
+min_value = -360.0
+max_value = 360.0
+_data = [Vector2(0, -275.445), 0.0, 0.0, 0, 0, Vector2(0.964516, 272.883), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_y0od4"]
+curve = SubResource("Curve_rq6ed")
+
+[sub_resource type="Curve" id="Curve_drj2t"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.990323, 0.295374), -1.80524, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_6gq1m"]
+curve = SubResource("Curve_drj2t")
+
+[resource]
+emission_shape = 3
+emission_box_extents = Vector3(50, 200, 1)
+particle_flag_disable_z = true
+gravity = Vector3(15, 90, 0)
+orbit_velocity_min = 0.0
+orbit_velocity_max = 0.0
+angle_min = -720.0
+angle_max = 695.2
+angle_curve = SubResource("CurveTexture_y0od4")
+scale_curve = SubResource("CurveTexture_6gq1m")
+anim_speed_min = 1.0
+anim_speed_max = 1.0

@@ -1,10 +1,12 @@
-[gd_scene load_steps=9 format=3 uid="uid://bqg8q7u0o16hm"]
+[gd_scene load_steps=12 format=3 uid="uid://bqg8q7u0o16hm"]
 
 [ext_resource type="Script" path="res://player_camera.gd" id="1_5k70u"]
 [ext_resource type="Shader" path="res://letterboxing.gdshader" id="2_6dewy"]
 [ext_resource type="Script" path="res://letterboxes.gd" id="3_0go20"]
 [ext_resource type="Theme" uid="uid://b0dhfhdkknaj3" path="res://user_interface/chop_theme.tres" id="4_0ynlv"]
 [ext_resource type="PackedScene" uid="uid://c61grkud6tjtu" path="res://user_interface/hud.tscn" id="5_aoqpc"]
+[ext_resource type="Texture2D" uid="uid://c5bha1fbleaav" path="res://characters/wave/wave_particle.png" id="6_1curp"]
+[ext_resource type="Material" uid="uid://ctvnuweab1vkb" path="res://vfx/particles/wave_particles.tres" id="6_5e54v"]
 
 [sub_resource type="Animation" id="Animation_ps34p"]
 resource_name = "fade_in"
@@ -42,6 +44,12 @@ _data = {
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_bnyt1"]
 shader = ExtResource("2_6dewy")
 shader_parameter/squishedness = 0.0
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_ecofe"]
+particles_animation = true
+particles_anim_h_frames = 3
+particles_anim_v_frames = 1
+particles_anim_loop = false
 
 [node name="Camera" type="Camera2D"]
 script = ExtResource("1_5k70u")
@@ -86,3 +94,12 @@ vertical_alignment = 1
 [node name="CanvasLayer2" type="CanvasLayer" parent="."]
 
 [node name="HUD" parent="CanvasLayer2" instance=ExtResource("5_aoqpc")]
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+material = SubResource("CanvasItemMaterial_ecofe")
+position = Vector2(-360, -32)
+rotation = 0.156474
+emitting = false
+amount = 80
+process_material = ExtResource("6_5e54v")
+texture = ExtResource("6_1curp")

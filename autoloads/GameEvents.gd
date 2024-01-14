@@ -71,6 +71,9 @@ signal spider_boss_killed
 signal lil_bro_died
 signal start_spider_chase
 
+#wave
+signal wave_level_start
+
 #utility
 signal camera_change_focus #Param 1: new node target
 signal camera_split_focus #Param 1: new node target Param 2: splitting focus or not?

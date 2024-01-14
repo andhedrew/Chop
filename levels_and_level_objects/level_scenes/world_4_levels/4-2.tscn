@@ -180,11 +180,11 @@ position = Vector2(3104, 48)
 hazard = true
 
 [node name="Stalactite50" parent="." index="54" instance=ExtResource("2_fl51j")]
-position = Vector2(2856, 56)
+position = Vector2(2856, 48)
 hazard = true
 
 [node name="Stalactite51" parent="." index="55" instance=ExtResource("2_fl51j")]
-position = Vector2(2400, 56)
+position = Vector2(2400, 48)
 hazard = true
 
 [node name="Stalactite52" parent="." index="56" instance=ExtResource("2_fl51j")]

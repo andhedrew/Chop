@@ -47,6 +47,7 @@ func setup_json() -> void:
 		"checkpoint_position" : Vector2.ZERO,
 		"bag" : [],
 		"spider_triggered" : false,
+		"wave_triggered" : false
 		
 			
 				}
