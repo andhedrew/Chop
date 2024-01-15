@@ -44,6 +44,8 @@ var in_a_pool := false
 var pool_pos := Vector2.ZERO
 var pool = null
 
+var switching_facing := false
+
 func _ready() -> void:
 
 	max_health = health
@@ -57,7 +59,7 @@ func _ready() -> void:
 	GameEvents.player_health_changed.connect(_on_player_health_change)
 	GameEvents.cutscene_started.connect(_on_start_cutscene)
 	GameEvents.cutscene_ended.connect(_on_end_cutscene)
-
+	
 	set_facing(facing, false)
 
 
@@ -97,24 +99,29 @@ func _physics_process(_delta):
 
 
 func set_facing(facing_dir, squash_and_stretch := false) -> void:
-	if facing_dir == Enums.Facing.LEFT:
-		direction = -1
-		$Pivot.scale.x = 1
-#		if squash_and_stretch:
-#			$Pivot.scale.x = 0.8
-#			$Pivot.scale.y = 1.1
-		$BloodParticles.transform.x.x = 1
-	elif facing_dir == Enums.Facing.RIGHT:
-		direction = 1
-		$Pivot.scale.x = -1
-#		if squash_and_stretch:
-#			$Pivot.scale.x = 0.8
-#			$Pivot.scale.y = 1.1
-		$BloodParticles.transform.x.x = -1
-#	facing = facing_dir
+	if not switching_facing:
+		switching_facing = true
+		if facing_dir == Enums.Facing.LEFT:
+			direction = -1
+			$Pivot.scale.x = 1
+	#		if squash_and_stretch:
+	#			$Pivot.scale.x = 0.8
+	#			$Pivot.scale.y = 1.1
+			$BloodParticles.transform.x.x = 1
+		elif facing_dir == Enums.Facing.RIGHT:
+			direction = 1
+			$Pivot.scale.x = -1
+	#		if squash_and_stretch:
+	#			$Pivot.scale.x = 0.8
+	#			$Pivot.scale.y = 1.1
+			$BloodParticles.transform.x.x = -1
+			
+		facing = facing_dir
+		switching_facing = false
 
 
 func switch_facing() -> void:
+
 	if facing == Enums.Facing.LEFT:
 		facing = Enums.Facing.RIGHT
 	elif facing == Enums.Facing.RIGHT:

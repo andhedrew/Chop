@@ -20,6 +20,7 @@ size = Vector2(360, 640)
 map_position = 4.0
 next_map = ExtResource("2_2do7s")
 next_level = "res://levels_and_level_objects/level_scenes/feeding_levels/world_3_feed.tscn"
+checkpoint = true
 skip_map_after_this_level = true
 
 [node name="Water" parent="." index="5" instance=ExtResource("3_03amd")]

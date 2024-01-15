@@ -41,7 +41,7 @@ func physics_update(_delta: float) -> void:
 	var found_wall = wall_left.is_colliding() or wall_right.is_colliding()
 	
 	if found_wall or !ledge_check_right.is_colliding() or !ledge_check_left.is_colliding():
-		if !flipping:
+		if !flipping and !owner.switching_facing:
 			flipping = true
 			owner.switch_facing()
 	

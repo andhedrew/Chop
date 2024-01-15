@@ -98,7 +98,7 @@ wait_time = 5.1
 [node name="EnemyDropper5" parent="." index="27" instance=ExtResource("7_4g86q")]
 position = Vector2(5504, -288)
 enemy = ExtResource("9_0g4qp")
-wait_time = 2.1
+wait_time = 4.0
 pool_size = 20
 
 [node name="Flagpole3" parent="." index="28" instance=ExtResource("2_w14s7")]

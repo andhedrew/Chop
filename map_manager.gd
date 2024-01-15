@@ -79,9 +79,8 @@ func _setup(new_position: float, next_scene: String) -> void:
 	else:
 		var start_pos = (new_position-1.0)/number_of_levels
 		var end_pos = new_position/number_of_levels
-		var start_pos_adj = start_pos
 		
-		path_follow.progress_ratio = start_pos_adj
+		path_follow.progress_ratio = start_pos
 		pos = end_pos
 		if pos > 1:
 			pos = 1

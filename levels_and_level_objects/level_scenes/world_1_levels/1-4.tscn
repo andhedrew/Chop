@@ -32,6 +32,7 @@ shader = ExtResource("3_eglct")
 map_position = 4.0
 next_map = ExtResource("2_lj5in")
 next_level = "res://levels_and_level_objects/level_scenes/feeding_levels/world_1_feed.tscn"
+checkpoint = true
 skip_map_after_this_level = true
 
 [node name="bg" parent="BackgroundSky" index="0"]
@@ -87,6 +88,9 @@ position = Vector2(3504, -48)
 
 [node name="ExplodingBlock2" parent="Flagpole" index="0"]
 position = Vector2(0, 200)
+
+[node name="AreaOfInterest" parent="Flagpole" index="2"]
+position = Vector2(184, -184)
 
 [node name="ScoreCollision" parent="Flagpole" index="4"]
 position = Vector2(0, 152)

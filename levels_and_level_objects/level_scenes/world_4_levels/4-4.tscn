@@ -72,6 +72,7 @@ script = ExtResource("2_bra07")
 map_position = 4.0
 next_map = ExtResource("3_18ui0")
 next_level = "res://levels_and_level_objects/level_scenes/feeding_levels/world_4_feed.tscn"
+checkpoint = true
 skip_map_after_this_level = true
 
 [node name="bg" parent="BackgroundSky" index="0"]

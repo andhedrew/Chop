@@ -10,8 +10,8 @@ func _process(_delta):
 	else:
 		visible = false
 	
-	if Input.is_action_just_pressed("debug"):
-		debug = !debug
+#	if Input.is_action_just_pressed("debug"):
+#		debug = !debug
 	
 	if debug:
 		$FPS.text = "FPS " + str(Engine.get_frames_per_second())

@@ -22,6 +22,7 @@ radius = 40.0
 map_position = 3.0
 next_map = ExtResource("2_a0xyv")
 next_level = "res://levels_and_level_objects/level_scenes/world_4_levels/4-4.tscn"
+checkpoint = true
 
 [node name="bg" parent="BackgroundSky" index="0"]
 color = Color(0.690196, 0.65098, 0.560784, 1)

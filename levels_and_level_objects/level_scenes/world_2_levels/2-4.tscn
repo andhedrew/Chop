@@ -30,6 +30,7 @@ size = Vector2(3138, 162)
 map_position = 4.0
 next_map = ExtResource("2_p35oq")
 next_level = "res://levels_and_level_objects/level_scenes/feeding_levels/world_2_feed.tscn"
+checkpoint = true
 skip_map_after_this_level = true
 
 [node name="bg" parent="BackgroundSky" index="0"]
