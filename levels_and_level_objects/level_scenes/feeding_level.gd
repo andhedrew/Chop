@@ -3,6 +3,7 @@ extends LevelManager
 
 func _ready():
 	super._ready()
+	SoundPlayer.stop_music()
 	GameEvents.spider_boss_killed.connect(on_spider_boss_killed)
 	if not SaveManager.load_item("spider_triggered"):
 		GameEvents.cutscene_started.emit()

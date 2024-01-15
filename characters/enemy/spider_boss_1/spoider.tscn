@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://cs4gulcchhci1"]
+[gd_scene load_steps=18 format=3 uid="uid://cs4gulcchhci1"]
 
 [ext_resource type="Script" path="res://spider_boss.gd" id="1_ujbax"]
 [ext_resource type="Texture2D" uid="uid://bnync6r5e0nyd" path="res://characters/enemy/spider_boss_1/spider.png" id="2_6yf3b"]
@@ -12,6 +12,7 @@
 [ext_resource type="PackedScene" uid="uid://btlg8kyvxhpog" path="res://characters/enemy/spider_boss_1/leg.tscn" id="7_you2x"]
 [ext_resource type="Script" path="res://characters/enemy/spider_boss_1/Node.gd" id="10_b21r0"]
 [ext_resource type="Texture2D" uid="uid://chi0clpdq5mom" path="res://characters/enemy/spider_boss_1/spider_head.png" id="12_nyyit"]
+[ext_resource type="PackedScene" uid="uid://bb1h85dym7l4i" path="res://hitboxes/Hurtbox.tscn" id="13_6nmlq"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_c5vw5"]
 size = Vector2(16, 192)
@@ -151,6 +152,8 @@ position = Vector2(176, 96)
 
 [node name="SpawnPoint" type="Marker2D" parent="."]
 position = Vector2(-232, 200)
+
+[node name="Hurtbox" parent="." instance=ExtResource("13_6nmlq")]
 
 [editable path="Hitbox"]
 [editable path="Shield"]

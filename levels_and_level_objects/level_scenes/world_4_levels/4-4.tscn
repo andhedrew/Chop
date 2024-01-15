@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://guujo6qlfgdv"]
+[gd_scene load_steps=22 format=3 uid="uid://guujo6qlfgdv"]
 
 [ext_resource type="PackedScene" uid="uid://dm85xjdq5mkk3" path="res://levels_and_level_objects/level_scenes/base_level.tscn" id="1_37igs"]
 [ext_resource type="Script" path="res://levels_and_level_objects/level_scenes/world_4_levels/4-4.gd" id="2_bra07"]
@@ -12,7 +12,6 @@
 [ext_resource type="PackedScene" uid="uid://bhy0tp4niaiv1" path="res://levels_and_level_objects/fan/fan.tscn" id="9_88lax"]
 [ext_resource type="Texture2D" uid="uid://c5bha1fbleaav" path="res://characters/wave/wave_particle.png" id="10_2lvej"]
 [ext_resource type="PackedScene" uid="uid://d2mwmw4wcsxo0" path="res://levels_and_level_objects/bouncy_face/bouncy_face.tscn" id="10_ecw8f"]
-[ext_resource type="PackedScene" uid="uid://kmrlgcnwdtgh" path="res://characters/enemy/chop-chop/chop_chop_with_path.tscn" id="12_70s4g"]
 [ext_resource type="PackedScene" uid="uid://s5yx41iu85d4" path="res://pickups/coin_pickup_float.tscn" id="14_07wpg"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hy64y"]
@@ -171,21 +170,15 @@ position = Vector2(5792, 144)
 [node name="Flagpole2" parent="." index="32" instance=ExtResource("3_7b0d0")]
 position = Vector2(7920, 224)
 
-[node name="chop-chop" parent="." index="33" instance=ExtResource("12_70s4g")]
-position = Vector2(6008, 168)
-
-[node name="chop-chop2" parent="." index="34" instance=ExtResource("12_70s4g")]
-position = Vector2(6856, 168)
-
-[node name="CoinPickup" parent="." index="35" instance=ExtResource("14_07wpg")]
+[node name="CoinPickup" parent="." index="33" instance=ExtResource("14_07wpg")]
 position = Vector2(4160, -24)
 value = 1
 
-[node name="CoinPickup2" parent="." index="36" instance=ExtResource("14_07wpg")]
+[node name="CoinPickup2" parent="." index="34" instance=ExtResource("14_07wpg")]
 position = Vector2(4152, -96)
 value = 1
 
-[node name="CoinPickup3" parent="." index="37" instance=ExtResource("14_07wpg")]
+[node name="CoinPickup3" parent="." index="35" instance=ExtResource("14_07wpg")]
 position = Vector2(4120, -160)
 value = 1
 

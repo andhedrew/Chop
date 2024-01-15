@@ -8,6 +8,5 @@ func _ready():
 	GameEvents.wave_level_start.emit()
 #	if not SaveManager.load_item("wave_triggered"):
 #		SaveManager.save_item("wave_triggered", true)
-#
 
 

@@ -8,6 +8,8 @@ extends Node
 
 var approved_sound
 
+var active_music_player
+
 func _ready():
 	pass
 
@@ -64,11 +66,17 @@ func play_music(sound: String) -> AudioStreamPlayer:
 		if not audio_stream_player.playing:
 			audio_stream_player.stream = load(sound_path)
 			audio_stream_player.play()
+			active_music_player = audio_stream_player
 			return audio_stream_player
 
 	# Return null if no suitable player is found
 	return null
 
+
+func stop_music() -> void:
+	if active_music_player:
+		active_music_player.stop()
+		active_music_player = null
 
 
 func play_sound_positional( 
