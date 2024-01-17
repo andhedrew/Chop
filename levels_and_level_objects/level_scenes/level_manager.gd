@@ -1,7 +1,7 @@
 class_name LevelManager
 extends Node2D
 
-@export var dream_images: Array[Texture]
+
 @export var map_position: float
 @export var next_map: PackedScene
 @export_file("*.tscn") var next_level
@@ -16,7 +16,7 @@ var skip_map := false
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	SoundPlayer.play_music("City1")
-	GameEvents.evening_ended.connect(_on_evening_ended)
+	
 	GameEvents.transition_to_map.connect(_on_transitioning_to_map)
 	GameEvents.morning_started.connect(_on_morning_started)
 #	GameEvents.continue_day.connect(_on_morning_started)
@@ -85,11 +85,7 @@ func _restart_level() -> void:
 		Fade.crossfade_execute() 
 
 
-func _on_evening_ended() -> void:
-	var dream := preload("res://levels_and_level_objects/dream/dream.tscn").instantiate()
-	dream.get_node("Dream/Sprite2D").texture = dream_images[0]
-	dream.dream_slides = dream_images
-	add_child(dream)
+
 
 
 func _on_transitioning_to_map() -> void:
