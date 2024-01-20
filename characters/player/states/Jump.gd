@@ -26,6 +26,7 @@ func physics_update(delta: float) -> void:
 		var spacing := 8
 		var left_pos = Vector2(pivot_pos.x-spacing, pivot_pos.y)
 		var right_pos = Vector2(pivot_pos.x+spacing, pivot_pos.y)
+		SoundPlayer.play_sound("bubble")
 		GameEvents.new_vfx.emit("res://vfx/bubble_burst.tscn", left_pos)
 		GameEvents.new_vfx.emit("res://vfx/bubble_burst.tscn", right_pos)
 		owner.velocity.y = jump_height

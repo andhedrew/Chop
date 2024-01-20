@@ -396,7 +396,7 @@ difficulty = 2
 difficulty_1_death_pieces = Array[Resource]([ExtResource("6_litvv")])
 health = 11
 speed = 50.0
-death_pieces = Array[Resource]([ExtResource("4_omtka"), ExtResource("4_omtka"), ExtResource("3_tncna"), ExtResource("3_tncna"), ExtResource("2_bl0q7"), ExtResource("4_omtka"), ExtResource("4_omtka"), ExtResource("6_litvv")])
+death_pieces = Array[Resource]([ExtResource("4_omtka"), ExtResource("4_omtka"), ExtResource("3_tncna"), ExtResource("3_tncna"), ExtResource("2_bl0q7"), ExtResource("4_omtka"), ExtResource("4_omtka")])
 
 [node name="state_label" type="Label" parent="."]
 visible = false

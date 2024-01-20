@@ -9,6 +9,8 @@ func _ready():
 	var saved = SaveManager.load_item("saved_data")
 	if saved == true:
 		$Button3.disabled = false
+	else:
+		$Button3.disabled = true
 	$Button.pressed.connect(_new_game)
 	$Button3.pressed.connect(_continue_game)
 	$Button2.pressed.connect(_end_game)

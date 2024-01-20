@@ -46,7 +46,7 @@ const WORLD_NAME: Dictionary = {
 	"res://levels_and_level_objects/level_scenes/world_2_levels/2-2.tscn": "Bouncer",
 	"res://levels_and_level_objects/level_scenes/world_2_levels/2-3.tscn": "Rotten Fish",
 	"res://levels_and_level_objects/level_scenes/world_2_levels/2-4.tscn": "The Root of the Problem",
-	"res://levels_and_level_objects/level_scenes/world_3_levels/3-1.tscn": "This Blows",
+	"res://levels_and_level_objects/level_scenes/world_3_levels/3-1.tscn": "Fantastic",
 	"res://levels_and_level_objects/level_scenes/world_3_levels/3-2.tscn": "Rust to Rust",
 	"res://levels_and_level_objects/level_scenes/world_3_levels/3-3.tscn": "Living Pain",
 	"res://levels_and_level_objects/level_scenes/world_3_levels/3-4.tscn": "Ol' Inky",

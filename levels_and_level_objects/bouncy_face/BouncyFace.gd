@@ -58,6 +58,7 @@ func _on_body_entered(body) -> void:
 
 func _on_body_exited(body) -> void:
 	if body in bodies_bouncing:
+		SoundPlayer.play_sound_positional("wool", global_position)
 		bodies_bouncing.erase(body)
 
 
