@@ -24,13 +24,11 @@ SoundPlayer="*res://autoloads/SoundPlayer.tscn"
 Param="*res://autoloads/Param.gd"
 SaveManager="*res://autoloads/SaveManager.gd"
 LevelInfo="*res://autoloads/LevelInfo.gd"
-BetterTerrain="*res://addons/better-terrain/BetterTerrain.gd"
 
 [display]
 
 window/size/viewport_width=640
 window/size/viewport_height=360
-window/size/resizable=false
 window/size/window_width_override=2560
 window/size/window_height_override=1440
 window/stretch/mode="viewport"

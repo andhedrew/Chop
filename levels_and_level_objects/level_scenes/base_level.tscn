@@ -505,6 +505,11 @@ position = Vector2(0, -50)
 motion_scale = Vector2(0.2, 1)
 script = ExtResource("3_vybto")
 
+[node name="Layer4NonRepeating_back" type="ParallaxLayer" parent="Background"]
+material = SubResource("ShaderMaterial_fe8g0")
+position = Vector2(0, -50)
+motion_scale = Vector2(0.19, 1)
+
 [node name="ParallaxLayer4" type="ParallaxLayer" parent="Background"]
 material = SubResource("ShaderMaterial_fe8g0")
 position = Vector2(0, -50)
@@ -515,15 +520,24 @@ material = SubResource("ShaderMaterial_fe8g0")
 position = Vector2(0, -50)
 motion_scale = Vector2(0.2, 1)
 
+[node name="Layer3NonRepeating_back" type="ParallaxLayer" parent="Background"]
+material = SubResource("ShaderMaterial_yckio")
+position = Vector2(0, -32)
+motion_scale = Vector2(0.39, 1)
+
 [node name="ParallaxLayer3" type="ParallaxLayer" parent="Background"]
 material = SubResource("ShaderMaterial_yckio")
 position = Vector2(0, -32)
-motion_scale = Vector2(0.5, 1)
+motion_scale = Vector2(0.4, 1)
 
 [node name="Layer3NonRepeating" type="ParallaxLayer" parent="Background"]
 material = SubResource("ShaderMaterial_yckio")
 position = Vector2(0, -32)
-motion_scale = Vector2(0.5, 1)
+motion_scale = Vector2(0.4, 1)
+
+[node name="Layer2NonRepeating_back" type="ParallaxLayer" parent="Background"]
+position = Vector2(8, -16)
+motion_scale = Vector2(0.79, 1)
 
 [node name="ParallaxLayer2" type="ParallaxLayer" parent="Background"]
 position = Vector2(8, -16)
