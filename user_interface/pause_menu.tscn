@@ -1,0 +1,156 @@
+[gd_scene load_steps=10 format=3 uid="uid://dmx11p8qms3b0"]
+
+[ext_resource type="Theme" uid="uid://b0dhfhdkknaj3" path="res://user_interface/chop_theme.tres" id="1_0hf1x"]
+[ext_resource type="Script" path="res://user_interface/pause_menu.gd" id="1_m5bnr"]
+[ext_resource type="FontFile" uid="uid://baykuh7pqbali" path="res://user_interface/fonts/Giza.otf" id="3_qrxrp"]
+[ext_resource type="PackedScene" uid="uid://ds06mwhee8ygm" path="res://game_settings/components/slider/slider.tscn" id="4_am56b"]
+[ext_resource type="FontFile" uid="uid://b8ei6fu0n0k4s" path="res://user_interface/fonts/Printvetica.otf" id="4_xuhct"]
+[ext_resource type="Resource" uid="uid://cg1flg5pvs10g" path="res://game_settings/settings/Volume/master_volume.tres" id="5_1igc3"]
+[ext_resource type="Resource" uid="uid://8vh5bg0mw8ll" path="res://game_settings/settings/Volume/music_volume.tres" id="6_du44i"]
+[ext_resource type="Resource" uid="uid://dv5g7a14a1p4x" path="res://game_settings/settings/Volume/sfx_volume.tres" id="8_r73gn"]
+[ext_resource type="Resource" uid="uid://do8jck021gm3r" path="res://game_settings/settings/Volume/ambient_volume.tres" id="9_gtom3"]
+
+[node name="PauseMenu" type="Control"]
+process_mode = 3
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+mouse_filter = 2
+theme = ExtResource("1_0hf1x")
+script = ExtResource("1_m5bnr")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.27451, 0.27451, 0.27451, 0.529412)
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 2
+offset_left = 259.0
+offset_top = 64.0
+offset_right = 381.0
+offset_bottom = 110.0
+size_flags_horizontal = 4
+theme = ExtResource("1_0hf1x")
+theme_override_fonts/font = ExtResource("3_qrxrp")
+theme_override_font_sizes/font_size = 40
+text = "Paused"
+
+[node name="Main" type="GridContainer" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Resume" type="Button" parent="Main"]
+layout_mode = 2
+theme = ExtResource("1_0hf1x")
+text = "Resume
+"
+
+[node name="Settings" type="Button" parent="Main"]
+layout_mode = 2
+text = "Settings"
+
+[node name="Quit" type="Button" parent="Main"]
+layout_mode = 2
+theme = ExtResource("1_0hf1x")
+text = "Quit"
+
+[node name="Settings" type="GridContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+columns = 3
+
+[node name="VOLUME" type="Label" parent="Settings"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("4_xuhct")
+theme_override_font_sizes/font_size = 26
+text = "Volume"
+
+[node name="Container4" type="Control" parent="Settings"]
+layout_mode = 2
+
+[node name="Container5" type="Control" parent="Settings"]
+layout_mode = 2
+
+[node name="Master" type="Label" parent="Settings"]
+layout_mode = 2
+text = "Master: "
+
+[node name="Master Slider" parent="Settings" instance=ExtResource("4_am56b")]
+layout_mode = 2
+setting = ExtResource("5_1igc3")
+apply_on_change = true
+
+[node name="Container" type="Control" parent="Settings"]
+layout_mode = 2
+
+[node name="Music" type="Label" parent="Settings"]
+layout_mode = 2
+text = "Music:"
+
+[node name="Music Slider" parent="Settings" instance=ExtResource("4_am56b")]
+layout_mode = 2
+setting = ExtResource("6_du44i")
+apply_on_change = true
+
+[node name="Container3" type="Control" parent="Settings"]
+layout_mode = 2
+
+[node name="SFX" type="Label" parent="Settings"]
+layout_mode = 2
+text = "Sound:"
+
+[node name="SFX Slider" parent="Settings" instance=ExtResource("4_am56b")]
+layout_mode = 2
+setting = ExtResource("8_r73gn")
+apply_on_change = true
+
+[node name="Container6" type="Control" parent="Settings"]
+layout_mode = 2
+
+[node name="Ambient" type="Label" parent="Settings"]
+layout_mode = 2
+text = "Ambient:"
+
+[node name="Ambient Slider" parent="Settings" instance=ExtResource("4_am56b")]
+layout_mode = 2
+setting = ExtResource("9_gtom3")
+apply_on_change = true
+
+[node name="Container7" type="Control" parent="Settings"]
+layout_mode = 2
+
+[node name="Back" type="Button" parent="Settings"]
+layout_mode = 2
+text = "Back
+"

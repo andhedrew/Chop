@@ -33,6 +33,7 @@ func _ready():
 	
 	GameEvents.lil_bro_died.connect(_on_lil_bro_die)
 	GameEvents.restart_level.connect(_restart_level)
+	
 
 	
 	if checkpoint: #THIS IS THE WORLD CHECKPOINT
@@ -53,10 +54,10 @@ func _ready():
 
 
 func _process(_delta):
-	if Input.is_action_just_pressed("quit"):
-		_restart_level()
+
 	if Input.is_action_just_pressed("reset_save_data"):
-		SaveManager.reset_save()
+		SaveManager.reset_save() #TK delete this
+
 
 
 func _restart_level() -> void:

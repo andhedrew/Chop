@@ -97,4 +97,7 @@ signal tut2
 signal tut3
 
 
+#ui
+signal resume_game
+
 

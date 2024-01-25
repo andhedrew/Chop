@@ -22,6 +22,7 @@ func play_sound(sound: String) -> AudioStreamPlayer:
 	audio_stream_player.pitch_scale = randf_range(0.95, 1.05)
 	audio_players.add_child(audio_stream_player)
 	audio_stream_player.stream = approved_sound
+	audio_stream_player.bus = "Sound"
 	audio_stream_player.play()
 	return audio_stream_player
 
@@ -43,12 +44,14 @@ func play_ambient(sound: Variant) -> AudioStreamPlayer:
 	# Fade in the sound
 	var tween = get_tree().create_tween()
 	audio_stream_player.set_volume_db(-80)
+	audio_stream_player.bus = "Ambient"
 	audio_stream_player.play()
 	tween.tween_property(audio_stream_player, "volume_db", -30, 5.0)
 	tween.play()
 	if old_player:
 		await old_player_tween.finished
 		old_player.queue_free()
+	
 	return audio_stream_player
 	
 

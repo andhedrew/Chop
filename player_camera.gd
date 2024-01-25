@@ -30,8 +30,7 @@ var horizontal_offset_smoothing: float = 2.0
 # Screen Shake Variables
 var shake_intensity: float = 0.0
 var shake_decay: float = 0.1
-
-
+var paused := false
 var freeze := false
 
 func _ready():
@@ -54,8 +53,11 @@ func _ready():
 	GameEvents.cutscene_ended.connect(_on_cutscene_ended)
 	GameEvents.wave_level_start.connect(_on_wave_level)
 
+
 	set_camera_limits()
 	
+
+
 
 
 func set_averaging(target_to_avg: Node2D, split_focus: bool = false):
@@ -63,7 +65,12 @@ func set_averaging(target_to_avg: Node2D, split_focus: bool = false):
 	target_node_to_average = target_to_avg
 
 
+
+
+
+
 func _process(delta: float) -> void:
+		
 	if player == null:
 		return
 	

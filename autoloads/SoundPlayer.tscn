@@ -3,6 +3,7 @@
 [ext_resource type="Script" path="res://autoloads/SoundPlayer.gd" id="1_h2b64"]
 
 [node name="SoundPlayer" type="Node"]
+process_mode = 3
 script = ExtResource("1_h2b64")
 
 [node name="AudioPlayers" type="Node" parent="."]
