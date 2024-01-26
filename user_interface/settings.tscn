@@ -1,0 +1,87 @@
+[gd_scene load_steps=7 format=3 uid="uid://dq04kjd45ls35"]
+
+[ext_resource type="FontFile" uid="uid://b8ei6fu0n0k4s" path="res://user_interface/fonts/Printvetica.otf" id="1_4w0ra"]
+[ext_resource type="PackedScene" uid="uid://ds06mwhee8ygm" path="res://game_settings/components/slider/slider.tscn" id="2_1fvrl"]
+[ext_resource type="Resource" uid="uid://cg1flg5pvs10g" path="res://game_settings/settings/Volume/master_volume.tres" id="3_kxqef"]
+[ext_resource type="Resource" uid="uid://8vh5bg0mw8ll" path="res://game_settings/settings/Volume/music_volume.tres" id="4_i0mvg"]
+[ext_resource type="Resource" uid="uid://dv5g7a14a1p4x" path="res://game_settings/settings/Volume/sfx_volume.tres" id="5_eld8d"]
+[ext_resource type="Resource" uid="uid://do8jck021gm3r" path="res://game_settings/settings/Volume/ambient_volume.tres" id="6_0kf5l"]
+
+[node name="Settings" type="GridContainer"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+columns = 3
+
+[node name="VOLUME" type="Label" parent="."]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_4w0ra")
+theme_override_font_sizes/font_size = 26
+text = "Volume"
+
+[node name="Container4" type="Control" parent="."]
+layout_mode = 2
+
+[node name="Container5" type="Control" parent="."]
+layout_mode = 2
+
+[node name="Master" type="Label" parent="."]
+layout_mode = 2
+text = "Master: "
+
+[node name="Master Slider" parent="." instance=ExtResource("2_1fvrl")]
+layout_mode = 2
+setting = ExtResource("3_kxqef")
+apply_on_change = true
+
+[node name="Container" type="Control" parent="."]
+layout_mode = 2
+
+[node name="Music" type="Label" parent="."]
+layout_mode = 2
+text = "Music:"
+
+[node name="Music Slider" parent="." instance=ExtResource("2_1fvrl")]
+layout_mode = 2
+setting = ExtResource("4_i0mvg")
+apply_on_change = true
+
+[node name="Container3" type="Control" parent="."]
+layout_mode = 2
+
+[node name="SFX" type="Label" parent="."]
+layout_mode = 2
+text = "Sound:"
+
+[node name="SFX Slider" parent="." instance=ExtResource("2_1fvrl")]
+layout_mode = 2
+setting = ExtResource("5_eld8d")
+apply_on_change = true
+
+[node name="Container6" type="Control" parent="."]
+layout_mode = 2
+
+[node name="Ambient" type="Label" parent="."]
+layout_mode = 2
+text = "Ambient:"
+
+[node name="Ambient Slider" parent="." instance=ExtResource("2_1fvrl")]
+layout_mode = 2
+setting = ExtResource("6_0kf5l")
+apply_on_change = true
+
+[node name="Container7" type="Control" parent="."]
+layout_mode = 2
+
+[node name="Back" type="Button" parent="."]
+layout_mode = 2
+text = "Back
+"

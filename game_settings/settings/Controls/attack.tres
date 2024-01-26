@@ -1,0 +1,13 @@
+[gd_resource type="Resource" load_steps=2 format=3 uid="uid://ct31oxnujq81n"]
+
+[ext_resource type="Script" path="res://game_settings/settings/Controls/attack.gd" id="1_hiv56"]
+
+[resource]
+script = ExtResource("1_hiv56")
+current = null
+default = null
+name = ""
+category = ""
+value_type = 0
+value_hint = 0
+value_hint_string = ""
