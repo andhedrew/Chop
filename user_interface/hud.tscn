@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://c61grkud6tjtu"]
+[gd_scene load_steps=19 format=3 uid="uid://c61grkud6tjtu"]
 
 [ext_resource type="Script" path="res://user_interface/healthbar/health_bar.gd" id="1_vxliw"]
 [ext_resource type="Texture2D" uid="uid://xoihsb8asqow" path="res://user_interface/healthbar/full_heart.png" id="2_juhcy"]
@@ -8,6 +8,9 @@
 [ext_resource type="Texture2D" uid="uid://23fffbb5s8y4" path="res://user_interface/lives.png" id="8_cgwgn"]
 [ext_resource type="Script" path="res://user_interface/food_score_tracker.gd" id="8_wccyj"]
 [ext_resource type="Script" path="res://user_interface/money_counter.gd" id="11_3pmc5"]
+[ext_resource type="Texture2D" uid="uid://skod2mg0dtqm" path="res://user_interface/bag/bag1.png" id="11_fiv3m"]
+[ext_resource type="Texture2D" uid="uid://cfibdk54e585j" path="res://user_interface/bag/bag2.png" id="12_hjgch"]
+[ext_resource type="Texture2D" uid="uid://diyo1pkw5cfm1" path="res://user_interface/bag/bag3.png" id="13_jco7k"]
 [ext_resource type="FontFile" uid="uid://b8ei6fu0n0k4s" path="res://user_interface/fonts/Printvetica.otf" id="20_0bwqt"]
 [ext_resource type="Theme" uid="uid://b0dhfhdkknaj3" path="res://user_interface/chop_theme.tres" id="20_hrrhf"]
 
@@ -17,7 +20,7 @@ length = 0.7
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("UI/VBoxContainer:modulate")
+tracks/0/path = NodePath("ColorRect/UI/VBoxContainer:modulate")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -29,7 +32,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("UI2/VBoxContainer:modulate")
+tracks/1/path = NodePath("ColorRect/UI2/VBoxContainer:modulate")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -45,7 +48,7 @@ length = 0.5
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("UI/VBoxContainer:modulate")
+tracks/0/path = NodePath("ColorRect/UI/VBoxContainer:modulate")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -57,7 +60,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("UI2/VBoxContainer:modulate")
+tracks/1/path = NodePath("ColorRect/UI2/VBoxContainer:modulate")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -73,189 +76,168 @@ _data = {
 "fade_out": SubResource("Animation_oajqu")
 }
 
-[sub_resource type="LabelSettings" id="LabelSettings_wf2bj"]
-font_color = Color(0.254902, 0.345098, 0.294118, 1)
+[sub_resource type="LabelSettings" id="LabelSettings_6kql4"]
+font_size = 18
+
+[sub_resource type="LabelSettings" id="LabelSettings_sj5hy"]
+line_spacing = 0.0
+font_size = 18
+font_color = Color(0.839216, 0.364706, 0.160784, 1)
 
 [node name="HUD" type="Node2D"]
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
-[node name="UI" type="Control" parent="CanvasLayer"]
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
+custom_minimum_size = Vector2(0, 50)
+anchors_preset = 10
+anchor_right = 1.0
+grow_horizontal = 2
+color = Color(0.156863, 0.14902, 0.156863, 1)
+
+[node name="UI" type="Control" parent="CanvasLayer/ColorRect"]
 layout_mode = 3
 anchors_preset = 0
 script = ExtResource("1_vxliw")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="CanvasLayer/UI"]
-root_node = NodePath("../..")
+[node name="AnimationPlayer" type="AnimationPlayer" parent="CanvasLayer/ColorRect/UI"]
+root_node = NodePath("../../..")
 libraries = {
 "": SubResource("AnimationLibrary_lv2iv")
 }
 
-[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/UI"]
+[node name="VBoxContainer" type="MarginContainer" parent="CanvasLayer/ColorRect/UI"]
 layout_mode = 1
-offset_left = 11.0
-offset_top = 20.4545
-offset_right = 183.0
-offset_bottom = 70.4545
+offset_left = 5.0
+offset_top = 6.0
+offset_right = 236.0
+offset_bottom = 71.0
 
-[node name="HBoxContainer2" type="HBoxContainer" parent="CanvasLayer/UI/VBoxContainer"]
-layout_mode = 2
-
-[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/UI/VBoxContainer/HBoxContainer2"]
-layout_mode = 2
-alignment = 2
-
-[node name="WILMER" type="Label" parent="CanvasLayer/UI/VBoxContainer/HBoxContainer2/VBoxContainer"]
-custom_minimum_size = Vector2(120, 0)
+[node name="HBoxContainer2" type="HBoxContainer" parent="CanvasLayer/ColorRect/UI/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 0
-theme_override_colors/font_color = Color(1, 1, 1, 1)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/ColorRect/UI/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+theme_override_constants/separation = -2
+
+[node name="VALUE" type="Label" parent="CanvasLayer/ColorRect/UI/VBoxContainer/HBoxContainer2/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.411765, 0.462745, 0.490196, 1)
 theme_override_fonts/font = ExtResource("20_0bwqt")
 theme_override_font_sizes/font_size = 15
-text = "VALUE"
-label_settings = SubResource("LabelSettings_wf2bj")
-vertical_alignment = 2
+text = "Your Value"
 
-[node name="SCORE" type="Label" parent="CanvasLayer/UI/VBoxContainer/HBoxContainer2/VBoxContainer"]
+[node name="SCORE" type="Label" parent="CanvasLayer/ColorRect/UI/VBoxContainer/HBoxContainer2/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 0
-theme_override_constants/line_spacing = 3
+theme_override_constants/line_spacing = 0
 theme_override_fonts/font = ExtResource("20_0bwqt")
-theme_override_font_sizes/font_size = 32
+theme_override_font_sizes/font_size = 28
 text = "000000"
 horizontal_alignment = 3
 vertical_alignment = 1
 script = ExtResource("4_wde27")
 
-[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/UI/VBoxContainer/HBoxContainer2"]
-custom_minimum_size = Vector2(15, 0)
+[node name="VBoxContainer2" type="VBoxContainer" parent="CanvasLayer/ColorRect/UI/VBoxContainer/HBoxContainer2"]
 layout_mode = 2
 
-[node name="Line2D" type="Line2D" parent="CanvasLayer/UI/VBoxContainer/HBoxContainer2/MarginContainer"]
-position = Vector2(-65, 0)
-points = PackedVector2Array(76, 2.88462, 68, 57.5455)
-width = 4.0
-default_color = Color(0.780392, 0.862745, 0.815686, 1)
-
-[node name="VBoxContainer2" type="VBoxContainer" parent="CanvasLayer/UI/VBoxContainer/HBoxContainer2"]
-layout_mode = 2
-
-[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/UI/VBoxContainer/HBoxContainer2/VBoxContainer2"]
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/ColorRect/UI/VBoxContainer/HBoxContainer2/VBoxContainer2"]
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 8
 
-[node name="heart_0" type="TextureRect" parent="CanvasLayer/UI/VBoxContainer/HBoxContainer2/VBoxContainer2/HBoxContainer"]
+[node name="Spacer" type="Control" parent="CanvasLayer/ColorRect/UI/VBoxContainer/HBoxContainer2/VBoxContainer2/HBoxContainer"]
+custom_minimum_size = Vector2(1, 0)
+layout_mode = 2
+
+[node name="heart_0" type="TextureRect" parent="CanvasLayer/ColorRect/UI/VBoxContainer/HBoxContainer2/VBoxContainer2/HBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 8
 texture = ExtResource("2_juhcy")
 stretch_mode = 2
 
-[node name="heart_1" type="TextureRect" parent="CanvasLayer/UI/VBoxContainer/HBoxContainer2/VBoxContainer2/HBoxContainer"]
+[node name="heart_1" type="TextureRect" parent="CanvasLayer/ColorRect/UI/VBoxContainer/HBoxContainer2/VBoxContainer2/HBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 8
 texture = ExtResource("2_juhcy")
 stretch_mode = 2
 
-[node name="heart_2" type="TextureRect" parent="CanvasLayer/UI/VBoxContainer/HBoxContainer2/VBoxContainer2/HBoxContainer"]
+[node name="heart_2" type="TextureRect" parent="CanvasLayer/ColorRect/UI/VBoxContainer/HBoxContainer2/VBoxContainer2/HBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 8
 texture = ExtResource("2_juhcy")
 stretch_mode = 2
 
-[node name="heart_3" type="TextureRect" parent="CanvasLayer/UI/VBoxContainer/HBoxContainer2/VBoxContainer2/HBoxContainer"]
+[node name="heart_3" type="TextureRect" parent="CanvasLayer/ColorRect/UI/VBoxContainer/HBoxContainer2/VBoxContainer2/HBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 8
 texture = ExtResource("2_juhcy")
 stretch_mode = 2
 
-[node name="heart_4" type="TextureRect" parent="CanvasLayer/UI/VBoxContainer/HBoxContainer2/VBoxContainer2/HBoxContainer"]
+[node name="heart_4" type="TextureRect" parent="CanvasLayer/ColorRect/UI/VBoxContainer/HBoxContainer2/VBoxContainer2/HBoxContainer"]
 visible = false
 layout_mode = 2
 size_flags_vertical = 8
 texture = ExtResource("2_juhcy")
 stretch_mode = 2
 
-[node name="heart_5" type="TextureRect" parent="CanvasLayer/UI/VBoxContainer/HBoxContainer2/VBoxContainer2/HBoxContainer"]
+[node name="heart_5" type="TextureRect" parent="CanvasLayer/ColorRect/UI/VBoxContainer/HBoxContainer2/VBoxContainer2/HBoxContainer"]
 visible = false
 layout_mode = 2
 size_flags_vertical = 8
 texture = ExtResource("2_juhcy")
 stretch_mode = 2
 
-[node name="heart_6" type="TextureRect" parent="CanvasLayer/UI/VBoxContainer/HBoxContainer2/VBoxContainer2/HBoxContainer"]
+[node name="heart_6" type="TextureRect" parent="CanvasLayer/ColorRect/UI/VBoxContainer/HBoxContainer2/VBoxContainer2/HBoxContainer"]
 visible = false
 layout_mode = 2
 size_flags_vertical = 8
 texture = ExtResource("2_juhcy")
 stretch_mode = 2
 
-[node name="heart_7" type="TextureRect" parent="CanvasLayer/UI/VBoxContainer/HBoxContainer2/VBoxContainer2/HBoxContainer"]
+[node name="heart_7" type="TextureRect" parent="CanvasLayer/ColorRect/UI/VBoxContainer/HBoxContainer2/VBoxContainer2/HBoxContainer"]
 visible = false
 layout_mode = 2
 size_flags_vertical = 8
 texture = ExtResource("2_juhcy")
 stretch_mode = 2
 
-[node name="heart_8" type="TextureRect" parent="CanvasLayer/UI/VBoxContainer/HBoxContainer2/VBoxContainer2/HBoxContainer"]
+[node name="heart_8" type="TextureRect" parent="CanvasLayer/ColorRect/UI/VBoxContainer/HBoxContainer2/VBoxContainer2/HBoxContainer"]
 visible = false
 layout_mode = 2
 size_flags_vertical = 8
 texture = ExtResource("2_juhcy")
 stretch_mode = 2
 
-[node name="heart_9" type="TextureRect" parent="CanvasLayer/UI/VBoxContainer/HBoxContainer2/VBoxContainer2/HBoxContainer"]
+[node name="heart_9" type="TextureRect" parent="CanvasLayer/ColorRect/UI/VBoxContainer/HBoxContainer2/VBoxContainer2/HBoxContainer"]
 visible = false
 layout_mode = 2
 size_flags_vertical = 8
 texture = ExtResource("2_juhcy")
 stretch_mode = 2
 
-[node name="heart_10" type="TextureRect" parent="CanvasLayer/UI/VBoxContainer/HBoxContainer2/VBoxContainer2/HBoxContainer"]
+[node name="heart_10" type="TextureRect" parent="CanvasLayer/ColorRect/UI/VBoxContainer/HBoxContainer2/VBoxContainer2/HBoxContainer"]
 visible = false
 layout_mode = 2
 size_flags_vertical = 8
 texture = ExtResource("2_juhcy")
 stretch_mode = 2
 
-[node name="MoneyCounter" type="HBoxContainer" parent="CanvasLayer/UI/VBoxContainer/HBoxContainer2/VBoxContainer2"]
+[node name="GridContainer" type="GridContainer" parent="CanvasLayer/ColorRect/UI/VBoxContainer/HBoxContainer2/VBoxContainer2"]
 layout_mode = 2
-size_flags_vertical = 0
+columns = 2
 
-[node name="TextureRect" type="TextureRect" parent="CanvasLayer/UI/VBoxContainer/HBoxContainer2/VBoxContainer2/MoneyCounter"]
-layout_mode = 2
-size_flags_horizontal = 0
-size_flags_vertical = 0
-texture = ExtResource("8_8656r")
-
-[node name="x" type="Label" parent="CanvasLayer/UI/VBoxContainer/HBoxContainer2/VBoxContainer2/MoneyCounter"]
-layout_mode = 2
-size_flags_horizontal = 0
-theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_constants/line_spacing = 0
-theme_override_fonts/font = ExtResource("20_0bwqt")
-theme_override_font_sizes/font_size = 20
-text = "x"
-
-[node name="Label" type="Label" parent="CanvasLayer/UI/VBoxContainer/HBoxContainer2/VBoxContainer2/MoneyCounter"]
-layout_mode = 2
-size_flags_horizontal = 0
-theme_override_constants/line_spacing = 0
-theme_override_fonts/font = ExtResource("20_0bwqt")
-theme_override_font_sizes/font_size = 20
-text = "524"
-script = ExtResource("11_3pmc5")
-
-[node name="Lives" type="HBoxContainer" parent="CanvasLayer/UI/VBoxContainer/HBoxContainer2/VBoxContainer2"]
+[node name="Lives" type="HBoxContainer" parent="CanvasLayer/ColorRect/UI/VBoxContainer/HBoxContainer2/VBoxContainer2/GridContainer"]
 layout_mode = 2
 script = ExtResource("7_1trq4")
 
-[node name="TextureRect" type="TextureRect" parent="CanvasLayer/UI/VBoxContainer/HBoxContainer2/VBoxContainer2/Lives"]
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/ColorRect/UI/VBoxContainer/HBoxContainer2/VBoxContainer2/GridContainer/Lives"]
 layout_mode = 2
 texture = ExtResource("8_cgwgn")
 stretch_mode = 2
 
-[node name="x" type="Label" parent="CanvasLayer/UI/VBoxContainer/HBoxContainer2/VBoxContainer2/Lives"]
+[node name="x" type="Label" parent="CanvasLayer/ColorRect/UI/VBoxContainer/HBoxContainer2/VBoxContainer2/GridContainer/Lives"]
 layout_mode = 2
 size_flags_horizontal = 0
 theme_override_colors/font_color = Color(1, 1, 1, 1)
@@ -263,17 +245,51 @@ theme_override_constants/line_spacing = 0
 theme_override_fonts/font = ExtResource("20_0bwqt")
 theme_override_font_sizes/font_size = 20
 text = "x"
+label_settings = SubResource("LabelSettings_6kql4")
 
-[node name="Label" type="Label" parent="CanvasLayer/UI/VBoxContainer/HBoxContainer2/VBoxContainer2/Lives"]
+[node name="Label" type="Label" parent="CanvasLayer/ColorRect/UI/VBoxContainer/HBoxContainer2/VBoxContainer2/GridContainer/Lives"]
 layout_mode = 2
 size_flags_horizontal = 0
 theme_override_constants/line_spacing = 0
 theme_override_fonts/font = ExtResource("20_0bwqt")
 theme_override_font_sizes/font_size = 20
 text = "5"
+label_settings = SubResource("LabelSettings_6kql4")
 
-[node name="UI2" type="Control" parent="CanvasLayer"]
-layout_mode = 3
+[node name="MoneyCounter" type="HBoxContainer" parent="CanvasLayer/ColorRect/UI/VBoxContainer/HBoxContainer2/VBoxContainer2/GridContainer"]
+layout_mode = 2
+size_flags_vertical = 0
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/ColorRect/UI/VBoxContainer/HBoxContainer2/VBoxContainer2/GridContainer/MoneyCounter"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+texture = ExtResource("8_8656r")
+
+[node name="x" type="Label" parent="CanvasLayer/ColorRect/UI/VBoxContainer/HBoxContainer2/VBoxContainer2/GridContainer/MoneyCounter"]
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_constants/line_spacing = 0
+theme_override_fonts/font = ExtResource("20_0bwqt")
+theme_override_font_sizes/font_size = 20
+text = "x"
+label_settings = SubResource("LabelSettings_sj5hy")
+vertical_alignment = 3
+
+[node name="Label" type="Label" parent="CanvasLayer/ColorRect/UI/VBoxContainer/HBoxContainer2/VBoxContainer2/GridContainer/MoneyCounter"]
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_constants/line_spacing = 0
+theme_override_fonts/font = ExtResource("20_0bwqt")
+theme_override_font_sizes/font_size = 20
+text = "524"
+label_settings = SubResource("LabelSettings_sj5hy")
+vertical_alignment = 3
+script = ExtResource("11_3pmc5")
+
+[node name="UI2" type="Control" parent="CanvasLayer/ColorRect"]
+layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
@@ -281,101 +297,119 @@ grow_horizontal = 0
 size_flags_horizontal = 8
 size_flags_vertical = 0
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="CanvasLayer/UI2"]
-root_node = NodePath("../..")
+[node name="AnimationPlayer" type="AnimationPlayer" parent="CanvasLayer/ColorRect/UI2"]
+root_node = NodePath("../../..")
 libraries = {
 "": SubResource("AnimationLibrary_lv2iv")
 }
 
-[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/UI2"]
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/ColorRect/UI2"]
 layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = -97.5
-offset_top = 22.5
-offset_right = -28.5
-offset_bottom = 93.5
+offset_left = -76.0
+offset_top = 6.0
+offset_right = -7.0
+offset_bottom = 53.0
 grow_horizontal = 0
-alignment = 1
+theme_override_constants/separation = 1
 
-[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/UI2/VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/ColorRect/UI2/VBoxContainer"]
 layout_mode = 2
+theme_override_constants/separation = 1
 alignment = 2
 
-[node name="Meat2" type="Label" parent="CanvasLayer/UI2/VBoxContainer/HBoxContainer"]
+[node name="Meat2" type="Label" parent="CanvasLayer/ColorRect/UI2/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 8
 size_flags_vertical = 6
 theme = ExtResource("20_hrrhf")
 theme_override_fonts/font = ExtResource("20_0bwqt")
-theme_override_font_sizes/font_size = 20
+theme_override_font_sizes/font_size = 12
 text = "0"
 horizontal_alignment = 3
 script = ExtResource("8_wccyj")
 score_to_track = "meat_score"
 
-[node name="Meat" type="Label" parent="CanvasLayer/UI2/VBoxContainer/HBoxContainer"]
+[node name="Meat" type="Label" parent="CanvasLayer/ColorRect/UI2/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 8
 size_flags_vertical = 6
 theme = ExtResource("20_hrrhf")
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_fonts/font = ExtResource("20_0bwqt")
-theme_override_font_sizes/font_size = 20
-text = "MEAT"
+theme_override_font_sizes/font_size = 12
+text = "x"
 horizontal_alignment = 2
 
-[node name="HBoxContainer2" type="HBoxContainer" parent="CanvasLayer/UI2/VBoxContainer"]
+[node name="Sprite2D" type="TextureRect" parent="CanvasLayer/ColorRect/UI2/VBoxContainer/HBoxContainer"]
 layout_mode = 2
+texture = ExtResource("11_fiv3m")
+stretch_mode = 2
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="CanvasLayer/ColorRect/UI2/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 1
 alignment = 2
 
-[node name="veg2" type="Label" parent="CanvasLayer/UI2/VBoxContainer/HBoxContainer2"]
+[node name="veg2" type="Label" parent="CanvasLayer/ColorRect/UI2/VBoxContainer/HBoxContainer2"]
 layout_mode = 2
 size_flags_horizontal = 8
 size_flags_vertical = 6
 theme = ExtResource("20_hrrhf")
 theme_override_fonts/font = ExtResource("20_0bwqt")
-theme_override_font_sizes/font_size = 20
+theme_override_font_sizes/font_size = 12
 text = "0"
 horizontal_alignment = 3
 script = ExtResource("8_wccyj")
 score_to_track = "plant_score"
 
-[node name="Veg" type="Label" parent="CanvasLayer/UI2/VBoxContainer/HBoxContainer2"]
+[node name="Veg" type="Label" parent="CanvasLayer/ColorRect/UI2/VBoxContainer/HBoxContainer2"]
 layout_mode = 2
 size_flags_horizontal = 8
 size_flags_vertical = 6
 theme = ExtResource("20_hrrhf")
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_fonts/font = ExtResource("20_0bwqt")
-theme_override_font_sizes/font_size = 20
-text = "VEG"
+theme_override_font_sizes/font_size = 12
+text = "x"
 horizontal_alignment = 2
 
-[node name="HBoxContainer3" type="HBoxContainer" parent="CanvasLayer/UI2/VBoxContainer"]
+[node name="Sprite2D2" type="TextureRect" parent="CanvasLayer/ColorRect/UI2/VBoxContainer/HBoxContainer2"]
 layout_mode = 2
+texture = ExtResource("12_hjgch")
+stretch_mode = 2
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="CanvasLayer/ColorRect/UI2/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 1
 alignment = 2
 
-[node name="Non2" type="Label" parent="CanvasLayer/UI2/VBoxContainer/HBoxContainer3"]
+[node name="Non2" type="Label" parent="CanvasLayer/ColorRect/UI2/VBoxContainer/HBoxContainer3"]
 layout_mode = 2
 size_flags_horizontal = 8
 size_flags_vertical = 6
 theme = ExtResource("20_hrrhf")
 theme_override_fonts/font = ExtResource("20_0bwqt")
-theme_override_font_sizes/font_size = 20
+theme_override_font_sizes/font_size = 12
 text = "0"
 horizontal_alignment = 3
 script = ExtResource("8_wccyj")
 score_to_track = "brick_score"
 
-[node name="Non" type="Label" parent="CanvasLayer/UI2/VBoxContainer/HBoxContainer3"]
+[node name="Non" type="Label" parent="CanvasLayer/ColorRect/UI2/VBoxContainer/HBoxContainer3"]
 layout_mode = 2
 size_flags_horizontal = 8
 size_flags_vertical = 6
 theme = ExtResource("20_hrrhf")
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_fonts/font = ExtResource("20_0bwqt")
-theme_override_font_sizes/font_size = 20
-text = "NON"
+theme_override_font_sizes/font_size = 12
+text = "x"
 horizontal_alignment = 2
+
+[node name="Sprite2D3" type="TextureRect" parent="CanvasLayer/ColorRect/UI2/VBoxContainer/HBoxContainer3"]
+layout_mode = 2
+texture = ExtResource("13_jco7k")
+stretch_mode = 2

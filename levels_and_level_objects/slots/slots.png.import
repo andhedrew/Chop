@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://btdwhktypj16n"
-path="res://.godot/imported/bushes3.png-04b4e3448176e460a474eff5e39117d0.ctex"
+uid="uid://2s7dygswaqah"
+path="res://.godot/imported/slots.png-d6775603427758513e92486415934393.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://levels_and_level_objects/backgrounds/sunny_top_lit/set_pieces_far/bushes3.png"
-dest_files=["res://.godot/imported/bushes3.png-04b4e3448176e460a474eff5e39117d0.ctex"]
+source_file="res://levels_and_level_objects/slots/slots.png"
+dest_files=["res://.godot/imported/slots.png-d6775603427758513e92486415934393.ctex"]
 
 [params]
 

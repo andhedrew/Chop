@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://72rv6ovy8rla"
-path="res://.godot/imported/bushes1.png-5037d2b3234091076c9749dfcfa883c1.ctex"
+uid="uid://bnbwi3olsy587"
+path="res://.godot/imported/bag.png-ad8f6c67a3b3e8f7ab042e85b44956a4.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://levels_and_level_objects/backgrounds/sunny_top_lit/set_pieces_mid/bushes1.png"
-dest_files=["res://.godot/imported/bushes1.png-5037d2b3234091076c9749dfcfa883c1.ctex"]
+source_file="res://user_interface/bag/bag.png"
+dest_files=["res://.godot/imported/bag.png-ad8f6c67a3b3e8f7ab042e85b44956a4.ctex"]
 
 [params]
 

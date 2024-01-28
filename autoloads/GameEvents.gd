@@ -5,7 +5,7 @@ signal player_attacked
 signal player_executed
 signal big_explosion
 signal player_changed_state
-signal player_health_changed(health:int, max_health:int) # Arg 1: health Arg 2: Max health
+signal player_health_changed(health:int, max_health:int)
 signal player_score_changed # Arg 1: score to add to total Arg 2: "true" to reset
 signal player_started_syphoning #Arg 1: player.global_position
 signal player_done_syphoning
@@ -100,4 +100,4 @@ signal tut3
 #ui
 signal resume_game
 
-
+signal slots_activated(reel_results: Array)
