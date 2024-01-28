@@ -4,6 +4,7 @@ const SAVE_PATH := "user://save-data-captain-picard.json"
 
 
 var data := {}
+var controls = null
 
 func _ready() -> void:
 	if not FileAccess.file_exists(SAVE_PATH):
@@ -47,11 +48,12 @@ func setup_json() -> void:
 		"checkpoint_position" : Vector2.ZERO,
 		"bag" : [],
 		"spider_triggered" : false,
-		"wave_triggered" : false
-		
-			
-				}
+		"wave_triggered" : false,
+		}
 	}
+	if controls:
+		save_data["controls"] = controls
+
 	var json_data := JSON.stringify(save_data)
 	var file_access := FileAccess.open(SAVE_PATH, FileAccess.WRITE)
 	file_access.store_line(json_data)
@@ -80,17 +82,6 @@ func save_item(key, new_value) -> void:
 	file_access.close()
 
 
-#func load_item(key):
-#	if data.has(key):
-#		var value = data[key]
-#		if typeof(value) == TYPE_ARRAY and value.size() == 2:
-#			print_debug("save value: " + str(value))
-#			return Vector2(value[0], value[1])  # Reconstruct Vector2
-#		else:
-#			return value
-#	else:
-#		return null
-
 func load_item(key):
 	if data.has(key):
 		var value = data[key]
@@ -108,6 +99,11 @@ func load_item(key):
 
 func reset_save() -> void:
 	if FileAccess.file_exists(SAVE_PATH):
+		if data.has("controls"):
+			controls = data["controls"]
+		else:
+			print("failed to find controls")
+			controls = null
 		OS.move_to_trash(ProjectSettings.globalize_path(SAVE_PATH))
 		setup_json()
 		print_debug("Save Data Reset")
