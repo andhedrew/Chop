@@ -344,7 +344,7 @@ func _die() -> void:
 	queue_free()
 
 
-func _on_enemy_taking_damage(health) -> void:
+func _on_enemy_taking_damage(_health) -> void:
 	if torch_charges < max_torch_charges:
 		SoundPlayer.play_sound("pickup_2")
 		torch_charges += 1

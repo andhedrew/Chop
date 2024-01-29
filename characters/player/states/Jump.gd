@@ -14,7 +14,6 @@ func enter(_msg := {}) -> void:
 func physics_update(delta: float) -> void:
 	var jump_release := Input.is_action_just_released("jump")
 	var jump := Input.is_action_pressed("jump")
-	var jump_pressed := Input.is_action_just_pressed("jump")
 	var jump_height = owner.jump_height * jump_multiplier
 	
 	if jump_release and owner.velocity.y < (owner.jump_height/2):

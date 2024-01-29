@@ -17,7 +17,7 @@ func _ready():
 	$SlowPickupTimer.timeout.connect(_on_timer_finish)
 
 
-func _physics_process(delta):
+func _physics_process(_delta):
 	if !is_on_floor():
 		velocity.y = lerp(velocity.y, max_fall_speed, 0.1)
 	else:

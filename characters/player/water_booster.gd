@@ -8,7 +8,7 @@ func _ready():
 	$InWaterTimer.timeout.connect(_timer)
 	$AnimationPlayer.play("idle")
 
-func _process(delta):
+func _process(_delta):
 	if owner.in_water:
 		$InWaterTimer.start()
 		exited_water = false

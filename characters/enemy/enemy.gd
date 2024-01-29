@@ -98,7 +98,7 @@ func _physics_process(_delta):
 #			pivot.scale.x = lerp(pivot.scale.x, 1.0, 0.1)
 
 
-func set_facing(facing_dir, squash_and_stretch := false) -> void:
+func set_facing(facing_dir, _squash_and_stretch := false) -> void:
 	if not switching_facing:
 		switching_facing = true
 		if facing_dir == Enums.Facing.LEFT:
@@ -168,7 +168,7 @@ func execute():
 func die(
 	was_executed: bool = false, 
 	drop_stuff: bool = true,
-	was_killed_by_player: bool = false
+	_was_killed_by_player: bool = false
 	) -> void:
 	if active:
 		SoundPlayer.play_sound_positional(death_vocalization, global_position)

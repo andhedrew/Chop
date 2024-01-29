@@ -12,7 +12,7 @@ func _ready() -> void:
 	visible = false
 
 
-func _process(delta):
+func _process(_delta):
 	if current_charges == 0:
 		$Alert.visible = true
 	else:

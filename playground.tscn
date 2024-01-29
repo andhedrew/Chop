@@ -43,14 +43,14 @@ texture_repeat = 2
 position = Vector2(1, -39)
 texture = ExtResource("3_5ppy8")
 region_enabled = true
-region_rect = Rect2(0, 16, 16, 48)
+region_rect = Rect2(0, 0, 16, 48)
 
 [node name="reel3" type="Sprite2D" parent="Slots" index="2"]
 texture_repeat = 2
 position = Vector2(29, -39)
 texture = ExtResource("3_5ppy8")
 region_enabled = true
-region_rect = Rect2(0, 16, 16, 48)
+region_rect = Rect2(0, 0, 16, 48)
 
 [node name="Sprite2D" type="Sprite2D" parent="Slots" index="3"]
 position = Vector2(0, -48)

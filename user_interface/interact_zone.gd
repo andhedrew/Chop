@@ -11,7 +11,9 @@ var faded_in := false
 
 var active := true
 
-var symbols = [1, 2, 3]
+var symbols1 = [1,1,1,1,1,1,1,1,1,1,1,1, 2, 3]
+var symbols2 = [1,1,1,1,1,1,1,1,1,1,1,1, 2, 3]
+var symbols3 = [1,1,1,1,1,1,1,1,1,1,1,1, 2, 3]
 
 func _ready():
 	fade_animation_player.play("RESET")
@@ -90,8 +92,10 @@ func _generate_food(player) -> void:
 
 func spin_reels() -> Array:
 	var reel_results = []
-	for i in range(3):
-		reel_results.append(symbols[randi() % symbols.size()])
+	reel_results.append(symbols1[randi() % symbols1.size()])
+	reel_results.append(symbols2[randi() % symbols2.size()])
+	reel_results.append(symbols3[randi() % symbols3.size()])
+	print_debug("reel_results: " + str(reel_results))
 	GameEvents.slots_activated.emit(reel_results)
 	return reel_results
 

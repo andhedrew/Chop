@@ -25,14 +25,14 @@ func _on_body_entered(body):
 		GameEvents.bullet_hit_breakable.emit(global_position)
 		var collisionShape = $CollisionShape2D.shape
 		var extents = collisionShape.extents
-		var rotation = get_parent().rotation
+		var new_rotation = get_parent().rotation
 
 		# Rotating each corner of the bounding box
 		var corners = [
-			global_position + Vector2(extents.x, extents.y).rotated(rotation),
-			global_position + Vector2(-extents.x, extents.y).rotated(rotation),
-			global_position + Vector2(-extents.x, -extents.y).rotated(rotation),
-			global_position + Vector2(extents.x, -extents.y).rotated(rotation)
+			global_position + Vector2(extents.x, extents.y).rotated(new_rotation),
+			global_position + Vector2(-extents.x, extents.y).rotated(new_rotation),
+			global_position + Vector2(-extents.x, -extents.y).rotated(new_rotation),
+			global_position + Vector2(extents.x, -extents.y).rotated(new_rotation)
 		]
 
 		# Finding the min and max x and y values after rotation

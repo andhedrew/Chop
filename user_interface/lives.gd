@@ -11,9 +11,7 @@ func _ready():
 	$Label.text = str(lives)
 	GameEvents.player_died.connect(on_player_death)
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass
+
 
 
 func on_player_death():

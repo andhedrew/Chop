@@ -98,7 +98,6 @@ func _input(event):
 			InputMap.action_add_event(action_to_remap, event)
 			_update_action_list(remapping_button, event)
 			
-			var event_name := str(event)
 			var action_name := str(action_to_remap)
 			var controls_dict = SaveManager.load_item("controls")
 			if controls_dict == null:
