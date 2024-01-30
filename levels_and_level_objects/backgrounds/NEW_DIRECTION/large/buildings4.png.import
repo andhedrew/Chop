@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cpf07186myfxo"
-path="res://.godot/imported/lake1.png-17d53c657f42c70ffa83711e7da028a6.ctex"
+uid="uid://b4ntw2svql0d5"
+path="res://.godot/imported/buildings4.png-c127b182dde5ae724b5ccdd09d3c0c5f.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://levels_and_level_objects/backgrounds/lakes/lake1.png"
-dest_files=["res://.godot/imported/lake1.png-17d53c657f42c70ffa83711e7da028a6.ctex"]
+source_file="res://levels_and_level_objects/backgrounds/NEW_DIRECTION/large/buildings4.png"
+dest_files=["res://.godot/imported/buildings4.png-c127b182dde5ae724b5ccdd09d3c0c5f.ctex"]
 
 [params]
 

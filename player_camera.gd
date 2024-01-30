@@ -105,7 +105,7 @@ func _process(delta: float) -> void:
 		# For example, you might check a variable or call a function in the player script
 		is_player_on_ground = player.is_on_floor()
 
-		var viewport_margin = -get_viewport_rect().size.y / 4
+		var viewport_margin = -get_viewport_rect().size.y / 3
 		# Calculate the desired vertical offset
 		var target_vertical_offset: float
 		if is_player_on_ground:

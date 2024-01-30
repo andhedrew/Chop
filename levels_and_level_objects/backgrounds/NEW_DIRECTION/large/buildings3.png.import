@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c2wxe5xmxn2ub"
-path="res://.godot/imported/extreme_foreground_2.png-d2e2ba4e810a9567aa3e32b0033918a3.ctex"
+uid="uid://pkiyrrs82s5p"
+path="res://.godot/imported/buildings3.png-988977a3f506a4a11d82e380d8895d85.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://levels_and_level_objects/backgrounds/extreme_foreground_darkest/extreme_foreground_2.png"
-dest_files=["res://.godot/imported/extreme_foreground_2.png-d2e2ba4e810a9567aa3e32b0033918a3.ctex"]
+source_file="res://levels_and_level_objects/backgrounds/NEW_DIRECTION/large/buildings3.png"
+dest_files=["res://.godot/imported/buildings3.png-988977a3f506a4a11d82e380d8895d85.ctex"]
 
 [params]
 
