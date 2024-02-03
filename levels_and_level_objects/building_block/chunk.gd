@@ -1,11 +1,14 @@
-
+@tool
 extends RigidBody2D
 
 @onready var hurtbox := $Hurtbox
 @onready var sprite := $Sprite2D
 @onready var collision_shape := $CollisionShape2D
 @onready var hurtbox_collision_shape := $Hurtbox/CollisionShape2D
+
+@export var texture: Texture2D = preload("res://levels_and_level_objects/dirt_block/dirt_block.png")
 @export var drop_pieces: Array[Resource]
+@export var take_damage_sound: AudioStreamWAV
 
 var pop_up_duration = 0.2 # Duration of the pop up motion in seconds
 var pop_up_velocity = Vector2(0, -200) # Velocity of the pop up motion
@@ -17,17 +20,38 @@ var last_velocity_x = null
 
 func _ready():
 	hurtbox.area_entered.connect(_chop_up)
-	hurtbox_collision_shape.shape.extents.x = sprite.region_rect.size.x/2
-	collision_shape.shape.extents.x = sprite.region_rect.size.x/2
-	hurtbox_collision_shape.shape.extents.y = sprite.region_rect.size.y/2
-	collision_shape.shape.extents.y = sprite.region_rect.size.y/2
+	collision_shape.shape = RectangleShape2D.new()
+	hurtbox_collision_shape.shape = RectangleShape2D.new()
+
+
+
+func _process(delta):
+	if sprite.texture != texture:
+		sprite.texture = texture
+		var size = Vector2(
+			sprite.texture.get_width(), 
+			sprite.texture.get_height()
+			)
+		sprite.set_region_rect(Rect2(0,0,size.x, size.y))
+		sprite.position.y = -sprite.texture.get_height() * 0.5
+		hurtbox_collision_shape.shape.extents = size * 0.5
+		hurtbox_collision_shape.position.y = -sprite.texture.get_height() * 0.5
+		collision_shape.shape.extents = size * 0.5
+		collision_shape.position.y = -sprite.texture.get_height() * 0.5
+		
+
+
+
 
 func _chop_up(hitbox) -> void:
 	SoundPlayer.play_sound_positional(chop_sound, position)
 	if hitbox is HitBox:
 		chop_counter += 1
-		_drop()
-		# Check if width or height is smaller than 1 pixel and run destroy function if necessary
+		if drop_pieces:
+			_drop()
+		
+		_generate_particles()
+		
 		if sprite.region_rect.size.x < 1 or sprite.region_rect.size.y < 1 or chop_counter > 3:
 			destroy()
 		else:
@@ -64,7 +88,8 @@ func _chop_up(hitbox) -> void:
 
 
 func destroy():
-	queue_free()
+	if not Engine.is_editor_hint():
+		queue_free()
 
 func _drop() -> void:
 	var probability = 0.5 + (counter * 0.1)
@@ -114,3 +139,15 @@ func _drop() -> void:
 		get_node("/root/").call_deferred("add_child", pickup)
 		
 		counter += 1
+
+
+func _generate_particles():
+	var particles := preload("res://vfx/dynamic_scenery_particles.tscn").instantiate()
+	if take_damage_sound:
+		SoundPlayer.play_sound_positional(take_damage_sound, global_position)
+	else:
+		SoundPlayer.play_sound_positional("dirt", global_position)
+	particles.texture = texture
+	particles.restart()
+	particles.position = global_position
+	particles.z_index = z_index
