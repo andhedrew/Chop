@@ -112,9 +112,6 @@ shape = SubResource("RectangleShape2D_2l75k")
 [node name="AreaOfInterest" parent="." instance=ExtResource("5_ak60v")]
 position = Vector2(-102, -116)
 
-[node name="CollisionShape2D" parent="AreaOfInterest/SplitFocusArea" index="0"]
-shape = null
-
 [node name="CollisionShape2D" parent="AreaOfInterest/MainFocusArea" index="0"]
 shape = SubResource("RectangleShape2D_fvnul")
 

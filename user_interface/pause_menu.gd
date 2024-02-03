@@ -5,11 +5,13 @@ extends Control
 @onready var current_page := main_page
 @onready var input_menu := $InputSettings
 
+
 var _is_paused: bool = false
 var cutscene_running := false
 
 func _ready():
 	$Main/Resume.pressed.connect(_on_resume_pressed)
+	$Main/ResetLevel.pressed.connect(_on_reset_pressed)
 	$Main/Quit.pressed.connect(_on_quit_pressed)
 	$Main/Settings.pressed.connect(_on_settings_pressed)
 	$Settings/Back.pressed.connect(_on_back_pressed)
@@ -69,3 +71,9 @@ func _on_remap_button_pressed():
 	settings_page.hide()
 	current_page = input_menu
 	
+
+
+func _on_reset_pressed():
+	_is_paused = !_is_paused
+	set_paused(_is_paused)
+	get_tree().reload_current_scene()

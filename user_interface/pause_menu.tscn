@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://dmx11p8qms3b0"]
+[gd_scene load_steps=14 format=3 uid="uid://dmx11p8qms3b0"]
 
 [ext_resource type="Theme" uid="uid://b0dhfhdkknaj3" path="res://user_interface/chop_theme.tres" id="1_0hf1x"]
 [ext_resource type="Script" path="res://user_interface/pause_menu.gd" id="1_m5bnr"]
@@ -11,6 +11,14 @@
 [ext_resource type="Resource" uid="uid://do8jck021gm3r" path="res://game_settings/settings/Volume/ambient_volume.tres" id="9_gtom3"]
 [ext_resource type="Script" path="res://user_interface/input_settings.gd" id="10_sbgb1"]
 [ext_resource type="PackedScene" uid="uid://cstpqyya5aysx" path="res://user_interface/input_button.tscn" id="11_ystsm"]
+
+[sub_resource type="InputEventKey" id="InputEventKey_eygd3"]
+device = -1
+keycode = 81
+unicode = 113
+
+[sub_resource type="Shortcut" id="Shortcut_mou5y"]
+events = [SubResource("InputEventKey_eygd3")]
 
 [node name="PauseMenu" type="Control"]
 process_mode = 3
@@ -71,6 +79,12 @@ text = "Resume
 [node name="Settings" type="Button" parent="Main"]
 layout_mode = 2
 text = "Settings"
+
+[node name="ResetLevel" type="Button" parent="Main"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.929412, 0, 0, 1)
+shortcut = SubResource("Shortcut_mou5y")
+text = "Reset Level"
 
 [node name="Quit" type="Button" parent="Main"]
 layout_mode = 2

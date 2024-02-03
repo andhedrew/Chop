@@ -14,8 +14,8 @@
 [ext_resource type="PackedScene" uid="uid://boakvecc6j1ta" path="res://characters/enemy/paroot/paroot.tscn" id="13_ocs5m"]
 [ext_resource type="PackedScene" uid="uid://c8hbwwnbcoese" path="res://characters/enemy/chop-chop/chop-chop_on_land.tscn" id="13_yhkkn"]
 [ext_resource type="PackedScene" uid="uid://b72q0g6eleo7q" path="res://levels_and_level_objects/choppable/choppable_chunk.tscn" id="14_o7kwg"]
-[ext_resource type="Texture2D" uid="uid://opn8ecyin2ub" path="res://levels_and_level_objects/choppable/pipe2.png" id="15_y2f5s"]
-[ext_resource type="Texture2D" uid="uid://d0y0qtblau68j" path="res://levels_and_level_objects/choppable/pipe1.png" id="16_woicw"]
+[ext_resource type="Texture2D" uid="uid://bpifpn3g0guv5" path="res://levels_and_level_objects/choppable/pipe_pieces.png" id="15_i30lw"]
+[ext_resource type="AudioStream" uid="uid://mbuqyq853qcm" path="res://audio/sounds/pipe.wav" id="16_njrvh"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qsl55"]
 size = Vector2(26, 13)
@@ -140,12 +140,11 @@ position = Vector2(5104, -352)
 collision_mask = 449
 
 [node name="ChoppableChunk" parent="." index="38" instance=ExtResource("14_o7kwg")]
-position = Vector2(128, -16)
-texture = ExtResource("15_y2f5s")
-
-[node name="ChoppableChunk2" parent="." index="39" instance=ExtResource("14_o7kwg")]
-position = Vector2(176, -16)
-texture = ExtResource("16_woicw")
+position = Vector2(-176, -16)
+particle_texture = ExtResource("15_i30lw")
+particle_texture_width = 16
+take_damage_sound = ExtResource("16_njrvh")
+pop_up = false
 
 [editable path="ColorShiftLayer"]
 [editable path="death_zone"]
