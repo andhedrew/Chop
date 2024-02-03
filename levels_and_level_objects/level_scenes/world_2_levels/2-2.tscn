@@ -30,16 +30,16 @@ next_map = ExtResource("2_dkngf")
 next_level = "res://levels_and_level_objects/level_scenes/world_2_levels/2-3.tscn"
 checkpoint = true
 
-[node name="ParallaxLayer4" parent="Background" index="1"]
+[node name="ParallaxLayer4" parent="Background" index="2"]
 modulate = Color(0.34902, 0.34902, 0.470588, 1)
 
-[node name="ParallaxLayer3" parent="Background" index="3"]
+[node name="ParallaxLayer3" parent="Background" index="5"]
 modulate = Color(0.290196, 0.317647, 0.341176, 1)
 
-[node name="ParallaxLayer2" parent="Background" index="5"]
+[node name="ParallaxLayer2" parent="Background" index="8"]
 modulate = Color(0.313726, 0.313726, 0.360784, 1)
 
-[node name="UnmovingScenery" parent="Background" index="7"]
+[node name="UnmovingScenery" parent="Background" index="10"]
 modulate = Color(0.321569, 0.321569, 0.321569, 1)
 
 [node name="InteractiveProps" parent="." index="4"]
