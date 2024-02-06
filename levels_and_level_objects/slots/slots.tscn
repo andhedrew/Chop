@@ -1,0 +1,63 @@
+[gd_scene load_steps=5 format=3 uid="uid://timyau5qucpt"]
+
+[ext_resource type="Script" path="res://levels_and_level_objects/slots/slots.gd" id="1_1oefl"]
+[ext_resource type="Texture2D" uid="uid://dsvwwi7mhwmxg" path="res://levels_and_level_objects/slots/test_reel.png" id="2_rejsc"]
+[ext_resource type="Texture2D" uid="uid://2s7dygswaqah" path="res://levels_and_level_objects/slots/slots.png" id="3_1cyiv"]
+[ext_resource type="PackedScene" uid="uid://1uyehb3etpp1" path="res://user_interface/interact_zone.tscn" id="4_6pju5"]
+
+[node name="Slots" type="Node2D"]
+script = ExtResource("1_1oefl")
+
+[node name="reel1" type="Sprite2D" parent="."]
+texture_repeat = 2
+position = Vector2(-24, -42)
+texture = ExtResource("2_rejsc")
+region_enabled = true
+region_rect = Rect2(0, 0, 16, 48)
+
+[node name="reel2" type="Sprite2D" parent="."]
+texture_repeat = 2
+position = Vector2(0, -42)
+texture = ExtResource("2_rejsc")
+region_enabled = true
+region_rect = Rect2(0, 0, 16, 48)
+
+[node name="reel3" type="Sprite2D" parent="."]
+texture_repeat = 2
+position = Vector2(24, -42)
+texture = ExtResource("2_rejsc")
+region_enabled = true
+region_rect = Rect2(0, 0, 16, 48)
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, -58)
+texture = ExtResource("3_1cyiv")
+
+[node name="InteractZone" parent="." instance=ExtResource("4_6pju5")]
+
+[node name="Trigger" parent="InteractZone" index="1"]
+position = Vector2(-56, 3)
+
+[node name="FoodSpawn" parent="InteractZone" index="2"]
+position = Vector2(0, -128)
+
+[node name="Label" parent="InteractZone" index="3"]
+offset_left = -33.0
+offset_top = -161.0
+offset_right = 31.0
+offset_bottom = -138.0
+text = "GAMBLE"
+
+[node name="AnimatedSprite2D" parent="InteractZone/Label" index="0"]
+position = Vector2(36, 28)
+
+[node name="Particles1" parent="InteractZone" index="4"]
+position = Vector2(-57, 3)
+
+[node name="Particles2" parent="InteractZone" index="5"]
+position = Vector2(-35, 3)
+
+[node name="Particles3" parent="InteractZone" index="6"]
+position = Vector2(-80, 3)
+
+[editable path="InteractZone"]

@@ -5,13 +5,13 @@
 [ext_resource type="PackedScene" uid="uid://eow2ybkt3135" path="res://levels_and_level_objects/flagpole.tscn" id="2_gju63"]
 [ext_resource type="PackedScene" uid="uid://cvlo5mexkgiiq" path="res://levels_and_level_objects/map/map_world_1.tscn" id="3_32nmr"]
 [ext_resource type="PackedScene" uid="uid://dnjasyv6stmn4" path="res://levels_and_level_objects/question_block/question_mark_block.tscn" id="3_ffakt"]
+[ext_resource type="Texture2D" uid="uid://dns42g4wnro0c" path="res://levels_and_level_objects/environments/sunny_fields/cloud.png" id="4_e8t78"]
+[ext_resource type="Texture2D" uid="uid://dbn6ip4vv1dcr" path="res://levels_and_level_objects/environments/sunny_fields/back_layer.png" id="5_13ijl"]
 [ext_resource type="PackedScene" uid="uid://cm208i2oyjrct" path="res://characters/enemy/hotdog/hotdog.tscn" id="5_dlvui"]
-[ext_resource type="Texture2D" uid="uid://dns42g4wnro0c" path="res://levels_and_level_objects/backgrounds/sunny_top_lit/cloud.png" id="5_moknx"]
-[ext_resource type="Texture2D" uid="uid://dbn6ip4vv1dcr" path="res://levels_and_level_objects/backgrounds/sunny_top_lit/back_layer.png" id="6_o5f47"]
+[ext_resource type="Texture2D" uid="uid://cnjxis6gaoim8" path="res://levels_and_level_objects/environments/sunny_fields/mid_layer.png" id="6_ey50e"]
 [ext_resource type="Texture2D" uid="uid://b5hsxs25of2e5" path="res://levels_and_level_objects/backgrounds/NEW_DIRECTION/med/props1.png" id="7_dy8an"]
-[ext_resource type="Texture2D" uid="uid://cnjxis6gaoim8" path="res://levels_and_level_objects/backgrounds/sunny_top_lit/mid_layer.png" id="7_mp8o4"]
 [ext_resource type="Texture2D" uid="uid://dsdeqemx3kgs0" path="res://levels_and_level_objects/backgrounds/NEW_DIRECTION/med/props2.png" id="8_b6pdy"]
-[ext_resource type="Texture2D" uid="uid://o7m13j1g8k4q" path="res://levels_and_level_objects/backgrounds/sunny_top_lit/close_layer.png" id="10_e771a"]
+[ext_resource type="Texture2D" uid="uid://o7m13j1g8k4q" path="res://levels_and_level_objects/environments/sunny_fields/close_layer.png" id="9_qowgo"]
 [ext_resource type="PackedScene" uid="uid://lgs5rnjrykeu" path="res://levels_and_level_objects/hazards/mush.tscn" id="10_ox3w8"]
 [ext_resource type="Texture2D" uid="uid://b4tbrwb1ork41" path="res://levels_and_level_objects/backgrounds/NEW_DIRECTION/large/buildings1.png" id="10_tebbm"]
 [ext_resource type="Texture2D" uid="uid://chber0ri70ked" path="res://levels_and_level_objects/backgrounds/NEW_DIRECTION/large/buildings2.png" id="11_d48p6"]
@@ -247,14 +247,14 @@ next_map = ExtResource("3_32nmr")
 next_level = "res://levels_and_level_objects/level_scenes/world_1_levels/1-2.tscn"
 
 [node name="bg" parent="BackgroundSky" index="0"]
-color = Color(0.988235, 0.74902, 0.462745, 1)
+color = Color(0.988235, 0.878431, 0.686275, 1)
 
 [node name="Cloud" parent="Background" index="0"]
 motion_mirroring = Vector2(1680, 0)
 
 [node name="Clouds" type="Sprite2D" parent="Background/Cloud" index="0"]
-position = Vector2(8, -174)
-texture = ExtResource("5_moknx")
+position = Vector2(0, -134)
+texture = ExtResource("4_e8t78")
 
 [node name="ParallaxLayer4" parent="Background" index="2"]
 position = Vector2(0, 0)
@@ -262,7 +262,7 @@ motion_mirroring = Vector2(1682, 0)
 
 [node name="grass" type="Sprite2D" parent="Background/ParallaxLayer4" index="0"]
 position = Vector2(144, -48)
-texture = ExtResource("6_o5f47")
+texture = ExtResource("5_13ijl")
 region_rect = Rect2(0, 0, 2523, 337)
 
 [node name="ParallaxLayer3" parent="Background" index="5"]
@@ -271,7 +271,7 @@ motion_mirroring = Vector2(1680, 0)
 
 [node name="grass" type="Sprite2D" parent="Background/ParallaxLayer3" index="0"]
 position = Vector2(664, 72)
-texture = ExtResource("7_mp8o4")
+texture = ExtResource("6_ey50e")
 region_rect = Rect2(0, 0, 2523, 337)
 
 [node name="Buildings4" type="Sprite2D" parent="Background/Layer3NonRepeating" index="0"]
@@ -291,7 +291,7 @@ motion_mirroring = Vector2(1680, 0)
 
 [node name="grass" type="Sprite2D" parent="Background/ParallaxLayer2" index="0"]
 position = Vector2(352, -48)
-texture = ExtResource("10_e771a")
+texture = ExtResource("9_qowgo")
 region_rect = Rect2(0, 0, 2523, 337)
 
 [node name="Buildings1" type="Sprite2D" parent="Background/Layer2NonRepeating" index="0"]

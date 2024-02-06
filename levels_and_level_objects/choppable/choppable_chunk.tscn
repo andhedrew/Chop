@@ -5,17 +5,14 @@
 [ext_resource type="PackedScene" uid="uid://bb1h85dym7l4i" path="res://hitboxes/Hurtbox.tscn" id="3_ojrxp"]
 [ext_resource type="Texture2D" uid="uid://13mylemuvnw1" path="res://levels_and_level_objects/choppable/pipe_damage.png" id="3_pijam"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_43fyj"]
-size = Vector2(32, 64)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_cb16e"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_4abdq"]
-size = Vector2(32, 64)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rtpcl"]
 
 [node name="ChoppableChunk" type="RigidBody2D"]
 collision_mask = 9
 lock_rotation = true
 script = ExtResource("1_ao7ah")
-particle_texture_width = null
 texture = ExtResource("2_viqbe")
 damage_texture = ExtResource("3_pijam")
 
@@ -35,13 +32,13 @@ region_rect = Rect2(0, 0, 32, 64)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -32)
-shape = SubResource("RectangleShape2D_43fyj")
+shape = SubResource("RectangleShape2D_cb16e")
 
 [node name="Hurtbox" parent="." instance=ExtResource("3_ojrxp")]
 collision_mask = 8
 
 [node name="CollisionShape2D" parent="Hurtbox" index="0"]
 position = Vector2(-0.5, -32)
-shape = SubResource("RectangleShape2D_4abdq")
+shape = SubResource("RectangleShape2D_rtpcl")
 
 [editable path="Hurtbox"]

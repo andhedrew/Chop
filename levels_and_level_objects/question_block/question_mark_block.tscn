@@ -25,6 +25,7 @@ texture = ExtResource("1_f6ybg")
 hframes = 4
 
 [node name="Hurtbox" parent="." instance=ExtResource("2_yui4t")]
+visible = false
 collision_layer = 0
 collision_mask = 8
 
@@ -33,6 +34,7 @@ position = Vector2(-1, 0)
 shape = SubResource("RectangleShape2D_iiyo1")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
 shape = SubResource("RectangleShape2D_nevsp")
 
 [editable path="Hurtbox"]
