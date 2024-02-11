@@ -1,8 +1,8 @@
 [gd_scene load_steps=7 format=3 uid="uid://be10xrb276d2j"]
 
-[ext_resource type="Texture2D" uid="uid://yb6ka7jfofgx" path="res://levels_and_level_objects/destructible_plants/Sprites/plant_1.png" id="1_mss2g"]
 [ext_resource type="Shader" path="res://levels_and_level_objects/destructible_plants/chop_foliage_underwater.gdshader" id="1_ukwjn"]
 [ext_resource type="Script" path="res://levels_and_level_objects/destructible_plants/chop_foliage.gd" id="2_ly67b"]
+[ext_resource type="Texture2D" uid="uid://cchatwpw7ltmw" path="res://levels_and_level_objects/destructible_plants/Sprites/plants_underwater.png" id="2_s7odr"]
 [ext_resource type="PackedScene" uid="uid://bb1h85dym7l4i" path="res://hitboxes/Hurtbox.tscn" id="3_aa7am"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_wcmfv"]
@@ -22,8 +22,9 @@ size = Vector2(21, 31)
 
 [node name="ChopFoliage" type="Sprite2D"]
 material = SubResource("ShaderMaterial_wcmfv")
-position = Vector2(0, -15)
-texture = ExtResource("1_mss2g")
+position = Vector2(0, -20)
+texture = ExtResource("2_s7odr")
+hframes = 200
 script = ExtResource("2_ly67b")
 
 [node name="Hurtbox" parent="." instance=ExtResource("3_aa7am")]
