@@ -553,6 +553,7 @@ motion_scale = Vector2(0.8, 1)
 [node name="InteractiveProps" type="Node2D" parent="."]
 
 [node name="TileMapBG" type="TileMap" parent="."]
+z_index = -3
 tile_set = ExtResource("3_sucgp")
 format = 2
 script = ExtResource("4_okk2y")

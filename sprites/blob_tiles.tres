@@ -435,6 +435,98 @@ texture = ExtResource("1_k0ig7")
 9:8/0/metadata/_better_terrain = {
 "type": 9
 }
+0:9/0 = 0
+0:9/0/metadata/_better_terrain = {
+"type": 10
+}
+1:9/0 = 0
+1:9/0/metadata/_better_terrain = {
+"type": 10
+}
+2:9/0 = 0
+2:9/0/metadata/_better_terrain = {
+"type": 10
+}
+3:9/0 = 0
+3:9/0/metadata/_better_terrain = {
+"type": 10
+}
+7:9/0 = 0
+7:9/0/metadata/_better_terrain = {
+"type": 10
+}
+8:9/0 = 0
+8:9/0/metadata/_better_terrain = {
+"type": 10
+}
+6:9/0 = 0
+6:9/0/metadata/_better_terrain = {
+"type": 10
+}
+5:9/0 = 0
+5:9/0/metadata/_better_terrain = {
+"type": 10
+}
+4:9/0 = 0
+4:9/0/metadata/_better_terrain = {
+"type": 10
+}
+0:10/0 = 0
+0:10/0/metadata/_better_terrain = {
+"type": 11
+}
+1:10/0 = 0
+1:10/0/metadata/_better_terrain = {
+"type": 11
+}
+2:10/0 = 0
+2:10/0/metadata/_better_terrain = {
+"type": 11
+}
+3:10/0 = 0
+3:10/0/metadata/_better_terrain = {
+"type": 11
+}
+4:10/0 = 0
+4:10/0/metadata/_better_terrain = {
+"type": 11
+}
+5:10/0 = 0
+5:10/0/metadata/_better_terrain = {
+"type": 11
+}
+6:10/0 = 0
+6:10/0/metadata/_better_terrain = {
+"type": 11
+}
+7:10/0 = 0
+7:10/0/metadata/_better_terrain = {
+"type": 11
+}
+8:10/0 = 0
+8:10/0/metadata/_better_terrain = {
+"type": 11
+}
+0:11/0 = 0
+1:11/0 = 0
+2:11/0 = 0
+3:11/0 = 0
+4:11/0 = 0
+5:11/0 = 0
+6:11/0 = 0
+7:11/0 = 0
+8:11/0 = 0
+9:11/0 = 0
+9:12/0 = 0
+8:12/0 = 0
+7:12/0 = 0
+6:12/0 = 0
+5:12/0 = 0
+4:12/0 = 0
+3:12/0 = 0
+2:12/0 = 0
+1:12/0 = 0
+0:12/0 = 0
 
 [resource]
 tile_size = Vector2i(3, 3)
@@ -462,6 +554,10 @@ metadata/_better_terrain = {
 }], ["ground dirt sunny", Color(0.433084, 0.842035, 0.51453, 1), 0, [], {
 "path": ""
 }], ["ground_dirt_cool", Color(0.405575, 0.949521, 0.624357, 1), 0, [], {
+"path": ""
+}], ["tiles", Color(0.918971, 0.930908, 0.55146, 1), 0, [], {
+"path": ""
+}], ["spoiks", Color(0.541176, 0.878431, 0.247059, 1), 0, [], {
 "path": ""
 }]],
 "version": "0.2"

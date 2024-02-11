@@ -25,6 +25,7 @@ Param="*res://autoloads/Param.gd"
 SaveManager="*res://autoloads/SaveManager.gd"
 LevelInfo="*res://autoloads/LevelInfo.gd"
 GGS="*res://addons/ggs/classes/global/ggs.tscn"
+BetterTerrain="*res://addons/better-terrain/BetterTerrain.gd"
 
 [display]
 
