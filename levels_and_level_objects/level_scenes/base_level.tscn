@@ -1,4 +1,4 @@
-[gd_scene load_steps=38 format=3 uid="uid://dm85xjdq5mkk3"]
+[gd_scene load_steps=40 format=3 uid="uid://dm85xjdq5mkk3"]
 
 [ext_resource type="Script" path="res://levels_and_level_objects/level_scenes/level_manager.gd" id="1_ity0y"]
 [ext_resource type="Script" path="res://day_night_cycle.gd" id="2_h45bf"]
@@ -9,6 +9,7 @@
 [ext_resource type="Shader" path="res://vfx/lighten_bg_objects_far.gdshader" id="5_7sfwi"]
 [ext_resource type="Shader" path="res://vfx/lighten_bg_objects_mid.gdshader" id="5_jj37c"]
 [ext_resource type="Script" path="res://sprites/tilesets/breakable_tileset_behavior.gd" id="5_pq8vy"]
+[ext_resource type="TileSet" uid="uid://c88pkuj7fwd3t" path="res://sprites/foreground_bush_blob_tiles.tres" id="6_5dmwc"]
 [ext_resource type="PackedScene" uid="uid://bqg8q7u0o16hm" path="res://gameplay_objects/camera.tscn" id="6_818il"]
 [ext_resource type="TileSet" uid="uid://dncfauqbtucau" path="res://sprites/tilesets/grass_fg.tres" id="7_pgalx"]
 [ext_resource type="Script" path="res://levels_and_level_objects/level_scenes/debug.gd" id="7_wmhq8"]
@@ -19,6 +20,7 @@
 [ext_resource type="Script" path="res://sprites/tilesets/level_edges.gd" id="12_p5ngp"]
 [ext_resource type="Script" path="res://user_interface/world_name.gd" id="13_agt4c"]
 [ext_resource type="Theme" uid="uid://b0dhfhdkknaj3" path="res://user_interface/chop_theme.tres" id="13_hi45l"]
+[ext_resource type="TileSet" uid="uid://c8dx7cnyjebgi" path="res://sprites/blob_tiles.tres" id="14_ak37i"]
 [ext_resource type="FontFile" uid="uid://baykuh7pqbali" path="res://user_interface/fonts/Giza.otf" id="14_hjp1d"]
 [ext_resource type="Script" path="res://levels_and_level_objects/level_interactive_objects/enemy_activation_area.gd" id="15_swnbw"]
 [ext_resource type="PackedScene" uid="uid://c45dv8km6cdm" path="res://vfx/color_shift_layer.tscn" id="18_5x8xk"]
@@ -552,6 +554,10 @@ motion_scale = Vector2(0.8, 1)
 
 [node name="InteractiveProps" type="Node2D" parent="."]
 
+[node name="BushBlobTiles" type="TileMap" parent="."]
+tile_set = ExtResource("6_5dmwc")
+format = 2
+
 [node name="TileMapBG" type="TileMap" parent="."]
 z_index = -3
 tile_set = ExtResource("3_sucgp")
@@ -572,6 +578,10 @@ z_index = 2
 tile_set = ExtResource("7_pgalx")
 format = 2
 script = ExtResource("9_83p45")
+
+[node name="BlobTiles" type="TileMap" parent="TileMap"]
+tile_set = ExtResource("14_ak37i")
+format = 2
 
 [node name="LevelEdges" type="TileMap" parent="."]
 z_index = 3
@@ -672,6 +682,11 @@ visible = false
 [node name="Player" parent="." node_paths=PackedStringArray("camera") instance=ExtResource("31_fx83i")]
 position = Vector2(-144, 64)
 camera = NodePath("../Camera")
+
+[node name="BushBlobTilesFG" type="TileMap" parent="."]
+modulate = Color(0.788235, 0.694118, 0.670588, 1)
+tile_set = ExtResource("6_5dmwc")
+format = 2
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 

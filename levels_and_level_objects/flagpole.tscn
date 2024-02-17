@@ -106,6 +106,7 @@ libraries = {
 [node name="EndOfLevel" parent="." instance=ExtResource("4_r4gp1")]
 
 [node name="EndOfLevel" parent="EndOfLevel" index="0"]
+visible = false
 position = Vector2(131, -108.5)
 shape = SubResource("RectangleShape2D_2l75k")
 
@@ -113,6 +114,7 @@ shape = SubResource("RectangleShape2D_2l75k")
 position = Vector2(-102, -116)
 
 [node name="CollisionShape2D" parent="AreaOfInterest/MainFocusArea" index="0"]
+visible = false
 shape = SubResource("RectangleShape2D_fvnul")
 
 [node name="ScoreMarker" type="Sprite2D" parent="."]
