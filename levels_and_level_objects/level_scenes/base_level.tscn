@@ -1,4 +1,4 @@
-[gd_scene load_steps=40 format=3 uid="uid://dm85xjdq5mkk3"]
+[gd_scene load_steps=41 format=3 uid="uid://dm85xjdq5mkk3"]
 
 [ext_resource type="Script" path="res://levels_and_level_objects/level_scenes/level_manager.gd" id="1_ity0y"]
 [ext_resource type="Script" path="res://day_night_cycle.gd" id="2_h45bf"]
@@ -25,6 +25,7 @@
 [ext_resource type="Script" path="res://levels_and_level_objects/level_interactive_objects/enemy_activation_area.gd" id="15_swnbw"]
 [ext_resource type="PackedScene" uid="uid://c45dv8km6cdm" path="res://vfx/color_shift_layer.tscn" id="18_5x8xk"]
 [ext_resource type="PackedScene" uid="uid://dmx11p8qms3b0" path="res://user_interface/pause_menu.tscn" id="24_5oeil"]
+[ext_resource type="TileSet" uid="uid://ds4by5hcwiwv7" path="res://sprites/DARK_bush_blob_tiles.tres" id="26_8klfa"]
 [ext_resource type="PackedScene" uid="uid://bwvi5m2prncxh" path="res://characters/player/player.tscn" id="31_fx83i"]
 
 [sub_resource type="Animation" id="Animation_vp1kt"]
@@ -465,7 +466,7 @@ sources/0 = SubResource("TileSetAtlasSource_r66b7")
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0a5r0"]
 size = Vector2(670, 390)
 
-[node name="World" type="Node2D" node_paths=PackedStringArray("camera")]
+[node name="World2" type="Node2D" node_paths=PackedStringArray("camera")]
 script = ExtResource("1_ity0y")
 camera = NodePath("Camera")
 
@@ -684,8 +685,7 @@ position = Vector2(-144, 64)
 camera = NodePath("../Camera")
 
 [node name="BushBlobTilesFG" type="TileMap" parent="."]
-modulate = Color(0.788235, 0.694118, 0.670588, 1)
-tile_set = ExtResource("6_5dmwc")
+tile_set = ExtResource("26_8klfa")
 format = 2
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
