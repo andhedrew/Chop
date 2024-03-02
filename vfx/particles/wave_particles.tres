@@ -17,15 +17,13 @@ point_count = 2
 curve = SubResource("Curve_drj2t")
 
 [resource]
+particle_flag_disable_z = true
 emission_shape = 3
 emission_box_extents = Vector3(50, 200, 1)
-particle_flag_disable_z = true
-gravity = Vector3(15, 90, 0)
-orbit_velocity_min = 0.0
-orbit_velocity_max = 0.0
 angle_min = -720.0
 angle_max = 695.2
 angle_curve = SubResource("CurveTexture_y0od4")
+gravity = Vector3(15, 90, 0)
 scale_curve = SubResource("CurveTexture_6gq1m")
 anim_speed_min = 1.0
 anim_speed_max = 1.0

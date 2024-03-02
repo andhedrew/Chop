@@ -5,15 +5,15 @@
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_7ocix"]
 texture = ExtResource("1_7b8tw")
 0:0/next_alternative_id = 3
-0:0/animation_columns = 3
+0:0/animation_columns = 6
 0:0/animation_separation = Vector2i(2, 0)
 0:0/animation_frame_0/duration = 0.2
 0:0/animation_frame_1/duration = 0.2
-0:0/animation_frame_2/duration = 0.2
+0:0/animation_frame_2/duration = 0.8
 0:0/0 = 0
 0:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 0:0/0/physics_layer_0/angular_velocity = 0.0
-0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -7, 8, -7, 8, 8, -8, 8)
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-7, -7, 7, -7, 7, 7, -7, 7)
 0:0/0/metadata/_better_terrain = {
 0: [0],
 "type": 0
@@ -22,21 +22,22 @@ texture = ExtResource("1_7b8tw")
 0:0/2/flip_h = true
 0:0/2/physics_layer_0/linear_velocity = Vector2(0, 0)
 0:0/2/physics_layer_0/angular_velocity = 0.0
-0:0/2/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -7, 8, -7, 8, 8, -8, 8)
+0:0/2/physics_layer_0/polygon_0/points = PackedVector2Array(-7, -7, 7, -7, 7, 7, -7, 7)
 0:0/2/metadata/_better_terrain = {
 8: [1],
 "type": 1
 }
 1:0/next_alternative_id = 2
-1:0/animation_columns = 3
-1:0/animation_separation = Vector2i(2, 0)
+1:0/animation_columns = 6
+1:0/animation_separation = Vector2i(2, 1)
+1:0/animation_mode = 1
 1:0/animation_frame_0/duration = 0.2
-1:0/animation_frame_1/duration = 0.2
+1:0/animation_frame_1/duration = 0.8
 1:0/animation_frame_2/duration = 0.2
 1:0/0 = 0
 1:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 1:0/0/physics_layer_0/angular_velocity = 0.0
-1:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -7, 8, -7, 8, 8, -8, 8)
+1:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-7, -7, 7, -7, 7, 7, -7, 7)
 1:0/0/metadata/_better_terrain = {
 0: [0],
 8: [0],
@@ -46,22 +47,22 @@ texture = ExtResource("1_7b8tw")
 1:0/1/flip_h = true
 1:0/1/physics_layer_0/linear_velocity = Vector2(0, 0)
 1:0/1/physics_layer_0/angular_velocity = 0.0
-1:0/1/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -7, 8, -7, 8, 8, -8, 8)
+1:0/1/physics_layer_0/polygon_0/points = PackedVector2Array(-7, -7, 7, -7, 7, 7, -7, 7)
 1:0/1/metadata/_better_terrain = {
 0: [1],
 8: [1],
 "type": 1
 }
 2:0/next_alternative_id = 2
-2:0/animation_columns = 3
-2:0/animation_separation = Vector2i(2, 0)
+2:0/animation_columns = 6
+2:0/animation_separation = Vector2i(2, 1)
 2:0/animation_frame_0/duration = 0.2
 2:0/animation_frame_1/duration = 0.2
-2:0/animation_frame_2/duration = 0.2
+2:0/animation_frame_2/duration = 0.8
 2:0/0 = 0
 2:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 2:0/0/physics_layer_0/angular_velocity = 0.0
-2:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -7, 8, -7, 8, 8, -8, 8)
+2:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-7, -7, 7, -7, 7, 7, -7, 7)
 2:0/0/metadata/_better_terrain = {
 8: [0],
 "type": 0
@@ -70,7 +71,7 @@ texture = ExtResource("1_7b8tw")
 2:0/1/flip_h = true
 2:0/1/physics_layer_0/linear_velocity = Vector2(0, 0)
 2:0/1/physics_layer_0/angular_velocity = 0.0
-2:0/1/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -7, 8, -7, 8, 8, -8, 8)
+2:0/1/physics_layer_0/polygon_0/points = PackedVector2Array(-7, -7, 7, -7, 7, 7, -7, 7)
 2:0/1/metadata/_better_terrain = {
 0: [1],
 "type": 1
