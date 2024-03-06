@@ -28,6 +28,7 @@ hframes = 200
 script = ExtResource("2_ly67b")
 
 [node name="Hurtbox" parent="." instance=ExtResource("3_aa7am")]
+visible = false
 collision_mask = 8
 monitorable = false
 

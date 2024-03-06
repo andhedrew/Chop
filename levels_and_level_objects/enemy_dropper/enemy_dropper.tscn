@@ -1,7 +1,8 @@
-[gd_scene load_steps=10 format=3 uid="uid://bg5fv3j7uct3o"]
+[gd_scene load_steps=12 format=3 uid="uid://bg5fv3j7uct3o"]
 
 [ext_resource type="Script" path="res://levels_and_level_objects/enemy_dropper/EnemyDropper.gd" id="1_jtgr7"]
 [ext_resource type="Texture2D" uid="uid://d07iqpfogf0ax" path="res://levels_and_level_objects/enemy_dropper/enemy_dropper.png" id="3_w0i14"]
+[ext_resource type="PackedScene" uid="uid://hf8oc665xro5" path="res://hitboxes/shieldbox.tscn" id="3_y6c6v"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_6oigw"]
 atlas = ExtResource("3_w0i14")
@@ -72,6 +73,9 @@ _data = {
 "rattle": SubResource("Animation_ok51r")
 }
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hvb1f"]
+size = Vector2(55, 64)
+
 [node name="EnemyDropper" type="Node2D"]
 process_mode = 3
 script = ExtResource("1_jtgr7")
@@ -89,3 +93,11 @@ frame_progress = 0.86496
 libraries = {
 "": SubResource("AnimationLibrary_0uhis")
 }
+
+[node name="Shield" parent="." instance=ExtResource("3_y6c6v")]
+
+[node name="CollisionShape2D" parent="Shield" index="0"]
+position = Vector2(0.5, 0)
+shape = SubResource("RectangleShape2D_hvb1f")
+
+[editable path="Shield"]
