@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=3 uid="uid://4ehr10dccqj"]
+[gd_scene load_steps=34 format=3 uid="uid://4ehr10dccqj"]
 
 [ext_resource type="PackedScene" uid="uid://dm85xjdq5mkk3" path="res://levels_and_level_objects/level_scenes/base_level.tscn" id="1_o34es"]
 [ext_resource type="PackedScene" uid="uid://cvlo5mexkgiiq" path="res://levels_and_level_objects/map/map_world_1.tscn" id="2_lmgrh"]
@@ -17,6 +17,7 @@
 [ext_resource type="PackedScene" uid="uid://i5hx0ruiv4wk" path="res://levels_and_level_objects/checkpoint/checkpoint.tscn" id="13_novyb"]
 [ext_resource type="PackedScene" uid="uid://boakvecc6j1ta" path="res://characters/enemy/paroot/paroot.tscn" id="13_ocs5m"]
 [ext_resource type="PackedScene" uid="uid://c8hbwwnbcoese" path="res://characters/enemy/chop-chop/chop-chop_on_land.tscn" id="13_yhkkn"]
+[ext_resource type="Shader" path="res://addons/extensible_color_palette/color_filter.gdshader" id="18_1yhm5"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_dp0g8"]
 particles_animation = true
@@ -132,8 +133,23 @@ metadata/_better_terrain = {
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qsl55"]
 size = Vector2(26, 13)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_n4i5p"]
+size = Vector2(374, 580.002)
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_731hc"]
 size = Vector2(2912, 20)
+
+[sub_resource type="Gradient" id="Gradient_78s33"]
+offsets = PackedFloat32Array(0, 0.304469, 0.648045, 1)
+colors = PackedColorArray(0, 0.0862745, 0.211765, 0.486275, 0.14902, 0.313726, 0.329412, 0.352941, 0.811765, 0.435294, 0.203922, 0.364706, 0.980392, 0.686275, 0.215686, 0.270588)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_hnaml"]
+gradient = SubResource("Gradient_78s33")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_6ifgq"]
+shader = ExtResource("18_1yhm5")
+shader_parameter/flip = null
+shader_parameter/gradient = SubResource("GradientTexture1D_hnaml")
 
 [node name="World" instance=ExtResource("1_o34es")]
 map_position = 2.0
@@ -656,6 +672,11 @@ pool_size = 20
 [node name="Flagpole3" parent="." index="29" instance=ExtResource("2_w14s7")]
 position = Vector2(5728, -256)
 
+[node name="CollisionShape2D" parent="Flagpole3/AreaOfInterest/MainFocusArea" index="0"]
+visible = true
+position = Vector2(-1.5, -31)
+shape = SubResource("RectangleShape2D_n4i5p")
+
 [node name="QuestionMarkBlock" parent="." index="30" instance=ExtResource("11_168f4")]
 position = Vector2(1040, -80)
 
@@ -691,6 +712,15 @@ collision_mask = 449
 [node name="Player" parent="." index="38"]
 position = Vector2(2, -17)
 
+[node name="Sprite2D" parent="ColorShiftLayer2" index="0"]
+material = SubResource("ShaderMaterial_6ifgq")
+
 [editable path="ColorShiftLayer"]
 [editable path="death_zone"]
+[editable path="Flagpole3"]
+[editable path="Flagpole3/ExplodingBlock2"]
+[editable path="Flagpole3/ExplodingBlock2/Hurtbox"]
+[editable path="Flagpole3/EndOfLevel"]
+[editable path="Flagpole3/AreaOfInterest"]
 [editable path="death_zone2"]
+[editable path="ColorShiftLayer2"]

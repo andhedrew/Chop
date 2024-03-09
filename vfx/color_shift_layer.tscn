@@ -1,13 +1,11 @@
-[gd_scene load_steps=5 format=3 uid="uid://c45dv8km6cdm"]
+[gd_scene load_steps=4 format=3 uid="uid://c45dv8km6cdm"]
 
 [ext_resource type="Shader" path="res://addons/extensible_color_palette/color_filter.gdshader" id="1_rly74"]
 [ext_resource type="Texture2D" uid="uid://c1nex6wxbe8hf" path="res://addons/UniversalFade/Patterns/Diagonal.png" id="2_aw4md"]
-[ext_resource type="Texture2D" uid="uid://w1waixl86fbt" path="res://vfx/palette_shifts/pink_and_light.tres" id="2_cqtl3"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_5i81i"]
 shader = ExtResource("1_rly74")
 shader_parameter/flip = null
-shader_parameter/gradient = ExtResource("2_cqtl3")
 
 [node name="ColorShiftLayer" type="CanvasLayer"]
 
