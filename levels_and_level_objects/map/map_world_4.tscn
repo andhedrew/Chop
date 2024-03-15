@@ -20,3 +20,5 @@ curve = SubResource("Curve2D_rubcq")
 
 [node name="PathFollow2D" parent="Control/Path2D" index="0"]
 position = Vector2(-576, -128)
+
+[editable path="ColorShiftLayer"]

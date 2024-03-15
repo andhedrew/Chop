@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://cfebboa4rrdao" path="res://levels_and_level_objects/backgrounds/trees/tree.tscn" id="2_23awk"]
 [ext_resource type="Texture2D" uid="uid://cu5agq4euw4xs" path="res://levels_and_level_objects/dream/dream_1.png" id="2_a7jc4"]
 [ext_resource type="PackedScene" uid="uid://dwlnm64mxfmad" path="res://levels_and_level_objects/map/map_world_2.tscn" id="2_j3fn0"]
-[ext_resource type="Texture2D" uid="uid://b8a4cr8qghs7j" path="res://levels_and_level_objects/backgrounds/layer_2_dark/hills_1.png" id="3_p3jg0"]
+[ext_resource type="Texture2D" uid="uid://ba1wt54wfwy5p" path="res://levels_and_level_objects/backgrounds/sunny_top_lit/set_pieces_mid/buildings1.png" id="3_p3jg0"]
 [ext_resource type="Texture2D" uid="uid://1e4ocu0ypf2p" path="res://levels_and_level_objects/dream/dream_4.png" id="3_tbi83"]
 
 [node name="World" instance=ExtResource("1_0qt0v")]

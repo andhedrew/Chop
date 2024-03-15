@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://b06gyuhub517b"]
+[gd_scene load_steps=18 format=3 uid="uid://b06gyuhub517b"]
 
 [ext_resource type="Script" path="res://map_manager.gd" id="1_pdu78"]
 [ext_resource type="Texture2D" uid="uid://cdcb06dc47r31" path="res://user_interface/map/new_map/table.png" id="2_3fvrw"]
@@ -6,6 +6,8 @@
 [ext_resource type="Texture2D" uid="uid://bmkhpxmd5o880" path="res://user_interface/map/new_map/lines.png" id="4_pwi42"]
 [ext_resource type="Texture2D" uid="uid://d2wyx7xy4kgen" path="res://user_interface/map/new_map/pin.png" id="5_v75ab"]
 [ext_resource type="Texture2D" uid="uid://3ckbb8g3s5j4" path="res://user_interface/map/new_map/roll.png" id="6_3ghtf"]
+[ext_resource type="Shader" path="res://addons/extensible_color_palette/color_filter.gdshader" id="8_l165t"]
+[ext_resource type="Texture2D" uid="uid://c1nex6wxbe8hf" path="res://addons/UniversalFade/Patterns/Diagonal.png" id="8_nb7tg"]
 
 [sub_resource type="Animation" id="Animation_v6rjy"]
 resource_name = "roll"
@@ -56,6 +58,18 @@ animations = [{
 "name": &"default",
 "speed": 5.0
 }]
+
+[sub_resource type="Gradient" id="Gradient_jb068"]
+offsets = PackedFloat32Array(0, 0.393855, 0.988827)
+colors = PackedColorArray(0.501961, 0.133333, 0, 0.32549, 0.568627, 0.239216, 0.0823529, 0.454902, 1, 0.929412, 0.639216, 0.509804)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_3mtrn"]
+gradient = SubResource("Gradient_jb068")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_vsrom"]
+shader = ExtResource("8_l165t")
+shader_parameter/flip = null
+shader_parameter/gradient = SubResource("GradientTexture1D_3mtrn")
 
 [node name="Map" type="CanvasLayer"]
 script = ExtResource("1_pdu78")
@@ -135,3 +149,7 @@ offset_right = 0.00195312
 grow_horizontal = 0
 grow_vertical = 0
 texture = ExtResource("6_3ghtf")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_vsrom")
+texture = ExtResource("8_nb7tg")
