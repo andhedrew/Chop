@@ -6,6 +6,7 @@ extends Node2D
 @export var pool_size := 5
 var pool := []
 
+
 func _ready():
 	z_index = SortLayer.IN_FRONT
 	$Timer.wait_time = wait_time
@@ -27,9 +28,7 @@ func _initialize_pool():
 		enemy_instance.in_a_pool = true
 		enemy_instance.z_index = SortLayer.PLAYER
 		enemy_instance.reset()
-		for hitbox in enemy_instance.get_children():
-			if hitbox is CollisionShape2D or hitbox is Area2D:
-				hitbox.set_deferred("disabled", true)
+		set_hitboxes_and_collision(enemy_instance, false)
 		get_node("/root/World").call_deferred("add_child", enemy_instance)
 		enemy_instance.position = global_position
 		pool.append(enemy_instance)
@@ -43,9 +42,7 @@ func _get_pooled_enemy() -> Node:
 			e.set_process(true)  # Re-enable processing
 			e.set_physics_process(true)  # Re-enable physics processing
 			e.reset()
-			for hitbox in e.get_children():
-				if hitbox is CollisionShape2D or hitbox is Area2D:
-					hitbox.set_deferred("disabled", false)
+			set_hitboxes_and_collision(e, true)
 			return e
 
 	# If no pooled enemy is available, create a new one (optional)
@@ -74,13 +71,24 @@ func return_to_pool(enemy_node: Node):
 		enemy_node.set_physics_process(false)
 		# Reset any other state of the enemy as necessary
 		# Deactivate all hitboxes
-		for hitbox in enemy_node.get_children():
-			if hitbox is CollisionShape2D or hitbox is Area2D:
-				hitbox.set_deferred("disabled", true)
+		set_hitboxes_and_collision(enemy_node, false)
 	else:
 		# Handle the case where the instance is not valid
 		print("Attempted to return an invalid enemy to the pool.")
 		pool.erase(enemy_node)  # Remove invalid instance from the pool
+
+
+func set_hitboxes_and_collision(node_to_check: Node, value: bool):
+	var opposite_val := true
+	if value == true:
+		opposite_val = false
+		
+	for hitbox in node_to_check.get_children():
+		if hitbox is CollisionShape2D:
+			hitbox.set_deferred("disabled", opposite_val)
+		if hitbox is Area2D:
+			hitbox.set_deferred("monitoring", value)
+			hitbox.set_deferred("monitorable", value)
 
 
 #extends Node2D

@@ -98,9 +98,9 @@ func physics_update(delta: float) -> void:
 	else:
 		slicing_a_block = false
 
-#	if owner.weapon == Enums.Weapon.FAST or slicing_a_block:
-	if Input.is_action_just_pressed("attack"):
-		state_machine.transition_to("Attack")
+	if owner.weapon == Enums.Weapon.FAST or slicing_a_block:
+		if Input.is_action_just_pressed("attack"):
+			state_machine.transition_to("Attack")
 			
 	
 	if owner.is_on_floor():
