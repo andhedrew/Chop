@@ -554,6 +554,8 @@ motion_scale = Vector2(0.8, 1)
 [node name="InteractiveProps" type="Node2D" parent="."]
 
 [node name="BushBlobTiles" type="TileMap" parent="."]
+z_index = -4
+z_as_relative = false
 tile_set = ExtResource("6_5dmwc")
 format = 2
 

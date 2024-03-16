@@ -418,7 +418,7 @@ script = ExtResource("11_pu22y")
 [node name="tut1" type="AnimatedSprite2D" parent="." index="22"]
 modulate = Color(1, 1, 1, 0)
 z_index = 50
-position = Vector2(850, -352)
+position = Vector2(863, -145)
 sprite_frames = SubResource("SpriteFrames_rmakh")
 animation = &"chop"
 autoplay = "chop"
@@ -428,7 +428,7 @@ speed_scale = 2.0
 [node name="tut2" type="AnimatedSprite2D" parent="." index="23"]
 modulate = Color(1, 1, 1, 0)
 z_index = 50
-position = Vector2(298, -352)
+position = Vector2(304, -141)
 sprite_frames = SubResource("SpriteFrames_rmakh")
 animation = &"jump"
 autoplay = "jump"
@@ -438,7 +438,7 @@ speed_scale = 2.0
 [node name="tut4" type="AnimatedSprite2D" parent="." index="24"]
 modulate = Color(1, 1, 1, 0)
 z_index = 50
-position = Vector2(1522, -352)
+position = Vector2(1535, -145)
 sprite_frames = SubResource("SpriteFrames_rmakh")
 animation = &"jump"
 autoplay = "jump"
@@ -449,7 +449,7 @@ script = ExtResource("12_pwywx")
 [node name="tut5" type="AnimatedSprite2D" parent="." index="25"]
 modulate = Color(1, 1, 1, 0)
 z_index = 50
-position = Vector2(1594, -352)
+position = Vector2(1607, -145)
 sprite_frames = SubResource("SpriteFrames_rmakh")
 animation = &"execute"
 autoplay = "execute"

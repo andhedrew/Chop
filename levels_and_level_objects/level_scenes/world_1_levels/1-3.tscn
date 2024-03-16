@@ -64,7 +64,7 @@ next_level = "res://levels_and_level_objects/level_scenes/world_1_levels/1-4.tsc
 checkpoint = true
 
 [node name="bg" parent="BackgroundSky" index="0"]
-color = Color(0.729412, 0.694118, 0.619608, 1)
+color = Color(0.690196, 0.65098, 0.560784, 1)
 
 [node name="Sprite2D" type="Sprite2D" parent="Background/Cloud" index="0"]
 position = Vector2(-192, -54)

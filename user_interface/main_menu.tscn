@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://cce1rkl4yiv8g"]
+[gd_scene load_steps=28 format=3 uid="uid://cce1rkl4yiv8g"]
 
 [ext_resource type="Script" path="res://main_menu.gd" id="1_rluoc"]
 [ext_resource type="Theme" uid="uid://b0dhfhdkknaj3" path="res://user_interface/chop_theme.tres" id="2_h2fyh"]
@@ -10,6 +10,8 @@
 [ext_resource type="PackedScene" uid="uid://eh11t8si04ed" path="res://user_interface/splattering_rain.tscn" id="8_hdx4d"]
 [ext_resource type="FontFile" uid="uid://baykuh7pqbali" path="res://user_interface/fonts/Giza.otf" id="9_7uwmm"]
 [ext_resource type="FontFile" uid="uid://b8ei6fu0n0k4s" path="res://user_interface/fonts/Printvetica.otf" id="10_56qnp"]
+[ext_resource type="PackedScene" uid="uid://c45dv8km6cdm" path="res://vfx/color_shift_layer.tscn" id="11_c7trd"]
+[ext_resource type="Shader" path="res://addons/extensible_color_palette/color_filter.gdshader" id="12_wa7r1"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_84x4k"]
 bg_color = Color(0.156863, 0.14902, 0.156863, 1)
@@ -24,16 +26,14 @@ bg_color = Color(0.101961, 0.0941176, 0.101961, 1)
 bg_color = Color(0.278431, 0.266667, 0.278431, 1)
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_sy1oe"]
+particle_flag_disable_z = true
 emission_shape = 3
 emission_box_extents = Vector3(400, 5, 1)
-particle_flag_disable_z = true
 direction = Vector3(0, 1, 0)
 spread = 0.0
-gravity = Vector3(0, 0, 0)
 initial_velocity_min = 300.0
 initial_velocity_max = 300.0
-orbit_velocity_min = 0.0
-orbit_velocity_max = 0.0
+gravity = Vector3(0, 0, 0)
 color = Color(1, 1, 1, 0.584314)
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_jmwst"]
@@ -49,54 +49,58 @@ colors = PackedColorArray(1, 1, 1, 1, 0.231518, 0.231518, 0.231518, 1)
 gradient = SubResource("Gradient_qorv8")
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_nq8je"]
+particle_flag_disable_z = true
 emission_shape = 3
 emission_box_extents = Vector3(8, 1, 1)
-particle_flag_disable_z = true
 gravity = Vector3(0, 0, 0)
-orbit_velocity_min = 0.0
-orbit_velocity_max = 0.0
 color = Color(1, 1, 1, 0.87451)
 color_ramp = SubResource("GradientTexture1D_ruwf1")
 anim_speed_min = 0.4
 anim_speed_max = 0.4
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_7gh33"]
+particle_flag_disable_z = true
 emission_shape = 3
 emission_box_extents = Vector3(30, 30, 1)
-particle_flag_disable_z = true
 gravity = Vector3(0, 0, 0)
-orbit_velocity_min = 0.0
-orbit_velocity_max = 0.0
 color = Color(1, 1, 1, 0.87451)
 color_ramp = SubResource("GradientTexture1D_ruwf1")
 anim_speed_min = 0.4
 anim_speed_max = 0.4
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_kr7tk"]
+particle_flag_disable_z = true
 emission_shape = 3
 emission_box_extents = Vector3(1, 6, 1)
-particle_flag_disable_z = true
 direction = Vector3(0, 1, 0)
 spread = 0.0
-gravity = Vector3(0, 0, 0)
 initial_velocity_min = 300.0
 initial_velocity_max = 300.0
-orbit_velocity_min = 0.0
-orbit_velocity_max = 0.0
+gravity = Vector3(0, 0, 0)
 color = Color(1, 1, 1, 0.584314)
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_1r2yo"]
+particle_flag_disable_z = true
 emission_shape = 3
 emission_box_extents = Vector3(1, 6, 1)
-particle_flag_disable_z = true
 direction = Vector3(0, 1, 0)
 spread = 0.0
-gravity = Vector3(0, 0, 0)
 initial_velocity_min = 300.0
 initial_velocity_max = 300.0
-orbit_velocity_min = 0.0
-orbit_velocity_max = 0.0
+gravity = Vector3(0, 0, 0)
 color = Color(1, 1, 1, 0.584314)
+
+[sub_resource type="Gradient" id="Gradient_asxe6"]
+offsets = PackedFloat32Array(0, 0.382682, 0.449721, 1)
+colors = PackedColorArray(0.0675, 0, 0.15, 0.615686, 0.741176, 0.258824, 0, 0.447059, 0.870588, 0.34902, 0, 0.858824, 1, 1, 0, 0.27451)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_mhpyr"]
+gradient = SubResource("Gradient_asxe6")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_xrtja"]
+shader = ExtResource("12_wa7r1")
+shader_parameter/flip = null
+shader_parameter/gradient = SubResource("GradientTexture1D_mhpyr")
 
 [node name="MainMenu" type="Control"]
 layout_mode = 3
@@ -278,3 +282,10 @@ theme_override_colors/font_color = Color(0.984314, 0.419608, 0.113725, 1)
 theme_override_fonts/font = ExtResource("9_7uwmm")
 theme_override_font_sizes/font_size = 51
 text = "BEAST"
+
+[node name="ColorShiftLayer" parent="." instance=ExtResource("11_c7trd")]
+
+[node name="Sprite2D" parent="ColorShiftLayer" index="0"]
+material = SubResource("ShaderMaterial_xrtja")
+
+[editable path="ColorShiftLayer"]

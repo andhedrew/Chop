@@ -11,11 +11,11 @@ extends Node2D
 
 var skip_map := false
 
-
+@export var music_to_play : String = "City1"
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	SoundPlayer.play_music("City1")
+	SoundPlayer.play_music(music_to_play)
 	GameEvents.transition_to_map.connect(_on_transitioning_to_map)
 	GameEvents.morning_started.connect(_on_morning_started)
 #	GameEvents.continue_day.connect(_on_morning_started)

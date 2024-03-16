@@ -10,8 +10,6 @@ var approved_sound
 
 var active_music_player
 
-func _ready():
-	pass
 
 func play_sound(sound: String) -> AudioStreamPlayer:
 	for child in audio_players.get_children():
@@ -55,8 +53,15 @@ func play_ambient(sound: Variant) -> AudioStreamPlayer:
 	return audio_stream_player
 	
 
+
+var fading := false
+var old_player = null
+var new_player = null
+
 func play_music(sound: String) -> AudioStreamPlayer:
 	var sound_path = "res://audio/music/" + sound + ".ogg"
+	print_debug("sound_path: " + str(sound_path))
+	
 	for audio_stream_player in music_players.get_children():
 		# Check if the player is already playing the requested sound
 		if audio_stream_player.stream and audio_stream_player.stream.resource_path == sound_path:
@@ -66,14 +71,34 @@ func play_music(sound: String) -> AudioStreamPlayer:
 
 	# If the requested sound is not already playing, find a player to play it
 	for audio_stream_player in music_players.get_children():
-		if not audio_stream_player.playing:
-			audio_stream_player.stream = load(sound_path)
+		if not audio_stream_player.playing and new_player == null:
+			audio_stream_player.set_stream(load(sound_path)) 
 			audio_stream_player.play()
 			active_music_player = audio_stream_player
-			return audio_stream_player
+			audio_stream_player.volume_db = -60
+			new_player = audio_stream_player
+		else:
+			old_player = audio_stream_player
 
-	# Return null if no suitable player is found
-	return null
+	fading = true
+	await get_tree().create_timer(3.0).timeout
+	return new_player
+
+
+func _process(delta):
+	if fading:
+		new_player.volume_db += 30*delta
+		if old_player:
+			old_player.volume_db -= 30*delta
+		
+		if new_player.volume_db >= 0:
+			new_player.volume_db = 0
+			if old_player:
+				old_player.stop()
+				old_player = null
+			new_player = null
+			fading = false
+		
 
 
 func stop_music() -> void:

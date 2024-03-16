@@ -87,7 +87,6 @@ font_color = Color(0.839216, 0.364706, 0.160784, 1)
 [node name="HUD" type="Node2D"]
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
-visible = false
 
 [node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
 custom_minimum_size = Vector2(0, 50)
