@@ -1,4 +1,4 @@
-[gd_scene load_steps=45 format=3 uid="uid://byvdpljfbgpdj"]
+[gd_scene load_steps=47 format=3 uid="uid://byvdpljfbgpdj"]
 
 [ext_resource type="PackedScene" uid="uid://dm85xjdq5mkk3" path="res://levels_and_level_objects/level_scenes/base_level.tscn" id="1_hlveg"]
 [ext_resource type="Script" path="res://levels_and_level_objects/level_scenes/level_managers/tutorial_level.gd" id="2_6d4f7"]
@@ -27,6 +27,8 @@
 [ext_resource type="Texture2D" uid="uid://brq5s821v40u8" path="res://levels_and_level_objects/choppable/bales/bale_1.png" id="27_owbyb"]
 [ext_resource type="Texture2D" uid="uid://0br72si87yds" path="res://levels_and_level_objects/choppable/bales/bale_damage_1.png" id="28_1pl1x"]
 [ext_resource type="AudioStream" uid="uid://bfbecym5hdtwt" path="res://audio/sounds/bale.wav" id="29_1vwoc"]
+[ext_resource type="Texture2D" uid="uid://cipjo6ykvu46q" path="res://levels_and_level_objects/choppable/bales/bale_2.png" id="30_8yvvg"]
+[ext_resource type="Texture2D" uid="uid://bfjpysvvbn05l" path="res://levels_and_level_objects/choppable/bales/bale_damage_2.png" id="31_15l8k"]
 [ext_resource type="PackedScene" uid="uid://boakvecc6j1ta" path="res://characters/enemy/paroot/paroot.tscn" id="35_es3s4"]
 [ext_resource type="PackedScene" uid="uid://ccl32vi0nwem8" path="res://levels_and_level_objects/destructible_plants/chop_foliage.tscn" id="49_a17bv"]
 
@@ -629,6 +631,14 @@ pop_up = false
 
 [node name="Bale2" parent="." index="62" instance=ExtResource("13_gogy1")]
 position = Vector2(2475, -30)
+particle_texture = ExtResource("26_f2cw3")
+texture = ExtResource("30_8yvvg")
+damage_texture = ExtResource("31_15l8k")
+take_damage_sound = ExtResource("29_1vwoc")
+pop_up = false
+
+[node name="Bale4" parent="." index="63" instance=ExtResource("13_gogy1")]
+position = Vector2(2557, -30)
 particle_texture = ExtResource("26_f2cw3")
 texture = ExtResource("27_owbyb")
 damage_texture = ExtResource("28_1pl1x")
