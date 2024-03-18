@@ -1,4 +1,4 @@
-[gd_scene load_steps=40 format=3 uid="uid://byvdpljfbgpdj"]
+[gd_scene load_steps=45 format=3 uid="uid://byvdpljfbgpdj"]
 
 [ext_resource type="PackedScene" uid="uid://dm85xjdq5mkk3" path="res://levels_and_level_objects/level_scenes/base_level.tscn" id="1_hlveg"]
 [ext_resource type="Script" path="res://levels_and_level_objects/level_scenes/level_managers/tutorial_level.gd" id="2_6d4f7"]
@@ -19,9 +19,14 @@
 [ext_resource type="Texture2D" uid="uid://b8c2lky2e3ps5" path="res://levels_and_level_objects/backgrounds/sunny_top_lit/set_pieces_mid/building1.png" id="11_i7c5m"]
 [ext_resource type="Script" path="res://user_interface/tutorial/tutPlayer.gd" id="11_pu22y"]
 [ext_resource type="Script" path="res://user_interface/tutorial/tut4_and_5.gd" id="12_pwywx"]
+[ext_resource type="PackedScene" uid="uid://b72q0g6eleo7q" path="res://levels_and_level_objects/choppable/choppable_chunk.tscn" id="13_gogy1"]
 [ext_resource type="PackedScene" uid="uid://b00gv80nahyvm" path="res://characters/enemy/eggplant/egg_plant.tscn" id="21_o7ku6"]
 [ext_resource type="Texture2D" uid="uid://xe638vw8y64" path="res://levels_and_level_objects/environments/sunny_fields/plants_autumn.png" id="22_olwex"]
 [ext_resource type="Shader" path="res://addons/extensible_color_palette/color_filter.gdshader" id="24_vgrl7"]
+[ext_resource type="Texture2D" uid="uid://b2lf6my04amyd" path="res://levels_and_level_objects/choppable/bales/hay_particles.png" id="26_f2cw3"]
+[ext_resource type="Texture2D" uid="uid://brq5s821v40u8" path="res://levels_and_level_objects/choppable/bales/bale_1.png" id="27_owbyb"]
+[ext_resource type="Texture2D" uid="uid://0br72si87yds" path="res://levels_and_level_objects/choppable/bales/bale_damage_1.png" id="28_1pl1x"]
+[ext_resource type="AudioStream" uid="uid://bfbecym5hdtwt" path="res://audio/sounds/bale.wav" id="29_1vwoc"]
 [ext_resource type="PackedScene" uid="uid://boakvecc6j1ta" path="res://characters/enemy/paroot/paroot.tscn" id="35_es3s4"]
 [ext_resource type="PackedScene" uid="uid://ccl32vi0nwem8" path="res://levels_and_level_objects/destructible_plants/chop_foliage.tscn" id="49_a17bv"]
 
@@ -605,6 +610,30 @@ layer_0/tile_data = PackedInt32Array(589802, 65537, 0, 589803, 458753, 0, 589804
 
 [node name="Sprite2D" parent="ColorShiftLayer2" index="0"]
 material = SubResource("ShaderMaterial_0564v")
+
+[node name="Bale" parent="." index="60" instance=ExtResource("13_gogy1")]
+position = Vector2(-16, -15)
+particle_texture = ExtResource("26_f2cw3")
+texture = ExtResource("27_owbyb")
+damage_texture = ExtResource("28_1pl1x")
+take_damage_sound = ExtResource("29_1vwoc")
+pop_up = false
+
+[node name="Bale3" parent="." index="61" instance=ExtResource("13_gogy1")]
+position = Vector2(-16, -79)
+particle_texture = ExtResource("26_f2cw3")
+texture = ExtResource("27_owbyb")
+damage_texture = ExtResource("28_1pl1x")
+take_damage_sound = ExtResource("29_1vwoc")
+pop_up = false
+
+[node name="Bale2" parent="." index="62" instance=ExtResource("13_gogy1")]
+position = Vector2(2475, -30)
+particle_texture = ExtResource("26_f2cw3")
+texture = ExtResource("27_owbyb")
+damage_texture = ExtResource("28_1pl1x")
+take_damage_sound = ExtResource("29_1vwoc")
+pop_up = false
 
 [editable path="ColorShiftLayer"]
 [editable path="ColorShiftLayer2"]

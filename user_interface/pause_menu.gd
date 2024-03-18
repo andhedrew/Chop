@@ -18,6 +18,7 @@ func _ready():
 	GameEvents.cutscene_started.connect(_on_cutscene_start)
 	GameEvents.cutscene_ended.connect(_on_cutscene_end)
 	$"Settings/Remap Controls".pressed.connect(_on_remap_button_pressed)
+	$InputSettings/Back.pressed.connect(_on_back_pressed)
 
 func _unhandled_input(event):
 	if event.is_action_pressed("pause") and !cutscene_running:

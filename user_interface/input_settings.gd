@@ -51,9 +51,8 @@ func _map_key_to_action(key, action_name):
 
 func _create_action_list():
 	print("building pause menu")
-#	InputMap.load_from_project_settings() Might be useful for some reason
+	InputMap.load_from_project_settings() 
 	
-	# clear out the buttons
 	for item in action_list.get_children():
 		item.queue_free()
 	

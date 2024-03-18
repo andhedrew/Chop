@@ -1,18 +1,22 @@
-[gd_scene load_steps=7 format=3 uid="uid://b72q0g6eleo7q"]
+[gd_scene load_steps=8 format=3 uid="uid://b72q0g6eleo7q"]
 
 [ext_resource type="Script" path="res://levels_and_level_objects/building_block/chunk.gd" id="1_ao7ah"]
 [ext_resource type="Texture2D" uid="uid://d0y0qtblau68j" path="res://levels_and_level_objects/choppable/pipe1.png" id="2_viqbe"]
+[ext_resource type="Texture2D" uid="uid://bpifpn3g0guv5" path="res://levels_and_level_objects/choppable/pipe_pieces.png" id="2_wgy5l"]
 [ext_resource type="PackedScene" uid="uid://bb1h85dym7l4i" path="res://hitboxes/Hurtbox.tscn" id="3_ojrxp"]
 [ext_resource type="Texture2D" uid="uid://13mylemuvnw1" path="res://levels_and_level_objects/choppable/pipe_damage.png" id="3_pijam"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_cb16e"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dc31s"]
+size = Vector2(89, 64)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_rtpcl"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_m6psr"]
+size = Vector2(32, 64)
 
 [node name="ChoppableChunk" type="RigidBody2D"]
 collision_mask = 9
 lock_rotation = true
 script = ExtResource("1_ao7ah")
+particle_texture = ExtResource("2_wgy5l")
 texture = ExtResource("2_viqbe")
 damage_texture = ExtResource("3_pijam")
 
@@ -32,13 +36,13 @@ region_rect = Rect2(0, 0, 32, 64)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -32)
-shape = SubResource("RectangleShape2D_cb16e")
+shape = SubResource("RectangleShape2D_dc31s")
 
 [node name="Hurtbox" parent="." instance=ExtResource("3_ojrxp")]
 collision_mask = 8
 
 [node name="CollisionShape2D" parent="Hurtbox" index="0"]
 position = Vector2(-0.5, -32)
-shape = SubResource("RectangleShape2D_rtpcl")
+shape = SubResource("RectangleShape2D_m6psr")
 
 [editable path="Hurtbox"]

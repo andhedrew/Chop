@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=3 uid="uid://cce1rkl4yiv8g"]
+[gd_scene load_steps=30 format=3 uid="uid://cce1rkl4yiv8g"]
 
 [ext_resource type="Script" path="res://main_menu.gd" id="1_rluoc"]
 [ext_resource type="Theme" uid="uid://b0dhfhdkknaj3" path="res://user_interface/chop_theme.tres" id="2_h2fyh"]
@@ -26,8 +26,6 @@ bg_color = Color(0.101961, 0.0941176, 0.101961, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7cqy0"]
 bg_color = Color(0.278431, 0.266667, 0.278431, 1)
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_3qh5t"]
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_sy1oe"]
 particle_flag_disable_z = true
@@ -167,11 +165,6 @@ theme_override_styles/pressed = SubResource("StyleBoxFlat_vfl18")
 theme_override_styles/disabled = SubResource("StyleBoxFlat_7cqy0")
 text = "New Game"
 
-[node name="HSeparator" type="HSeparator" parent="Main/v"]
-custom_minimum_size = Vector2(0, 15)
-layout_mode = 2
-theme_override_styles/separator = SubResource("StyleBoxEmpty_3qh5t")
-
 [node name="Button3" type="Button" parent="Main/v"]
 layout_mode = 2
 theme = ExtResource("2_h2fyh")
@@ -308,11 +301,12 @@ lifetime = 4.0
 material = SubResource("ShaderMaterial_xrtja")
 
 [node name="Settings" parent="." instance=ExtResource("13_37shj")]
+visible = false
 layout_mode = 1
-offset_left = -257.0
-offset_top = -93.0
-offset_right = 43.0
-offset_bottom = 207.0
+offset_left = -261.0
+offset_top = -85.0
+offset_right = -69.0
+offset_bottom = 84.0
 
 [node name="InputSettings" parent="." instance=ExtResource("14_byd8w")]
 layout_mode = 1

@@ -81,7 +81,6 @@ func play_music(sound: String) -> AudioStreamPlayer:
 			old_player = audio_stream_player
 
 	fading = true
-	await get_tree().create_timer(3.0).timeout
 	return new_player
 
 
