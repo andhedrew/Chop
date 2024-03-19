@@ -8,6 +8,7 @@ extends Control
 
 var _is_paused: bool = false
 var cutscene_running := false
+var player_dead := false
 
 func _ready():
 	$Main/Resume.pressed.connect(_on_resume_pressed)
@@ -17,11 +18,14 @@ func _ready():
 	$Settings/Back.pressed.connect(_on_back_pressed)
 	GameEvents.cutscene_started.connect(_on_cutscene_start)
 	GameEvents.cutscene_ended.connect(_on_cutscene_end)
+	GameEvents.player_died.connect(_on_player_death)
 	$"Settings/Remap Controls".pressed.connect(_on_remap_button_pressed)
 	$InputSettings/Back.pressed.connect(_on_back_pressed)
 
 func _unhandled_input(event):
-	if event.is_action_pressed("pause") and !cutscene_running:
+	if event.is_action_pressed("restart") and player_dead:
+		_on_reset_pressed()
+	elif event.is_action_pressed("pause") and !cutscene_running:
 		if current_page == settings_page or current_page == input_menu:
 			_on_back_pressed()
 		else:
@@ -29,6 +33,10 @@ func _unhandled_input(event):
 			_is_paused = !_is_paused
 			set_paused(_is_paused)
 
+
+func _on_player_death() -> void:
+	player_dead = true
+	
 func set_paused(value: bool) -> void:
 	_is_paused = value
 	get_tree().paused = _is_paused
@@ -75,6 +83,9 @@ func _on_remap_button_pressed():
 
 
 func _on_reset_pressed():
-	_is_paused = !_is_paused
-	set_paused(_is_paused)
-	get_tree().reload_current_scene()
+	if player_dead:
+		player_dead = false
+	else:
+		_is_paused = !_is_paused
+		set_paused(_is_paused)
+	GameEvents.restart_level.emit()

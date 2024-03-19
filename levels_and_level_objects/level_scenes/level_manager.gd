@@ -72,7 +72,7 @@ func _restart_level() -> void:
 		Fade.crossfade_prepare(0.4, "ChopHorizontal")
 		SoundPlayer.play_sound("paper_rip")
 		get_tree().reload_current_scene()
-		get_tree().change_scene_to_file(get_tree().current_scene.scene_file_path)
+		#get_tree().change_scene_to_file(get_tree().current_scene.scene_file_path)
 		Fade.crossfade_execute() 
 
 	else:

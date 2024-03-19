@@ -74,7 +74,7 @@ script = ExtResource("3_0go20")
 
 [node name="RestartLabel" type="Label" parent="CanvasLayer"]
 visible = false
-modulate = Color(1, 1, 1, 0.727273)
+modulate = Color(1, 1, 1, 0)
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -87,7 +87,7 @@ offset_bottom = 11.5
 grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("4_0ynlv")
-text = "Restart? Press ESC."
+text = "Restart? Press Enter."
 horizontal_alignment = 1
 vertical_alignment = 1
 

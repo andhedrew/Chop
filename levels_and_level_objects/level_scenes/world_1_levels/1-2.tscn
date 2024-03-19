@@ -155,7 +155,6 @@ shader_parameter/gradient = SubResource("GradientTexture1D_hnaml")
 map_position = 2.0
 next_map = ExtResource("2_lmgrh")
 next_level = "res://levels_and_level_objects/level_scenes/world_1_levels/1-3.tscn"
-checkpoint = true
 metadata/_edit_lock_ = true
 
 [node name="bg" parent="BackgroundSky" index="0"]
