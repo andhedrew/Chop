@@ -1,14 +1,15 @@
 extends Node
 
-
 @onready var audio_players := $AudioPlayers
 @onready var ambient_players := $AmbientSoundPlayers
 @onready var music_players := $MusicPlayers
 @onready var positional_audio_players := $PositionalAudioPlayers
 
 var approved_sound
-
 var active_music_player
+var fading := false
+var old_player = null
+var new_player = null
 
 
 func play_sound(sound: String) -> AudioStreamPlayer:
@@ -51,25 +52,17 @@ func play_ambient(sound: Variant) -> AudioStreamPlayer:
 		old_player.queue_free()
 	
 	return audio_stream_player
-	
 
-
-var fading := false
-var old_player = null
-var new_player = null
 
 func play_music(sound: String) -> AudioStreamPlayer:
 	var sound_path = "res://audio/music/" + sound + ".ogg"
 	print_debug("sound_path: " + str(sound_path))
 	
 	for audio_stream_player in music_players.get_children():
-		# Check if the player is already playing the requested sound
 		if audio_stream_player.stream and audio_stream_player.stream.resource_path == sound_path:
 			if audio_stream_player.playing:
-				# The track is already playing, so don't start a new one
 				return null
 
-	# If the requested sound is not already playing, find a player to play it
 	for audio_stream_player in music_players.get_children():
 		if not audio_stream_player.playing and new_player == null:
 			audio_stream_player.set_stream(load(sound_path)) 
@@ -97,7 +90,6 @@ func _process(delta):
 				old_player = null
 			new_player = null
 			fading = false
-		
 
 
 func stop_music() -> void:
@@ -122,4 +114,3 @@ func play_sound_positional(
 		audio_stream_player.stream = sound
 	audio_stream_player.play()
 	return audio_stream_player
-	

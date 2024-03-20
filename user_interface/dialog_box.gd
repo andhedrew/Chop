@@ -16,6 +16,7 @@ var finished = false
 @onready var label := $MarginContainer/VBoxContainer/Label
 @onready var label_header := $MarginContainer/VBoxContainer/Label2
 signal is_finished
+@export var shift_up := true
 
 var tut = 0
 
@@ -79,10 +80,13 @@ func set_new_position():
 		clamp(camera_position.x, camera_min_x, camera_max_x),
 		clamp(camera_position.y, camera_min_y, camera_max_y)
 	)
-
-	# Adjust the position based on the size of the Control node
 	control_position.x -= size.x / 2
-	control_position.y += 115 - size.y / 2
+	
+	if not shift_up:
+		
+		control_position.y += 115 - size.y / 2
+	else:
+		control_position.y -= 75 + size.y / 2
 
 	# Set the position of the Control node
 	global_position = control_position
