@@ -1,4 +1,4 @@
-[gd_scene load_steps=49 format=3 uid="uid://byvdpljfbgpdj"]
+[gd_scene load_steps=55 format=3 uid="uid://byvdpljfbgpdj"]
 
 [ext_resource type="PackedScene" uid="uid://dm85xjdq5mkk3" path="res://levels_and_level_objects/level_scenes/base_level.tscn" id="1_hlveg"]
 [ext_resource type="Script" path="res://levels_and_level_objects/level_scenes/level_managers/tutorial_level.gd" id="2_6d4f7"]
@@ -142,13 +142,13 @@ _data = {
 "fade_out": SubResource("Animation_64ad5")
 }
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_toj5q"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_j4iw2"]
 atlas = ExtResource("11_ha7jm")
-region = Rect2(192, 0, 96, 64)
+region = Rect2(0, 0, 130, 84)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_qdnku"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_hipm5"]
 atlas = ExtResource("11_ha7jm")
-region = Rect2(288, 0, 96, 64)
+region = Rect2(130, 0, 130, 84)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_5a3du"]
 atlas = ExtResource("11_ha7jm")
@@ -157,6 +157,14 @@ region = Rect2(0, 0, 96, 64)
 [sub_resource type="AtlasTexture" id="AtlasTexture_8sk71"]
 atlas = ExtResource("11_ha7jm")
 region = Rect2(96, 0, 96, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_toj5q"]
+atlas = ExtResource("11_ha7jm")
+region = Rect2(192, 0, 96, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qdnku"]
+atlas = ExtResource("11_ha7jm")
+region = Rect2(288, 0, 96, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ku0gf"]
 atlas = ExtResource("11_ha7jm")
@@ -174,14 +182,30 @@ region = Rect2(576, 0, 96, 64)
 atlas = ExtResource("11_ha7jm")
 region = Rect2(672, 0, 96, 64)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_qx4cs"]
+atlas = ExtResource("11_ha7jm")
+region = Rect2(520, 0, 130, 84)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_66tif"]
+atlas = ExtResource("11_ha7jm")
+region = Rect2(650, 0, 130, 84)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_luraa"]
+atlas = ExtResource("11_ha7jm")
+region = Rect2(260, 0, 130, 84)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_swuxj"]
+atlas = ExtResource("11_ha7jm")
+region = Rect2(390, 0, 130, 84)
+
 [sub_resource type="SpriteFrames" id="SpriteFrames_rmakh"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_toj5q")
+"texture": SubResource("AtlasTexture_j4iw2")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_qdnku")
+"texture": SubResource("AtlasTexture_hipm5")
 }],
 "loop": true,
 "name": &"chop",
@@ -218,10 +242,10 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_u54nt")
+"texture": SubResource("AtlasTexture_qx4cs")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_c74wc")
+"texture": SubResource("AtlasTexture_66tif")
 }],
 "loop": true,
 "name": &"execute",
@@ -229,10 +253,10 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_ku0gf")
+"texture": SubResource("AtlasTexture_luraa")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_c7hdg")
+"texture": SubResource("AtlasTexture_swuxj")
 }],
 "loop": true,
 "name": &"jump",
@@ -470,17 +494,16 @@ script = ExtResource("11_pu22y")
 [node name="tut1" type="AnimatedSprite2D" parent="." index="22"]
 modulate = Color(1, 1, 1, 0)
 z_index = 50
-position = Vector2(863, -145)
+position = Vector2(876, -161)
 sprite_frames = SubResource("SpriteFrames_rmakh")
-animation = &"chop"
+animation = &"walk"
 autoplay = "chop"
-frame_progress = 0.192414
 speed_scale = 2.0
 
 [node name="tut2" type="AnimatedSprite2D" parent="." index="23"]
 modulate = Color(1, 1, 1, 0)
 z_index = 50
-position = Vector2(561, -121)
+position = Vector2(561, -162)
 sprite_frames = SubResource("SpriteFrames_rmakh")
 animation = &"jump"
 autoplay = "jump"
@@ -490,7 +513,7 @@ speed_scale = 2.0
 [node name="tut4" type="AnimatedSprite2D" parent="." index="24"]
 modulate = Color(1, 1, 1, 0)
 z_index = 50
-position = Vector2(1535, -145)
+position = Vector2(1578, -166)
 sprite_frames = SubResource("SpriteFrames_rmakh")
 animation = &"jump"
 autoplay = "jump"
@@ -501,7 +524,7 @@ script = ExtResource("12_pwywx")
 [node name="tut5" type="AnimatedSprite2D" parent="." index="25"]
 modulate = Color(1, 1, 1, 0)
 z_index = 50
-position = Vector2(1607, -145)
+position = Vector2(1650, -166)
 sprite_frames = SubResource("SpriteFrames_rmakh")
 animation = &"execute"
 autoplay = "execute"

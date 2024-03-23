@@ -1,21 +1,7 @@
-[gd_scene load_steps=8 format=3 uid="uid://cvlo5mexkgiiq"]
+[gd_scene load_steps=3 format=3 uid="uid://cvlo5mexkgiiq"]
 
 [ext_resource type="PackedScene" uid="uid://b06gyuhub517b" path="res://levels_and_level_objects/map/map.tscn" id="1_bcy8x"]
 [ext_resource type="Texture2D" uid="uid://big2801n8rpl8" path="res://user_interface/map/roll.png" id="2_sqpbc"]
-[ext_resource type="Shader" path="res://addons/extensible_color_palette/color_filter.gdshader" id="3_cumwf"]
-[ext_resource type="Texture2D" uid="uid://c1nex6wxbe8hf" path="res://addons/UniversalFade/Patterns/Diagonal.png" id="4_pp6r6"]
-
-[sub_resource type="Gradient" id="Gradient_jb068"]
-offsets = PackedFloat32Array(0, 0.393855, 0.988827)
-colors = PackedColorArray(0.501961, 0.133333, 0, 0.32549, 0.568627, 0.239216, 0.0823529, 0.454902, 1, 0.929412, 0.639216, 0.509804)
-
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_3mtrn"]
-gradient = SubResource("Gradient_jb068")
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_vsrom"]
-shader = ExtResource("3_cumwf")
-shader_parameter/flip = null
-shader_parameter/gradient = SubResource("GradientTexture1D_3mtrn")
 
 [node name="Map" instance=ExtResource("1_bcy8x")]
 
@@ -24,8 +10,3 @@ position = Vector2(-40, 0)
 
 [node name="roll" parent="Control" index="3"]
 texture = ExtResource("2_sqpbc")
-
-[node name="ColorShiftLayer#Sprite2D" type="Sprite2D" parent="." index="2"]
-z_index = 4096
-material = SubResource("ShaderMaterial_vsrom")
-texture = ExtResource("4_pp6r6")

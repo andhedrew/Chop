@@ -60,8 +60,8 @@ animations = [{
 }]
 
 [sub_resource type="Gradient" id="Gradient_jb068"]
-offsets = PackedFloat32Array(0, 0.393855, 0.988827)
-colors = PackedColorArray(0.501961, 0.133333, 0, 0.32549, 0.568627, 0.239216, 0.0823529, 0.454902, 1, 0.929412, 0.639216, 0.509804)
+offsets = PackedFloat32Array(0, 0.393855, 0.992958)
+colors = PackedColorArray(0.5, 0.195667, 0.085, 0.45098, 0.568627, 0.301961, 0.176471, 0.647059, 1, 0.929412, 0.639216, 0.545098)
 
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_3mtrn"]
 gradient = SubResource("Gradient_jb068")
