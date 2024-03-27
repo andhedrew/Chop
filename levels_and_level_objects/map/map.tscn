@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://b06gyuhub517b"]
+[gd_scene load_steps=19 format=3 uid="uid://b06gyuhub517b"]
 
 [ext_resource type="Script" path="res://map_manager.gd" id="1_pdu78"]
 [ext_resource type="Texture2D" uid="uid://cdcb06dc47r31" path="res://user_interface/map/new_map/table.png" id="2_3fvrw"]
@@ -8,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://3ckbb8g3s5j4" path="res://user_interface/map/new_map/roll.png" id="6_3ghtf"]
 [ext_resource type="Shader" path="res://addons/extensible_color_palette/color_filter.gdshader" id="8_l165t"]
 [ext_resource type="Texture2D" uid="uid://c1nex6wxbe8hf" path="res://addons/UniversalFade/Patterns/Diagonal.png" id="8_nb7tg"]
+[ext_resource type="PackedScene" uid="uid://cgc2h3rt7dkb0" path="res://vfx/post_processing.tscn" id="9_b2gl1"]
 
 [sub_resource type="Animation" id="Animation_v6rjy"]
 resource_name = "roll"
@@ -71,15 +72,17 @@ shader = ExtResource("8_l165t")
 shader_parameter/flip = null
 shader_parameter/gradient = SubResource("GradientTexture1D_3mtrn")
 
-[node name="Map" type="CanvasLayer"]
+[node name="Map" type="Node"]
+
+[node name="Map" type="CanvasLayer" parent="."]
 script = ExtResource("1_pdu78")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Map"]
 libraries = {
 "": SubResource("AnimationLibrary_3oms0")
 }
 
-[node name="Control" type="Control" parent="."]
+[node name="Control" type="Control" parent="Map"]
 layout_mode = 3
 anchors_preset = 3
 anchor_left = 1.0
@@ -91,7 +94,7 @@ offset_top = -40.0
 grow_horizontal = 0
 grow_vertical = 0
 
-[node name="table" type="TextureRect" parent="Control"]
+[node name="table" type="TextureRect" parent="Map/Control"]
 layout_mode = 1
 anchors_preset = 3
 anchor_left = 1.0
@@ -104,7 +107,7 @@ grow_horizontal = 0
 grow_vertical = 0
 texture = ExtResource("2_3fvrw")
 
-[node name="paper" type="TextureRect" parent="Control"]
+[node name="paper" type="TextureRect" parent="Map/Control"]
 layout_mode = 1
 anchors_preset = 3
 anchor_left = 1.0
@@ -118,24 +121,24 @@ grow_horizontal = 0
 grow_vertical = 0
 texture = ExtResource("3_4scty")
 
-[node name="map" type="TextureRect" parent="Control/paper"]
+[node name="map" type="TextureRect" parent="Map/Control/paper"]
 layout_mode = 0
 offset_right = 639.0
 offset_bottom = 358.0
 texture = ExtResource("4_pwi42")
 
-[node name="Path2D" type="Path2D" parent="Control"]
+[node name="Path2D" type="Path2D" parent="Map/Control"]
 curve = SubResource("Curve2D_ora0w")
 
-[node name="PathFollow2D" type="PathFollow2D" parent="Control/Path2D"]
+[node name="PathFollow2D" type="PathFollow2D" parent="Map/Control/Path2D"]
 position = Vector2(-540, -123)
 rotates = false
 
-[node name="Sprite2D" type="AnimatedSprite2D" parent="Control/Path2D/PathFollow2D"]
+[node name="Sprite2D" type="AnimatedSprite2D" parent="Map/Control/Path2D/PathFollow2D"]
 sprite_frames = SubResource("SpriteFrames_ipey1")
 autoplay = "default"
 
-[node name="roll" type="TextureRect" parent="Control"]
+[node name="roll" type="TextureRect" parent="Map/Control"]
 visible = false
 layout_mode = 1
 anchors_preset = 3
@@ -150,6 +153,9 @@ grow_horizontal = 0
 grow_vertical = 0
 texture = ExtResource("6_3ghtf")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Sprite2D" type="Sprite2D" parent="Map"]
 material = SubResource("ShaderMaterial_vsrom")
 texture = ExtResource("8_nb7tg")
+
+[node name="PostProcessing" parent="." instance=ExtResource("9_b2gl1")]
+layer = 2

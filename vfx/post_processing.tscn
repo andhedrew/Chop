@@ -1,0 +1,112 @@
+[gd_scene load_steps=16 format=3 uid="uid://cgc2h3rt7dkb0"]
+
+[ext_resource type="Script" path="res://vfx/post_processing.gd" id="1_g8i0k"]
+[ext_resource type="Shader" path="res://vfx/high_pass_sharpen.gdshader" id="2_dpvyg"]
+[ext_resource type="Shader" path="res://vfx/chromatic_aberration.gdshader" id="3_crabv"]
+[ext_resource type="Shader" path="res://vfx/VHS_wiggle.gdshader" id="4_mq8a1"]
+[ext_resource type="Shader" path="res://vfx/VHS_color_bleed.gdshader" id="5_knn8o"]
+[ext_resource type="Shader" path="res://vfx/old_movie_grain.gdshader" id="6_3gv5j"]
+[ext_resource type="Shader" path="res://vfx/vignette.gdshader" id="7_pbpkf"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_pmfrh"]
+shader = ExtResource("2_dpvyg")
+shader_parameter/strength = 0.2
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_bdgjh"]
+shader = ExtResource("3_crabv")
+shader_parameter/levels = 3
+shader_parameter/spread = 0.001
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_vrni1"]
+frequency = 0.43
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_bt0jg"]
+noise = SubResource("FastNoiseLite_vrni1")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_u5j1k"]
+shader = ExtResource("4_mq8a1")
+shader_parameter/strength = 0.4
+shader_parameter/uv_scaling = 1.0
+shader_parameter/movement_direction = Vector2(1, 1)
+shader_parameter/movement_speed = 0.5
+shader_parameter/NOISE_TEXTURE = SubResource("NoiseTexture2D_bt0jg")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_hqea0"]
+shader = ExtResource("5_knn8o")
+shader_parameter/wiggle = 0.03
+shader_parameter/wiggle_speed = 25.0
+shader_parameter/smear = 0.1
+shader_parameter/blur_samples = 3
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_1t7an"]
+shader = ExtResource("6_3gv5j")
+shader_parameter/strength = 16.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_a76i1"]
+shader = ExtResource("7_pbpkf")
+shader_parameter/alpha = 1.0
+shader_parameter/inner_radius = 0.0
+shader_parameter/outer_radius = 4.0
+
+[node name="PostProcessing" type="CanvasLayer"]
+script = ExtResource("1_g8i0k")
+
+[node name="highpass" type="CanvasLayer" parent="."]
+
+[node name="ColorRect" type="ColorRect" parent="highpass"]
+material = SubResource("ShaderMaterial_pmfrh")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="chromatic" type="CanvasLayer" parent="."]
+
+[node name="ColorRect" type="ColorRect" parent="chromatic"]
+material = SubResource("ShaderMaterial_bdgjh")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VHS Wiggle" type="CanvasLayer" parent="."]
+
+[node name="ColorRect" type="ColorRect" parent="VHS Wiggle"]
+material = SubResource("ShaderMaterial_u5j1k")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VHS ColorBleed" type="CanvasLayer" parent="."]
+
+[node name="ColorRect" type="ColorRect" parent="VHS ColorBleed"]
+material = SubResource("ShaderMaterial_hqea0")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Grain" type="CanvasLayer" parent="."]
+
+[node name="ColorRect" type="ColorRect" parent="Grain"]
+material = SubResource("ShaderMaterial_1t7an")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Vignette" type="CanvasLayer" parent="."]
+
+[node name="ColorRect" type="ColorRect" parent="Vignette"]
+material = SubResource("ShaderMaterial_a76i1")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
