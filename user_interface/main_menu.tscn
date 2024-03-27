@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=3 uid="uid://cce1rkl4yiv8g"]
+[gd_scene load_steps=33 format=3 uid="uid://cce1rkl4yiv8g"]
 
 [ext_resource type="Script" path="res://main_menu.gd" id="1_rluoc"]
 [ext_resource type="Theme" uid="uid://b0dhfhdkknaj3" path="res://user_interface/chop_theme.tres" id="2_h2fyh"]
@@ -6,14 +6,16 @@
 [ext_resource type="Texture2D" uid="uid://clrb5gif84bdf" path="res://user_interface/main_menu/menu_butcher.png" id="3_pvcq2"]
 [ext_resource type="Texture2D" uid="uid://8gy7beu6w5fj" path="res://user_interface/main_menu/menu_logo.png" id="4_m3cka"]
 [ext_resource type="Texture2D" uid="uid://d2sfjwkrv1clw" path="res://vfx/rain_drop.png" id="6_dpn0x"]
+[ext_resource type="FontFile" uid="uid://br1pfckp2nbrv" path="res://user_interface/fonts/shlop/shlop rg.otf" id="6_pb8gk"]
 [ext_resource type="Texture2D" uid="uid://bilkanq4ivsho" path="res://vfx/rain_striking.png" id="7_03ygk"]
 [ext_resource type="PackedScene" uid="uid://eh11t8si04ed" path="res://user_interface/splattering_rain.tscn" id="8_hdx4d"]
-[ext_resource type="FontFile" uid="uid://baykuh7pqbali" path="res://user_interface/fonts/Giza.otf" id="9_7uwmm"]
+[ext_resource type="FontFile" uid="uid://jd0nv5p8s7t7" path="res://user_interface/fonts/baron-kuffner/Baron Kuffner.otf" id="8_rg3xj"]
 [ext_resource type="FontFile" uid="uid://b8ei6fu0n0k4s" path="res://user_interface/fonts/Printvetica.otf" id="10_56qnp"]
 [ext_resource type="PackedScene" uid="uid://c45dv8km6cdm" path="res://vfx/color_shift_layer.tscn" id="11_c7trd"]
 [ext_resource type="Shader" path="res://addons/extensible_color_palette/color_filter.gdshader" id="12_wa7r1"]
 [ext_resource type="PackedScene" uid="uid://dq04kjd45ls35" path="res://user_interface/settings.tscn" id="13_37shj"]
 [ext_resource type="PackedScene" uid="uid://b7ge44ox6ndlf" path="res://user_interface/input_settings.tscn" id="14_byd8w"]
+[ext_resource type="PackedScene" uid="uid://cgc2h3rt7dkb0" path="res://vfx/post_processing.tscn" id="15_ybayh"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_84x4k"]
 bg_color = Color(0.156863, 0.14902, 0.156863, 1)
@@ -95,8 +97,8 @@ gravity = Vector3(0, 0, 0)
 color = Color(1, 1, 1, 0.584314)
 
 [sub_resource type="Gradient" id="Gradient_asxe6"]
-offsets = PackedFloat32Array(0, 0.496689, 0.543046, 1)
-colors = PackedColorArray(0.19053, 0.1682, 0.29, 0.556863, 0.55428, 0.5456, 0.62, 0.647059, 0.77, 0.40502, 0.1617, 0.486275, 1, 0.85098, 0.709804, 0.6)
+offsets = PackedFloat32Array(0, 0.276398, 0.493789, 0.552795, 1)
+colors = PackedColorArray(0.19053, 0.1682, 0.29, 0.556863, 0.55428, 0.5456, 0.62, 0.647059, 1, 0.427451, 0.2, 0.796078, 1, 0.775628, 0.619103, 0.634885, 1, 0.85098, 0.709804, 0.6)
 
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_mhpyr"]
 gradient = SubResource("Gradient_asxe6")
@@ -202,27 +204,27 @@ text = "Quit Game"
 
 [node name="Title" type="Control" parent="Main"]
 anchors_preset = 0
-offset_left = -214.0
-offset_top = -106.0
-offset_right = -174.0
-offset_bottom = -66.0
+offset_left = -188.0
+offset_top = -110.0
+offset_right = -148.0
+offset_bottom = -70.0
 
 [node name="Butcher" type="Label" parent="Main/Title"]
 layout_mode = 0
-offset_left = 261.0
-offset_top = 157.0
-offset_right = 446.0
-offset_bottom = 230.0
-theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_fonts/font = ExtResource("9_7uwmm")
-theme_override_font_sizes/font_size = 51
+offset_left = 275.0
+offset_top = 154.0
+offset_right = 460.0
+offset_bottom = 227.0
+theme_override_colors/font_color = Color(1, 0.258824, 0.258824, 1)
+theme_override_fonts/font = ExtResource("6_pb8gk")
+theme_override_font_sizes/font_size = 55
 text = "Butcher"
 
 [node name="And" type="Label" parent="Main/Title"]
 layout_mode = 0
-offset_left = 261.0
+offset_left = 252.0
 offset_top = 210.0
-offset_right = 322.0
+offset_right = 313.0
 offset_bottom = 227.0
 theme_override_colors/font_color = Color(0.607843, 0.670588, 0.698039, 1)
 theme_override_fonts/font = ExtResource("10_56qnp")
@@ -232,10 +234,10 @@ horizontal_alignment = 1
 
 [node name="THE" type="Label" parent="Main/Title"]
 layout_mode = 0
-offset_left = 270.0
-offset_top = 223.0
-offset_right = 331.0
-offset_bottom = 240.0
+offset_left = 258.0
+offset_top = 225.0
+offset_right = 319.0
+offset_bottom = 242.0
 theme_override_colors/font_color = Color(0.607843, 0.670588, 0.698039, 1)
 theme_override_fonts/font = ExtResource("10_56qnp")
 theme_override_font_sizes/font_size = 14
@@ -244,13 +246,13 @@ horizontal_alignment = 1
 
 [node name="BEAST" type="Label" parent="Main/Title"]
 layout_mode = 0
-offset_left = 324.0
-offset_top = 199.0
-offset_right = 509.0
-offset_bottom = 261.0
-theme_override_colors/font_color = Color(0.984314, 0.419608, 0.113725, 1)
-theme_override_fonts/font = ExtResource("9_7uwmm")
-theme_override_font_sizes/font_size = 51
+offset_left = 304.0
+offset_top = 187.0
+offset_right = 489.0
+offset_bottom = 279.0
+theme_override_colors/font_color = Color(0.980392, 0.980392, 0.980392, 1)
+theme_override_fonts/font = ExtResource("8_rg3xj")
+theme_override_font_sizes/font_size = 62
 text = "BEAST"
 
 [node name="rain" type="GPUParticles2D" parent="."]
@@ -316,5 +318,7 @@ offset_bottom = 207.0
 
 [node name="InputSettings" parent="." instance=ExtResource("14_byd8w")]
 layout_mode = 1
+
+[node name="PostProcessing" parent="." instance=ExtResource("15_ybayh")]
 
 [editable path="ColorShiftLayer"]
