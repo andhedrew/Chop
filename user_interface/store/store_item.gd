@@ -100,7 +100,11 @@ func buy_health() -> void:
 
 func get_more_lives() -> void:
 	var lives = SaveManager.load_item("lives")
-	lives += 1
+	if lives:
+		lives += 1
+	else:
+		lives = 5
+	GameEvents.player_gained_life.emit()
 	SaveManager.save_item("lives", lives)
 	await get_tree().create_timer(1.5).timeout
 	set_button_text()

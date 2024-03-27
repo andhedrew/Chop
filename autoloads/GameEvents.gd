@@ -11,6 +11,7 @@ signal player_started_syphoning #Arg 1: player.global_position
 signal player_done_syphoning
 signal player_died
 signal player_hit_enemy #arg 1: the enemy
+signal player_gained_life
 
 signal refresh_execute
 

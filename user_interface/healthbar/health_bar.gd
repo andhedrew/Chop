@@ -10,6 +10,8 @@ var bag_contents := []
 var current_player_health = 3
 
 func _ready():
+	current_player_health = SaveManager.load_item("health")
+	_on_player_health_changed(current_player_health, current_player_health)
 	GameEvents.cutscene_started.connect(_on_cutscene_started)
 	GameEvents.cutscene_ended.connect(_on_cutscene_ended)
 	GameEvents.player_health_changed.connect(_on_player_health_changed)

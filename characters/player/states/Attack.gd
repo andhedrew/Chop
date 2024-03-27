@@ -35,8 +35,6 @@ func enter(_msg := {}) -> void:
 	var rotation := 0
 	if owner.looking == Enums.Looking.UP:
 		rotation = 270
-	elif owner.looking == Enums.Looking.DOWN:
-		rotation = 90
 	elif owner.facing == Enums.Facing.LEFT:
 		rotation = 180
 
